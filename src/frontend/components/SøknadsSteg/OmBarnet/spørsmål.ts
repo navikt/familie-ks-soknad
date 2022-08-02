@@ -9,7 +9,7 @@ export enum OmBarnetSpørsmålsId {
     planleggerÅBoINorge12Mnd = 'barn-planlegger-å-bo-sammenhengende-i-norge-12mnd',
     pågåendeSøknadFraAnnetEøsLand = 'pågående-søknad-fra-annet-eøsland',
     pågåendeSøknadHvilketLand = 'pågående-søknad-hvilket-land',
-    mottarEllerMottokEøsBarnetrygd = 'mottar-eller-mottok-eøs-barnetrygd',
+    mottarEllerMottokEøsKontantstøtte = 'mottar-eller-mottok-eøs-kontantstøtte',
     andreForelderNavn = 'andre-forelder-navn',
     andreForelderKanIkkeGiOpplysninger = 'andre-forelder-kan-ikke-gi-opplysninger',
     andreForelderFnr = 'andre-forelder-fødsels-/dnummer',
@@ -36,7 +36,7 @@ export const omBarnetSpørsmålSpråkId: Record<OmBarnetSpørsmålsId, string> =
     [OmBarnetSpørsmålsId.planleggerÅBoINorge12Mnd]: 'ombarnet.oppholdtsammenhengende.spm',
     [OmBarnetSpørsmålsId.pågåendeSøknadFraAnnetEøsLand]: 'ombarnet.pågåendesøknad.spm',
     [OmBarnetSpørsmålsId.pågåendeSøknadHvilketLand]: 'ombarnet.hvilketlandsøkt.spm',
-    [OmBarnetSpørsmålsId.mottarEllerMottokEøsBarnetrygd]:
+    [OmBarnetSpørsmålsId.mottarEllerMottokEøsKontantstøtte]:
         'ombarnet.fårellerharsøktbarnetrygdeøs.spm',
     [OmBarnetSpørsmålsId.andreForelderNavn]: 'ombarnet.andre-forelder.navn.spm',
     [OmBarnetSpørsmålsId.andreForelderKanIkkeGiOpplysninger]:

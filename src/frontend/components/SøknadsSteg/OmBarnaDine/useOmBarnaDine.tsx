@@ -111,8 +111,8 @@ export const useOmBarnaDine = (): {
         ESvar.NEI
     );
 
-    const mottarBarnetrygdForBarnFraAnnetEøsland = useJaNeiSpmFelt({
-        søknadsfelt: søknad.mottarBarnetrygdForBarnFraAnnetEøsland,
+    const mottarKontantstøtteForBarnFraAnnetEøsland = useJaNeiSpmFelt({
+        søknadsfelt: søknad.mottarKontantstøtteForBarnFraAnnetEøsland,
         feilmeldingSpråkId: 'ombarna.barnetrygd-eøs-fortid.feilmelding',
         avhengigheter: {
             erBarnAdoptertFraUtland: {
@@ -126,10 +126,10 @@ export const useOmBarnaDine = (): {
         },
     });
 
-    const hvemBarnetrygdFraAnnetEøsland = useBarnCheckboxFelt(
-        barnDataKeySpørsmål.barnetrygdFraAnnetEøsland,
+    const hvemKontantstøtteFraAnnetEøsland = useBarnCheckboxFelt(
+        barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland,
         'ombarna.barnetrygd-eøs-fortid.hvem.feilmelding',
-        mottarBarnetrygdForBarnFraAnnetEøsland
+        mottarKontantstøtteForBarnFraAnnetEøsland
     );
 
     const avdødPartnerForelderFeilmelding = () => {
@@ -193,7 +193,7 @@ export const useOmBarnaDine = (): {
                 });
             }
         });
-    }, [hvemBarnetrygdFraAnnetEøsland]);
+    }, [hvemKontantstøtteFraAnnetEøsland]);
 
     const oppdaterSøknad = () => {
         const oppdaterteBarn = genererOppdaterteBarn(
@@ -231,9 +231,9 @@ export const useOmBarnaDine = (): {
                 ...søknad.barnOppholdtSegTolvMndSammenhengendeINorge,
                 svar: barnOppholdtSegTolvMndSammenhengendeINorge.verdi,
             },
-            mottarBarnetrygdForBarnFraAnnetEøsland: {
-                ...søknad.mottarBarnetrygdForBarnFraAnnetEøsland,
-                svar: mottarBarnetrygdForBarnFraAnnetEøsland.verdi,
+            mottarKontantstøtteForBarnFraAnnetEøsland: {
+                ...søknad.mottarKontantstøtteForBarnFraAnnetEøsland,
+                svar: mottarKontantstøtteForBarnFraAnnetEøsland.verdi,
             },
             erAvdødPartnerForelder: {
                 ...søknad.erAvdødPartnerForelder,
@@ -274,12 +274,12 @@ export const useOmBarnaDine = (): {
             erBarnAdoptertFraUtland,
             søktAsylForBarn,
             barnOppholdtSegTolvMndSammenhengendeINorge,
-            mottarBarnetrygdForBarnFraAnnetEøsland,
+            mottarKontantstøtteForBarnFraAnnetEøsland,
             erAvdødPartnerForelder,
             hvemErFosterbarn,
             hvemErAdoptertFraUtland,
             hvemOppholderSegIInstitusjon,
-            hvemBarnetrygdFraAnnetEøsland,
+            hvemKontantstøtteFraAnnetEøsland,
             hvemTolvMndSammenhengendeINorge,
             hvemErSøktAsylFor,
             hvemAvdødPartner,

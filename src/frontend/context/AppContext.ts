@@ -14,7 +14,7 @@ import {
 
 import Miljø, { basePath } from '../Miljø';
 import { IKvittering } from '../typer/kvittering';
-import { IMellomlagretBarnetrygd } from '../typer/mellomlager';
+import { IMellomlagretKontantstøtte } from '../typer/mellomlager';
 import { ISøkerRespons } from '../typer/person';
 import { RouteEnum } from '../typer/routes';
 import { initialStateSøknad, ISøknad } from '../typer/søknad';
@@ -35,7 +35,7 @@ const [AppProvider, useApp] = createUseContext(() => {
     const [søknad, settSøknad] = useState<ISøknad>(initialStateSøknad);
     const [innsendingStatus, settInnsendingStatus] = useState(byggTomRessurs<IKvittering>());
     const [sisteUtfylteStegIndex, settSisteUtfylteStegIndex] = useState<number>(-1);
-    const [mellomlagretVerdi, settMellomlagretVerdi] = useState<IMellomlagretBarnetrygd>();
+    const [mellomlagretVerdi, settMellomlagretVerdi] = useState<IMellomlagretKontantstøtte>();
     const [fåttGyldigKvittering, settFåttGyldigKvittering] = useState(false);
     const [nåværendeRoute, settNåværendeRoute] = useState<RouteEnum | undefined>(undefined);
     const { modellVersjon } = Miljø();
@@ -96,22 +96,22 @@ const [AppProvider, useApp] = createUseContext(() => {
     }, [innloggetStatus]);
 
     const mellomlagre = () => {
-        const barnetrygd: IMellomlagretBarnetrygd = {
+        const kontantstøtte: IMellomlagretKontantstøtte = {
             søknad: søknad,
             modellVersjon: Miljø().modellVersjon,
             sisteUtfylteStegIndex: sisteUtfylteStegIndex,
             locale: valgtLocale,
         };
-        axiosRequest<IMellomlagretBarnetrygd, IMellomlagretBarnetrygd>({
+        axiosRequest<IMellomlagretKontantstøtte, IMellomlagretKontantstøtte>({
             url: Miljø().mellomlagerUrl,
             method: 'post',
             withCredentials: true,
             påvirkerSystemLaster: false,
-            data: barnetrygd,
+            data: kontantstøtte,
         }).catch(() => {
             // do nothing
         });
-        settMellomlagretVerdi(barnetrygd);
+        settMellomlagretVerdi(kontantstøtte);
     };
 
     useEffect(() => {
@@ -125,7 +125,7 @@ const [AppProvider, useApp] = createUseContext(() => {
             .get(Miljø().mellomlagerUrl, {
                 withCredentials: true,
             })
-            .then((response: { data?: IMellomlagretBarnetrygd }) => {
+            .then((response: { data?: IMellomlagretKontantstøtte }) => {
                 if (response.data) {
                     settMellomlagretVerdi(response.data);
                 }

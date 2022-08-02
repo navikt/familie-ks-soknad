@@ -260,8 +260,8 @@ export const mekkGyldigSøknad = (): ISøknad => {
             id: OmBarnaDineSpørsmålId.søktAsylForBarn,
             svar: ESvar.NEI,
         },
-        mottarBarnetrygdForBarnFraAnnetEøsland: {
-            id: OmBarnaDineSpørsmålId.mottarBarnetrygdForBarnFraAnnetEøsland,
+        mottarKontantstøtteForBarnFraAnnetEøsland: {
+            id: OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland,
             svar: ESvar.NEI,
         },
         barnOppholdtSegTolvMndSammenhengendeINorge: {
@@ -293,9 +293,9 @@ export const mekkGyldigSøknad = (): ISøknad => {
                     arbeidsperioderUtland: [],
                     pensjonsperioderNorge: [],
                     idNummer: [],
-                    eøsBarnetrygdsperioder: [],
-                    [andreForelderDataKeySpørsmål.barnetrygdFraEøs]: {
-                        id: EøsBarnSpørsmålId.andreForelderBarnetrygd,
+                    eøsKontantstøttePerioder: [],
+                    [andreForelderDataKeySpørsmål.kontantstøtteFraEøs]: {
+                        id: EøsBarnSpørsmålId.andreForelderKontantstøtte,
                         svar: ESvar.JA,
                     },
                     [andreForelderDataKeySpørsmål.navn]: {
@@ -348,11 +348,11 @@ export const mekkGyldigSøknad = (): ISøknad => {
                     id: OmBarnetSpørsmålsId.borFastMedSøker,
                     svar: ESvar.JA,
                 },
-                [barnDataKeySpørsmål.mottarEllerMottokEøsBarnetrygd]: {
-                    id: OmBarnetSpørsmålsId.mottarEllerMottokEøsBarnetrygd,
+                [barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte]: {
+                    id: OmBarnetSpørsmålsId.mottarEllerMottokEøsKontantstøtte,
                     svar: ESvar.NEI,
                 },
-                eøsBarnetrygdsperioder: [],
+                eøsKontantstøttePerioder: [],
                 [barnDataKeySpørsmål.adresse]: {
                     id: EøsBarnSpørsmålId.barnetsAdresse,
                     svar: '',

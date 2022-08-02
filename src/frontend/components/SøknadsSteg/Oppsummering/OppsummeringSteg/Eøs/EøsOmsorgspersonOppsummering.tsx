@@ -10,7 +10,7 @@ import { IOmsorgsperson } from '../../../../../typer/omsorgsperson';
 import { PersonType } from '../../../../../typer/personType';
 import { landkodeTilSpråk, toSlektsforholdSpråkId } from '../../../../../utils/språk';
 import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
-import { BarnetrygdsperiodeOppsummering } from '../../../../Felleskomponenter/Barnetrygdperiode/BarnetrygdperiodeOppsummering';
+import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
 import SpråkTekst from '../../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
@@ -213,22 +213,22 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                     )}
                 </StyledOppsummeringsFeltGruppe>
             )}
-            {omsorgsperson.barnetrygdFraEøs.svar && (
+            {omsorgsperson.kontantstøtteFraEøs.svar && (
                 <OppsummeringFelt
                     tittel={
                         <SpråkTekst
-                            id={eøsBarnSpørsmålSpråkId[omsorgsperson.barnetrygdFraEøs.id]}
+                            id={eøsBarnSpørsmålSpråkId[omsorgsperson.kontantstøtteFraEøs.id]}
                             values={{ barn: barn.navn }}
                         />
                     }
-                    søknadsvar={omsorgsperson.barnetrygdFraEøs.svar}
+                    søknadsvar={omsorgsperson.kontantstøtteFraEøs.svar}
                 />
             )}
-            {omsorgsperson.eøsBarnetrygdsperioder.map((periode, index) => (
-                <BarnetrygdsperiodeOppsummering
-                    key={`barnetrygdperiode-omsorgsperson-${index}`}
+            {omsorgsperson.eøsKontantstøttePerioder.map((periode, index) => (
+                <KontantstøttePeriodeOppsummering
+                    key={`kontantstøtte-periode-omsorgsperson-${index}`}
                     nummer={index + 1}
-                    barnetrygdsperiode={periode}
+                    kontantstøttePeriode={periode}
                     barnetsNavn={barn.navn}
                     personType={PersonType.Omsorgsperson}
                 />

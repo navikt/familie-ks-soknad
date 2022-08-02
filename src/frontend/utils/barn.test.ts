@@ -36,7 +36,7 @@ describe('genererOppdaterteBarn', () => {
                 id: 'random-id',
                 idNummer: [],
                 utenlandsperioder: [],
-                eøsBarnetrygdsperioder: [],
+                eøsKontantstøttePerioder: [],
                 institusjonsnavn: { svar: 'Narvesen' },
                 institusjonsadresse: { svar: 'Narvesen' },
                 institusjonspostnummer: { svar: '2020' },
@@ -54,7 +54,7 @@ describe('genererOppdaterteBarn', () => {
             hvemErAdoptertFraUtland: { verdi: [] },
             hvemOppholderSegIInstitusjon: { verdi: [] },
             hvemTolvMndSammenhengendeINorge: { verdi: [] },
-            hvemBarnetrygdFraAnnetEøsland: { verdi: ['random-id'] },
+            hvemKontantstøtteFraAnnetEøsland: { verdi: ['random-id'] },
             erNoenAvBarnaFosterbarn: {
                 verdi: ESvar.JA,
             },
@@ -70,7 +70,7 @@ describe('genererOppdaterteBarn', () => {
             barnOppholdtSegTolvMndSammenhengendeINorge: {
                 verdi: ESvar.NEI,
             },
-            mottarBarnetrygdForBarnFraAnnetEøsland: {
+            mottarKontantstøtteForBarnFraAnnetEøsland: {
                 verdi: ESvar.JA,
             },
         },
@@ -85,7 +85,7 @@ describe('genererOppdaterteBarn', () => {
                 erAdoptertFraUtland: objectContaining({ svar: 'NEI' }),
                 oppholderSegIInstitusjon: objectContaining({ svar: 'NEI' }),
                 boddMindreEnn12MndINorge: objectContaining({ svar: 'NEI' }),
-                barnetrygdFraAnnetEøsland: objectContaining({ svar: 'JA' }),
+                kontantstøtteFraAnnetEøsland: objectContaining({ svar: 'JA' }),
                 institusjonsnavn: objectContaining({ svar: '' }),
                 institusjonsadresse: objectContaining({ svar: '' }),
                 institusjonspostnummer: objectContaining({ svar: '' }),

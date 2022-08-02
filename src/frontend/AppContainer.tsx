@@ -19,8 +19,8 @@ const AppContainer = () => {
                 <div>
                     <Alertstripe type="advarsel">
                         {'Du må søke på papir. '}
-                        <a href="https://www.nav.no/no/person/familie/barnetrygd-og-kontantstotte/barnetrygd">
-                            Klikk her for å gå til våre sider for barnetrygd
+                        <a href="https://www.nav.no/kontantstotte">
+                            Klikk her for å gå til våre sider for kontantstøtte
                         </a>
                     </Alertstripe>
                 </div>

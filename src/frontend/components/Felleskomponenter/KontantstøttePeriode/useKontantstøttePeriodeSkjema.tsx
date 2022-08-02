@@ -8,15 +8,15 @@ import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { PersonType } from '../../../typer/personType';
-import { IBarnetrygdperioderFeltTyper } from '../../../typer/skjema';
+import { IKontantstøttePerioderFeltTyper } from '../../../typer/skjema';
 import { dagenEtterDato, dagensDato, gårsdagensDato } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import {
-    barnetrygdslandFeilmelding,
-    mottarBarnetrygdNåFeilmelding,
-} from './barnetrygdperiodeSpråkUtils';
-import { BarnetrygdperiodeSpørsmålId } from './spørsmål';
+    kontantstøtteLandFeilmelding,
+    mottarKontantstøtteNåFeilmelding,
+} from './kontantstøttePeriodeSpråkUtils';
+import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 
 export interface IUsePensjonsperiodeSkjemaParams {
     personType: PersonType;
@@ -24,50 +24,52 @@ export interface IUsePensjonsperiodeSkjemaParams {
     barn: IBarnMedISøknad;
 }
 
-export const useBarnetrygdperiodeSkjema = (personType: PersonType, barn, erDød) => {
-    const mottarEøsBarnetrygdNå = useJaNeiSpmFelt({
-        søknadsfelt: { id: BarnetrygdperiodeSpørsmålId.mottarEøsBarnetrygdNå, svar: null },
-        feilmeldingSpråkId: mottarBarnetrygdNåFeilmelding(personType),
+export const useKontantstøttePeriodeSkjema = (personType: PersonType, barn, erDød) => {
+    const mottarEøsKontantstøtteNå = useJaNeiSpmFelt({
+        søknadsfelt: { id: KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå, svar: null },
+        feilmeldingSpråkId: mottarKontantstøtteNåFeilmelding(personType),
         feilmeldingSpråkVerdier: { barn: barn.navn },
         skalSkjules: erDød,
     });
 
     const andreForelderErDød = personType === PersonType.AndreForelder && erDød;
 
-    const periodenErAvsluttet = mottarEøsBarnetrygdNå.verdi === ESvar.NEI || andreForelderErDød;
+    const periodenErAvsluttet = mottarEøsKontantstøtteNå.verdi === ESvar.NEI || andreForelderErDød;
 
-    const barnetrygdsland = useLanddropdownFelt({
-        søknadsfelt: { id: BarnetrygdperiodeSpørsmålId.barnetrygdsland, svar: '' },
-        feilmeldingSpråkId: barnetrygdslandFeilmelding(periodenErAvsluttet, personType),
+    const kontantstøtteLand = useLanddropdownFelt({
+        søknadsfelt: { id: KontantstøttePeriodeSpørsmålId.kontantstøtteLand, svar: '' },
+        feilmeldingSpråkId: kontantstøtteLandFeilmelding(periodenErAvsluttet, personType),
         skalFeltetVises:
-            mottarEøsBarnetrygdNå.valideringsstatus === Valideringsstatus.OK || andreForelderErDød,
+            mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK ||
+            andreForelderErDød,
         nullstillVedAvhengighetEndring: true,
         feilmeldingSpråkVerdier: { barn: barn.navn },
     });
 
-    const fraDatoBarnetrygdperiode = useDatovelgerFelt({
-        søknadsfelt: { id: BarnetrygdperiodeSpørsmålId.fraDatoBarnetrygdperiode, svar: '' },
+    const fraDatoKontantstøttePeriode = useDatovelgerFelt({
+        søknadsfelt: { id: KontantstøttePeriodeSpørsmålId.fraDatoKontantstøttePeriode, svar: '' },
         skalFeltetVises:
-            mottarEøsBarnetrygdNå.valideringsstatus === Valideringsstatus.OK || andreForelderErDød,
+            mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK ||
+            andreForelderErDød,
         feilmeldingSpråkId: 'modal.trygdnårbegynte.feilmelding',
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
         nullstillVedAvhengighetEndring: true,
     });
 
-    const tilDatoBarnetrygdperiode = useDatovelgerFelt({
-        søknadsfelt: { id: BarnetrygdperiodeSpørsmålId.tilDatoBarnetrygdperiode, svar: '' },
+    const tilDatoKontantstøttePeriode = useDatovelgerFelt({
+        søknadsfelt: { id: KontantstøttePeriodeSpørsmålId.tilDatoKontantstøttePeriode, svar: '' },
         skalFeltetVises: periodenErAvsluttet || andreForelderErDød,
         feilmeldingSpråkId: 'modal.trygdnåravsluttet.spm',
         sluttdatoAvgrensning: dagensDato(),
-        startdatoAvgrensning: dagenEtterDato(fraDatoBarnetrygdperiode.verdi),
+        startdatoAvgrensning: dagenEtterDato(fraDatoKontantstøttePeriode.verdi),
     });
 
     const månedligBeløp = useFelt<string>({
         verdi: '',
-        feltId: BarnetrygdperiodeSpørsmålId.månedligBeløp,
+        feltId: KontantstøttePeriodeSpørsmålId.månedligBeløp,
         valideringsfunksjon: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
-            if (verdi.match(/^[0-9\s.\\/]{1,7}$/)) {
+            if (verdi.match(/^[\d\s.\\/]{1,7}$/)) {
                 return ok(felt);
             } else {
                 return feil(
@@ -84,21 +86,21 @@ export const useBarnetrygdperiodeSkjema = (personType: PersonType, barn, erDød)
         },
 
         skalFeltetVises: avhengigheter =>
-            avhengigheter.mottarEøsBarnetrygdNå.valideringsstatus === Valideringsstatus.OK ||
+            avhengigheter.mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK ||
             andreForelderErDød,
-        avhengigheter: { mottarEøsBarnetrygdNå },
+        avhengigheter: { mottarEøsKontantstøtteNå },
     });
 
-    const skjema = useSkjema<IBarnetrygdperioderFeltTyper, 'string'>({
+    const skjema = useSkjema<IKontantstøttePerioderFeltTyper, 'string'>({
         felter: {
-            mottarEøsBarnetrygdNå,
-            barnetrygdsland,
-            fraDatoBarnetrygdperiode,
-            tilDatoBarnetrygdperiode,
+            mottarEøsKontantstøtteNå,
+            kontantstøtteLand,
+            fraDatoKontantstøttePeriode,
+            tilDatoKontantstøttePeriode,
             månedligBeløp,
         },
 
-        skjemanavn: 'barnetrygdperioder',
+        skjemanavn: 'kontantstøttePerioder',
     });
 
     return {

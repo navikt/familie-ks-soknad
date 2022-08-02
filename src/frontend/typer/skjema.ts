@@ -7,7 +7,7 @@ import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent, ESvarMedUbesvart } f
 import { Slektsforhold } from './kontrakt/generelle';
 import {
     IArbeidsperiode,
-    IEøsBarnetrygdsperiode,
+    IEøsKontantstøttePeriode,
     IPensjonsperiode,
     IUtbetalingsperiode,
     IUtenlandsperiode,
@@ -29,12 +29,12 @@ export interface IOmBarnaDineFeltTyper {
     erBarnAdoptertFraUtland: ESvar | null;
     søktAsylForBarn: ESvar | null;
     barnOppholdtSegTolvMndSammenhengendeINorge: ESvar | null;
-    mottarBarnetrygdForBarnFraAnnetEøsland: ESvar | null;
+    mottarKontantstøtteForBarnFraAnnetEøsland: ESvar | null;
     erAvdødPartnerForelder: ESvar | null;
     hvemErFosterbarn: BarnetsId[];
     hvemOppholderSegIInstitusjon: BarnetsId[];
     hvemErAdoptertFraUtland: BarnetsId[];
-    hvemBarnetrygdFraAnnetEøsland: BarnetsId[];
+    hvemKontantstøtteFraAnnetEøsland: BarnetsId[];
     hvemTolvMndSammenhengendeINorge: BarnetsId[];
     hvemErSøktAsylFor: BarnetsId[];
     hvemAvdødPartner: BarnetsId[];
@@ -51,8 +51,8 @@ export interface IOmBarnetUtvidetFeltTyper {
     planleggerÅBoINorge12Mnd: ESvar | null;
     pågåendeSøknadFraAnnetEøsLand: ESvar | null;
     pågåendeSøknadHvilketLand: Alpha3Code | '';
-    mottarEllerMottokEøsBarnetrygd: ESvar | null;
-    registrerteEøsBarnetrygdsperioder: IEøsBarnetrygdsperiode[];
+    mottarEllerMottokEøsKontantstøtte: ESvar | null;
+    registrerteEøsKontantstøttePerioder: IEøsKontantstøttePeriode[];
     andreForelderNavn: string;
     andreForelderKanIkkeGiOpplysninger: ESvar;
     andreForelderFnr: string;
@@ -98,8 +98,8 @@ export interface IEøsForBarnFeltTyper {
     andreForelderAndreUtbetalingsperioder: IUtbetalingsperiode[];
     andreForelderPågåendeSøknadFraAnnetEøsLand: ESvar | null;
     andreForelderPågåendeSøknadHvilketLand: Alpha3Code | '';
-    andreForelderBarnetrygdFraEøs: ESvar | null;
-    andreForelderEøsBarnetrygdsperioder: IEøsBarnetrygdsperiode[];
+    andreForelderKontantstøtteFraEøs: ESvar | null;
+    andreForelderEøsKontantstøttePerioder: IEøsKontantstøttePeriode[];
     andreForelderAdresse: string | AlternativtSvarForInput.UKJENT;
     andreForelderAdresseVetIkke: ESvar;
     søkersSlektsforhold: Slektsforhold | '';
@@ -125,8 +125,8 @@ export interface IEøsForBarnFeltTyper {
     omsorgspersonAndreUtbetalingsperioder: IUtbetalingsperiode[];
     omsorgspersonPågåendeSøknadFraAnnetEøsLand: ESvar | null;
     omsorgspersonPågåendeSøknadHvilketLand: Alpha3Code | '';
-    omsorgspersonBarnetrygdFraEøs: ESvar | null;
-    omsorgspersonEøsBarnetrygdsperioder: IEøsBarnetrygdsperiode[];
+    omsorgspersonKontantstøtteFraEøs: ESvar | null;
+    omsorgspersonEøsKontantstøttePerioder: IEøsKontantstøttePeriode[];
     barnetsAdresse: string | AlternativtSvarForInput.UKJENT;
     barnetsAdresseVetIkke: ESvar;
 }
@@ -180,11 +180,11 @@ export interface IArbeidsperioderFeltTyper {
     tilDatoArbeidsperiodeUkjent: ESvar;
 }
 
-export interface IBarnetrygdperioderFeltTyper {
-    mottarEøsBarnetrygdNå: ESvar | null;
-    barnetrygdsland: Alpha3Code | '';
-    fraDatoBarnetrygdperiode: ISODateString;
-    tilDatoBarnetrygdperiode: ISODateString;
+export interface IKontantstøttePerioderFeltTyper {
+    mottarEøsKontantstøtteNå: ESvar | null;
+    kontantstøtteLand: Alpha3Code | '';
+    fraDatoKontantstøttePeriode: ISODateString;
+    tilDatoKontantstøttePeriode: ISODateString;
     månedligBeløp: string;
 }
 export type SkjemaFeltTyper =
@@ -200,4 +200,4 @@ export type SkjemaFeltTyper =
     | IEøsForBarnFeltTyper
     | IUtbetalingerFeltTyper
     | IArbeidsperioderFeltTyper
-    | IBarnetrygdperioderFeltTyper;
+    | IKontantstøttePerioderFeltTyper;

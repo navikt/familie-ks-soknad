@@ -181,10 +181,10 @@ const OmBarnaDine: React.FC = () => {
 
                     <JaNeiSpm
                         skjema={skjema}
-                        felt={skjema.felter.mottarBarnetrygdForBarnFraAnnetEøsland}
+                        felt={skjema.felter.mottarKontantstøtteForBarnFraAnnetEøsland}
                         spørsmålTekstId={
                             omBarnaDineSpørsmålSpråkId[
-                                OmBarnaDineSpørsmålId.mottarBarnetrygdForBarnFraAnnetEøsland
+                                OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland
                             ]
                         }
                     />
@@ -192,13 +192,14 @@ const OmBarnaDine: React.FC = () => {
                     <HvilkeBarnCheckboxGruppe
                         legendSpråkId={
                             omBarnaDineSpørsmålSpråkId[
-                                OmBarnaDineSpørsmålId.hvemBarnetrygdFraAnnetEøsland
+                                OmBarnaDineSpørsmålId.hvemKontantstøtteFraAnnetEøsland
                             ]
                         }
-                        skjemafelt={skjema.felter.hvemBarnetrygdFraAnnetEøsland}
-                        søknadsdatafelt={barnDataKeySpørsmål.barnetrygdFraAnnetEøsland}
+                        skjemafelt={skjema.felter.hvemKontantstøtteFraAnnetEøsland}
+                        søknadsdatafelt={barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland}
                         nullstillValgteBarn={
-                            skjema.felter.mottarBarnetrygdForBarnFraAnnetEøsland.verdi === ESvar.NEI
+                            skjema.felter.mottarKontantstøtteForBarnFraAnnetEøsland.verdi ===
+                            ESvar.NEI
                         }
                         visFeilmelding={skjema.visFeilmeldinger}
                     ></HvilkeBarnCheckboxGruppe>

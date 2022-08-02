@@ -17,7 +17,7 @@ import { PersonType } from '../../../../../typer/personType';
 import { IEøsForBarnFeltTyper } from '../../../../../typer/skjema';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
 import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
-import { BarnetrygdsperiodeOppsummering } from '../../../../Felleskomponenter/Barnetrygdperiode/BarnetrygdperiodeOppsummering';
+import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
 import SpråkTekst from '../../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
@@ -136,12 +136,12 @@ const EøsAndreForelderOppsummering: React.FC<{
                     />
                 )}
 
-                {jaNeiSpmOppsummering(andreForelderDataKeySpørsmål.barnetrygdFraEøs)}
-                {andreForelder.eøsBarnetrygdsperioder.map((periode, index) => (
-                    <BarnetrygdsperiodeOppsummering
-                        key={`barnetrygdperiode-andre-forelder-${index}`}
+                {jaNeiSpmOppsummering(andreForelderDataKeySpørsmål.kontantstøtteFraEøs)}
+                {andreForelder.eøsKontantstøttePerioder.map((periode, index) => (
+                    <KontantstøttePeriodeOppsummering
+                        key={`kontantstøtte-periode-andre-forelder-${index}`}
                         nummer={index + 1}
-                        barnetrygdsperiode={periode}
+                        kontantstøttePeriode={periode}
                         barnetsNavn={barn.navn}
                         personType={PersonType.AndreForelder}
                         erDød={andreForelderErDød}

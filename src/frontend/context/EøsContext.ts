@@ -77,7 +77,7 @@ const [EøsProvider, useEøs] = createUseContext(() => {
         ].flat();
 
         const jaNeiSvarSomKanTriggeEøs =
-            barn[barnDataKeySpørsmål.barnetrygdFraAnnetEøsland].svar === ESvar.JA;
+            barn[barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland].svar === ESvar.JA;
 
         return !!landSvarSomKanTriggeEøs.find(land => erEøsLand(land)) || jaNeiSvarSomKanTriggeEøs;
     };

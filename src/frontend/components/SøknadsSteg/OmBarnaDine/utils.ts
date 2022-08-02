@@ -43,9 +43,9 @@ export const genererOppdaterteBarn = (
             skjema.felter.hvemTolvMndSammenhengendeINorge
         );
 
-        const mottarBarnetrygdFraAnnetEøsland: ESvar = genererSvarForSpørsmålBarn(
+        const mottarKontantstøtteFraAnnetEøsland: ESvar = genererSvarForSpørsmålBarn(
             barn,
-            skjema.felter.hvemBarnetrygdFraAnnetEøsland
+            skjema.felter.hvemKontantstøtteFraAnnetEøsland
         );
         const andreForelderErDød: ESvar = genererSvarForSpørsmålBarn(
             barn,
@@ -59,17 +59,17 @@ export const genererOppdaterteBarn = (
 
         const utenlandsperioder =
             boddMindreEnn12MndINorge === ESvar.JA ? barn.utenlandsperioder : [];
-        const eøsBarnetrygdsperioder =
-            mottarBarnetrygdFraAnnetEøsland === ESvar.JA ? barn.eøsBarnetrygdsperioder : [];
+        const eøsKontantstøttePerioder =
+            mottarKontantstøtteFraAnnetEøsland === ESvar.JA ? barn.eøsKontantstøttePerioder : [];
 
         const pågåendeSøknadFraAnnetEøsLand: ESvar | null = genererSvarForOppfølgningspørsmålBarn(
-            mottarBarnetrygdFraAnnetEøsland,
+            mottarKontantstøtteFraAnnetEøsland,
             barn[barnDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand],
             null
         );
 
         const pågåendeSøknadHvilketLand: Alpha3Code | '' = genererSvarForOppfølgningspørsmålBarn(
-            mottarBarnetrygdFraAnnetEøsland,
+            mottarKontantstøtteFraAnnetEøsland,
             barn[barnDataKeySpørsmål.pågåendeSøknadHvilketLand],
             ''
         );
@@ -110,14 +110,14 @@ export const genererOppdaterteBarn = (
         const oppdatertBarn = {
             ...barn,
             idNummer: filtrerteRelevanteIdNummerForBarn(
-                { eøsBarnetrygdsperioder, utenlandsperioder },
+                { eøsKontantstøttePerioder, utenlandsperioder },
                 pågåendeSøknadFraAnnetEøsLand,
                 pågåendeSøknadHvilketLand,
                 barn,
                 erEøsLand
             ),
             utenlandsperioder,
-            eøsBarnetrygdsperioder,
+            eøsKontantstøttePerioder,
             andreForelder:
                 erFosterbarn === ESvar.JA
                     ? null
@@ -162,9 +162,9 @@ export const genererOppdaterteBarn = (
                 ...barn[barnDataKeySpørsmål.boddMindreEnn12MndINorge],
                 svar: boddMindreEnn12MndINorge,
             },
-            [barnDataKeySpørsmål.barnetrygdFraAnnetEøsland]: {
-                ...barn[barnDataKeySpørsmål.barnetrygdFraAnnetEøsland],
-                svar: mottarBarnetrygdFraAnnetEøsland,
+            [barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland]: {
+                ...barn[barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland],
+                svar: mottarKontantstøtteFraAnnetEøsland,
             },
             [barnDataKeySpørsmål.andreForelderErDød]: {
                 ...barn[barnDataKeySpørsmål.andreForelderErDød],
@@ -226,11 +226,11 @@ export const genererOppdaterteBarn = (
                     null
                 ),
             },
-            [barnDataKeySpørsmål.mottarEllerMottokEøsBarnetrygd]: {
-                ...barn[barnDataKeySpørsmål.mottarEllerMottokEøsBarnetrygd],
+            [barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte]: {
+                ...barn[barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte],
                 svar: genererSvarForOppfølgningspørsmålBarn(
-                    mottarBarnetrygdFraAnnetEøsland,
-                    barn[barnDataKeySpørsmål.mottarEllerMottokEøsBarnetrygd],
+                    mottarKontantstøtteFraAnnetEøsland,
+                    barn[barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte],
                     null
                 ),
             },

@@ -34,8 +34,8 @@ const manueltRegistrert: Partial<IBarnMedISøknad> = {
     ident: '12345',
     navn: 'A',
     utenlandsperioder: [],
-    [barnDataKeySpørsmål.barnetrygdFraAnnetEøsland]: {
-        id: OmBarnaDineSpørsmålId.mottarBarnetrygdForBarnFraAnnetEøsland,
+    [barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland]: {
+        id: OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland,
         svar: ESvar.NEI,
     },
 };
@@ -49,8 +49,8 @@ const fraPdlSomIBarnMedISøknad: Partial<IBarnMedISøknad> = {
     navn: fraPdl.navn ?? 'ukjent',
     id: 'random-id-2',
     utenlandsperioder: [],
-    [barnDataKeySpørsmål.barnetrygdFraAnnetEøsland]: {
-        id: OmBarnaDineSpørsmålId.mottarBarnetrygdForBarnFraAnnetEøsland,
+    [barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland]: {
+        id: OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland,
         svar: ESvar.NEI,
     },
 };

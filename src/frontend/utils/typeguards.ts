@@ -48,8 +48,8 @@ export const erGyldigISøknadKontraktOmsorgsperson = (
         'andreUtbetalingsperioder' in input &&
         'pågåendeSøknadFraAnnetEøsLand' in input &&
         'pågåendeSøknadHvilketLand' in input &&
-        'barnetrygdFraEøs' in input &&
-        'eøsBarnetrygdsperioder' in input);
+        'kontantstøtteFraEøs' in input &&
+        'eøsKontantstøttePerioder' in input);
 
 export const erGyldigISøknadKontraktAndreForelder = (
     input
@@ -66,14 +66,14 @@ export const erGyldigISøknadKontraktAndreForelder = (
         'pensjonNorge' in input &&
         'arbeidNorge' in input &&
         'andreUtbetalinger' in input &&
-        'barnetrygdFraEøs' in input &&
+        'kontantstøtteFraEøs' in input &&
         'arbeidsperioderUtland' in input &&
         'pensjonsperioderUtland' in input &&
         'arbeidsperioderNorge' in input &&
         'pensjonsperioderNorge' in input &&
         'pågåendeSøknadFraAnnetEøsLand' in input &&
         'pågåendeSøknadHvilketLand' in input &&
-        'eøsBarnetrygdsperioder' in input &&
+        'eøsKontantstøttePerioder' in input &&
         'andreUtbetalingsperioder' in input &&
         'idNummer' in input);
 
@@ -85,7 +85,7 @@ export const erGyldigISøknadsKontraktBarn = (input): input is ISøknadIKontrakt
     'registrertBostedType' in input &&
     'alder' in input &&
     'utenlandsperioder' in input &&
-    'eøsBarnetrygdsperioder' in input &&
+    'eøsKontantstøttePerioder' in input &&
     'idNummer' in input &&
     'spørsmål' in input &&
     'omsorgsperson' in input &&

@@ -15,7 +15,7 @@ import { PersonType } from '../../../../../typer/personType';
 import { formaterDato } from '../../../../../utils/dato';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
 import { formaterDatoMedUkjent } from '../../../../../utils/visning';
-import { BarnetrygdsperiodeOppsummering } from '../../../../Felleskomponenter/Barnetrygdperiode/BarnetrygdperiodeOppsummering';
+import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
 import SpråkTekst from '../../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
 import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from '../../../OmBarnet/spørsmål';
@@ -188,7 +188,7 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, 
                 </StyledOppsummeringsFeltGruppe>
             )}
 
-            {barn[barnDataKeySpørsmål.barnetrygdFraAnnetEøsland].svar === ESvar.JA && (
+            {barn[barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland].svar === ESvar.JA && (
                 <StyledOppsummeringsFeltGruppe>
                     <OppsummeringFelt
                         tittel={
@@ -233,27 +233,27 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, 
                         />
                     )}
 
-                    {barn[barnDataKeySpørsmål.mottarEllerMottokEøsBarnetrygd].svar && (
+                    {barn[barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte].svar && (
                         <OppsummeringFelt
                             tittel={
                                 <SpråkTekst
                                     id={
                                         omBarnetSpørsmålSpråkId[
-                                            OmBarnetSpørsmålsId.mottarEllerMottokEøsBarnetrygd
+                                            OmBarnetSpørsmålsId.mottarEllerMottokEøsKontantstøtte
                                         ]
                                     }
                                 />
                             }
                             søknadsvar={
-                                barn[barnDataKeySpørsmål.mottarEllerMottokEøsBarnetrygd].svar
+                                barn[barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte].svar
                             }
                         />
                     )}
-                    {barn.eøsBarnetrygdsperioder.map((periode, index) => (
-                        <BarnetrygdsperiodeOppsummering
-                            key={`barnetrygdperiode-søker-${index}`}
+                    {barn.eøsKontantstøttePerioder.map((periode, index) => (
+                        <KontantstøttePeriodeOppsummering
+                            key={`kontantstøtte-periode-søker-${index}`}
                             nummer={index + 1}
-                            barnetrygdsperiode={periode}
+                            kontantstøttePeriode={periode}
                             barnetsNavn={barn.navn}
                             personType={PersonType.Søker}
                         />

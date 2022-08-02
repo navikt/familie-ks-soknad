@@ -20,7 +20,7 @@ export const testdata5: TilKontraktTestData = {
                 harEøsSteg: false,
                 barnErFyltUt: true,
                 utenlandsperioder: [],
-                eøsBarnetrygdsperioder: [],
+                eøsKontantstøttePerioder: [],
                 idNummer: [],
                 andreForelder: {
                     kanIkkeGiOpplysninger: {
@@ -75,11 +75,11 @@ export const testdata5: TilKontraktTestData = {
                         id: 'andre-forelder-pågående-søknad-land',
                         svar: 'BEL',
                     },
-                    barnetrygdFraEøs: {
-                        id: 'andre-forelder-barnetrygd',
+                    kontantstøtteFraEøs: {
+                        id: 'andre-forelder-kontantstøtte',
                         svar: 'NEI',
                     },
-                    eøsBarnetrygdsperioder: [],
+                    eøsKontantstøttePerioder: [],
                     arbeidsperioderUtland: [],
                     pensjonsperioderUtland: [],
                     arbeidsperioderNorge: [],
@@ -104,8 +104,8 @@ export const testdata5: TilKontraktTestData = {
                     id: 'hvem-er-søkt-asyl-for',
                     svar: 'NEI',
                 },
-                barnetrygdFraAnnetEøsland: {
-                    id: 'hvem-mottar-barnetrygd-eøsland',
+                kontantstøtteFraAnnetEøsland: {
+                    id: 'hvem-mottar-kontantstøtte-eøsland',
                     svar: 'NEI',
                 },
                 andreForelderErDød: {
@@ -186,7 +186,7 @@ export const testdata5: TilKontraktTestData = {
                         },
                     },
                 ],
-                eøsBarnetrygdsperioder: [],
+                eøsKontantstøttePerioder: [],
                 idNummer: [],
                 andreForelder: {
                     kanIkkeGiOpplysninger: {
@@ -251,11 +251,11 @@ export const testdata5: TilKontraktTestData = {
                         id: 'andre-forelder-pågående-søknad-land',
                         svar: 'BEL',
                     },
-                    barnetrygdFraEøs: {
-                        id: 'andre-forelder-barnetrygd',
+                    kontantstøtteFraEøs: {
+                        id: 'andre-forelder-kontantstøtte',
                         svar: 'NEI',
                     },
-                    eøsBarnetrygdsperioder: [],
+                    eøsKontantstøttePerioder: [],
                     arbeidsperioderUtland: [],
                     pensjonsperioderUtland: [],
                     arbeidsperioderNorge: [],
@@ -280,8 +280,8 @@ export const testdata5: TilKontraktTestData = {
                     id: 'hvem-er-søkt-asyl-for',
                     svar: 'NEI',
                 },
-                barnetrygdFraAnnetEøsland: {
-                    id: 'hvem-mottar-barnetrygd-eøsland',
+                kontantstøtteFraAnnetEøsland: {
+                    id: 'hvem-mottar-kontantstøtte-eøsland',
                     svar: 'NEI',
                 },
                 andreForelderErDød: {
@@ -530,8 +530,8 @@ export const testdata5: TilKontraktTestData = {
             id: 'tolv-mnd-sammenhengende-i-norge',
             svar: 'NEI',
         },
-        mottarBarnetrygdForBarnFraAnnetEøsland: {
-            id: 'barnetrygd-fra-annet-eøsland',
+        mottarKontantstøtteForBarnFraAnnetEøsland: {
+            id: 'kontantstøtte-fra-annet-eøsland',
             svar: 'NEI',
         },
         erAvdødPartnerForelder: {
@@ -687,7 +687,7 @@ export const testdata5: TilKontraktTestData = {
                     verdi: { en: '13 years', nb: '13 år', nn: '13 år' },
                 },
                 utenlandsperioder: [],
-                eøsBarnetrygdsperioder: [],
+                eøsKontantstøttePerioder: [],
                 idNummer: [],
                 andreForelder: {
                     kanIkkeGiOpplysninger: {
@@ -782,7 +782,7 @@ export const testdata5: TilKontraktTestData = {
                         },
                         verdi: { nb: 'Belgia', nn: 'Belgia', en: 'Belgium' },
                     },
-                    barnetrygdFraEøs: {
+                    kontantstøtteFraEøs: {
                         label: {
                             en: "Is Barn 234567 89876's other parent receiving or have they received child benefit from another EEA country?",
                             nb: 'Får eller har Barn 234567 89876 sin andre forelder fått barnetrygd fra et annet EU/EØS land?',
@@ -815,7 +815,7 @@ export const testdata5: TilKontraktTestData = {
                     arbeidsperioderNorge: [],
                     pensjonsperioderNorge: [],
                     andreUtbetalingsperioder: [],
-                    eøsBarnetrygdsperioder: [],
+                    eøsKontantstøttePerioder: [],
                     idNummer: [],
                 },
                 omsorgsperson: null,
@@ -844,7 +844,7 @@ export const testdata5: TilKontraktTestData = {
                         },
                         verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
                     },
-                    barnetrygdFraAnnetEøsland: {
+                    kontantstøtteFraAnnetEøsland: {
                         label: {
                             en: 'For which of the children are you receiving, have received or have applied for child benefit?',
                             nb: 'Hvem av barna får du, har du fått eller har du søkt om barnetrygd for?',
@@ -1065,7 +1065,7 @@ export const testdata5: TilKontraktTestData = {
                         },
                     },
                 ],
-                eøsBarnetrygdsperioder: [],
+                eøsKontantstøttePerioder: [],
                 idNummer: [],
                 andreForelder: {
                     kanIkkeGiOpplysninger: {
@@ -1156,7 +1156,7 @@ export const testdata5: TilKontraktTestData = {
                         },
                         verdi: { nb: 'Belgia', nn: 'Belgia', en: 'Belgium' },
                     },
-                    barnetrygdFraEøs: {
+                    kontantstøtteFraEøs: {
                         label: {
                             en: "Is Barn Barnessen III's other parent receiving or have they received child benefit from another EEA country?",
                             nb: 'Får eller har Barn Barnessen III sin andre forelder fått barnetrygd fra et annet EU/EØS land?',
@@ -1189,7 +1189,7 @@ export const testdata5: TilKontraktTestData = {
                     arbeidsperioderNorge: [],
                     pensjonsperioderNorge: [],
                     andreUtbetalingsperioder: [],
-                    eøsBarnetrygdsperioder: [],
+                    eøsKontantstøttePerioder: [],
                     idNummer: [],
                 },
                 omsorgsperson: null,
@@ -1226,7 +1226,7 @@ export const testdata5: TilKontraktTestData = {
                         },
                         verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
                     },
-                    barnetrygdFraAnnetEøsland: {
+                    kontantstøtteFraAnnetEøsland: {
                         label: {
                             en: 'For which of the children are you receiving, have received or have applied for child benefit?',
                             nb: 'Hvem av barna får du, har du fått eller har du søkt om barnetrygd for?',
@@ -1342,7 +1342,7 @@ export const testdata5: TilKontraktTestData = {
                 },
                 verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
             },
-            mottarBarnetrygdForBarnFraAnnetEøsland: {
+            mottarKontantstøtteForBarnFraAnnetEøsland: {
                 label: {
                     en: 'Are you receiving, have you received or have you applied for child benefit for some of the children from another EEA country?',
                     nb: 'Får, har du fått eller har du søkt om barnetrygd for noen av barna fra et annet EØS land?',

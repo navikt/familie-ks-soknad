@@ -8,17 +8,17 @@ import { ISkjema } from '@navikt/familie-skjema';
 import { IBarnMedISøknad } from '../../../../typer/barn';
 import {
     IArbeidsperiode,
-    IEøsBarnetrygdsperiode,
+    IEøsKontantstøttePeriode,
     IPensjonsperiode,
     IUtbetalingsperiode,
 } from '../../../../typer/perioder';
 import { PersonType } from '../../../../typer/personType';
 import { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
 import { Arbeidsperiode } from '../../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
-import { Barnetrygdperiode } from '../../../Felleskomponenter/Barnetrygdperiode/Barnetrygdperiode';
 import { LandDropdown } from '../../../Felleskomponenter/Dropdowns/LandDropdown';
 import SlektsforholdDropdown from '../../../Felleskomponenter/Dropdowns/SlektsforholdDropdown';
 import JaNeiSpm from '../../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
+import { KontantstøttePeriode } from '../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriode';
 import { Pensjonsperiode } from '../../../Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
 import { SkjemaCheckbox } from '../../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeltInput } from '../../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
@@ -41,8 +41,8 @@ interface OmsorgspersonProps {
         fjernPensjonsperiodeNorgeOmsorgsperson: (periode: IPensjonsperiode) => void;
         leggTilAndreUtbetalingsperiodeOmsorgsperson: (periode: IUtbetalingsperiode) => void;
         fjernAndreUtbetalingsperiodeOmsorgsperson: (periode: IUtbetalingsperiode) => void;
-        leggTilBarnetrygdsperiodeOmsorgsperson: (periode: IEøsBarnetrygdsperiode) => void;
-        fjernBarnetrygdsperiodeOmsorgsperson: (periode: IEøsBarnetrygdsperiode) => void;
+        leggTilKontantstøttePeriodeOmsorgsperson: (periode: IEøsKontantstøttePeriode) => void;
+        fjernKontantstøttePeriodeOmsorgsperson: (periode: IEøsKontantstøttePeriode) => void;
     };
 }
 
@@ -59,8 +59,8 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
         fjernPensjonsperiodeNorgeOmsorgsperson,
         leggTilAndreUtbetalingsperiodeOmsorgsperson,
         fjernAndreUtbetalingsperiodeOmsorgsperson,
-        leggTilBarnetrygdsperiodeOmsorgsperson,
-        fjernBarnetrygdsperiodeOmsorgsperson,
+        leggTilKontantstøttePeriodeOmsorgsperson,
+        fjernKontantstøttePeriodeOmsorgsperson,
     } = periodeFunksjoner;
 
     return (
@@ -207,14 +207,14 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                 />
             )}
 
-            <Barnetrygdperiode
+            <KontantstøttePeriode
                 skjema={skjema}
-                tilhørendeJaNeiSpmFelt={skjema.felter.omsorgspersonBarnetrygdFraEøs}
-                registrerteEøsBarnetrygdsperioder={
-                    skjema.felter.omsorgspersonEøsBarnetrygdsperioder
+                tilhørendeJaNeiSpmFelt={skjema.felter.omsorgspersonKontantstøtteFraEøs}
+                registrerteEøsKontantstøttePerioder={
+                    skjema.felter.omsorgspersonEøsKontantstøttePerioder
                 }
-                leggTilBarnetrygdsperiode={leggTilBarnetrygdsperiodeOmsorgsperson}
-                fjernBarnetrygdsperiode={fjernBarnetrygdsperiodeOmsorgsperson}
+                leggTilKontantstøttePeriode={leggTilKontantstøttePeriodeOmsorgsperson}
+                fjernKontantstøttePeriode={fjernKontantstøttePeriodeOmsorgsperson}
                 barn={barn}
                 personType={PersonType.Omsorgsperson}
             />

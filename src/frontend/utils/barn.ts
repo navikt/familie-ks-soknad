@@ -9,7 +9,7 @@ import { OmBarnaDineSpørsmålId } from '../components/SøknadsSteg/OmBarnaDine/
 import { OmBarnetSpørsmålsId } from '../components/SøknadsSteg/OmBarnet/spørsmål';
 import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../typer/barn';
 import { tomString } from '../typer/common';
-import { IEøsBarnetrygdsperiode, IUtenlandsperiode } from '../typer/perioder';
+import { IEøsKontantstøttePeriode, IUtenlandsperiode } from '../typer/perioder';
 import { IBarn, IBarnRespons, IIdNummer } from '../typer/person';
 import { ISøknad } from '../typer/søknad';
 import { formaterFnr } from './visning';
@@ -28,7 +28,7 @@ export const genererInitiellAndreForelder = (
         andreUtbetalingsperioder: andreForelder?.andreUtbetalingsperioder ?? [],
         pensjonsperioderNorge: andreForelder?.pensjonsperioderNorge ?? [],
         pensjonsperioderUtland: andreForelder?.pensjonsperioderUtland ?? [],
-        eøsBarnetrygdsperioder: andreForelder?.eøsBarnetrygdsperioder ?? [],
+        eøsKontantstøttePerioder: andreForelder?.eøsKontantstøttePerioder ?? [],
         idNummer: andreForelder?.idNummer ?? [],
         navn: {
             id: OmBarnetSpørsmålsId.andreForelderNavn,
@@ -97,11 +97,11 @@ export const genererInitiellAndreForelder = (
                     : '',
             id: EøsBarnSpørsmålId.andreForelderPågåendeSøknadHvilketLand,
         },
-        barnetrygdFraEøs: {
-            svar: andreForelder?.barnetrygdFraEøs.svar ?? null,
+        kontantstøtteFraEøs: {
+            svar: andreForelder?.kontantstøtteFraEøs.svar ?? null,
             id: andreForelderErDød
-                ? EøsBarnSpørsmålId.andreForelderBarnetrygdGjenlevende
-                : EøsBarnSpørsmålId.andreForelderBarnetrygd,
+                ? EøsBarnSpørsmålId.andreForelderKontantstøtteGjenlevende
+                : EøsBarnSpørsmålId.andreForelderKontantstøtte,
         },
     };
 };
@@ -128,7 +128,7 @@ export const genererInitialBarnMedISøknad = (barn: IBarn): IBarnMedISøknad => 
         ...barn,
         barnErFyltUt: false,
         utenlandsperioder: [],
-        eøsBarnetrygdsperioder: [],
+        eøsKontantstøttePerioder: [],
         idNummer: [],
         andreForelder: null,
         omsorgsperson: null,
@@ -149,8 +149,8 @@ export const genererInitialBarnMedISøknad = (barn: IBarn): IBarnMedISøknad => 
             id: OmBarnaDineSpørsmålId.hvemErSøktAsylFor,
             svar: null,
         },
-        [barnDataKeySpørsmål.barnetrygdFraAnnetEøsland]: {
-            id: OmBarnaDineSpørsmålId.hvemBarnetrygdFraAnnetEøsland,
+        [barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland]: {
+            id: OmBarnaDineSpørsmålId.hvemKontantstøtteFraAnnetEøsland,
             svar: null,
         },
         [barnDataKeySpørsmål.andreForelderErDød]: {
@@ -201,8 +201,8 @@ export const genererInitialBarnMedISøknad = (barn: IBarn): IBarnMedISøknad => 
             id: OmBarnetSpørsmålsId.pågåendeSøknadHvilketLand,
             svar: '',
         },
-        [barnDataKeySpørsmål.mottarEllerMottokEøsBarnetrygd]: {
-            id: OmBarnetSpørsmålsId.mottarEllerMottokEøsBarnetrygd,
+        [barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte]: {
+            id: OmBarnetSpørsmålsId.mottarEllerMottokEøsKontantstøtte,
             svar: null,
         },
         [barnDataKeySpørsmål.borFastMedSøker]: {
@@ -276,7 +276,7 @@ export const skalSpørreOmIdNummerForPågåendeSøknadEøsLand = (
         !idNummerLandMedPeriodeType(
             {
                 utenlandsperioder: barn.utenlandsperioder,
-                eøsBarnetrygdsperioder: barn.eøsBarnetrygdsperioder,
+                eøsKontantstøttePerioder: barn.eøsKontantstøttePerioder,
             },
             erEøsLand
         )
@@ -287,7 +287,7 @@ export const skalSpørreOmIdNummerForPågåendeSøknadEøsLand = (
 
 export const filtrerteRelevanteIdNummerForBarn = (
     perioder: {
-        eøsBarnetrygdsperioder: IEøsBarnetrygdsperiode[];
+        eøsKontantstøttePerioder: IEøsKontantstøttePeriode[];
         utenlandsperioder: IUtenlandsperiode[];
     },
     pågåendeSøknadFraAnnetEøsLand: ESvar | null,
@@ -297,7 +297,7 @@ export const filtrerteRelevanteIdNummerForBarn = (
 ): IIdNummer[] => {
     const relevanteLandForPerioder = idNummerLandMedPeriodeType(
         {
-            eøsBarnetrygdsperioder: perioder.eøsBarnetrygdsperioder,
+            eøsKontantstøttePerioder: perioder.eøsKontantstøttePerioder,
             utenlandsperioder: perioder.utenlandsperioder,
         },
         erEøsLand
@@ -340,14 +340,14 @@ export const nullstilteEøsFelterForAndreForelder = (
         ...andreForelder.pågåendeSøknadHvilketLand,
         svar: '',
     },
-    barnetrygdFraEøs: {
-        ...andreForelder.barnetrygdFraEøs,
+    kontantstøtteFraEøs: {
+        ...andreForelder.kontantstøtteFraEøs,
         svar: null,
     },
     pensjonsperioderNorge: [],
     arbeidsperioderNorge: [],
     andreUtbetalingsperioder: [],
-    eøsBarnetrygdsperioder: [],
+    eøsKontantstøttePerioder: [],
     adresse: { ...andreForelder.adresse, svar: '' },
 });
 

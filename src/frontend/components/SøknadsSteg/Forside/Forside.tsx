@@ -13,7 +13,7 @@ import { useApp } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import Miljø from '../../../Miljø';
 import { RouteEnum } from '../../../typer/routes';
-import { logSidevisningBarnetrygd } from '../../../utils/amplitude';
+import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
 import EksternLenke from '../../Felleskomponenter/EksternLenke/EksternLenke';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import InnholdContainer from '../../Felleskomponenter/InnholdContainer/InnholdContainer';
@@ -36,7 +36,7 @@ const Forside: React.FC = () => {
 
     const { sluttbruker, mellomlagretVerdi, settNåværendeRoute } = useApp();
 
-    useFørsteRender(() => logSidevisningBarnetrygd(`${RouteEnum.Forside}`));
+    useFørsteRender(() => logSidevisningKontantstøtte(`${RouteEnum.Forside}`));
 
     useEffect(() => {
         settNåværendeRoute(RouteEnum.Forside);

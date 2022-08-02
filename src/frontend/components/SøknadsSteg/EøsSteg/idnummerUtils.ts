@@ -2,7 +2,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 
 import {
     IArbeidsperiode,
-    IEøsBarnetrygdsperiode,
+    IEøsKontantstøttePeriode,
     IPensjonsperiode,
     IUtenlandsperiode,
 } from '../../../typer/perioder';
@@ -13,7 +13,7 @@ export enum PeriodeType {
     arbeidsperiode = 'arbeidsperiode',
     pensjonsperiode = 'pensjonsperiode',
     utenlandsperiode = 'utenlandsperiode',
-    eøsBarnetrygdPeriode = 'eøsBarnetrygdPeriode',
+    eøsKontantstøttePeriode = 'eøsKontantstøttePeriode',
 }
 
 export type IdNummerLandMedPeriodeType = {
@@ -38,7 +38,7 @@ export const idNummerLandMedPeriodeType = (
         utenlandsperioder?: IUtenlandsperiode[];
         arbeidsperioderUtland?: IArbeidsperiode[];
         pensjonsperioderUtland?: IPensjonsperiode[];
-        eøsBarnetrygdsperioder?: IEøsBarnetrygdsperiode[];
+        eøsKontantstøttePerioder?: IEøsKontantstøttePeriode[];
     },
     erEøsLand: (land: Alpha3Code | '') => boolean
 ): IdNummerLandMedPeriodeType[] => {
@@ -46,7 +46,7 @@ export const idNummerLandMedPeriodeType = (
         arbeidsperioderUtland = [],
         pensjonsperioderUtland = [],
         utenlandsperioder = [],
-        eøsBarnetrygdsperioder = [],
+        eøsKontantstøttePerioder = [],
     } = perioder;
 
     const eøsLandUtenDuplikat = eøsLandUtenDuplikatHof(erEøsLand);
@@ -57,7 +57,7 @@ export const idNummerLandMedPeriodeType = (
 
     // Gjelder kun barn
     const eøsBarnetrygsperioderLandSomKreverIdNummer: Alpha3Code[] = eøsLandUtenDuplikat(
-        eøsBarnetrygdsperioder.map(periode => periode.barnetrygdsland.svar)
+        eøsKontantstøttePerioder.map(periode => periode.kontantstøtteLand.svar)
     ).filter(land => land && !utenlandsperioderLandSomKreverIdNummer.includes(land)); // Filtrer bort det som allerede finnes i utenlandsopphold
 
     // Gjelder kun søker
@@ -81,10 +81,10 @@ export const idNummerLandMedPeriodeType = (
             land,
             periodeType: PeriodeType.arbeidsperiode,
         }));
-    const mapEøsBarnetrygdTilIdNummerLandMedPeriodeType: IdNummerLandMedPeriodeType[] =
+    const mapEøsKontantstøtteTilIdNummerLandMedPeriodeType: IdNummerLandMedPeriodeType[] =
         eøsBarnetrygsperioderLandSomKreverIdNummer.map(land => ({
             land,
-            periodeType: PeriodeType.eøsBarnetrygdPeriode,
+            periodeType: PeriodeType.eøsKontantstøttePeriode,
         }));
     const mapPensjonTilIdNummerLandMedPeriodeType: IdNummerLandMedPeriodeType[] =
         pensjonsperioderLandSomKreverIdNummer.map(land => ({
@@ -99,7 +99,7 @@ export const idNummerLandMedPeriodeType = (
 
     return [
         ...mapArbeidTilIdNummerLandMedPeriodeType,
-        ...mapEøsBarnetrygdTilIdNummerLandMedPeriodeType,
+        ...mapEøsKontantstøtteTilIdNummerLandMedPeriodeType,
         ...mapPensjonTilIdNummerLandMedPeriodeType,
         ...mapUtenlandsppholdTilIdNummerLandMedPeriodeType,
     ];

@@ -30,8 +30,9 @@ function App() {
                                         {process.env.NODE_ENV !== 'production' && (
                                             <AlertStripe type="advarsel">
                                                 {`Denne siden er under utvikling. `}
-                                                <a href="https://www.nav.no/no/person/familie/barnetrygd-og-kontantstotte/barnetrygd">
-                                                    Klikk her for å gå til våre sider for barnetrygd
+                                                <a href="https://www.nav.no/kontantstotte">
+                                                    Klikk her for å gå til våre sider for
+                                                    kontantstøtte
                                                 </a>
                                             </AlertStripe>
                                         )}

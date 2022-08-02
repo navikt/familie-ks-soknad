@@ -10,11 +10,11 @@ import { BarnetsId } from '../../../../typer/common';
 import { PersonType } from '../../../../typer/personType';
 import { skalSkjuleAndreForelderFelt } from '../../../../utils/barn';
 import { Arbeidsperiode } from '../../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
-import { Barnetrygdperiode } from '../../../Felleskomponenter/Barnetrygdperiode/Barnetrygdperiode';
 import { LandDropdown } from '../../../Felleskomponenter/Dropdowns/LandDropdown';
 import SlektsforholdDropdown from '../../../Felleskomponenter/Dropdowns/SlektsforholdDropdown';
 import JaNeiSpm from '../../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
+import { KontantstøttePeriode } from '../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriode';
 import { Pensjonsperiode } from '../../../Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
 import { SkjemaCheckbox } from '../../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeltInput } from '../../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
@@ -42,8 +42,8 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         fjernAndreUtbetalingsperiodeAndreForelder,
         leggTilArbeidsperiodeNorgeAndreForelder,
         fjernArbeidsperiodeNorgeAndreForelder,
-        leggTilBarnetrygdsperiodeAndreForelder,
-        fjernBarnetrygdsperiodeAndreForelder,
+        leggTilKontantstøttePeriodeAndreForelder,
+        fjernKontantstøttePeriodeAndreForelder,
         settIdNummerFelterForBarn,
         settIdNummerFelterForAndreForelder,
         leggTilArbeidsperiodeUtlandOmsorgsperson,
@@ -56,8 +56,8 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         fjernPensjonsperiodeNorgeOmsorgsperson,
         leggTilAndreUtbetalingsperiodeOmsorgsperson,
         fjernAndreUtbetalingsperiodeOmsorgsperson,
-        leggTilBarnetrygdsperiodeOmsorgsperson,
-        fjernBarnetrygdsperiodeOmsorgsperson,
+        leggTilKontantstøttePeriodeOmsorgsperson,
+        fjernKontantstøttePeriodeOmsorgsperson,
     } = useEøsForBarn(barnetsId);
     const intl = useIntl();
     const { søknad } = useApp();
@@ -155,8 +155,8 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                         fjernPensjonsperiodeNorgeOmsorgsperson,
                         leggTilAndreUtbetalingsperiodeOmsorgsperson,
                         fjernAndreUtbetalingsperiodeOmsorgsperson,
-                        leggTilBarnetrygdsperiodeOmsorgsperson,
-                        fjernBarnetrygdsperiodeOmsorgsperson,
+                        leggTilKontantstøttePeriodeOmsorgsperson,
+                        fjernKontantstøttePeriodeOmsorgsperson,
                     }}
                 />
             )}
@@ -306,18 +306,20 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                                     />
                                 )}
 
-                                <Barnetrygdperiode
+                                <KontantstøttePeriode
                                     skjema={skjema}
                                     tilhørendeJaNeiSpmFelt={
-                                        skjema.felter.andreForelderBarnetrygdFraEøs
+                                        skjema.felter.andreForelderKontantstøtteFraEøs
                                     }
-                                    registrerteEøsBarnetrygdsperioder={
-                                        skjema.felter.andreForelderEøsBarnetrygdsperioder
+                                    registrerteEøsKontantstøttePerioder={
+                                        skjema.felter.andreForelderEøsKontantstøttePerioder
                                     }
-                                    leggTilBarnetrygdsperiode={
-                                        leggTilBarnetrygdsperiodeAndreForelder
+                                    leggTilKontantstøttePeriode={
+                                        leggTilKontantstøttePeriodeAndreForelder
                                     }
-                                    fjernBarnetrygdsperiode={fjernBarnetrygdsperiodeAndreForelder}
+                                    fjernKontantstøttePeriode={
+                                        fjernKontantstøttePeriodeAndreForelder
+                                    }
                                     barn={barn}
                                     personType={PersonType.AndreForelder}
                                     erDød={barn.andreForelderErDød.svar === ESvar.JA}

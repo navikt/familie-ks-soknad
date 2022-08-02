@@ -23,7 +23,7 @@ import { IDokumentasjon } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import {
     IArbeidsperiode,
-    IEøsBarnetrygdsperiode,
+    IEøsKontantstøttePeriode,
     IPensjonsperiode,
     IUtenlandsperiode,
 } from '../../../typer/perioder';
@@ -66,8 +66,8 @@ export const useOmBarnet = (
     fjernArbeidsperiode: (periode: IArbeidsperiode) => void;
     leggTilPensjonsperiode: (periode: IPensjonsperiode) => void;
     fjernPensjonsperiode: (periode: IPensjonsperiode) => void;
-    leggTilBarnetrygdsperiode: (periode: IEøsBarnetrygdsperiode) => void;
-    fjernBarnetrygdsperiode: (periode: IEøsBarnetrygdsperiode) => void;
+    leggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
+    fjernKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
 } => {
     const { søknad, settSøknad } = useApp();
     const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } = useEøs();
@@ -219,11 +219,11 @@ export const useOmBarnet = (
         );
     };
 
-    /*--- PÅGÅENDE SØKNAD BARNETRYGD FRA ANNET EØSLAND ---*/
+    /*--- PÅGÅENDE SØKNAD KONTANTSTØTTE FRA ANNET EØSLAND ---*/
     const pågåendeSøknadFraAnnetEøsLand = useJaNeiSpmFelt({
         søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand],
         feilmeldingSpråkId: 'ombarnet.pågåendesøknad.feilmelding',
-        skalSkjules: !skalFeltetVises(barnDataKeySpørsmål.barnetrygdFraAnnetEøsland),
+        skalSkjules: !skalFeltetVises(barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland),
     });
 
     const pågåendeSøknadHvilketLand = useLanddropdownFeltMedJaNeiAvhengighet({
@@ -233,26 +233,26 @@ export const useOmBarnet = (
         avhengighet: pågåendeSøknadFraAnnetEøsLand,
     });
 
-    /*--- EØS SPØRSMÅL MOTTAR BARNETRYGD ---*/
+    /*--- EØS SPØRSMÅL MOTTAR KONTANTSTØTTE ---*/
 
-    const mottarEllerMottokEøsBarnetrygd = useJaNeiSpmFelt({
-        søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.mottarEllerMottokEøsBarnetrygd],
+    const mottarEllerMottokEøsKontantstøtte = useJaNeiSpmFelt({
+        søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte],
         feilmeldingSpråkId: 'ombarnet.fårellerharsøktbarnetrygdeøs.feilmelding',
-        skalSkjules: !skalFeltetVises(barnDataKeySpørsmål.barnetrygdFraAnnetEøsland),
+        skalSkjules: !skalFeltetVises(barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland),
     });
 
     const {
-        fjernPeriode: fjernBarnetrygdsperiode,
-        leggTilPeriode: leggTilBarnetrygdsperiode,
-        registrertePerioder: registrerteEøsBarnetrygdsperioder,
-    } = usePerioder<IEøsBarnetrygdsperiode>(
-        gjeldendeBarn.eøsBarnetrygdsperioder,
-        { mottarEllerMottokEøsBarnetrygd },
-        avhengigheter => avhengigheter.mottarEllerMottokEøsBarnetrygd.verdi === ESvar.JA,
+        fjernPeriode: fjernKontantstøttePeriode,
+        leggTilPeriode: leggTilKontantstøttePeriode,
+        registrertePerioder: registrerteEøsKontantstøttePerioder,
+    } = usePerioder<IEøsKontantstøttePeriode>(
+        gjeldendeBarn.eøsKontantstøttePerioder,
+        { mottarEllerMottokEøsKontantstøtte },
+        avhengigheter => avhengigheter.mottarEllerMottokEøsKontantstøtte.verdi === ESvar.JA,
 
         (felt, avhengigheter) => {
-            return avhengigheter?.mottarEllerMottokEøsBarnetrygd.verdi === ESvar.NEI ||
-                (avhengigheter?.mottarEllerMottokEøsBarnetrygd.verdi === ESvar.JA &&
+            return avhengigheter?.mottarEllerMottokEøsKontantstøtte.verdi === ESvar.NEI ||
+                (avhengigheter?.mottarEllerMottokEøsKontantstøtte.verdi === ESvar.JA &&
                     felt.verdi.length)
                 ? ok(felt)
                 : feil(felt, <SpråkTekst id={'ombarnet.trygdandreperioder.feilmelding'} />);
@@ -485,8 +485,8 @@ export const useOmBarnet = (
             planleggerÅBoINorge12Mnd,
             pågåendeSøknadFraAnnetEøsLand,
             pågåendeSøknadHvilketLand,
-            mottarEllerMottokEøsBarnetrygd,
-            registrerteEøsBarnetrygdsperioder,
+            mottarEllerMottokEøsKontantstøtte,
+            registrerteEøsKontantstøttePerioder,
             andreForelderNavn,
             andreForelderKanIkkeGiOpplysninger,
             andreForelderFnr,
@@ -624,9 +624,9 @@ export const useOmBarnet = (
     };
 
     const genererOppdatertBarn = (barn: IBarnMedISøknad): IBarnMedISøknad => {
-        const eøsBarnetrygdsperioder =
-            mottarEllerMottokEøsBarnetrygd.verdi === ESvar.JA
-                ? registrerteEøsBarnetrygdsperioder.verdi
+        const eøsKontantstøttePerioder =
+            mottarEllerMottokEøsKontantstøtte.verdi === ESvar.JA
+                ? registrerteEøsKontantstøttePerioder.verdi
                 : [];
         const utenlandsperioder = registrerteUtenlandsperioder.verdi;
 
@@ -646,7 +646,7 @@ export const useOmBarnet = (
         return {
             ...barn,
             idNummer: filtrerteRelevanteIdNummerForBarn(
-                { eøsBarnetrygdsperioder, utenlandsperioder },
+                { eøsKontantstøttePerioder, utenlandsperioder },
                 pågåendeSøknadFraAnnetEøsLand.verdi,
                 pågåendeSøknadHvilketLand.verdi,
                 barn,
@@ -699,13 +699,13 @@ export const useOmBarnet = (
                 ...barn.pågåendeSøknadHvilketLand,
                 svar: pågåendeSøknadHvilketLand.verdi,
             },
-            mottarEllerMottokEøsBarnetrygd: {
-                ...barn.mottarEllerMottokEøsBarnetrygd,
-                svar: mottarEllerMottokEøsBarnetrygd.verdi,
+            mottarEllerMottokEøsKontantstøtte: {
+                ...barn.mottarEllerMottokEøsKontantstøtte,
+                svar: mottarEllerMottokEøsKontantstøtte.verdi,
             },
-            eøsBarnetrygdsperioder:
-                mottarEllerMottokEøsBarnetrygd.verdi === ESvar.JA
-                    ? skjema.felter.registrerteEøsBarnetrygdsperioder.verdi
+            eøsKontantstøttePerioder:
+                mottarEllerMottokEøsKontantstøtte.verdi === ESvar.JA
+                    ? skjema.felter.registrerteEøsKontantstøttePerioder.verdi
                     : [],
             borFastMedSøker: {
                 ...barn.borFastMedSøker,
@@ -825,7 +825,7 @@ export const useOmBarnet = (
         fjernArbeidsperiode,
         leggTilPensjonsperiode,
         fjernPensjonsperiode,
-        leggTilBarnetrygdsperiode,
-        fjernBarnetrygdsperiode,
+        leggTilKontantstøttePeriode,
+        fjernKontantstøttePeriode,
     };
 };

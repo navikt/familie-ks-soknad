@@ -22,7 +22,7 @@ export function logEvent(eventName: string, eventProperties: any) {
     amplitudeInstance.logEvent(eventName, eventProperties);
 }
 
-export const logSidevisningBarnetrygd = (side: string) => {
+export const logSidevisningKontantstøtte = (side: string) => {
     logEvent('sidevisning', {
         side,
         team_id: 'familie',

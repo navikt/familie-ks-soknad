@@ -38,8 +38,8 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         fjernArbeidsperiode,
         leggTilPensjonsperiode,
         fjernPensjonsperiode,
-        leggTilBarnetrygdsperiode,
-        fjernBarnetrygdsperiode,
+        leggTilKontantstøttePeriode,
+        fjernKontantstøttePeriode,
     } = useOmBarnet(barnetsId);
 
     return barn ? (
@@ -59,9 +59,11 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                 leggTilUtenlandsperiode={leggTilUtenlandsperiode}
                 fjernUtenlandsperiode={fjernUtenlandsperiode}
                 utenlandsperioder={utenlandsperioder}
-                leggTilBarnetrygdsperiode={leggTilBarnetrygdsperiode}
-                fjernBarnetrygdsperiode={fjernBarnetrygdsperiode}
-                registrerteEøsBarnetrygdsperioder={skjema.felter.registrerteEøsBarnetrygdsperioder}
+                leggTilKontantstøttePeriode={leggTilKontantstøttePeriode}
+                fjernKontantstøttePeriode={fjernKontantstøttePeriode}
+                registrerteEøsKontantstøttePerioder={
+                    skjema.felter.registrerteEøsKontantstøttePerioder
+                }
             />
             {barn.andreForelder && (
                 <AndreForelder

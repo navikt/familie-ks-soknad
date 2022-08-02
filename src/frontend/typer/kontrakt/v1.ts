@@ -53,7 +53,7 @@ export interface ISøknadIKontraktBarn {
     utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
     omsorgsperson: IOmsorgspersonIKontraktFormat | null;
     andreForelder: IAndreForelderIKontraktFormat | null;
-    eøsBarnetrygdsperioder: ISøknadsfelt<IEøsBarnetrygdsperiodeIKontraktFormat>[];
+    eøsKontantstøttePerioder: ISøknadsfelt<IEøsKontantstøttePeriodeIKontraktFormat>[];
     idNummer: ISøknadsfelt<IIdNummerIKontraktFormat>[];
 }
 
@@ -75,8 +75,8 @@ export interface IOmsorgspersonIKontraktFormat {
     andreUtbetalingsperioder: ISøknadsfelt<IUtbetalingsperiodeIKontraktFormat>[];
     pågåendeSøknadFraAnnetEøsLand: ISøknadsfelt<ESvar>;
     pågåendeSøknadHvilketLand: ISøknadsfelt<string> | null;
-    barnetrygdFraEøs: ISøknadsfelt<ESvar>;
-    eøsBarnetrygdsperioder: ISøknadsfelt<IEøsBarnetrygdsperiodeIKontraktFormat>[];
+    kontantstøtteFraEøs: ISøknadsfelt<ESvar>;
+    eøsKontantstøttePerioder: ISøknadsfelt<IEøsKontantstøttePeriodeIKontraktFormat>[];
 }
 
 export interface IAndreForelderIKontraktFormat {
@@ -92,14 +92,14 @@ export interface IAndreForelderIKontraktFormat {
     pensjonNorge: ISøknadsfelt<ESvar> | null;
     arbeidNorge: ISøknadsfelt<ESvar> | null;
     andreUtbetalinger: ISøknadsfelt<ESvar> | null;
-    barnetrygdFraEøs: ISøknadsfelt<ESvar> | null;
+    kontantstøtteFraEøs: ISøknadsfelt<ESvar> | null;
     arbeidsperioderUtland: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
     pensjonsperioderUtland: ISøknadsfelt<IPensjonsperiodeIKontraktFormat>[];
     arbeidsperioderNorge: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
     pensjonsperioderNorge: ISøknadsfelt<IPensjonsperiodeIKontraktFormat>[];
     pågåendeSøknadFraAnnetEøsLand: ISøknadsfelt<ESvar> | null;
     pågåendeSøknadHvilketLand: ISøknadsfelt<string> | null;
-    eøsBarnetrygdsperioder: ISøknadsfelt<IEøsBarnetrygdsperiodeIKontraktFormat>[];
+    eøsKontantstøttePerioder: ISøknadsfelt<IEøsKontantstøttePeriodeIKontraktFormat>[];
     andreUtbetalingsperioder: ISøknadsfelt<IUtbetalingsperiodeIKontraktFormat>[];
     idNummer: ISøknadsfelt<IIdNummerIKontraktFormat>[];
     adresse: ISøknadsfelt<string> | null;
@@ -125,11 +125,11 @@ export interface IPensjonsperiodeIKontraktFormat {
     pensjonTil: ISøknadsfelt<ISODateString> | null;
 }
 
-export interface IEøsBarnetrygdsperiodeIKontraktFormat {
-    mottarEøsBarnetrygdNå: ISøknadsfelt<ESvar> | null;
-    barnetrygdsland: ISøknadsfelt<string>;
-    fraDatoBarnetrygdperiode: ISøknadsfelt<ISODateString>;
-    tilDatoBarnetrygdperiode: ISøknadsfelt<ISODateString> | null;
+export interface IEøsKontantstøttePeriodeIKontraktFormat {
+    mottarEøsKontantstøtteNå: ISøknadsfelt<ESvar> | null;
+    kontantstøtteLand: ISøknadsfelt<string>;
+    fraDatoKontantstøttePeriode: ISøknadsfelt<ISODateString>;
+    tilDatoKontantstøttePeriode: ISøknadsfelt<ISODateString> | null;
     månedligBeløp: ISøknadsfelt<string>;
 }
 

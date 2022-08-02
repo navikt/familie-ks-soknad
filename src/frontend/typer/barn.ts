@@ -7,7 +7,7 @@ import { Slektsforhold } from './kontrakt/generelle';
 import { IOmsorgsperson } from './omsorgsperson';
 import {
     IArbeidsperiode,
-    IEøsBarnetrygdsperiode,
+    IEøsKontantstøttePeriode,
     IPensjonsperiode,
     IUtbetalingsperiode,
     IUtenlandsperiode,
@@ -29,7 +29,7 @@ export enum andreForelderDataKeySpørsmål {
     pensjonNorge = 'pensjonNorge',
     arbeidNorge = 'arbeidNorge',
     andreUtbetalinger = 'andreUtbetalinger',
-    barnetrygdFraEøs = 'barnetrygdFraEøs',
+    kontantstøtteFraEøs = 'kontantstøtteFraEøs',
     pågåendeSøknadFraAnnetEøsLand = 'pågåendeSøknadFraAnnetEøsLand',
     pågåendeSøknadHvilketLand = 'pågåendeSøknadHvilketLand',
 }
@@ -38,10 +38,10 @@ export enum barnDataKeySpørsmål {
     erFosterbarn = 'erFosterbarn',
     erAdoptertFraUtland = 'erAdoptertFraUtland',
     erAsylsøker = 'erAsylsøker',
-    barnetrygdFraAnnetEøsland = 'barnetrygdFraAnnetEøsland',
+    kontantstøtteFraAnnetEøsland = 'kontantstøtteFraAnnetEøsland',
     pågåendeSøknadFraAnnetEøsLand = 'pågåendeSøknadFraAnnetEøsLand',
     pågåendeSøknadHvilketLand = 'pågåendeSøknadHvilketLand',
-    mottarEllerMottokEøsBarnetrygd = 'mottarEllerMottokEøsBarnetrygd',
+    mottarEllerMottokEøsKontantstøtte = 'mottarEllerMottokEøsKontantstøtte',
     andreForelderErDød = 'andreForelderErDød',
     oppholderSegIInstitusjon = 'oppholderSegIInstitusjon',
     institusjonIUtland = 'institusjonIUtland',
@@ -76,7 +76,7 @@ export interface IAndreForelder {
     arbeidsperioderNorge: IArbeidsperiode[];
     pensjonsperioderNorge: IPensjonsperiode[];
     andreUtbetalingsperioder: IUtbetalingsperiode[];
-    eøsBarnetrygdsperioder: IEøsBarnetrygdsperiode[];
+    eøsKontantstøttePerioder: IEøsKontantstøttePeriode[];
     idNummer: IIdNummer[];
     [andreForelderDataKeySpørsmål.adresse]: ISøknadSpørsmål<
         string | AlternativtSvarForInput.UKJENT
@@ -84,7 +84,7 @@ export interface IAndreForelder {
     [andreForelderDataKeySpørsmål.pensjonNorge]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.arbeidNorge]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.andreUtbetalinger]: ISøknadSpørsmål<ESvar | null>;
-    [andreForelderDataKeySpørsmål.barnetrygdFraEøs]: ISøknadSpørsmål<ESvar | null>;
+    [andreForelderDataKeySpørsmål.kontantstøtteFraEøs]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.pågåendeSøknadHvilketLand]: ISøknadSpørsmål<Alpha3Code | ''>;
 }
@@ -92,17 +92,17 @@ export interface IAndreForelder {
 export interface IBarnMedISøknad extends IBarn {
     barnErFyltUt: boolean;
     utenlandsperioder: IUtenlandsperiode[];
-    eøsBarnetrygdsperioder: IEøsBarnetrygdsperiode[]; //todo rename
+    eøsKontantstøttePerioder: IEøsKontantstøttePeriode[];
     idNummer: IIdNummer[];
     andreForelder: IAndreForelder | null;
     omsorgsperson: IOmsorgsperson | null;
     triggetEøs: boolean;
     [barnDataKeySpørsmål.erFosterbarn]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.erAdoptertFraUtland]: ISøknadSpørsmål<ESvar | null>;
-    [barnDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand]: ISøknadSpørsmål<ESvar | null>; //todo rename
-    [barnDataKeySpørsmål.pågåendeSøknadHvilketLand]: ISøknadSpørsmål<Alpha3Code | ''>; //todo rename
-    [barnDataKeySpørsmål.barnetrygdFraAnnetEøsland]: ISøknadSpørsmål<ESvar | null>; //todo: rename
-    [barnDataKeySpørsmål.mottarEllerMottokEøsBarnetrygd]: ISøknadSpørsmål<ESvar | null>; //todo: rename
+    [barnDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand]: ISøknadSpørsmål<ESvar | null>;
+    [barnDataKeySpørsmål.pågåendeSøknadHvilketLand]: ISøknadSpørsmål<Alpha3Code | ''>;
+    [barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland]: ISøknadSpørsmål<ESvar | null>;
+    [barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.erAsylsøker]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.andreForelderErDød]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.oppholderSegIInstitusjon]: ISøknadSpørsmål<ESvar | null>;

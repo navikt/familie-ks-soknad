@@ -10,7 +10,7 @@ import { PersonType } from '../../typer/personType';
 import { hentTekster, landkodeTilSpråk, toSlektsforholdSpråkId } from '../språk';
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
 import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
-import { tilIEøsBarnetrygsperiodeIKontraktFormat } from './eøsBarnetrygdsperiode';
+import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjentSpråktekst,
@@ -40,8 +40,8 @@ export const omsorgspersonTilISøknadsfelt = (
         pensjonsperioderNorge,
         pågåendeSøknadFraAnnetEøsLand,
         pågåendeSøknadHvilketLand,
-        barnetrygdFraEøs,
-        eøsBarnetrygdsperioder,
+        kontantstøtteFraEøs,
+        eøsKontantstøttePerioder,
         andreUtbetalinger,
         andreUtbetalingsperioder,
     } = omsorgsperson;
@@ -51,7 +51,7 @@ export const omsorgspersonTilISøknadsfelt = (
         !arbeidNorge.svar ||
         !pensjonUtland.svar ||
         !pensjonNorge.svar ||
-        !barnetrygdFraEøs.svar ||
+        !kontantstøtteFraEøs.svar ||
         !pågåendeSøknadFraAnnetEøsLand.svar ||
         !andreUtbetalinger.svar
     ) {
@@ -170,13 +170,13 @@ export const omsorgspersonTilISøknadsfelt = (
                   barn
               )
             : null,
-        barnetrygdFraEøs: søknadsfeltBarn(
-            språktekstIdFraSpørsmålId(EøsBarnSpørsmålId.omsorgspersonBarnetrygd),
-            sammeVerdiAlleSpråk(barnetrygdFraEøs.svar),
+        kontantstøtteFraEøs: søknadsfeltBarn(
+            språktekstIdFraSpørsmålId(EøsBarnSpørsmålId.omsorgspersonKontantstøtte),
+            sammeVerdiAlleSpråk(kontantstøtteFraEøs.svar),
             barn
         ),
-        eøsBarnetrygdsperioder: eøsBarnetrygdsperioder.map((periode, index) =>
-            tilIEøsBarnetrygsperiodeIKontraktFormat({
+        eøsKontantstøttePerioder: eøsKontantstøttePerioder.map((periode, index) =>
+            tilIEøsKontantstøttePeriodeIKontraktFormat({
                 periode,
                 periodeNummer: index + 1,
                 personType: PersonType.Omsorgsperson,

@@ -16,7 +16,7 @@ import { RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import {
     logKlikkGåVidere,
-    logSidevisningBarnetrygd,
+    logSidevisningKontantstøtte,
     logSkjemaStegFullført,
 } from '../../../utils/amplitude';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
@@ -83,7 +83,7 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
     const nåværendeStegIndex = hentNåværendeStegIndex();
 
     const nyesteNåværendeRoute: RouteEnum = hentNåværendeSteg().route;
-    useFørsteRender(() => logSidevisningBarnetrygd(nyesteNåværendeRoute));
+    useFørsteRender(() => logSidevisningKontantstøtte(nyesteNåværendeRoute));
 
     useEffect(() => {
         window.scrollTo(0, 0);

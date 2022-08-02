@@ -16,7 +16,7 @@ import { PersonType } from '../../typer/personType';
 import { ISøknadSpørsmålMap } from '../../typer/spørsmål';
 import { hentTekster } from '../språk';
 import { andreForelderTilISøknadsfelt } from './andreForelder';
-import { tilIEøsBarnetrygsperiodeIKontraktFormat } from './eøsBarnetrygdsperiode';
+import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjentSpråktekst,
@@ -47,7 +47,7 @@ export const barnISøknadsFormat = (
         institusjonOppholdSluttdato,
         utenlandsperioder,
         // Nye felter under utvikling av EØS full
-        eøsBarnetrygdsperioder,
+        eøsKontantstøttePerioder,
         idNummer,
         triggetEøs,
         adresse,
@@ -100,8 +100,8 @@ export const barnISøknadsFormat = (
         utenlandsperioder: utenlandsperioder.map((periode, index) =>
             utenlandsperiodeTilISøknadsfelt(periode, index + 1, barn)
         ),
-        eøsBarnetrygdsperioder: eøsBarnetrygdsperioder.map((periode, index) =>
-            tilIEøsBarnetrygsperiodeIKontraktFormat({
+        eøsKontantstøttePerioder: eøsKontantstøttePerioder.map((periode, index) =>
+            tilIEøsKontantstøttePeriodeIKontraktFormat({
                 periode,
                 periodeNummer: index + 1,
                 barn,

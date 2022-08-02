@@ -6,50 +6,50 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { IEøsBarnetrygdsperiode } from '../../../typer/perioder';
+import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PeriodePersonTypeProps, PersonType } from '../../../typer/personType';
 import { IEøsForBarnFeltTyper, IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import { BarnetrygdperiodeModal } from './BarnetrygdperiodeModal';
-import { BarnetrygdsperiodeOppsummering } from './BarnetrygdperiodeOppsummering';
+import { KontantstøttePeriodeModal } from './KontantstøttePeriodeModal';
+import { KontantstøttePeriodeOppsummering } from './KontantstøttePeriodeOppsummering';
 import {
-    barnetrygdperiodeFlereSpørsmål,
-    barnetrygdSpørsmålSpråkId,
-} from './barnetrygdperiodeSpråkUtils';
-import { BarnetrygdperiodeSpørsmålId } from './spørsmål';
+    kontantstøttePeriodeFlereSpørsmål,
+    kontantstøtteSpørsmålSpråkId,
+} from './kontantstøttePeriodeSpråkUtils';
+import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 
 interface Props {
     skjema: ISkjema<IOmBarnetUtvidetFeltTyper | IEøsForBarnFeltTyper, string>;
-    registrerteEøsBarnetrygdsperioder: Felt<IEøsBarnetrygdsperiode[]>;
-    leggTilBarnetrygdsperiode: (periode: IEøsBarnetrygdsperiode) => void;
-    fjernBarnetrygdsperiode: (periode: IEøsBarnetrygdsperiode) => void;
+    registrerteEøsKontantstøttePerioder: Felt<IEøsKontantstøttePeriode[]>;
+    leggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
+    fjernKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
     barn: IBarnMedISøknad;
     tilhørendeJaNeiSpmFelt: Felt<ESvar | null>;
 }
 
-type BarnetrygdperiodeProps = Props & PeriodePersonTypeProps;
+type KontantstøttePeriodeProps = Props & PeriodePersonTypeProps;
 
-export const Barnetrygdperiode: React.FC<BarnetrygdperiodeProps> = ({
+export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
     skjema,
-    registrerteEøsBarnetrygdsperioder,
-    leggTilBarnetrygdsperiode,
-    fjernBarnetrygdsperiode,
+    registrerteEøsKontantstøttePerioder,
+    leggTilKontantstøttePeriode,
+    fjernKontantstøttePeriode,
     personType,
     erDød,
     barn,
     tilhørendeJaNeiSpmFelt,
 }) => {
-    const { erÅpen: barnetrygdsmodalErÅpen, toggleModal: toggleBarnetrygdsmodal } = useModal();
+    const { erÅpen: kontantstøtteModalErÅpen, toggleModal: toggleKontantstøtteModal } = useModal();
 
     return (
         <>
             <JaNeiSpm
                 skjema={skjema}
                 felt={tilhørendeJaNeiSpmFelt}
-                spørsmålTekstId={barnetrygdSpørsmålSpråkId(personType, erDød)}
+                spørsmålTekstId={kontantstøtteSpørsmålSpråkId(personType, erDød)}
                 inkluderVetIkke={personType !== PersonType.Søker}
                 språkValues={{
                     ...(personType !== PersonType.Søker && {
@@ -59,11 +59,11 @@ export const Barnetrygdperiode: React.FC<BarnetrygdperiodeProps> = ({
             />
             {tilhørendeJaNeiSpmFelt.verdi === ESvar.JA && (
                 <>
-                    {registrerteEøsBarnetrygdsperioder.verdi.map((periode, index) => (
-                        <BarnetrygdsperiodeOppsummering
-                            key={`eøs-barnetrygdsperiode-${index}`}
-                            barnetrygdsperiode={periode}
-                            fjernPeriodeCallback={fjernBarnetrygdsperiode}
+                    {registrerteEøsKontantstøttePerioder.verdi.map((periode, index) => (
+                        <KontantstøttePeriodeOppsummering
+                            key={`eøs-kontantstøtte-periode-${index}`}
+                            kontantstøttePeriode={periode}
+                            fjernPeriodeCallback={fjernKontantstøttePeriode}
                             nummer={index + 1}
                             barnetsNavn={barn.navn}
                             personType={personType}
@@ -71,31 +71,31 @@ export const Barnetrygdperiode: React.FC<BarnetrygdperiodeProps> = ({
                         />
                     ))}
 
-                    {registrerteEøsBarnetrygdsperioder.verdi.length > 0 && (
+                    {registrerteEøsKontantstøttePerioder.verdi.length > 0 && (
                         <Element>
                             <SpråkTekst
-                                id={barnetrygdperiodeFlereSpørsmål(personType)}
+                                id={kontantstøttePeriodeFlereSpørsmål(personType)}
                                 values={{ barn: barn.navn }}
                             />
                         </Element>
                     )}
 
                     <LeggTilKnapp
-                        onClick={toggleBarnetrygdsmodal}
+                        onClick={toggleKontantstøtteModal}
                         språkTekst={'ombarnet.trygdandreperioder.knapp'}
-                        id={BarnetrygdperiodeSpørsmålId.barnetrygdsperiodeEøs}
+                        id={KontantstøttePeriodeSpørsmålId.kontantstøttePeriodeEøs}
                         feilmelding={
-                            registrerteEøsBarnetrygdsperioder.erSynlig &&
-                            registrerteEøsBarnetrygdsperioder.feilmelding &&
+                            registrerteEøsKontantstøttePerioder.erSynlig &&
+                            registrerteEøsKontantstøttePerioder.feilmelding &&
                             skjema.visFeilmeldinger && (
                                 <SpråkTekst id={'ombarnet.trygdandreperioder.feilmelding'} />
                             )
                         }
                     />
-                    <BarnetrygdperiodeModal
-                        erÅpen={barnetrygdsmodalErÅpen}
-                        toggleModal={toggleBarnetrygdsmodal}
-                        onLeggTilBarnetrygdsperiode={leggTilBarnetrygdsperiode}
+                    <KontantstøttePeriodeModal
+                        erÅpen={kontantstøtteModalErÅpen}
+                        toggleModal={toggleKontantstøtteModal}
+                        onLeggTilKontantstøttePeriode={leggTilKontantstøttePeriode}
                         barn={barn}
                         personType={personType}
                         erDød={erDød}

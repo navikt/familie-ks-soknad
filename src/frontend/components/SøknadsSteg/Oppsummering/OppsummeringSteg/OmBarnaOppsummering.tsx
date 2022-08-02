@@ -183,27 +183,27 @@ const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         <SpråkTekst
                             id={
                                 omBarnaDineSpørsmålSpråkId[
-                                    OmBarnaDineSpørsmålId.mottarBarnetrygdForBarnFraAnnetEøsland
+                                    OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland
                                 ]
                             }
                         />
                     }
-                    søknadsvar={søknad.mottarBarnetrygdForBarnFraAnnetEøsland.svar}
+                    søknadsvar={søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar}
                 />
 
-                {søknad.mottarBarnetrygdForBarnFraAnnetEøsland.svar === ESvar.JA && (
+                {søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar === ESvar.JA && (
                     <OppsummeringFelt
                         tittel={
                             <SpråkTekst
                                 id={
                                     omBarnaDineSpørsmålSpråkId[
-                                        OmBarnaDineSpørsmålId.hvemBarnetrygdFraAnnetEøsland
+                                        OmBarnaDineSpørsmålId.hvemKontantstøtteFraAnnetEøsland
                                     ]
                                 }
                             />
                         }
                         søknadsvar={genererListeMedBarn(
-                            barnDataKeySpørsmål.barnetrygdFraAnnetEøsland
+                            barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland
                         )}
                     />
                 )}

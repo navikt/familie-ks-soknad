@@ -32,7 +32,7 @@ const mockBarnMedISøknad = {
     barnErFyltUt: true,
     triggetEøs: true,
     utenlandsperioder: [],
-    eøsBarnetrygdsperioder: [],
+    eøsKontantstøttePerioder: [],
     idNummer: [],
     borMedSøker: true,
     alder: '13',
@@ -101,12 +101,12 @@ const mockBarnMedISøknad = {
         id: OmBarnaDineSpørsmålId.barnOppholdtSegTolvMndSammenhengendeINorge,
         svar: ESvar.NEI,
     },
-    [barnDataKeySpørsmål.barnetrygdFraAnnetEøsland]: {
-        id: OmBarnaDineSpørsmålId.mottarBarnetrygdForBarnFraAnnetEøsland,
+    [barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland]: {
+        id: OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland,
         svar: ESvar.JA,
     },
-    [barnDataKeySpørsmål.mottarEllerMottokEøsBarnetrygd]: {
-        id: OmBarnetSpørsmålsId.mottarEllerMottokEøsBarnetrygd,
+    [barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte]: {
+        id: OmBarnetSpørsmålsId.mottarEllerMottokEøsKontantstøtte,
         svar: ESvar.NEI,
     },
     [barnDataKeySpørsmål.borFastMedSøker]: {
@@ -140,9 +140,9 @@ const mockBarnMedISøknad = {
         arbeidsperioderUtland: [],
         pensjonsperioderNorge: [],
         pensjonsperioderUtland: [],
-        eøsBarnetrygdsperioder: [],
-        barnetrygdFraEøs: {
-            id: EøsBarnSpørsmålId.andreForelderBarnetrygd,
+        eøsKontantstøttePerioder: [],
+        kontantstøtteFraEøs: {
+            id: EøsBarnSpørsmålId.andreForelderKontantstøtte,
             svar: ESvar.NEI,
         },
         pågåendeSøknadFraAnnetEøsLand: {
@@ -220,9 +220,9 @@ const mockBarnMedISøknad = {
         arbeidsperioderUtland: [],
         pensjonsperioderNorge: [],
         pensjonsperioderUtland: [],
-        eøsBarnetrygdsperioder: [],
-        barnetrygdFraEøs: {
-            id: EøsBarnSpørsmålId.omsorgspersonBarnetrygd,
+        eøsKontantstøttePerioder: [],
+        kontantstøtteFraEøs: {
+            id: EøsBarnSpørsmålId.omsorgspersonKontantstøtte,
             svar: ESvar.NEI,
         },
         pågåendeSøknadFraAnnetEøsLand: {

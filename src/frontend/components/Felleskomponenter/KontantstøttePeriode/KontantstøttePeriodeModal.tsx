@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { IEøsBarnetrygdsperiode } from '../../../typer/perioder';
+import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { dagensDato, gårsdagensDato } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
@@ -18,36 +18,36 @@ import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import { barnetrygdperiodeModalSpørsmålSpråkId } from './barnetrygdperiodeSpråkUtils';
-import { BarnetrygdperiodeSpørsmålId } from './spørsmål';
+import { kontantstøttePeriodeModalSpørsmålSpråkId } from './kontantstøttePeriodeSpråkUtils';
+import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 import {
     IUsePensjonsperiodeSkjemaParams,
-    useBarnetrygdperiodeSkjema,
-} from './useBarnetrygdperiodeSkjema';
+    useKontantstøttePeriodeSkjema,
+} from './useKontantstøttePeriodeSkjema';
 
 interface Props extends ReturnType<typeof useModal>, IUsePensjonsperiodeSkjemaParams {
-    onLeggTilBarnetrygdsperiode: (periode: IEøsBarnetrygdsperiode) => void;
+    onLeggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
 }
 const StyledAlertStripe = styled(AlertStripe)`
     margin: 1rem 0 1rem 0;
 `;
 
-export const BarnetrygdperiodeModal: React.FC<Props> = ({
+export const KontantstøttePeriodeModal: React.FC<Props> = ({
     erÅpen,
     toggleModal,
-    onLeggTilBarnetrygdsperiode,
+    onLeggTilKontantstøttePeriode,
     barn,
     personType,
     erDød = false,
 }) => {
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
-        useBarnetrygdperiodeSkjema(personType, barn, erDød);
+        useKontantstøttePeriodeSkjema(personType, barn, erDød);
 
     const {
-        mottarEøsBarnetrygdNå,
-        barnetrygdsland,
-        fraDatoBarnetrygdperiode,
-        tilDatoBarnetrygdperiode,
+        mottarEøsKontantstøtteNå,
+        kontantstøtteLand,
+        fraDatoKontantstøttePeriode,
+        tilDatoKontantstøttePeriode,
         månedligBeløp,
     } = skjema.felter;
 
@@ -55,25 +55,25 @@ export const BarnetrygdperiodeModal: React.FC<Props> = ({
         if (!validerFelterOgVisFeilmelding()) {
             return false;
         }
-        onLeggTilBarnetrygdsperiode({
-            mottarEøsBarnetrygdNå: {
-                id: BarnetrygdperiodeSpørsmålId.mottarEøsBarnetrygdNå,
-                svar: mottarEøsBarnetrygdNå.verdi,
+        onLeggTilKontantstøttePeriode({
+            mottarEøsKontantstøtteNå: {
+                id: KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå,
+                svar: mottarEøsKontantstøtteNå.verdi,
             },
-            barnetrygdsland: {
-                id: BarnetrygdperiodeSpørsmålId.barnetrygdsland,
-                svar: barnetrygdsland.verdi,
+            kontantstøtteLand: {
+                id: KontantstøttePeriodeSpørsmålId.kontantstøtteLand,
+                svar: kontantstøtteLand.verdi,
             },
-            fraDatoBarnetrygdperiode: {
-                id: BarnetrygdperiodeSpørsmålId.fraDatoBarnetrygdperiode,
-                svar: fraDatoBarnetrygdperiode.verdi,
+            fraDatoKontantstøttePeriode: {
+                id: KontantstøttePeriodeSpørsmålId.fraDatoKontantstøttePeriode,
+                svar: fraDatoKontantstøttePeriode.verdi,
             },
-            tilDatoBarnetrygdperiode: {
-                id: BarnetrygdperiodeSpørsmålId.tilDatoBarnetrygdperiode,
-                svar: tilDatoBarnetrygdperiode.erSynlig ? tilDatoBarnetrygdperiode.verdi : '',
+            tilDatoKontantstøttePeriode: {
+                id: KontantstøttePeriodeSpørsmålId.tilDatoKontantstøttePeriode,
+                svar: tilDatoKontantstøttePeriode.erSynlig ? tilDatoKontantstøttePeriode.verdi : '',
             },
             månedligBeløp: {
-                id: BarnetrygdperiodeSpørsmålId.månedligBeløp,
+                id: KontantstøttePeriodeSpørsmålId.månedligBeløp,
                 svar: trimWhiteSpace(månedligBeløp.verdi),
             },
         });
@@ -83,15 +83,15 @@ export const BarnetrygdperiodeModal: React.FC<Props> = ({
     };
 
     const periodenErAvsluttet =
-        mottarEøsBarnetrygdNå.verdi === ESvar.NEI ||
+        mottarEøsKontantstøtteNå.verdi === ESvar.NEI ||
         (personType === PersonType.AndreForelder && erDød);
 
-    const hentSpørsmålTekstId = barnetrygdperiodeModalSpørsmålSpråkId(
+    const hentSpørsmålTekstId = kontantstøttePeriodeModalSpørsmålSpråkId(
         personType,
         periodenErAvsluttet
     );
 
-    const spørsmålSpråkTekst = (spørsmålId: BarnetrygdperiodeSpørsmålId) => (
+    const spørsmålSpråkTekst = (spørsmålId: KontantstøttePeriodeSpørsmålId) => (
         <SpråkTekst id={hentSpørsmålTekstId(spørsmålId)} values={{ barn: barn.navn }} />
     );
 
@@ -108,42 +108,42 @@ export const BarnetrygdperiodeModal: React.FC<Props> = ({
             <KomponentGruppe inline>
                 <JaNeiSpm
                     skjema={skjema}
-                    felt={skjema.felter.mottarEøsBarnetrygdNå}
+                    felt={skjema.felter.mottarEøsKontantstøtteNå}
                     spørsmålTekstId={hentSpørsmålTekstId(
-                        BarnetrygdperiodeSpørsmålId.mottarEøsBarnetrygdNå
+                        KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå
                     )}
                     språkValues={{ barn: barn.navn }}
                 />
 
-                {barnetrygdsland.erSynlig && (
+                {kontantstøtteLand.erSynlig && (
                     <LandDropdown
-                        felt={skjema.felter.barnetrygdsland}
+                        felt={skjema.felter.kontantstøtteLand}
                         skjema={skjema}
-                        label={spørsmålSpråkTekst(BarnetrygdperiodeSpørsmålId.barnetrygdsland)}
+                        label={spørsmålSpråkTekst(KontantstøttePeriodeSpørsmålId.kontantstøtteLand)}
                         kunEøs={true}
                         dynamisk
                         ekskluderNorge
                     />
                 )}
-                {fraDatoBarnetrygdperiode.erSynlig && (
+                {fraDatoKontantstøttePeriode.erSynlig && (
                     <Datovelger
-                        felt={skjema.felter.fraDatoBarnetrygdperiode}
+                        felt={skjema.felter.fraDatoKontantstøttePeriode}
                         skjema={skjema}
                         label={spørsmålSpråkTekst(
-                            BarnetrygdperiodeSpørsmålId.fraDatoBarnetrygdperiode
+                            KontantstøttePeriodeSpørsmålId.fraDatoKontantstøttePeriode
                         )}
                         calendarPosition={'fullscreen'}
                         avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
                     />
                 )}
-                {tilDatoBarnetrygdperiode.erSynlig && (
+                {tilDatoKontantstøttePeriode.erSynlig && (
                     <Datovelger
-                        felt={skjema.felter.tilDatoBarnetrygdperiode}
+                        felt={skjema.felter.tilDatoKontantstøttePeriode}
                         skjema={skjema}
                         label={spørsmålSpråkTekst(
-                            BarnetrygdperiodeSpørsmålId.tilDatoBarnetrygdperiode
+                            KontantstøttePeriodeSpørsmålId.tilDatoKontantstøttePeriode
                         )}
-                        avgrensMinDato={skjema.felter.fraDatoBarnetrygdperiode.verdi}
+                        avgrensMinDato={skjema.felter.fraDatoKontantstøttePeriode.verdi}
                         avgrensMaxDato={dagensDato()}
                         calendarPosition={'fullscreen'}
                     />
@@ -153,7 +153,7 @@ export const BarnetrygdperiodeModal: React.FC<Props> = ({
                         felt={skjema.felter.månedligBeløp}
                         visFeilmeldinger={skjema.visFeilmeldinger}
                         labelSpråkTekstId={hentSpørsmålTekstId(
-                            BarnetrygdperiodeSpørsmålId.månedligBeløp
+                            KontantstøttePeriodeSpørsmålId.månedligBeløp
                         )}
                         språkValues={{
                             ...(barn && {

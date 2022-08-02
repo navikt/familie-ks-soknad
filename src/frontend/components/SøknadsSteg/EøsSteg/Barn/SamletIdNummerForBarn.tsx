@@ -65,7 +65,7 @@ const SamletIdNummerForBarn: React.FC<{
     const idNummerSomMåOppgisFraPerioder = idNummerLandMedPeriodeType(
         {
             utenlandsperioder: barn.utenlandsperioder,
-            eøsBarnetrygdsperioder: barn.eøsBarnetrygdsperioder,
+            eøsKontantstøttePerioder: barn.eøsKontantstøttePerioder,
         },
         erEøsLand
     );

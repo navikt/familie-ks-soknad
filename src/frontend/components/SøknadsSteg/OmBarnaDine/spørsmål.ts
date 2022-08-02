@@ -9,8 +9,8 @@ export enum OmBarnaDineSpørsmålId {
     hvemErSøktAsylFor = 'hvem-er-søkt-asyl-for',
     barnOppholdtSegTolvMndSammenhengendeINorge = 'tolv-mnd-sammenhengende-i-norge',
     hvemTolvMndSammenhengendeINorge = 'hvem-tolv-mnd-sammenhengende-i-norge',
-    mottarBarnetrygdForBarnFraAnnetEøsland = 'barnetrygd-fra-annet-eøsland',
-    hvemBarnetrygdFraAnnetEøsland = 'hvem-mottar-barnetrygd-eøsland',
+    mottarKontantstøtteForBarnFraAnnetEøsland = 'kontantstøtte-fra-annet-eøsland',
+    hvemKontantstøtteFraAnnetEøsland = 'hvem-mottar-kontantstøtte-eøsland',
     erOppgittAvdødPartnerForelder = 'er-oppgitt-avdød-partner-forelder',
     erFolkeregAvdødEktefelleForelder = 'er-folkeregistrert-avdød-ektefelle-forelder',
     erFolkeregAvdødPartnerForelder = 'er-folkeregistrert-avdød-partner-forelder',
@@ -29,9 +29,10 @@ export const omBarnaDineSpørsmålSpråkId: Record<OmBarnaDineSpørsmålId, stri
     [OmBarnaDineSpørsmålId.barnOppholdtSegTolvMndSammenhengendeINorge]:
         'ombarna.oppholdtsammenhengende.spm',
     [OmBarnaDineSpørsmålId.hvemTolvMndSammenhengendeINorge]: 'ombarna.hvemavbarnaoppholdt.spm',
-    [OmBarnaDineSpørsmålId.mottarBarnetrygdForBarnFraAnnetEøsland]:
+    [OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland]:
         'ombarna.barnetrygd-eøs-fortid.spm',
-    [OmBarnaDineSpørsmålId.hvemBarnetrygdFraAnnetEøsland]: 'ombarna.barnetrygd-eøs-fortid.hvem.spm',
+    [OmBarnaDineSpørsmålId.hvemKontantstøtteFraAnnetEøsland]:
+        'ombarna.barnetrygd-eøs-fortid.hvem.spm',
     [OmBarnaDineSpørsmålId.erOppgittAvdødPartnerForelder]: 'ombarna.enkeenkemann.oppgitt.spm',
     [OmBarnaDineSpørsmålId.erFolkeregAvdødEktefelleForelder]:
         'ombarna.enkeenkemann.folkeregisteret-enke.spm',

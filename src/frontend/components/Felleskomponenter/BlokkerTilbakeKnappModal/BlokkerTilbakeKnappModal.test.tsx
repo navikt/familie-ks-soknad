@@ -30,8 +30,8 @@ const manueltRegistrertSomIBarnMedISøknad: Partial<IBarnMedISøknad> = {
     ...manueltRegistrert,
     id: 'random-id-1',
     utenlandsperioder: [],
-    [barnDataKeySpørsmål.barnetrygdFraAnnetEøsland]: {
-        id: OmBarnaDineSpørsmålId.mottarBarnetrygdForBarnFraAnnetEøsland,
+    [barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland]: {
+        id: OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland,
         svar: ESvar.NEI,
     },
 };
@@ -41,8 +41,8 @@ const fraPdlSomIBarnMedISøknad: Partial<IBarnMedISøknad> = {
     navn: fraPdl.navn ?? 'ukjent',
     id: 'random-id-2',
     utenlandsperioder: [],
-    [barnDataKeySpørsmål.barnetrygdFraAnnetEøsland]: {
-        id: OmBarnaDineSpørsmålId.mottarBarnetrygdForBarnFraAnnetEøsland,
+    [barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland]: {
+        id: OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland,
         svar: ESvar.NEI,
     },
 };

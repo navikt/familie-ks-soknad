@@ -6,17 +6,17 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';
-import { IEøsBarnetrygdsperiode, IUtenlandsperiode } from '../../../typer/perioder';
+import { IEøsKontantstøttePeriode, IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import { dagensDato, erSammeDatoSomDagensDato, morgendagensDato } from '../../../utils/dato';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
-import { Barnetrygdperiode } from '../../Felleskomponenter/Barnetrygdperiode/Barnetrygdperiode';
 import Datovelger from '../../Felleskomponenter/Datovelger/Datovelger';
 import { LandDropdown } from '../../Felleskomponenter/Dropdowns/LandDropdown';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
+import { KontantstøttePeriode } from '../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriode';
 import { LeggTilKnapp } from '../../Felleskomponenter/LeggTilKnapp/LeggTilKnapp';
 import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
@@ -35,18 +35,18 @@ const Oppfølgningsspørsmål: React.FC<{
     leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
     fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
     utenlandsperioder: IUtenlandsperiode[];
-    leggTilBarnetrygdsperiode: (periode: IEøsBarnetrygdsperiode) => void;
-    fjernBarnetrygdsperiode: (periode: IEøsBarnetrygdsperiode) => void;
-    registrerteEøsBarnetrygdsperioder: Felt<IEøsBarnetrygdsperiode[]>;
+    leggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
+    fjernKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
+    registrerteEøsKontantstøttePerioder: Felt<IEøsKontantstøttePeriode[]>;
 }> = ({
     barn,
     skjema,
     leggTilUtenlandsperiode,
     fjernUtenlandsperiode,
     utenlandsperioder,
-    leggTilBarnetrygdsperiode,
-    fjernBarnetrygdsperiode,
-    registrerteEøsBarnetrygdsperioder,
+    leggTilKontantstøttePeriode,
+    fjernKontantstøttePeriode,
+    registrerteEøsKontantstøttePerioder,
 }) => {
     const { erÅpen: utenlandsmodalErÅpen, toggleModal: toggleUtenlandsmodal } = useModal();
 
@@ -199,7 +199,7 @@ const Oppfølgningsspørsmål: React.FC<{
                     )}
                 </SkjemaFieldset>
             )}
-            {barn[barnDataKeySpørsmål.barnetrygdFraAnnetEøsland].svar === ESvar.JA && (
+            {barn[barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland].svar === ESvar.JA && (
                 <SkjemaFieldset
                     tittelId={'ombarnet.barnetrygd-eøs'}
                     språkValues={{ navn: barn.navn }}
@@ -231,12 +231,14 @@ const Oppfølgningsspørsmål: React.FC<{
                                 }
                             />
                         )}
-                        <Barnetrygdperiode
+                        <KontantstøttePeriode
                             skjema={skjema}
-                            registrerteEøsBarnetrygdsperioder={registrerteEøsBarnetrygdsperioder}
-                            tilhørendeJaNeiSpmFelt={skjema.felter.mottarEllerMottokEøsBarnetrygd}
-                            leggTilBarnetrygdsperiode={leggTilBarnetrygdsperiode}
-                            fjernBarnetrygdsperiode={fjernBarnetrygdsperiode}
+                            registrerteEøsKontantstøttePerioder={
+                                registrerteEøsKontantstøttePerioder
+                            }
+                            tilhørendeJaNeiSpmFelt={skjema.felter.mottarEllerMottokEøsKontantstøtte}
+                            leggTilKontantstøttePeriode={leggTilKontantstøttePeriode}
+                            fjernKontantstøttePeriode={fjernKontantstøttePeriode}
                             barn={barn}
                             personType={PersonType.Søker}
                         />

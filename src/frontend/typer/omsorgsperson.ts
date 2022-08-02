@@ -6,7 +6,7 @@ import { AlternativtSvarForInput } from './common';
 import { Slektsforhold } from './kontrakt/generelle';
 import {
     IArbeidsperiode,
-    IEøsBarnetrygdsperiode,
+    IEøsKontantstøttePeriode,
     IPensjonsperiode,
     IUtbetalingsperiode,
 } from './perioder';
@@ -28,8 +28,8 @@ export interface IOmsorgsperson {
     pensjonsperioderNorge: IPensjonsperiode[];
     andreUtbetalinger: ISøknadSpørsmål<ESvar | null>;
     andreUtbetalingsperioder: IUtbetalingsperiode[];
-    barnetrygdFraEøs: ISøknadSpørsmål<ESvar | null>;
-    eøsBarnetrygdsperioder: IEøsBarnetrygdsperiode[]; //todo: rename
+    kontantstøtteFraEøs: ISøknadSpørsmål<ESvar | null>;
+    eøsKontantstøttePerioder: IEøsKontantstøttePeriode[];
     pågåendeSøknadFraAnnetEøsLand: ISøknadSpørsmål<ESvar | null>;
     pågåendeSøknadHvilketLand: ISøknadSpørsmål<Alpha3Code | ''>;
 }

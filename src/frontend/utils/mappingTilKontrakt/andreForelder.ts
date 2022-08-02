@@ -15,7 +15,7 @@ import { PersonType } from '../../typer/personType';
 import { landkodeTilSpråk } from '../språk';
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
 import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
-import { tilIEøsBarnetrygsperiodeIKontraktFormat } from './eøsBarnetrygdsperiode';
+import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjentSpråktekst,
@@ -40,7 +40,7 @@ export const andreForelderTilISøknadsfelt = (
         pensjonNorge,
         arbeidNorge,
         andreUtbetalinger,
-        barnetrygdFraEøs,
+        kontantstøtteFraEøs,
         skriftligAvtaleOmDeltBosted,
         arbeidsperioderUtland,
         pensjonsperioderUtland,
@@ -49,7 +49,7 @@ export const andreForelderTilISøknadsfelt = (
         andreUtbetalingsperioder,
         pågåendeSøknadFraAnnetEøsLand,
         pågåendeSøknadHvilketLand,
-        eøsBarnetrygdsperioder,
+        eøsKontantstøttePerioder,
         idNummer,
         adresse,
         kanIkkeGiOpplysninger,
@@ -148,10 +148,10 @@ export const andreForelderTilISøknadsfelt = (
                   barn
               )
             : null,
-        barnetrygdFraEøs: barnetrygdFraEøs.svar
+        kontantstøtteFraEøs: kontantstøtteFraEøs.svar
             ? søknadsfeltBarn(
-                  språktekstIdFraSpørsmålId(barnetrygdFraEøs.id),
-                  sammeVerdiAlleSpråk(barnetrygdFraEøs.svar),
+                  språktekstIdFraSpørsmålId(kontantstøtteFraEøs.id),
+                  sammeVerdiAlleSpråk(kontantstøtteFraEøs.svar),
                   barn
               )
             : null,
@@ -219,8 +219,8 @@ export const andreForelderTilISøknadsfelt = (
                 barn,
             })
         ),
-        eøsBarnetrygdsperioder: eøsBarnetrygdsperioder.map((periode, index) =>
-            tilIEøsBarnetrygsperiodeIKontraktFormat({
+        eøsKontantstøttePerioder: eøsKontantstøttePerioder.map((periode, index) =>
+            tilIEøsKontantstøttePeriodeIKontraktFormat({
                 periode,
                 periodeNummer: index + 1,
                 personType: PersonType.AndreForelder,

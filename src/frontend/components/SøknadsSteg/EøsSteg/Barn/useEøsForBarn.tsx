@@ -22,7 +22,7 @@ import { Slektsforhold } from '../../../../typer/kontrakt/generelle';
 import { IOmsorgsperson } from '../../../../typer/omsorgsperson';
 import {
     IArbeidsperiode,
-    IEøsBarnetrygdsperiode,
+    IEøsKontantstøttePeriode,
     IPensjonsperiode,
     IUtbetalingsperiode,
 } from '../../../../typer/perioder';
@@ -53,8 +53,8 @@ export const useEøsForBarn = (
     fjernAndreUtbetalingsperiodeAndreForelder: (periode: IUtbetalingsperiode) => void;
     leggTilArbeidsperiodeNorgeAndreForelder: (periode: IArbeidsperiode) => void;
     fjernArbeidsperiodeNorgeAndreForelder: (periode: IArbeidsperiode) => void;
-    leggTilBarnetrygdsperiodeAndreForelder: (periode: IEøsBarnetrygdsperiode) => void;
-    fjernBarnetrygdsperiodeAndreForelder: (periode: IEøsBarnetrygdsperiode) => void;
+    leggTilKontantstøttePeriodeAndreForelder: (periode: IEøsKontantstøttePeriode) => void;
+    fjernKontantstøttePeriodeAndreForelder: (periode: IEøsKontantstøttePeriode) => void;
     leggTilArbeidsperiodeUtlandOmsorgsperson: (periode: IArbeidsperiode) => void;
     fjernArbeidsperiodeUtlandOmsorgsperson: (periode: IArbeidsperiode) => void;
     leggTilArbeidsperiodeNorgeOmsorgsperson: (periode: IArbeidsperiode) => void;
@@ -65,8 +65,8 @@ export const useEøsForBarn = (
     fjernPensjonsperiodeNorgeOmsorgsperson: (periode: IPensjonsperiode) => void;
     leggTilAndreUtbetalingsperiodeOmsorgsperson: (periode: IUtbetalingsperiode) => void;
     fjernAndreUtbetalingsperiodeOmsorgsperson: (periode: IUtbetalingsperiode) => void;
-    leggTilBarnetrygdsperiodeOmsorgsperson: (periode: IEøsBarnetrygdsperiode) => void;
-    fjernBarnetrygdsperiodeOmsorgsperson: (periode: IEøsBarnetrygdsperiode) => void;
+    leggTilKontantstøttePeriodeOmsorgsperson: (periode: IEøsKontantstøttePeriode) => void;
+    fjernKontantstøttePeriodeOmsorgsperson: (periode: IEøsKontantstøttePeriode) => void;
     settIdNummerFelterForBarn: Dispatch<SetStateAction<Felt<string>[]>>;
     idNummerFelterForBarn: Felt<string>[];
     idNummerFelterForAndreForelder: Felt<string>[];
@@ -109,7 +109,7 @@ export const useEøsForBarn = (
         skalVises: søkersSlektsforhold.verdi === Slektsforhold.ANNEN_RELASJON,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
-            return verdi.match(/^[0-9A-Za-z\s\-\\,\\.]{4,60}$/)
+            return verdi.match(/^[\dA-Za-z\s\-\\,.]{4,60}$/)
                 ? ok(felt)
                 : feil(
                       felt,
@@ -157,7 +157,7 @@ export const useEøsForBarn = (
         skalVises: borMedOmsorgsperson.verdi === ESvar.JA,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
-            return verdi.match(/^[A-Za-zæøåÆØÅ\s\-\\,\\.]{1,60}$/)
+            return verdi.match(/^[A-Za-zæøåÆØÅ\s\-\\,.]{1,60}$/)
                 ? ok(felt)
                 : feil(
                       felt,
@@ -196,7 +196,7 @@ export const useEøsForBarn = (
         skalVises: omsorgspersonSlektsforhold.verdi === Slektsforhold.ANNEN_RELASJON,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
-            return verdi.match(/^[0-9A-Za-zæøåÆØÅ\s\-\\,\\.]{4,60}$/)
+            return verdi.match(/^[\dA-Za-zæøåÆØÅ\s\-\\,.]{4,60}$/)
                 ? ok(felt)
                 : feil(
                       felt,
@@ -225,7 +225,7 @@ export const useEøsForBarn = (
         skalVises: borMedOmsorgsperson.verdi === ESvar.JA,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
-            return verdi.match(/^[0-9A-Za-zæøåÆØÅ\s\-.\\/]{4,20}$/)
+            return verdi.match(/^[\dA-Za-zæøåÆØÅ\s\-.\\/]{4,20}$/)
                 ? ok(felt)
                 : feil(
                       felt,
@@ -378,24 +378,24 @@ export const useEøsForBarn = (
         feilmeldingSpråkVerdier: { barn: gjeldendeBarn.navn },
     });
 
-    const omsorgspersonBarnetrygdFraEøs = useJaNeiSpmFelt({
-        søknadsfelt: omsorgsperson?.barnetrygdFraEøs,
+    const omsorgspersonKontantstøtteFraEøs = useJaNeiSpmFelt({
+        søknadsfelt: omsorgsperson?.kontantstøtteFraEøs,
         feilmeldingSpråkId: 'eøs-om-barn.omsorgsperson-barnetrygd.feilmelding',
         feilmeldingSpråkVerdier: { barn: gjeldendeBarn.navn },
         skalSkjules: borMedOmsorgsperson.verdi !== ESvar.JA,
     });
 
     const {
-        fjernPeriode: fjernBarnetrygdsperiodeOmsorgsperson,
-        leggTilPeriode: leggTilBarnetrygdsperiodeOmsorgsperson,
-        registrertePerioder: omsorgspersonEøsBarnetrygdsperioder,
-    } = usePerioder<IEøsBarnetrygdsperiode>(
-        omsorgsperson?.eøsBarnetrygdsperioder ?? [],
-        { omsorgspersonBarnetrygdFraEøs },
-        avhengigheter => avhengigheter.omsorgspersonBarnetrygdFraEøs.verdi === ESvar.JA,
+        fjernPeriode: fjernKontantstøttePeriodeOmsorgsperson,
+        leggTilPeriode: leggTilKontantstøttePeriodeOmsorgsperson,
+        registrertePerioder: omsorgspersonEøsKontantstøttePerioder,
+    } = usePerioder<IEøsKontantstøttePeriode>(
+        omsorgsperson?.eøsKontantstøttePerioder ?? [],
+        { omsorgspersonKontantstøtteFraEøs },
+        avhengigheter => avhengigheter.omsorgspersonKontantstøtteFraEøs.verdi === ESvar.JA,
         (felt, avhengigheter) => {
-            return avhengigheter?.omsorgspersonBarnetrygdFraEøs.verdi === ESvar.NEI ||
-                (avhengigheter?.omsorgspersonBarnetrygdFraEøs.verdi === ESvar.JA &&
+            return avhengigheter?.omsorgspersonKontantstøtteFraEøs.verdi === ESvar.NEI ||
+                (avhengigheter?.omsorgspersonKontantstøtteFraEøs.verdi === ESvar.JA &&
                     felt.verdi.length)
                 ? ok(felt)
                 : feil(felt, <SpråkTekst id={'ombarnet.trygdandreperioder.feilmelding'} />);
@@ -534,8 +534,8 @@ export const useEøsForBarn = (
         feilmeldingSpråkVerdier: { barn: gjeldendeBarn.navn },
     });
 
-    const andreForelderBarnetrygdFraEøs = useJaNeiSpmFelt({
-        søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.barnetrygdFraEøs],
+    const andreForelderKontantstøtteFraEøs = useJaNeiSpmFelt({
+        søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.kontantstøtteFraEøs],
         feilmeldingSpråkId: andreForelderErDød
             ? 'eøs-om-barn.andre-forelder-barnetrygd-gjenlevende.feilmelding'
             : 'eøs-om-barn.andre-forelder-barnetrygd.feilmelding',
@@ -544,16 +544,16 @@ export const useEøsForBarn = (
     });
 
     const {
-        fjernPeriode: fjernBarnetrygdsperiodeAndreForelder,
-        leggTilPeriode: leggTilBarnetrygdsperiodeAndreForelder,
-        registrertePerioder: andreForelderEøsBarnetrygdsperioder,
-    } = usePerioder<IEøsBarnetrygdsperiode>(
-        andreForelder?.eøsBarnetrygdsperioder ?? [],
-        { andreForelderBarnetrygdFraEøs },
-        avhengigheter => avhengigheter.andreForelderBarnetrygdFraEøs.verdi === ESvar.JA,
+        fjernPeriode: fjernKontantstøttePeriodeAndreForelder,
+        leggTilPeriode: leggTilKontantstøttePeriodeAndreForelder,
+        registrertePerioder: andreForelderEøsKontantstøttePerioder,
+    } = usePerioder<IEøsKontantstøttePeriode>(
+        andreForelder?.eøsKontantstøttePerioder ?? [],
+        { andreForelderKontantstøtteFraEøs },
+        avhengigheter => avhengigheter.andreForelderKontantstøtteFraEøs.verdi === ESvar.JA,
         (felt, avhengigheter) => {
-            return avhengigheter?.andreForelderBarnetrygdFraEøs.verdi === ESvar.NEI ||
-                (avhengigheter?.andreForelderBarnetrygdFraEøs.verdi === ESvar.JA &&
+            return avhengigheter?.andreForelderKontantstøtteFraEøs.verdi === ESvar.NEI ||
+                (avhengigheter?.andreForelderKontantstøtteFraEøs.verdi === ESvar.JA &&
                     felt.verdi.length)
                 ? ok(felt)
                 : feil(felt, <SpråkTekst id={'ombarnet.trygdandreperioder.feilmelding'} />);
@@ -597,13 +597,13 @@ export const useEøsForBarn = (
                 id: EøsBarnSpørsmålId.andreForelderPågåendeSøknadHvilketLand,
                 svar: andreForelderPågåendeSøknadHvilketLand.verdi,
             },
-            barnetrygdFraEøs: {
-                ...andreForelder[andreForelderDataKeySpørsmål.barnetrygdFraEøs],
-                svar: andreForelderBarnetrygdFraEøs.verdi,
+            kontantstøtteFraEøs: {
+                ...andreForelder[andreForelderDataKeySpørsmål.kontantstøtteFraEøs],
+                svar: andreForelderKontantstøtteFraEøs.verdi,
             },
-            eøsBarnetrygdsperioder:
-                andreForelderBarnetrygdFraEøs.verdi === ESvar.JA
-                    ? andreForelderEøsBarnetrygdsperioder.verdi
+            eøsKontantstøttePerioder:
+                andreForelderKontantstøtteFraEøs.verdi === ESvar.JA
+                    ? andreForelderEøsKontantstøttePerioder.verdi
                     : [],
             idNummer: idNummerFelterForAndreForelder.map(felt => ({
                 land: felt.id.split(idNummerKeyPrefix)[1] as Alpha3Code,
@@ -690,13 +690,13 @@ export const useEøsForBarn = (
             id: EøsBarnSpørsmålId.omsorgspersonPågåendeSøknadHvilketLand,
             svar: omsorgspersonPågåendeSøknadHvilketLand.verdi,
         },
-        barnetrygdFraEøs: {
-            id: EøsBarnSpørsmålId.omsorgspersonBarnetrygd,
-            svar: omsorgspersonBarnetrygdFraEøs.verdi,
+        kontantstøtteFraEøs: {
+            id: EøsBarnSpørsmålId.omsorgspersonKontantstøtte,
+            svar: omsorgspersonKontantstøtteFraEøs.verdi,
         },
-        eøsBarnetrygdsperioder:
-            omsorgspersonBarnetrygdFraEøs.verdi === ESvar.JA
-                ? omsorgspersonEøsBarnetrygdsperioder.verdi
+        eøsKontantstøttePerioder:
+            omsorgspersonKontantstøtteFraEøs.verdi === ESvar.JA
+                ? omsorgspersonEøsKontantstøttePerioder.verdi
                 : [],
     });
 
@@ -791,8 +791,8 @@ export const useEøsForBarn = (
             andreForelderArbeidsperioderNorge,
             andreForelderPågåendeSøknadFraAnnetEøsLand,
             andreForelderPågåendeSøknadHvilketLand,
-            andreForelderBarnetrygdFraEøs,
-            andreForelderEøsBarnetrygdsperioder,
+            andreForelderKontantstøtteFraEøs,
+            andreForelderEøsKontantstøttePerioder,
             andreForelderAdresse,
             andreForelderAdresseVetIkke,
             søkersSlektsforhold,
@@ -816,8 +816,8 @@ export const useEøsForBarn = (
             omsorgspersonAndreUtbetalingsperioder,
             omsorgspersonPågåendeSøknadFraAnnetEøsLand,
             omsorgspersonPågåendeSøknadHvilketLand,
-            omsorgspersonBarnetrygdFraEøs,
-            omsorgspersonEøsBarnetrygdsperioder,
+            omsorgspersonKontantstøtteFraEøs,
+            omsorgspersonEøsKontantstøttePerioder,
             barnetsAdresse,
             barnetsAdresseVetIkke,
             borMedOmsorgsperson,
@@ -838,8 +838,8 @@ export const useEøsForBarn = (
         fjernAndreUtbetalingsperiodeAndreForelder,
         leggTilArbeidsperiodeNorgeAndreForelder,
         fjernArbeidsperiodeNorgeAndreForelder,
-        leggTilBarnetrygdsperiodeAndreForelder,
-        fjernBarnetrygdsperiodeAndreForelder,
+        leggTilKontantstøttePeriodeAndreForelder,
+        fjernKontantstøttePeriodeAndreForelder,
         settIdNummerFelterForBarn,
         idNummerFelterForBarn,
         idNummerFelterForAndreForelder,
@@ -854,7 +854,7 @@ export const useEøsForBarn = (
         fjernPensjonsperiodeNorgeOmsorgsperson,
         leggTilAndreUtbetalingsperiodeOmsorgsperson,
         fjernAndreUtbetalingsperiodeOmsorgsperson,
-        leggTilBarnetrygdsperiodeOmsorgsperson,
-        fjernBarnetrygdsperiodeOmsorgsperson,
+        leggTilKontantstøttePeriodeOmsorgsperson,
+        fjernKontantstøttePeriodeOmsorgsperson,
     };
 };

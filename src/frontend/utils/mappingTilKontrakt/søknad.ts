@@ -175,11 +175,11 @@ export const dataISøknadKontraktFormatV1 = (
                 språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.erBarnAdoptertFraUtland),
                 sammeVerdiAlleSpråk(søknad.erBarnAdoptertFraUtland.svar)
             ),
-            mottarBarnetrygdForBarnFraAnnetEøsland: søknadsfelt(
+            mottarKontantstøtteForBarnFraAnnetEøsland: søknadsfelt(
                 språktekstIdFraSpørsmålId(
-                    OmBarnaDineSpørsmålId.mottarBarnetrygdForBarnFraAnnetEøsland
+                    OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland
                 ),
-                sammeVerdiAlleSpråk(søknad.mottarBarnetrygdForBarnFraAnnetEøsland.svar)
+                sammeVerdiAlleSpråk(søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar)
             ),
             erAvdødPartnerForelder: søknadsfelt(
                 språktekstIdFraSpørsmålId(søknad.erAvdødPartnerForelder.id),
