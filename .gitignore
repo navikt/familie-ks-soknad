@@ -1,0 +1,9 @@
+node_modules
+build
+.idea
+.env
+.eslintcache
+yarn-error.log
+dist/
+.DS_Store
+secure.log
