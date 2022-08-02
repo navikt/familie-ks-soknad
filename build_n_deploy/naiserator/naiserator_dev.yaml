@@ -36,10 +36,11 @@ spec:
     requests:
       memory: 512Mi
   envFrom:
-    - secret: ks-soknad
     - configmap: loginservice-idporten
   env:
     - name: BASE_PATH
       value: {{base_path}}
+    - name: ENV
+      value: dev
   secureLogs:
     enabled: true
