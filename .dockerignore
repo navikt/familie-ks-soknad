@@ -1,0 +1,13 @@
+node_modules/
+build/
+dist/
+dockerstuff/
+docker-compose.yml
+.git/
+.idea/
+.vscode/
+var/
+*.log
+Dockerfile
+.dockerignore
+.github/
