@@ -37,7 +37,7 @@ const Miljø = (): MiljøProps => {
     } else {
         return {
             soknadApi: `http://${window.location.hostname}:${window.location.port}${basePath}api`,
-            loginService: `http://${window.location.hostname}:8080/local/cookie?subject=12345678901`,
+            loginService: `http://${window.location.hostname}:8080/local/cookie?issuerId=selvbetjening&audience=aud-localhost&cookiename=localhost-idtoken&subject=12345678901`,
             visInnsendingsknapp: true,
             mellomlagerUrl: `http://${window.location.hostname}:8082/api/soknad/kontantstotte`, //todo
             modellVersjon: modellVersjon,
