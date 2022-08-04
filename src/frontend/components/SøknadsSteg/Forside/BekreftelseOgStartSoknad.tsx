@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 
 import navFarger from 'nav-frontend-core';
@@ -9,6 +8,8 @@ import { Normaltekst } from 'nav-frontend-typografi';
 
 import { Button } from '@navikt/ds-react';
 
+import { useApp } from '../../../context/AppContext';
+import { ESanitySteg } from '../../../typer/sanity';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { BekreftelseStatus, useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
@@ -44,14 +45,18 @@ export const bekreftelseBoksBorderFarge = (status: BekreftelseStatus) => {
 };
 
 const BekreftelseOgStartSoknad: React.FC = () => {
-    const { formatMessage } = useIntl();
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
+    const { localeTekst, tekster } = useApp();
+
+    const {
+        [ESanitySteg.FORSIDE]: { bekreftelsesBoks },
+    } = tekster();
 
     return (
         <FormContainer onSubmit={event => onStartSøknad(event)}>
             <Informasjonsbolk tittelId="forside.bekreftelsesboks.tittel">
                 <StyledBekreftCheckboksPanel
-                    label={formatMessage({ id: 'forside.bekreftelsesboks.erklæring.spm' })}
+                    label={localeTekst(bekreftelsesBoks.erklaering)}
                     onChange={bekreftelseOnChange}
                     checked={bekreftelseStatus === BekreftelseStatus.BEKREFTET}
                     feil={
