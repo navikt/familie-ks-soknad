@@ -64,6 +64,7 @@ export const spyOnUseApp = søknad => {
     const settNåværendeRoute = jest.fn();
     const mellomlagre = jest.fn();
     const sluttbruker = { status: RessursStatus.SUKSESS, data: { navn: '' } };
+    const teksterRessurs = { status: RessursStatus.SUKSESS, data: {} };
 
     søknad.barnInkludertISøknaden = søknad.barnInkludertISøknaden ?? [];
     søknad.erEøs = søknad.erEøs ?? false;
@@ -89,6 +90,7 @@ export const spyOnUseApp = søknad => {
         settNåværendeRoute,
         mellomlagre,
         sluttbruker,
+        teksterRessurs,
         settEøsLand,
         eøsLand,
         systemetLaster: jest.fn().mockReturnValue(false),
