@@ -40,6 +40,18 @@ import { genererInitialBarnMedISøknad } from './barn';
 
 jest.mock('../context/pdl');
 
+jest.mock('@sanity/client', () => {
+    return function sanity() {
+        return {
+            fetch: () => ({
+                then: () => ({
+                    catch: jest.fn(),
+                }),
+            }),
+        };
+    };
+});
+
 export const spyOnUseApp = søknad => {
     jest.spyOn(pdlRequest, 'hentSluttbrukerFraPdl').mockImplementation(async () => ({
         status: RessursStatus.SUKSESS,
@@ -64,7 +76,6 @@ export const spyOnUseApp = søknad => {
     const settNåværendeRoute = jest.fn();
     const mellomlagre = jest.fn();
     const sluttbruker = { status: RessursStatus.SUKSESS, data: { navn: '' } };
-    const teksterRessurs = { status: RessursStatus.SUKSESS, data: {} };
 
     søknad.barnInkludertISøknaden = søknad.barnInkludertISøknaden ?? [];
     søknad.erEøs = søknad.erEøs ?? false;
@@ -90,7 +101,6 @@ export const spyOnUseApp = søknad => {
         settNåværendeRoute,
         mellomlagre,
         sluttbruker,
-        teksterRessurs,
         settEøsLand,
         eøsLand,
         systemetLaster: jest.fn().mockReturnValue(false),
