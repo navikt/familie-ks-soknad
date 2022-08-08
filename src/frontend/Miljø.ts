@@ -1,4 +1,5 @@
 import { modellVersjon } from '../shared-utils/modellversjon';
+import { SanityDataSet } from './typer/sanity';
 
 interface MiljøProps {
     soknadApi: string;
@@ -7,6 +8,7 @@ interface MiljøProps {
     mellomlagerUrl: string;
     modellVersjon: number;
     dokumentUrl: string;
+    sanityDataset: SanityDataSet;
 }
 
 export const basePath = process.env.BASE_PATH ?? '/';
@@ -16,6 +18,7 @@ export const routerBasePath = basePath;
 const Miljø = (): MiljøProps => {
     if (window.location.hostname.indexOf('familie-ks-soknad.dev') > -1) {
         return {
+            sanityDataset: 'prod',
             soknadApi: `https://familie-ks-soknad.dev.nav.no${basePath}api`,
             loginService: 'https://loginservice.dev.nav.no/login?',
             visInnsendingsknapp: true,
@@ -27,6 +30,7 @@ const Miljø = (): MiljøProps => {
         };
     } else if (window.location.hostname.indexOf('www.nav') > -1) {
         return {
+            sanityDataset: 'prod',
             soknadApi: `https://www.nav.no${basePath}api`,
             loginService: 'https://loginservice.nav.no/login?',
             visInnsendingsknapp: false,
@@ -36,6 +40,7 @@ const Miljø = (): MiljøProps => {
         };
     } else {
         return {
+            sanityDataset: 'test',
             soknadApi: `http://${window.location.hostname}:${window.location.port}${basePath}api`,
             loginService: `http://${window.location.hostname}:8080/local/cookie?issuerId=selvbetjening&audience=aud-localhost&cookiename=localhost-idtoken&subject=12345678901`,
             visInnsendingsknapp: true,

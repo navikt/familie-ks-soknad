@@ -51,6 +51,9 @@ jest.mock('./LastRessurserContext', () => {
         useLastRessurserContext: () => ({
             axiosRequest: () => mockResult,
             lasterRessurser: () => false,
+            ressurserSomLaster: [],
+            settRessurserSomLaster: jest.fn(),
+            fjernRessursSomLaster: jest.fn(),
         }),
         LastRessurserProvider: ({ children }) => <>{children}</>,
     };

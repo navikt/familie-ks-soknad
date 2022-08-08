@@ -13,10 +13,12 @@ import {
 } from '@navikt/familie-typer';
 
 import Miljø, { basePath } from '../Miljø';
+import { LocaleRecord } from '../typer/common';
 import { IKvittering } from '../typer/kvittering';
 import { IMellomlagretKontantstøtte } from '../typer/mellomlager';
 import { ISøkerRespons } from '../typer/person';
 import { RouteEnum } from '../typer/routes';
+import { ITekstinnhold } from '../typer/sanity';
 import { initialStateSøknad, ISøknad } from '../typer/søknad';
 import { InnloggetStatus } from '../utils/autentisering';
 import { mapBarnResponsTilBarn } from '../utils/barn';
@@ -24,6 +26,7 @@ import { preferredAxios } from './axios';
 import { useInnloggetContext } from './InnloggetContext';
 import { useLastRessurserContext } from './LastRessurserContext';
 import { hentSluttbrukerFraPdl } from './pdl';
+import { useSanity } from './SanityContext';
 
 const [AppProvider, useApp] = createUseContext(() => {
     const [valgtLocale] = useSprakContext();
@@ -41,6 +44,7 @@ const [AppProvider, useApp] = createUseContext(() => {
     const { modellVersjon } = Miljø();
     const [sisteModellVersjon, settSisteModellVersjon] = useState(modellVersjon);
     const modellVersjonOppdatert = sisteModellVersjon > modellVersjon;
+    const { teksterRessurs } = useSanity();
 
     useEffect(() => {
         if (nåværendeRoute === RouteEnum.Kvittering) {
@@ -185,7 +189,9 @@ const [AppProvider, useApp] = createUseContext(() => {
 
     const systemetFeiler = () => {
         return (
-            sluttbruker.status === RessursStatus.FEILET || eøsLand.status === RessursStatus.FEILET
+            sluttbruker.status === RessursStatus.FEILET ||
+            eøsLand.status === RessursStatus.FEILET ||
+            teksterRessurs.status === RessursStatus.FEILET
         );
     };
 
@@ -193,12 +199,23 @@ const [AppProvider, useApp] = createUseContext(() => {
         return (
             innloggetStatus === InnloggetStatus.AUTENTISERT &&
             sluttbruker.status === RessursStatus.SUKSESS &&
-            eøsLand.status === RessursStatus.SUKSESS
+            eøsLand.status === RessursStatus.SUKSESS &&
+            teksterRessurs.status === RessursStatus.SUKSESS
         );
     };
 
     const systemetLaster = (): boolean => {
         return lasterRessurser() || innloggetStatus === InnloggetStatus.IKKE_VERIFISERT;
+    };
+
+    const localeTekst = (key: LocaleRecord): string => key[valgtLocale];
+
+    const tekster = (): ITekstinnhold => {
+        if (teksterRessurs.status === RessursStatus.SUKSESS) {
+            return teksterRessurs.data;
+        } else {
+            throw new Error(`Søknaden har lastet uten tekster`);
+        }
     };
 
     return {
@@ -227,6 +244,8 @@ const [AppProvider, useApp] = createUseContext(() => {
         settSisteModellVersjon,
         eøsLand,
         settEøsLand,
+        localeTekst,
+        tekster,
     };
 });
 

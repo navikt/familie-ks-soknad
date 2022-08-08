@@ -27,22 +27,38 @@ import { LastRessurserProvider } from '../context/LastRessurserContext';
 import * as pdlRequest from '../context/pdl';
 import * as routesContext from '../context/RoutesContext';
 import { getRoutes, RoutesProvider } from '../context/RoutesContext';
+import { SanityProvider } from '../context/SanityContext';
 import { StegProvider } from '../context/StegContext';
 import { andreForelderDataKeySpørsmål, barnDataKeySpørsmål } from '../typer/barn';
 import { AlternativtSvarForInput } from '../typer/common';
 import { ESivilstand } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { ISøker, ISøkerRespons } from '../typer/person';
+import { ITekstinnhold } from '../typer/sanity';
 import { initialStateSøknad, ISøknad } from '../typer/søknad';
 import { genererInitialBarnMedISøknad } from './barn';
 
 jest.mock('../context/pdl');
+
+jest.mock('@sanity/client', () => {
+    return function sanity() {
+        return {
+            fetch: () => ({
+                then: () => ({
+                    catch: jest.fn(),
+                }),
+            }),
+        };
+    };
+});
 
 export const spyOnUseApp = søknad => {
     jest.spyOn(pdlRequest, 'hentSluttbrukerFraPdl').mockImplementation(async () => ({
         status: RessursStatus.SUKSESS,
         data: mockDeep<ISøkerRespons>({ sivilstand: { type: ESivilstand.UGIFT }, ...søknad.søker }),
     }));
+    const tekster = jest.fn().mockImplementation(() => mockDeep<ITekstinnhold>());
+    const localeTekst = jest.fn();
     const settSøknad = jest.fn();
     const erPåKvitteringsside = jest.fn().mockImplementation(() => false);
     const erStegUtfyltFrafør = jest.fn().mockImplementation(() => true);
@@ -90,6 +106,8 @@ export const spyOnUseApp = søknad => {
         systemetLaster: jest.fn().mockReturnValue(false),
         systemetOK: () => jest.fn().mockReturnValue(true),
         systemetFeiler: jest.fn().mockReturnValue(false),
+        tekster,
+        localeTekst,
     });
     jest.spyOn(appContext, 'useApp').mockImplementation(useAppMock);
 
@@ -178,6 +196,7 @@ const wrapMedDefaultProvidere = (children: ReactNode, språkTekster: Record<stri
             SprakProvider,
             HttpProvider,
             LastRessurserProvider,
+            SanityProvider,
             InnloggetProvider,
             FeatureTogglesProvider,
             AppProvider,

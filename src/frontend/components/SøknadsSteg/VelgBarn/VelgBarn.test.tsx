@@ -8,7 +8,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { byggSuksessRessurs, RessursStatus } from '@navikt/familie-typer';
 import fnrvalidator from '@navikt/fnrvalidator';
 
-import * as eøsContext from '../../../context/EøsContext';
 import * as pdlRequest from '../../../context/pdl';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
@@ -28,6 +27,18 @@ import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
 import VelgBarn from './VelgBarn';
 
 jest.mock('@navikt/fnrvalidator');
+
+jest.mock('@sanity/client', () => {
+    return function sanity() {
+        return {
+            fetch: () => ({
+                then: () => ({
+                    catch: jest.fn(),
+                }),
+            }),
+        };
+    };
+});
 
 const manueltRegistrert: Partial<IBarnMedISøknad> = {
     id: 'random-id-1',
@@ -58,7 +69,6 @@ const fraPdlSomIBarnMedISøknad: Partial<IBarnMedISøknad> = {
 describe('VelgBarn', () => {
     beforeEach(() => {
         mockHistory(['/velg-barn']);
-        jest.spyOn(eøsContext, 'useEøs').mockImplementation(jest.fn());
         jest.spyOn(pdlRequest, 'hentSluttbrukerFraPdl').mockImplementation(async () => ({
             status: RessursStatus.SUKSESS,
             data: mockDeep<ISøkerRespons>({

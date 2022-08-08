@@ -1,4 +1,5 @@
 import { ESvar, ISODateString } from '@navikt/familie-form-elements';
+import { LocaleType } from '@navikt/familie-sprakvelger';
 
 export interface IPar {
     id: number;
@@ -21,3 +22,5 @@ export type BarnetsId = string;
 
 export type TomString = '';
 export const tomString: TomString = '';
+
+export type LocaleRecord = Record<LocaleType, string>;
