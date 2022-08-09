@@ -8,12 +8,12 @@ export enum OmDegSpørsmålId {
     borPåRegistrertAdresse = 'bor-på-registrert-adresse',
     værtINorgeITolvMåneder = 'søker-vært-i-norge-sammenhengende-tolv-måneder',
     planleggerÅBoINorgeTolvMnd = 'søker-planlegger-å-bo-i-norge-sammenhengende-tolv-måneder',
-    yrkesaktivFemÅr = 'todo',
+    yrkesaktivFemÅr = 'todo-søker-yrkesaktiv',
 }
 
 export const omDegSpørsmålSpråkId: Record<OmDegSpørsmålId, string> = {
     [OmDegSpørsmålId.borPåRegistrertAdresse]: 'omdeg.borpådenneadressen.spm',
     [OmDegSpørsmålId.værtINorgeITolvMåneder]: 'omdeg.oppholdtsammenhengende.spm',
     [OmDegSpørsmålId.planleggerÅBoINorgeTolvMnd]: 'omdeg.planlagt-opphold-sammenhengende.spm',
-    [OmDegSpørsmålId.yrkesaktivFemÅr]: 'todo',
+    [OmDegSpørsmålId.yrkesaktivFemÅr]: 'todo.søker.yrkesaktiv',
 };

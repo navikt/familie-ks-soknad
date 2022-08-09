@@ -953,6 +953,14 @@ export const testdata2: TilKontraktTestData = {
                     },
                     verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
                 },
+                yrkesaktivFemÅr: {
+                    label: {
+                        en: 'todo.søker.yrkesaktiv',
+                        nb: 'TODO søker yrkesaktiv',
+                        nn: 'todo.søker.yrkesaktiv',
+                    },
+                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                },
                 erAsylsøker: {
                     label: {
                         en: 'Are you an asylum seeker?',

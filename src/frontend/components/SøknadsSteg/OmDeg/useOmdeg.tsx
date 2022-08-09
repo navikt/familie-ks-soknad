@@ -76,7 +76,7 @@ export const useOmdeg = (): {
 
     const yrkesaktivFemÅr = useJaNeiSpmFelt({
         søknadsfelt: søker.yrkesaktivFemÅr,
-        feilmeldingSpråkId: 'todo',
+        feilmeldingSpråkId: 'todo.søker.yrkesaktiv',
     });
 
     useEffect(() => {

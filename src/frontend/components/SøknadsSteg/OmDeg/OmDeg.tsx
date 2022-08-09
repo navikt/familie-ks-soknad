@@ -133,11 +133,11 @@ const OmDeg: React.FC = () => {
                     <JaNeiSpm
                         skjema={skjema}
                         felt={skjema.felter.yrkesaktivFemÅr}
-                        spørsmålTekstId={'todo'}
+                        spørsmålTekstId={'todo.søker.yrkesaktiv'}
                     />
                     {skjema.felter.yrkesaktivFemÅr.verdi === ESvar.NEI && (
                         <AlertStripe type={'advarsel'} dynamisk>
-                            <SpråkTekst id={'todo'} />
+                            <SpråkTekst id={'todo.søker.yrkesaktiv'} />
                         </AlertStripe>
                     )}
                 </KomponentGruppe>

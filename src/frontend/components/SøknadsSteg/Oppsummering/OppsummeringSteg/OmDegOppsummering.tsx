@@ -121,7 +121,7 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                 )}
                 {søknad.søker.yrkesaktivFemÅr.svar && (
                     <OppsummeringFelt
-                        tittel={<SpråkTekst id={'todo'} />}
+                        tittel={<SpråkTekst id={'todo.søker.yrkesaktiv'} />}
                         søknadsvar={søknad.søker.yrkesaktivFemÅr.svar}
                     />
                 )}
