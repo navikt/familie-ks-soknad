@@ -185,6 +185,10 @@ export const genererInitialBarnMedISøknad = (barn: IBarn): IBarnMedISøknad => 
             id: OmBarnetSpørsmålsId.institusjonOppholdSluttdato,
             svar: '',
         },
+        [barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad]: {
+            id: OmBarnetSpørsmålsId.utbetaltForeldrepengerEllerEngangsstønad,
+            svar: null,
+        },
         [barnDataKeySpørsmål.boddMindreEnn12MndINorge]: {
             id: OmBarnaDineSpørsmålId.hvemTolvMndSammenhengendeINorge,
             svar: null,

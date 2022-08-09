@@ -48,6 +48,7 @@ export interface IOmBarnetUtvidetFeltTyper {
     institusjonOppholdStartdato: ISODateString;
     institusjonOppholdSluttdato: DatoMedUkjent;
     institusjonOppholdSluttVetIkke: ESvar;
+    utbetaltForeldrepengerEllerEngangsstønad: ESvar | null;
     planleggerÅBoINorge12Mnd: ESvar | null;
     pågåendeSøknadFraAnnetEøsLand: ESvar | null;
     pågåendeSøknadHvilketLand: Alpha3Code | '';
