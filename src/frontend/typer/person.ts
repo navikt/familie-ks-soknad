@@ -51,6 +51,7 @@ export interface ISøker extends Omit<ISøkerRespons, 'barn'> {
     værtINorgeITolvMåneder: ISøknadSpørsmål<ESvar | null>;
     utenlandsperioder: IUtenlandsperiode[];
     planleggerÅBoINorgeTolvMnd: ISøknadSpørsmål<ESvar | null>;
+    yrkesaktivFemÅr: ISøknadSpørsmål<ESvar | null>;
 
     // Steg: Din Livssituasjon
     erAsylsøker: ISøknadSpørsmål<ESvar | null>;

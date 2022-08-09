@@ -74,6 +74,7 @@ export interface IOmDegFeltTyper {
     værtINorgeITolvMåneder: ESvar | null;
     planleggerÅBoINorgeTolvMnd: ESvar | null;
     registrerteUtenlandsperioder: IUtenlandsperiode[];
+    yrkesaktivFemÅr: ESvar | null;
 }
 
 export type IdNummerKey = `${string}-idnummer-${string}`;

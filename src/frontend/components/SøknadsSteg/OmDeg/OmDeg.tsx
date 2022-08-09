@@ -128,6 +128,20 @@ const OmDeg: React.FC = () => {
                     )}
                 </KomponentGruppe>
             )}
+            {skjema.felter.yrkesaktivFemÅr.erSynlig && (
+                <KomponentGruppe>
+                    <JaNeiSpm
+                        skjema={skjema}
+                        felt={skjema.felter.yrkesaktivFemÅr}
+                        spørsmålTekstId={'todo'}
+                    />
+                    {skjema.felter.yrkesaktivFemÅr.verdi === ESvar.NEI && (
+                        <AlertStripe type={'advarsel'} dynamisk>
+                            <SpråkTekst id={'todo'} />
+                        </AlertStripe>
+                    )}
+                </KomponentGruppe>
+            )}
             <UtenlandsoppholdModal
                 erÅpen={erÅpen}
                 toggleModal={toggleModal}
