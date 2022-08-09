@@ -119,12 +119,10 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         søknadsvar={søknad.søker.planleggerÅBoINorgeTolvMnd.svar}
                     />
                 )}
-                {søknad.søker.yrkesaktivFemÅr.svar && (
-                    <OppsummeringFelt
-                        tittel={<SpråkTekst id={'todo.søker.yrkesaktiv'} />}
-                        søknadsvar={søknad.søker.yrkesaktivFemÅr.svar}
-                    />
-                )}
+                <OppsummeringFelt
+                    tittel={<SpråkTekst id={'todo.søker.yrkesaktiv'} />}
+                    søknadsvar={søknad.søker.yrkesaktivFemÅr.svar}
+                />
             </StyledOppsummeringsFeltGruppe>
         </Oppsummeringsbolk>
     );
