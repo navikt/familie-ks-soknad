@@ -99,6 +99,10 @@ export const initialStateSøknad: ISøknad = {
             id: OmDegSpørsmålId.planleggerÅBoINorgeTolvMnd,
             svar: null,
         },
+        yrkesaktivFemÅr: {
+            id: OmDegSpørsmålId.yrkesaktivFemÅr,
+            svar: null,
+        },
         erAsylsøker: {
             id: DinLivssituasjonSpørsmålId.erAsylsøker,
             svar: null,

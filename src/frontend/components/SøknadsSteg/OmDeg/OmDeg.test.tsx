@@ -47,6 +47,7 @@ describe('OmDeg', () => {
             ...søker,
             værtINorgeITolvMåneder: { ...søker.værtINorgeITolvMåneder, svar: ESvar.NEI },
             planleggerÅBoINorgeTolvMnd: { ...søker.planleggerÅBoINorgeTolvMnd, svar: ESvar.NEI },
+            yrkesaktivFemÅr: { ...søker.yrkesaktivFemÅr, svar: ESvar.JA },
         };
         spyOnUseApp({ søker: søkerMedSvarSomViserAlleTekster });
         søkerMedSvarSomViserAlleTekster.adresse = null;
@@ -64,6 +65,10 @@ describe('OmDeg', () => {
                 borPåRegistrertAdresse: {
                     id: OmDegSpørsmålId.borPåRegistrertAdresse,
                     svar: ESvar.NEI,
+                },
+                yrkesaktivFemÅr: {
+                    id: OmDegSpørsmålId.yrkesaktivFemÅr,
+                    svar: ESvar.JA,
                 },
             }),
         });
@@ -120,6 +125,7 @@ describe('OmDeg', () => {
                 statsborgerskap: [{ landkode: 'NOR' }],
                 borPåRegistrertAdresse: { id: OmDegSpørsmålId.borPåRegistrertAdresse, svar: null },
                 værtINorgeITolvMåneder: { id: OmDegSpørsmålId.værtINorgeITolvMåneder, svar: null },
+                yrkesaktivFemÅr: { id: OmDegSpørsmålId.yrkesaktivFemÅr, svar: null },
             }),
         });
         const { queryByText } = render(<TestKomponent />);

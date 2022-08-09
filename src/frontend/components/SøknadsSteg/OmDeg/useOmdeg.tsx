@@ -74,6 +74,11 @@ export const useOmdeg = (): {
             (værtINorgeITolvMåneder.verdi === ESvar.NEI && !utenlandsperioder.length),
     });
 
+    const yrkesaktivFemÅr = useJaNeiSpmFelt({
+        søknadsfelt: søker.yrkesaktivFemÅr,
+        feilmeldingSpråkId: 'todo.søker.yrkesaktiv',
+    });
+
     useEffect(() => {
         registrerteUtenlandsperioder.validerOgSettFelt(utenlandsperioder);
 
@@ -139,6 +144,10 @@ export const useOmdeg = (): {
                     ? skjema.felter.planleggerÅBoINorgeTolvMnd.verdi
                     : null,
         },
+        yrkesaktivFemÅr: {
+            ...søker.yrkesaktivFemÅr,
+            svar: skjema.felter.yrkesaktivFemÅr.verdi,
+        },
     });
 
     const oppdaterSøknad = () => {
@@ -172,6 +181,7 @@ export const useOmdeg = (): {
             værtINorgeITolvMåneder,
             planleggerÅBoINorgeTolvMnd,
             registrerteUtenlandsperioder,
+            yrkesaktivFemÅr,
         },
         skjemanavn: 'omdeg',
     });
