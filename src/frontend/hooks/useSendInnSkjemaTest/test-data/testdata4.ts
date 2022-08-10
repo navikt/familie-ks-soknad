@@ -174,6 +174,10 @@ export const testdata4: TilKontraktTestData = {
                         id: 'andre-forelder-fødselsdato',
                         svar: '',
                     },
+                    yrkesaktivFemÅr: {
+                        id: 'andre-forelder-yrkesaktiv-fem-år',
+                        svar: null,
+                    },
                     arbeidUtlandet: {
                         svar: null,
                         id: 'andre-forelder-arbeid',
@@ -579,9 +583,9 @@ export const testdata4: TilKontraktTestData = {
                 },
                 yrkesaktivFemÅr: {
                     label: {
-                        en: 'todo.søker.yrkesaktiv',
+                        en: 'TODO søker yrkesaktiv',
                         nb: 'TODO søker yrkesaktiv',
-                        nn: 'todo.søker.yrkesaktiv',
+                        nn: 'TODO søker yrkesaktiv',
                     },
                     verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
                 },
@@ -923,6 +927,7 @@ export const testdata4: TilKontraktTestData = {
                     },
                     fnr: null,
                     fødselsdato: null,
+                    yrkesaktivFemÅr: null,
                     pensjonUtland: null,
                     arbeidUtlandet: null,
                     pensjonNorge: {

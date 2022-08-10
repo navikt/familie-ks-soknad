@@ -85,6 +85,23 @@ const AndreForelderOppsummering: React.FC<{
                         )}
                     />
                 )}
+                {andreForelder[andreForelderDataKeySpørsmål.yrkesaktivFemÅr].svar && (
+                    <OppsummeringFelt
+                        tittel={
+                            <SpråkTekst
+                                id={
+                                    omBarnetSpørsmålSpråkId[
+                                        andreForelder[andreForelderDataKeySpørsmål.yrkesaktivFemÅr]
+                                            .id
+                                    ]
+                                }
+                            />
+                        }
+                        søknadsvar={
+                            andreForelder[andreForelderDataKeySpørsmål.yrkesaktivFemÅr].svar
+                        }
+                    />
+                )}
                 {andreForelder[andreForelderDataKeySpørsmål.arbeidUtlandet].svar && (
                     <OppsummeringFelt
                         tittel={

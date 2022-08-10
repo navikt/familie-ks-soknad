@@ -11,6 +11,7 @@ import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import { dagensDato } from '../../../utils/dato';
 import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
 import Datovelger from '../../Felleskomponenter/Datovelger/Datovelger';
+import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import { Pensjonsperiode } from '../../Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
 import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
@@ -142,24 +143,30 @@ const AndreForelder: React.FC<{
                                 </KomponentGruppe>
                             )}
                         </KomponentGruppe>
-
-                        {skjema.felter.andreForelderArbeidUtlandet.erSynlig && (
+                        {skjema.felter.andreForelderYrkesaktivFemÅr.erSynlig && (
                             <KomponentGruppe>
-                                <Arbeidsperiode
+                                <JaNeiSpm
                                     skjema={skjema}
-                                    arbeiderEllerArbeidetFelt={
-                                        skjema.felter.andreForelderArbeidUtlandet
-                                    }
-                                    leggTilArbeidsperiode={leggTilArbeidsperiode}
-                                    fjernArbeidsperiode={fjernArbeidsperiode}
-                                    gjelderUtlandet
-                                    personType={PersonType.AndreForelder}
-                                    barn={barn}
-                                    erDød={barn.andreForelderErDød.svar === ESvar.JA}
-                                    registrerteArbeidsperioder={
-                                        skjema.felter.andreForelderArbeidsperioderUtland
-                                    }
+                                    felt={skjema.felter.andreForelderYrkesaktivFemÅr}
+                                    spørsmålTekstId={'todo.andreforelder.yrkesaktiv'}
                                 />
+                                {skjema.felter.andreForelderArbeidUtlandet.erSynlig && (
+                                    <Arbeidsperiode
+                                        skjema={skjema}
+                                        arbeiderEllerArbeidetFelt={
+                                            skjema.felter.andreForelderArbeidUtlandet
+                                        }
+                                        leggTilArbeidsperiode={leggTilArbeidsperiode}
+                                        fjernArbeidsperiode={fjernArbeidsperiode}
+                                        gjelderUtlandet
+                                        personType={PersonType.AndreForelder}
+                                        barn={barn}
+                                        erDød={barn.andreForelderErDød.svar === ESvar.JA}
+                                        registrerteArbeidsperioder={
+                                            skjema.felter.andreForelderArbeidsperioderUtland
+                                        }
+                                    />
+                                )}
                                 <Pensjonsperiode
                                     skjema={skjema}
                                     mottarEllerMottattPensjonFelt={
