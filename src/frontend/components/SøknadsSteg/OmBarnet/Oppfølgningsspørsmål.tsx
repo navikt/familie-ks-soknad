@@ -142,7 +142,7 @@ const Oppfølgningsspørsmål: React.FC<{
                     </>
                 </SkjemaFieldset>
             )}
-            {barn[barnDataKeySpørsmål.erAdoptertFraUtland].svar === ESvar.JA && (
+            {skjema.felter.utbetaltForeldrepengerEllerEngangsstønad.erSynlig && (
                 <KomponentGruppe>
                     <Informasjonsbolk
                         //TODO tekst om at barnet er adoptert

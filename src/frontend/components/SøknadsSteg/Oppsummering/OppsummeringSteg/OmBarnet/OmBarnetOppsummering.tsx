@@ -152,7 +152,7 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, 
                     />
                 </StyledOppsummeringsFeltGruppe>
             )}
-            {barn[barnDataKeySpørsmål.erAdoptertFraUtland].svar === ESvar.JA && (
+            {barn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad].svar && (
                 <StyledOppsummeringsFeltGruppe>
                     <OppsummeringFelt
                         tittel={
