@@ -182,6 +182,12 @@ export const useOmBarnet = (
             ? undefined
             : 'felles.dato.tilbake-i-tid.feilmelding',
     });
+    /*---ADOPERT---*/
+    const utbetaltForeldrepengerEllerEngangsstønad = useJaNeiSpmFelt({
+        søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad],
+        feilmeldingSpråkId: 'todo.ombarnet.utbetalt.foreldrepenger.engangsstønad',
+        skalSkjules: !skalFeltetVises(barnDataKeySpørsmål.erAdoptertFraUtland),
+    });
 
     /*---UTENLANDSOPPHOLD---*/
     const registrerteUtenlandsperioder = useFelt<IUtenlandsperiode[]>({
@@ -481,6 +487,7 @@ export const useOmBarnet = (
             institusjonOppholdStartdato,
             institusjonOppholdSluttdato,
             institusjonOppholdSluttVetIkke,
+            utbetaltForeldrepengerEllerEngangsstønad,
             registrerteUtenlandsperioder,
             planleggerÅBoINorge12Mnd,
             pågåendeSøknadFraAnnetEøsLand,
@@ -684,6 +691,10 @@ export const useOmBarnet = (
                     institusjonOppholdSluttVetIkke,
                     institusjonOppholdSluttdato
                 ),
+            },
+            utbetaltForeldrepengerEllerEngangsstønad: {
+                ...barn.utbetaltForeldrepengerEllerEngangsstønad,
+                svar: utbetaltForeldrepengerEllerEngangsstønad.verdi,
             },
             planleggerÅBoINorge12Mnd: {
                 ...barn.planleggerÅBoINorge12Mnd,

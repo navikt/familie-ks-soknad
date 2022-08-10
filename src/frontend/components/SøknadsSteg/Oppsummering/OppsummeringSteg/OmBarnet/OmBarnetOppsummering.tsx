@@ -152,6 +152,28 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, 
                     />
                 </StyledOppsummeringsFeltGruppe>
             )}
+            {barn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad].svar && (
+                <StyledOppsummeringsFeltGruppe>
+                    <OppsummeringFelt
+                        tittel={
+                            <SpråkTekst
+                                id={
+                                    'todo.ombarnet.utbetalt.foreldrepenger.engangsstønad'
+                                } /*TODO legge til info om at barnet er adoptert*/
+                            />
+                        }
+                    />
+                    <OppsummeringFelt
+                        tittel={
+                            <SpråkTekst
+                                id={'todo.ombarnet.utbetalt.foreldrepenger.engangsstønad'}
+                            />
+                        }
+                        søknadsvar={barn.utbetaltForeldrepengerEllerEngangsstønad.svar}
+                    />
+                </StyledOppsummeringsFeltGruppe>
+            )}
+
             {barn[barnDataKeySpørsmål.boddMindreEnn12MndINorge].svar === ESvar.JA && (
                 <StyledOppsummeringsFeltGruppe>
                     <OppsummeringFelt
