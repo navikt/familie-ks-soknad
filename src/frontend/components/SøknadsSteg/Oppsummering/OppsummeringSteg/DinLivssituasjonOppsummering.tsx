@@ -50,12 +50,12 @@ const DinLivssituasjonOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         <SpråkTekst
                             id={
                                 dinLivssituasjonSpørsmålSpråkId[
-                                    DinLivssituasjonSpørsmålId.jobberPåBåt
+                                    DinLivssituasjonSpørsmålId.arbeidIUtlandet
                                 ]
                             }
                         />
                     }
-                    søknadsvar={søknad.søker.jobberPåBåt.svar}
+                    søknadsvar={søknad.søker.arbeidIUtlandet.svar}
                 />
 
                 {søknad.søker.arbeidsperioderUtland.map((periode, index) => (
