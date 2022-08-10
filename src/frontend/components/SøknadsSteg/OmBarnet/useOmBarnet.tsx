@@ -694,9 +694,7 @@ export const useOmBarnet = (
             },
             utbetaltForeldrepengerEllerEngangsstønad: {
                 ...barn.utbetaltForeldrepengerEllerEngangsstønad,
-                svar: utbetaltForeldrepengerEllerEngangsstønad.erSynlig
-                    ? utbetaltForeldrepengerEllerEngangsstønad.verdi
-                    : null,
+                svar: utbetaltForeldrepengerEllerEngangsstønad.verdi,
             },
             planleggerÅBoINorge12Mnd: {
                 ...barn.planleggerÅBoINorge12Mnd,
