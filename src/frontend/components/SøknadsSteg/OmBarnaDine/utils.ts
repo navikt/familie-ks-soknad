@@ -56,6 +56,10 @@ export const genererOppdaterteBarn = (
             barn,
             skjema.felter.hvemErFosterbarn
         );
+        const erAdoptertFraUtland: ESvar = genererSvarForSpørsmålBarn(
+            barn,
+            skjema.felter.hvemErAdoptertFraUtland
+        );
 
         const utenlandsperioder =
             boddMindreEnn12MndINorge === ESvar.JA ? barn.utenlandsperioder : [];
@@ -216,6 +220,14 @@ export const genererOppdaterteBarn = (
                     oppholderSegIInstitusjon,
                     barn[barnDataKeySpørsmål.institusjonOppholdSluttdato],
                     ''
+                ),
+            },
+            [barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad]: {
+                ...barn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad],
+                svar: genererSvarForOppfølgningspørsmålBarn(
+                    erAdoptertFraUtland,
+                    barn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad],
+                    null
                 ),
             },
             [barnDataKeySpørsmål.planleggerÅBoINorge12Mnd]: {

@@ -142,6 +142,19 @@ const Oppfølgningsspørsmål: React.FC<{
                     </>
                 </SkjemaFieldset>
             )}
+            {skjema.felter.utbetaltForeldrepengerEllerEngangsstønad.erSynlig && (
+                <KomponentGruppe>
+                    <Informasjonsbolk
+                        //TODO tekst om at barnet er adoptert
+                        tittelId={'todo.ombarnet.utbetalt.foreldrepenger.engangsstønad'}
+                    />
+                    <JaNeiSpm
+                        skjema={skjema}
+                        felt={skjema.felter.utbetaltForeldrepengerEllerEngangsstønad}
+                        spørsmålTekstId={'todo.ombarnet.utbetalt.foreldrepenger.engangsstønad'}
+                    />
+                </KomponentGruppe>
+            )}
             {barn[barnDataKeySpørsmål.boddMindreEnn12MndINorge].svar === ESvar.JA && (
                 <SkjemaFieldset
                     tittelId={'ombarnet.opplystatbarnutlandopphold.info'}

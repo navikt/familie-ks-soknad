@@ -43,8 +43,8 @@ export const useDinLivssituasjon = (): {
         feilmeldingSpråkId: 'omdeg.asylsøker.feilmelding',
     });
 
-    const jobberPåBåt = useJaNeiSpmFelt({
-        søknadsfelt: søker.jobberPåBåt,
+    const arbeidIUtlandet = useJaNeiSpmFelt({
+        søknadsfelt: søker.arbeidIUtlandet,
         feilmeldingSpråkId: 'eøs.arbeid-utland.feilmelding',
     });
 
@@ -54,11 +54,11 @@ export const useDinLivssituasjon = (): {
         registrertePerioder: registrerteArbeidsperioder,
     } = usePerioder<IArbeidsperiode>(
         søker.arbeidsperioderUtland,
-        { jobberPåBåt },
-        avhengigheter => avhengigheter.jobberPåBåt.verdi === ESvar.JA,
+        { arbeidIUtlandet },
+        avhengigheter => avhengigheter.arbeidIUtlandet.verdi === ESvar.JA,
         (felt, avhengigheter) => {
-            return avhengigheter?.jobberPåBåt.verdi === ESvar.NEI ||
-                (avhengigheter?.jobberPåBåt.verdi === ESvar.JA && felt.verdi.length)
+            return avhengigheter?.arbeidIUtlandet.verdi === ESvar.NEI ||
+                (avhengigheter?.arbeidIUtlandet.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
                 : feil(felt, <SpråkTekst id={arbeidsperiodeFeilmelding(true)} />);
         }
@@ -91,7 +91,7 @@ export const useDinLivssituasjon = (): {
     >({
         felter: {
             erAsylsøker,
-            jobberPåBåt,
+            arbeidIUtlandet: arbeidIUtlandet,
             registrerteArbeidsperioder,
             mottarUtenlandspensjon,
             registrertePensjonsperioder,
@@ -116,7 +116,7 @@ export const useDinLivssituasjon = (): {
             return idNummerLand(
                 {
                     arbeidsperioderUtland:
-                        jobberPåBåt.verdi === ESvar.JA ? registrerteArbeidsperioder.verdi : [],
+                        arbeidIUtlandet.verdi === ESvar.JA ? registrerteArbeidsperioder.verdi : [],
                     pensjonsperioderUtland:
                         mottarUtenlandspensjon.verdi === ESvar.JA
                             ? registrertePensjonsperioder.verdi
@@ -134,12 +134,12 @@ export const useDinLivssituasjon = (): {
             ...søknad.søker.erAsylsøker,
             svar: skjema.felter.erAsylsøker.verdi,
         },
-        jobberPåBåt: {
-            ...søknad.søker.jobberPåBåt,
-            svar: skjema.felter.jobberPåBåt.verdi,
+        arbeidIUtlandet: {
+            ...søknad.søker.arbeidIUtlandet,
+            svar: skjema.felter.arbeidIUtlandet.verdi,
         },
         arbeidsperioderUtland:
-            skjema.felter.jobberPåBåt.verdi === ESvar.JA
+            skjema.felter.arbeidIUtlandet.verdi === ESvar.JA
                 ? skjema.felter.registrerteArbeidsperioder.verdi
                 : [],
         mottarUtenlandspensjon: {
@@ -157,7 +157,7 @@ export const useDinLivssituasjon = (): {
         const oppdatertSøker = genererOppdatertSøker();
         skalTriggeEøsForSøker(oppdatertSøker) !== søkerTriggerEøs &&
             settSøkerTriggerEøs(prevState => !prevState);
-    }, [jobberPåBåt, mottarUtenlandspensjon]);
+    }, [arbeidIUtlandet, mottarUtenlandspensjon]);
 
     const oppdaterSøknad = () => {
         const oppdatertSøker = genererOppdatertSøker();

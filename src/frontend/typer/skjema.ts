@@ -17,7 +17,7 @@ import { EUtenlandsoppholdÅrsak } from './utenlandsopphold';
 
 export interface IDinLivssituasjonFeltTyper {
     erAsylsøker: ESvar | null;
-    jobberPåBåt: ESvar | null;
+    arbeidIUtlandet: ESvar | null;
     registrerteArbeidsperioder: IArbeidsperiode[];
     mottarUtenlandspensjon: ESvar | null;
     registrertePensjonsperioder: IPensjonsperiode[];
@@ -48,6 +48,7 @@ export interface IOmBarnetUtvidetFeltTyper {
     institusjonOppholdStartdato: ISODateString;
     institusjonOppholdSluttdato: DatoMedUkjent;
     institusjonOppholdSluttVetIkke: ESvar;
+    utbetaltForeldrepengerEllerEngangsstønad: ESvar | null;
     planleggerÅBoINorge12Mnd: ESvar | null;
     pågåendeSøknadFraAnnetEøsLand: ESvar | null;
     pågåendeSøknadHvilketLand: Alpha3Code | '';

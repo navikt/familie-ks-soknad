@@ -51,6 +51,7 @@ export enum barnDataKeySpørsmål {
     institusjonspostnummer = 'institusjonspostnummer',
     institusjonOppholdStartdato = 'institusjonOppholdStartdato',
     institusjonOppholdSluttdato = 'institusjonOppholdSluttdato',
+    utbetaltForeldrepengerEllerEngangsstønad = 'utbetaltForeldrepengerEllerEngangsstønad',
     boddMindreEnn12MndINorge = 'boddMindreEnn12MndINorge',
     planleggerÅBoINorge12Mnd = 'planleggerÅBoINorge12Mnd',
     borFastMedSøker = 'borFastMedSøker',
@@ -114,6 +115,7 @@ export interface IBarnMedISøknad extends IBarn {
     [barnDataKeySpørsmål.institusjonspostnummer]: ISøknadSpørsmål<string>;
     [barnDataKeySpørsmål.institusjonOppholdStartdato]: ISøknadSpørsmål<ISODateString>;
     [barnDataKeySpørsmål.institusjonOppholdSluttdato]: ISøknadSpørsmål<DatoMedUkjent>;
+    [barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.boddMindreEnn12MndINorge]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.planleggerÅBoINorge12Mnd]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.borFastMedSøker]: ISøknadSpørsmål<ESvar | null>;

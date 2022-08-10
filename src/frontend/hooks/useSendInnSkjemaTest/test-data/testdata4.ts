@@ -385,8 +385,8 @@ export const testdata4: TilKontraktTestData = {
                 id: 'er-asylsøker',
                 svar: 'JA',
             },
-            jobberPåBåt: {
-                id: 'jobber-på-båt',
+            arbeidIUtlandet: {
+                id: 'arbeid-i-utlandet',
                 svar: 'JA',
             },
             arbeidsland: {
@@ -597,7 +597,7 @@ export const testdata4: TilKontraktTestData = {
                     },
                     verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
                 },
-                jobberPåBåt: {
+                arbeidIUtlandet: {
                     label: {
                         en: "Do you or have you worked outside of Norway, on a foreign ship or on another country's continental shelf?",
                         nb: 'Arbeider eller har du arbeidet utenfor Norge, på utenlandsk skip eller på utenlandsk kontinentalsokkel?',

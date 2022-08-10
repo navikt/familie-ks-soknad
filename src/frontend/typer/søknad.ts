@@ -107,8 +107,8 @@ export const initialStateSøknad: ISøknad = {
             id: DinLivssituasjonSpørsmålId.erAsylsøker,
             svar: null,
         },
-        jobberPåBåt: {
-            id: DinLivssituasjonSpørsmålId.jobberPåBåt,
+        arbeidIUtlandet: {
+            id: DinLivssituasjonSpørsmålId.arbeidIUtlandet,
             svar: null,
         },
         mottarUtenlandspensjon: {
