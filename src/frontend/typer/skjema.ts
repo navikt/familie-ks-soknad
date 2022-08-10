@@ -17,7 +17,7 @@ import { EUtenlandsoppholdÅrsak } from './utenlandsopphold';
 
 export interface IDinLivssituasjonFeltTyper {
     erAsylsøker: ESvar | null;
-    jobberPåBåt: ESvar | null;
+    arbeidIUtlandet: ESvar | null;
     registrerteArbeidsperioder: IArbeidsperiode[];
     mottarUtenlandspensjon: ESvar | null;
     registrertePensjonsperioder: IPensjonsperiode[];

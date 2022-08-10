@@ -100,7 +100,7 @@ export const arbeidsperiodeSpørsmålSpråkId = (
         case PersonType.Søker:
         default:
             return gjelderUtlandet
-                ? dinLivssituasjonSpørsmålSpråkId[DinLivssituasjonSpørsmålId.jobberPåBåt]
+                ? dinLivssituasjonSpørsmålSpråkId[DinLivssituasjonSpørsmålId.arbeidIUtlandet]
                 : eøsSøkerSpørsmålSpråkId[EøsSøkerSpørsmålId.arbeidINorge];
     }
 };

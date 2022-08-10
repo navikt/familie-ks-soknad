@@ -251,8 +251,8 @@ export const mekkGyldigSøker = (): ISøker => {
             id: DinLivssituasjonSpørsmålId.erAsylsøker,
             svar: ESvar.NEI,
         },
-        jobberPåBåt: {
-            id: DinLivssituasjonSpørsmålId.jobberPåBåt,
+        arbeidIUtlandet: {
+            id: DinLivssituasjonSpørsmålId.arbeidIUtlandet,
             svar: ESvar.NEI,
         },
         mottarUtenlandspensjon: {
