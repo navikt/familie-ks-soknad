@@ -186,6 +186,26 @@ const OmBarnaDine: React.FC = () => {
                 ></HvilkeBarnCheckboxGruppe>
                 <JaNeiSpm
                     skjema={skjema}
+                    felt={skjema.felter.harEllerTildeltBarnehageplass}
+                    spørsmålTekstId={
+                        omBarnaDineSpørsmålSpråkId[
+                            OmBarnaDineSpørsmålId.harEllerTildeltBarnehageplass
+                        ]
+                    }
+                />
+                <HvilkeBarnCheckboxGruppe
+                    legendSpråkId={
+                        omBarnaDineSpørsmålSpråkId[OmBarnaDineSpørsmålId.hvemBarnehageplass]
+                    }
+                    skjemafelt={skjema.felter.hvemBarnehageplass}
+                    søknadsdatafelt={barnDataKeySpørsmål.harBarnehageplass}
+                    nullstillValgteBarn={
+                        skjema.felter.harEllerTildeltBarnehageplass.verdi === ESvar.NEI
+                    }
+                    visFeilmelding={skjema.visFeilmeldinger}
+                />
+                <JaNeiSpm
+                    skjema={skjema}
                     felt={skjema.felter.erAvdødPartnerForelder}
                     spørsmålTekstId={omBarnaDineSpørsmålSpråkId[søknad.erAvdødPartnerForelder.id]}
                 />

@@ -49,6 +49,10 @@ const mockBarnMedISøknad = {
         id: OmBarnaDineSpørsmålId.hvemErSøktAsylFor,
         svar: ESvar.NEI,
     },
+    [barnDataKeySpørsmål.harBarnehageplass]: {
+        id: OmBarnaDineSpørsmålId.hvemBarnehageplass,
+        svar: ESvar.NEI,
+    },
     [barnDataKeySpørsmål.oppholderSegIInstitusjon]: {
         id: OmBarnaDineSpørsmålId.oppholderBarnSegIInstitusjon,
         svar: ESvar.JA,
