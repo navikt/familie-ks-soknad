@@ -75,6 +75,7 @@ const OmBarnaDine: React.FC = () => {
                         </AlertStripe>
                     }
                 />
+
                 <HvilkeBarnCheckboxGruppe
                     legendSpråkId={
                         omBarnaDineSpørsmålSpråkId[

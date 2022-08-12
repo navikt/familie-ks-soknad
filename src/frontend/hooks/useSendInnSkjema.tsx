@@ -22,7 +22,7 @@ export const useSendInnSkjema = (): {
         const res = await sendInn<ISøknadKontrakt>(
             formatert,
             axiosRequest,
-            `${soknadApi}/kontantstotte/soknad/v1`, //todo
+            `${soknadApi}/soknad/kontantstotte`,
             res => {
                 const responseData = res.response?.data;
                 if (responseData && erModellMismatchResponsRessurs(responseData)) {
