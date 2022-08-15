@@ -103,6 +103,7 @@
     "@navikt/ds-react": "^0.19.7",
     "@navikt/familie-logging": "^3.0.0",
     "@navikt/familie-typer": "^5.0.0",
+    "@portabletext/react": "^1.0.6",
     "@sanity/client": "^3.3.2",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.5",
