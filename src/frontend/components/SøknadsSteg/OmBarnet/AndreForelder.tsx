@@ -150,23 +150,25 @@ const AndreForelder: React.FC<{
                                     felt={skjema.felter.andreForelderYrkesaktivFemÅr}
                                     spørsmålTekstId={'todo.andreforelder.yrkesaktiv'}
                                 />
-                                {skjema.felter.andreForelderArbeidUtlandet.erSynlig && (
-                                    <Arbeidsperiode
-                                        skjema={skjema}
-                                        arbeiderEllerArbeidetFelt={
-                                            skjema.felter.andreForelderArbeidUtlandet
-                                        }
-                                        leggTilArbeidsperiode={leggTilArbeidsperiode}
-                                        fjernArbeidsperiode={fjernArbeidsperiode}
-                                        gjelderUtlandet
-                                        personType={PersonType.AndreForelder}
-                                        barn={barn}
-                                        erDød={barn.andreForelderErDød.svar === ESvar.JA}
-                                        registrerteArbeidsperioder={
-                                            skjema.felter.andreForelderArbeidsperioderUtland
-                                        }
-                                    />
-                                )}
+                            </KomponentGruppe>
+                        )}
+                        {skjema.felter.andreForelderArbeidUtlandet.erSynlig && (
+                            <KomponentGruppe>
+                                <Arbeidsperiode
+                                    skjema={skjema}
+                                    arbeiderEllerArbeidetFelt={
+                                        skjema.felter.andreForelderArbeidUtlandet
+                                    }
+                                    leggTilArbeidsperiode={leggTilArbeidsperiode}
+                                    fjernArbeidsperiode={fjernArbeidsperiode}
+                                    gjelderUtlandet
+                                    personType={PersonType.AndreForelder}
+                                    barn={barn}
+                                    erDød={barn.andreForelderErDød.svar === ESvar.JA}
+                                    registrerteArbeidsperioder={
+                                        skjema.felter.andreForelderArbeidsperioderUtland
+                                    }
+                                />
                                 <Pensjonsperiode
                                     skjema={skjema}
                                     mottarEllerMottattPensjonFelt={
