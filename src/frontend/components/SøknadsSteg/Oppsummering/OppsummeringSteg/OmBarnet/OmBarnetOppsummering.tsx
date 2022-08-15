@@ -15,6 +15,7 @@ import { PersonType } from '../../../../../typer/personType';
 import { formaterDato } from '../../../../../utils/dato';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
 import { formaterDatoMedUkjent } from '../../../../../utils/visning';
+import { BarnehageplassPeriodeOppsummering } from '../../../../Felleskomponenter/Barnehagemodal/barnehageplassPeriodeOppsummering';
 import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
 import SpråkTekst from '../../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
@@ -220,7 +221,6 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, 
                             />
                         }
                     />
-
                     {barn[barnDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand].svar && (
                         <OppsummeringFelt
                             tittel={
@@ -254,7 +254,6 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, 
                             )}
                         />
                     )}
-
                     {barn[barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte].svar && (
                         <OppsummeringFelt
                             tittel={
@@ -282,6 +281,16 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, 
                     ))}
                 </StyledOppsummeringsFeltGruppe>
             )}
+            {/*//TODO legge inn slik at man får med at dette er et oppfølgingsspørsmål og ikke*/}
+            {barn.barnehageplassPerioder.map((periode, index) => (
+                <BarnehageplassPeriodeOppsummering
+                    key={`barnehageplass-periode-${index}`}
+                    barnehageplassPeriode={periode}
+                    nummer={index + 1}
+                    barnetsNavn={barn.navn}
+                    personType={PersonType.Søker}
+                />
+            ))}
 
             {barn.andreForelder && (
                 <AndreForelderOppsummering andreForelder={barn.andreForelder} barn={barn} />

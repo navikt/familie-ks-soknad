@@ -7,6 +7,7 @@ import { Slektsforhold } from './kontrakt/generelle';
 import { IOmsorgsperson } from './omsorgsperson';
 import {
     IArbeidsperiode,
+    IBarnehageplassPeriode,
     IEøsKontantstøttePeriode,
     IPensjonsperiode,
     IUtbetalingsperiode,
@@ -94,6 +95,7 @@ export interface IBarnMedISøknad extends IBarn {
     barnErFyltUt: boolean;
     utenlandsperioder: IUtenlandsperiode[];
     eøsKontantstøttePerioder: IEøsKontantstøttePeriode[];
+    barnehageplassPerioder: IBarnehageplassPeriode[];
     idNummer: IIdNummer[];
     andreForelder: IAndreForelder | null;
     omsorgsperson: IOmsorgsperson | null;

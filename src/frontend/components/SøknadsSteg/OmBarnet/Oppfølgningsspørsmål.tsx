@@ -6,11 +6,16 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';
-import { IEøsKontantstøttePeriode, IUtenlandsperiode } from '../../../typer/perioder';
+import {
+    IBarnehageplassPeriode,
+    IEøsKontantstøttePeriode,
+    IUtenlandsperiode,
+} from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import { dagensDato, erSammeDatoSomDagensDato, morgendagensDato } from '../../../utils/dato';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
+import { BarnehageplassPeriode } from '../../Felleskomponenter/Barnehagemodal/BarnehageplassPeriode';
 import Datovelger from '../../Felleskomponenter/Datovelger/Datovelger';
 import { LandDropdown } from '../../Felleskomponenter/Dropdowns/LandDropdown';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
@@ -38,6 +43,9 @@ const Oppfølgningsspørsmål: React.FC<{
     leggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
     fjernKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
     registrerteEøsKontantstøttePerioder: Felt<IEøsKontantstøttePeriode[]>;
+    leggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
+    fjernBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
+    registrerteBarnehageplassPerioder: Felt<IBarnehageplassPeriode[]>;
 }> = ({
     barn,
     skjema,
@@ -47,6 +55,9 @@ const Oppfølgningsspørsmål: React.FC<{
     leggTilKontantstøttePeriode,
     fjernKontantstøttePeriode,
     registrerteEøsKontantstøttePerioder,
+    leggTilBarnehageplassPeriode,
+    fjernBarnehageplassPeriode,
+    registrerteBarnehageplassPerioder,
 }) => {
     const { erÅpen: utenlandsmodalErÅpen, toggleModal: toggleUtenlandsmodal } = useModal();
 
@@ -256,6 +267,14 @@ const Oppfølgningsspørsmål: React.FC<{
                             personType={PersonType.Søker}
                         />
                     </KomponentGruppe>
+                    <BarnehageplassPeriode
+                        skjema={skjema}
+                        registrerteBarnehageplassPerioder={registrerteBarnehageplassPerioder}
+                        leggTilBarnehageplassPeriode={leggTilBarnehageplassPeriode}
+                        fjernBarnehageplassPeriode={fjernBarnehageplassPeriode}
+                        barn={barn}
+                        personType={PersonType.Søker}
+                    />
                 </SkjemaFieldset>
             )}
             <UtenlandsoppholdModal

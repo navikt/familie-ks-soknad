@@ -2,6 +2,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 
 import { ESvar, ISODateString } from '@navikt/familie-form-elements';
 
+import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 import { DatoMedUkjent } from './common';
 import { ISøknadSpørsmål } from './spørsmål';
 import { EUtenlandsoppholdÅrsak } from './utenlandsopphold';
@@ -41,4 +42,14 @@ export interface IEøsKontantstøttePeriode {
     fraDatoKontantstøttePeriode: ISøknadSpørsmål<ISODateString>;
     tilDatoKontantstøttePeriode: ISøknadSpørsmål<ISODateString | ''>;
     månedligBeløp: ISøknadSpørsmål<string>;
+}
+
+export interface IBarnehageplassPeriode {
+    barnehageplassPeriodeBeskrivelse: ISøknadSpørsmål<EBarnehageplassPeriodeBeskrivelse>;
+    barnehageplassUtlandet: ISøknadSpørsmål<ESvar | null>;
+    barnehageplassLand: ISøknadSpørsmål<Alpha3Code | ''>;
+    offentligStøtte: ISøknadSpørsmål<ESvar | null>;
+    antallTimer: ISøknadSpørsmål<string>;
+    startetIBarnehagen: ISøknadSpørsmål<ISODateString>;
+    slutterIBarnehagen: ISøknadSpørsmål<ISODateString | ''>;
 }
