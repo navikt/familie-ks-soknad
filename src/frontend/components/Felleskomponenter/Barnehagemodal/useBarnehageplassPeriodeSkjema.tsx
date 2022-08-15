@@ -8,7 +8,7 @@ import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjen
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { IBarnehageplassPerioderFeltTyper } from '../../../typer/skjema';
-import { dagensDato } from '../../../utils/dato';
+import { dagensDato, gårsdagensDato, morgendagensDato } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
@@ -76,7 +76,19 @@ export const useBarnehageplassPeriodeSkjema = (barn, erDød) => {
         søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.startetIBarnehagen, svar: '' },
         feilmeldingSpråkId: 'todo.ombarnet.barnehageplass.periode',
         skalFeltetVises: true,
-        //TODO trengs det noen begrensninger?
+        startdatoAvgrensning:
+            barnehageplassPeriodeBeskrivelse.verdi ===
+            EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
+                ? morgendagensDato()
+                : undefined,
+        sluttdatoAvgrensning:
+            barnehageplassPeriodeBeskrivelse.verdi ===
+            EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
+                ? dagensDato()
+                : barnehageplassPeriodeBeskrivelse.verdi ===
+                  EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                ? gårsdagensDato()
+                : undefined,
         nullstillVedAvhengighetEndring: true,
     });
 
@@ -95,6 +107,11 @@ export const useBarnehageplassPeriodeSkjema = (barn, erDød) => {
         vetIkkeCheckbox: slutterIBarnehagenVetIkke,
         feilmeldingSpråkId: 'todo.ombarnet.barnehageplass.periode',
         skalFeltetVises: true,
+        startdatoAvgrensning:
+            barnehageplassPeriodeBeskrivelse.verdi ===
+            EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
+                ? dagensDato()
+                : undefined,
         sluttdatoAvgrensning:
             barnehageplassPeriodeBeskrivelse.verdi ===
             EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE

@@ -267,6 +267,10 @@ const Oppfølgningsspørsmål: React.FC<{
                             personType={PersonType.Søker}
                         />
                     </KomponentGruppe>
+                </SkjemaFieldset>
+            )}
+            {barn[barnDataKeySpørsmål.harBarnehageplass].svar === ESvar.JA && (
+                <KomponentGruppe>
                     <BarnehageplassPeriode
                         skjema={skjema}
                         registrerteBarnehageplassPerioder={registrerteBarnehageplassPerioder}
@@ -275,7 +279,7 @@ const Oppfølgningsspørsmål: React.FC<{
                         barn={barn}
                         personType={PersonType.Søker}
                     />
-                </SkjemaFieldset>
+                </KomponentGruppe>
             )}
             <UtenlandsoppholdModal
                 erÅpen={utenlandsmodalErÅpen}

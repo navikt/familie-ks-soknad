@@ -268,23 +268,21 @@ export const useOmBarnet = (
         }
     );
     /*--- BARNEHAGEPLASS ---*/
-    //TODO fikse riktig avhengigheter
     const {
         fjernPeriode: fjernBarnehageplassPeriode,
         leggTilPeriode: leggTilBarnehageplassPeriode,
         registrertePerioder: registrerteBarnehageplassPerioder,
     } = usePerioder<IBarnehageplassPeriode>(
         gjeldendeBarn.barnehageplassPerioder,
-        { mottarEllerMottokEøsKontantstøtte },
-        avhengigheter => avhengigheter.mottarEllerMottokEøsKontantstøtte.verdi === ESvar.JA,
-        (felt, avhengigheter) => {
-            return avhengigheter?.mottarEllerMottokEøsKontantstøtte.verdi === ESvar.NEI ||
-                (avhengigheter?.mottarEllerMottokEøsKontantstøtte.verdi === ESvar.JA &&
-                    felt.verdi.length)
-                ? ok(felt)
-                : feil(felt, <SpråkTekst id={'TODO'} />);
+        {},
+        () => skalFeltetVises(barnDataKeySpørsmål.harBarnehageplass),
+        felt => {
+            return felt.verdi.length ? ok(felt) : feil(felt, <SpråkTekst id={'TODO'} />);
         }
     );
+    useEffect(() => {
+        registrerteBarnehageplassPerioder.validerOgSettFelt(gjeldendeBarn.barnehageplassPerioder);
+    }, [gjeldendeBarn.barnehageplassPerioder]);
 
     /*--- ANDRE FORELDER ---*/
     const andreForelder = gjeldendeBarn.andreForelder;
@@ -740,9 +738,9 @@ export const useOmBarnet = (
                 mottarEllerMottokEøsKontantstøtte.verdi === ESvar.JA
                     ? skjema.felter.registrerteEøsKontantstøttePerioder.verdi
                     : [],
-            //TODO legge til riktig skal feltet vises, se utenlandsperioder
-            barnehageplassPerioder: skjema.felter.registrerteBarnehageplassPerioder.verdi ?? [],
-
+            barnehageplassPerioder: skalFeltetVises(barnDataKeySpørsmål.harBarnehageplass)
+                ? registrerteBarnehageplassPerioder.verdi
+                : [],
             borFastMedSøker: {
                 ...barn.borFastMedSøker,
                 svar: borFastMedSøker.verdi,

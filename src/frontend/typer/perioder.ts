@@ -51,5 +51,5 @@ export interface IBarnehageplassPeriode {
     offentligStøtte: ISøknadSpørsmål<ESvar | null>;
     antallTimer: ISøknadSpørsmål<string>;
     startetIBarnehagen: ISøknadSpørsmål<ISODateString>;
-    slutterIBarnehagen: ISøknadSpørsmål<ISODateString | ''>;
+    slutterIBarnehagen: ISøknadSpørsmål<DatoMedUkjent>;
 }

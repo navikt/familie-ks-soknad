@@ -180,6 +180,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     }
                     bredde={'S'}
                 />
+                {/*TODO legge inn riktige begrensninger*/}
                 <Datovelger
                     felt={skjema.felter.startetIBarnehagen}
                     skjema={skjema}
