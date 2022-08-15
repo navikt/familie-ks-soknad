@@ -208,6 +208,35 @@ const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                     />
                 )}
             </StyledOppsummeringsFeltGruppe>
+            <StyledOppsummeringsFeltGruppe>
+                <OppsummeringFelt
+                    tittel={
+                        <SpråkTekst
+                            id={
+                                omBarnaDineSpørsmålSpråkId[
+                                    OmBarnaDineSpørsmålId.harEllerTildeltBarnehageplass
+                                ]
+                            }
+                        />
+                    }
+                    søknadsvar={søknad.harEllerTildeltBarnehageplass.svar}
+                />
+
+                {søknad.harEllerTildeltBarnehageplass.svar === ESvar.JA && (
+                    <OppsummeringFelt
+                        tittel={
+                            <SpråkTekst
+                                id={
+                                    omBarnaDineSpørsmålSpråkId[
+                                        OmBarnaDineSpørsmålId.hvemBarnehageplass
+                                    ]
+                                }
+                            />
+                        }
+                        søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.harBarnehageplass)}
+                    />
+                )}
+            </StyledOppsummeringsFeltGruppe>
             {søknad.erAvdødPartnerForelder.svar && (
                 <StyledOppsummeringsFeltGruppe>
                     <OppsummeringFelt
