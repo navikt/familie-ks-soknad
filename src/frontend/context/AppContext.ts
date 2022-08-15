@@ -13,7 +13,7 @@ import {
 } from '@navikt/familie-typer';
 
 import Miljø, { basePath } from '../Miljø';
-import { LocaleRecord } from '../typer/common';
+import { LocaleRecordBlock, LocaleRecordString } from '../typer/common';
 import { IKvittering } from '../typer/kvittering';
 import { IMellomlagretKontantstøtte } from '../typer/mellomlager';
 import { ISøkerRespons } from '../typer/person';
@@ -208,7 +208,9 @@ const [AppProvider, useApp] = createUseContext(() => {
         return lasterRessurser() || innloggetStatus === InnloggetStatus.IKKE_VERIFISERT;
     };
 
-    const localeTekst = (key: LocaleRecord): string => key[valgtLocale];
+    const localeString = (key: LocaleRecordString) => key[valgtLocale];
+
+    const localeBlock = (key: LocaleRecordBlock) => key[valgtLocale];
 
     const tekster = (): ITekstinnhold => {
         if (teksterRessurs.status === RessursStatus.SUKSESS) {
@@ -244,7 +246,8 @@ const [AppProvider, useApp] = createUseContext(() => {
         settSisteModellVersjon,
         eøsLand,
         settEøsLand,
-        localeTekst,
+        localeString,
+        localeBlock,
         tekster,
     };
 });
