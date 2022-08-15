@@ -419,7 +419,9 @@ export const useOmBarnet = (
                       }
                     : undefined,
         },
-        skalSkjules: andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA,
+        skalSkjules:
+            andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA ||
+            gjeldendeBarn.andreForelderErDød.svar === ESvar.JA,
     });
 
     const {
