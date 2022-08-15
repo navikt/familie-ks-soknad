@@ -32,6 +32,7 @@ export interface IOmBarnaDineFeltTyper {
     søktAsylForBarn: ESvar | null;
     barnOppholdtSegTolvMndSammenhengendeINorge: ESvar | null;
     mottarKontantstøtteForBarnFraAnnetEøsland: ESvar | null;
+    harEllerTildeltBarnehageplass: ESvar | null;
     erAvdødPartnerForelder: ESvar | null;
     hvemErFosterbarn: BarnetsId[];
     hvemOppholderSegIInstitusjon: BarnetsId[];
@@ -39,6 +40,7 @@ export interface IOmBarnaDineFeltTyper {
     hvemKontantstøtteFraAnnetEøsland: BarnetsId[];
     hvemTolvMndSammenhengendeINorge: BarnetsId[];
     hvemErSøktAsylFor: BarnetsId[];
+    hvemBarnehageplass: BarnetsId[];
     hvemAvdødPartner: BarnetsId[];
 }
 

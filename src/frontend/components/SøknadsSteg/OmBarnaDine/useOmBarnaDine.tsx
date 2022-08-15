@@ -92,6 +92,17 @@ export const useOmBarnaDine = (): {
         mottarKontantstøtteForBarnFraAnnetEøsland
     );
 
+    const harEllerTildeltBarnehageplass = useJaNeiSpmFelt({
+        søknadsfelt: søknad.harEllerTildeltBarnehageplass,
+        feilmeldingSpråkId: 'todo.ombarnadine.barnehageplass',
+    });
+
+    const hvemBarnehageplass = useBarnCheckboxFelt(
+        barnDataKeySpørsmål.harBarnehageplass,
+        'todo.ombarnadine.barnehageplass',
+        harEllerTildeltBarnehageplass
+    );
+
     const avdødPartnerForelderFeilmelding = () => {
         switch (søknad.erAvdødPartnerForelder.id) {
             case OmBarnaDineSpørsmålId.erOppgittAvdødPartnerForelder:
@@ -185,6 +196,10 @@ export const useOmBarnaDine = (): {
                 ...søknad.mottarKontantstøtteForBarnFraAnnetEøsland,
                 svar: mottarKontantstøtteForBarnFraAnnetEøsland.verdi,
             },
+            harEllerTildeltBarnehageplass: {
+                ...søknad.harEllerTildeltBarnehageplass,
+                svar: harEllerTildeltBarnehageplass.verdi,
+            },
             erAvdødPartnerForelder: {
                 ...søknad.erAvdødPartnerForelder,
                 svar: erAvdødPartnerForelder.verdi,
@@ -225,6 +240,7 @@ export const useOmBarnaDine = (): {
             søktAsylForBarn,
             barnOppholdtSegTolvMndSammenhengendeINorge,
             mottarKontantstøtteForBarnFraAnnetEøsland,
+            harEllerTildeltBarnehageplass,
             erAvdødPartnerForelder,
             hvemErFosterbarn,
             hvemErAdoptertFraUtland,
@@ -232,6 +248,7 @@ export const useOmBarnaDine = (): {
             hvemKontantstøtteFraAnnetEøsland,
             hvemTolvMndSammenhengendeINorge,
             hvemErSøktAsylFor,
+            hvemBarnehageplass,
             hvemAvdødPartner,
         },
         skjemanavn: 'ombarnadine',

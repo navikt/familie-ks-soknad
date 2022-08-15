@@ -43,6 +43,7 @@ export enum barnDataKeySpørsmål {
     pågåendeSøknadFraAnnetEøsLand = 'pågåendeSøknadFraAnnetEøsLand',
     pågåendeSøknadHvilketLand = 'pågåendeSøknadHvilketLand',
     mottarEllerMottokEøsKontantstøtte = 'mottarEllerMottokEøsKontantstøtte',
+    harBarnehageplass = 'harBarnehageplass',
     andreForelderErDød = 'andreForelderErDød',
     oppholderSegIInstitusjon = 'oppholderSegIInstitusjon',
     institusjonIUtland = 'institusjonIUtland',
@@ -107,6 +108,7 @@ export interface IBarnMedISøknad extends IBarn {
     [barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.erAsylsøker]: ISøknadSpørsmål<ESvar | null>;
+    [barnDataKeySpørsmål.harBarnehageplass]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.andreForelderErDød]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.oppholderSegIInstitusjon]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.institusjonIUtland]: ISøknadSpørsmål<ESvar>;

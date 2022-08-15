@@ -47,6 +47,11 @@ export const genererOppdaterteBarn = (
             barn,
             skjema.felter.hvemKontantstøtteFraAnnetEøsland
         );
+        const harBarnehageplass: ESvar = genererSvarForSpørsmålBarn(
+            barn,
+            skjema.felter.hvemBarnehageplass
+        );
+
         const andreForelderErDød: ESvar = genererSvarForSpørsmålBarn(
             barn,
             skjema.felter.hvemAvdødPartner
@@ -169,6 +174,10 @@ export const genererOppdaterteBarn = (
             [barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland]: {
                 ...barn[barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland],
                 svar: mottarKontantstøtteFraAnnetEøsland,
+            },
+            [barnDataKeySpørsmål.harBarnehageplass]: {
+                ...barn[barnDataKeySpørsmål.harBarnehageplass],
+                svar: harBarnehageplass,
             },
             [barnDataKeySpørsmål.andreForelderErDød]: {
                 ...barn[barnDataKeySpørsmål.andreForelderErDød],
