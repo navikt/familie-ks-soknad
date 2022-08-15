@@ -35,3 +35,8 @@ export interface ITekstinnhold {
 }
 
 export type SanityDataSet = 'production' | 'test';
+
+export enum EFlettefelt {
+    BARNETS_NAVN = 'BARNETS_NAVN',
+    YTELSE = 'YTELSE',
+}
