@@ -46,7 +46,7 @@ export const bekreftelseBoksBorderFarge = (status: BekreftelseStatus) => {
 
 const BekreftelseOgStartSoknad: React.FC = () => {
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
-    const { localeTekst, tekster } = useApp();
+    const { localeString, tekster } = useApp();
 
     const {
         [ESanitySteg.FORSIDE]: { bekreftelsesBoks },
@@ -56,7 +56,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
         <FormContainer onSubmit={event => onStartSøknad(event)}>
             <Informasjonsbolk tittelId="forside.bekreftelsesboks.tittel">
                 <StyledBekreftCheckboksPanel
-                    label={localeTekst(bekreftelsesBoks.erklaering)}
+                    label={localeString(bekreftelsesBoks.erklaering)}
                     onChange={bekreftelseOnChange}
                     checked={bekreftelseStatus === BekreftelseStatus.BEKREFTET}
                     feil={

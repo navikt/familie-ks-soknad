@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { PortableTextBlock } from '@portabletext/types';
 import createUseContext from 'constate';
 import { Alpha3Code } from 'i18n-iso-countries';
 import { useIntl } from 'react-intl';
@@ -208,9 +209,9 @@ const [AppProvider, useApp] = createUseContext(() => {
         return lasterRessurser() || innloggetStatus === InnloggetStatus.IKKE_VERIFISERT;
     };
 
-    const localeString = (key: LocaleRecordString) => key[valgtLocale];
+    const localeString = (key: LocaleRecordString): string => key[valgtLocale];
 
-    const localeBlock = (key: LocaleRecordBlock) => key[valgtLocale];
+    const localeBlock = (key: LocaleRecordBlock): PortableTextBlock => key[valgtLocale];
 
     const tekster = (): ITekstinnhold => {
         if (teksterRessurs.status === RessursStatus.SUKSESS) {
