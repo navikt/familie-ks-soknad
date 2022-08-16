@@ -10,9 +10,10 @@ import * as engelsk from '../assets/lang/en.json' assert { type: 'json' };
 import * as bokmål from '../assets/lang/nb.json' assert { type: 'json' };
 import * as nynorsk from '../assets/lang/nn.json' assert { type: 'json' };
 import { innebygdeFormatterere } from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
-import { AlternativtSvarForInput } from '../typer/common';
+import { AlternativtSvarForInput, LocaleRecordString } from '../typer/common';
 import { ESivilstand, Slektsforhold } from '../typer/kontrakt/generelle';
 import { IBarn } from '../typer/person';
+import { EFlettefeltverdi, IFlettefelterInnhold } from '../typer/sanity';
 
 export const toSlektsforholdSpråkId = (slektsforhold: Slektsforhold): string => {
     switch (slektsforhold) {
@@ -107,4 +108,10 @@ export const hentBostedSpråkId = (barn: IBarn) => {
     } else {
         return 'hvilkebarn.barn.bosted.ikke-din-adresse';
     }
+};
+
+export const flettefeltTilTekst = (
+    flettefelter: IFlettefelterInnhold
+): Record<EFlettefeltverdi, LocaleRecordString> => {
+    return { [EFlettefeltverdi.YTELSE]: flettefelter.ytelse.kontantstotte };
 };

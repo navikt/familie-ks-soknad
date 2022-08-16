@@ -1,4 +1,5 @@
 import { IForsideTekstinnhold } from '../components/SøknadsSteg/Forside/innholdTyper';
+import { LocaleRecordString } from './common';
 import { RouteEnum } from './routes';
 
 export interface SanityDokumentBase {
@@ -32,6 +33,27 @@ export enum ESanitySteg {
 }
 export interface ITekstinnhold {
     [ESanitySteg.FORSIDE]: IForsideTekstinnhold;
+    flettefelter: IFlettefelterInnhold;
+    navigasjon: {
+        start: LocaleRecordString;
+        gaVidere: LocaleRecordString;
+        tilbake: LocaleRecordString;
+        avbryt: LocaleRecordString;
+    };
+}
+
+export interface IFlettefelterInnhold {
+    ytelse: {
+        kontantstotte: LocaleRecordString;
+        ordinaerBarnetrygd: LocaleRecordString;
+        utvidetBarnetrygd: LocaleRecordString;
+    };
 }
 
 export type SanityDataSet = 'production' | 'test';
+
+export const flettefeltPrefix = 'FLETTEFELT';
+
+export enum EFlettefeltverdi {
+    YTELSE = 'YTELSE',
+}

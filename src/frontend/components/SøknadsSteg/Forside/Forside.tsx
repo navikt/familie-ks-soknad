@@ -13,11 +13,13 @@ import { useApp } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import Miljø from '../../../Miljø';
 import { RouteEnum } from '../../../typer/routes';
+import { ESanitySteg } from '../../../typer/sanity';
 import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
 import EksternLenke from '../../Felleskomponenter/EksternLenke/EksternLenke';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import InnholdContainer from '../../Felleskomponenter/InnholdContainer/InnholdContainer';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
 import FortsettPåSøknad from './FortsettPåSøknad';
 
@@ -35,6 +37,11 @@ const Forside: React.FC = () => {
     const { formatMessage } = useIntl();
 
     const { sluttbruker, mellomlagretVerdi, settNåværendeRoute } = useApp();
+    const { tekster } = useApp();
+
+    const {
+        [ESanitySteg.FORSIDE]: { punktliste },
+    } = tekster();
 
     useFørsteRender(() => logSidevisningKontantstøtte(`${RouteEnum.Forside}`));
 
@@ -64,12 +71,7 @@ const Forside: React.FC = () => {
             <StyledSpråkvelger støttedeSprak={[LocaleType.nn, LocaleType.nb, LocaleType.en]} />
 
             <Informasjonsbolk>
-                <SpråkTekst id={'forside.info.punktliste'} values={{ b: msg => <b>{msg}</b> }} />
-                <EksternLenke
-                    lenkeSpråkId={'forside.plikter.lenke'}
-                    lenkeTekstSpråkId={'forside.plikter.lenketekst'}
-                    target="_blank"
-                />
+                <TekstBlock block={punktliste.innhold} />
             </Informasjonsbolk>
 
             {kanFortsettePåSøknad ? <FortsettPåSøknad /> : <BekreftelseOgStartSoknad />}

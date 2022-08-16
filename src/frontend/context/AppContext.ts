@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { PortableTextBlock } from '@portabletext/types';
 import createUseContext from 'constate';
 import { Alpha3Code } from 'i18n-iso-countries';
 import { useIntl } from 'react-intl';
@@ -13,7 +14,7 @@ import {
 } from '@navikt/familie-typer';
 
 import Miljø, { basePath } from '../Miljø';
-import { LocaleRecord } from '../typer/common';
+import { LocaleRecordBlock, LocaleRecordString } from '../typer/common';
 import { IKvittering } from '../typer/kvittering';
 import { IMellomlagretKontantstøtte } from '../typer/mellomlager';
 import { ISøkerRespons } from '../typer/person';
@@ -208,7 +209,9 @@ const [AppProvider, useApp] = createUseContext(() => {
         return lasterRessurser() || innloggetStatus === InnloggetStatus.IKKE_VERIFISERT;
     };
 
-    const localeTekst = (key: LocaleRecord): string => key[valgtLocale];
+    const localeString = (key: LocaleRecordString): string => key[valgtLocale];
+
+    const localeBlock = (key: LocaleRecordBlock): PortableTextBlock => key[valgtLocale];
 
     const tekster = (): ITekstinnhold => {
         if (teksterRessurs.status === RessursStatus.SUKSESS) {
@@ -244,7 +247,8 @@ const [AppProvider, useApp] = createUseContext(() => {
         settSisteModellVersjon,
         eøsLand,
         settEøsLand,
-        localeTekst,
+        localeString,
+        localeBlock,
         tekster,
     };
 });
