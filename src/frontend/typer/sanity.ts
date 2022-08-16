@@ -34,4 +34,4 @@ export interface ITekstinnhold {
     [ESanitySteg.FORSIDE]: IForsideTekstinnhold;
 }
 
-export type SanityDataSet = 'prod' | 'test';
+export type SanityDataSet = 'production' | 'test';

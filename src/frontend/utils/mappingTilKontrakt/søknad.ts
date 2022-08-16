@@ -181,6 +181,10 @@ export const dataISøknadKontraktFormatV1 = (
                 ),
                 sammeVerdiAlleSpråk(søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar)
             ),
+            harEllerTildeltBarnehageplass: søknadsfelt(
+                språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.harEllerTildeltBarnehageplass),
+                sammeVerdiAlleSpråk(søknad.harEllerTildeltBarnehageplass.svar)
+            ),
             erAvdødPartnerForelder: søknadsfelt(
                 språktekstIdFraSpørsmålId(søknad.erAvdødPartnerForelder.id),
                 sammeVerdiAlleSpråk(søknad.erAvdødPartnerForelder.svar)

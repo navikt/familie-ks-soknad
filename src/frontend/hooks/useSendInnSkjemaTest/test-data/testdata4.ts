@@ -431,6 +431,10 @@ export const testdata4: TilKontraktTestData = {
             id: 'kontantstøtte-fra-annet-eøsland',
             svar: 'JA',
         },
+        harEllerTildeltBarnehageplass: {
+            id: 'har-eller-tildelt-barnehageplass',
+            svar: 'NEI',
+        },
         erAvdødPartnerForelder: {
             id: 'er-folkeregistrert-avdød-ektefelle-forelder',
             svar: null,
@@ -1195,6 +1199,14 @@ export const testdata4: TilKontraktTestData = {
                     nn: 'Får du, har du fått eller har du søkt om barnetrygd for nokre av barna frå eit anna EØS land?',
                 },
                 verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+            },
+            harEllerTildeltBarnehageplass: {
+                label: {
+                    en: 'todo.ombarnadine.barnehageplass',
+                    nb: 'TODO har, hatt eller tildelt barnehageplass',
+                    nn: 'todo.ombarnadine.barnehageplass',
+                },
+                verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
             },
             erAvdødPartnerForelder: {
                 label: {

@@ -291,6 +291,10 @@ export const mekkGyldigSøknad = (): ISøknad => {
             id: OmBarnaDineSpørsmålId.barnOppholdtSegTolvMndSammenhengendeINorge,
             svar: ESvar.JA,
         },
+        harEllerTildeltBarnehageplass: {
+            id: OmBarnaDineSpørsmålId.harEllerTildeltBarnehageplass,
+            svar: ESvar.NEI,
+        },
         barnInkludertISøknaden: [
             {
                 ...genererInitialBarnMedISøknad({

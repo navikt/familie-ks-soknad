@@ -30,6 +30,7 @@ export interface ISøknad {
     erAvdødPartnerForelder: ISøknadSpørsmål<ESvar | null>;
     barnOppholdtSegTolvMndSammenhengendeINorge: ISøknadSpørsmål<ESvar | null>;
     mottarKontantstøtteForBarnFraAnnetEøsland: ISøknadSpørsmål<ESvar | null>;
+    harEllerTildeltBarnehageplass: ISøknadSpørsmål<ESvar | null>;
     dokumentasjon: IDokumentasjon[];
 }
 
@@ -158,6 +159,10 @@ export const initialStateSøknad: ISøknad = {
     },
     mottarKontantstøtteForBarnFraAnnetEøsland: {
         id: OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland,
+        svar: null,
+    },
+    harEllerTildeltBarnehageplass: {
+        id: OmBarnaDineSpørsmålId.harEllerTildeltBarnehageplass,
         svar: null,
     },
     erAvdødPartnerForelder: {

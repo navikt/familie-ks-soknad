@@ -18,7 +18,7 @@ export const routerBasePath = basePath;
 const Miljø = (): MiljøProps => {
     if (window.location.hostname.indexOf('familie-ks-soknad.dev') > -1) {
         return {
-            sanityDataset: 'prod',
+            sanityDataset: 'production',
             soknadApi: `https://familie-ks-soknad.dev.nav.no${basePath}api`,
             loginService: 'https://loginservice.dev.nav.no/login?',
             visInnsendingsknapp: true,
@@ -30,7 +30,7 @@ const Miljø = (): MiljøProps => {
         };
     } else if (window.location.hostname.indexOf('www.nav') > -1) {
         return {
-            sanityDataset: 'prod',
+            sanityDataset: 'production',
             soknadApi: `https://www.nav.no${basePath}api`,
             loginService: 'https://loginservice.nav.no/login?',
             visInnsendingsknapp: false,
