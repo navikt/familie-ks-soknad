@@ -46,9 +46,9 @@ export interface IEøsKontantstøttePeriode {
 
 export interface IBarnehageplassPeriode {
     barnehageplassPeriodeBeskrivelse: ISøknadSpørsmål<EBarnehageplassPeriodeBeskrivelse>;
-    barnehageplassUtlandet: ISøknadSpørsmål<ESvar | null>;
+    barnehageplassUtlandet: ISøknadSpørsmål<ESvar>;
     barnehageplassLand: ISøknadSpørsmål<Alpha3Code | ''>;
-    offentligStøtte: ISøknadSpørsmål<ESvar | null>;
+    offentligStøtte: ISøknadSpørsmål<ESvar>;
     antallTimer: ISøknadSpørsmål<string>;
     startetIBarnehagen: ISøknadSpørsmål<ISODateString>;
     slutterIBarnehagen: ISøknadSpørsmål<DatoMedUkjent>;

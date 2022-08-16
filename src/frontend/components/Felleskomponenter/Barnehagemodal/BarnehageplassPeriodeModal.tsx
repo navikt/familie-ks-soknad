@@ -3,6 +3,8 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 
+import { ESvar } from '@navikt/familie-form-elements';
+
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
@@ -18,6 +20,7 @@ import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import { beskrivelseSpråkId } from './barnehageplassSpråkUtils';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 import { useBarnehageplassPeriodeSkjema } from './useBarnehageplassPeriodeSkjema';
@@ -67,7 +70,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
             },
             barnehageplassUtlandet: {
                 id: BarnehageplassPeriodeSpørsmålId.barnehageplassUtlandet,
-                svar: barnehageplassUtlandet.verdi,
+                svar: barnehageplassUtlandet.verdi as ESvar,
             },
             barnehageplassLand: {
                 id: BarnehageplassPeriodeSpørsmålId.barnehageplassLand,
@@ -75,7 +78,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
             },
             offentligStøtte: {
                 id: BarnehageplassPeriodeSpørsmålId.offentligStøtte,
-                svar: offentligStøtte.erSynlig ? offentligStøtte.verdi : null,
+                svar: offentligStøtte.verdi as ESvar,
             },
             antallTimer: {
                 id: BarnehageplassPeriodeSpørsmålId.antallTimer,
@@ -129,7 +132,9 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                                 <option key={number} value={beskrivelse}>
                                     {formatMessage(
                                         {
-                                            id: 'todo.ombarnet.barnehageplass.periode',
+                                            id: beskrivelseSpråkId(
+                                                beskrivelse as EBarnehageplassPeriodeBeskrivelse
+                                            ),
                                         },
                                         { ...(barn && { barn: barn.navn }) }
                                     )}

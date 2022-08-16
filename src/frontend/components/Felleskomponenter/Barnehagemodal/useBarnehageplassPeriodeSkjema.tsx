@@ -8,7 +8,13 @@ import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjen
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { IBarnehageplassPerioderFeltTyper } from '../../../typer/skjema';
-import { dagensDato, gårsdagensDato, morgendagensDato } from '../../../utils/dato';
+import {
+    dagenEtterDato,
+    dagensDato,
+    erSammeDatoSomDagensDato,
+    gårsdagensDato,
+    morgendagensDato,
+} from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
@@ -30,7 +36,7 @@ export const useBarnehageplassPeriodeSkjema = (barn, erDød) => {
 
     const barnehageplassUtlandet = useJaNeiSpmFelt({
         søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.barnehageplassUtlandet, svar: null },
-        feilmeldingSpråkId: 'todo.ombarnet.barnehageplass.periode)',
+        feilmeldingSpråkId: 'todo.ombarnet.barnehageplass.periode',
         feilmeldingSpråkVerdier: { barn: barn.navn },
         skalSkjules: erDød,
     });
@@ -45,7 +51,7 @@ export const useBarnehageplassPeriodeSkjema = (barn, erDød) => {
 
     const offentligStøtte = useJaNeiSpmFelt({
         søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.offentligStøtte, svar: null },
-        feilmeldingSpråkId: 'todo.ombarnet.barnehageplass.periode)',
+        feilmeldingSpråkId: 'todo.ombarnet.barnehageplass.periode',
         skalSkjules: barnehageplassUtlandet.verdi === ESvar.NEI,
     });
 
@@ -54,8 +60,7 @@ export const useBarnehageplassPeriodeSkjema = (barn, erDød) => {
         feltId: BarnehageplassPeriodeSpørsmålId.antallTimer,
         valideringsfunksjon: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
-            if (verdi.match(/^[\d\s.\\/]{1,7}$/)) {
-                //TODO legge inn støtte for komma og punktum
+            if (verdi.match(/^[\d\s.\\/,.]{1,7}$/)) {
                 return ok(felt);
             } else {
                 return feil(
@@ -79,7 +84,7 @@ export const useBarnehageplassPeriodeSkjema = (barn, erDød) => {
         startdatoAvgrensning:
             barnehageplassPeriodeBeskrivelse.verdi ===
             EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
-                ? morgendagensDato()
+                ? gårsdagensDato()
                 : undefined,
         sluttdatoAvgrensning:
             barnehageplassPeriodeBeskrivelse.verdi ===
@@ -109,15 +114,17 @@ export const useBarnehageplassPeriodeSkjema = (barn, erDød) => {
         skalFeltetVises: true,
         startdatoAvgrensning:
             barnehageplassPeriodeBeskrivelse.verdi ===
-            EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
-                ? dagensDato()
-                : undefined,
+            EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
+                ? morgendagensDato()
+                : dagenEtterDato(startetIBarnehagen.verdi),
         sluttdatoAvgrensning:
             barnehageplassPeriodeBeskrivelse.verdi ===
             EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
                 ? dagensDato()
                 : undefined,
-        customStartdatoFeilmelding: 'todo.ombarnet.barnehageplass.periode',
+        customStartdatoFeilmelding: erSammeDatoSomDagensDato(startetIBarnehagen.verdi)
+            ? undefined
+            : 'todo.ombarnet.barnehageplass.periode',
     });
 
     const skjema = useSkjema<IBarnehageplassPerioderFeltTyper, 'string'>({

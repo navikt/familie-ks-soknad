@@ -49,14 +49,14 @@ const BekreftelseOgStartSoknad: React.FC = () => {
     const { localeTekst, tekster } = useApp();
 
     const {
-        [ESanitySteg.FORSIDE]: { bekreftelsesBoks },
+        [ESanitySteg.FORSIDE]: { bekreftelsesboks },
     } = tekster();
 
     return (
         <FormContainer onSubmit={event => onStartSøknad(event)}>
             <Informasjonsbolk tittelId="forside.bekreftelsesboks.tittel">
                 <StyledBekreftCheckboksPanel
-                    label={localeTekst(bekreftelsesBoks.erklaering)}
+                    label={localeTekst(bekreftelsesboks.erklaering)}
                     onChange={bekreftelseOnChange}
                     checked={bekreftelseStatus === BekreftelseStatus.BEKREFTET}
                     feil={
