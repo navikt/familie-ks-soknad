@@ -337,6 +337,10 @@ export const mekkGyldigSøknad = (): ISøknad => {
                         id: OmBarnetSpørsmålsId.andreForelderFødselsdato,
                         svar: AlternativtSvarForInput.UKJENT,
                     },
+                    [andreForelderDataKeySpørsmål.yrkesaktivFemÅr]: {
+                        id: OmBarnetSpørsmålsId.andreForelderYrkesaktivFemÅr,
+                        svar: ESvar.JA,
+                    },
                     [andreForelderDataKeySpørsmål.arbeidUtlandet]: {
                         id: OmBarnetSpørsmålsId.andreForelderArbeidUtlandet,
                         svar: ESvar.NEI,

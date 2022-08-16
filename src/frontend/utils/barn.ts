@@ -42,6 +42,10 @@ export const genererInitiellAndreForelder = (
             id: OmBarnetSpørsmålsId.andreForelderFødselsdato,
             svar: andreForelder?.fødselsdato.svar ?? '',
         },
+        yrkesaktivFemÅr: {
+            svar: andreForelder?.yrkesaktivFemÅr.svar ?? null,
+            id: OmBarnetSpørsmålsId.andreForelderYrkesaktivFemÅr,
+        },
         arbeidUtlandet: {
             svar: andreForelder?.arbeidUtlandet.svar ?? null,
             id: andreForelderErDød

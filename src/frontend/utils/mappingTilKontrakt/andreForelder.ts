@@ -35,6 +35,7 @@ export const andreForelderTilISøknadsfelt = (
         navn,
         fnr,
         fødselsdato,
+        yrkesaktivFemÅr,
         pensjonUtland,
         arbeidUtlandet,
         pensjonNorge,
@@ -91,6 +92,12 @@ export const andreForelderTilISøknadsfelt = (
                       omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.andreForelderFødselsdatoUkjent]
                   ),
                   barn
+              )
+            : null,
+        yrkesaktivFemÅr: yrkesaktivFemÅr.svar
+            ? søknadsfeltBarn(
+                  språktekstIdFraSpørsmålId(yrkesaktivFemÅr.id),
+                  sammeVerdiAlleSpråk(yrkesaktivFemÅr.svar)
               )
             : null,
         pensjonUtland: pensjonUtland.svar

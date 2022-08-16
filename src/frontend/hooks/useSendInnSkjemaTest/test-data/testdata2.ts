@@ -959,9 +959,9 @@ export const testdata2: TilKontraktTestData = {
                 },
                 yrkesaktivFemÅr: {
                     label: {
-                        en: 'todo.søker.yrkesaktiv',
+                        en: 'TODO søker yrkesaktiv',
                         nb: 'TODO søker yrkesaktiv',
-                        nn: 'todo.søker.yrkesaktiv',
+                        nn: 'TODO søker yrkesaktiv',
                     },
                     verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
                 },
