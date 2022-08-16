@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import navFarger from 'nav-frontend-core';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
-import { Normaltekst } from 'nav-frontend-typografi';
 
 import { Button } from '@navikt/ds-react';
 
@@ -12,6 +11,7 @@ import { useApp } from '../../../context/AppContext';
 import { ESanitySteg } from '../../../typer/sanity';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { BekreftelseStatus, useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 
 const FormContainer = styled.form`
@@ -48,29 +48,23 @@ const BekreftelseOgStartSoknad: React.FC = () => {
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
     const { localeString, tekster } = useApp();
 
-    const {
-        [ESanitySteg.FORSIDE]: { bekreftelsesBoks },
-    } = tekster();
+    const bekreftelsesboks = tekster()[ESanitySteg.FORSIDE].bekreftelsesboks;
 
     return (
         <FormContainer onSubmit={event => onStartSøknad(event)}>
-            <Informasjonsbolk tittelId="forside.bekreftelsesboks.tittel">
+            <Informasjonsbolk tittel={localeString(bekreftelsesboks.tittel)}>
                 <StyledBekreftCheckboksPanel
-                    label={localeString(bekreftelsesBoks.erklaering)}
+                    label={localeString(bekreftelsesboks.erklaering)}
                     onChange={bekreftelseOnChange}
                     checked={bekreftelseStatus === BekreftelseStatus.BEKREFTET}
                     feil={
                         bekreftelseStatus === BekreftelseStatus.FEIL && (
-                            <span role={'alert'}>
-                                <SpråkTekst id={'forside.bekreftelsesboks.feilmelding'} />
-                            </span>
+                            <span role={'alert'}>{localeString(bekreftelsesboks.feilmelding)}</span>
                         )
                     }
                     status={bekreftelseStatus}
                 >
-                    <Normaltekst>
-                        <SpråkTekst id="forside.bekreftelsesboks.brødtekst" />
-                    </Normaltekst>
+                    <TekstBlock block={bekreftelsesboks.brodtekst} />
                 </StyledBekreftCheckboksPanel>
             </Informasjonsbolk>
 

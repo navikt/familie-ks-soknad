@@ -6,7 +6,7 @@ import createUseContext from 'constate';
 import { byggHenterRessurs, byggTomRessurs, RessursStatus } from '@navikt/familie-typer';
 
 import Miljø from '../Miljø';
-import { ITekstinnhold, SanityDokument } from '../typer/sanity';
+import { flettefeltPrefix, ITekstinnhold, SanityDokument } from '../typer/sanity';
 import { loggFeil } from './axios';
 import { useLastRessurserContext } from './LastRessurserContext';
 
@@ -26,16 +26,23 @@ const [SanityProvider, useSanity] = createUseContext(() => {
         const tekstInnhold: Partial<ITekstinnhold> = {};
 
         dokumenter.forEach(dokument => {
-            tekstInnhold[dokument.steg] = {
-                ...(tekstInnhold[dokument.steg] ?? {}),
-                [dokument.api_navn]: dokument,
-            };
+            if (dokument.steg) {
+                tekstInnhold[dokument.steg] = {
+                    ...(tekstInnhold[dokument.steg] ?? {}),
+                    [dokument.api_navn]: dokument,
+                };
+            } else if (dokument._type.includes(flettefeltPrefix)) {
+                tekstInnhold.flettefelter = {
+                    ...(tekstInnhold[dokument.api_navn] ?? {}),
+                    [dokument.api_navn]: dokument,
+                };
+            }
         });
         return tekstInnhold as ITekstinnhold;
     };
 
     useEffect(() => {
-        const ressursId = `sanity`;
+        const ressursId = 'sanity';
         settRessurserSomLaster([...ressurserSomLaster, ressursId]);
         settTeksterRessurs(byggHenterRessurs());
 
