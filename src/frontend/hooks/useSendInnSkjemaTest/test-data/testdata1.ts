@@ -511,6 +511,7 @@ export const testdata1: TilKontraktTestData = {
                 },
                 utenlandsperioder: [],
                 eøsKontantstøttePerioder: [],
+                barnehageplassPerioder: [],
                 idNummer: [],
                 andreForelder: {
                     kanIkkeGiOpplysninger: {
