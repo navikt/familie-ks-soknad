@@ -106,7 +106,7 @@ export const useBarnehageplassPeriodeSkjema = barn => {
     });
 
     const slutterIBarnehagen = useDatovelgerFeltMedUkjent({
-        feltId: BarnehageplassPeriodeSpørsmålId.startetIBarnehagen,
+        feltId: BarnehageplassPeriodeSpørsmålId.slutterIBarnehagen,
         initiellVerdi: '',
         vetIkkeCheckbox: slutterIBarnehagenVetIkke,
         feilmeldingSpråkId: 'todo.ombarnet.barnehageplass.periode',
