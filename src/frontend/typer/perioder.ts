@@ -48,7 +48,7 @@ export interface IBarnehageplassPeriode {
     barnehageplassPeriodeBeskrivelse: ISøknadSpørsmål<EBarnehageplassPeriodeBeskrivelse>;
     barnehageplassUtlandet: ISøknadSpørsmål<ESvar>;
     barnehageplassLand: ISøknadSpørsmål<Alpha3Code | ''>;
-    offentligStøtte: ISøknadSpørsmål<ESvar>;
+    offentligStøtte: ISøknadSpørsmål<ESvar | null>;
     antallTimer: ISøknadSpørsmål<string>;
     startetIBarnehagen: ISøknadSpørsmål<ISODateString>;
     slutterIBarnehagen: ISøknadSpørsmål<DatoMedUkjent>;

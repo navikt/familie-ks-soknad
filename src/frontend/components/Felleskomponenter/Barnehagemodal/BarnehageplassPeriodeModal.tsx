@@ -78,7 +78,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
             },
             offentligStøtte: {
                 id: BarnehageplassPeriodeSpørsmålId.offentligStøtte,
-                svar: offentligStøtte.verdi as ESvar,
+                svar: offentligStøtte.erSynlig ? offentligStøtte.verdi : null,
             },
             antallTimer: {
                 id: BarnehageplassPeriodeSpørsmålId.antallTimer,

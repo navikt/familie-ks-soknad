@@ -34,7 +34,6 @@ const Oppsummering: React.FC = () => {
     const barnSomHarEøsSteg: IBarnMedISøknad[] = søkerTriggerEøs
         ? søknad.barnInkludertISøknaden
         : søknad.barnInkludertISøknaden.filter(barn => barn.triggetEøs);
-
     const scrollTilFeil = (elementId: string) => {
         // Gjør dette for syns skyld, men push scroller ikke vinduet
         pushHistory({ hash: elementId });
@@ -46,6 +45,8 @@ const Oppsummering: React.FC = () => {
         feilAnchors[0] && scrollTilFeil(feilAnchors[0]);
         return Promise.resolve(feilAnchors.length === 0);
     };
+
+    console.log(søknad.barnInkludertISøknaden);
 
     return (
         <Steg

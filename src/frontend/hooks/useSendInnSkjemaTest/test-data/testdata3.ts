@@ -21,6 +21,20 @@ export const testdata3: TilKontraktTestData = {
                 barnErFyltUt: true,
                 utenlandsperioder: [],
                 eøsKontantstøttePerioder: [],
+                barnehageplassPerioder: [
+                    {
+                        antallTimer: { id: 'antall-timer', svar: '12' },
+                        barnehageplassLand: { id: 'barnehageplass-land', svar: '' },
+                        barnehageplassPeriodeBeskrivelse: {
+                            id: 'barnehageplass-periode-beskrivelse',
+                            svar: 'HATT_BARNEHAGEPLASS_TIDLIGERE',
+                        },
+                        barnehageplassUtlandet: { id: 'barnehageplass-utlandet', svar: 'NEI' },
+                        offentligStøtte: { id: 'offentlig-støtte', svar: 'JA' },
+                        slutterIBarnehagen: { id: 'slutter-i-barnehagen', svar: '2022-08-10' },
+                        startetIBarnehagen: { id: 'startet-i-barnehagen', svar: '2022-08-09' },
+                    },
+                ],
                 idNummer: [],
                 harEøsSteg: false,
                 andreForelder: {

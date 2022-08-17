@@ -139,7 +139,7 @@ export const useBarnehageplassPeriodeSkjema = (barn, erDød) => {
             slutterIBarnehagenVetIkke,
         },
 
-        skjemanavn: 'kontantstøttePerioder',
+        skjemanavn: 'barnehageplassPerioder',
     });
 
     return {

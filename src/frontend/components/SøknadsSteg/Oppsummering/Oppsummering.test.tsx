@@ -13,7 +13,6 @@ import {
     silenceConsoleErrors,
     spyOnUseApp,
     TestProvidere,
-    TestProvidereMedEkteTekster,
 } from '../../../utils/testing';
 import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
 import { OmBarnetSpørsmålsId } from '../OmBarnet/spørsmål';
@@ -22,20 +21,6 @@ import Oppsummering from './Oppsummering';
 
 describe('Oppsummering', () => {
     beforeEach(silenceConsoleErrors);
-
-    it('Alle tekster finnes i språkfil', async () => {
-        mockHistory(['/oppsummering']);
-        spyOnUseApp(mekkGyldigSøknad());
-
-        const { findAllByRole } = render(
-            <TestProvidereMedEkteTekster>
-                <Oppsummering />
-            </TestProvidereMedEkteTekster>
-        );
-        await findAllByRole('button');
-
-        expect(console.error).toHaveBeenCalledTimes(0);
-    });
 
     it('stopper fra å gå videre hvis søknaden har mangler', async () => {
         const søknad = mockDeep<ISøknad>({

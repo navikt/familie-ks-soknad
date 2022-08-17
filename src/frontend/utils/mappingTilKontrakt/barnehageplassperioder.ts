@@ -53,10 +53,12 @@ export const tilIBarnehageplassPeriodeIKontraktFormat = ({
                       ),
                   }
                 : null,
-            offentligStøtte: {
-                label: hentTekster(BarnehageplassPeriodeSpørsmålId.offentligStøtte),
-                verdi: sammeVerdiAlleSpråk(offentligStøtte.svar),
-            },
+            offentligStøtte: offentligStøtte.svar
+                ? {
+                      label: hentTekster(BarnehageplassPeriodeSpørsmålId.offentligStøtte),
+                      verdi: sammeVerdiAlleSpråk(offentligStøtte.svar),
+                  }
+                : null,
             antallTimer: {
                 label: hentTekster(BarnehageplassPeriodeSpørsmålId.antallTimer),
                 verdi: sammeVerdiAlleSpråk(antallTimer.svar),

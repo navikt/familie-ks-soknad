@@ -54,6 +54,7 @@ export const testdata2: TilKontraktTestData = {
                     },
                 ],
                 eøsKontantstøttePerioder: [],
+                barnehageplassPerioder: [],
                 idNummer: [],
                 harEøsSteg: false,
                 andreForelder: null,
