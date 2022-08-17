@@ -28,7 +28,6 @@ import { useBarnehageplassPeriodeSkjema } from './useBarnehageplassPeriodeSkjema
 
 export interface IUseBarnehageplassSkjemaParams {
     personType: PersonType;
-    erDød?: boolean;
     barn: IBarnMedISøknad;
 }
 
@@ -44,10 +43,9 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
     toggleModal,
     onLeggTilBarnehageplassPeriode,
     barn,
-    erDød = false,
 }) => {
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
-        useBarnehageplassPeriodeSkjema(barn, erDød);
+        useBarnehageplassPeriodeSkjema(barn);
 
     const {
         barnehageplassPeriodeBeskrivelse,

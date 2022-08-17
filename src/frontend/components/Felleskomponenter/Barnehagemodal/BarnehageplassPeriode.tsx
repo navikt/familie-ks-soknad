@@ -32,7 +32,6 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
     leggTilBarnehageplassPeriode,
     fjernBarnehageplassPeriode,
     personType,
-    erDød,
     barn,
 }) => {
     const { erÅpen: barnehageplassModalErÅpen, toggleModal: toggleBarnehageplassModal } =
@@ -79,7 +78,6 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
                 onLeggTilBarnehageplassPeriode={leggTilBarnehageplassPeriode}
                 barn={barn}
                 personType={personType}
-                erDød={erDød}
             />
         </>
     );

@@ -20,7 +20,7 @@ import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 
-export const useBarnehageplassPeriodeSkjema = (barn, erDød) => {
+export const useBarnehageplassPeriodeSkjema = barn => {
     const barnehageplassPeriodeBeskrivelse = useFelt<EBarnehageplassPeriodeBeskrivelse | ''>({
         feltId: BarnehageplassPeriodeSpørsmålId.barnehageplassPeriodeBeskrivelse,
         verdi: '',
@@ -38,7 +38,6 @@ export const useBarnehageplassPeriodeSkjema = (barn, erDød) => {
         søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.barnehageplassUtlandet, svar: null },
         feilmeldingSpråkId: 'todo.ombarnet.barnehageplass.periode',
         feilmeldingSpråkVerdier: { barn: barn.navn },
-        skalSkjules: erDød,
     });
 
     const barnehageplassLand = useLanddropdownFelt({
