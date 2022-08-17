@@ -46,8 +46,6 @@ const Oppsummering: React.FC = () => {
         return Promise.resolve(feilAnchors.length === 0);
     };
 
-    console.log(søknad.barnInkludertISøknaden);
-
     return (
         <Steg
             tittel={<SpråkTekst id={'oppsummering.sidetittel'} />}
