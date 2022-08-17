@@ -178,6 +178,10 @@ const mockBarnMedISøknad = {
             id: OmBarnetSpørsmålsId.andreForelderFødselsdato,
             svar: AlternativtSvarForInput.UKJENT,
         },
+        yrkesaktivFemÅr: {
+            id: OmBarnetSpørsmålsId.andreForelderYrkesaktivFemÅr,
+            svar: ESvar.JA,
+        },
         arbeidUtlandet: {
             id: OmBarnetSpørsmålsId.andreForelderArbeidUtlandet,
             svar: ESvar.NEI,

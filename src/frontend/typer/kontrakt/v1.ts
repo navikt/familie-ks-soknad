@@ -85,6 +85,7 @@ export interface IAndreForelderIKontraktFormat {
     navn: ISøknadsfelt<string> | null;
     fnr: ISøknadsfelt<string> | null;
     fødselsdato: ISøknadsfelt<string> | null;
+    yrkesaktivFemÅr: ISøknadsfelt<ESvar> | null;
     pensjonUtland: ISøknadsfelt<ESvar> | null;
     arbeidUtlandet: ISøknadsfelt<ESvar> | null;
     skriftligAvtaleOmDeltBosted: ISøknadsfelt<ESvar> | null;

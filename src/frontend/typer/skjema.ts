@@ -65,6 +65,7 @@ export interface IOmBarnetUtvidetFeltTyper {
     andreForelderFnrUkjent: ESvar;
     andreForelderFødselsdatoUkjent: ESvar;
     andreForelderFødselsdato: DatoMedUkjent;
+    andreForelderYrkesaktivFemÅr: ESvar | null;
     andreForelderArbeidUtlandet: ESvar | null;
     andreForelderArbeidsperioderUtland: IArbeidsperiode[];
     andreForelderPensjonUtland: ESvar | null;

@@ -60,6 +60,10 @@ export const testdata1: TilKontraktTestData = {
                         id: 'andre-forelder-fødselsdato',
                         svar: '',
                     },
+                    yrkesaktivFemÅr: {
+                        id: 'andre-forelder-yrkesaktiv-fem-år',
+                        svar: 'JA',
+                    },
                     adresse: {
                         svar: 'Heisannveien 14',
                         id: 'andre-forelder-adresse',
@@ -437,9 +441,9 @@ export const testdata1: TilKontraktTestData = {
                 },
                 yrkesaktivFemÅr: {
                     label: {
-                        en: 'todo.søker.yrkesaktiv',
+                        en: 'TODO søker yrkesaktiv',
                         nb: 'TODO søker yrkesaktiv',
-                        nn: 'todo.søker.yrkesaktiv',
+                        nn: 'TODO søker yrkesaktiv',
                     },
                     verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
                 },
@@ -527,6 +531,14 @@ export const testdata1: TilKontraktTestData = {
                     },
                     fnr: null,
                     fødselsdato: null,
+                    yrkesaktivFemÅr: {
+                        label: {
+                            en: 'TODO andre forelder yrkesaktiv',
+                            nb: 'TODO andre forelder yrkesaktiv',
+                            nn: 'TODO andre forelder yrkesaktiv',
+                        },
+                        verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                    },
                     pensjonUtland: null,
                     arbeidUtlandet: null,
                     pensjonNorge: null,

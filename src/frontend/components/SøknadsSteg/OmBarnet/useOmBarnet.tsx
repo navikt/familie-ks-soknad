@@ -423,6 +423,26 @@ export const useOmBarnet = (
         feilmeldingSpråkVerdier: { navn: gjeldendeBarn.navn },
     });
 
+    const andreForelderYrkesaktivFemÅr = useJaNeiSpmFelt({
+        søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.yrkesaktivFemÅr],
+        feilmeldingSpråkId: 'todo.andreforelder.yrkesaktiv',
+        avhengigheter: {
+            andreForelderNavn: {
+                hovedSpørsmål: andreForelderNavn,
+            },
+            andreForelderFnr:
+                andreForelderKanIkkeGiOpplysninger.verdi === ESvar.NEI
+                    ? {
+                          hovedSpørsmål: andreForelderFnr,
+                          tilhørendeFelter: [andreForelderFødselsdato],
+                      }
+                    : undefined,
+        },
+        skalSkjules:
+            andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA ||
+            gjeldendeBarn.andreForelderErDød.svar === ESvar.JA,
+    });
+
     const {
         fjernPeriode: fjernArbeidsperiode,
         leggTilPeriode: leggTilArbeidsperiode,
@@ -520,6 +540,7 @@ export const useOmBarnet = (
             andreForelderFnrUkjent,
             andreForelderFødselsdato,
             andreForelderFødselsdatoUkjent,
+            andreForelderYrkesaktivFemÅr,
             andreForelderArbeidUtlandet,
             andreForelderArbeidsperioderUtland,
             andreForelderPensjonUtland,
@@ -625,6 +646,10 @@ export const useOmBarnet = (
                         andreForelderFødselsdatoUkjent,
                         andreForelderFødselsdato
                     ),
+                },
+                yrkesaktivFemÅr: {
+                    ...andreForelder[andreForelderDataKeySpørsmål.yrkesaktivFemÅr],
+                    svar: andreForelderYrkesaktivFemÅr.verdi,
                 },
                 arbeidUtlandet: {
                     ...andreForelder[andreForelderDataKeySpørsmål.arbeidUtlandet],

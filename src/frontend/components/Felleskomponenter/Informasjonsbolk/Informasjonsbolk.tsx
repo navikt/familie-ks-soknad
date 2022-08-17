@@ -7,7 +7,8 @@ import { Undertittel } from 'nav-frontend-typografi';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
 
 export interface IInformasjonsbolkProps {
-    tittelId?: string;
+    tittelId?: string; //legacy, kan fjernes når vi har implementert sanity
+    tittel?: string;
     språkValues?: { [key: string]: ReactNode };
 }
 
@@ -21,6 +22,7 @@ const InformasjonsbolkChildrenWrapper = styled.div`
 
 const Informasjonsbolk: React.FC<IInformasjonsbolkProps> = ({
     tittelId,
+    tittel,
     språkValues,
     children,
     ...props
@@ -32,6 +34,7 @@ const Informasjonsbolk: React.FC<IInformasjonsbolkProps> = ({
                     <SpråkTekst id={tittelId} values={språkValues} />
                 </Undertittel>
             )}
+            {tittel && <Undertittel>{tittel}</Undertittel>}
             <InformasjonsbolkChildrenWrapper>{children}</InformasjonsbolkChildrenWrapper>
         </InformasjonsbolkContainer>
     );

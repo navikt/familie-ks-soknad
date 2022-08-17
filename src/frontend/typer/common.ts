@@ -1,3 +1,5 @@
+import { PortableTextBlock } from '@portabletext/types';
+
 import { ESvar, ISODateString } from '@navikt/familie-form-elements';
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
@@ -23,4 +25,6 @@ export type BarnetsId = string;
 export type TomString = '';
 export const tomString: TomString = '';
 
-export type LocaleRecord = Record<LocaleType, string>;
+export type LocaleRecordString = Record<LocaleType, string>;
+
+export type LocaleRecordBlock = Record<LocaleType, PortableTextBlock>;
