@@ -3,7 +3,6 @@ import React from 'react';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
 import { formaterDato } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
@@ -18,14 +17,7 @@ interface BarnehageplassPeriodeProps {
     barnetsNavn: string;
 }
 
-type BarnehageplassPeriodeOppsummeringPersonTypeProps =
-    | { personType: PersonType.Søker; erDød?: boolean }
-    | { personType: PersonType.Omsorgsperson; erDød?: boolean }
-    | { personType: PersonType.AndreForelder; erDød: boolean };
-
-type Props = BarnehageplassPeriodeProps & BarnehageplassPeriodeOppsummeringPersonTypeProps;
-
-export const BarnehageplassPeriodeOppsummering: React.FC<Props> = ({
+export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodeProps> = ({
     barnehageplassPeriode,
     nummer,
     fjernPeriodeCallback = undefined,

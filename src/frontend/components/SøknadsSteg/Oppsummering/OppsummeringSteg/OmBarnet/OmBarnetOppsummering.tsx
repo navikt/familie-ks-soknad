@@ -289,7 +289,6 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, 
                             barnehageplassPeriode={periode}
                             nummer={index + 1}
                             barnetsNavn={barn.navn}
-                            personType={PersonType.Søker}
                         />
                     ))}
                 </StyledOppsummeringsFeltGruppe>

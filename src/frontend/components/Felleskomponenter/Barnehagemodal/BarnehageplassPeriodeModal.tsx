@@ -7,7 +7,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
 import { dagenEtterDato, dagensDato, gårsdagensDato, morgendagensDato } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import AlertStripe from '../AlertStripe/AlertStripe';
@@ -27,7 +26,6 @@ import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 import { useBarnehageplassPeriodeSkjema } from './useBarnehageplassPeriodeSkjema';
 
 export interface IUseBarnehageplassSkjemaParams {
-    personType: PersonType;
     barn: IBarnMedISøknad;
 }
 
@@ -182,7 +180,6 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     }
                     bredde={'S'}
                 />
-                {/*TODO legge inn riktige begrensninger*/}
                 <Datovelger
                     felt={skjema.felter.startetIBarnehagen}
                     skjema={skjema}

@@ -31,7 +31,6 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
     registrerteBarnehageplassPerioder,
     leggTilBarnehageplassPeriode,
     fjernBarnehageplassPeriode,
-    personType,
     barn,
 }) => {
     const { erÅpen: barnehageplassModalErÅpen, toggleModal: toggleBarnehageplassModal } =
@@ -42,13 +41,11 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
             <Informasjonsbolk tittelId={'todo.ombarnet.barnehageplass.oppfølging'} />
             {registrerteBarnehageplassPerioder.verdi.map((periode, index) => (
                 <BarnehageplassPeriodeOppsummering
-                    key={`eøs-kontantstøtte-periode-${index}`}
+                    key={`barnehageplass-periode-${index}`}
                     barnehageplassPeriode={periode}
                     fjernPeriodeCallback={fjernBarnehageplassPeriode}
                     nummer={index + 1}
                     barnetsNavn={barn.navn}
-                    personType={personType}
-                    erDød={false}
                 />
             ))}
             {registrerteBarnehageplassPerioder.verdi.length > 0 && (
@@ -77,7 +74,6 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
                 toggleModal={toggleBarnehageplassModal}
                 onLeggTilBarnehageplassPeriode={leggTilBarnehageplassPeriode}
                 barn={barn}
-                personType={personType}
             />
         </>
     );
