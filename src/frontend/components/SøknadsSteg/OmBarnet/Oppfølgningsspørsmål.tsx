@@ -277,7 +277,6 @@ const Oppfølgningsspørsmål: React.FC<{
                         leggTilBarnehageplassPeriode={leggTilBarnehageplassPeriode}
                         fjernBarnehageplassPeriode={fjernBarnehageplassPeriode}
                         barn={barn}
-                        personType={PersonType.Søker}
                     />
                 </KomponentGruppe>
             )}

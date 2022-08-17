@@ -13,7 +13,7 @@ import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 interface BarnehageplassPeriodeProps {
     barnehageplassPeriode: IBarnehageplassPeriode;
     nummer: number;
-    fjernPeriodeCallback?: (kontantstøttePeriode: IBarnehageplassPeriode) => void;
+    fjernPeriodeCallback?: (barnehageplassPeriode: IBarnehageplassPeriode) => void;
     barnetsNavn: string;
 }
 

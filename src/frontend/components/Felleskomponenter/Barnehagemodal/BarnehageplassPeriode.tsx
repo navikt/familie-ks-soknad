@@ -6,7 +6,6 @@ import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
-import { PeriodePersonTypeProps } from '../../../typer/personType';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import Informasjonsbolk from '../Informasjonsbolk/Informasjonsbolk';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
@@ -16,15 +15,13 @@ import { BarnehageplassPeriodeModal } from './BarnehageplassPeriodeModal';
 import { BarnehageplassPeriodeOppsummering } from './barnehageplassPeriodeOppsummering';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 
-interface Props {
+interface BarnehageplassPeriodeProps {
     skjema: ISkjema<IOmBarnetUtvidetFeltTyper, string>;
     registrerteBarnehageplassPerioder: Felt<IBarnehageplassPeriode[]>;
     leggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
     fjernBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
     barn: IBarnMedISøknad;
 }
-
-type BarnehageplassPeriodeProps = Props & PeriodePersonTypeProps;
 
 export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
     skjema,
