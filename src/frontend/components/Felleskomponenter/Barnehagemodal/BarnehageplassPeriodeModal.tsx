@@ -8,6 +8,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
+import { dagenEtterDato, dagensDato, gårsdagensDato, morgendagensDato } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import AlertStripe from '../AlertStripe/AlertStripe';
 import Datovelger from '../Datovelger/Datovelger';
@@ -143,14 +144,12 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                         )}
                     </StyledDropdown>
                 </div>
-
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.barnehageplassUtlandet}
                     spørsmålTekstId={'todo.ombarnet.barnehageplass.periode'}
                     språkValues={{ barn: barn.navn }}
                 />
-
                 {barnehageplassLand.erSynlig && (
                     <LandDropdown
                         felt={skjema.felter.barnehageplassLand}
@@ -191,12 +190,40 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     skjema={skjema}
                     label={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.startetIBarnehagen)}
                     calendarPosition={'fullscreen'}
+                    avgrensMinDato={
+                        barnehageplassPeriodeBeskrivelse.verdi ===
+                        EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
+                            ? dagensDato()
+                            : undefined
+                    }
+                    avgrensMaxDato={
+                        barnehageplassPeriodeBeskrivelse.verdi ===
+                        EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
+                            ? dagensDato()
+                            : barnehageplassPeriodeBeskrivelse.verdi ===
+                              EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                            ? gårsdagensDato()
+                            : undefined
+                    }
                 />
                 <Datovelger
                     felt={skjema.felter.slutterIBarnehagen}
                     skjema={skjema}
                     label={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.slutterIBarnehagen)}
                     calendarPosition={'fullscreen'}
+                    avgrensMinDato={
+                        barnehageplassPeriodeBeskrivelse.verdi ===
+                        EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
+                            ? morgendagensDato()
+                            : dagenEtterDato(startetIBarnehagen.verdi)
+                    }
+                    avgrensMaxDato={
+                        barnehageplassPeriodeBeskrivelse.verdi ===
+                        EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                            ? dagensDato()
+                            : undefined
+                    }
+                    tilhørendeFraOgMedFelt={skjema.felter.startetIBarnehagen}
                 />
             </KomponentGruppe>
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}

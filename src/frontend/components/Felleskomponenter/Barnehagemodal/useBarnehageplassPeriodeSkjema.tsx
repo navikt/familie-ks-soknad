@@ -84,7 +84,7 @@ export const useBarnehageplassPeriodeSkjema = (barn, erDød) => {
         startdatoAvgrensning:
             barnehageplassPeriodeBeskrivelse.verdi ===
             EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
-                ? gårsdagensDato()
+                ? dagensDato()
                 : undefined,
         sluttdatoAvgrensning:
             barnehageplassPeriodeBeskrivelse.verdi ===
