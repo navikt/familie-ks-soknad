@@ -73,10 +73,12 @@ export const BarnehageplassPeriodeOppsummering: React.FC<Props> = ({
                     søknadsvar={landkodeTilSpråk(barnehageplassLand.svar, valgtLocale)}
                 />
             )}
-            <OppsummeringFelt
-                tittel={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.offentligStøtte)}
-                søknadsvar={offentligStøtte.svar}
-            />
+            {offentligStøtte.svar && (
+                <OppsummeringFelt
+                    tittel={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.offentligStøtte)}
+                    søknadsvar={offentligStøtte.svar}
+                />
+            )}
             <OppsummeringFelt
                 tittel={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.antallTimer)}
                 søknadsvar={antallTimer.svar}
