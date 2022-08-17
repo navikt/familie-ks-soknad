@@ -281,16 +281,19 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, 
                     ))}
                 </StyledOppsummeringsFeltGruppe>
             )}
-            {/*//TODO legge inn slik at man får med at dette er et oppfølgingsspørsmål og ikke*/}
-            {barn.barnehageplassPerioder.map((periode, index) => (
-                <BarnehageplassPeriodeOppsummering
-                    key={`barnehageplass-periode-${index}`}
-                    barnehageplassPeriode={periode}
-                    nummer={index + 1}
-                    barnetsNavn={barn.navn}
-                    personType={PersonType.Søker}
-                />
-            ))}
+            {barn[barnDataKeySpørsmål.harBarnehageplass].svar === ESvar.JA && (
+                <StyledOppsummeringsFeltGruppe>
+                    {barn.barnehageplassPerioder.map((periode, index) => (
+                        <BarnehageplassPeriodeOppsummering
+                            key={`barnehageplass-periode-${index}`}
+                            barnehageplassPeriode={periode}
+                            nummer={index + 1}
+                            barnetsNavn={barn.navn}
+                            personType={PersonType.Søker}
+                        />
+                    ))}
+                </StyledOppsummeringsFeltGruppe>
+            )}
 
             {barn.andreForelder && (
                 <AndreForelderOppsummering andreForelder={barn.andreForelder} barn={barn} />
