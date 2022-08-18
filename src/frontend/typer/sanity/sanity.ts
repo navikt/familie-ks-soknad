@@ -1,6 +1,10 @@
-import { IForsideTekstinnhold } from '../components/SøknadsSteg/Forside/innholdTyper';
-import { LocaleRecordString } from './common';
-import { RouteEnum } from './routes';
+import { IDinLivssituasjonTekstinnhold } from '../../components/SøknadsSteg/DinLivssituasjon/innholdTyper';
+import { IForsideTekstinnhold } from '../../components/SøknadsSteg/Forside/innholdTyper';
+import { IOmDegTekstinnhold } from '../../components/SøknadsSteg/OmDeg/innholdTyper';
+import { LocaleRecordString } from '../common';
+import { RouteEnum } from '../routes';
+import { IUtenlandsoppholdTekstinnhold } from './modaler/utenlandsopphold';
+import { INavigasjonTekstinnhold } from './navigasjon';
 
 export interface SanityDokumentBase {
     _createdAt: string;
@@ -33,16 +37,18 @@ export enum ESanitySteg {
 }
 export interface ITekstinnhold {
     [ESanitySteg.FORSIDE]: IForsideTekstinnhold;
-    flettefelter: IFlettefelterInnhold;
-    navigasjon: {
-        start: LocaleRecordString;
-        gaVidere: LocaleRecordString;
-        tilbake: LocaleRecordString;
-        avbryt: LocaleRecordString;
-    };
+    [ESanitySteg.OM_DEG]: IOmDegTekstinnhold;
+    [ESanitySteg.DIN_LIVSSITUASJON]: IDinLivssituasjonTekstinnhold;
+    modaler: IModalerInnhold;
+    frittståendeOrd: IFrittståendeOrdInnhold;
+    navigasjon: INavigasjonTekstinnhold;
 }
 
-export interface IFlettefelterInnhold {
+export interface IModalerInnhold {
+    utenlandsoppholdSoker: IUtenlandsoppholdTekstinnhold;
+}
+
+export interface IFrittståendeOrdInnhold {
     ytelse: {
         kontantstotte: LocaleRecordString;
         ordinaerBarnetrygd: LocaleRecordString;
@@ -52,7 +58,8 @@ export interface IFlettefelterInnhold {
 
 export type SanityDataSet = 'production' | 'test';
 
-export const flettefeltPrefix = 'FLETTEFELT';
+export const frittståendeOrdPrefix = 'FRITTSTAENDE';
+export const modalPrefix = 'MODAL';
 
 export enum EFlettefeltverdi {
     YTELSE = 'YTELSE',

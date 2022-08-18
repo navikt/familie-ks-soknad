@@ -20,7 +20,7 @@ const TekstBlock: React.FC<{ block: LocaleRecordBlock }> = ({ block }) => {
                                 <span>
                                     {
                                         flettefeltTilTekst(
-                                            tekster().flettefelter,
+                                            tekster().frittståendeOrd,
                                             localeString,
                                             søknad.søker.navn
                                         )[props.value.flettefeltVerdi]

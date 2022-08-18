@@ -13,7 +13,7 @@ import { innebygdeFormatterere } from '../components/Felleskomponenter/SpråkTek
 import { AlternativtSvarForInput, LocaleRecordString } from '../typer/common';
 import { ESivilstand, Slektsforhold } from '../typer/kontrakt/generelle';
 import { IBarn } from '../typer/person';
-import { EFlettefeltverdi, IFlettefelterInnhold } from '../typer/sanity';
+import { EFlettefeltverdi, IFrittståendeOrdInnhold } from '../typer/sanity/sanity';
 
 export const toSlektsforholdSpråkId = (slektsforhold: Slektsforhold): string => {
     switch (slektsforhold) {
@@ -111,12 +111,12 @@ export const hentBostedSpråkId = (barn: IBarn) => {
 };
 
 export const flettefeltTilTekst = (
-    flettefelter: IFlettefelterInnhold,
+    frittståendeOrd: IFrittståendeOrdInnhold,
     localeString: (key: LocaleRecordString) => string,
     søkerNavn: string
 ): Record<EFlettefeltverdi, string> => {
     return {
-        [EFlettefeltverdi.YTELSE]: localeString(flettefelter.ytelse.kontantstotte),
+        [EFlettefeltverdi.YTELSE]: localeString(frittståendeOrd.ytelse.kontantstotte),
         [EFlettefeltverdi.SØKER_NAVN]: søkerNavn,
     };
 };
