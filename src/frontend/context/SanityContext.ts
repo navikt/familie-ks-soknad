@@ -6,7 +6,12 @@ import createUseContext from 'constate';
 import { byggHenterRessurs, byggTomRessurs, RessursStatus } from '@navikt/familie-typer';
 
 import Miljø from '../Miljø';
-import { flettefeltPrefix, ITekstinnhold, SanityDokument } from '../typer/sanity';
+import {
+    frittståendeOrdPrefix,
+    ITekstinnhold,
+    modalPrefix,
+    SanityDokument,
+} from '../typer/sanity/sanity';
 import { loggFeil } from './axios';
 import { useLastRessurserContext } from './LastRessurserContext';
 
@@ -31,13 +36,21 @@ const [SanityProvider, useSanity] = createUseContext(() => {
                     ...(tekstInnhold[dokument.steg] ?? {}),
                     [dokument.api_navn]: dokument,
                 };
-            } else if (dokument._type.includes(flettefeltPrefix)) {
-                tekstInnhold.flettefelter = {
+            } else if (dokument._type.includes(frittståendeOrdPrefix)) {
+                tekstInnhold.frittståendeOrd = {
                     ...(tekstInnhold[dokument.api_navn] ?? {}),
                     [dokument.api_navn]: dokument,
                 };
+            } else if (dokument._type.includes(modalPrefix)) {
+                tekstInnhold.modaler = {
+                    ...(tekstInnhold[dokument.api_navn] ?? {}),
+                    [dokument.api_navn]: dokument,
+                };
+            } else {
+                tekstInnhold[dokument.api_navn] = dokument;
             }
         });
+
         return tekstInnhold as ITekstinnhold;
     };
 

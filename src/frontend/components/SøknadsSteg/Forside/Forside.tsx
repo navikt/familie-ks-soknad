@@ -13,7 +13,7 @@ import { useApp } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import Miljø from '../../../Miljø';
 import { RouteEnum } from '../../../typer/routes';
-import { ESanitySteg } from '../../../typer/sanity';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
 import EksternLenke from '../../Felleskomponenter/EksternLenke/EksternLenke';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
