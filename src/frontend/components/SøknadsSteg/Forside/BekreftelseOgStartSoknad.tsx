@@ -8,7 +8,7 @@ import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 import { Button } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
-import { ESanitySteg } from '../../../typer/sanity';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
