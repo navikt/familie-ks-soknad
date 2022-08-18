@@ -10,4 +10,13 @@ export interface IForsideTekstinnhold {
     punktliste: {
         innhold: LocaleRecordBlock;
     };
+    veilederhilsen: {
+        veilederhilsen: LocaleRecordBlock;
+    };
+    soknadstittel: {
+        soknadstittel: LocaleRecordBlock;
+    };
+    personopplysningslenke: {
+        personopplysningslenke: LocaleRecordBlock;
+    };
 }

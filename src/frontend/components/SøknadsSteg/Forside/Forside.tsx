@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 
-import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 
 import { Sidetittel } from 'nav-frontend-typografi';
 
 import { LocaleType, Sprakvelger } from '@navikt/familie-sprakvelger';
-import { RessursStatus } from '@navikt/familie-typer';
 
 import VeilederSnakkeboble from '../../../assets/VeilederSnakkeboble';
 import { useApp } from '../../../context/AppContext';
@@ -15,10 +13,8 @@ import Miljø from '../../../Miljø';
 import { RouteEnum } from '../../../typer/routes';
 import { ESanitySteg } from '../../../typer/sanity';
 import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
-import EksternLenke from '../../Felleskomponenter/EksternLenke/EksternLenke';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import InnholdContainer from '../../Felleskomponenter/InnholdContainer/InnholdContainer';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
 import FortsettPåSøknad from './FortsettPåSøknad';
@@ -34,13 +30,16 @@ const StyledSpråkvelger = styled(Sprakvelger)`
 `;
 
 const Forside: React.FC = () => {
-    const { formatMessage } = useIntl();
-
-    const { sluttbruker, mellomlagretVerdi, settNåværendeRoute } = useApp();
+    const { mellomlagretVerdi, settNåværendeRoute } = useApp();
     const { tekster } = useApp();
 
     const {
-        [ESanitySteg.FORSIDE]: { punktliste },
+        [ESanitySteg.FORSIDE]: {
+            punktliste,
+            veilederhilsen,
+            soknadstittel,
+            personopplysningslenke,
+        },
     } = tekster();
 
     useFørsteRender(() => logSidevisningKontantstøtte(`${RouteEnum.Forside}`));
@@ -52,20 +51,15 @@ const Forside: React.FC = () => {
     const kanFortsettePåSøknad =
         mellomlagretVerdi && mellomlagretVerdi.modellVersjon === Miljø().modellVersjon;
 
-    const navn = sluttbruker.status === RessursStatus.SUKSESS ? sluttbruker.data.navn : '-';
-
     return (
         <InnholdContainer>
             <VeilederSnakkeboble
-                tekst={formatMessage(
-                    { id: 'forside.veilederhilsen' },
-                    { navn: navn.toUpperCase() }
-                )}
+                tekst={<TekstBlock block={veilederhilsen.veilederhilsen} />}
                 posisjon={'høyre'}
             />
 
             <StyledSidetittel>
-                <SpråkTekst id={'forside.sidetittel'} />
+                <TekstBlock block={soknadstittel.soknadstittel} />
             </StyledSidetittel>
 
             <StyledSpråkvelger støttedeSprak={[LocaleType.nn, LocaleType.nb, LocaleType.en]} />
@@ -77,11 +71,7 @@ const Forside: React.FC = () => {
             {kanFortsettePåSøknad ? <FortsettPåSøknad /> : <BekreftelseOgStartSoknad />}
 
             <Informasjonsbolk>
-                <EksternLenke
-                    lenkeSpråkId={'forside.behandling-av-personopplysning.lenke'}
-                    lenkeTekstSpråkId={'forside.behandling-av-personopplysning.lenketekst'}
-                    target="_blank"
-                />
+                <TekstBlock block={personopplysningslenke.personopplysningslenke} />
             </Informasjonsbolk>
         </InnholdContainer>
     );

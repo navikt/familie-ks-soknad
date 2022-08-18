@@ -7,7 +7,7 @@ import { LocaleRecordBlock } from '../../typer/common';
 import { flettefeltTilTekst } from '../../utils/språk';
 
 const TekstBlock: React.FC<{ block: LocaleRecordBlock }> = ({ block }) => {
-    const { localeBlock, localeString, tekster } = useApp();
+    const { localeBlock, localeString, tekster, søknad } = useApp();
 
     return (
         <PortableText
@@ -18,11 +18,13 @@ const TekstBlock: React.FC<{ block: LocaleRecordBlock }> = ({ block }) => {
                         if (props?.value?.flettefeltVerdi) {
                             return (
                                 <span>
-                                    {localeString(
-                                        flettefeltTilTekst(tekster().flettefelter)[
-                                            props.value.flettefeltVerdi
-                                        ]
-                                    )}
+                                    {
+                                        flettefeltTilTekst(
+                                            tekster().flettefelter,
+                                            localeString,
+                                            søknad.søker.navn
+                                        )[props.value.flettefeltVerdi]
+                                    }
                                 </span>
                             );
                         } else {

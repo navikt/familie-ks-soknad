@@ -56,4 +56,5 @@ export const flettefeltPrefix = 'FLETTEFELT';
 
 export enum EFlettefeltverdi {
     YTELSE = 'YTELSE',
+    SØKER_NAVN = 'SØKER_NAVN',
 }
