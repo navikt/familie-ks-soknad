@@ -1,1 +1,5 @@
-export interface IOmDegTekstinnhold {} //todo
+import { LocaleRecordString } from '../../../typer/common';
+
+export interface IOmDegTekstinnhold {
+    tittel: LocaleRecordString;
+}

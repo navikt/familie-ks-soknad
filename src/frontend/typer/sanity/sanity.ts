@@ -1,8 +1,10 @@
-import { IDinLivssituasjonTekstinnhold } from '../components/SøknadsSteg/DinLivssituasjon/innholdTyper';
-import { IForsideTekstinnhold } from '../components/SøknadsSteg/Forside/innholdTyper';
-import { IOmDegTekstinnhold } from '../components/SøknadsSteg/OmDeg/innholdTyper';
-import { LocaleRecordString } from './common';
-import { RouteEnum } from './routes';
+import { IDinLivssituasjonTekstinnhold } from '../../components/SøknadsSteg/DinLivssituasjon/innholdTyper';
+import { IForsideTekstinnhold } from '../../components/SøknadsSteg/Forside/innholdTyper';
+import { IOmDegTekstinnhold } from '../../components/SøknadsSteg/OmDeg/innholdTyper';
+import { LocaleRecordString } from '../common';
+import { RouteEnum } from '../routes';
+import { IUtenlandsoppholdTekstinnhold } from './modaler/utenlandsopphold';
+import { INavigasjonTekstinnhold } from './navigasjon';
 
 export interface SanityDokumentBase {
     _createdAt: string;
@@ -39,16 +41,11 @@ export interface ITekstinnhold {
     [ESanitySteg.DIN_LIVSSITUASJON]: IDinLivssituasjonTekstinnhold;
     modaler: IModalerInnhold;
     frittståendeOrd: IFrittståendeOrdInnhold;
-    navigasjon: {
-        start: LocaleRecordString;
-        gaVidere: LocaleRecordString;
-        tilbake: LocaleRecordString;
-        avbryt: LocaleRecordString;
-    };
+    navigasjon: INavigasjonTekstinnhold;
 }
 
 export interface IModalerInnhold {
-    //todo
+    utenlandsoppholdSoker: IUtenlandsoppholdTekstinnhold;
 }
 
 export interface IFrittståendeOrdInnhold {

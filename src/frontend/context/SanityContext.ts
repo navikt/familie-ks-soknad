@@ -6,7 +6,12 @@ import createUseContext from 'constate';
 import { byggHenterRessurs, byggTomRessurs, RessursStatus } from '@navikt/familie-typer';
 
 import Miljø from '../Miljø';
-import { frittståendeOrdPrefix, ITekstinnhold, modalPrefix, SanityDokument } from '../typer/sanity';
+import {
+    frittståendeOrdPrefix,
+    ITekstinnhold,
+    modalPrefix,
+    SanityDokument,
+} from '../typer/sanity/sanity';
 import { loggFeil } from './axios';
 import { useLastRessurserContext } from './LastRessurserContext';
 
@@ -45,6 +50,8 @@ const [SanityProvider, useSanity] = createUseContext(() => {
                 tekstInnhold[dokument.api_navn] = dokument;
             }
         });
+
+        console.log(tekstInnhold);
 
         return tekstInnhold as ITekstinnhold;
     };

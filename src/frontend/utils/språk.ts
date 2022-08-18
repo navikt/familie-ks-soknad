@@ -13,7 +13,7 @@ import { innebygdeFormatterere } from '../components/Felleskomponenter/SpråkTek
 import { AlternativtSvarForInput, LocaleRecordString } from '../typer/common';
 import { ESivilstand, Slektsforhold } from '../typer/kontrakt/generelle';
 import { IBarn } from '../typer/person';
-import { EFlettefeltverdi, IFrittståendeOrdInnhold } from '../typer/sanity';
+import { EFlettefeltverdi, IFrittståendeOrdInnhold } from '../typer/sanity/sanity';
 
 export const toSlektsforholdSpråkId = (slektsforhold: Slektsforhold): string => {
     switch (slektsforhold) {
