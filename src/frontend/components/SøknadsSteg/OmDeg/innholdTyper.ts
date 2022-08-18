@@ -1,0 +1,1 @@
+export interface IOmDegTekstinnhold {} //todo

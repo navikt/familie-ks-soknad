@@ -1,4 +1,6 @@
+import { IDinLivssituasjonTekstinnhold } from '../components/SøknadsSteg/DinLivssituasjon/innholdTyper';
 import { IForsideTekstinnhold } from '../components/SøknadsSteg/Forside/innholdTyper';
+import { IOmDegTekstinnhold } from '../components/SøknadsSteg/OmDeg/innholdTyper';
 import { LocaleRecordString } from './common';
 import { RouteEnum } from './routes';
 
@@ -33,7 +35,10 @@ export enum ESanitySteg {
 }
 export interface ITekstinnhold {
     [ESanitySteg.FORSIDE]: IForsideTekstinnhold;
-    flettefelter: IFlettefelterInnhold;
+    [ESanitySteg.OM_DEG]: IOmDegTekstinnhold;
+    [ESanitySteg.DIN_LIVSSITUASJON]: IDinLivssituasjonTekstinnhold;
+    modaler: IModalerInnhold;
+    frittståendeOrd: IFrittståendeOrdInnhold;
     navigasjon: {
         start: LocaleRecordString;
         gaVidere: LocaleRecordString;
@@ -42,7 +47,11 @@ export interface ITekstinnhold {
     };
 }
 
-export interface IFlettefelterInnhold {
+export interface IModalerInnhold {
+    //todo
+}
+
+export interface IFrittståendeOrdInnhold {
     ytelse: {
         kontantstotte: LocaleRecordString;
         ordinaerBarnetrygd: LocaleRecordString;
@@ -52,7 +61,8 @@ export interface IFlettefelterInnhold {
 
 export type SanityDataSet = 'production' | 'test';
 
-export const flettefeltPrefix = 'FLETTEFELT';
+export const frittståendeOrdPrefix = 'FRITTSTAENDE';
+export const modalPrefix = 'MODAL';
 
 export enum EFlettefeltverdi {
     YTELSE = 'YTELSE',
