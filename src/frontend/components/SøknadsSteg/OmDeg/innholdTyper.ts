@@ -1,5 +1,5 @@
-import { LocaleRecordString } from '../../../typer/common';
+import { LocaleRecordBlock } from '../../../typer/common';
 
 export interface IOmDegTekstinnhold {
-    tittel: LocaleRecordString;
+    omDegTittel: LocaleRecordBlock;
 }
