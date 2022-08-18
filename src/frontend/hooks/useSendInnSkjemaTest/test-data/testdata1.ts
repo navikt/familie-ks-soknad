@@ -21,6 +21,7 @@ export const testdata1: TilKontraktTestData = {
                 barnErFyltUt: true,
                 utenlandsperioder: [],
                 eøsKontantstøttePerioder: [],
+                barnehageplassPerioder: [],
                 idNummer: [],
                 harEøsSteg: false,
                 andreForelder: {
@@ -510,6 +511,7 @@ export const testdata1: TilKontraktTestData = {
                 },
                 utenlandsperioder: [],
                 eøsKontantstøttePerioder: [],
+                barnehageplassPerioder: [],
                 idNummer: [],
                 andreForelder: {
                     kanIkkeGiOpplysninger: {

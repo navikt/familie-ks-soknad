@@ -16,6 +16,7 @@ import { PersonType } from '../../typer/personType';
 import { ISøknadSpørsmålMap } from '../../typer/spørsmål';
 import { hentTekster } from '../språk';
 import { andreForelderTilISøknadsfelt } from './andreForelder';
+import { tilIBarnehageplassPeriodeIKontraktFormat } from './barnehageplassperioder';
 import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';
 import {
     sammeVerdiAlleSpråk,
@@ -48,6 +49,7 @@ export const barnISøknadsFormat = (
         utenlandsperioder,
         // Nye felter under utvikling av EØS full
         eøsKontantstøttePerioder,
+        barnehageplassPerioder,
         idNummer,
         triggetEøs,
         adresse,
@@ -107,6 +109,9 @@ export const barnISøknadsFormat = (
                 barn,
                 personType: PersonType.Søker,
             })
+        ),
+        barnehageplassPerioder: barnehageplassPerioder.map((periode, index) =>
+            tilIBarnehageplassPeriodeIKontraktFormat({ periode, periodeNummer: index + 1 })
         ),
         idNummer: idNummer.map(idnummerObj =>
             idNummerTilISøknadsfelt(

@@ -23,6 +23,7 @@ import { IDokumentasjon } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import {
     IArbeidsperiode,
+    IBarnehageplassPeriode,
     IEøsKontantstøttePeriode,
     IPensjonsperiode,
     IUtenlandsperiode,
@@ -68,6 +69,8 @@ export const useOmBarnet = (
     fjernPensjonsperiode: (periode: IPensjonsperiode) => void;
     leggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
     fjernKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
+    leggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
+    fjernBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
 } => {
     const { søknad, settSøknad } = useApp();
     const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } = useEøs();
@@ -264,6 +267,22 @@ export const useOmBarnet = (
                 : feil(felt, <SpråkTekst id={'ombarnet.trygdandreperioder.feilmelding'} />);
         }
     );
+    /*--- BARNEHAGEPLASS ---*/
+    const {
+        fjernPeriode: fjernBarnehageplassPeriode,
+        leggTilPeriode: leggTilBarnehageplassPeriode,
+        registrertePerioder: registrerteBarnehageplassPerioder,
+    } = usePerioder<IBarnehageplassPeriode>(
+        gjeldendeBarn.barnehageplassPerioder,
+        {},
+        () => skalFeltetVises(barnDataKeySpørsmål.harBarnehageplass),
+        felt => {
+            return felt.verdi.length ? ok(felt) : feil(felt, <SpråkTekst id={'TODO'} />);
+        }
+    );
+    useEffect(() => {
+        registrerteBarnehageplassPerioder.validerOgSettFelt(gjeldendeBarn.barnehageplassPerioder);
+    }, [gjeldendeBarn.barnehageplassPerioder]);
 
     /*--- ANDRE FORELDER ---*/
     const andreForelder = gjeldendeBarn.andreForelder;
@@ -514,6 +533,7 @@ export const useOmBarnet = (
             pågåendeSøknadHvilketLand,
             mottarEllerMottokEøsKontantstøtte,
             registrerteEøsKontantstøttePerioder,
+            registrerteBarnehageplassPerioder,
             andreForelderNavn,
             andreForelderKanIkkeGiOpplysninger,
             andreForelderFnr,
@@ -743,6 +763,9 @@ export const useOmBarnet = (
                 mottarEllerMottokEøsKontantstøtte.verdi === ESvar.JA
                     ? skjema.felter.registrerteEøsKontantstøttePerioder.verdi
                     : [],
+            barnehageplassPerioder: skalFeltetVises(barnDataKeySpørsmål.harBarnehageplass)
+                ? registrerteBarnehageplassPerioder.verdi
+                : [],
             borFastMedSøker: {
                 ...barn.borFastMedSøker,
                 svar: borFastMedSøker.verdi,
@@ -863,5 +886,7 @@ export const useOmBarnet = (
         fjernPensjonsperiode,
         leggTilKontantstøttePeriode,
         fjernKontantstøttePeriode,
+        leggTilBarnehageplassPeriode,
+        fjernBarnehageplassPeriode,
     };
 };

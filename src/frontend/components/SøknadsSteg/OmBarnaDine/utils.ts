@@ -71,6 +71,9 @@ export const genererOppdaterteBarn = (
         const eøsKontantstøttePerioder =
             mottarKontantstøtteFraAnnetEøsland === ESvar.JA ? barn.eøsKontantstøttePerioder : [];
 
+        const barnehageplassPerioder =
+            harBarnehageplass === ESvar.JA ? barn.barnehageplassPerioder : [];
+
         const pågåendeSøknadFraAnnetEøsLand: ESvar | null = genererSvarForOppfølgningspørsmålBarn(
             mottarKontantstøtteFraAnnetEøsland,
             barn[barnDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand],
@@ -127,6 +130,7 @@ export const genererOppdaterteBarn = (
             ),
             utenlandsperioder,
             eøsKontantstøttePerioder,
+            barnehageplassPerioder,
             andreForelder:
                 erFosterbarn === ESvar.JA
                     ? null

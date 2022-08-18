@@ -33,6 +33,7 @@ const mockBarnMedISøknad = {
     triggetEøs: true,
     utenlandsperioder: [],
     eøsKontantstøttePerioder: [],
+    barnehageplassPerioder: [],
     idNummer: [],
     borMedSøker: true,
     alder: '13',

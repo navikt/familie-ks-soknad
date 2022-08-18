@@ -15,6 +15,32 @@ export const testdata4: TilKontraktTestData = {
                 },
                 harEøsSteg: false,
                 eøsKontantstøttePerioder: [],
+                barnehageplassPerioder: [
+                    {
+                        antallTimer: { id: 'antall-timer', svar: '12' },
+                        barnehageplassLand: { id: 'barnehageplass-land', svar: 'DNK' },
+                        barnehageplassPeriodeBeskrivelse: {
+                            id: 'barnehageplass-periode-beskrivelse',
+                            svar: 'HAR_BARNEHAGEPLASS_NÅ',
+                        },
+                        barnehageplassUtlandet: { id: 'barnehageplass-utlandet', svar: 'JA' },
+                        offentligStøtte: { id: 'offentlig-støtte', svar: 'NEI' },
+                        slutterIBarnehagen: { id: 'slutter-i-barnehagen', svar: '2022-08-24' },
+                        startetIBarnehagen: { id: 'startet-i-barnehagen', svar: '2022-08-02' },
+                    },
+                    {
+                        antallTimer: { id: 'antall-timer', svar: '12' },
+                        barnehageplassLand: { id: 'barnehageplass-land', svar: 'DNK' },
+                        barnehageplassPeriodeBeskrivelse: {
+                            id: 'barnehageplass-periode-beskrivelse',
+                            svar: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                        },
+                        barnehageplassUtlandet: { id: 'barnehageplass-utlandet', svar: 'JA' },
+                        offentligStøtte: { id: 'offentlig-støtte', svar: 'JA' },
+                        slutterIBarnehagen: { id: 'slutter-i-barnehagen', svar: '2023-08-31' },
+                        startetIBarnehagen: { id: 'startet-i-barnehagen', svar: '2023-08-01' },
+                    },
+                ],
                 idNummer: [],
                 borMedSøker: false,
                 adressebeskyttelse: true,
@@ -101,6 +127,32 @@ export const testdata4: TilKontraktTestData = {
                 },
                 harEøsSteg: false,
                 eøsKontantstøttePerioder: [],
+                barnehageplassPerioder: [
+                    {
+                        antallTimer: { id: 'antall-timer', svar: '12' },
+                        barnehageplassLand: { id: 'barnehageplass-land', svar: 'DNK' },
+                        barnehageplassPeriodeBeskrivelse: {
+                            id: 'barnehageplass-periode-beskrivelse',
+                            svar: 'HAR_BARNEHAGEPLASS_NÅ',
+                        },
+                        barnehageplassUtlandet: { id: 'barnehageplass-utlandet', svar: 'JA' },
+                        offentligStøtte: { id: 'offentlig-støtte', svar: 'NEI' },
+                        slutterIBarnehagen: { id: 'slutter-i-barnehagen', svar: '2022-08-24' },
+                        startetIBarnehagen: { id: 'startet-i-barnehagen', svar: '2022-08-02' },
+                    },
+                    {
+                        antallTimer: { id: 'antall-timer', svar: '12' },
+                        barnehageplassLand: { id: 'barnehageplass-land', svar: 'DNK' },
+                        barnehageplassPeriodeBeskrivelse: {
+                            id: 'barnehageplass-periode-beskrivelse',
+                            svar: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                        },
+                        barnehageplassUtlandet: { id: 'barnehageplass-utlandet', svar: 'JA' },
+                        offentligStøtte: { id: 'offentlig-støtte', svar: 'JA' },
+                        slutterIBarnehagen: { id: 'slutter-i-barnehagen', svar: '2023-08-31' },
+                        startetIBarnehagen: { id: 'startet-i-barnehagen', svar: '2023-08-01' },
+                    },
+                ],
                 idNummer: [],
                 utenlandsperioder: [
                     {
@@ -661,6 +713,398 @@ export const testdata4: TilKontraktTestData = {
                 },
                 utenlandsperioder: [],
                 eøsKontantstøttePerioder: [],
+                barnehageplassPerioder: [
+                    {
+                        label: {
+                            en: 'TODO om barnet barnehageplass periode engelsk',
+                            nb: 'TODO om barnet barnehageplass periode',
+                            nn: 'TODO om barnet barnehageplass periode nynorsk',
+                        },
+                        verdi: {
+                            nb: {
+                                barnehageplassPeriodeBeskrivelse: {
+                                    label: {
+                                        en: 'barnehageplass-periode-beskrivelse',
+                                        nb: 'barnehageplass-periode-beskrivelse',
+                                        nn: 'barnehageplass-periode-beskrivelse',
+                                    },
+                                    verdi: {
+                                        nb: 'HAR_BARNEHAGEPLASS_NÅ',
+                                        nn: 'HAR_BARNEHAGEPLASS_NÅ',
+                                        en: 'HAR_BARNEHAGEPLASS_NÅ',
+                                    },
+                                },
+                                barnehageplassUtlandet: {
+                                    label: {
+                                        en: 'barnehageplass-utlandet',
+                                        nb: 'barnehageplass-utlandet',
+                                        nn: 'barnehageplass-utlandet',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                barnehageplassLand: {
+                                    label: {
+                                        en: 'barnehageplass-land',
+                                        nb: 'barnehageplass-land',
+                                        nn: 'barnehageplass-land',
+                                    },
+                                    verdi: { nb: 'Danmark', nn: 'Danmark', en: 'Denmark' },
+                                },
+                                offentligStøtte: {
+                                    label: {
+                                        en: 'offentlig-støtte',
+                                        nb: 'offentlig-støtte',
+                                        nn: 'offentlig-støtte',
+                                    },
+                                    verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
+                                },
+                                antallTimer: {
+                                    label: {
+                                        en: 'antall-timer',
+                                        nb: 'antall-timer',
+                                        nn: 'antall-timer',
+                                    },
+                                    verdi: { nb: '12', nn: '12', en: '12' },
+                                },
+                                startetIBarnehagen: {
+                                    label: {
+                                        en: 'startet-i-barnehagen',
+                                        nb: 'startet-i-barnehagen',
+                                        nn: 'startet-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2022-08-02', nn: '2022-08-02', en: '2022-08-02' },
+                                },
+                                slutterIBarnehagen: {
+                                    label: {
+                                        en: 'slutter-i-barnehagen',
+                                        nb: 'slutter-i-barnehagen',
+                                        nn: 'slutter-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2022-08-24', nn: '2022-08-24', en: '2022-08-24' },
+                                },
+                            },
+                            nn: {
+                                barnehageplassPeriodeBeskrivelse: {
+                                    label: {
+                                        en: 'barnehageplass-periode-beskrivelse',
+                                        nb: 'barnehageplass-periode-beskrivelse',
+                                        nn: 'barnehageplass-periode-beskrivelse',
+                                    },
+                                    verdi: {
+                                        nb: 'HAR_BARNEHAGEPLASS_NÅ',
+                                        nn: 'HAR_BARNEHAGEPLASS_NÅ',
+                                        en: 'HAR_BARNEHAGEPLASS_NÅ',
+                                    },
+                                },
+                                barnehageplassUtlandet: {
+                                    label: {
+                                        en: 'barnehageplass-utlandet',
+                                        nb: 'barnehageplass-utlandet',
+                                        nn: 'barnehageplass-utlandet',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                barnehageplassLand: {
+                                    label: {
+                                        en: 'barnehageplass-land',
+                                        nb: 'barnehageplass-land',
+                                        nn: 'barnehageplass-land',
+                                    },
+                                    verdi: { nb: 'Danmark', nn: 'Danmark', en: 'Denmark' },
+                                },
+                                offentligStøtte: {
+                                    label: {
+                                        en: 'offentlig-støtte',
+                                        nb: 'offentlig-støtte',
+                                        nn: 'offentlig-støtte',
+                                    },
+                                    verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
+                                },
+                                antallTimer: {
+                                    label: {
+                                        en: 'antall-timer',
+                                        nb: 'antall-timer',
+                                        nn: 'antall-timer',
+                                    },
+                                    verdi: { nb: '12', nn: '12', en: '12' },
+                                },
+                                startetIBarnehagen: {
+                                    label: {
+                                        en: 'startet-i-barnehagen',
+                                        nb: 'startet-i-barnehagen',
+                                        nn: 'startet-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2022-08-02', nn: '2022-08-02', en: '2022-08-02' },
+                                },
+                                slutterIBarnehagen: {
+                                    label: {
+                                        en: 'slutter-i-barnehagen',
+                                        nb: 'slutter-i-barnehagen',
+                                        nn: 'slutter-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2022-08-24', nn: '2022-08-24', en: '2022-08-24' },
+                                },
+                            },
+                            en: {
+                                barnehageplassPeriodeBeskrivelse: {
+                                    label: {
+                                        en: 'barnehageplass-periode-beskrivelse',
+                                        nb: 'barnehageplass-periode-beskrivelse',
+                                        nn: 'barnehageplass-periode-beskrivelse',
+                                    },
+                                    verdi: {
+                                        nb: 'HAR_BARNEHAGEPLASS_NÅ',
+                                        nn: 'HAR_BARNEHAGEPLASS_NÅ',
+                                        en: 'HAR_BARNEHAGEPLASS_NÅ',
+                                    },
+                                },
+                                barnehageplassUtlandet: {
+                                    label: {
+                                        en: 'barnehageplass-utlandet',
+                                        nb: 'barnehageplass-utlandet',
+                                        nn: 'barnehageplass-utlandet',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                barnehageplassLand: {
+                                    label: {
+                                        en: 'barnehageplass-land',
+                                        nb: 'barnehageplass-land',
+                                        nn: 'barnehageplass-land',
+                                    },
+                                    verdi: { nb: 'Danmark', nn: 'Danmark', en: 'Denmark' },
+                                },
+                                offentligStøtte: {
+                                    label: {
+                                        en: 'offentlig-støtte',
+                                        nb: 'offentlig-støtte',
+                                        nn: 'offentlig-støtte',
+                                    },
+                                    verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
+                                },
+                                antallTimer: {
+                                    label: {
+                                        en: 'antall-timer',
+                                        nb: 'antall-timer',
+                                        nn: 'antall-timer',
+                                    },
+                                    verdi: { nb: '12', nn: '12', en: '12' },
+                                },
+                                startetIBarnehagen: {
+                                    label: {
+                                        en: 'startet-i-barnehagen',
+                                        nb: 'startet-i-barnehagen',
+                                        nn: 'startet-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2022-08-02', nn: '2022-08-02', en: '2022-08-02' },
+                                },
+                                slutterIBarnehagen: {
+                                    label: {
+                                        en: 'slutter-i-barnehagen',
+                                        nb: 'slutter-i-barnehagen',
+                                        nn: 'slutter-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2022-08-24', nn: '2022-08-24', en: '2022-08-24' },
+                                },
+                            },
+                        },
+                    },
+                    {
+                        label: {
+                            en: 'TODO om barnet barnehageplass periode engelsk',
+                            nb: 'TODO om barnet barnehageplass periode',
+                            nn: 'TODO om barnet barnehageplass periode nynorsk',
+                        },
+                        verdi: {
+                            nb: {
+                                barnehageplassPeriodeBeskrivelse: {
+                                    label: {
+                                        en: 'barnehageplass-periode-beskrivelse',
+                                        nb: 'barnehageplass-periode-beskrivelse',
+                                        nn: 'barnehageplass-periode-beskrivelse',
+                                    },
+                                    verdi: {
+                                        nb: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                        nn: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                        en: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                    },
+                                },
+                                barnehageplassUtlandet: {
+                                    label: {
+                                        en: 'barnehageplass-utlandet',
+                                        nb: 'barnehageplass-utlandet',
+                                        nn: 'barnehageplass-utlandet',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                barnehageplassLand: {
+                                    label: {
+                                        en: 'barnehageplass-land',
+                                        nb: 'barnehageplass-land',
+                                        nn: 'barnehageplass-land',
+                                    },
+                                    verdi: { nb: 'Danmark', nn: 'Danmark', en: 'Denmark' },
+                                },
+                                offentligStøtte: {
+                                    label: {
+                                        en: 'offentlig-støtte',
+                                        nb: 'offentlig-støtte',
+                                        nn: 'offentlig-støtte',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                antallTimer: {
+                                    label: {
+                                        en: 'antall-timer',
+                                        nb: 'antall-timer',
+                                        nn: 'antall-timer',
+                                    },
+                                    verdi: { nb: '12', nn: '12', en: '12' },
+                                },
+                                startetIBarnehagen: {
+                                    label: {
+                                        en: 'startet-i-barnehagen',
+                                        nb: 'startet-i-barnehagen',
+                                        nn: 'startet-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2023-08-01', nn: '2023-08-01', en: '2023-08-01' },
+                                },
+                                slutterIBarnehagen: {
+                                    label: {
+                                        en: 'slutter-i-barnehagen',
+                                        nb: 'slutter-i-barnehagen',
+                                        nn: 'slutter-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2023-08-31', nn: '2023-08-31', en: '2023-08-31' },
+                                },
+                            },
+                            nn: {
+                                barnehageplassPeriodeBeskrivelse: {
+                                    label: {
+                                        en: 'barnehageplass-periode-beskrivelse',
+                                        nb: 'barnehageplass-periode-beskrivelse',
+                                        nn: 'barnehageplass-periode-beskrivelse',
+                                    },
+                                    verdi: {
+                                        nb: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                        nn: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                        en: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                    },
+                                },
+                                barnehageplassUtlandet: {
+                                    label: {
+                                        en: 'barnehageplass-utlandet',
+                                        nb: 'barnehageplass-utlandet',
+                                        nn: 'barnehageplass-utlandet',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                barnehageplassLand: {
+                                    label: {
+                                        en: 'barnehageplass-land',
+                                        nb: 'barnehageplass-land',
+                                        nn: 'barnehageplass-land',
+                                    },
+                                    verdi: { nb: 'Danmark', nn: 'Danmark', en: 'Denmark' },
+                                },
+                                offentligStøtte: {
+                                    label: {
+                                        en: 'offentlig-støtte',
+                                        nb: 'offentlig-støtte',
+                                        nn: 'offentlig-støtte',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                antallTimer: {
+                                    label: {
+                                        en: 'antall-timer',
+                                        nb: 'antall-timer',
+                                        nn: 'antall-timer',
+                                    },
+                                    verdi: { nb: '12', nn: '12', en: '12' },
+                                },
+                                startetIBarnehagen: {
+                                    label: {
+                                        en: 'startet-i-barnehagen',
+                                        nb: 'startet-i-barnehagen',
+                                        nn: 'startet-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2023-08-01', nn: '2023-08-01', en: '2023-08-01' },
+                                },
+                                slutterIBarnehagen: {
+                                    label: {
+                                        en: 'slutter-i-barnehagen',
+                                        nb: 'slutter-i-barnehagen',
+                                        nn: 'slutter-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2023-08-31', nn: '2023-08-31', en: '2023-08-31' },
+                                },
+                            },
+                            en: {
+                                barnehageplassPeriodeBeskrivelse: {
+                                    label: {
+                                        en: 'barnehageplass-periode-beskrivelse',
+                                        nb: 'barnehageplass-periode-beskrivelse',
+                                        nn: 'barnehageplass-periode-beskrivelse',
+                                    },
+                                    verdi: {
+                                        nb: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                        nn: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                        en: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                    },
+                                },
+                                barnehageplassUtlandet: {
+                                    label: {
+                                        en: 'barnehageplass-utlandet',
+                                        nb: 'barnehageplass-utlandet',
+                                        nn: 'barnehageplass-utlandet',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                barnehageplassLand: {
+                                    label: {
+                                        en: 'barnehageplass-land',
+                                        nb: 'barnehageplass-land',
+                                        nn: 'barnehageplass-land',
+                                    },
+                                    verdi: { nb: 'Danmark', nn: 'Danmark', en: 'Denmark' },
+                                },
+                                offentligStøtte: {
+                                    label: {
+                                        en: 'offentlig-støtte',
+                                        nb: 'offentlig-støtte',
+                                        nn: 'offentlig-støtte',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                antallTimer: {
+                                    label: {
+                                        en: 'antall-timer',
+                                        nb: 'antall-timer',
+                                        nn: 'antall-timer',
+                                    },
+                                    verdi: { nb: '12', nn: '12', en: '12' },
+                                },
+                                startetIBarnehagen: {
+                                    label: {
+                                        en: 'startet-i-barnehagen',
+                                        nb: 'startet-i-barnehagen',
+                                        nn: 'startet-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2023-08-01', nn: '2023-08-01', en: '2023-08-01' },
+                                },
+                                slutterIBarnehagen: {
+                                    label: {
+                                        en: 'slutter-i-barnehagen',
+                                        nb: 'slutter-i-barnehagen',
+                                        nn: 'slutter-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2023-08-31', nn: '2023-08-31', en: '2023-08-31' },
+                                },
+                            },
+                        },
+                    },
+                ],
                 idNummer: [],
                 andreForelder: null,
                 omsorgsperson: null,
@@ -911,6 +1355,398 @@ export const testdata4: TilKontraktTestData = {
                     },
                 ],
                 eøsKontantstøttePerioder: [],
+                barnehageplassPerioder: [
+                    {
+                        label: {
+                            en: 'TODO om barnet barnehageplass periode engelsk',
+                            nb: 'TODO om barnet barnehageplass periode',
+                            nn: 'TODO om barnet barnehageplass periode nynorsk',
+                        },
+                        verdi: {
+                            nb: {
+                                barnehageplassPeriodeBeskrivelse: {
+                                    label: {
+                                        en: 'barnehageplass-periode-beskrivelse',
+                                        nb: 'barnehageplass-periode-beskrivelse',
+                                        nn: 'barnehageplass-periode-beskrivelse',
+                                    },
+                                    verdi: {
+                                        nb: 'HAR_BARNEHAGEPLASS_NÅ',
+                                        nn: 'HAR_BARNEHAGEPLASS_NÅ',
+                                        en: 'HAR_BARNEHAGEPLASS_NÅ',
+                                    },
+                                },
+                                barnehageplassUtlandet: {
+                                    label: {
+                                        en: 'barnehageplass-utlandet',
+                                        nb: 'barnehageplass-utlandet',
+                                        nn: 'barnehageplass-utlandet',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                barnehageplassLand: {
+                                    label: {
+                                        en: 'barnehageplass-land',
+                                        nb: 'barnehageplass-land',
+                                        nn: 'barnehageplass-land',
+                                    },
+                                    verdi: { nb: 'Danmark', nn: 'Danmark', en: 'Denmark' },
+                                },
+                                offentligStøtte: {
+                                    label: {
+                                        en: 'offentlig-støtte',
+                                        nb: 'offentlig-støtte',
+                                        nn: 'offentlig-støtte',
+                                    },
+                                    verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
+                                },
+                                antallTimer: {
+                                    label: {
+                                        en: 'antall-timer',
+                                        nb: 'antall-timer',
+                                        nn: 'antall-timer',
+                                    },
+                                    verdi: { nb: '12', nn: '12', en: '12' },
+                                },
+                                startetIBarnehagen: {
+                                    label: {
+                                        en: 'startet-i-barnehagen',
+                                        nb: 'startet-i-barnehagen',
+                                        nn: 'startet-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2022-08-02', nn: '2022-08-02', en: '2022-08-02' },
+                                },
+                                slutterIBarnehagen: {
+                                    label: {
+                                        en: 'slutter-i-barnehagen',
+                                        nb: 'slutter-i-barnehagen',
+                                        nn: 'slutter-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2022-08-24', nn: '2022-08-24', en: '2022-08-24' },
+                                },
+                            },
+                            nn: {
+                                barnehageplassPeriodeBeskrivelse: {
+                                    label: {
+                                        en: 'barnehageplass-periode-beskrivelse',
+                                        nb: 'barnehageplass-periode-beskrivelse',
+                                        nn: 'barnehageplass-periode-beskrivelse',
+                                    },
+                                    verdi: {
+                                        nb: 'HAR_BARNEHAGEPLASS_NÅ',
+                                        nn: 'HAR_BARNEHAGEPLASS_NÅ',
+                                        en: 'HAR_BARNEHAGEPLASS_NÅ',
+                                    },
+                                },
+                                barnehageplassUtlandet: {
+                                    label: {
+                                        en: 'barnehageplass-utlandet',
+                                        nb: 'barnehageplass-utlandet',
+                                        nn: 'barnehageplass-utlandet',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                barnehageplassLand: {
+                                    label: {
+                                        en: 'barnehageplass-land',
+                                        nb: 'barnehageplass-land',
+                                        nn: 'barnehageplass-land',
+                                    },
+                                    verdi: { nb: 'Danmark', nn: 'Danmark', en: 'Denmark' },
+                                },
+                                offentligStøtte: {
+                                    label: {
+                                        en: 'offentlig-støtte',
+                                        nb: 'offentlig-støtte',
+                                        nn: 'offentlig-støtte',
+                                    },
+                                    verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
+                                },
+                                antallTimer: {
+                                    label: {
+                                        en: 'antall-timer',
+                                        nb: 'antall-timer',
+                                        nn: 'antall-timer',
+                                    },
+                                    verdi: { nb: '12', nn: '12', en: '12' },
+                                },
+                                startetIBarnehagen: {
+                                    label: {
+                                        en: 'startet-i-barnehagen',
+                                        nb: 'startet-i-barnehagen',
+                                        nn: 'startet-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2022-08-02', nn: '2022-08-02', en: '2022-08-02' },
+                                },
+                                slutterIBarnehagen: {
+                                    label: {
+                                        en: 'slutter-i-barnehagen',
+                                        nb: 'slutter-i-barnehagen',
+                                        nn: 'slutter-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2022-08-24', nn: '2022-08-24', en: '2022-08-24' },
+                                },
+                            },
+                            en: {
+                                barnehageplassPeriodeBeskrivelse: {
+                                    label: {
+                                        en: 'barnehageplass-periode-beskrivelse',
+                                        nb: 'barnehageplass-periode-beskrivelse',
+                                        nn: 'barnehageplass-periode-beskrivelse',
+                                    },
+                                    verdi: {
+                                        nb: 'HAR_BARNEHAGEPLASS_NÅ',
+                                        nn: 'HAR_BARNEHAGEPLASS_NÅ',
+                                        en: 'HAR_BARNEHAGEPLASS_NÅ',
+                                    },
+                                },
+                                barnehageplassUtlandet: {
+                                    label: {
+                                        en: 'barnehageplass-utlandet',
+                                        nb: 'barnehageplass-utlandet',
+                                        nn: 'barnehageplass-utlandet',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                barnehageplassLand: {
+                                    label: {
+                                        en: 'barnehageplass-land',
+                                        nb: 'barnehageplass-land',
+                                        nn: 'barnehageplass-land',
+                                    },
+                                    verdi: { nb: 'Danmark', nn: 'Danmark', en: 'Denmark' },
+                                },
+                                offentligStøtte: {
+                                    label: {
+                                        en: 'offentlig-støtte',
+                                        nb: 'offentlig-støtte',
+                                        nn: 'offentlig-støtte',
+                                    },
+                                    verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
+                                },
+                                antallTimer: {
+                                    label: {
+                                        en: 'antall-timer',
+                                        nb: 'antall-timer',
+                                        nn: 'antall-timer',
+                                    },
+                                    verdi: { nb: '12', nn: '12', en: '12' },
+                                },
+                                startetIBarnehagen: {
+                                    label: {
+                                        en: 'startet-i-barnehagen',
+                                        nb: 'startet-i-barnehagen',
+                                        nn: 'startet-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2022-08-02', nn: '2022-08-02', en: '2022-08-02' },
+                                },
+                                slutterIBarnehagen: {
+                                    label: {
+                                        en: 'slutter-i-barnehagen',
+                                        nb: 'slutter-i-barnehagen',
+                                        nn: 'slutter-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2022-08-24', nn: '2022-08-24', en: '2022-08-24' },
+                                },
+                            },
+                        },
+                    },
+                    {
+                        label: {
+                            en: 'TODO om barnet barnehageplass periode engelsk',
+                            nb: 'TODO om barnet barnehageplass periode',
+                            nn: 'TODO om barnet barnehageplass periode nynorsk',
+                        },
+                        verdi: {
+                            nb: {
+                                barnehageplassPeriodeBeskrivelse: {
+                                    label: {
+                                        en: 'barnehageplass-periode-beskrivelse',
+                                        nb: 'barnehageplass-periode-beskrivelse',
+                                        nn: 'barnehageplass-periode-beskrivelse',
+                                    },
+                                    verdi: {
+                                        nb: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                        nn: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                        en: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                    },
+                                },
+                                barnehageplassUtlandet: {
+                                    label: {
+                                        en: 'barnehageplass-utlandet',
+                                        nb: 'barnehageplass-utlandet',
+                                        nn: 'barnehageplass-utlandet',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                barnehageplassLand: {
+                                    label: {
+                                        en: 'barnehageplass-land',
+                                        nb: 'barnehageplass-land',
+                                        nn: 'barnehageplass-land',
+                                    },
+                                    verdi: { nb: 'Danmark', nn: 'Danmark', en: 'Denmark' },
+                                },
+                                offentligStøtte: {
+                                    label: {
+                                        en: 'offentlig-støtte',
+                                        nb: 'offentlig-støtte',
+                                        nn: 'offentlig-støtte',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                antallTimer: {
+                                    label: {
+                                        en: 'antall-timer',
+                                        nb: 'antall-timer',
+                                        nn: 'antall-timer',
+                                    },
+                                    verdi: { nb: '12', nn: '12', en: '12' },
+                                },
+                                startetIBarnehagen: {
+                                    label: {
+                                        en: 'startet-i-barnehagen',
+                                        nb: 'startet-i-barnehagen',
+                                        nn: 'startet-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2023-08-01', nn: '2023-08-01', en: '2023-08-01' },
+                                },
+                                slutterIBarnehagen: {
+                                    label: {
+                                        en: 'slutter-i-barnehagen',
+                                        nb: 'slutter-i-barnehagen',
+                                        nn: 'slutter-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2023-08-31', nn: '2023-08-31', en: '2023-08-31' },
+                                },
+                            },
+                            nn: {
+                                barnehageplassPeriodeBeskrivelse: {
+                                    label: {
+                                        en: 'barnehageplass-periode-beskrivelse',
+                                        nb: 'barnehageplass-periode-beskrivelse',
+                                        nn: 'barnehageplass-periode-beskrivelse',
+                                    },
+                                    verdi: {
+                                        nb: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                        nn: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                        en: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                    },
+                                },
+                                barnehageplassUtlandet: {
+                                    label: {
+                                        en: 'barnehageplass-utlandet',
+                                        nb: 'barnehageplass-utlandet',
+                                        nn: 'barnehageplass-utlandet',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                barnehageplassLand: {
+                                    label: {
+                                        en: 'barnehageplass-land',
+                                        nb: 'barnehageplass-land',
+                                        nn: 'barnehageplass-land',
+                                    },
+                                    verdi: { nb: 'Danmark', nn: 'Danmark', en: 'Denmark' },
+                                },
+                                offentligStøtte: {
+                                    label: {
+                                        en: 'offentlig-støtte',
+                                        nb: 'offentlig-støtte',
+                                        nn: 'offentlig-støtte',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                antallTimer: {
+                                    label: {
+                                        en: 'antall-timer',
+                                        nb: 'antall-timer',
+                                        nn: 'antall-timer',
+                                    },
+                                    verdi: { nb: '12', nn: '12', en: '12' },
+                                },
+                                startetIBarnehagen: {
+                                    label: {
+                                        en: 'startet-i-barnehagen',
+                                        nb: 'startet-i-barnehagen',
+                                        nn: 'startet-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2023-08-01', nn: '2023-08-01', en: '2023-08-01' },
+                                },
+                                slutterIBarnehagen: {
+                                    label: {
+                                        en: 'slutter-i-barnehagen',
+                                        nb: 'slutter-i-barnehagen',
+                                        nn: 'slutter-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2023-08-31', nn: '2023-08-31', en: '2023-08-31' },
+                                },
+                            },
+                            en: {
+                                barnehageplassPeriodeBeskrivelse: {
+                                    label: {
+                                        en: 'barnehageplass-periode-beskrivelse',
+                                        nb: 'barnehageplass-periode-beskrivelse',
+                                        nn: 'barnehageplass-periode-beskrivelse',
+                                    },
+                                    verdi: {
+                                        nb: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                        nn: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                        en: 'TILDELT_BARNEHAGEPLASS_I_FREMTIDEN',
+                                    },
+                                },
+                                barnehageplassUtlandet: {
+                                    label: {
+                                        en: 'barnehageplass-utlandet',
+                                        nb: 'barnehageplass-utlandet',
+                                        nn: 'barnehageplass-utlandet',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                barnehageplassLand: {
+                                    label: {
+                                        en: 'barnehageplass-land',
+                                        nb: 'barnehageplass-land',
+                                        nn: 'barnehageplass-land',
+                                    },
+                                    verdi: { nb: 'Danmark', nn: 'Danmark', en: 'Denmark' },
+                                },
+                                offentligStøtte: {
+                                    label: {
+                                        en: 'offentlig-støtte',
+                                        nb: 'offentlig-støtte',
+                                        nn: 'offentlig-støtte',
+                                    },
+                                    verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                                },
+                                antallTimer: {
+                                    label: {
+                                        en: 'antall-timer',
+                                        nb: 'antall-timer',
+                                        nn: 'antall-timer',
+                                    },
+                                    verdi: { nb: '12', nn: '12', en: '12' },
+                                },
+                                startetIBarnehagen: {
+                                    label: {
+                                        en: 'startet-i-barnehagen',
+                                        nb: 'startet-i-barnehagen',
+                                        nn: 'startet-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2023-08-01', nn: '2023-08-01', en: '2023-08-01' },
+                                },
+                                slutterIBarnehagen: {
+                                    label: {
+                                        en: 'slutter-i-barnehagen',
+                                        nb: 'slutter-i-barnehagen',
+                                        nn: 'slutter-i-barnehagen',
+                                    },
+                                    verdi: { nb: '2023-08-31', nn: '2023-08-31', en: '2023-08-31' },
+                                },
+                            },
+                        },
+                    },
+                ],
                 idNummer: [],
                 andreForelder: {
                     kanIkkeGiOpplysninger: {

@@ -21,6 +21,7 @@ export const testdata5: TilKontraktTestData = {
                 barnErFyltUt: true,
                 utenlandsperioder: [],
                 eøsKontantstøttePerioder: [],
+                barnehageplassPerioder: [],
                 idNummer: [],
                 andreForelder: {
                     kanIkkeGiOpplysninger: {
@@ -191,6 +192,7 @@ export const testdata5: TilKontraktTestData = {
                     },
                 ],
                 eøsKontantstøttePerioder: [],
+                barnehageplassPerioder: [],
                 idNummer: [],
                 andreForelder: {
                     kanIkkeGiOpplysninger: {
@@ -708,6 +710,7 @@ export const testdata5: TilKontraktTestData = {
                 },
                 utenlandsperioder: [],
                 eøsKontantstøttePerioder: [],
+                barnehageplassPerioder: [],
                 idNummer: [],
                 andreForelder: {
                     kanIkkeGiOpplysninger: {
@@ -1094,6 +1097,7 @@ export const testdata5: TilKontraktTestData = {
                     },
                 ],
                 eøsKontantstøttePerioder: [],
+                barnehageplassPerioder: [],
                 idNummer: [],
                 andreForelder: {
                     kanIkkeGiOpplysninger: {

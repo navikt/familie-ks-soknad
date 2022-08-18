@@ -54,6 +54,7 @@ export interface ISøknadIKontraktBarn {
     omsorgsperson: IOmsorgspersonIKontraktFormat | null;
     andreForelder: IAndreForelderIKontraktFormat | null;
     eøsKontantstøttePerioder: ISøknadsfelt<IEøsKontantstøttePeriodeIKontraktFormat>[];
+    barnehageplassPerioder: ISøknadsfelt<IBarnehageplassPeriodeIKontraktFormat>[];
     idNummer: ISøknadsfelt<IIdNummerIKontraktFormat>[];
 }
 
@@ -139,4 +140,14 @@ export interface IUtbetalingsperiodeIKontraktFormat {
     utbetalingLand: ISøknadsfelt<string>;
     utbetalingFraDato: ISøknadsfelt<ISODateString>;
     utbetalingTilDato: ISøknadsfelt<ISODateString | string>;
+}
+
+export interface IBarnehageplassPeriodeIKontraktFormat {
+    barnehageplassPeriodeBeskrivelse: ISøknadsfelt<string>;
+    barnehageplassUtlandet: ISøknadsfelt<ESvar>;
+    barnehageplassLand: ISøknadsfelt<string> | null;
+    offentligStøtte: ISøknadsfelt<ESvar> | null;
+    antallTimer: ISøknadsfelt<string>;
+    startetIBarnehagen: ISøknadsfelt<ISODateString>;
+    slutterIBarnehagen: ISøknadsfelt<ISODateString | string>;
 }

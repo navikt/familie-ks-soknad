@@ -133,6 +133,7 @@ export const genererInitialBarnMedISøknad = (barn: IBarn): IBarnMedISøknad => 
         barnErFyltUt: false,
         utenlandsperioder: [],
         eøsKontantstøttePerioder: [],
+        barnehageplassPerioder: [],
         idNummer: [],
         andreForelder: null,
         omsorgsperson: null,

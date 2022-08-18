@@ -2,11 +2,13 @@ import { Alpha3Code } from 'i18n-iso-countries';
 
 import { ESvar, ISODateString } from '@navikt/familie-form-elements';
 
+import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 import { barnDataKeySpørsmål } from './barn';
 import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent, ESvarMedUbesvart } from './common';
 import { Slektsforhold } from './kontrakt/generelle';
 import {
     IArbeidsperiode,
+    IBarnehageplassPeriode,
     IEøsKontantstøttePeriode,
     IPensjonsperiode,
     IUtbetalingsperiode,
@@ -56,6 +58,7 @@ export interface IOmBarnetUtvidetFeltTyper {
     pågåendeSøknadHvilketLand: Alpha3Code | '';
     mottarEllerMottokEøsKontantstøtte: ESvar | null;
     registrerteEøsKontantstøttePerioder: IEøsKontantstøttePeriode[];
+    registrerteBarnehageplassPerioder: IBarnehageplassPeriode[];
     andreForelderNavn: string;
     andreForelderKanIkkeGiOpplysninger: ESvar;
     andreForelderFnr: string;
@@ -192,6 +195,18 @@ export interface IKontantstøttePerioderFeltTyper {
     tilDatoKontantstøttePeriode: ISODateString;
     månedligBeløp: string;
 }
+
+export interface IBarnehageplassPerioderFeltTyper {
+    barnehageplassPeriodeBeskrivelse: EBarnehageplassPeriodeBeskrivelse | '';
+    barnehageplassUtlandet: ESvar | null;
+    barnehageplassLand: Alpha3Code | '';
+    offentligStøtte: ESvar | null;
+    antallTimer: string;
+    startetIBarnehagen: ISODateString;
+    slutterIBarnehagen: ISODateString;
+    slutterIBarnehagenVetIkke: ESvar;
+}
+
 export type SkjemaFeltTyper =
     | IOmDegFeltTyper
     | IVelgBarnFeltTyper
@@ -205,4 +220,5 @@ export type SkjemaFeltTyper =
     | IEøsForBarnFeltTyper
     | IUtbetalingerFeltTyper
     | IArbeidsperioderFeltTyper
-    | IKontantstøttePerioderFeltTyper;
+    | IKontantstøttePerioderFeltTyper
+    | IBarnehageplassPerioderFeltTyper;
