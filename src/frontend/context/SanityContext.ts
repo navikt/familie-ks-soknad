@@ -51,8 +51,6 @@ const [SanityProvider, useSanity] = createUseContext(() => {
             }
         });
 
-        console.log(tekstInnhold);
-
         return tekstInnhold as ITekstinnhold;
     };
 
