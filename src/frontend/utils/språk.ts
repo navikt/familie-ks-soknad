@@ -111,7 +111,12 @@ export const hentBostedSpråkId = (barn: IBarn) => {
 };
 
 export const flettefeltTilTekst = (
-    frittståendeOrd: IFrittståendeOrdInnhold
-): Record<EFlettefeltverdi, LocaleRecordString> => {
-    return { [EFlettefeltverdi.YTELSE]: frittståendeOrd.ytelse.kontantstotte };
+    frittståendeOrd: IFrittståendeOrdInnhold,
+    localeString: (key: LocaleRecordString) => string,
+    søkerNavn: string
+): Record<EFlettefeltverdi, string> => {
+    return {
+        [EFlettefeltverdi.YTELSE]: localeString(frittståendeOrd.ytelse.kontantstotte),
+        [EFlettefeltverdi.SØKER_NAVN]: søkerNavn,
+    };
 };

@@ -63,4 +63,5 @@ export const modalPrefix = 'MODAL';
 
 export enum EFlettefeltverdi {
     YTELSE = 'YTELSE',
+    SØKER_NAVN = 'SØKER_NAVN',
 }
