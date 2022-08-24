@@ -13,7 +13,6 @@ export interface IOmDegTekstinnhold {
         ident: LocaleRecordString;
         sivilstatus: LocaleRecordString;
         statsborgerskap: LocaleRecordString;
-        ytelse: [];
     };
     medlemFolketrygden: {
         sporsmal: LocaleRecordString;
@@ -24,11 +23,11 @@ export interface IOmDegTekstinnhold {
         };
     };
     borDuPaDenneAdressen: {
+        sporsmal: LocaleRecordString;
+        feilmelding: LocaleRecordString;
         alert: {
             alertTekst: LocaleRecordString;
             alertVariant: LocaleRecordBlock;
         };
-        sporsmal: LocaleRecordString;
-        feilmelding: LocaleRecordString;
     };
 }
