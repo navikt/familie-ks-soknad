@@ -4,6 +4,8 @@ import { Element } from 'nav-frontend-typografi';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { useApp } from '../../../context/AppContext';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
@@ -11,6 +13,7 @@ import { LeggTilKnapp } from '../../Felleskomponenter/LeggTilKnapp/LeggTilKnapp'
 import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../Felleskomponenter/Steg/Steg';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { UtenlandsoppholdModal } from '../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsoppholdModal';
 import { UtenlandsperiodeOppsummering } from '../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
@@ -20,6 +23,17 @@ import { useOmdeg } from './useOmdeg';
 
 const OmDeg: React.FC = () => {
     const { erÅpen, toggleModal } = useModal();
+    const { tekster, localeString } = useApp();
+    const {
+        [ESanitySteg.OM_DEG]: {
+            omDegTittel,
+            medlemFolketrygden,
+            borDuPaDenneAdressen,
+            sammenhengendeNorgeSoker,
+            sammenhengendeNorgeMerEnnTolvManeder,
+        },
+        modaler: { utenlandsoppholdSoker },
+    } = tekster();
 
     const {
         skjema,
@@ -33,7 +47,7 @@ const OmDeg: React.FC = () => {
 
     return (
         <Steg
-            tittel={<SpråkTekst id={'omdeg.sidetittel'} />}
+            tittel={<TekstBlock block={omDegTittel.tittel} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
@@ -54,9 +68,7 @@ const OmDeg: React.FC = () => {
 
                 {skjema.felter.borPåRegistrertAdresse.verdi === ESvar.NEI && (
                     <AlertStripe variant={'warning'}>
-                        <SpråkTekst
-                            id={'omdeg.borpådenneadressen.kontakt-folkeregister-ukjent.alert'}
-                        />
+                        <TekstBlock block={borDuPaDenneAdressen.alert.alertTekst} />
                     </AlertStripe>
                 )}
             </KomponentGruppe>
@@ -71,7 +83,7 @@ const OmDeg: React.FC = () => {
                             }
                             tilleggsinfo={
                                 <AlertStripe variant={'info'}>
-                                    <SpråkTekst id={'felles.korteopphold.info'} />
+                                    {localeString(sammenhengendeNorgeSoker.beskrivelse)}
                                 </AlertStripe>
                             }
                         />
@@ -87,7 +99,7 @@ const OmDeg: React.FC = () => {
                                 ))}
                                 {utenlandsperioder.length > 0 && (
                                     <Element>
-                                        <SpråkTekst id={'omdeg.flereopphold.spm'} />
+                                        {localeString(utenlandsoppholdSoker.flerePerioderSporsmal)}
                                     </Element>
                                 )}
                                 <LeggTilKnapp
@@ -119,8 +131,11 @@ const OmDeg: React.FC = () => {
                             {skjema.felter.planleggerÅBoINorgeTolvMnd.erSynlig &&
                                 skjema.felter.planleggerÅBoINorgeTolvMnd.verdi === ESvar.NEI && (
                                     <AlertStripe variant={'warning'} dynamisk>
-                                        <SpråkTekst
-                                            id={'omdeg.planlagt-opphold-sammenhengende.alert'}
+                                        <TekstBlock
+                                            block={
+                                                sammenhengendeNorgeMerEnnTolvManeder.alert
+                                                    .alertTekst
+                                            }
                                         />
                                     </AlertStripe>
                                 )}
@@ -132,11 +147,11 @@ const OmDeg: React.FC = () => {
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.yrkesaktivFemÅr}
-                    spørsmålTekstId={'todo.søker.yrkesaktiv'}
+                    spørsmålTekstId={localeString(medlemFolketrygden.sporsmal)}
                 />
                 {skjema.felter.yrkesaktivFemÅr.verdi === ESvar.NEI && (
                     <AlertStripe variant={'warning'} dynamisk>
-                        <SpråkTekst id={'todo.søker.yrkesaktiv'} />
+                        <TekstBlock block={medlemFolketrygden.alert.alertTekst} />
                     </AlertStripe>
                 )}
             </KomponentGruppe>

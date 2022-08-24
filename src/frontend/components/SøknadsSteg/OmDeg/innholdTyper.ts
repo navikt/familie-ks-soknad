@@ -14,7 +14,7 @@ export interface IOmDegTekstinnhold {
         sivilstatus: LocaleRecordString;
         statsborgerskap: LocaleRecordString;
     };
-    medlemFolketrygden: {
+    borDuPaDenneAdressen: {
         sporsmal: LocaleRecordString;
         feilmelding: LocaleRecordString;
         alert: {
@@ -22,11 +22,24 @@ export interface IOmDegTekstinnhold {
             alertVariant: LocaleRecordBlock;
         };
     };
-    borDuPaDenneAdressen: {
+    sammenhengendeNorgeSoker: {
+        sporsmal: LocaleRecordString;
+        feilmelding: LocaleRecordString;
+        beskrivelse: LocaleRecordString;
+    };
+    sammenhengendeNorgeMerEnnTolvManeder: {
         sporsmal: LocaleRecordString;
         feilmelding: LocaleRecordString;
         alert: {
-            alertTekst: LocaleRecordString;
+            alertTekst: LocaleRecordBlock;
+            alertVariant: LocaleRecordBlock;
+        };
+    };
+    medlemFolketrygden: {
+        sporsmal: LocaleRecordString;
+        feilmelding: LocaleRecordString;
+        alert: {
+            alertTekst: LocaleRecordBlock;
             alertVariant: LocaleRecordBlock;
         };
     };

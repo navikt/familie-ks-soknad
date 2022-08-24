@@ -40,7 +40,7 @@ export interface IUtenlandsoppholdTekstinnhold {
     flerePerioderSporsmal: LocaleRecordString;
     knapper: {
         fjern: LocaleRecordString;
-        leggTil: LocaleRecordString;
+        leggTil: LocaleRecordBlock;
     };
     tittel: LocaleRecordBlock;
 }
