@@ -80,7 +80,7 @@ const Filopplaster: React.FC<Props> = ({
             >
                 <FeilmeldingWrapper>
                     {feilmeldinger.map((feilmelding, index) => (
-                        <AlertStripe variant={'error'} key={index}>
+                        <AlertStripe variant={'error'} key={index} inline={false}>
                             {feilmelding}
                         </AlertStripe>
                     ))}
