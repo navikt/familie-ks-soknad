@@ -3,13 +3,13 @@ import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import Modal from 'nav-frontend-modal';
 import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 
 import { Button } from '@navikt/ds-react';
 
 import { device } from '../../../Theme';
+import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
@@ -65,11 +65,11 @@ const FortsettPåSøknad: FC = () => {
     return (
         <StyledFortsettPåSøknad role={'navigation'}>
             <KomponentGruppe>
-                <AlertStripeInfo>
+                <AlertStripe inline={false} variant={'info'}>
                     <Normaltekst>
                         <SpråkTekst id={'mellomlagring.info'} />
                     </Normaltekst>
-                </AlertStripeInfo>
+                </AlertStripe>
             </KomponentGruppe>
             <StyledButton onClick={fortsettPåSøknaden}>
                 <SpråkTekst id={'mellomlagring.knapp.fortsett'} />

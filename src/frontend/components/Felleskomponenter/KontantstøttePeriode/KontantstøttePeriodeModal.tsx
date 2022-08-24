@@ -161,7 +161,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                             }),
                         }}
                         tilleggsinfo={
-                            <StyledAlertStripe>
+                            <StyledAlertStripe variant={'info'}>
                                 <SpråkTekst id={'ombarnet.trygdbeløp.info'} />
                             </StyledAlertStripe>
                         }

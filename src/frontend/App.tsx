@@ -2,9 +2,8 @@ import React from 'react';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import AlertStripe from 'nav-frontend-alertstriper';
-
 import AppContainer from './AppContainer';
+import AlertStripe from './components/Felleskomponenter/AlertStripe/AlertStripe';
 import { AppProvider } from './context/AppContext';
 import { AppNavigationProvider } from './context/AppNavigationContext';
 import { EøsProvider } from './context/EøsContext';
@@ -30,7 +29,7 @@ function App() {
                                         <StegProvider>
                                             <GlobalStyle />
                                             {process.env.NODE_ENV !== 'production' && (
-                                                <AlertStripe type="advarsel">
+                                                <AlertStripe variant="warning">
                                                     {`Denne siden er under utvikling. `}
                                                     <a href="https://www.nav.no/kontantstotte">
                                                         Klikk her for å gå til våre sider for

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 import dayjs from 'dayjs';
 
-import AlertStripe, { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import { RessursStatus } from '@navikt/familie-typer';
@@ -13,6 +12,7 @@ import { useSendInnSkjema } from '../../../hooks/useSendInnSkjema';
 import { IDokumentasjon, IVedlegg } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { erDokumentasjonRelevant } from '../../../utils/dokumentasjon';
+import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { Feilside } from '../../Felleskomponenter/Feilside/Feilside';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import PictureScanningGuide from '../../Felleskomponenter/PictureScanningGuide/PictureScanningGuide';
@@ -75,7 +75,7 @@ const Dokumentasjon: React.FC = () => {
         >
             {slettaVedlegg.length > 0 && (
                 <KomponentGruppe>
-                    <AlertStripeAdvarsel>
+                    <AlertStripe variant={'warning'}>
                         <Normaltekst>
                             <SpråkTekst id={'dokumentasjon.forlangtid.info'} />
                         </Normaltekst>
@@ -86,11 +86,11 @@ const Dokumentasjon: React.FC = () => {
                                 </li>
                             ))}
                         </ul>
-                    </AlertStripeAdvarsel>
+                    </AlertStripe>
                 </KomponentGruppe>
             )}
             <KomponentGruppe>
-                <AlertStripe type={'info'}>
+                <AlertStripe variant={'info'} inline={false}>
                     <SpråkTekst id={'dokumentasjon.nudge'} />
                 </AlertStripe>
 

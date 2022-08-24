@@ -1,15 +1,14 @@
 import React from 'react';
 
-import Alertstripe from 'nav-frontend-alertstriper';
-
+import AlertStripe from '../AlertStripe/AlertStripe';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
 
 export const Feilside: React.FC = () => {
     return (
         <div>
-            <Alertstripe type="feil" aria-live={'polite'}>
+            <AlertStripe variant="error" aria-live={'polite'}>
                 <SpråkTekst id={'felles.crashmelding'} />
-            </Alertstripe>
+            </AlertStripe>
         </div>
     );
 };
