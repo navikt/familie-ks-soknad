@@ -54,6 +54,7 @@ const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
                 </StyledSideTittel>
 
                 <AlertStripe
+                    inline={false}
                     variant={'error'}
                     children={<SpråkTekst id={'felles.modal.deployfeil.error'} />}
                 />
