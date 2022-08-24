@@ -2,24 +2,26 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { AlertStripeType, default as NavAlertStripe } from 'nav-frontend-alertstriper';
+import { Alert, AlertProps } from '@navikt/ds-react';
 
 interface AlertStripeProps {
-    type?: AlertStripeType;
-    form?: 'default' | 'inline' | undefined;
+    variant?: AlertProps['variant'];
+    size?: AlertProps['size'];
+    inline?: AlertProps['inline'];
     dynamisk?: boolean;
     className?: '';
 }
 
-const StyledAlertStripe = styled(NavAlertStripe)`
+const StyledAlertStripe = styled(Alert)`
     p {
         margin: 0;
     }
 `;
 
 const AlertStripe: React.FC<AlertStripeProps> = ({
-    type = 'info',
-    form = 'inline',
+    variant = 'info',
+    inline = true,
+    size = 'medium',
     dynamisk = false,
     className,
     children,
@@ -27,8 +29,9 @@ const AlertStripe: React.FC<AlertStripeProps> = ({
     return (
         <StyledAlertStripe
             className={className}
-            type={type}
-            form={form}
+            variant={variant}
+            inline={inline}
+            size={size}
             aria-live={dynamisk ? 'polite' : 'off'}
         >
             <p>{children}</p>

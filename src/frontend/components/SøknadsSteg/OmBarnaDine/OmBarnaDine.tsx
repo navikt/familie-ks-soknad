@@ -145,7 +145,7 @@ const OmBarnaDine: React.FC = () => {
                         ]
                     }
                     tilleggsinfo={
-                        <AlertStripe>
+                        <AlertStripe variant={'info'}>
                             <SpråkTekst id={'felles.korteopphold.info'} />
                         </AlertStripe>
                     }

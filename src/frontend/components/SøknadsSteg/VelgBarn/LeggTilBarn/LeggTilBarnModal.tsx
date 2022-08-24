@@ -1,6 +1,5 @@
 import React from 'react';
 
-import AlertStripe from 'nav-frontend-alertstriper';
 import { SkjemaGruppe } from 'nav-frontend-skjema';
 import { Element } from 'nav-frontend-typografi';
 
@@ -8,6 +7,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Valideringsstatus } from '@navikt/familie-skjema';
 
 import { visFeiloppsummering } from '../../../../utils/hjelpefunksjoner';
+import AlertStripe from '../../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import { SkjemaCheckbox } from '../../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
@@ -51,7 +51,7 @@ const LeggTilBarnModal: React.FC<{
                     spørsmålTekstId={velgBarnSpørsmålSpråkId[VelgBarnSpørsmålId.leggTilBarnErFødt]}
                 />
                 {skjema.felter.erFødt.verdi === ESvar.NEI && (
-                    <AlertStripe type={'advarsel'} form={'inline'}>
+                    <AlertStripe variant={'warning'}>
                         <SpråkTekst id={'hvilkebarn.leggtilbarn.barn-ikke-født.alert'} />
                     </AlertStripe>
                 )}

@@ -7,7 +7,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { ISøker } from '../../../typer/person';
 import {
-    mekkGyldigSøknad,
     mockEøs,
     mockHistory,
     silenceConsoleErrors,
@@ -41,24 +40,6 @@ describe('OmDeg', () => {
         mockHistory(['/om-deg']);
     });
 
-    test('Alle tekster finnes i språkfil', async () => {
-        const { søker } = mekkGyldigSøknad();
-        const søkerMedSvarSomViserAlleTekster: ISøker = {
-            ...søker,
-            værtINorgeITolvMåneder: { ...søker.værtINorgeITolvMåneder, svar: ESvar.NEI },
-            planleggerÅBoINorgeTolvMnd: { ...søker.planleggerÅBoINorgeTolvMnd, svar: ESvar.NEI },
-            yrkesaktivFemÅr: { ...søker.yrkesaktivFemÅr, svar: ESvar.JA },
-        };
-        spyOnUseApp({ søker: søkerMedSvarSomViserAlleTekster });
-        søkerMedSvarSomViserAlleTekster.adresse = null;
-        søkerMedSvarSomViserAlleTekster.adressebeskyttelse = false;
-        const { findAllByTestId } = render(<TestKomponentMedEkteTekster />);
-
-        // Vent på effect i AppContext så vi ikke får advarsel om act
-        await findAllByTestId(/alertstripe/);
-        expect(console.error).toHaveBeenCalledTimes(0);
-    });
-
     test('Alle tekster finnes når man svarer at man ikke bor på registrert adresse', () => {
         spyOnUseApp({
             søker: mockDeep<ISøker>({
@@ -79,8 +60,8 @@ describe('OmDeg', () => {
 
     test('Skal rendre 2 alertstriper i OmDeg', async () => {
         spyOnUseApp({ søker: mockDeep<ISøker>({ statsborgerskap: [] }) });
-        const { findAllByTestId } = render(<TestKomponentMedEkteTekster />);
-        expect(await findAllByTestId(/alertstripe/)).toHaveLength(2);
+        const { container } = render(<TestKomponentMedEkteTekster />);
+        expect(container.getElementsByClassName('navds-alert')).toHaveLength(2);
     });
 
     test('Viser adressesperre-melding', async () => {
@@ -106,10 +87,9 @@ describe('OmDeg', () => {
                 statsborgerskap: [{ landkode: 'NOR' }],
             }),
         });
-        const { queryByText, findAllByTestId } = render(<TestKomponent />);
+        const { queryByText, container } = render(<TestKomponent />);
         // Lar async useEffect i AppContext bli ferdig
-        await findAllByTestId('alertstripe');
-
+        await container.getElementsByClassName('navds-alert');
         expect(
             queryByText(omDegSpørsmålSpråkId[OmDegSpørsmålId.borPåRegistrertAdresse])
         ).not.toBeInTheDocument();
@@ -143,9 +123,9 @@ describe('OmDeg', () => {
                 statsborgerskap: [{ landkode: 'NOR' }],
             }),
         });
-        const { queryByText, findAllByTestId } = render(<TestKomponent />);
+        const { queryByText, container } = render(<TestKomponent />);
         // Lar async useEffect i AppContext bli ferdig
-        await findAllByTestId('alertstripe');
+        await container.getElementsByClassName('navds-alert');
 
         expect(
             queryByText(omDegSpørsmålSpråkId[OmDegSpørsmålId.borPåRegistrertAdresse])
