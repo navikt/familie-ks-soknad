@@ -16,9 +16,10 @@ const StyledAlertStripe = styled(Alert)`
 `;
 
 const AlertStripe: React.FC<AlertStripeProps> = ({
-    variant = 'info',
+    variant,
     inline = true,
     size = 'medium',
+    fullWidth = false,
     dynamisk = false,
     className,
     children,
@@ -29,6 +30,7 @@ const AlertStripe: React.FC<AlertStripeProps> = ({
             variant={variant}
             inline={inline}
             size={size}
+            fullWidth={fullWidth}
             aria-live={dynamisk ? 'polite' : 'off'}
         >
             <p>{children}</p>
