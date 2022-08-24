@@ -65,7 +65,7 @@ const FortsettPåSøknad: FC = () => {
     return (
         <StyledFortsettPåSøknad role={'navigation'}>
             <KomponentGruppe>
-                <AlertStripe inline={false}>
+                <AlertStripe inline={false} variant={'info'}>
                     <Normaltekst>
                         <SpråkTekst id={'mellomlagring.info'} />
                     </Normaltekst>

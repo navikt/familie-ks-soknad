@@ -174,7 +174,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                         }),
                     }}
                     tilleggsinfo={
-                        <StyledAlertStripe>
+                        <StyledAlertStripe variant={'info'}>
                             <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
                         </StyledAlertStripe>
                     }

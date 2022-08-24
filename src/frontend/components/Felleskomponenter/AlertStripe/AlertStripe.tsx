@@ -4,10 +4,7 @@ import styled from 'styled-components';
 
 import { Alert, AlertProps } from '@navikt/ds-react';
 
-interface AlertStripeProps {
-    variant?: AlertProps['variant'];
-    size?: AlertProps['size'];
-    inline?: AlertProps['inline'];
+interface AlertStripeProps extends AlertProps {
     dynamisk?: boolean;
     className?: '';
 }

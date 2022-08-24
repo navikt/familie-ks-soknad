@@ -58,7 +58,7 @@ const VelgBarn: React.FC = () => {
                     },
                 }}
             >
-                <AlertStripe>
+                <AlertStripe variant={'info'}>
                     <SpråkTekst id={'hvilkebarn.info.alert'} />
                     <EksternLenke
                         lenkeSpråkId={'hvilkebarn.endre-opplysninger.lenke'}

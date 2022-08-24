@@ -70,7 +70,7 @@ const OmBarnaDine: React.FC = () => {
                         ]
                     }
                     tilleggsinfo={
-                        <AlertStripe>
+                        <AlertStripe variant={'info'}>
                             <SpråkTekst id={'ombarna.institusjon.info'} />
                         </AlertStripe>
                     }
@@ -96,7 +96,7 @@ const OmBarnaDine: React.FC = () => {
                         omBarnaDineSpørsmålSpråkId[OmBarnaDineSpørsmålId.erBarnAdoptertFraUtland]
                     }
                     tilleggsinfo={
-                        <AlertStripe>
+                        <AlertStripe variant={'info'}>
                             <SpråkTekst id={'ombarna.adoptert.info'} />
                         </AlertStripe>
                     }
