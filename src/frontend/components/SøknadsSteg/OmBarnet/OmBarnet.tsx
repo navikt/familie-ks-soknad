@@ -6,12 +6,15 @@ import { Normaltekst } from 'nav-frontend-typografi';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { useApp } from '../../../context/AppContext';
 import { BarnetsId } from '../../../typer/common';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import EksternLenke from '../../Felleskomponenter/EksternLenke/EksternLenke';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../Felleskomponenter/Steg/Steg';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
 import AndreForelder from './AndreForelder';
 import { OmBarnetHeader } from './OmBarnetHeader';
@@ -24,6 +27,7 @@ const EksternLenkeContainer = styled.div`
 `;
 
 const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
+    const { tekster } = useApp();
     const {
         skjema,
         validerFelterOgVisFeilmelding,
@@ -44,9 +48,13 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         fjernBarnehageplassPeriode,
     } = useOmBarnet(barnetsId);
 
+    const {
+        [ESanitySteg.OM_BARNET]: { omBarnetTittel },
+    } = tekster();
+
     return barn ? (
         <Steg
-            tittel={<SpråkTekst id={'ombarnet.sidetittel'} values={{ navn: barn.navn }} />}
+            tittel={<TekstBlock block={omBarnetTittel.tittel} barnetsNavn={barn.navn} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

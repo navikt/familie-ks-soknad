@@ -1,18 +1,22 @@
 import React from 'react';
 
+import { useApp } from '../../../../context/AppContext';
 import { PersonType } from '../../../../typer/personType';
+import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { Arbeidsperiode } from '../../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
 import KomponentGruppe from '../../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import { Pensjonsperiode } from '../../../Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
 import { SkjemaFeltInput } from '../../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
 import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../../Felleskomponenter/Steg/Steg';
+import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { Utbetalingsperiode } from '../../../Felleskomponenter/UtbetalingerModal/Utbetalingsperiode';
 import IdNummerForSøker from './IdNummerForSøker';
 import { EøsSøkerSpørsmålId, eøsSøkerSpørsmålSpråkId } from './spørsmål';
 import { useEøsForSøker } from './useEøsForSøker';
 
 const EøsForSøker: React.FC = () => {
+    const { tekster } = useApp();
     const {
         skjema,
         validerFelterOgVisFeilmelding,
@@ -27,9 +31,13 @@ const EøsForSøker: React.FC = () => {
         settIdNummerFelter,
     } = useEøsForSøker();
 
+    const {
+        [ESanitySteg.EØS_FOR_SØKER]: { eosForSokerTittel },
+    } = tekster();
+
     return (
         <Steg
-            tittel={<SpråkTekst id={'eøs-om-deg.sidetittel'} />}
+            tittel={<TekstBlock block={eosForSokerTittel.tittel} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

@@ -1,6 +1,14 @@
 import { IDinLivssituasjonTekstinnhold } from '../../components/SøknadsSteg/DinLivssituasjon/innholdTyper';
+import { IDokumentasjonnTekstinnhold } from '../../components/SøknadsSteg/Dokumentasjon/innholdTyper';
+import { IEøsForBarnTekstinnhold } from '../../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
+import { IEøsForSøkerTekstinnhold } from '../../components/SøknadsSteg/EøsSteg/Søker/innholdTyper';
 import { IForsideTekstinnhold } from '../../components/SøknadsSteg/Forside/innholdTyper';
+import { IKvitteringTekstinnhold } from '../../components/SøknadsSteg/Kvittering/innholdTyper';
+import { IOmBarnaTekstinnhold } from '../../components/SøknadsSteg/OmBarnaDine/innholdTyper';
+import { IOmBarnetTekstinnhold } from '../../components/SøknadsSteg/OmBarnet/innholdTyper';
 import { IOmDegTekstinnhold } from '../../components/SøknadsSteg/OmDeg/innholdTyper';
+import { IOppsummeringTekstinnhold } from '../../components/SøknadsSteg/Oppsummering/innholdTyper';
+import { IVelgBarnTekstinnhold } from '../../components/SøknadsSteg/VelgBarn/innholdTyper';
 import { LocaleRecordString } from '../common';
 import { RouteEnum } from '../routes';
 import { IUtenlandsoppholdTekstinnhold } from './modaler/utenlandsopphold';
@@ -39,6 +47,14 @@ export interface ITekstinnhold {
     [ESanitySteg.FORSIDE]: IForsideTekstinnhold;
     [ESanitySteg.OM_DEG]: IOmDegTekstinnhold;
     [ESanitySteg.DIN_LIVSSITUASJON]: IDinLivssituasjonTekstinnhold;
+    [ESanitySteg.VELG_BARN]: IVelgBarnTekstinnhold;
+    [ESanitySteg.OM_BARNA]: IOmBarnaTekstinnhold;
+    [ESanitySteg.OM_BARNET]: IOmBarnetTekstinnhold;
+    [ESanitySteg.EØS_FOR_SØKER]: IEøsForSøkerTekstinnhold;
+    [ESanitySteg.EØS_FOR_BARN]: IEøsForBarnTekstinnhold;
+    [ESanitySteg.OPPSUMMERING]: IOppsummeringTekstinnhold;
+    [ESanitySteg.DOKUMENTASJON]: IDokumentasjonnTekstinnhold;
+    [ESanitySteg.KVITTERING]: IKvitteringTekstinnhold;
     modaler: IModalerInnhold;
     frittståendeOrd: IFrittståendeOrdInnhold;
     navigasjon: INavigasjonTekstinnhold;
@@ -62,6 +78,16 @@ export const frittståendeOrdPrefix = 'FRITTSTAENDE';
 export const modalPrefix = 'MODAL';
 
 export enum EFlettefeltverdi {
-    YTELSE = 'YTELSE',
+    BARN_NAVN = 'BARN_NAVN',
     SØKER_NAVN = 'SØKER_NAVN',
+    YTELSE = 'YTELSE',
+    /*
+    Legger inn disse kommentert ut, så kan vi ta de inn en etter en når vi støtter dem
+    UTLANDET_NORGE = 'UTLANDET_NORGE',
+    PERSONTYPE = 'PERSONTYPE',
+    I_UTENFOR = 'I_UTENFOR',
+    ANTALL = 'ANTALL',
+    TOTAL_ANTALL = 'TOTAL_ANTALL',
+    DATO = 'DATO',
+    KLOKKESLETT = 'KLOKKESLETT',*/
 }

@@ -7,11 +7,13 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../Felleskomponenter/Steg/Steg';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
 import HvilkeBarnCheckboxGruppe from './HvilkeBarnCheckboxGruppe';
 import { OmBarnaDineSpørsmålId, omBarnaDineSpørsmålSpråkId } from './spørsmål';
@@ -26,8 +28,12 @@ const OmBarnaDine: React.FC = () => {
         useOmBarnaDine();
 
     const history = useHistory();
-    const { søknad } = useApp();
+    const { søknad, tekster } = useApp();
     const { barnInkludertISøknaden } = søknad;
+
+    const {
+        [ESanitySteg.OM_BARNA]: { omBarnaTittel },
+    } = tekster();
 
     if (!barnInkludertISøknaden.length) {
         history.push('/velg-barn');
@@ -35,7 +41,7 @@ const OmBarnaDine: React.FC = () => {
     }
     return (
         <Steg
-            tittel={<SpråkTekst id={'ombarna.sidetittel'} />}
+            tittel={<TekstBlock block={omBarnaTittel.tittel} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

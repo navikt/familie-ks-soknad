@@ -8,6 +8,7 @@ import { useApp } from '../../../../context/AppContext';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../typer/barn';
 import { BarnetsId } from '../../../../typer/common';
 import { PersonType } from '../../../../typer/personType';
+import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { skalSkjuleAndreForelderFelt } from '../../../../utils/barn';
 import { Arbeidsperiode } from '../../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
 import { LandDropdown } from '../../../Felleskomponenter/Dropdowns/LandDropdown';
@@ -21,6 +22,7 @@ import { SkjemaFeltInput } from '../../../Felleskomponenter/SkjemaFeltInput/Skje
 import SkjemaFieldset from '../../../Felleskomponenter/SkjemaFieldset';
 import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../../Felleskomponenter/Steg/Steg';
+import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { Utbetalingsperiode } from '../../../Felleskomponenter/UtbetalingerModal/Utbetalingsperiode';
 import EøsAndreForelderOppsummering from '../../Oppsummering/OppsummeringSteg/Eøs/EøsAndreForelderOppsummering';
 import IdNummerForAndreForelder from './IdNummerForAndreForelder';
@@ -60,7 +62,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         fjernKontantstøttePeriodeOmsorgsperson,
     } = useEøsForBarn(barnetsId);
     const intl = useIntl();
-    const { søknad } = useApp();
+    const { søknad, tekster } = useApp();
 
     const andreBarnSomErFyltUt = søknad.barnInkludertISøknaden.filter(
         barnISøknad =>
@@ -71,9 +73,13 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         annetBarn => annetBarn.id === barn[barnDataKeySpørsmål.sammeForelderSomAnnetBarnMedId].svar
     );
 
+    const {
+        [ESanitySteg.EØS_FOR_BARN]: { eosForBarnTittel },
+    } = tekster();
+
     return (
         <Steg
-            tittel={<SpråkTekst id={'eøs-om-barn.sidetittel'} values={{ barn: barn.navn }} />}
+            tittel={<TekstBlock block={eosForBarnTittel.tittel} barnetsNavn={barn.navn} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
