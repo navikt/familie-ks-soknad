@@ -1,9 +1,6 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { IntlProvider } from 'react-intl';
-
-import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { ISøker } from '../../../typer/person';
@@ -32,9 +29,9 @@ describe('Personopplysninger', () => {
         spyOnUseApp({ søker });
 
         const { getByText } = render(
-            <IntlProvider locale={LocaleType.nb}>
+            <TestProvidere>
                 <Personopplysninger />
-            </IntlProvider>
+            </TestProvidere>
         );
         expect(getByText(/Testgata/)).toBeInTheDocument();
         expect(getByText(/Oslo/)).toBeInTheDocument();
@@ -53,9 +50,9 @@ describe('Personopplysninger', () => {
         spyOnUseApp({ søker });
 
         const { queryByText } = render(
-            <IntlProvider locale={LocaleType.nb}>
+            <TestProvidere>
                 <Personopplysninger />
-            </IntlProvider>
+            </TestProvidere>
         );
         expect(queryByText('12345678901')).toBeInTheDocument();
         expect(queryByText('omdeg.personopplysninger.ikke-registrert.alert')).toBeInTheDocument();

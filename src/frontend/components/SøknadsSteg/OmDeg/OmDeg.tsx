@@ -23,16 +23,9 @@ import { useOmdeg } from './useOmdeg';
 
 const OmDeg: React.FC = () => {
     const { erÅpen, toggleModal } = useModal();
-    const { tekster, localeString } = useApp();
+    const { tekster } = useApp();
     const {
-        [ESanitySteg.OM_DEG]: {
-            omDegTittel,
-            medlemFolketrygden,
-            borDuPaDenneAdressen,
-            sammenhengendeNorgeSoker,
-            sammenhengendeNorgeMerEnnTolvManeder,
-        },
-        modaler: { utenlandsoppholdSoker },
+        [ESanitySteg.OM_DEG]: { medlemFolketrygden },
     } = tekster();
 
     const {
@@ -47,7 +40,7 @@ const OmDeg: React.FC = () => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={omDegTittel.tittel} />}
+            tittel={<SpråkTekst id={'omdeg.sidetittel'} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
@@ -68,7 +61,9 @@ const OmDeg: React.FC = () => {
 
                 {skjema.felter.borPåRegistrertAdresse.verdi === ESvar.NEI && (
                     <AlertStripe variant={'warning'}>
-                        <TekstBlock block={borDuPaDenneAdressen.alert.alertTekst} />
+                        <SpråkTekst
+                            id={'omdeg.borpådenneadressen.kontakt-folkeregister-ukjent.alert'}
+                        />
                     </AlertStripe>
                 )}
             </KomponentGruppe>
@@ -83,7 +78,7 @@ const OmDeg: React.FC = () => {
                             }
                             tilleggsinfo={
                                 <AlertStripe variant={'info'}>
-                                    {localeString(sammenhengendeNorgeSoker.beskrivelse)}
+                                    <SpråkTekst id={'felles.korteopphold.info'} />
                                 </AlertStripe>
                             }
                         />
@@ -99,7 +94,7 @@ const OmDeg: React.FC = () => {
                                 ))}
                                 {utenlandsperioder.length > 0 && (
                                     <Element>
-                                        {localeString(utenlandsoppholdSoker.flerePerioderSporsmal)}
+                                        <SpråkTekst id={'omdeg.flereopphold.spm'} />
                                     </Element>
                                 )}
                                 <LeggTilKnapp
@@ -131,11 +126,8 @@ const OmDeg: React.FC = () => {
                             {skjema.felter.planleggerÅBoINorgeTolvMnd.erSynlig &&
                                 skjema.felter.planleggerÅBoINorgeTolvMnd.verdi === ESvar.NEI && (
                                     <AlertStripe variant={'warning'} dynamisk>
-                                        <TekstBlock
-                                            block={
-                                                sammenhengendeNorgeMerEnnTolvManeder.alert
-                                                    .alertTekst
-                                            }
+                                        <SpråkTekst
+                                            id={'omdeg.planlagt-opphold-sammenhengende.alert'}
                                         />
                                     </AlertStripe>
                                 )}
@@ -147,7 +139,7 @@ const OmDeg: React.FC = () => {
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.yrkesaktivFemÅr}
-                    spørsmålTekstId={localeString(medlemFolketrygden.sporsmal)}
+                    spørsmålTekstId={'todo.søker.yrkesaktiv'}
                 />
                 {skjema.felter.yrkesaktivFemÅr.verdi === ESvar.NEI && (
                     <AlertStripe variant={'warning'} dynamisk>
