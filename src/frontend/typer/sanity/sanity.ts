@@ -3,6 +3,12 @@ import { IForsideTekstinnhold } from '../../components/SøknadsSteg/Forside/innh
 import { IOmDegTekstinnhold } from '../../components/SøknadsSteg/OmDeg/innholdTyper';
 import { LocaleRecordString } from '../common';
 import { RouteEnum } from '../routes';
+import { IAndreUtbetalingerTekstinnhold } from './modaler/andreUtbetalinger';
+import { IArbeidsperiodeTekstinnhold } from './modaler/arbeidsperiode';
+import { IBarnehageplassTekstinnhold } from './modaler/barnehageplass';
+import { IEøsKontantstøtteTekstinnhold } from './modaler/eøsKontantstøtte';
+import { ILeggTilBarnTekstinnhold } from './modaler/leggTilBarn';
+import { IPensjonsperiodeTekstinnhold } from './modaler/pensjonsperiode';
 import { IUtenlandsoppholdTekstinnhold } from './modaler/utenlandsopphold';
 import { INavigasjonTekstinnhold } from './navigasjon';
 
@@ -45,7 +51,22 @@ export interface ITekstinnhold {
 }
 
 export interface IModalerInnhold {
+    andreUtbetalingerSøker: IAndreUtbetalingerTekstinnhold;
+    andreUtbetalingerAndreForelder: IAndreUtbetalingerTekstinnhold;
+    andreUtbetalingerOmsorgsperson: IAndreUtbetalingerTekstinnhold;
+    arbeidsperioderSøker: IArbeidsperiodeTekstinnhold;
+    arbeidsperioderAndreForelder: IArbeidsperiodeTekstinnhold;
+    arbeidsperioderOmsorgsperson: IArbeidsperiodeTekstinnhold;
+    barnehageplass: IBarnehageplassTekstinnhold;
+    eøsKontantstøtteSøker: IEøsKontantstøtteTekstinnhold;
+    eøsKontantstøtteAndreForelder: IEøsKontantstøtteTekstinnhold;
+    eøsKontantstøtteOmsorgsperson: IEøsKontantstøtteTekstinnhold;
+    leggTilBarn: ILeggTilBarnTekstinnhold;
+    pensjonsperiodeSøker: IPensjonsperiodeTekstinnhold;
+    pensjonsperiodeAndreForelder: IPensjonsperiodeTekstinnhold;
+    pensjonsperiodeOmsorgsperson: IPensjonsperiodeTekstinnhold;
     utenlandsoppholdSoker: IUtenlandsoppholdTekstinnhold;
+    utenlandsoppholdBarn: IUtenlandsoppholdTekstinnhold;
 }
 
 export interface IFrittståendeOrdInnhold {
