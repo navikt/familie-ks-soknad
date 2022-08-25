@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 
 import styled from 'styled-components';
 
-import { Sidetittel } from 'nav-frontend-typografi';
-
 import { LocaleType, Sprakvelger } from '@navikt/familie-sprakvelger';
 
 import VeilederSnakkeboble from '../../../assets/VeilederSnakkeboble';
@@ -19,7 +17,7 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
 import FortsettPåSøknad from './FortsettPåSøknad';
 
-const StyledSidetittel = styled(Sidetittel)`
+const TittelContainer = styled.div`
     && {
         margin: 4rem 0 2.3rem 0;
     }
@@ -58,9 +56,9 @@ const Forside: React.FC = () => {
                 posisjon={'høyre'}
             />
 
-            <StyledSidetittel>
+            <TittelContainer>
                 <TekstBlock block={soknadstittel.soknadstittel} />
-            </StyledSidetittel>
+            </TittelContainer>
 
             <StyledSpråkvelger støttedeSprak={[LocaleType.nn, LocaleType.nb, LocaleType.en]} />
 
