@@ -1,6 +1,7 @@
 import { LocaleRecordBlock } from '../../common';
+import { IFellesModalFelterTekstinnhold } from './fellesModalFelter';
 
-export interface IEøsKontantstøtteTekstinnhold {
+export interface IEøsKontantstøtteTekstinnhold extends IFellesModalFelterTekstinnhold {
     belop: {
         feilmelding: LocaleRecordBlock;
         sporsmal: LocaleRecordBlock;
@@ -14,13 +15,8 @@ export interface IEøsKontantstøtteTekstinnhold {
         sporsmal: LocaleRecordBlock;
     };
     flerePerioderSporsmal: LocaleRecordBlock;
-    knapper: {
-        fjern: LocaleRecordBlock;
-        leggTil: LocaleRecordBlock;
-    };
     land: {
         farEosYtelseFraLand: { feilmelding: LocaleRecordBlock; sporsmal: LocaleRecordBlock };
         fikkEosYtelseFraLand: { feilmelding: LocaleRecordBlock; sporsmal: LocaleRecordBlock };
     };
-    tittel: LocaleRecordBlock;
 }

@@ -1,6 +1,7 @@
-import { LocaleRecordBlock, LocaleRecordString } from '../../common';
+import { LocaleRecordString } from '../../common';
+import { IFellesModalFelterTekstinnhold } from './fellesModalFelter';
 
-export interface ILeggTilBarnTekstinnhold {
+export interface ILeggTilBarnTekstinnhold extends IFellesModalFelterTekstinnhold {
     barnetsNavn: {
         etternavn: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
         fornavn: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
@@ -19,9 +20,4 @@ export interface ILeggTilBarnTekstinnhold {
         ikkeFattIdentCheckboxLabel: LocaleRecordString;
         ikkeFattIdentAlert: LocaleRecordString;
     };
-    knapper: {
-        fjern: LocaleRecordBlock;
-        leggTil: LocaleRecordBlock;
-    };
-    tittel: LocaleRecordBlock;
 }

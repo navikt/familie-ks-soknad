@@ -1,6 +1,7 @@
 import { LocaleRecordBlock } from '../../common';
+import { IFellesModalFelterTekstinnhold } from './fellesModalFelter';
 
-export interface IPensjonsperiodeTekstinnhold {
+export interface IPensjonsperiodeTekstinnhold extends IFellesModalFelterTekstinnhold {
     dato: {
         farStartdato: { feilmelding: LocaleRecordBlock; sporsmal: LocaleRecordBlock };
         fikkStartdato: { feilmelding: LocaleRecordBlock; sporsmal: LocaleRecordBlock };
@@ -11,13 +12,8 @@ export interface IPensjonsperiodeTekstinnhold {
         sporsmal: LocaleRecordBlock;
     };
     flerePerioderSporsmal: LocaleRecordBlock;
-    knapper: {
-        fjern: LocaleRecordBlock;
-        leggTil: LocaleRecordBlock;
-    };
     land: {
         farPensjonFraLand: { feilmelding: LocaleRecordBlock; sporsmal: LocaleRecordBlock };
         fikkPensjonFraLand: { feilmelding: LocaleRecordBlock; sporsmal: LocaleRecordBlock };
     };
-    tittel: LocaleRecordBlock;
 }

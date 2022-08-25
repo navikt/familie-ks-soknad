@@ -1,6 +1,7 @@
 import { LocaleRecordBlock, LocaleRecordString } from '../../common';
+import { IFellesModalFelterTekstinnhold } from './fellesModalFelter';
 
-export interface IAndreUtbetalingerTekstinnhold {
+export interface IAndreUtbetalingerTekstinnhold extends IFellesModalFelterTekstinnhold {
     dato: {
         startdato: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
         fremtidSluttdato: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
@@ -8,10 +9,6 @@ export interface IAndreUtbetalingerTekstinnhold {
         ukjentSluttdato: { label: LocaleRecordString };
     };
     flerePerioderSporsmal: LocaleRecordString;
-    knapper: {
-        fjern: LocaleRecordBlock;
-        leggTil: LocaleRecordBlock;
-    };
     land: {
         feilmelding: LocaleRecordBlock;
         sporsmal: LocaleRecordBlock;
@@ -20,5 +17,4 @@ export interface IAndreUtbetalingerTekstinnhold {
         feilmelding: LocaleRecordBlock;
         sporsmal: LocaleRecordBlock;
     };
-    tittel: LocaleRecordBlock;
 }

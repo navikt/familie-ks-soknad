@@ -1,6 +1,7 @@
-import { LocaleRecordBlock, LocaleRecordString } from '../../common';
+import { LocaleRecordString } from '../../common';
+import { IFellesModalFelterTekstinnhold } from './fellesModalFelter';
 
-export interface IBarnehageplassTekstinnhold {
+export interface IBarnehageplassTekstinnhold extends IFellesModalFelterTekstinnhold {
     antallTimer: {
         feilmelding: LocaleRecordString;
         sporsmal: LocaleRecordString;
@@ -14,7 +15,6 @@ export interface IBarnehageplassTekstinnhold {
             barnehageplassTidligere: LocaleRecordString;
         };
     };
-
     dato: {
         SluttetIBarnehagenDato: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
         slutterIBarnehagenDato: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
@@ -29,16 +29,10 @@ export interface IBarnehageplassTekstinnhold {
         ukjentSluttdato: { label: LocaleRecordString };
     };
     flerePerioderSporsmal: LocaleRecordString;
-    knapper: {
-        fjern: LocaleRecordBlock;
-        leggTil: LocaleRecordBlock;
-    };
     offentligStotte: {
         feilmelding: LocaleRecordString;
         sporsmal: LocaleRecordString;
     };
-    tittel: LocaleRecordBlock;
-
     utlandet: {
         barnehageUtlandet: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
         hvilketLand: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };

@@ -1,6 +1,7 @@
-import { LocaleRecordBlock, LocaleRecordString } from '../../common';
+import { LocaleRecordString } from '../../common';
+import { IFellesModalFelterTekstinnhold } from './fellesModalFelter';
 
-export interface IUtenlandsoppholdTekstinnhold {
+export interface IUtenlandsoppholdTekstinnhold extends IFellesModalFelterTekstinnhold {
     arsak: {
         feilmelding: LocaleRecordString;
         sporsmal: LocaleRecordString;
@@ -38,9 +39,4 @@ export interface IUtenlandsoppholdTekstinnhold {
         landTidligereOpphold: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
     };
     flerePerioderSporsmal: LocaleRecordString;
-    knapper: {
-        fjern: LocaleRecordString;
-        leggTil: LocaleRecordBlock;
-    };
-    tittel: LocaleRecordBlock;
 }

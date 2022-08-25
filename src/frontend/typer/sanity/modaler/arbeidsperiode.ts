@@ -1,6 +1,7 @@
 import { LocaleRecordBlock, LocaleRecordString } from '../../common';
+import { IFellesModalFelterTekstinnhold } from './fellesModalFelter';
 
-export interface IArbeidsperiodeTekstinnhold {
+export interface IArbeidsperiodeTekstinnhold extends IFellesModalFelterTekstinnhold {
     arbeidsgiver: {
         feilmelding: LocaleRecordString;
         sporsmal: LocaleRecordString;
@@ -16,10 +17,6 @@ export interface IArbeidsperiodeTekstinnhold {
         ukjentSluttdato: { label: LocaleRecordString };
     };
     flerePerioderSporsmal: LocaleRecordBlock;
-    knapper: {
-        fjern: LocaleRecordBlock;
-        leggTil: LocaleRecordBlock;
-    };
     land: {
         arbeiderILand: { feilmelding: LocaleRecordBlock; sporsmal: LocaleRecordBlock };
         arbeidetILand: { feilmelding: LocaleRecordBlock; sporsmal: LocaleRecordBlock };
@@ -28,5 +25,4 @@ export interface IArbeidsperiodeTekstinnhold {
         feilmelding: LocaleRecordString;
         sporsmal: LocaleRecordString;
     };
-    tittel: LocaleRecordBlock;
 }
