@@ -16,7 +16,7 @@ export interface IBarnehageplassTekstinnhold extends IFellesModalFelterTekstinnh
         };
     };
     dato: {
-        SluttetIBarnehagenDato: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
+        sluttetIBarnehagenDato: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
         slutterIBarnehagenDato: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
         starterIBarnehagenDato: {
             feilmelding: LocaleRecordString;
