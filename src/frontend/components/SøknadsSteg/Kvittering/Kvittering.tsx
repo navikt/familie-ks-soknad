@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import dayjs, { Dayjs } from 'dayjs';
 
-import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import { RessursStatus } from '@navikt/familie-typer';
@@ -12,6 +11,7 @@ import { useSteg } from '../../../context/StegContext';
 import { RouteEnum } from '../../../typer/routes';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { setUserProperty, UserProperty } from '../../../utils/amplitude';
+import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import BlokkerTilbakeKnappModal from '../../Felleskomponenter/BlokkerTilbakeKnappModal/BlokkerTilbakeKnappModal';
 import EksternLenke from '../../Felleskomponenter/EksternLenke/EksternLenke';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
@@ -62,7 +62,7 @@ const Kvittering: React.FC = () => {
     return (
         <Steg tittel={<TekstBlock block={tittel} />}>
             <KomponentGruppe>
-                <AlertStripe type="suksess">
+                <AlertStripe variant="success">
                     <SpråkTekst
                         id={'kvittering.mottatt'}
                         values={{

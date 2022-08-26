@@ -7,35 +7,33 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { genererAdresseVisning } from '../../../utils/adresse';
 import { hentSivilstatusSpråkId, landkodeTilSpråk } from '../../../utils/språk';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
-import EksternLenke from '../../Felleskomponenter/EksternLenke/EksternLenke';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { omDegPersonopplysningerSpråkId } from './spørsmål';
 
 export const Personopplysninger: React.FC = () => {
     const [valgtLocale] = useSprakContext();
 
-    const { søknad } = useApp();
+    const { søknad, tekster, localeString } = useApp();
     const søker = søknad.søker;
+
+    const {
+        [ESanitySteg.OM_DEG]: { personopplysninger },
+    } = tekster();
 
     return (
         <>
-            <AlertStripe>
-                <SpråkTekst id={'omdeg.personopplysninger.info.alert'} />
-                <EksternLenke
-                    lenkeTekstSpråkId={'omdeg.endre-opplysninger.lenketekst'}
-                    lenkeSpråkId={'omdeg.endre-opplysninger.lenke'}
-                    target="_blank"
-                />
+            <AlertStripe variant={'info'}>
+                <TekstBlock block={personopplysninger.alert.alertTekst} />
             </AlertStripe>
 
             <Informasjonsbolk>
-                <Element>
-                    <SpråkTekst id={'felles.fødsels-eller-dnummer.label'} />
-                </Element>
+                <Element>{localeString(personopplysninger.ident)}</Element>
                 <Normaltekst>{søker.ident}</Normaltekst>
             </Informasjonsbolk>
 

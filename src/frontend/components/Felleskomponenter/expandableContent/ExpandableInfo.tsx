@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { css } from 'styled-components';
 import styled from 'styled-components';
 
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { guid } from 'nav-frontend-js-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
 
+import AlertStripe from '../AlertStripe/AlertStripe';
 import CollapsableContainer from './CollapsableContainer';
 import InfoToggleButton from './InfoToggleButton';
 
@@ -67,7 +67,13 @@ const ExpandableInfo = ({
             </ButtonContainer>
             <InnholdContainer id={toggleContentId}>
                 <CollapsableContainer isOpen={isOpen} animated={true} ariaLive="polite">
-                    {filledBackground ? <AlertStripeInfo>{children}</AlertStripeInfo> : children}
+                    {filledBackground ? (
+                        <AlertStripe variant={'info'} inline={false}>
+                            {children}
+                        </AlertStripe>
+                    ) : (
+                        children
+                    )}
                 </CollapsableContainer>
             </InnholdContainer>
         </Container>

@@ -213,7 +213,7 @@ const Oppfølgningsspørsmål: React.FC<{
                                 språkValues={{ barn: barn.navn }}
                             />
                             {skjema.felter.planleggerÅBoINorge12Mnd.verdi === ESvar.NEI && (
-                                <AlertStripe type={'advarsel'} dynamisk>
+                                <AlertStripe variant={'warning'} dynamisk>
                                     <SpråkTekst
                                         id={'ombarnet.planlagt-sammenhengende-opphold.alert'}
                                     />

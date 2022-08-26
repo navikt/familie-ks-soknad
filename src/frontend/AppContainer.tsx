@@ -1,9 +1,8 @@
 import React from 'react';
 
-import Alertstripe from 'nav-frontend-alertstriper';
-
 import { RessursStatus } from '@navikt/familie-typer';
 
+import AlertStripe from './components/Felleskomponenter/AlertStripe/AlertStripe';
 import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
 import SystemetLaster from './components/Felleskomponenter/SystemetLaster/SystemetLaster';
 import { useApp } from './context/AppContext';
@@ -17,12 +16,12 @@ const AppContainer = () => {
             {systemetLaster() && <SystemetLaster />}
             {sluttbruker.status === RessursStatus.IKKE_TILGANG && (
                 <div>
-                    <Alertstripe type="advarsel">
+                    <AlertStripe variant="warning">
                         {'Du må søke på papir. '}
                         <a href="https://www.nav.no/kontantstotte">
                             Klikk her for å gå til våre sider for kontantstøtte
                         </a>
-                    </Alertstripe>
+                    </AlertStripe>
                 </div>
             )}
             {systemetOK() && <Søknad />}

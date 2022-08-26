@@ -64,7 +64,7 @@ const VelgBarn: React.FC = () => {
                     },
                 }}
             >
-                <AlertStripe form={'inline'}>
+                <AlertStripe variant={'info'}>
                     <SpråkTekst id={'hvilkebarn.info.alert'} />
                     <EksternLenke
                         lenkeSpråkId={'hvilkebarn.endre-opplysninger.lenke'}

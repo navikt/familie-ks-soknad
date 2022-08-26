@@ -36,7 +36,7 @@ const OmDeg: React.FC = () => {
     } = useOmdeg();
 
     const {
-        [ESanitySteg.OM_DEG]: { omDegTittel },
+        [ESanitySteg.OM_DEG]: { omDegTittel, medlemFolketrygden },
     } = tekster();
 
     return (
@@ -61,7 +61,7 @@ const OmDeg: React.FC = () => {
                 />
 
                 {skjema.felter.borPåRegistrertAdresse.verdi === ESvar.NEI && (
-                    <AlertStripe type={'advarsel'}>
+                    <AlertStripe variant={'warning'}>
                         <SpråkTekst
                             id={'omdeg.borpådenneadressen.kontakt-folkeregister-ukjent.alert'}
                         />
@@ -78,7 +78,7 @@ const OmDeg: React.FC = () => {
                                 omDegSpørsmålSpråkId[OmDegSpørsmålId.værtINorgeITolvMåneder]
                             }
                             tilleggsinfo={
-                                <AlertStripe>
+                                <AlertStripe variant={'info'}>
                                     <SpråkTekst id={'felles.korteopphold.info'} />
                                 </AlertStripe>
                             }
@@ -126,7 +126,7 @@ const OmDeg: React.FC = () => {
                             />
                             {skjema.felter.planleggerÅBoINorgeTolvMnd.erSynlig &&
                                 skjema.felter.planleggerÅBoINorgeTolvMnd.verdi === ESvar.NEI && (
-                                    <AlertStripe type={'advarsel'} dynamisk>
+                                    <AlertStripe variant={'warning'} dynamisk>
                                         <SpråkTekst
                                             id={'omdeg.planlagt-opphold-sammenhengende.alert'}
                                         />
@@ -143,8 +143,8 @@ const OmDeg: React.FC = () => {
                     spørsmålTekstId={'todo.søker.yrkesaktiv'}
                 />
                 {skjema.felter.yrkesaktivFemÅr.verdi === ESvar.NEI && (
-                    <AlertStripe type={'advarsel'} dynamisk>
-                        <SpråkTekst id={'todo.søker.yrkesaktiv'} />
+                    <AlertStripe variant={'warning'} dynamisk>
+                        <TekstBlock block={medlemFolketrygden.alert.alertTekst} />
                     </AlertStripe>
                 )}
             </KomponentGruppe>
