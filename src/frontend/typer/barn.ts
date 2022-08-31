@@ -23,6 +23,8 @@ export enum andreForelderDataKeySpørsmål {
     yrkesaktivFemÅr = 'yrkesaktivFemÅr',
     fødselsdato = 'fødselsdato',
     værtINorgeITolvMåneder = 'værtINorgeITolvMåneder',
+    planleggerÅBoINorgeTolvMnd = 'planleggerÅBoINorgeTolvMnd',
+
     arbeidUtlandet = 'arbeidUtlandet',
     pensjonUtland = 'pensjonUtland',
     skriftligAvtaleOmDeltBosted = 'skriftligAvtaleOmDeltBosted',
@@ -75,6 +77,7 @@ export interface IAndreForelder {
     [andreForelderDataKeySpørsmål.fnr]: ISøknadSpørsmål<string | AlternativtSvarForInput.UKJENT>;
     [andreForelderDataKeySpørsmål.fødselsdato]: ISøknadSpørsmål<DatoMedUkjent>;
     [andreForelderDataKeySpørsmål.værtINorgeITolvMåneder]: ISøknadSpørsmål<ESvar | null>;
+    [andreForelderDataKeySpørsmål.planleggerÅBoINorgeTolvMnd]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.yrkesaktivFemÅr]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.arbeidUtlandet]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.pensjonUtland]: ISøknadSpørsmål<ESvar | null>;

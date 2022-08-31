@@ -456,6 +456,20 @@ export const useOmBarnet = (
             prevState.filter(periode => periode !== periodeSomSkalFjernes)
         );
     };
+    const andreForelderPlanleggerÅBoINorgeTolvMnd = useJaNeiSpmFelt({
+        søknadsfelt: gjeldendeBarn.andreForelder?.planleggerÅBoINorgeTolvMnd,
+        feilmeldingSpråkId: 'todo.andreforelder.utenlandsopphold',
+        avhengigheter: {
+            andreForelderVærtINorgeITolvMåneder: {
+                hovedSpørsmål: andreForelderVærtINorgeITolvMåneder,
+            },
+        },
+        skalSkjules:
+            flyttetPermanentFraNorge(utenlandsperioderAndreForelder) ||
+            andreForelderVærtINorgeITolvMåneder.verdi === ESvar.JA ||
+            (andreForelderVærtINorgeITolvMåneder.verdi === ESvar.NEI &&
+                !utenlandsperioderAndreForelder.length),
+    });
 
     const andreForelderArbeidUtlandet = useJaNeiSpmFelt({
         søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.arbeidUtlandet],
@@ -597,6 +611,7 @@ export const useOmBarnet = (
             andreForelderFødselsdato,
             andreForelderFødselsdatoUkjent,
             andreForelderVærtINorgeITolvMåneder,
+            andreForelderPlanleggerÅBoINorgeTolvMnd,
             andreForelderRegistrerteUtenlandsperioder,
             andreForelderYrkesaktivFemÅr,
             andreForelderArbeidUtlandet,
@@ -712,6 +727,10 @@ export const useOmBarnet = (
                 værtINorgeITolvMåneder: {
                     ...andreForelder[andreForelderDataKeySpørsmål.værtINorgeITolvMåneder],
                     svar: andreForelderVærtINorgeITolvMåneder.verdi,
+                },
+                planleggerÅBoINorgeTolvMnd: {
+                    ...andreForelder[andreForelderDataKeySpørsmål.planleggerÅBoINorgeTolvMnd],
+                    svar: andreForelderPlanleggerÅBoINorgeTolvMnd.verdi,
                 },
                 utenlandsperioder:
                     andreForelderVærtINorgeITolvMåneder.verdi === ESvar.NEI

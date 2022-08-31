@@ -47,6 +47,10 @@ export const genererInitiellAndreForelder = (
             svar: andreForelder?.værtINorgeITolvMåneder.svar ?? null,
             id: OmBarnetSpørsmålsId.andreForelderVærtINorgeSisteTolvMåneder,
         },
+        planleggerÅBoINorgeTolvMnd: {
+            svar: andreForelder?.planleggerÅBoINorgeTolvMnd.svar ?? null,
+            id: OmBarnetSpørsmålsId.andreForelderPlanleggerÅBoINorgeTolvMnd,
+        },
         yrkesaktivFemÅr: {
             svar: andreForelder?.yrkesaktivFemÅr.svar ?? null,
             id: OmBarnetSpørsmålsId.andreForelderYrkesaktivFemÅr,

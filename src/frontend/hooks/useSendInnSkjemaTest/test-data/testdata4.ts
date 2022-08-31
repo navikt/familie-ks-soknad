@@ -231,6 +231,10 @@ export const testdata4: TilKontraktTestData = {
                         id: 'andre-forelder-vært-i-norge-siste-tolv-måneder',
                         svar: 'JA',
                     },
+                    planleggerÅBoINorgeTolvMnd: {
+                        id: 'andre-forelder-planlegger-å-bo-i-norge-tolv-mnd',
+                        svar: null,
+                    },
                     yrkesaktivFemÅr: {
                         id: 'andre-forelder-yrkesaktiv-fem-år',
                         svar: null,
@@ -1781,6 +1785,7 @@ export const testdata4: TilKontraktTestData = {
                         verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
                     },
                     utenlandsperioder: [],
+                    planleggerÅBoINorgeTolvMnd: null,
                     yrkesaktivFemÅr: null,
                     pensjonUtland: null,
                     arbeidUtlandet: null,

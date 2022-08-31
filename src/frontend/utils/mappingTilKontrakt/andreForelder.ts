@@ -38,6 +38,7 @@ export const andreForelderTilISøknadsfelt = (
         fødselsdato,
         værtINorgeITolvMåneder,
         utenlandsperioder,
+        planleggerÅBoINorgeTolvMnd,
         yrkesaktivFemÅr,
         pensjonUtland,
         arbeidUtlandet,
@@ -106,7 +107,12 @@ export const andreForelderTilISøknadsfelt = (
         utenlandsperioder: utenlandsperioder.map((periode, index) =>
             utenlandsperiodeTilISøknadsfelt(periode, index + 1, PersonType.AndreForelder)
         ),
-
+        planleggerÅBoINorgeTolvMnd: planleggerÅBoINorgeTolvMnd.svar
+            ? søknadsfeltBarn(
+                  språktekstIdFraSpørsmålId(planleggerÅBoINorgeTolvMnd.id),
+                  sammeVerdiAlleSpråk(planleggerÅBoINorgeTolvMnd.svar)
+              )
+            : null,
         yrkesaktivFemÅr: yrkesaktivFemÅr.svar
             ? søknadsfeltBarn(
                   språktekstIdFraSpørsmålId(yrkesaktivFemÅr.id),

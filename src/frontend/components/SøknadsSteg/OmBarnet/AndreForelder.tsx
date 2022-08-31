@@ -214,6 +214,17 @@ const AndreForelder: React.FC<{
                                 />
                             </KomponentGruppe>
                         )}
+                        {skjema.felter.andreForelderPlanleggerÅBoINorgeTolvMnd.erSynlig && (
+                            <KomponentGruppe inline dynamisk>
+                                <JaNeiSpm
+                                    skjema={skjema}
+                                    felt={skjema.felter.andreForelderPlanleggerÅBoINorgeTolvMnd}
+                                    spørsmålTekstId={
+                                        'todo.andreforelder.utenlandsopphold.planlegger'
+                                    }
+                                />
+                            </KomponentGruppe>
+                        )}
                         {skjema.felter.andreForelderYrkesaktivFemÅr.erSynlig && (
                             <KomponentGruppe>
                                 <JaNeiSpm

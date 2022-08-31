@@ -182,6 +182,10 @@ const mockBarnMedISøknad = {
             id: OmBarnetSpørsmålsId.andreForelderVærtINorgeSisteTolvMåneder,
             svar: ESvar.JA,
         },
+        planleggerÅBoINorgeTolvMnd: {
+            id: OmBarnetSpørsmålsId.andreForelderPlanleggerÅBoINorgeTolvMnd,
+            svar: ESvar.JA,
+        },
         yrkesaktivFemÅr: {
             id: OmBarnetSpørsmålsId.andreForelderYrkesaktivFemÅr,
             svar: ESvar.JA,

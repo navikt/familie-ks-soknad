@@ -44,6 +44,10 @@ export const testdata5: TilKontraktTestData = {
                         id: 'andre-forelder-vært-i-norge-siste-tolv-måneder',
                         svar: 'NEI',
                     },
+                    planleggerÅBoINorgeTolvMnd: {
+                        id: 'andre-forelder-planlegger-å-bo-i-norge-tolv-mnd',
+                        svar: 'JA',
+                    },
                     yrkesaktivFemÅr: {
                         id: 'andre-forelder-yrkesaktiv-fem-år',
                         svar: 'JA',
@@ -212,13 +216,17 @@ export const testdata5: TilKontraktTestData = {
                         id: 'andre-forelder-fødsels-/dnummer',
                         svar: 'UKJENT',
                     },
+                    fødselsdato: {
+                        id: 'andre-forelder-fødselsdato',
+                        svar: '1992-01-09',
+                    },
                     værtINorgeITolvMåneder: {
                         id: 'andre-forelder-vært-i-norge-siste-tolv-måneder',
                         svar: 'JA',
                     },
-                    fødselsdato: {
-                        id: 'andre-forelder-fødselsdato',
-                        svar: '1992-01-09',
+                    planleggerÅBoINorgeTolvMnd: {
+                        id: 'andre-forelder-planlegger-å-bo-i-norge-tolv-mnd',
+                        svar: 'JA',
                     },
                     yrkesaktivFemÅr: {
                         id: 'andre-forelder-yrkesaktiv-fem-år',
@@ -768,6 +776,14 @@ export const testdata5: TilKontraktTestData = {
                         verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
                     },
                     utenlandsperioder: [],
+                    planleggerÅBoINorgeTolvMnd: {
+                        label: {
+                            en: 'todo.andreforelder.utenlandsopphold',
+                            nb: 'TODO andre forelder utenlandsopphold',
+                            nn: 'todo.andreforelder.utenlandsopphold',
+                        },
+                        verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                    },
                     yrkesaktivFemÅr: {
                         label: {
                             en: 'TODO andre forelder yrkesaktiv',
@@ -1160,6 +1176,14 @@ export const testdata5: TilKontraktTestData = {
                         verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
                     },
                     utenlandsperioder: [],
+                    planleggerÅBoINorgeTolvMnd: {
+                        label: {
+                            en: 'todo.andreforelder.utenlandsopphold',
+                            nb: 'TODO andre forelder utenlandsopphold',
+                            nn: 'todo.andreforelder.utenlandsopphold',
+                        },
+                        verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                    },
                     yrkesaktivFemÅr: {
                         label: {
                             en: 'TODO andre forelder yrkesaktiv',

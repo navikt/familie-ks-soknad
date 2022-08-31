@@ -82,6 +82,10 @@ export const testdata3: TilKontraktTestData = {
                         id: 'andre-forelder-vært-i-norge-siste-tolv-måneder',
                         svar: 'NEI',
                     },
+                    planleggerÅBoINorgeTolvMnd: {
+                        id: 'andre-forelder-planlegger-å-bo-i-norge-tolv-mnd',
+                        svar: 'JA',
+                    },
                     yrkesaktivFemÅr: {
                         id: 'andre-forelder-yrkesaktiv-fem-år',
                         svar: 'NEI',
@@ -1249,8 +1253,23 @@ export const testdata3: TilKontraktTestData = {
                             nn: 'Eg kjenner ikkje fødselsdato',
                         },
                     },
-                    værtINorgeSisteTolvMåneder: null,
+                    værtINorgeSisteTolvMåneder: {
+                        label: {
+                            en: 'todo.andreforelder.utenlandsopphold',
+                            nb: 'TODO andre forelder utenlandsopphold',
+                            nn: 'todo.andreforelder.utenlandsopphold',
+                        },
+                        verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
+                    },
                     utenlandsperioder: [],
+                    planleggerÅBoINorgeTolvMnd: {
+                        label: {
+                            en: 'todo.andreforelder.utenlandsopphold',
+                            nb: 'TODO andre forelder utenlandsopphold',
+                            nn: 'todo.andreforelder.utenlandsopphold',
+                        },
+                        verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                    },
                     yrkesaktivFemÅr: {
                         label: {
                             en: 'TODO andre forelder yrkesaktiv',
