@@ -41,6 +41,7 @@ export const testdata1: TilKontraktTestData = {
                         id: 'andre-forelder-kontantstøtte',
                         svar: 'NEI',
                     },
+                    utenlandsperioder: [],
                     eøsKontantstøttePerioder: [],
                     arbeidsperioderNorge: [],
                     arbeidsperioderUtland: [],
@@ -59,6 +60,10 @@ export const testdata1: TilKontraktTestData = {
                     fødselsdato: {
                         id: 'andre-forelder-fødselsdato',
                         svar: '',
+                    },
+                    værtINorgeITolvMåneder: {
+                        id: 'andre-forelder-vært-i-norge-siste-tolv-måneder',
+                        svar: 'JA',
                     },
                     yrkesaktivFemÅr: {
                         id: 'andre-forelder-yrkesaktiv-fem-år',
@@ -532,6 +537,8 @@ export const testdata1: TilKontraktTestData = {
                     },
                     fnr: null,
                     fødselsdato: null,
+                    værtINorgeSisteTolvMåneder: null,
+                    utenlandsperioder: [],
                     yrkesaktivFemÅr: {
                         label: {
                             en: 'TODO andre forelder yrkesaktiv',

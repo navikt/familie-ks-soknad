@@ -98,7 +98,7 @@ export const dataISøknadKontraktFormatV1 = (
             adresse: søknadsfelt('pdf.søker.adresse.label', sammeVerdiAlleSpråk(adresse)),
             adressebeskyttelse: søker.adressebeskyttelse,
             utenlandsperioder: utenlandsperioder.map((periode, index) =>
-                utenlandsperiodeTilISøknadsfelt(periode, index + 1)
+                utenlandsperiodeTilISøknadsfelt(periode, index + 1, PersonType.Søker)
             ),
             idNummer: idNummer.map(idnummerObj =>
                 idNummerTilISøknadsfelt(

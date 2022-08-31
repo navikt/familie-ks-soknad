@@ -19,7 +19,6 @@ import {
     silenceConsoleErrors,
     spyOnUseApp,
     TestProvidere,
-    TestProvidereMedEkteTekster,
 } from '../../../utils/testing';
 import { EøsBarnSpørsmålId } from '../EøsSteg/Barn/spørsmål';
 import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
@@ -150,6 +149,7 @@ const mockBarnMedISøknad = {
         pensjonsperioderNorge: [],
         pensjonsperioderUtland: [],
         eøsKontantstøttePerioder: [],
+        utenlandsperioder: [],
         kontantstøtteFraEøs: {
             id: EøsBarnSpørsmålId.andreForelderKontantstøtte,
             svar: ESvar.NEI,
@@ -177,6 +177,10 @@ const mockBarnMedISøknad = {
         fødselsdato: {
             id: OmBarnetSpørsmålsId.andreForelderFødselsdato,
             svar: AlternativtSvarForInput.UKJENT,
+        },
+        værtINorgeITolvMåneder: {
+            id: OmBarnetSpørsmålsId.andreForelderVærtINorgeSisteTolvMåneder,
+            svar: ESvar.JA,
         },
         yrkesaktivFemÅr: {
             id: OmBarnetSpørsmålsId.andreForelderYrkesaktivFemÅr,
@@ -290,24 +294,6 @@ const line: IBarnMedISøknad = {
 describe('OmBarnet', () => {
     beforeEach(() => {
         mockEøs();
-    });
-
-    test(`Kan rendre Om Barnet og alle tekster finnes i språkfil`, async () => {
-        mockHistory(['/om-barnet/barn-1']);
-        spyOnUseApp({
-            barnInkludertISøknaden: [jens],
-            sisteUtfylteStegIndex: 4,
-        });
-
-        await act(async () => {
-            render(
-                <TestProvidereMedEkteTekster>
-                    <OmBarnet barnetsId={'random-id-jens'} />
-                </TestProvidereMedEkteTekster>
-            );
-        });
-
-        expect(console.error).toHaveBeenCalledTimes(0);
     });
 
     test(`Kan navigere mellom to barn`, async () => {

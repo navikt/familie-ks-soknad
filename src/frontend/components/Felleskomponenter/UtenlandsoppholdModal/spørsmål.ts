@@ -29,6 +29,13 @@ export const årsakSpråkIdsBarn: Record<EUtenlandsoppholdÅrsak, string> = {
     [EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE]: 'ombarnet.oppholdalternativ.utenfornå',
 };
 
+export const årsakSpråkIdsAndreForelder: Record<EUtenlandsoppholdÅrsak, string> = {
+    [EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE]: 'todo.andreforelder.utenlandsoppholde',
+    [EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE]: 'todo.andreforelder.utenlandsopphold',
+    [EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE]: 'todo.andreforelder.utenlandsopphold',
+    [EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE]: 'todo.andreforelder.utenlandsopphold',
+};
+
 export const landLabelSpråkIdsBarn: Record<EUtenlandsoppholdÅrsak, string> = {
     [EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE]: 'ombarnet.hvilketlandflyttetfra.spm',
     [EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE]: 'ombarnet.hvilketlandflyttettil.spm',
@@ -41,6 +48,13 @@ export const landLabelSpråkIdsSøker: Record<EUtenlandsoppholdÅrsak, string> =
     [EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE]: 'modal.hvilketlandflyttettil.spm',
     [EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE]: 'modal.hvilketlandoppholdti.spm',
     [EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE]: 'modal.hvilketlandoppholderi.spm',
+};
+
+export const landLabelSpråkIdsAndreForelder: Record<EUtenlandsoppholdÅrsak, string> = {
+    [EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE]: 'todo.andreforelder.utenlandsopphold',
+    [EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE]: 'todo.andreforelder.utenlandsopphold',
+    [EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE]: 'todo.andreforelder.utenlandsopphold',
+    [EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE]: 'todo.andreforelder.utenlandsopphold',
 };
 
 export const landFeilmeldingSpråkIdsSøker: Record<EUtenlandsoppholdÅrsak, string> = {

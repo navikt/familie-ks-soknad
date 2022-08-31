@@ -6,6 +6,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IUtenlandsperiode } from '../../../typer/perioder';
+import { PersonType } from '../../../typer/personType';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
@@ -39,6 +40,7 @@ import {
 
 interface Props extends ReturnType<typeof useModal>, IUseUtenlandsoppholdSkjemaParams {
     onLeggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
+    personType: PersonType;
     barn?: IBarnMedISøknad;
 }
 
@@ -46,11 +48,12 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
     erÅpen,
     toggleModal,
     onLeggTilUtenlandsperiode,
+    personType,
     barn,
 }) => {
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
         useUtenlandsoppholdSkjema({
-            barn,
+            personType,
         });
 
     const { formatMessage } = useIntl();
@@ -108,7 +111,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                         felt={skjema.felter.utenlandsoppholdÅrsak}
                         label={
                             <SpråkTekst
-                                id={årsakLabelSpråkId(barn)}
+                                id={årsakLabelSpråkId(personType)}
                                 values={{ ...(barn && { barn: barn.navn }) }}
                             />
                         }
@@ -120,7 +123,10 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                             <option key={number} value={årsak}>
                                 {formatMessage(
                                     {
-                                        id: årsakSpråkId(årsak as EUtenlandsoppholdÅrsak, barn),
+                                        id: årsakSpråkId(
+                                            årsak as EUtenlandsoppholdÅrsak,
+                                            personType
+                                        ),
                                     },
                                     { ...(barn && { barn: barn.navn }) }
                                 )}
@@ -132,11 +138,11 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                     felt={skjema.felter.oppholdsland}
                     skjema={skjema}
                     label={
-                        landLabelSpråkId(skjema.felter.utenlandsoppholdÅrsak.verdi, barn) && (
+                        landLabelSpråkId(skjema.felter.utenlandsoppholdÅrsak.verdi, personType) && (
                             <SpråkTekst
                                 id={landLabelSpråkId(
                                     skjema.felter.utenlandsoppholdÅrsak.verdi,
-                                    barn
+                                    personType
                                 )}
                                 values={{ ...(barn && { barn: barn.navn }) }}
                             />
@@ -153,7 +159,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                             <SpråkTekst
                                 id={fraDatoLabelSpråkId(
                                     skjema.felter.utenlandsoppholdÅrsak.verdi,
-                                    barn
+                                    personType
                                 )}
                                 values={{ ...(barn && { barn: barn.navn }) }}
                             />
@@ -173,7 +179,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                                 <SpråkTekst
                                     id={tilDatoLabelSpråkId(
                                         skjema.felter.utenlandsoppholdÅrsak.verdi,
-                                        barn
+                                        personType
                                     )}
                                     values={{ ...(barn && { barn: barn.navn }) }}
                                 />

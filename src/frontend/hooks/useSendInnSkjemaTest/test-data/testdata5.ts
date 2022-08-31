@@ -40,6 +40,10 @@ export const testdata5: TilKontraktTestData = {
                         id: 'andre-forelder-fødselsdato',
                         svar: 'UKJENT',
                     },
+                    værtINorgeITolvMåneder: {
+                        id: 'andre-forelder-vært-i-norge-siste-tolv-måneder',
+                        svar: 'NEI',
+                    },
                     yrkesaktivFemÅr: {
                         id: 'andre-forelder-yrkesaktiv-fem-år',
                         svar: 'JA',
@@ -90,6 +94,7 @@ export const testdata5: TilKontraktTestData = {
                     arbeidsperioderNorge: [],
                     pensjonsperioderNorge: [],
                     andreUtbetalingsperioder: [],
+                    utenlandsperioder: [],
                     idNummer: [],
                 },
                 triggetEøs: false,
@@ -207,6 +212,10 @@ export const testdata5: TilKontraktTestData = {
                         id: 'andre-forelder-fødsels-/dnummer',
                         svar: 'UKJENT',
                     },
+                    værtINorgeITolvMåneder: {
+                        id: 'andre-forelder-vært-i-norge-siste-tolv-måneder',
+                        svar: 'JA',
+                    },
                     fødselsdato: {
                         id: 'andre-forelder-fødselsdato',
                         svar: '1992-01-09',
@@ -269,6 +278,7 @@ export const testdata5: TilKontraktTestData = {
                     arbeidsperioderUtland: [],
                     pensjonsperioderUtland: [],
                     arbeidsperioderNorge: [],
+                    utenlandsperioder: [],
                     pensjonsperioderNorge: [],
                     andreUtbetalingsperioder: [],
                     idNummer: [],
@@ -749,6 +759,15 @@ export const testdata5: TilKontraktTestData = {
                             nn: 'Eg kjenner ikkje fødselsdato',
                         },
                     },
+                    værtINorgeSisteTolvMåneder: {
+                        label: {
+                            en: 'todo.andreforelder.utenlandsopphold',
+                            nb: 'TODO andre forelder utenlandsopphold',
+                            nn: 'todo.andreforelder.utenlandsopphold',
+                        },
+                        verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
+                    },
+                    utenlandsperioder: [],
                     yrkesaktivFemÅr: {
                         label: {
                             en: 'TODO andre forelder yrkesaktiv',
@@ -982,9 +1001,9 @@ export const testdata5: TilKontraktTestData = {
                             nb: {
                                 utenlandsoppholdÅrsak: {
                                     label: {
-                                        en: 'What best describes the period Barn Barnessen III stayed outside of Norway?',
-                                        nb: 'Hva beskriver perioden Barn Barnessen III oppholdt seg utenfor Norge best?',
-                                        nn: 'Kva beskriv perioden Barn Barnessen III har opphalde seg utanfor Noreg best',
+                                        en: '{`What best describes the period {barn} stayed outside of Norway?`}',
+                                        nb: '{`Hva beskriver perioden {barn} oppholdt seg utenfor Norge best?`}',
+                                        nn: '{`Kva beskriv perioden {barn} har opphalde seg utanfor Noreg best`}',
                                     },
                                     verdi: {
                                         en: 'The child has stayed outside of Norway earlier',
@@ -994,9 +1013,9 @@ export const testdata5: TilKontraktTestData = {
                                 },
                                 oppholdsland: {
                                     label: {
-                                        en: 'Which country was Barn Barnessen III staying in?',
-                                        nb: 'Hvilket land oppholdt Barn Barnessen III seg i?',
-                                        nn: 'Kva land oppheldt Barn Barnessen III seg i?',
+                                        en: '{`Which country was {barn} staying in?`}',
+                                        nb: '{`Hvilket land oppholdt {barn} seg i?`}',
+                                        nn: '{`Kva land oppheldt {barn} seg i?`}',
                                     },
                                     verdi: { nb: 'Belgia', nn: 'Belgia', en: 'Belgium' },
                                 },
@@ -1020,9 +1039,9 @@ export const testdata5: TilKontraktTestData = {
                             nn: {
                                 utenlandsoppholdÅrsak: {
                                     label: {
-                                        en: 'What best describes the period Barn Barnessen III stayed outside of Norway?',
-                                        nb: 'Hva beskriver perioden Barn Barnessen III oppholdt seg utenfor Norge best?',
-                                        nn: 'Kva beskriv perioden Barn Barnessen III har opphalde seg utanfor Noreg best',
+                                        en: '{`What best describes the period {barn} stayed outside of Norway?`}',
+                                        nb: '{`Hva beskriver perioden {barn} oppholdt seg utenfor Norge best?`}',
+                                        nn: '{`Kva beskriv perioden {barn} har opphalde seg utanfor Noreg best`}',
                                     },
                                     verdi: {
                                         en: 'The child has stayed outside of Norway earlier',
@@ -1032,9 +1051,9 @@ export const testdata5: TilKontraktTestData = {
                                 },
                                 oppholdsland: {
                                     label: {
-                                        en: 'Which country was Barn Barnessen III staying in?',
-                                        nb: 'Hvilket land oppholdt Barn Barnessen III seg i?',
-                                        nn: 'Kva land oppheldt Barn Barnessen III seg i?',
+                                        en: '{`Which country was {barn} staying in?`}',
+                                        nb: '{`Hvilket land oppholdt {barn} seg i?`}',
+                                        nn: '{`Kva land oppheldt {barn} seg i?`}',
                                     },
                                     verdi: { nb: 'Belgia', nn: 'Belgia', en: 'Belgium' },
                                 },
@@ -1058,9 +1077,9 @@ export const testdata5: TilKontraktTestData = {
                             en: {
                                 utenlandsoppholdÅrsak: {
                                     label: {
-                                        en: 'What best describes the period Barn Barnessen III stayed outside of Norway?',
-                                        nb: 'Hva beskriver perioden Barn Barnessen III oppholdt seg utenfor Norge best?',
-                                        nn: 'Kva beskriv perioden Barn Barnessen III har opphalde seg utanfor Noreg best',
+                                        en: '{`What best describes the period {barn} stayed outside of Norway?`}',
+                                        nb: '{`Hva beskriver perioden {barn} oppholdt seg utenfor Norge best?`}',
+                                        nn: '{`Kva beskriv perioden {barn} har opphalde seg utanfor Noreg best`}',
                                     },
                                     verdi: {
                                         en: 'The child has stayed outside of Norway earlier',
@@ -1070,9 +1089,9 @@ export const testdata5: TilKontraktTestData = {
                                 },
                                 oppholdsland: {
                                     label: {
-                                        en: 'Which country was Barn Barnessen III staying in?',
-                                        nb: 'Hvilket land oppholdt Barn Barnessen III seg i?',
-                                        nn: 'Kva land oppheldt Barn Barnessen III seg i?',
+                                        en: '{`Which country was {barn} staying in?`}',
+                                        nb: '{`Hvilket land oppholdt {barn} seg i?`}',
+                                        nn: '{`Kva land oppheldt {barn} seg i?`}',
                                     },
                                     verdi: { nb: 'Belgia', nn: 'Belgia', en: 'Belgium' },
                                 },
@@ -1132,6 +1151,15 @@ export const testdata5: TilKontraktTestData = {
                         label: { en: 'Date of birth', nb: 'Fødselsdato', nn: 'Fødselsdato' },
                         verdi: { nb: '1992-01-09', nn: '1992-01-09', en: '1992-01-09' },
                     },
+                    værtINorgeSisteTolvMåneder: {
+                        label: {
+                            en: 'todo.andreforelder.utenlandsopphold',
+                            nb: 'TODO andre forelder utenlandsopphold',
+                            nn: 'todo.andreforelder.utenlandsopphold',
+                        },
+                        verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                    },
+                    utenlandsperioder: [],
                     yrkesaktivFemÅr: {
                         label: {
                             en: 'TODO andre forelder yrkesaktiv',

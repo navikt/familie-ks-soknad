@@ -60,9 +60,12 @@ export const useOmBarnet = (
     oppdaterSøknad: () => void;
     andreBarnSomErFyltUt: IBarnMedISøknad[];
     validerAlleSynligeFelter: () => void;
-    leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
-    fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
-    utenlandsperioder: IUtenlandsperiode[];
+    leggTilUtenlandsperiodeBarn: (periode: IUtenlandsperiode) => void;
+    fjernUtenlandsperiodeBarn: (periode: IUtenlandsperiode) => void;
+    leggTilUtenlandsperiodeAndreForelder: (periode: IUtenlandsperiode) => void;
+    fjernUtenlandsperiodeAndreForelder: (periode: IUtenlandsperiode) => void;
+    utenlandsperioderBarn: IUtenlandsperiode[];
+    utenlandsperioderAndreForelder: IUtenlandsperiode[];
     leggTilArbeidsperiode: (periode: IArbeidsperiode) => void;
     fjernArbeidsperiode: (periode: IArbeidsperiode) => void;
     leggTilPensjonsperiode: (periode: IPensjonsperiode) => void;
@@ -81,7 +84,7 @@ export const useOmBarnet = (
         throw new TypeError('Kunne ikke finne barn som skulle være her');
     }
 
-    const [utenlandsperioder, settUtenlandsperioder] = useState<IUtenlandsperiode[]>(
+    const [utenlandsperioderBarn, settUtenlandsperioderBarn] = useState<IUtenlandsperiode[]>(
         gjeldendeBarn.utenlandsperioder
     );
 
@@ -193,7 +196,7 @@ export const useOmBarnet = (
     });
 
     /*---UTENLANDSOPPHOLD---*/
-    const registrerteUtenlandsperioder = useFelt<IUtenlandsperiode[]>({
+    const registrerteUtenlandsperioderBarn = useFelt<IUtenlandsperiode[]>({
         feltId: UtenlandsoppholdSpørsmålId.utenlandsopphold,
         verdi: gjeldendeBarn.utenlandsperioder,
         valideringsfunksjon: felt => {
@@ -205,8 +208,8 @@ export const useOmBarnet = (
     });
 
     useEffect(() => {
-        registrerteUtenlandsperioder.validerOgSettFelt(utenlandsperioder);
-    }, [utenlandsperioder]);
+        registrerteUtenlandsperioderBarn.validerOgSettFelt(utenlandsperioderBarn);
+    }, [utenlandsperioderBarn]);
 
     const planleggerÅBoINorge12Mnd = useJaNeiSpmFelt({
         søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.planleggerÅBoINorge12Mnd],
@@ -214,16 +217,16 @@ export const useOmBarnet = (
         feilmeldingSpråkVerdier: { barn: gjeldendeBarn.navn },
         skalSkjules:
             !skalFeltetVises(barnDataKeySpørsmål.boddMindreEnn12MndINorge) ||
-            flyttetPermanentFraNorge(utenlandsperioder) ||
-            !utenlandsperioder.length,
+            flyttetPermanentFraNorge(utenlandsperioderBarn) ||
+            !utenlandsperioderBarn.length,
     });
 
-    const leggTilUtenlandsperiode = (periode: IUtenlandsperiode) => {
-        settUtenlandsperioder(prevState => prevState.concat(periode));
+    const leggTilUtenlandsperiodeBarn = (periode: IUtenlandsperiode) => {
+        settUtenlandsperioderBarn(prevState => prevState.concat(periode));
     };
 
-    const fjernUtenlandsperiode = (periodeSomSkalFjernes: IUtenlandsperiode) => {
-        settUtenlandsperioder(prevState =>
+    const fjernUtenlandsperiodeBarn = (periodeSomSkalFjernes: IUtenlandsperiode) => {
+        settUtenlandsperioderBarn(prevState =>
             prevState.filter(periode => periode !== periodeSomSkalFjernes)
         );
     };
@@ -401,6 +404,59 @@ export const useOmBarnet = (
         sluttdatoAvgrensning: dagensDato(),
     });
 
+    /*--- ANDRE FORELDER UTENLANDSOPPHOLD---*/
+    const [utenlandsperioderAndreForelder, settUtenlandsperioderAndreForelder] = useState<
+        IUtenlandsperiode[]
+    >(andreForelder?.utenlandsperioder ?? []);
+
+    const andreForelderVærtINorgeITolvMåneder = useJaNeiSpmFelt({
+        søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.værtINorgeITolvMåneder],
+        feilmeldingSpråkId: gjeldendeBarn.andreForelderErDød.svar === ESvar.JA ? 'todo' : 'todo',
+        avhengigheter: {
+            andreForelderNavn: {
+                hovedSpørsmål: andreForelderNavn,
+            },
+            andreForelderFnr:
+                andreForelderKanIkkeGiOpplysninger.verdi === ESvar.NEI
+                    ? {
+                          hovedSpørsmål: andreForelderFnr,
+                          tilhørendeFelter: [andreForelderFødselsdato],
+                      }
+                    : undefined,
+        },
+        skalSkjules: andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA,
+        feilmeldingSpråkVerdier: { navn: gjeldendeBarn.navn },
+    });
+
+    const andreForelderRegistrerteUtenlandsperioder = useFelt<IUtenlandsperiode[]>({
+        feltId: UtenlandsoppholdSpørsmålId.utenlandsopphold,
+        verdi: gjeldendeBarn.andreForelder?.utenlandsperioder ?? [],
+        valideringsfunksjon: felt => {
+            return felt.verdi.length
+                ? ok(felt)
+                : feil(felt, <SpråkTekst id={'felles.leggtilutenlands.feilmelding'} />);
+        },
+        avhengigheter: { andreForelderVærtINorgeITolvMåneder },
+        skalFeltetVises: avhengigheter =>
+            avhengigheter.andreForelderVærtINorgeITolvMåneder.verdi === ESvar.NEI,
+    });
+
+    useEffect(() => {
+        andreForelderRegistrerteUtenlandsperioder.validerOgSettFelt(utenlandsperioderAndreForelder);
+        const oppdatertBarn = genererOppdatertBarn(gjeldendeBarn);
+        skalTriggeEøsForBarn(oppdatertBarn);
+    }, [gjeldendeBarn.andreForelder?.utenlandsperioder, andreForelderVærtINorgeITolvMåneder]);
+
+    const leggTilUtenlandsperiodeAndreForelder = (periode: IUtenlandsperiode) => {
+        settUtenlandsperioderAndreForelder(prevState => prevState.concat(periode));
+    };
+
+    const fjernUtenlandsperiodeAndreForelder = (periodeSomSkalFjernes: IUtenlandsperiode) => {
+        settUtenlandsperioderAndreForelder(prevState =>
+            prevState.filter(periode => periode !== periodeSomSkalFjernes)
+        );
+    };
+
     const andreForelderArbeidUtlandet = useJaNeiSpmFelt({
         søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.arbeidUtlandet],
         feilmeldingSpråkId:
@@ -527,7 +583,7 @@ export const useOmBarnet = (
             institusjonOppholdSluttdato,
             institusjonOppholdSluttVetIkke,
             utbetaltForeldrepengerEllerEngangsstønad,
-            registrerteUtenlandsperioder,
+            registrerteUtenlandsperioderBarn,
             planleggerÅBoINorge12Mnd,
             pågåendeSøknadFraAnnetEøsLand,
             pågåendeSøknadHvilketLand,
@@ -540,6 +596,8 @@ export const useOmBarnet = (
             andreForelderFnrUkjent,
             andreForelderFødselsdato,
             andreForelderFødselsdatoUkjent,
+            andreForelderVærtINorgeITolvMåneder,
+            andreForelderRegistrerteUtenlandsperioder,
             andreForelderYrkesaktivFemÅr,
             andreForelderArbeidUtlandet,
             andreForelderArbeidsperioderUtland,
@@ -651,6 +709,14 @@ export const useOmBarnet = (
                     ...andreForelder[andreForelderDataKeySpørsmål.yrkesaktivFemÅr],
                     svar: andreForelderYrkesaktivFemÅr.verdi,
                 },
+                værtINorgeITolvMåneder: {
+                    ...andreForelder[andreForelderDataKeySpørsmål.værtINorgeITolvMåneder],
+                    svar: andreForelderVærtINorgeITolvMåneder.verdi,
+                },
+                utenlandsperioder:
+                    andreForelderVærtINorgeITolvMåneder.verdi === ESvar.NEI
+                        ? andreForelderRegistrerteUtenlandsperioder.verdi
+                        : [],
                 arbeidUtlandet: {
                     ...andreForelder[andreForelderDataKeySpørsmål.arbeidUtlandet],
                     svar: andreForelderArbeidUtlandet.verdi,
@@ -680,7 +746,7 @@ export const useOmBarnet = (
             mottarEllerMottokEøsKontantstøtte.verdi === ESvar.JA
                 ? registrerteEøsKontantstøttePerioder.verdi
                 : [];
-        const utenlandsperioder = registrerteUtenlandsperioder.verdi;
+        const utenlandsperioder = registrerteUtenlandsperioderBarn.verdi;
 
         const borMedOmsorgsperson = {
             ...barn.borMedOmsorgsperson,
@@ -808,7 +874,12 @@ export const useOmBarnet = (
                 }
             });
         }
-    }, [andreForelderArbeidUtlandet, andreForelderPensjonUtland, utenlandsperioder]);
+    }, [
+        andreForelderArbeidUtlandet,
+        andreForelderPensjonUtland,
+        utenlandsperioderBarn,
+        utenlandsperioderAndreForelder,
+    ]);
 
     const oppdaterSøknad = () => {
         const oppdatertBarnInkludertISøknaden: IBarnMedISøknad[] =
@@ -877,9 +948,12 @@ export const useOmBarnet = (
         barn: gjeldendeBarn,
         andreBarnSomErFyltUt,
         validerAlleSynligeFelter,
-        leggTilUtenlandsperiode,
-        fjernUtenlandsperiode,
-        utenlandsperioder,
+        leggTilUtenlandsperiodeBarn,
+        fjernUtenlandsperiodeBarn,
+        utenlandsperioderBarn,
+        leggTilUtenlandsperiodeAndreForelder,
+        fjernUtenlandsperiodeAndreForelder,
+        utenlandsperioderAndreForelder,
         leggTilArbeidsperiode,
         fjernArbeidsperiode,
         leggTilPensjonsperiode,

@@ -5,6 +5,7 @@ import { Element } from 'nav-frontend-typografi';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
+import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
@@ -90,6 +91,7 @@ const OmDeg: React.FC = () => {
                                         periode={periode}
                                         nummer={index + 1}
                                         fjernPeriodeCallback={fjernUtenlandsperiode}
+                                        personType={PersonType.Søker}
                                     />
                                 ))}
                                 {utenlandsperioder.length > 0 && (
@@ -151,6 +153,7 @@ const OmDeg: React.FC = () => {
                 erÅpen={erÅpen}
                 toggleModal={toggleModal}
                 onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
+                personType={PersonType.Søker}
             />
         </Steg>
     );

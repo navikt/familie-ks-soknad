@@ -31,9 +31,12 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         oppdaterSøknad,
         barn,
         andreBarnSomErFyltUt,
-        leggTilUtenlandsperiode,
-        fjernUtenlandsperiode,
-        utenlandsperioder,
+        leggTilUtenlandsperiodeBarn,
+        fjernUtenlandsperiodeBarn,
+        utenlandsperioderBarn,
+        leggTilUtenlandsperiodeAndreForelder,
+        fjernUtenlandsperiodeAndreForelder,
+        utenlandsperioderAndreForelder,
         leggTilArbeidsperiode,
         fjernArbeidsperiode,
         leggTilPensjonsperiode,
@@ -58,9 +61,9 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
             <Oppfølgningsspørsmål
                 barn={barn}
                 skjema={skjema}
-                leggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                fjernUtenlandsperiode={fjernUtenlandsperiode}
-                utenlandsperioder={utenlandsperioder}
+                leggTilUtenlandsperiode={leggTilUtenlandsperiodeBarn}
+                fjernUtenlandsperiode={fjernUtenlandsperiodeBarn}
+                utenlandsperioder={utenlandsperioderBarn}
                 leggTilKontantstøttePeriode={leggTilKontantstøttePeriode}
                 fjernKontantstøttePeriode={fjernKontantstøttePeriode}
                 registrerteEøsKontantstøttePerioder={
@@ -75,6 +78,9 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     barn={barn}
                     skjema={skjema}
                     andreBarnSomErFyltUt={andreBarnSomErFyltUt}
+                    leggTilUtenlandsperiode={leggTilUtenlandsperiodeAndreForelder}
+                    fjernUtenlandsperiode={fjernUtenlandsperiodeAndreForelder}
+                    utenlandsperioder={utenlandsperioderAndreForelder}
                     leggTilArbeidsperiode={leggTilArbeidsperiode}
                     fjernArbeidsperiode={fjernArbeidsperiode}
                     leggTilPensjonsperiode={leggTilPensjonsperiode}

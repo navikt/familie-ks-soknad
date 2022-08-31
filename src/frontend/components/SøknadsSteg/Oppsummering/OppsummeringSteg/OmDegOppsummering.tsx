@@ -9,6 +9,7 @@ import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../../context/AppContext';
 import { useRoutes } from '../../../../context/RoutesContext';
+import { PersonType } from '../../../../typer/personType';
 import { RouteEnum } from '../../../../typer/routes';
 import { genererAdresseVisning } from '../../../../utils/adresse';
 import { landkodeTilSpråk } from '../../../../utils/språk';
@@ -105,6 +106,7 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         key={index}
                         periode={periode}
                         nummer={index + 1}
+                        personType={PersonType.Søker}
                     />
                 ))}
                 {søknad.søker.planleggerÅBoINorgeTolvMnd.svar && (

@@ -4,6 +4,7 @@ export enum PersonType {
     AndreForelder = 'AndreForelder',
     Omsorgsperson = 'Omsorgsperson',
     Søker = 'Søker',
+    Barn = 'Barn',
 }
 
 export type PeriodePersonTypeMedBarnProps =

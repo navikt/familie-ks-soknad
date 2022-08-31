@@ -191,6 +191,7 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, 
                             periode={periode}
                             nummer={index + 1}
                             barn={barn}
+                            personType={PersonType.Barn}
                         />
                     ))}
                     {barn[barnDataKeySpørsmål.planleggerÅBoINorge12Mnd].svar && (

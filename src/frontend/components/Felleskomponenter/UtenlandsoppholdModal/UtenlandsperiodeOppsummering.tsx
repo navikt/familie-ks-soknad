@@ -8,6 +8,7 @@ import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IUtenlandsperiode } from '../../../typer/perioder';
+import { PersonType } from '../../../typer/personType';
 import { formaterDato } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { formaterDatoMedUkjent } from '../../../utils/visning';
@@ -27,8 +28,9 @@ export const UtenlandsperiodeOppsummering: React.FC<{
     periode: IUtenlandsperiode;
     nummer: number;
     fjernPeriodeCallback?: (periode: IUtenlandsperiode) => void;
+    personType: PersonType;
     barn?: IBarnMedISøknad;
-}> = ({ periode, nummer, fjernPeriodeCallback, barn }) => {
+}> = ({ periode, nummer, fjernPeriodeCallback, barn, personType }) => {
     const [valgtLocale] = useSprakContext();
     const intl = useIntl();
     const { formatMessage } = intl;
@@ -47,14 +49,14 @@ export const UtenlandsperiodeOppsummering: React.FC<{
                 <OppsummeringFelt
                     tittel={
                         <SpråkTekst
-                            id={årsakLabelSpråkId(barn)}
+                            id={årsakLabelSpråkId(personType)}
                             values={{ barn: barn ? barn.navn : undefined }}
                         />
                     }
                 >
                     <Normaltekst>
                         <SpråkTekst
-                            id={årsakSpråkId(årsak, barn)}
+                            id={årsakSpråkId(årsak, personType)}
                             values={{ barn: barn ? barn.navn : undefined }}
                         />
                     </Normaltekst>
@@ -63,7 +65,7 @@ export const UtenlandsperiodeOppsummering: React.FC<{
                 <OppsummeringFelt
                     tittel={
                         <SpråkTekst
-                            id={landLabelSpråkId(årsak, barn)}
+                            id={landLabelSpråkId(årsak, personType)}
                             values={{ barn: barn ? barn.navn : undefined }}
                         />
                     }
@@ -74,7 +76,7 @@ export const UtenlandsperiodeOppsummering: React.FC<{
                     <OppsummeringFelt
                         tittel={
                             <SpråkTekst
-                                id={fraDatoLabelSpråkId(årsak, barn)}
+                                id={fraDatoLabelSpråkId(årsak, personType)}
                                 values={{ barn: barn ? barn.navn : undefined }}
                             />
                         }
@@ -86,7 +88,7 @@ export const UtenlandsperiodeOppsummering: React.FC<{
                     <OppsummeringFelt
                         tittel={
                             <SpråkTekst
-                                id={tilDatoLabelSpråkId(årsak, barn)}
+                                id={tilDatoLabelSpråkId(årsak, personType)}
                                 values={{ barn: barn ? barn.navn : undefined }}
                             />
                         }
