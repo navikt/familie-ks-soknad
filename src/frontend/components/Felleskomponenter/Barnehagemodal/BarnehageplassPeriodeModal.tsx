@@ -33,7 +33,7 @@ interface Props extends ReturnType<typeof useModal>, IUseBarnehageplassSkjemaPar
     onLeggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
 }
 const StyledAlertStripe = styled(AlertStripe)`
-    margin: 1rem 0 1rem 0;
+    margin: 1rem 0 2rem 0;
 `;
 
 export const BarnehageplassPeriodeModal: React.FC<Props> = ({
@@ -164,6 +164,8 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                         spørsmålTekstId={'todo.ombarnet.barnehageplass.periode'}
                     />
                 )}
+            </KomponentGruppe>
+            <KomponentGruppe noMargin inline>
                 <SkjemaFeltInput
                     felt={skjema.felter.antallTimer}
                     visFeilmeldinger={skjema.visFeilmeldinger}
@@ -173,13 +175,13 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                             barn: barn.navn,
                         }),
                     }}
-                    tilleggsinfo={
-                        <StyledAlertStripe variant={'info'}>
-                            <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
-                        </StyledAlertStripe>
-                    }
                     bredde={'S'}
                 />
+                <StyledAlertStripe variant={'info'}>
+                    <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
+                </StyledAlertStripe>
+            </KomponentGruppe>
+            <KomponentGruppe noMargin inline>
                 <Datovelger
                     felt={skjema.felter.startetIBarnehagen}
                     skjema={skjema}
@@ -201,26 +203,29 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                             : undefined
                     }
                 />
-                <Datovelger
-                    felt={skjema.felter.slutterIBarnehagen}
-                    skjema={skjema}
-                    label={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.slutterIBarnehagen)}
-                    calendarPosition={'fullscreen'}
-                    avgrensMinDato={
-                        barnehageplassPeriodeBeskrivelse.verdi ===
-                        EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
-                            ? morgendagensDato()
-                            : dagenEtterDato(startetIBarnehagen.verdi)
-                    }
-                    avgrensMaxDato={
-                        barnehageplassPeriodeBeskrivelse.verdi ===
-                        EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                            ? dagensDato()
-                            : undefined
-                    }
-                    tilhørendeFraOgMedFelt={skjema.felter.startetIBarnehagen}
-                />
+                <StyledAlertStripe variant={'info'}>
+                    <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
+                </StyledAlertStripe>
             </KomponentGruppe>
+            <Datovelger
+                felt={skjema.felter.slutterIBarnehagen}
+                skjema={skjema}
+                label={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.slutterIBarnehagen)}
+                calendarPosition={'fullscreen'}
+                avgrensMinDato={
+                    barnehageplassPeriodeBeskrivelse.verdi ===
+                    EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
+                        ? morgendagensDato()
+                        : dagenEtterDato(startetIBarnehagen.verdi)
+                }
+                avgrensMaxDato={
+                    barnehageplassPeriodeBeskrivelse.verdi ===
+                    EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                        ? dagensDato()
+                        : undefined
+                }
+                tilhørendeFraOgMedFelt={skjema.felter.startetIBarnehagen}
+            />
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>
     );
