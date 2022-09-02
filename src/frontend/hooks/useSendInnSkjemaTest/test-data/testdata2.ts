@@ -1602,9 +1602,9 @@ export const testdata2: TilKontraktTestData = {
                             nb: {
                                 utenlandsoppholdÅrsak: {
                                     label: {
-                                        en: '{`What best describes the period {barn} stayed outside of Norway?`}',
-                                        nb: '{`Hva beskriver perioden {barn} oppholdt seg utenfor Norge best?`}',
-                                        nn: '{`Kva beskriv perioden {barn} har opphalde seg utanfor Noreg best`}',
+                                        en: 'What best describes the period Barn 234567 89876 stayed outside of Norway?',
+                                        nb: 'Hva beskriver perioden Barn 234567 89876 oppholdt seg utenfor Norge best?',
+                                        nn: 'Kva beskriv perioden Barn 234567 89876 har opphalde seg utanfor Noreg best',
                                     },
                                     verdi: {
                                         en: 'The child has stayed outside of Norway earlier',
@@ -1614,9 +1614,9 @@ export const testdata2: TilKontraktTestData = {
                                 },
                                 oppholdsland: {
                                     label: {
-                                        en: '{`Which country was {barn} staying in?`}',
-                                        nb: '{`Hvilket land oppholdt {barn} seg i?`}',
-                                        nn: '{`Kva land oppheldt {barn} seg i?`}',
+                                        en: 'Which country was Barn 234567 89876 staying in?',
+                                        nb: 'Hvilket land oppholdt Barn 234567 89876 seg i?',
+                                        nn: 'Kva land oppheldt Barn 234567 89876 seg i?',
                                     },
                                     verdi: { nb: 'Belgia', nn: 'Belgia', en: 'Belgium' },
                                 },
@@ -1640,9 +1640,9 @@ export const testdata2: TilKontraktTestData = {
                             nn: {
                                 utenlandsoppholdÅrsak: {
                                     label: {
-                                        en: '{`What best describes the period {barn} stayed outside of Norway?`}',
-                                        nb: '{`Hva beskriver perioden {barn} oppholdt seg utenfor Norge best?`}',
-                                        nn: '{`Kva beskriv perioden {barn} har opphalde seg utanfor Noreg best`}',
+                                        en: 'What best describes the period Barn 234567 89876 stayed outside of Norway?',
+                                        nb: 'Hva beskriver perioden Barn 234567 89876 oppholdt seg utenfor Norge best?',
+                                        nn: 'Kva beskriv perioden Barn 234567 89876 har opphalde seg utanfor Noreg best',
                                     },
                                     verdi: {
                                         en: 'The child has stayed outside of Norway earlier',
@@ -1652,9 +1652,9 @@ export const testdata2: TilKontraktTestData = {
                                 },
                                 oppholdsland: {
                                     label: {
-                                        en: '{`Which country was {barn} staying in?`}',
-                                        nb: '{`Hvilket land oppholdt {barn} seg i?`}',
-                                        nn: '{`Kva land oppheldt {barn} seg i?`}',
+                                        en: 'Which country was Barn 234567 89876 staying in?',
+                                        nb: 'Hvilket land oppholdt Barn 234567 89876 seg i?',
+                                        nn: 'Kva land oppheldt Barn 234567 89876 seg i?',
                                     },
                                     verdi: { nb: 'Belgia', nn: 'Belgia', en: 'Belgium' },
                                 },
@@ -1678,9 +1678,9 @@ export const testdata2: TilKontraktTestData = {
                             en: {
                                 utenlandsoppholdÅrsak: {
                                     label: {
-                                        en: '{`What best describes the period {barn} stayed outside of Norway?`}',
-                                        nb: '{`Hva beskriver perioden {barn} oppholdt seg utenfor Norge best?`}',
-                                        nn: '{`Kva beskriv perioden {barn} har opphalde seg utanfor Noreg best`}',
+                                        en: 'What best describes the period Barn 234567 89876 stayed outside of Norway?',
+                                        nb: 'Hva beskriver perioden Barn 234567 89876 oppholdt seg utenfor Norge best?',
+                                        nn: 'Kva beskriv perioden Barn 234567 89876 har opphalde seg utanfor Noreg best',
                                     },
                                     verdi: {
                                         en: 'The child has stayed outside of Norway earlier',
@@ -1690,9 +1690,9 @@ export const testdata2: TilKontraktTestData = {
                                 },
                                 oppholdsland: {
                                     label: {
-                                        en: '{`Which country was {barn} staying in?`}',
-                                        nb: '{`Hvilket land oppholdt {barn} seg i?`}',
-                                        nn: '{`Kva land oppheldt {barn} seg i?`}',
+                                        en: 'Which country was Barn 234567 89876 staying in?',
+                                        nb: 'Hvilket land oppholdt Barn 234567 89876 seg i?',
+                                        nn: 'Kva land oppheldt Barn 234567 89876 seg i?',
                                     },
                                     verdi: { nb: 'Belgia', nn: 'Belgia', en: 'Belgium' },
                                 },
@@ -1725,9 +1725,9 @@ export const testdata2: TilKontraktTestData = {
                             nb: {
                                 utenlandsoppholdÅrsak: {
                                     label: {
-                                        en: '{`What best describes the period {barn} stayed outside of Norway?`}',
-                                        nb: '{`Hva beskriver perioden {barn} oppholdt seg utenfor Norge best?`}',
-                                        nn: '{`Kva beskriv perioden {barn} har opphalde seg utanfor Noreg best`}',
+                                        en: 'What best describes the period Barn 234567 89876 stayed outside of Norway?',
+                                        nb: 'Hva beskriver perioden Barn 234567 89876 oppholdt seg utenfor Norge best?',
+                                        nn: 'Kva beskriv perioden Barn 234567 89876 har opphalde seg utanfor Noreg best',
                                     },
                                     verdi: {
                                         en: 'The child has moved permanently from Norway',
@@ -1737,9 +1737,9 @@ export const testdata2: TilKontraktTestData = {
                                 },
                                 oppholdsland: {
                                     label: {
-                                        en: '{`Which country has {barn} moved to?`}',
-                                        nb: '{`Hvilket land har {barn} flyttet til?`}',
-                                        nn: '{`Kva land har {barn} flytta til?`}',
+                                        en: 'Which country has Barn 234567 89876 moved to?',
+                                        nb: 'Hvilket land har Barn 234567 89876 flyttet til?',
+                                        nn: 'Kva land har Barn 234567 89876 flytta til?',
                                     },
                                     verdi: {
                                         nb: 'Afghanistan',
@@ -1749,9 +1749,9 @@ export const testdata2: TilKontraktTestData = {
                                 },
                                 oppholdslandFraDato: {
                                     label: {
-                                        en: '{`When did {barn} move from Norway?`}',
-                                        nb: '{`Når flyttet {barn} fra Norge?`}',
-                                        nn: '{`Når flytta {barn} frå Noreg?`}',
+                                        en: 'When did Barn 234567 89876 move from Norway?',
+                                        nb: 'Når flyttet Barn 234567 89876 fra Norge?',
+                                        nn: 'Når flytta Barn 234567 89876 frå Noreg?',
                                     },
                                     verdi: { nb: '2022-01-12', nn: '2022-01-12', en: '2022-01-12' },
                                 },
@@ -1767,9 +1767,9 @@ export const testdata2: TilKontraktTestData = {
                             nn: {
                                 utenlandsoppholdÅrsak: {
                                     label: {
-                                        en: '{`What best describes the period {barn} stayed outside of Norway?`}',
-                                        nb: '{`Hva beskriver perioden {barn} oppholdt seg utenfor Norge best?`}',
-                                        nn: '{`Kva beskriv perioden {barn} har opphalde seg utanfor Noreg best`}',
+                                        en: 'What best describes the period Barn 234567 89876 stayed outside of Norway?',
+                                        nb: 'Hva beskriver perioden Barn 234567 89876 oppholdt seg utenfor Norge best?',
+                                        nn: 'Kva beskriv perioden Barn 234567 89876 har opphalde seg utanfor Noreg best',
                                     },
                                     verdi: {
                                         en: 'The child has moved permanently from Norway',
@@ -1779,9 +1779,9 @@ export const testdata2: TilKontraktTestData = {
                                 },
                                 oppholdsland: {
                                     label: {
-                                        en: '{`Which country has {barn} moved to?`}',
-                                        nb: '{`Hvilket land har {barn} flyttet til?`}',
-                                        nn: '{`Kva land har {barn} flytta til?`}',
+                                        en: 'Which country has Barn 234567 89876 moved to?',
+                                        nb: 'Hvilket land har Barn 234567 89876 flyttet til?',
+                                        nn: 'Kva land har Barn 234567 89876 flytta til?',
                                     },
                                     verdi: {
                                         nb: 'Afghanistan',
@@ -1791,9 +1791,9 @@ export const testdata2: TilKontraktTestData = {
                                 },
                                 oppholdslandFraDato: {
                                     label: {
-                                        en: '{`When did {barn} move from Norway?`}',
-                                        nb: '{`Når flyttet {barn} fra Norge?`}',
-                                        nn: '{`Når flytta {barn} frå Noreg?`}',
+                                        en: 'When did Barn 234567 89876 move from Norway?',
+                                        nb: 'Når flyttet Barn 234567 89876 fra Norge?',
+                                        nn: 'Når flytta Barn 234567 89876 frå Noreg?',
                                     },
                                     verdi: { nb: '2022-01-12', nn: '2022-01-12', en: '2022-01-12' },
                                 },
@@ -1809,9 +1809,9 @@ export const testdata2: TilKontraktTestData = {
                             en: {
                                 utenlandsoppholdÅrsak: {
                                     label: {
-                                        en: '{`What best describes the period {barn} stayed outside of Norway?`}',
-                                        nb: '{`Hva beskriver perioden {barn} oppholdt seg utenfor Norge best?`}',
-                                        nn: '{`Kva beskriv perioden {barn} har opphalde seg utanfor Noreg best`}',
+                                        en: 'What best describes the period Barn 234567 89876 stayed outside of Norway?',
+                                        nb: 'Hva beskriver perioden Barn 234567 89876 oppholdt seg utenfor Norge best?',
+                                        nn: 'Kva beskriv perioden Barn 234567 89876 har opphalde seg utanfor Noreg best',
                                     },
                                     verdi: {
                                         en: 'The child has moved permanently from Norway',
@@ -1821,9 +1821,9 @@ export const testdata2: TilKontraktTestData = {
                                 },
                                 oppholdsland: {
                                     label: {
-                                        en: '{`Which country has {barn} moved to?`}',
-                                        nb: '{`Hvilket land har {barn} flyttet til?`}',
-                                        nn: '{`Kva land har {barn} flytta til?`}',
+                                        en: 'Which country has Barn 234567 89876 moved to?',
+                                        nb: 'Hvilket land har Barn 234567 89876 flyttet til?',
+                                        nn: 'Kva land har Barn 234567 89876 flytta til?',
                                     },
                                     verdi: {
                                         nb: 'Afghanistan',
@@ -1833,9 +1833,9 @@ export const testdata2: TilKontraktTestData = {
                                 },
                                 oppholdslandFraDato: {
                                     label: {
-                                        en: '{`When did {barn} move from Norway?`}',
-                                        nb: '{`Når flyttet {barn} fra Norge?`}',
-                                        nn: '{`Når flytta {barn} frå Noreg?`}',
+                                        en: 'When did Barn 234567 89876 move from Norway?',
+                                        nb: 'Når flyttet Barn 234567 89876 fra Norge?',
+                                        nn: 'Når flytta Barn 234567 89876 frå Noreg?',
                                     },
                                     verdi: { nb: '2022-01-12', nn: '2022-01-12', en: '2022-01-12' },
                                 },
@@ -1996,9 +1996,9 @@ export const testdata2: TilKontraktTestData = {
                             nb: {
                                 utenlandsoppholdÅrsak: {
                                     label: {
-                                        en: '{`What best describes the period {barn} stayed outside of Norway?`}',
-                                        nb: '{`Hva beskriver perioden {barn} oppholdt seg utenfor Norge best?`}',
-                                        nn: '{`Kva beskriv perioden {barn} har opphalde seg utanfor Noreg best`}',
+                                        en: 'What best describes the period Barn Barnessen III stayed outside of Norway?',
+                                        nb: 'Hva beskriver perioden Barn Barnessen III oppholdt seg utenfor Norge best?',
+                                        nn: 'Kva beskriv perioden Barn Barnessen III har opphalde seg utanfor Noreg best',
                                     },
                                     verdi: {
                                         en: 'The child is currently staying outside of Norway',
@@ -2008,9 +2008,9 @@ export const testdata2: TilKontraktTestData = {
                                 },
                                 oppholdsland: {
                                     label: {
-                                        en: '{`Which country is {barn} currently in?`}',
-                                        nb: '{`Hvilket land oppholder {barn} seg i?`}',
-                                        nn: '{`Kva land oppheld {barn} seg i?`}',
+                                        en: 'Which country is Barn Barnessen III currently in?',
+                                        nb: 'Hvilket land oppholder Barn Barnessen III seg i?',
+                                        nn: 'Kva land oppheld Barn Barnessen III seg i?',
                                     },
                                     verdi: { nb: 'Hellas', nn: 'Hellas', en: 'Greece' },
                                 },
@@ -2038,9 +2038,9 @@ export const testdata2: TilKontraktTestData = {
                             nn: {
                                 utenlandsoppholdÅrsak: {
                                     label: {
-                                        en: '{`What best describes the period {barn} stayed outside of Norway?`}',
-                                        nb: '{`Hva beskriver perioden {barn} oppholdt seg utenfor Norge best?`}',
-                                        nn: '{`Kva beskriv perioden {barn} har opphalde seg utanfor Noreg best`}',
+                                        en: 'What best describes the period Barn Barnessen III stayed outside of Norway?',
+                                        nb: 'Hva beskriver perioden Barn Barnessen III oppholdt seg utenfor Norge best?',
+                                        nn: 'Kva beskriv perioden Barn Barnessen III har opphalde seg utanfor Noreg best',
                                     },
                                     verdi: {
                                         en: 'The child is currently staying outside of Norway',
@@ -2050,9 +2050,9 @@ export const testdata2: TilKontraktTestData = {
                                 },
                                 oppholdsland: {
                                     label: {
-                                        en: '{`Which country is {barn} currently in?`}',
-                                        nb: '{`Hvilket land oppholder {barn} seg i?`}',
-                                        nn: '{`Kva land oppheld {barn} seg i?`}',
+                                        en: 'Which country is Barn Barnessen III currently in?',
+                                        nb: 'Hvilket land oppholder Barn Barnessen III seg i?',
+                                        nn: 'Kva land oppheld Barn Barnessen III seg i?',
                                     },
                                     verdi: { nb: 'Hellas', nn: 'Hellas', en: 'Greece' },
                                 },
@@ -2080,9 +2080,9 @@ export const testdata2: TilKontraktTestData = {
                             en: {
                                 utenlandsoppholdÅrsak: {
                                     label: {
-                                        en: '{`What best describes the period {barn} stayed outside of Norway?`}',
-                                        nb: '{`Hva beskriver perioden {barn} oppholdt seg utenfor Norge best?`}',
-                                        nn: '{`Kva beskriv perioden {barn} har opphalde seg utanfor Noreg best`}',
+                                        en: 'What best describes the period Barn Barnessen III stayed outside of Norway?',
+                                        nb: 'Hva beskriver perioden Barn Barnessen III oppholdt seg utenfor Norge best?',
+                                        nn: 'Kva beskriv perioden Barn Barnessen III har opphalde seg utanfor Noreg best',
                                     },
                                     verdi: {
                                         en: 'The child is currently staying outside of Norway',
@@ -2092,9 +2092,9 @@ export const testdata2: TilKontraktTestData = {
                                 },
                                 oppholdsland: {
                                     label: {
-                                        en: '{`Which country is {barn} currently in?`}',
-                                        nb: '{`Hvilket land oppholder {barn} seg i?`}',
-                                        nn: '{`Kva land oppheld {barn} seg i?`}',
+                                        en: 'Which country is Barn Barnessen III currently in?',
+                                        nb: 'Hvilket land oppholder Barn Barnessen III seg i?',
+                                        nn: 'Kva land oppheld Barn Barnessen III seg i?',
                                     },
                                     verdi: { nb: 'Hellas', nn: 'Hellas', en: 'Greece' },
                                 },
