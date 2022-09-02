@@ -64,7 +64,7 @@ const [SanityProvider, useSanity] = createUseContext(() => {
             .then(dokumenter => {
                 fjernRessursSomLaster(ressursId);
                 settTeksterRessurs({
-                    data: transformerTilTekstinnhold(dokumenter) as ITekstinnhold,
+                    data: transformerTilTekstinnhold(dokumenter),
                     status: RessursStatus.SUKSESS,
                 });
             })
