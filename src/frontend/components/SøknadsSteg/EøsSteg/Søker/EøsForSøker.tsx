@@ -32,12 +32,12 @@ const EøsForSøker: React.FC = () => {
     } = useEøsForSøker();
 
     const {
-        [ESanitySteg.EØS_FOR_SØKER]: { eosForSokerTittel },
+        [ESanitySteg.EØS_FOR_SØKER]: { eoesForSoekerTittel },
     } = tekster();
 
     return (
         <Steg
-            tittel={<TekstBlock block={eosForSokerTittel} />}
+            tittel={<TekstBlock block={eoesForSoekerTittel} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
