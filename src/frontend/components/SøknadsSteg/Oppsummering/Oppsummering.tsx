@@ -38,9 +38,7 @@ const Oppsummering: React.FC = () => {
         : søknad.barnInkludertISøknaden.filter(barn => barn.triggetEøs);
 
     const {
-        [ESanitySteg.OPPSUMMERING]: {
-            oppsummering: { tittel },
-        },
+        [ESanitySteg.OPPSUMMERING]: { oppsummeringTittel },
     } = tekster();
 
     const scrollTilFeil = (elementId: string) => {
@@ -56,7 +54,10 @@ const Oppsummering: React.FC = () => {
     };
 
     return (
-        <Steg tittel={<TekstBlock block={tittel} />} gåVidereCallback={gåVidereCallback}>
+        <Steg
+            tittel={<TekstBlock block={oppsummeringTittel} />}
+            gåVidereCallback={gåVidereCallback}
+        >
             <StyledNormaltekst>
                 <SpråkTekst id={'oppsummering.info'} />
             </StyledNormaltekst>

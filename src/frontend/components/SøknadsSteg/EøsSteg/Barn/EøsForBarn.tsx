@@ -79,7 +79,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={eosForBarnTittel.tittel} barnetsNavn={barn.navn} />}
+            tittel={<TekstBlock block={eosForBarnTittel} barnetsNavn={barn.navn} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

@@ -36,12 +36,12 @@ const OmDeg: React.FC = () => {
     } = useOmdeg();
 
     const {
-        [ESanitySteg.OM_DEG]: { omDegTittel, medlemFolketrygden },
+        [ESanitySteg.OM_DEG]: { omDegTittel, medlemFolketrygd },
     } = tekster();
 
     return (
         <Steg
-            tittel={<TekstBlock block={omDegTittel.tittel} />}
+            tittel={<TekstBlock block={omDegTittel} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
@@ -144,7 +144,7 @@ const OmDeg: React.FC = () => {
                 />
                 {skjema.felter.yrkesaktivFemÅr.verdi === ESvar.NEI && (
                     <AlertStripe variant={'warning'} dynamisk>
-                        <TekstBlock block={medlemFolketrygden.alert.alertTekst} />
+                        <TekstBlock block={medlemFolketrygd.alert} />
                     </AlertStripe>
                 )}
             </KomponentGruppe>

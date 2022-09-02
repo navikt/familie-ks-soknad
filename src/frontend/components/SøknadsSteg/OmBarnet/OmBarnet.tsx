@@ -54,7 +54,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
 
     return barn ? (
         <Steg
-            tittel={<TekstBlock block={omBarnetTittel.tittel} barnetsNavn={barn.navn} />}
+            tittel={<TekstBlock block={omBarnetTittel} barnetsNavn={barn.navn} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

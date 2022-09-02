@@ -10,13 +10,15 @@ import { INavigasjonTekstinnhold } from '../typer/sanity/navigasjon';
 import {
     ESanitySteg,
     frittståendeOrdPrefix,
-    IFrittståendeOrdInnhold,
-    IModalerInnhold,
-    ITekstinnhold,
     modalPrefix,
     navigasjonPrefix,
     SanityDokument,
 } from '../typer/sanity/sanity';
+import {
+    IFrittståendeOrdInnhold,
+    IModalerInnhold,
+    ITekstinnhold,
+} from '../typer/sanity/tekstInnhold';
 import { innholdForFellesHof, innholdForStegHof } from '../utils/sanity';
 import { loggFeil } from './axios';
 import { useLastRessurserContext } from './LastRessurserContext';

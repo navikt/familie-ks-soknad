@@ -37,7 +37,7 @@ const EøsForSøker: React.FC = () => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={eosForSokerTittel.tittel} />}
+            tittel={<TekstBlock block={eosForSokerTittel} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

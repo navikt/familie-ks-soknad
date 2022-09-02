@@ -40,7 +40,7 @@ const Miljø = (): MiljøProps => {
         };
     } else {
         return {
-            sanityDataset: 'test',
+            sanityDataset: 'production',
             soknadApi: `http://${window.location.hostname}:${window.location.port}${basePath}api`,
             loginService: `http://${window.location.hostname}:8080/local/cookie?issuerId=selvbetjening&audience=aud-localhost&cookiename=localhost-idtoken&subject=12345678901`,
             visInnsendingsknapp: true,

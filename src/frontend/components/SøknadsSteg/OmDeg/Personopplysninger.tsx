@@ -23,17 +23,17 @@ export const Personopplysninger: React.FC = () => {
     const søker = søknad.søker;
 
     const {
-        [ESanitySteg.OM_DEG]: { personopplysninger },
+        [ESanitySteg.OM_DEG]: { personopplysningerAlert, personopplysningIdent },
     } = tekster();
 
     return (
         <>
             <AlertStripe variant={'info'}>
-                <TekstBlock block={personopplysninger.alert.alertTekst} />
+                <TekstBlock block={personopplysningerAlert} />
             </AlertStripe>
 
             <Informasjonsbolk>
-                <Element>{localeString(personopplysninger.ident)}</Element>
+                <Element>{localeString(personopplysningIdent)}</Element>
                 <Normaltekst>{søker.ident}</Normaltekst>
             </Informasjonsbolk>
 

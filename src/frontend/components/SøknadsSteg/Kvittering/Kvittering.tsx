@@ -43,9 +43,7 @@ const Kvittering: React.FC = () => {
     const [varEøsSøknad] = useState(erEøs);
 
     const {
-        [ESanitySteg.KVITTERING]: {
-            kvittering: { tittel },
-        },
+        [ESanitySteg.KVITTERING]: { kvitteringTittel },
     } = tekster();
 
     useEffect(() => {
@@ -60,7 +58,7 @@ const Kvittering: React.FC = () => {
     }, []);
 
     return (
-        <Steg tittel={<TekstBlock block={tittel} />}>
+        <Steg tittel={<TekstBlock block={kvitteringTittel} />}>
             <KomponentGruppe>
                 <AlertStripe variant="success">
                     <SpråkTekst

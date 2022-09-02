@@ -2,7 +2,6 @@ import React from 'react';
 
 import { render } from '@testing-library/react';
 import { mockDeep } from 'jest-mock-extended';
-import { act } from 'react-dom/test-utils';
 
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { ISøknad } from '../../../typer/søknad';
@@ -33,21 +32,6 @@ describe('DinLivssituasjon', () => {
         silenceConsoleErrors();
         mockEøs();
         jest.useFakeTimers('modern');
-    });
-
-    it('Alle tekster finnes i språkfil', async () => {
-        spyOnUseApp(søknad);
-
-        render(
-            <TestProvidereMedEkteTekster>
-                <DinLivssituasjon />
-            </TestProvidereMedEkteTekster>
-        );
-        expect(console.error).toHaveBeenCalledTimes(0);
-
-        await act(async () => {
-            jest.advanceTimersByTime(500);
-        });
     });
 
     it('rendrer DinLivssituasjon steg og inneholder sidetittel', async () => {
