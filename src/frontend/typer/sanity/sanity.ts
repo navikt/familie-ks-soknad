@@ -26,7 +26,7 @@ export interface SanityDokumentBase {
     _type: string;
     _id: string;
     api_navn: string;
-    steg: RouteEnum;
+    steg: ESanitySteg;
     tittel: string;
     visningsnavn: string;
     ytelse: string;
@@ -48,6 +48,7 @@ export enum ESanitySteg {
     OPPSUMMERING = 'OPPSUMMERING',
     DOKUMENTASJON = 'DOKUMENTASJON',
     KVITTERING = 'KVITTERING',
+    FELLES = 'FELLES',
 }
 export interface ITekstinnhold {
     [ESanitySteg.FORSIDE]: IForsideTekstinnhold;
@@ -86,16 +87,14 @@ export interface IModalerInnhold {
 }
 
 export interface IFrittståendeOrdInnhold {
-    ytelse: {
-        kontantstotte: LocaleRecordString;
-        ordinaerBarnetrygd: LocaleRecordString;
-        utvidetBarnetrygd: LocaleRecordString;
-    };
+    kontantstoette: LocaleRecordString;
+    ordinaerBarnetrygd: LocaleRecordString;
+    utvidetBarnetrygd: LocaleRecordString;
 }
 
 export type SanityDataSet = 'production' | 'test';
 
-export const frittståendeOrdPrefix = 'FRITTSTAENDE';
+export const frittståendeOrdPrefix = 'FRITTSTAENDEORD';
 export const modalPrefix = 'MODAL';
 
 export enum EFlettefeltverdi {

@@ -35,7 +35,7 @@ const Forside: React.FC = () => {
         [ESanitySteg.FORSIDE]: {
             punktliste,
             veilederhilsen,
-            soknadstittel,
+            soeknadstittel,
             personopplysningslenke,
         },
     } = tekster();
@@ -51,25 +51,22 @@ const Forside: React.FC = () => {
 
     return (
         <InnholdContainer>
-            <VeilederSnakkeboble
-                tekst={<TekstBlock block={veilederhilsen.veilederhilsen} />}
-                posisjon={'høyre'}
-            />
+            <VeilederSnakkeboble tekst={<TekstBlock block={veilederhilsen} />} posisjon={'høyre'} />
 
             <TittelContainer>
-                <TekstBlock block={soknadstittel.soknadstittel} />
+                <TekstBlock block={soeknadstittel} />
             </TittelContainer>
 
             <StyledSpråkvelger støttedeSprak={[LocaleType.nn, LocaleType.nb, LocaleType.en]} />
 
             <Informasjonsbolk>
-                <TekstBlock block={punktliste.innhold} />
+                <TekstBlock block={punktliste} />
             </Informasjonsbolk>
 
             {kanFortsettePåSøknad ? <FortsettPåSøknad /> : <BekreftelseOgStartSoknad />}
 
             <Informasjonsbolk>
-                <TekstBlock block={personopplysningslenke.personopplysningslenke} />
+                <TekstBlock block={personopplysningslenke} />
             </Informasjonsbolk>
         </InnholdContainer>
     );

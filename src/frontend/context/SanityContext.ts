@@ -7,6 +7,7 @@ import { byggHenterRessurs, byggTomRessurs, RessursStatus } from '@navikt/famili
 
 import Miljø from '../Miljø';
 import {
+    ESanitySteg,
     frittståendeOrdPrefix,
     ITekstinnhold,
     modalPrefix,
@@ -31,7 +32,7 @@ const [SanityProvider, useSanity] = createUseContext(() => {
         const tekstInnhold: Partial<ITekstinnhold> = {};
 
         dokumenter.forEach(dokument => {
-            if (dokument.steg) {
+            if (dokument.steg !== ESanitySteg.FELLES) {
                 tekstInnhold[dokument.steg] = {
                     ...(tekstInnhold[dokument.steg] ?? {}),
                     [dokument.api_navn]: dokument,

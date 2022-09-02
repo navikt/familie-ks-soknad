@@ -19,7 +19,7 @@ const TekstBlock: React.FC<{ block: LocaleRecordBlock; barnetsNavn?: string }> =
             case EFlettefeltverdi.BARN_NAVN:
                 return barnetsNavn ?? '';
             case EFlettefeltverdi.YTELSE:
-                return localeString(tekster().frittståendeOrd.ytelse.kontantstotte);
+                return localeString(tekster().frittståendeOrd.kontantstoette);
             default:
                 return '';
         }
