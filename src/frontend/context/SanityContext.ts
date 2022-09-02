@@ -6,13 +6,18 @@ import createUseContext from 'constate';
 import { byggHenterRessurs, byggTomRessurs, RessursStatus } from '@navikt/familie-typer';
 
 import Miljø from '../Miljø';
+import { INavigasjonTekstinnhold } from '../typer/sanity/navigasjon';
 import {
     ESanitySteg,
     frittståendeOrdPrefix,
+    IFrittståendeOrdInnhold,
+    IModalerInnhold,
     ITekstinnhold,
     modalPrefix,
+    navigasjonPrefix,
     SanityDokument,
 } from '../typer/sanity/sanity';
+import { innholdForFellesHof, innholdForStegHof } from '../utils/sanity';
 import { loggFeil } from './axios';
 import { useLastRessurserContext } from './LastRessurserContext';
 
@@ -29,28 +34,20 @@ const [SanityProvider, useSanity] = createUseContext(() => {
     });
 
     const transformerTilTekstinnhold = (dokumenter: SanityDokument[]): ITekstinnhold => {
+        const innholdForSteg = innholdForStegHof(dokumenter);
+        const innholdForFelles = innholdForFellesHof(dokumenter);
+
         const tekstInnhold: Partial<ITekstinnhold> = {};
 
-        dokumenter.forEach(dokument => {
-            if (dokument.steg !== ESanitySteg.FELLES) {
-                tekstInnhold[dokument.steg] = {
-                    ...(tekstInnhold[dokument.steg] ?? {}),
-                    [dokument.api_navn]: dokument,
-                };
-            } else if (dokument._type.includes(frittståendeOrdPrefix)) {
-                tekstInnhold.frittståendeOrd = {
-                    ...(tekstInnhold[dokument.api_navn] ?? {}),
-                    [dokument.api_navn]: dokument,
-                };
-            } else if (dokument._type.includes(modalPrefix)) {
-                tekstInnhold.modaler = {
-                    ...(tekstInnhold[dokument.api_navn] ?? {}),
-                    [dokument.api_navn]: dokument,
-                };
-            } else {
-                tekstInnhold[dokument.api_navn] = dokument;
-            }
-        });
+        for (const steg in ESanitySteg) {
+            tekstInnhold[ESanitySteg[steg]] = innholdForSteg(ESanitySteg[steg]);
+        }
+
+        tekstInnhold.modaler = innholdForFelles(modalPrefix) as IModalerInnhold;
+        tekstInnhold.frittståendeOrd = innholdForFelles(
+            frittståendeOrdPrefix
+        ) as IFrittståendeOrdInnhold;
+        tekstInnhold.navigasjon = innholdForFelles(navigasjonPrefix) as INavigasjonTekstinnhold;
 
         return tekstInnhold as ITekstinnhold;
     };
@@ -65,7 +62,7 @@ const [SanityProvider, useSanity] = createUseContext(() => {
             .then(dokumenter => {
                 fjernRessursSomLaster(ressursId);
                 settTeksterRessurs({
-                    data: transformerTilTekstinnhold(dokumenter),
+                    data: transformerTilTekstinnhold(dokumenter) as ITekstinnhold,
                     status: RessursStatus.SUKSESS,
                 });
             })

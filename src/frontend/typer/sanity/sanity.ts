@@ -10,7 +10,6 @@ import { IOmDegTekstinnhold } from '../../components/SøknadsSteg/OmDeg/innholdT
 import { IOppsummeringTekstinnhold } from '../../components/SøknadsSteg/Oppsummering/innholdTyper';
 import { IVelgBarnTekstinnhold } from '../../components/SøknadsSteg/VelgBarn/innholdTyper';
 import { LocaleRecordString } from '../common';
-import { RouteEnum } from '../routes';
 import { IAndreUtbetalingerTekstinnhold } from './modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from './modaler/arbeidsperiode';
 import { IBarnehageplassTekstinnhold } from './modaler/barnehageplass';
@@ -96,6 +95,7 @@ export type SanityDataSet = 'production' | 'test';
 
 export const frittståendeOrdPrefix = 'FRITTSTAENDEORD';
 export const modalPrefix = 'MODAL';
+export const navigasjonPrefix = 'NAVIGASJON';
 
 export enum EFlettefeltverdi {
     BARN_NAVN = 'BARN_NAVN',
