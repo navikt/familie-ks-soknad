@@ -33,7 +33,7 @@ interface Props extends ReturnType<typeof useModal>, IUseBarnehageplassSkjemaPar
     onLeggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
 }
 const StyledAlertStripe = styled(AlertStripe)`
-    margin: 1rem 0 2rem 0;
+    margin-top: 1rem;
 `;
 
 export const BarnehageplassPeriodeModal: React.FC<Props> = ({
