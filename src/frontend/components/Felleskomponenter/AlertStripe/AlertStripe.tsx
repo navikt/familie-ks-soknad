@@ -33,7 +33,7 @@ const AlertStripe: React.FC<AlertStripeProps> = ({
             fullWidth={fullWidth}
             aria-live={dynamisk ? 'polite' : 'off'}
         >
-            <p>{children}</p>
+            {children}
         </StyledAlertStripe>
     );
 };
