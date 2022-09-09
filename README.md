@@ -1,6 +1,9 @@
 # familie-ks-soknad
 Frontend - søknad for kontantstøtte.
 
+Dette er en skinnet kopi av barnetrygdsøknaden (kopiert 2.8.22): https://github.com/navikt/familie-ba-soknad
+ADR-dokument: https://github.com/navikt/familie/blob/master/doc/adr/0008-KS-lager-egen-søknadsdialog-app.md
+
 ## Avhengigheter
 1. Node versjon >=16
 
