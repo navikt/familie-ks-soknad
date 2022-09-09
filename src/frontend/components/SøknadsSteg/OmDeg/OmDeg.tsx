@@ -25,9 +25,6 @@ import { useOmdeg } from './useOmdeg';
 const OmDeg: React.FC = () => {
     const { erÅpen, toggleModal } = useModal();
     const { tekster } = useApp();
-    const {
-        [ESanitySteg.OM_DEG]: { medlemFolketrygden },
-    } = tekster();
 
     const {
         skjema,
@@ -39,9 +36,13 @@ const OmDeg: React.FC = () => {
         utenlandsperioder,
     } = useOmdeg();
 
+    const {
+        [ESanitySteg.OM_DEG]: { omDegTittel, medlemFolketrygd },
+    } = tekster();
+
     return (
         <Steg
-            tittel={<SpråkTekst id={'omdeg.sidetittel'} />}
+            tittel={<TekstBlock block={omDegTittel} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
@@ -145,7 +146,7 @@ const OmDeg: React.FC = () => {
                 />
                 {skjema.felter.yrkesaktivFemÅr.verdi === ESvar.NEI && (
                     <AlertStripe variant={'warning'} dynamisk>
-                        <TekstBlock block={medlemFolketrygden.alert.alertTekst} />
+                        <TekstBlock block={medlemFolketrygd.alert} />
                     </AlertStripe>
                 )}
             </KomponentGruppe>

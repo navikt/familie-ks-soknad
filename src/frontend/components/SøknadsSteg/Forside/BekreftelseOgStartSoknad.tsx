@@ -48,23 +48,28 @@ const BekreftelseOgStartSoknad: React.FC = () => {
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
     const { localeString, tekster } = useApp();
 
-    const bekreftelsesboks = tekster()[ESanitySteg.FORSIDE].bekreftelsesboks;
+    const {
+        bekreftelsesboksFeilmelding,
+        bekreftelsesboksBroedtekst,
+        bekreftelsesboksErklaering,
+        bekreftelsesboksTittel,
+    } = tekster()[ESanitySteg.FORSIDE];
 
     return (
         <FormContainer onSubmit={event => onStartSøknad(event)}>
-            <Informasjonsbolk tittel={localeString(bekreftelsesboks.tittel)}>
+            <Informasjonsbolk tittel={localeString(bekreftelsesboksTittel)}>
                 <StyledBekreftCheckboksPanel
-                    label={localeString(bekreftelsesboks.erklaering)}
+                    label={localeString(bekreftelsesboksErklaering)}
                     onChange={bekreftelseOnChange}
                     checked={bekreftelseStatus === BekreftelseStatus.BEKREFTET}
                     feil={
                         bekreftelseStatus === BekreftelseStatus.FEIL && (
-                            <span role={'alert'}>{localeString(bekreftelsesboks.feilmelding)}</span>
+                            <span role={'alert'}>{localeString(bekreftelsesboksFeilmelding)}</span>
                         )
                     }
                     status={bekreftelseStatus}
                 >
-                    <TekstBlock block={bekreftelsesboks.brodtekst} />
+                    <TekstBlock block={bekreftelsesboksBroedtekst} />
                 </StyledBekreftCheckboksPanel>
             </Informasjonsbolk>
 

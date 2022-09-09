@@ -11,6 +11,7 @@ import useFørsteRender from '../../../hooks/useFørsteRender';
 import { useSendInnSkjema } from '../../../hooks/useSendInnSkjema';
 import { IDokumentasjon, IVedlegg } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { erDokumentasjonRelevant } from '../../../utils/dokumentasjon';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { Feilside } from '../../Felleskomponenter/Feilside/Feilside';
@@ -18,6 +19,7 @@ import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGr
 import PictureScanningGuide from '../../Felleskomponenter/PictureScanningGuide/PictureScanningGuide';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../Felleskomponenter/Steg/Steg';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import LastOppVedlegg from './LastOppVedlegg';
 
 // Vedlegg er lagret 48 timer
@@ -27,9 +29,13 @@ export const erVedleggstidspunktGyldig = (vedleggTidspunkt: string): boolean => 
 };
 
 const Dokumentasjon: React.FC = () => {
-    const { søknad, settSøknad, innsendingStatus } = useApp();
+    const { søknad, settSøknad, innsendingStatus, tekster } = useApp();
     const { sendInnSkjema } = useSendInnSkjema();
     const [slettaVedlegg, settSlettaVedlegg] = useState<IVedlegg[]>([]);
+
+    const {
+        [ESanitySteg.DOKUMENTASJON]: { dokumentasjonTittel },
+    } = tekster();
 
     const oppdaterDokumentasjon = (
         dokumentasjonsbehov: Dokumentasjonsbehov,
@@ -67,7 +73,7 @@ const Dokumentasjon: React.FC = () => {
 
     return (
         <Steg
-            tittel={<SpråkTekst id={'dokumentasjon.sidetittel'} />}
+            tittel={<TekstBlock block={dokumentasjonTittel} />}
             gåVidereCallback={async () => {
                 const [success, _] = await sendInnSkjema();
                 return success;
