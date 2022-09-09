@@ -1,22 +1,12 @@
 import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
 
 export interface IForsideTekstinnhold {
-    bekreftelsesboks: {
-        tittel: LocaleRecordString;
-        brodtekst: LocaleRecordBlock;
-        erklaering: LocaleRecordString;
-        feilmelding: LocaleRecordString;
-    };
-    punktliste: {
-        innhold: LocaleRecordBlock;
-    };
-    veilederhilsen: {
-        veilederhilsen: LocaleRecordBlock;
-    };
-    soknadstittel: {
-        soknadstittel: LocaleRecordBlock;
-    };
-    personopplysningslenke: {
-        personopplysningslenke: LocaleRecordBlock;
-    };
+    bekreftelsesboksTittel: LocaleRecordString;
+    bekreftelsesboksBroedtekst: LocaleRecordBlock;
+    bekreftelsesboksErklaering: LocaleRecordString;
+    bekreftelsesboksFeilmelding: LocaleRecordString;
+    punktliste: LocaleRecordBlock;
+    veilederhilsen: LocaleRecordBlock;
+    soeknadstittel: LocaleRecordBlock;
+    personopplysningslenke: LocaleRecordBlock;
 }

@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Stegindikator from 'nav-frontend-stegindikator';
-import { Systemtittel } from 'nav-frontend-typografi';
 
 import { ISkjema } from '@navikt/familie-skjema';
 
@@ -43,9 +42,12 @@ const ChildrenContainer = styled.div`
     margin-bottom: 2rem;
 `;
 
-const StyledSystemtittel = styled(Systemtittel)`
+const TittelContainer = styled.div`
     && {
         margin: 4rem auto 3rem auto;
+    }
+    > * {
+        font-size: 1.125rem;
     }
 `;
 
@@ -150,7 +152,7 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
                 )}
             </header>
             <InnholdContainer>
-                <StyledSystemtittel>{tittel}</StyledSystemtittel>
+                <TittelContainer>{tittel}</TittelContainer>
                 <Form onSubmit={event => håndterGåVidere(event)} autoComplete="off">
                     <ChildrenContainer>{children}</ChildrenContainer>
                     {skjema && visFeiloppsummering(skjema.skjema) && (

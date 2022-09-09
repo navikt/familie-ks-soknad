@@ -9,6 +9,7 @@ import { RessursStatus } from '@navikt/familie-typer';
 import { useApp } from '../../../context/AppContext';
 import { useSteg } from '../../../context/StegContext';
 import { RouteEnum } from '../../../typer/routes';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { setUserProperty, UserProperty } from '../../../utils/amplitude';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import BlokkerTilbakeKnappModal from '../../Felleskomponenter/BlokkerTilbakeKnappModal/BlokkerTilbakeKnappModal';
@@ -17,11 +18,17 @@ import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasj
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../Felleskomponenter/Steg/Steg';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { KontonummerInfo } from './KontonummerInfo';
 
 const Kvittering: React.FC = () => {
-    const { avbrytOgSlettSøknad, sisteUtfylteStegIndex, settFåttGyldigKvittering, søknad } =
-        useApp();
+    const {
+        avbrytOgSlettSøknad,
+        sisteUtfylteStegIndex,
+        settFåttGyldigKvittering,
+        søknad,
+        tekster,
+    } = useApp();
     const { barnInkludertISøknaden, erEøs } = søknad;
     const { hentStegNummer } = useSteg();
 
@@ -35,6 +42,10 @@ const Kvittering: React.FC = () => {
     const dato = innsendtDato.format('DD.MM.YY');
     const [varEøsSøknad] = useState(erEøs);
 
+    const {
+        [ESanitySteg.KVITTERING]: { kvitteringTittel },
+    } = tekster();
+
     useEffect(() => {
         if (sisteUtfylteStegIndex === hentStegNummer(RouteEnum.Dokumentasjon)) {
             settFåttGyldigKvittering(true);
@@ -47,7 +58,7 @@ const Kvittering: React.FC = () => {
     }, []);
 
     return (
-        <Steg tittel={<SpråkTekst id={'kvittering.sidetittel'} />}>
+        <Steg tittel={<TekstBlock block={kvitteringTittel} />}>
             <KomponentGruppe>
                 <AlertStripe variant="success">
                     <SpråkTekst

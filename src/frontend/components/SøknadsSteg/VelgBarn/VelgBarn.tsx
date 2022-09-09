@@ -4,15 +4,17 @@ import Masonry from 'react-masonry-css';
 import styled from 'styled-components';
 
 import { useApp } from '../../../context/AppContext';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import EksternLenke from '../../Felleskomponenter/EksternLenke/EksternLenke';
 import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../Felleskomponenter/Steg/Steg';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import Barnekort from './Barnekort/Barnekort';
 import LeggTilBarnModal from './LeggTilBarn/LeggTilBarnModal';
 import { NyttBarnKort } from './LeggTilBarn/NyttBarnKort';
-import { VelgBarnSpørsmålId, velgBarnSpørsmålSpråkId } from './spørsmål';
+import { VelgBarnSpørsmålId } from './spørsmål';
 import { useVelgBarn } from './useVelgBarn';
 
 /**
@@ -29,7 +31,7 @@ const LenkeContainer = styled.div`
 `;
 
 const VelgBarn: React.FC = () => {
-    const { søknad } = useApp();
+    const { søknad, tekster } = useApp();
     const { toggleModal, erÅpen } = useModal();
     const {
         skjema,
@@ -45,10 +47,14 @@ const VelgBarn: React.FC = () => {
     const barnManueltLagtTil = søknad.barnRegistrertManuelt;
     const barn = barnFraRespons.concat(barnManueltLagtTil);
 
+    const {
+        [ESanitySteg.VELG_BARN]: { velgBarnTittel },
+    } = tekster();
+
     return (
         <>
             <Steg
-                tittel={<SpråkTekst id={velgBarnSpørsmålSpråkId[VelgBarnSpørsmålId.velgBarn]} />}
+                tittel={<TekstBlock block={velgBarnTittel} />}
                 skjema={{
                     validerFelterOgVisFeilmelding,
                     valideringErOk,
