@@ -1,7 +1,6 @@
 import React, { ReactNode, useCallback, useState } from 'react';
 
 import axios from 'axios';
-import { fromBlob } from 'file-type/browser';
 
 import { useLastRessurserContext } from '../../../../context/LastRessurserContext';
 import Miljø from '../../../../Miljø';
@@ -39,18 +38,32 @@ export const useFilopplaster = (
         async filer => {
             const feilmeldingsliste: ReactNode[] = [];
             const nyeVedlegg: IVedlegg[] = [];
+
+            const håndterFeilType = (fil: File) => {
+                feilmeldingsliste.push(
+                    <SpråkTekst
+                        id={'dokumentasjon.last-opp-dokumentasjon.feilmeldingtype'}
+                        values={{ filnavn: fil.name }}
+                    />
+                );
+                settFeilmeldinger(feilmeldingsliste);
+                settÅpenModal(true);
+            };
+
             await Promise.all(
                 filer.map((fil: File) =>
                     wrapMedSystemetLaster(async () => {
-                        const mimeType = await fromBlob(fil);
-                        if (
-                            !tillatteFiltyper.includes(mimeType?.mime ?? '') &&
-                            mimeType?.mime.match(/^image\//)
-                        ) {
-                            try {
-                                fil = await konverter(fil);
-                            } catch (e) {
-                                fil = new File([fil], fil.name, { type: mimeType.mime });
+                        if (!tillatteFiltyper.includes(fil.type)) {
+                            if (fil.type?.match(/^image\//)) {
+                                try {
+                                    fil = await konverter(fil);
+                                } catch (e) {
+                                    håndterFeilType(fil);
+                                    return;
+                                }
+                            } else {
+                                håndterFeilType(fil);
+                                return;
                             }
                         }
 
@@ -63,18 +76,6 @@ export const useFilopplaster = (
                                 />
                             );
 
-                            settFeilmeldinger(feilmeldingsliste);
-                            settÅpenModal(true);
-                            return;
-                        }
-
-                        if (tillatteFiltyper && !tillatteFiltyper.includes(fil.type)) {
-                            feilmeldingsliste.push(
-                                <SpråkTekst
-                                    id={'dokumentasjon.last-opp-dokumentasjon.feilmeldingtype'}
-                                    values={{ filnavn: fil.name }}
-                                />
-                            );
                             settFeilmeldinger(feilmeldingsliste);
                             settÅpenModal(true);
                             return;
