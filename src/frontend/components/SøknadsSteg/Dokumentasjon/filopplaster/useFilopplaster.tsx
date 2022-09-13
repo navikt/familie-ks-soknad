@@ -42,16 +42,10 @@ export const useFilopplaster = (
                 filer.map((fil: File) =>
                     wrapMedSystemetLaster(async () => {
                         if (!tillatteFiltyper.includes(fil.type)) {
-                            console.log(fil);
-                            console.log(fil.type);
-
                             if (fil.type?.match(/^image\//)) {
                                 try {
-                                    console.log('tryy');
                                     fil = await konverter(fil);
                                 } catch (e) {
-                                    console.log('caatxh');
-
                                     fil = new File([fil], fil.name, { type: fil.type });
                                 }
                             } else {
