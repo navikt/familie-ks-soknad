@@ -3,8 +3,6 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { mockDeep } from 'jest-mock-extended';
 
-import { ESvar } from '@navikt/familie-form-elements';
-
 import { ISøker } from '../../../typer/person';
 import {
     mockEøs,
@@ -12,7 +10,6 @@ import {
     silenceConsoleErrors,
     spyOnUseApp,
     TestProvidere,
-    TestProvidereMedEkteTekster,
 } from '../../../utils/testing';
 import OmDeg from './OmDeg';
 import { OmDegSpørsmålId, omDegSpørsmålSpråkId } from './spørsmål';
@@ -23,12 +20,6 @@ const TestKomponent = () => (
     </TestProvidere>
 );
 
-const TestKomponentMedEkteTekster = () => (
-    <TestProvidereMedEkteTekster>
-        <OmDeg />
-    </TestProvidereMedEkteTekster>
-);
-
 describe('OmDeg', () => {
     beforeEach(() => {
         silenceConsoleErrors();
@@ -36,27 +27,13 @@ describe('OmDeg', () => {
         mockHistory(['/om-deg']);
     });
 
-    test('Alle tekster finnes når man svarer at man ikke bor på registrert adresse', () => {
-        spyOnUseApp({
-            søker: mockDeep<ISøker>({
-                borPåRegistrertAdresse: {
-                    id: OmDegSpørsmålId.borPåRegistrertAdresse,
-                    svar: ESvar.NEI,
-                },
-                yrkesaktivFemÅr: {
-                    id: OmDegSpørsmålId.yrkesaktivFemÅr,
-                    svar: ESvar.JA,
-                },
-            }),
-        });
-
-        render(<TestKomponentMedEkteTekster />);
-        expect(console.error).toHaveBeenCalledTimes(0);
-    });
-
     test('Skal rendre 2 alertstriper i OmDeg', async () => {
         spyOnUseApp({ søker: mockDeep<ISøker>({ statsborgerskap: [] }) });
-        const { container } = render(<TestKomponentMedEkteTekster />);
+        const { container } = render(
+            <TestProvidere>
+                <OmDeg />
+            </TestProvidere>
+        );
         expect(container.getElementsByClassName('navds-alert')).toHaveLength(2);
     });
 

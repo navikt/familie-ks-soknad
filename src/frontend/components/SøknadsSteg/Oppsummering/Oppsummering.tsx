@@ -10,8 +10,10 @@ import { useEøs } from '../../../context/EøsContext';
 import { useSteg } from '../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { RouteEnum } from '../../../typer/routes';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../Felleskomponenter/Steg/Steg';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import DinLivssituasjonOppsummering from './OppsummeringSteg/DinLivssituasjonOppsummering';
 import EøsBarnOppsummering from './OppsummeringSteg/Eøs/EøsBarnOppsummering';
 import EøsSøkerOppsummering from './OppsummeringSteg/Eøs/EøsSøkerOppsummering';
@@ -25,7 +27,7 @@ const StyledNormaltekst = styled(Normaltekst)`
 `;
 
 const Oppsummering: React.FC = () => {
-    const { søknad } = useApp();
+    const { søknad, tekster } = useApp();
     const { hentStegNummer } = useSteg();
     const { push: pushHistory } = useHistory();
     const [feilAnchors, settFeilAnchors] = useState<string[]>([]);
@@ -34,6 +36,10 @@ const Oppsummering: React.FC = () => {
     const barnSomHarEøsSteg: IBarnMedISøknad[] = søkerTriggerEøs
         ? søknad.barnInkludertISøknaden
         : søknad.barnInkludertISøknaden.filter(barn => barn.triggetEøs);
+
+    const {
+        [ESanitySteg.OPPSUMMERING]: { oppsummeringTittel },
+    } = tekster();
 
     const scrollTilFeil = (elementId: string) => {
         // Gjør dette for syns skyld, men push scroller ikke vinduet
@@ -49,7 +55,7 @@ const Oppsummering: React.FC = () => {
 
     return (
         <Steg
-            tittel={<SpråkTekst id={'oppsummering.sidetittel'} />}
+            tittel={<TekstBlock block={oppsummeringTittel} />}
             gåVidereCallback={gåVidereCallback}
         >
             <StyledNormaltekst>

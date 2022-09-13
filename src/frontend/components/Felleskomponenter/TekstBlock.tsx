@@ -4,10 +4,26 @@ import { PortableText } from '@portabletext/react';
 
 import { useApp } from '../../context/AppContext';
 import { LocaleRecordBlock } from '../../typer/common';
-import { flettefeltTilTekst } from '../../utils/språk';
+import { EFlettefeltverdi } from '../../typer/sanity/sanity';
 
-const TekstBlock: React.FC<{ block: LocaleRecordBlock }> = ({ block }) => {
+const TekstBlock: React.FC<{ block: LocaleRecordBlock; barnetsNavn?: string }> = ({
+    block,
+    barnetsNavn,
+}) => {
     const { localeBlock, localeString, tekster, søknad } = useApp();
+
+    const flettefeltTilTekst = (flettefeltVerdi: EFlettefeltverdi): string => {
+        switch (flettefeltVerdi) {
+            case EFlettefeltverdi.SØKER_NAVN:
+                return søknad.søker.navn;
+            case EFlettefeltverdi.BARN_NAVN:
+                return barnetsNavn ?? '';
+            case EFlettefeltverdi.YTELSE:
+                return localeString(tekster().frittståendeOrd.kontantstoette);
+            default:
+                return '';
+        }
+    };
 
     return (
         <PortableText
@@ -16,17 +32,7 @@ const TekstBlock: React.FC<{ block: LocaleRecordBlock }> = ({ block }) => {
                 marks: {
                     flettefelt: props => {
                         if (props?.value?.flettefeltVerdi) {
-                            return (
-                                <span>
-                                    {
-                                        flettefeltTilTekst(
-                                            tekster().frittståendeOrd,
-                                            localeString,
-                                            søknad.søker.navn
-                                        )[props.value.flettefeltVerdi]
-                                    }
-                                </span>
-                            );
+                            return <span>{flettefeltTilTekst(props.value.flettefeltVerdi)}</span>;
                         } else {
                             throw new Error(`Fant ikke flettefeltVerdi`);
                         }

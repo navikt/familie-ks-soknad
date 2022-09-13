@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 
 import styled from 'styled-components';
 
-import { Sidetittel } from 'nav-frontend-typografi';
-
 import { LocaleType, Sprakvelger } from '@navikt/familie-sprakvelger';
 
 import VeilederSnakkeboble from '../../../assets/VeilederSnakkeboble';
@@ -19,7 +17,7 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
 import FortsettPåSøknad from './FortsettPåSøknad';
 
-const StyledSidetittel = styled(Sidetittel)`
+const TittelContainer = styled.div`
     && {
         margin: 4rem 0 2.3rem 0;
     }
@@ -37,7 +35,7 @@ const Forside: React.FC = () => {
         [ESanitySteg.FORSIDE]: {
             punktliste,
             veilederhilsen,
-            soknadstittel,
+            soeknadstittel,
             personopplysningslenke,
         },
     } = tekster();
@@ -53,25 +51,22 @@ const Forside: React.FC = () => {
 
     return (
         <InnholdContainer>
-            <VeilederSnakkeboble
-                tekst={<TekstBlock block={veilederhilsen.veilederhilsen} />}
-                posisjon={'høyre'}
-            />
+            <VeilederSnakkeboble tekst={<TekstBlock block={veilederhilsen} />} posisjon={'høyre'} />
 
-            <StyledSidetittel>
-                <TekstBlock block={soknadstittel.soknadstittel} />
-            </StyledSidetittel>
+            <TittelContainer>
+                <TekstBlock block={soeknadstittel} />
+            </TittelContainer>
 
             <StyledSpråkvelger støttedeSprak={[LocaleType.nn, LocaleType.nb, LocaleType.en]} />
 
             <Informasjonsbolk>
-                <TekstBlock block={punktliste.innhold} />
+                <TekstBlock block={punktliste} />
             </Informasjonsbolk>
 
             {kanFortsettePåSøknad ? <FortsettPåSøknad /> : <BekreftelseOgStartSoknad />}
 
             <Informasjonsbolk>
-                <TekstBlock block={personopplysningslenke.personopplysningslenke} />
+                <TekstBlock block={personopplysningslenke} />
             </Informasjonsbolk>
         </InnholdContainer>
     );
