@@ -38,6 +38,18 @@ export const useFilopplaster = (
         async filer => {
             const feilmeldingsliste: ReactNode[] = [];
             const nyeVedlegg: IVedlegg[] = [];
+
+            const håndterFeilType = (fil: File) => {
+                feilmeldingsliste.push(
+                    <SpråkTekst
+                        id={'dokumentasjon.last-opp-dokumentasjon.feilmeldingtype'}
+                        values={{ filnavn: fil.name }}
+                    />
+                );
+                settFeilmeldinger(feilmeldingsliste);
+                settÅpenModal(true);
+            };
+
             await Promise.all(
                 filer.map((fil: File) =>
                     wrapMedSystemetLaster(async () => {
@@ -46,17 +58,11 @@ export const useFilopplaster = (
                                 try {
                                     fil = await konverter(fil);
                                 } catch (e) {
-                                    fil = new File([fil], fil.name, { type: fil.type });
+                                    håndterFeilType(fil);
+                                    return;
                                 }
                             } else {
-                                feilmeldingsliste.push(
-                                    <SpråkTekst
-                                        id={'dokumentasjon.last-opp-dokumentasjon.feilmeldingtype'}
-                                        values={{ filnavn: fil.name }}
-                                    />
-                                );
-                                settFeilmeldinger(feilmeldingsliste);
-                                settÅpenModal(true);
+                                håndterFeilType(fil);
                                 return;
                             }
                         }
