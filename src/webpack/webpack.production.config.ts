@@ -22,17 +22,20 @@ const prodConfig: webpack.Configuration = mergeWithRules({
             filename: '[name].[contenthash].css',
         }),
         new CssMinimizerWebpackPlugin(),
-        process.env.SENTRY_AUTH_TOKEN
-            ? new SentryCliPlugin({
-                  include: 'dist',
-                  org: 'nav',
-                  project: 'familie-ks-soknad',
-                  authToken: process.env.SENTRY_AUTH_TOKEN,
-                  url: 'https://sentry.gc.nav.no/',
-                  release: process.env.SENTRY_RELEASE,
-                  urlPrefix: `~${process.env.BASE_PATH}`,
-              })
-            : undefined,
+        new SentryCliPlugin({
+            include: 'dist',
+            org: 'nav',
+            project: 'familie-ks-soknad',
+            authToken: process.env.SENTRY_AUTH_TOKEN,
+            url: 'https://sentry.gc.nav.no/',
+            release: process.env.SENTRY_RELEASE,
+            urlPrefix: `~${process.env.BASE_PATH}`,
+            errorHandler: (err, _invokeErr, compilation) => {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                compilation.warnings.push('Sentry CLI Plugin: ' + err.message);
+            },
+        }),
     ].filter(val => !!val),
     output: {
         filename: '[name].[contenthash].js',
