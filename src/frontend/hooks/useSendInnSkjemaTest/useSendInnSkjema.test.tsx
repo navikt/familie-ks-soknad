@@ -6,7 +6,7 @@ silenceConsoleErrors();
 
 describe('useSendInnSkjema', () => {
     beforeEach(() => {
-        jest.useFakeTimers('modern');
+        jest.useFakeTimers();
     });
 
     it('Kan mappe sivilstandenum til språktekster', () => {

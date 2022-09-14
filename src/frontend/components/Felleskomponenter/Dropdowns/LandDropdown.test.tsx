@@ -12,7 +12,7 @@ import { LandDropdown } from './LandDropdown';
 
 describe('LandDropdown', () => {
     beforeEach(() => {
-        jest.useFakeTimers('modern');
+        jest.useFakeTimers();
         spyOnUseApp({});
     });
 
