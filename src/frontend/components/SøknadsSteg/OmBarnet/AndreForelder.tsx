@@ -184,7 +184,11 @@ const AndreForelder: React.FC<{
                                         ))}
                                         {utenlandsperioder.length > 0 && (
                                             <Element>
-                                                <SpråkTekst id={'TODO'} />
+                                                <SpråkTekst
+                                                    id={
+                                                        'TODO har den andre forelderen flere perioder med utenlandsopphold spørmål'
+                                                    }
+                                                />
                                             </Element>
                                         )}
                                         <LeggTilKnapp
