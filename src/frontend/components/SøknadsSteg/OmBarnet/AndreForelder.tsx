@@ -211,6 +211,7 @@ const AndreForelder: React.FC<{
                                     toggleModal={toggleUtenlandsmodalAndreForelder}
                                     onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
                                     personType={PersonType.AndreForelder}
+                                    barn={barn}
                                 />
                             </KomponentGruppe>
                         )}

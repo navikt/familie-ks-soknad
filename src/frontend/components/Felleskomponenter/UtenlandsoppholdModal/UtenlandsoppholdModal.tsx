@@ -26,10 +26,7 @@ import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import { tilDatoUkjentLabelSpråkId, UtenlandsoppholdSpørsmålId } from './spørsmål';
-import {
-    IUseUtenlandsoppholdSkjemaParams,
-    useUtenlandsoppholdSkjema,
-} from './useUtenlandsoppholdSkjema';
+import { useUtenlandsoppholdSkjema } from './useUtenlandsoppholdSkjema';
 import {
     fraDatoLabelSpråkId,
     landLabelSpråkId,
@@ -38,11 +35,15 @@ import {
     årsakSpråkId,
 } from './utenlandsoppholdSpråkUtils';
 
-interface Props extends ReturnType<typeof useModal>, IUseUtenlandsoppholdSkjemaParams {
-    onLeggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
-    personType: PersonType;
-    barn?: IBarnMedISøknad;
-}
+type PersonTypeMedBarn =
+    | { personType: PersonType.Søker; barn?: never }
+    | { personType: PersonType.Barn; barn: IBarnMedISøknad }
+    | { personType: PersonType.AndreForelder; barn: IBarnMedISøknad };
+
+type Props = PersonTypeMedBarn &
+    ReturnType<typeof useModal> & {
+        onLeggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
+    };
 
 export const UtenlandsoppholdModal: React.FC<Props> = ({
     erÅpen,
