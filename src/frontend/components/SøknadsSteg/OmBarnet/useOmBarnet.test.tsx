@@ -29,7 +29,7 @@ describe('useOmBarnet', () => {
 
     beforeEach(() => {
         silenceConsoleErrors();
-        jest.useFakeTimers('modern');
+        jest.useFakeTimers();
     });
 
     it('Setter institusjonsfelter til tomme strenger hvis barnet ikke bor på institusjon', async () => {
