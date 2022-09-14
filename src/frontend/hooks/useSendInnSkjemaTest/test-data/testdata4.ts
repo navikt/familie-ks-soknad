@@ -180,6 +180,7 @@ export const testdata4: TilKontraktTestData = {
                     andreUtbetalingsperioder: [],
                     pensjonsperioderNorge: [],
                     pensjonsperioderUtland: [],
+                    utenlandsperioder: [],
                     idNummer: [],
                     kanIkkeGiOpplysninger: {
                         id: 'andre-forelder-kan-ikke-gi-opplysninger',
@@ -225,6 +226,14 @@ export const testdata4: TilKontraktTestData = {
                     fødselsdato: {
                         id: 'andre-forelder-fødselsdato',
                         svar: '',
+                    },
+                    værtINorgeITolvMåneder: {
+                        id: 'andre-forelder-vært-i-norge-siste-tolv-måneder',
+                        svar: 'JA',
+                    },
+                    planleggerÅBoINorgeTolvMnd: {
+                        id: 'andre-forelder-planlegger-å-bo-i-norge-tolv-mnd',
+                        svar: null,
                     },
                     yrkesaktivFemÅr: {
                         id: 'andre-forelder-yrkesaktiv-fem-år',
@@ -1767,6 +1776,16 @@ export const testdata4: TilKontraktTestData = {
                     },
                     fnr: null,
                     fødselsdato: null,
+                    værtINorgeSisteTolvMåneder: {
+                        label: {
+                            en: 'todo.andreforelder.utenlandsopphold',
+                            nb: 'TODO andre forelder utenlandsopphold',
+                            nn: 'todo.andreforelder.utenlandsopphold',
+                        },
+                        verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
+                    },
+                    utenlandsperioder: [],
+                    planleggerÅBoINorgeTolvMnd: null,
                     yrkesaktivFemÅr: null,
                     pensjonUtland: null,
                     arbeidUtlandet: null,

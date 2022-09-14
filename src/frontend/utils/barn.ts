@@ -23,6 +23,7 @@ export const genererInitiellAndreForelder = (
             id: OmBarnetSpørsmålsId.andreForelderKanIkkeGiOpplysninger,
             svar: andreForelder?.kanIkkeGiOpplysninger.svar ?? ESvar.NEI,
         },
+        utenlandsperioder: andreForelder?.utenlandsperioder ?? [],
         arbeidsperioderNorge: andreForelder?.arbeidsperioderNorge ?? [],
         arbeidsperioderUtland: andreForelder?.arbeidsperioderUtland ?? [],
         andreUtbetalingsperioder: andreForelder?.andreUtbetalingsperioder ?? [],
@@ -41,6 +42,14 @@ export const genererInitiellAndreForelder = (
         fødselsdato: {
             id: OmBarnetSpørsmålsId.andreForelderFødselsdato,
             svar: andreForelder?.fødselsdato.svar ?? '',
+        },
+        værtINorgeITolvMåneder: {
+            svar: andreForelder?.værtINorgeITolvMåneder.svar ?? null,
+            id: OmBarnetSpørsmålsId.andreForelderVærtINorgeSisteTolvMåneder,
+        },
+        planleggerÅBoINorgeTolvMnd: {
+            svar: andreForelder?.planleggerÅBoINorgeTolvMnd.svar ?? null,
+            id: OmBarnetSpørsmålsId.andreForelderPlanleggerÅBoINorgeTolvMnd,
         },
         yrkesaktivFemÅr: {
             svar: andreForelder?.yrkesaktivFemÅr.svar ?? null,

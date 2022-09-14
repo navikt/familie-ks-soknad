@@ -9,6 +9,7 @@ import {
 import { IBarnMedISøknad } from '../../typer/barn';
 import { ISøknadsfelt, IUtenlandsperiodeIKontraktFormat } from '../../typer/kontrakt/generelle';
 import { IUtenlandsperiode } from '../../typer/perioder';
+import { PersonType } from '../../typer/personType';
 import { hentTekster, landkodeTilSpråk } from '../språk';
 import {
     sammeVerdiAlleSpråk,
@@ -19,20 +20,23 @@ import {
 export const utenlandsperiodeTilISøknadsfelt = (
     utenlandperiode: IUtenlandsperiode,
     periodeNummer: number,
+    personType: PersonType,
     barn?: IBarnMedISøknad
 ): ISøknadsfelt<IUtenlandsperiodeIKontraktFormat> => {
     return {
         label: hentTekster('felles.leggtilutenlands.opphold', { x: periodeNummer }),
         verdi: sammeVerdiAlleSpråk({
             utenlandsoppholdÅrsak: {
-                label: hentTekster(årsakLabelSpråkId(barn), {
+                label: hentTekster(årsakLabelSpråkId(personType), {
                     ...(barn && { barn: barn.navn }),
                 }),
-                verdi: hentTekster(årsakSpråkId(utenlandperiode.utenlandsoppholdÅrsak.svar, barn)),
+                verdi: hentTekster(
+                    årsakSpråkId(utenlandperiode.utenlandsoppholdÅrsak.svar, personType)
+                ),
             },
             oppholdsland: {
                 label: hentTekster(
-                    landLabelSpråkId(utenlandperiode.utenlandsoppholdÅrsak.svar, barn),
+                    landLabelSpråkId(utenlandperiode.utenlandsoppholdÅrsak.svar, personType),
                     { ...(barn && { barn: barn.navn }) }
                 ),
                 verdi: verdiCallbackAlleSpråk(locale =>
@@ -41,14 +45,14 @@ export const utenlandsperiodeTilISøknadsfelt = (
             },
             oppholdslandFraDato: {
                 label: hentTekster(
-                    fraDatoLabelSpråkId(utenlandperiode.utenlandsoppholdÅrsak.svar, barn),
+                    fraDatoLabelSpråkId(utenlandperiode.utenlandsoppholdÅrsak.svar, personType),
                     { ...(barn && { barn: barn.navn }) }
                 ),
                 verdi: sammeVerdiAlleSpråk(utenlandperiode.oppholdslandFraDato?.svar),
             },
             oppholdslandTilDato: {
                 label: hentTekster(
-                    tilDatoLabelSpråkId(utenlandperiode.utenlandsoppholdÅrsak.svar, barn),
+                    tilDatoLabelSpråkId(utenlandperiode.utenlandsoppholdÅrsak.svar, personType),
                     { ...(barn && { barn: barn.navn }) }
                 ),
                 verdi: utenlandperiode.oppholdslandTilDato?.svar

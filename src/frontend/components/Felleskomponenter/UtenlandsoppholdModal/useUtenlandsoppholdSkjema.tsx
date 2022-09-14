@@ -6,7 +6,7 @@ import { feil, FeltState, ok, useFelt, useSkjema } from '@navikt/familie-skjema'
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
-import { IBarnMedISøknad } from '../../../typer/barn';
+import { PersonType } from '../../../typer/personType';
 import { IUtenlandsoppholdFeltTyper } from '../../../typer/skjema';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 import { dagenEtterDato } from '../../../utils/dato';
@@ -26,17 +26,17 @@ import {
 } from './utenlandsoppholdSpråkUtils';
 
 export interface IUseUtenlandsoppholdSkjemaParams {
-    barn?: IBarnMedISøknad;
+    personType: PersonType;
 }
 
-export const useUtenlandsoppholdSkjema = ({ barn }: IUseUtenlandsoppholdSkjemaParams) => {
+export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSkjemaParams) => {
     const utenlandsoppholdÅrsak = useFelt<EUtenlandsoppholdÅrsak | ''>({
         feltId: UtenlandsoppholdSpørsmålId.årsakUtenlandsopphold,
         verdi: '',
         valideringsfunksjon: (felt: FeltState<EUtenlandsoppholdÅrsak | ''>) =>
             felt.verdi !== ''
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={årsakFeilmeldingSpråkId(barn)} />),
+                : feil(felt, <SpråkTekst id={årsakFeilmeldingSpråkId(personType)} />),
     });
 
     useEffect(() => {
@@ -45,7 +45,7 @@ export const useUtenlandsoppholdSkjema = ({ barn }: IUseUtenlandsoppholdSkjemaPa
 
     const oppholdsland = useLanddropdownFelt({
         søknadsfelt: { id: UtenlandsoppholdSpørsmålId.landUtenlandsopphold, svar: '' },
-        feilmeldingSpråkId: landFeilmeldingSpråkId(utenlandsoppholdÅrsak.verdi, barn),
+        feilmeldingSpråkId: landFeilmeldingSpråkId(utenlandsoppholdÅrsak.verdi, personType),
         skalFeltetVises: !!utenlandsoppholdÅrsak.verdi,
         nullstillVedAvhengighetEndring: true,
     });
@@ -58,7 +58,7 @@ export const useUtenlandsoppholdSkjema = ({ barn }: IUseUtenlandsoppholdSkjemaPa
         skalFeltetVises:
             !!utenlandsoppholdÅrsak.verdi &&
             utenlandsoppholdÅrsak.verdi !== EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE,
-        feilmeldingSpråkId: fraDatoFeilmeldingSpråkId(utenlandsoppholdÅrsak.verdi, barn),
+        feilmeldingSpråkId: fraDatoFeilmeldingSpråkId(utenlandsoppholdÅrsak.verdi, personType),
         sluttdatoAvgrensning: hentMaxAvgrensningPåFraDato(utenlandsoppholdÅrsak.verdi),
         avhengigheter: { utenlandsoppholdÅrsak },
         nullstillVedAvhengighetEndring: true,
@@ -78,7 +78,7 @@ export const useUtenlandsoppholdSkjema = ({ barn }: IUseUtenlandsoppholdSkjemaPa
         feltId: UtenlandsoppholdSpørsmålId.tilDatoUtenlandsopphold,
         initiellVerdi: '',
         vetIkkeCheckbox: oppholdslandTilDatoUkjent,
-        feilmeldingSpråkId: tilDatoFeilmeldingSpråkId(utenlandsoppholdÅrsak.verdi, barn),
+        feilmeldingSpråkId: tilDatoFeilmeldingSpråkId(utenlandsoppholdÅrsak.verdi, personType),
         skalFeltetVises:
             !!utenlandsoppholdÅrsak.verdi &&
             utenlandsoppholdÅrsak.verdi !== EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE,

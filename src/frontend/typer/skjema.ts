@@ -65,6 +65,9 @@ export interface IOmBarnetUtvidetFeltTyper {
     andreForelderFnrUkjent: ESvar;
     andreForelderFødselsdatoUkjent: ESvar;
     andreForelderFødselsdato: DatoMedUkjent;
+    andreForelderVærtINorgeITolvMåneder: ESvar | null;
+    andreForelderPlanleggerÅBoINorgeTolvMnd: ESvar | null;
+    andreForelderRegistrerteUtenlandsperioder: IUtenlandsperiode[];
     andreForelderYrkesaktivFemÅr: ESvar | null;
     andreForelderArbeidUtlandet: ESvar | null;
     andreForelderArbeidsperioderUtland: IArbeidsperiode[];
@@ -73,7 +76,7 @@ export interface IOmBarnetUtvidetFeltTyper {
     borFastMedSøker: ESvar | null;
     skriftligAvtaleOmDeltBosted: ESvar | null;
     sammeForelderSomAnnetBarn: string | null;
-    registrerteUtenlandsperioder: IUtenlandsperiode[];
+    barnRegistrerteUtenlandsperioder: IUtenlandsperiode[];
 }
 
 export interface IOmDegFeltTyper {

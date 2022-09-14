@@ -317,6 +317,7 @@ export const mekkGyldigSøknad = (): ISøknad => {
                         svar: 'Heisannveien 15',
                     },
                     andreUtbetalingsperioder: [],
+                    utenlandsperioder: [],
                     arbeidsperioderNorge: [],
                     pensjonsperioderUtland: [],
                     arbeidsperioderUtland: [],
@@ -338,6 +339,14 @@ export const mekkGyldigSøknad = (): ISøknad => {
                     [andreForelderDataKeySpørsmål.fødselsdato]: {
                         id: OmBarnetSpørsmålsId.andreForelderFødselsdato,
                         svar: AlternativtSvarForInput.UKJENT,
+                    },
+                    [andreForelderDataKeySpørsmål.værtINorgeITolvMåneder]: {
+                        id: OmBarnetSpørsmålsId.andreForelderVærtINorgeSisteTolvMåneder,
+                        svar: ESvar.JA,
+                    },
+                    [andreForelderDataKeySpørsmål.planleggerÅBoINorgeTolvMnd]: {
+                        id: OmBarnetSpørsmålsId.andreForelderPlanleggerÅBoINorgeTolvMnd,
+                        svar: ESvar.JA,
                     },
                     [andreForelderDataKeySpørsmål.yrkesaktivFemÅr]: {
                         id: OmBarnetSpørsmålsId.andreForelderYrkesaktivFemÅr,

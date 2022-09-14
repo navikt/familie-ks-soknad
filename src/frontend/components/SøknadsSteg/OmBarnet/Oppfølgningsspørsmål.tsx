@@ -178,6 +178,7 @@ const Oppfølgningsspørsmål: React.FC<{
                             nummer={index + 1}
                             fjernPeriodeCallback={fjernUtenlandsperiode}
                             barn={barn}
+                            personType={PersonType.Barn}
                         />
                     ))}
                     {utenlandsperioder.length > 0 && (
@@ -193,8 +194,8 @@ const Oppfølgningsspørsmål: React.FC<{
                         språkTekst={'felles.leggtilutenlands.knapp'}
                         onClick={toggleUtenlandsmodal}
                         feilmelding={
-                            skjema.felter.registrerteUtenlandsperioder.erSynlig &&
-                            skjema.felter.registrerteUtenlandsperioder.feilmelding &&
+                            skjema.felter.barnRegistrerteUtenlandsperioder.erSynlig &&
+                            skjema.felter.barnRegistrerteUtenlandsperioder.feilmelding &&
                             skjema.visFeilmeldinger && (
                                 <SpråkTekst id={'felles.leggtilutenlands.feilmelding'} />
                             )
@@ -285,6 +286,7 @@ const Oppfølgningsspørsmål: React.FC<{
                 toggleModal={toggleUtenlandsmodal}
                 onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
                 barn={barn}
+                personType={PersonType.Barn}
             />
         </>
     );

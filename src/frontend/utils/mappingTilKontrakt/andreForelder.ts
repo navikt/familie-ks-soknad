@@ -25,6 +25,7 @@ import {
 } from './hjelpefunksjoner';
 import { idNummerTilISøknadsfelt } from './idNummer';
 import { tilIPensjonsperiodeIKontraktFormat } from './pensjonsperioder';
+import { utenlandsperiodeTilISøknadsfelt } from './utenlandsperiode';
 
 export const andreForelderTilISøknadsfelt = (
     andreForelder: IAndreForelder,
@@ -35,6 +36,9 @@ export const andreForelderTilISøknadsfelt = (
         navn,
         fnr,
         fødselsdato,
+        værtINorgeITolvMåneder,
+        utenlandsperioder,
+        planleggerÅBoINorgeTolvMnd,
         yrkesaktivFemÅr,
         pensjonUtland,
         arbeidUtlandet,
@@ -92,6 +96,21 @@ export const andreForelderTilISøknadsfelt = (
                       omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.andreForelderFødselsdatoUkjent]
                   ),
                   barn
+              )
+            : null,
+        værtINorgeSisteTolvMåneder: værtINorgeITolvMåneder.svar
+            ? søknadsfeltBarn(
+                  språktekstIdFraSpørsmålId(værtINorgeITolvMåneder.id),
+                  sammeVerdiAlleSpråk(værtINorgeITolvMåneder.svar)
+              )
+            : null,
+        utenlandsperioder: utenlandsperioder.map((periode, index) =>
+            utenlandsperiodeTilISøknadsfelt(periode, index + 1, PersonType.AndreForelder)
+        ),
+        planleggerÅBoINorgeTolvMnd: planleggerÅBoINorgeTolvMnd.svar
+            ? søknadsfeltBarn(
+                  språktekstIdFraSpørsmålId(planleggerÅBoINorgeTolvMnd.id),
+                  sammeVerdiAlleSpråk(planleggerÅBoINorgeTolvMnd.svar)
               )
             : null,
         yrkesaktivFemÅr: yrkesaktivFemÅr.svar

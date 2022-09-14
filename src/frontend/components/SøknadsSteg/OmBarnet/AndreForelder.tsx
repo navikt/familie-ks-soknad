@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { Element } from 'nav-frontend-typografi';
+
 import { ESvar } from '@navikt/familie-form-elements';
 import { ISkjema } from '@navikt/familie-skjema';
 
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../typer/common';
-import { IArbeidsperiode, IPensjonsperiode } from '../../../typer/perioder';
+import { IArbeidsperiode, IPensjonsperiode, IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import { dagensDato } from '../../../utils/dato';
@@ -13,11 +15,16 @@ import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidspe
 import Datovelger from '../../Felleskomponenter/Datovelger/Datovelger';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
+import { LeggTilKnapp } from '../../Felleskomponenter/LeggTilKnapp/LeggTilKnapp';
 import { Pensjonsperiode } from '../../Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
 import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
+import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
+import { UtenlandsoppholdModal } from '../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsoppholdModal';
+import { UtenlandsperiodeOppsummering } from '../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
 import AndreForelderOppsummering from '../Oppsummering/OppsummeringSteg/OmBarnet/AndreForelderOppsummering';
 import SammeSomAnnetBarnRadio from './SammeSomAnnetBarnRadio';
 import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from './spørsmål';
@@ -26,6 +33,9 @@ const AndreForelder: React.FC<{
     barn: IBarnMedISøknad;
     skjema: ISkjema<IOmBarnetUtvidetFeltTyper, string>;
     andreBarnSomErFyltUt: IBarnMedISøknad[];
+    leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
+    fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
+    utenlandsperioder: IUtenlandsperiode[];
     leggTilArbeidsperiode: (periode: IArbeidsperiode) => void;
     fjernArbeidsperiode: (periode: IArbeidsperiode) => void;
     leggTilPensjonsperiode: (periode: IPensjonsperiode) => void;
@@ -34,6 +44,9 @@ const AndreForelder: React.FC<{
     barn,
     skjema,
     andreBarnSomErFyltUt,
+    leggTilUtenlandsperiode,
+    fjernUtenlandsperiode,
+    utenlandsperioder,
     leggTilArbeidsperiode,
     fjernArbeidsperiode,
     leggTilPensjonsperiode,
@@ -43,6 +56,10 @@ const AndreForelder: React.FC<{
         annetBarn => annetBarn.id === skjema.felter.sammeForelderSomAnnetBarn.verdi
     );
 
+    const {
+        erÅpen: utenlandsmodalAndreForelderErÅpen,
+        toggleModal: toggleUtenlandsmodalAndreForelder,
+    } = useModal();
     return (
         <SkjemaFieldset tittelId={'ombarnet.andre-forelder'}>
             <KomponentGruppe>
@@ -143,6 +160,77 @@ const AndreForelder: React.FC<{
                                 </KomponentGruppe>
                             )}
                         </KomponentGruppe>
+                        {skjema.felter.andreForelderVærtINorgeITolvMåneder.erSynlig && (
+                            <KomponentGruppe>
+                                <JaNeiSpm
+                                    skjema={skjema}
+                                    felt={skjema.felter.andreForelderVærtINorgeITolvMåneder}
+                                    spørsmålTekstId={
+                                        'todo andre forelder sammenhengende opphold norge?'
+                                    }
+                                />
+                                {skjema.felter.andreForelderRegistrerteUtenlandsperioder
+                                    .erSynlig && (
+                                    <>
+                                        {utenlandsperioder.map((periode, index) => (
+                                            <UtenlandsperiodeOppsummering
+                                                key={index}
+                                                periode={periode}
+                                                nummer={index + 1}
+                                                fjernPeriodeCallback={fjernUtenlandsperiode}
+                                                personType={PersonType.AndreForelder}
+                                                barn={barn}
+                                            />
+                                        ))}
+                                        {utenlandsperioder.length > 0 && (
+                                            <Element>
+                                                <SpråkTekst
+                                                    id={
+                                                        'TODO har den andre forelderen flere perioder med utenlandsopphold spørmål'
+                                                    }
+                                                />
+                                            </Element>
+                                        )}
+                                        <LeggTilKnapp
+                                            id={UtenlandsoppholdSpørsmålId.utenlandsopphold}
+                                            språkTekst={'felles.leggtilutenlands.knapp'}
+                                            onClick={toggleUtenlandsmodalAndreForelder}
+                                            feilmelding={
+                                                skjema.felter
+                                                    .andreForelderRegistrerteUtenlandsperioder
+                                                    .erSynlig &&
+                                                skjema.felter
+                                                    .andreForelderRegistrerteUtenlandsperioder
+                                                    .feilmelding &&
+                                                skjema.visFeilmeldinger && (
+                                                    <SpråkTekst
+                                                        id={'felles.leggtilutenlands.feilmelding'}
+                                                    />
+                                                )
+                                            }
+                                        />
+                                    </>
+                                )}
+                                <UtenlandsoppholdModal
+                                    erÅpen={utenlandsmodalAndreForelderErÅpen}
+                                    toggleModal={toggleUtenlandsmodalAndreForelder}
+                                    onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
+                                    personType={PersonType.AndreForelder}
+                                    barn={barn}
+                                />
+                            </KomponentGruppe>
+                        )}
+                        {skjema.felter.andreForelderPlanleggerÅBoINorgeTolvMnd.erSynlig && (
+                            <KomponentGruppe inline dynamisk>
+                                <JaNeiSpm
+                                    skjema={skjema}
+                                    felt={skjema.felter.andreForelderPlanleggerÅBoINorgeTolvMnd}
+                                    spørsmålTekstId={
+                                        'todo.andreforelder.utenlandsopphold.planlegger'
+                                    }
+                                />
+                            </KomponentGruppe>
+                        )}
                         {skjema.felter.andreForelderYrkesaktivFemÅr.erSynlig && (
                             <KomponentGruppe>
                                 <JaNeiSpm

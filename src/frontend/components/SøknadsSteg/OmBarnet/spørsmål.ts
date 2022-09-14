@@ -17,6 +17,8 @@ export enum OmBarnetSpørsmålsId {
     andreForelderFnrUkjent = 'andre-forelder-fødsels-/dnummer-ukjent',
     andreForelderFødselsdato = 'andre-forelder-fødselsdato',
     andreForelderFødselsdatoUkjent = 'andre-forelder-fødselsdato-ukjent',
+    andreForelderVærtINorgeSisteTolvMåneder = 'andre-forelder-vært-i-norge-siste-tolv-måneder',
+    andreForelderPlanleggerÅBoINorgeTolvMnd = 'andre-forelder-planlegger-å-bo-i-norge-tolv-mnd',
     andreForelderYrkesaktivFemÅr = 'andre-forelder-yrkesaktiv-fem-år',
     andreForelderArbeidUtlandet = 'andre-forelder-arbeid',
     andreForelderArbeidUtlandetEnke = 'andre-forelder-arbeid-enke',
@@ -49,6 +51,10 @@ export const omBarnetSpørsmålSpråkId: Record<OmBarnetSpørsmålsId, string> =
     [OmBarnetSpørsmålsId.andreForelderFnrUkjent]: 'ombarnet.andre-forelder.fnr-ukjent.spm',
     [OmBarnetSpørsmålsId.andreForelderFødselsdato]: 'felles.fødselsdato.label',
     [OmBarnetSpørsmålsId.andreForelderFødselsdatoUkjent]: 'felles.fødselsdato-ukjent',
+    [OmBarnetSpørsmålsId.andreForelderVærtINorgeSisteTolvMåneder]:
+        'todo.andreforelder.utenlandsopphold',
+    [OmBarnetSpørsmålsId.andreForelderPlanleggerÅBoINorgeTolvMnd]:
+        'todo.andreforelder.utenlandsopphold',
     [OmBarnetSpørsmålsId.andreForelderYrkesaktivFemÅr]: 'todo.andreforelder.yrkesaktiv',
     [OmBarnetSpørsmålsId.andreForelderArbeidUtlandet]: 'eøs.andre-forelder.arbeid-utland.spm',
     [OmBarnetSpørsmålsId.andreForelderArbeidUtlandetEnke]:

@@ -54,8 +54,8 @@ const [EøsProvider, useEøs] = createUseContext(() => {
     const skalTriggeEøsForSøker = (søker: ISøker): boolean => {
         const landSvarSomKanTrigge = [
             søker.utenlandsperioder.map(periode => periode.oppholdsland.svar),
-            søker.arbeidsperioderUtland.map(periode => periode.arbeidsperiodeland?.svar ?? ''),
-            søker.pensjonsperioderUtland.map(periode => periode.pensjonsland?.svar ?? ''),
+            søker.arbeidsperioderUtland.map(periode => periode.arbeidsperiodeland.svar),
+            søker.pensjonsperioderUtland.map(periode => periode.pensjonsland.svar),
         ].flat();
 
         return !!landSvarSomKanTrigge.find(land => erEøsLand(land));
@@ -66,10 +66,13 @@ const [EøsProvider, useEøs] = createUseContext(() => {
             ...(barn.andreForelder
                 ? [
                       barn.andreForelder.arbeidsperioderUtland.map(
-                          periode => periode.arbeidsperiodeland?.svar ?? ''
+                          periode => periode.arbeidsperiodeland.svar
                       ),
                       barn.andreForelder.pensjonsperioderUtland.map(
-                          periode => periode.pensjonsland?.svar ?? ''
+                          periode => periode.pensjonsland.svar
+                      ),
+                      barn.andreForelder.utenlandsperioder.map(
+                          periode => periode.oppholdsland.svar
                       ),
                   ]
                 : []),
