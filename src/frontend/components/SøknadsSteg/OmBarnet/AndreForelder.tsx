@@ -179,6 +179,7 @@ const AndreForelder: React.FC<{
                                                 nummer={index + 1}
                                                 fjernPeriodeCallback={fjernUtenlandsperiode}
                                                 personType={PersonType.AndreForelder}
+                                                barn={barn}
                                             />
                                         ))}
                                         {utenlandsperioder.length > 0 && (

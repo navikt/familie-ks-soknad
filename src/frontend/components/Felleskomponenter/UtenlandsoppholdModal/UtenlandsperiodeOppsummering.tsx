@@ -24,13 +24,24 @@ import {
     årsakSpråkId,
 } from './utenlandsoppholdSpråkUtils';
 
-export const UtenlandsperiodeOppsummering: React.FC<{
+type PersonTypeMedBarn =
+    | { personType: PersonType.Søker; barn?: never }
+    | { personType: PersonType.Barn; barn: IBarnMedISøknad }
+    | { personType: PersonType.AndreForelder; barn: IBarnMedISøknad };
+
+type Props = PersonTypeMedBarn & {
     periode: IUtenlandsperiode;
     nummer: number;
     fjernPeriodeCallback?: (periode: IUtenlandsperiode) => void;
-    personType: PersonType;
-    barn?: IBarnMedISøknad;
-}> = ({ periode, nummer, fjernPeriodeCallback, barn, personType }) => {
+};
+
+export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
+    periode,
+    nummer,
+    fjernPeriodeCallback,
+    barn,
+    personType,
+}) => {
     const [valgtLocale] = useSprakContext();
     const intl = useIntl();
     const { formatMessage } = intl;
