@@ -76,7 +76,7 @@ export interface IOmBarnetUtvidetFeltTyper {
     borFastMedSøker: ESvar | null;
     skriftligAvtaleOmDeltBosted: ESvar | null;
     sammeForelderSomAnnetBarn: string | null;
-    registrerteUtenlandsperioderBarn: IUtenlandsperiode[];
+    barnRegistrerteUtenlandsperioder: IUtenlandsperiode[];
 }
 
 export interface IOmDegFeltTyper {

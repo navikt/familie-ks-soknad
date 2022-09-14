@@ -597,7 +597,7 @@ export const useOmBarnet = (
             institusjonOppholdSluttdato,
             institusjonOppholdSluttVetIkke,
             utbetaltForeldrepengerEllerEngangsstønad,
-            registrerteUtenlandsperioderBarn,
+            barnRegistrerteUtenlandsperioder: registrerteUtenlandsperioderBarn,
             planleggerÅBoINorge12Mnd,
             pågåendeSøknadFraAnnetEøsLand,
             pågåendeSøknadHvilketLand,

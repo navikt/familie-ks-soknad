@@ -194,8 +194,8 @@ const Oppfølgningsspørsmål: React.FC<{
                         språkTekst={'felles.leggtilutenlands.knapp'}
                         onClick={toggleUtenlandsmodal}
                         feilmelding={
-                            skjema.felter.registrerteUtenlandsperioderBarn.erSynlig &&
-                            skjema.felter.registrerteUtenlandsperioderBarn.feilmelding &&
+                            skjema.felter.barnRegistrerteUtenlandsperioder.erSynlig &&
+                            skjema.felter.barnRegistrerteUtenlandsperioder.feilmelding &&
                             skjema.visFeilmeldinger && (
                                 <SpråkTekst id={'felles.leggtilutenlands.feilmelding'} />
                             )
