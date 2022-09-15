@@ -1,7 +1,7 @@
 import { LocaleRecordString } from '../common';
 
 export interface INavigasjonTekstinnhold {
-    start: LocaleRecordString;
+    startKnapp: LocaleRecordString;
     gaVidere: LocaleRecordString;
     tilbake: LocaleRecordString;
     avbryt: LocaleRecordString;
