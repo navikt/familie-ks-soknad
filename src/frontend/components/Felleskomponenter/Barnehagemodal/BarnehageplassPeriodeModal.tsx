@@ -33,7 +33,7 @@ interface Props extends ReturnType<typeof useModal>, IUseBarnehageplassSkjemaPar
     onLeggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
 }
 const StyledAlertStripe = styled(AlertStripe)`
-    margin-top: 1rem;
+    margin: 1rem 0 1rem 0;
 `;
 
 export const BarnehageplassPeriodeModal: React.FC<Props> = ({
@@ -164,68 +164,70 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                         spørsmålTekstId={'todo.ombarnet.barnehageplass.periode'}
                     />
                 )}
-            </KomponentGruppe>
-            <KomponentGruppe noMargin inline>
-                <SkjemaFeltInput
-                    felt={skjema.felter.antallTimer}
-                    visFeilmeldinger={skjema.visFeilmeldinger}
-                    labelSpråkTekstId={'todo.ombarnet.barnehageplass.periode'}
-                    språkValues={{
-                        ...(barn && {
-                            barn: barn.navn,
-                        }),
-                    }}
-                    bredde={'S'}
-                />
-                <StyledAlertStripe variant={'info'}>
-                    <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
-                </StyledAlertStripe>
-            </KomponentGruppe>
-            <KomponentGruppe noMargin inline>
+                <>
+                    <SkjemaFeltInput
+                        felt={skjema.felter.antallTimer}
+                        visFeilmeldinger={skjema.visFeilmeldinger}
+                        labelSpråkTekstId={'todo.ombarnet.barnehageplass.periode'}
+                        språkValues={{
+                            ...(barn && {
+                                barn: barn.navn,
+                            }),
+                        }}
+                        bredde={'S'}
+                    />
+                    <StyledAlertStripe variant={'info'}>
+                        <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
+                    </StyledAlertStripe>
+                </>
+                <>
+                    <Datovelger
+                        felt={skjema.felter.startetIBarnehagen}
+                        skjema={skjema}
+                        label={spørsmålSpråkTekst(
+                            BarnehageplassPeriodeSpørsmålId.startetIBarnehagen
+                        )}
+                        calendarPosition={'fullscreen'}
+                        avgrensMinDato={
+                            barnehageplassPeriodeBeskrivelse.verdi ===
+                            EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
+                                ? dagensDato()
+                                : undefined
+                        }
+                        avgrensMaxDato={
+                            barnehageplassPeriodeBeskrivelse.verdi ===
+                            EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
+                                ? dagensDato()
+                                : barnehageplassPeriodeBeskrivelse.verdi ===
+                                  EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                                ? gårsdagensDato()
+                                : undefined
+                        }
+                    />
+                    <StyledAlertStripe variant={'info'}>
+                        <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
+                    </StyledAlertStripe>
+                </>
                 <Datovelger
-                    felt={skjema.felter.startetIBarnehagen}
+                    felt={skjema.felter.slutterIBarnehagen}
                     skjema={skjema}
-                    label={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.startetIBarnehagen)}
+                    label={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.slutterIBarnehagen)}
                     calendarPosition={'fullscreen'}
                     avgrensMinDato={
                         barnehageplassPeriodeBeskrivelse.verdi ===
-                        EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
-                            ? dagensDato()
-                            : undefined
+                        EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
+                            ? morgendagensDato()
+                            : dagenEtterDato(startetIBarnehagen.verdi)
                     }
                     avgrensMaxDato={
                         barnehageplassPeriodeBeskrivelse.verdi ===
-                        EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
+                        EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
                             ? dagensDato()
-                            : barnehageplassPeriodeBeskrivelse.verdi ===
-                              EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                            ? gårsdagensDato()
                             : undefined
                     }
+                    tilhørendeFraOgMedFelt={skjema.felter.startetIBarnehagen}
                 />
-                <StyledAlertStripe variant={'info'}>
-                    <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
-                </StyledAlertStripe>
             </KomponentGruppe>
-            <Datovelger
-                felt={skjema.felter.slutterIBarnehagen}
-                skjema={skjema}
-                label={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.slutterIBarnehagen)}
-                calendarPosition={'fullscreen'}
-                avgrensMinDato={
-                    barnehageplassPeriodeBeskrivelse.verdi ===
-                    EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
-                        ? morgendagensDato()
-                        : dagenEtterDato(startetIBarnehagen.verdi)
-                }
-                avgrensMaxDato={
-                    barnehageplassPeriodeBeskrivelse.verdi ===
-                    EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                        ? dagensDato()
-                        : undefined
-                }
-                tilhørendeFraOgMedFelt={skjema.felter.startetIBarnehagen}
-            />
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>
     );
