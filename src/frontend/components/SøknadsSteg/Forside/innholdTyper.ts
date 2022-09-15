@@ -9,4 +9,5 @@ export interface IForsideTekstinnhold {
     veilederhilsen: LocaleRecordBlock;
     soeknadstittel: LocaleRecordBlock;
     personopplysningslenke: LocaleRecordBlock;
+    mellomlagretAlert: LocaleRecordBlock;
 }

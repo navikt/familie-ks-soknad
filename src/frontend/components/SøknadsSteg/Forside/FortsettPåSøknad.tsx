@@ -8,10 +8,12 @@ import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 
 import { Button } from '@navikt/ds-react';
 
+import { useApp } from '../../../context/AppContext';
 import { device } from '../../../Theme';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 
 const StyledButton = styled(Button)`
@@ -59,23 +61,26 @@ const StyledSideTittel = styled(Sidetittel)`
 `;
 
 const FortsettPåSøknad: FC = () => {
+    const { tekster, localeString } = useApp();
     const { fortsettPåSøknaden, startPåNytt, visStartPåNyttModal, settVisStartPåNyttModal } =
         useBekreftelseOgStartSoknad();
     const { formatMessage } = useIntl();
+
+    const {
+        FORSIDE: { mellomlagretAlert },
+        navigasjon: { fortsettKnapp, startPaaNyttKnapp },
+    } = tekster();
+
     return (
         <StyledFortsettPåSøknad role={'navigation'}>
             <KomponentGruppe>
                 <AlertStripe inline={false} variant={'info'}>
-                    <Normaltekst>
-                        <SpråkTekst id={'mellomlagring.info'} />
-                    </Normaltekst>
+                    <TekstBlock block={mellomlagretAlert} />
                 </AlertStripe>
             </KomponentGruppe>
-            <StyledButton onClick={fortsettPåSøknaden}>
-                <SpråkTekst id={'mellomlagring.knapp.fortsett'} />
-            </StyledButton>
+            <StyledButton onClick={fortsettPåSøknaden}>{localeString(fortsettKnapp)}</StyledButton>
             <StyledButton variant={'secondary'} onClick={() => settVisStartPåNyttModal(true)}>
-                <SpråkTekst id={'mellomlagring.knapp.startpånytt'} />
+                {localeString(startPaaNyttKnapp)}
             </StyledButton>
             <Modal
                 isOpen={visStartPåNyttModal}
