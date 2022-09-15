@@ -164,43 +164,50 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                         spørsmålTekstId={'todo.ombarnet.barnehageplass.periode'}
                     />
                 )}
-                <SkjemaFeltInput
-                    felt={skjema.felter.antallTimer}
-                    visFeilmeldinger={skjema.visFeilmeldinger}
-                    labelSpråkTekstId={'todo.ombarnet.barnehageplass.periode'}
-                    språkValues={{
-                        ...(barn && {
-                            barn: barn.navn,
-                        }),
-                    }}
-                    tilleggsinfo={
-                        <StyledAlertStripe variant={'info'}>
-                            <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
-                        </StyledAlertStripe>
-                    }
-                    bredde={'S'}
-                />
-                <Datovelger
-                    felt={skjema.felter.startetIBarnehagen}
-                    skjema={skjema}
-                    label={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.startetIBarnehagen)}
-                    calendarPosition={'fullscreen'}
-                    avgrensMinDato={
-                        barnehageplassPeriodeBeskrivelse.verdi ===
-                        EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
-                            ? dagensDato()
-                            : undefined
-                    }
-                    avgrensMaxDato={
-                        barnehageplassPeriodeBeskrivelse.verdi ===
-                        EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
-                            ? dagensDato()
-                            : barnehageplassPeriodeBeskrivelse.verdi ===
-                              EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                            ? gårsdagensDato()
-                            : undefined
-                    }
-                />
+                <>
+                    <SkjemaFeltInput
+                        felt={skjema.felter.antallTimer}
+                        visFeilmeldinger={skjema.visFeilmeldinger}
+                        labelSpråkTekstId={'todo.ombarnet.barnehageplass.periode'}
+                        språkValues={{
+                            ...(barn && {
+                                barn: barn.navn,
+                            }),
+                        }}
+                        bredde={'S'}
+                    />
+                    <StyledAlertStripe variant={'info'}>
+                        <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
+                    </StyledAlertStripe>
+                </>
+                <>
+                    <Datovelger
+                        felt={skjema.felter.startetIBarnehagen}
+                        skjema={skjema}
+                        label={spørsmålSpråkTekst(
+                            BarnehageplassPeriodeSpørsmålId.startetIBarnehagen
+                        )}
+                        calendarPosition={'fullscreen'}
+                        avgrensMinDato={
+                            barnehageplassPeriodeBeskrivelse.verdi ===
+                            EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
+                                ? dagensDato()
+                                : undefined
+                        }
+                        avgrensMaxDato={
+                            barnehageplassPeriodeBeskrivelse.verdi ===
+                            EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
+                                ? dagensDato()
+                                : barnehageplassPeriodeBeskrivelse.verdi ===
+                                  EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                                ? gårsdagensDato()
+                                : undefined
+                        }
+                    />
+                    <StyledAlertStripe variant={'info'}>
+                        <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
+                    </StyledAlertStripe>
+                </>
                 <Datovelger
                     felt={skjema.felter.slutterIBarnehagen}
                     skjema={skjema}
