@@ -13,12 +13,28 @@ import { LocaleRecordString } from '../common';
 import { IAndreUtbetalingerTekstinnhold } from './modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from './modaler/arbeidsperiode';
 import { IBarnehageplassTekstinnhold } from './modaler/barnehageplass';
-import { IEøsKontantstøtteTekstinnhold } from './modaler/eøsKontantstøtte';
+import { IEøsYtelseTekstinnhold } from './modaler/eøsYtelse';
 import { ILeggTilBarnTekstinnhold } from './modaler/leggTilBarn';
 import { IPensjonsperiodeTekstinnhold } from './modaler/pensjonsperiode';
 import { IUtenlandsoppholdTekstinnhold } from './modaler/utenlandsopphold';
-import { INavigasjonTekstinnhold } from './navigasjon';
 import { ESanitySteg } from './sanity';
+
+export enum SanityPersonType {
+    ANDRE_FORELDER = 'ANDRE_FORELDER',
+    SOKER = 'SOKER',
+    OMSORGSPERSON = 'OMSORGSPERSON',
+    BARN = 'BARN',
+}
+
+export enum SanityModalPrefix {
+    ARBEIDSPERIODE = 'MODAL_ARBEIDSPERIODE',
+    ANDRE_UTBETALINGER = 'MODAL_ANDRE_UTBETALINGER',
+    PENSJONSPERIODE = 'MODAL_PENSJONSPERIODE',
+    LEGG_TIL_BARN = 'MODAL_LEGG_TIL_BARN',
+    EOS_YTELSE = 'MODAL_EOS_YTELSE',
+    BARNEHAGEPLASS = 'MODAL_BARNEHAGEPLASS',
+    UTENLANDSOPPHOLD = 'MODAL_UTENLANDSOPPHOLD',
+}
 
 export interface ITekstinnhold {
     [ESanitySteg.FORSIDE]: IForsideTekstinnhold;
@@ -32,32 +48,53 @@ export interface ITekstinnhold {
     [ESanitySteg.OPPSUMMERING]: IOppsummeringTekstinnhold;
     [ESanitySteg.DOKUMENTASJON]: IDokumentasjonnTekstinnhold;
     [ESanitySteg.KVITTERING]: IKvitteringTekstinnhold;
-    modaler: IModalerInnhold;
-    frittståendeOrd: IFrittståendeOrdInnhold;
+    [ESanitySteg.FELLES]: IFellesTekstInnhold;
+}
+
+export interface IFellesTekstInnhold {
+    modaler: IModalerTekstinnhold;
+    frittståendeOrd: IFrittståendeOrdTekstinnhold;
     navigasjon: INavigasjonTekstinnhold;
 }
 
-export interface IModalerInnhold {
-    andreUtbetalingerSøker: IAndreUtbetalingerTekstinnhold;
-    andreUtbetalingerAndreForelder: IAndreUtbetalingerTekstinnhold;
-    andreUtbetalingerOmsorgsperson: IAndreUtbetalingerTekstinnhold;
-    arbeidsperioderSøker: IArbeidsperiodeTekstinnhold;
-    arbeidsperioderAndreForelder: IArbeidsperiodeTekstinnhold;
-    arbeidsperioderOmsorgsperson: IArbeidsperiodeTekstinnhold;
+export interface IModalerTekstinnhold {
+    arbeidsperiode: {
+        søker: IArbeidsperiodeTekstinnhold;
+        andreForelder: IArbeidsperiodeTekstinnhold;
+        omsorgsperson: IArbeidsperiodeTekstinnhold;
+    };
+    pensjonsperiode: {
+        søker: IPensjonsperiodeTekstinnhold;
+        andreForelder: IPensjonsperiodeTekstinnhold;
+        omsorgsperson: IPensjonsperiodeTekstinnhold;
+    };
+    utenlandsopphold: {
+        søker: IUtenlandsoppholdTekstinnhold;
+        barn: IUtenlandsoppholdTekstinnhold;
+    };
     barnehageplass: IBarnehageplassTekstinnhold;
-    eøsKontantstøtteSøker: IEøsKontantstøtteTekstinnhold;
-    eøsKontantstøtteAndreForelder: IEøsKontantstøtteTekstinnhold;
-    eøsKontantstøtteOmsorgsperson: IEøsKontantstøtteTekstinnhold;
+    andreUtbetalinger: {
+        søker: IAndreUtbetalingerTekstinnhold;
+        andreForelder: IAndreUtbetalingerTekstinnhold;
+        omsorgsperson: IAndreUtbetalingerTekstinnhold;
+    };
+    eøsYtelse: {
+        søker: IEøsYtelseTekstinnhold;
+        andreForelder: IEøsYtelseTekstinnhold;
+        omsorgsperson: IEøsYtelseTekstinnhold;
+    };
     leggTilBarn: ILeggTilBarnTekstinnhold;
-    pensjonsperiodeSøker: IPensjonsperiodeTekstinnhold;
-    pensjonsperiodeAndreForelder: IPensjonsperiodeTekstinnhold;
-    pensjonsperiodeOmsorgsperson: IPensjonsperiodeTekstinnhold;
-    utenlandsoppholdSoker: IUtenlandsoppholdTekstinnhold;
-    utenlandsoppholdBarn: IUtenlandsoppholdTekstinnhold;
 }
 
-export interface IFrittståendeOrdInnhold {
+export interface IFrittståendeOrdTekstinnhold {
     kontantstoette: LocaleRecordString;
     ordinaerBarnetrygd: LocaleRecordString;
     utvidetBarnetrygd: LocaleRecordString;
+}
+
+export interface INavigasjonTekstinnhold {
+    start: LocaleRecordString;
+    gaVidere: LocaleRecordString;
+    tilbake: LocaleRecordString;
+    avbryt: LocaleRecordString;
 }

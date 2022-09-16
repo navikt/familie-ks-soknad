@@ -16,6 +16,11 @@ export type SanityDokument = SanityDokumentBase & {
     [fieldNavn: string]: unknown;
 };
 
+export interface ISpørsmålDokument extends SanityDokumentBase {
+    sporsmal: LocaleRecordBlock;
+    feilmelding: LocaleRecordBlock;
+}
+
 export enum ESanitySteg {
     FORSIDE = 'FORSIDE',
     OM_DEG = 'OM_DEG',
