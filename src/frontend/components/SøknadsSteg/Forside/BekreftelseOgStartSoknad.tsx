@@ -46,13 +46,15 @@ const BekreftelseOgStartSoknad: React.FC = () => {
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
     const { localeString, tekster } = useApp();
 
-    const { FORSIDE, navigasjon } = tekster();
     const {
-        bekreftelsesboksFeilmelding,
-        bekreftelsesboksBroedtekst,
-        bekreftelsesboksErklaering,
-        bekreftelsesboksTittel,
-    } = FORSIDE;
+        FORSIDE: {
+            bekreftelsesboksFeilmelding,
+            bekreftelsesboksBroedtekst,
+            bekreftelsesboksErklaering,
+            bekreftelsesboksTittel,
+        },
+        FELLES: { navigasjon },
+    } = tekster();
 
     return (
         <FormContainer onSubmit={event => onStartSøknad(event)}>

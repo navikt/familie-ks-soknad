@@ -68,7 +68,9 @@ const FortsettPåSøknad: FC = () => {
 
     const {
         FORSIDE: { mellomlagretAlert },
-        navigasjon: { fortsettKnapp, startPaaNyttKnapp },
+        FELLES: {
+            navigasjon: { fortsettKnapp, startPaaNyttKnapp },
+        },
     } = tekster();
 
     return (

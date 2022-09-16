@@ -4,7 +4,7 @@ import { PortableText } from '@portabletext/react';
 
 import { useApp } from '../../context/AppContext';
 import { LocaleRecordBlock } from '../../typer/common';
-import { EFlettefeltverdi } from '../../typer/sanity/sanity';
+import { EFlettefeltverdi, ESanitySteg } from '../../typer/sanity/sanity';
 
 const TekstBlock: React.FC<{ block: LocaleRecordBlock; barnetsNavn?: string }> = ({
     block,
@@ -19,7 +19,7 @@ const TekstBlock: React.FC<{ block: LocaleRecordBlock; barnetsNavn?: string }> =
             case EFlettefeltverdi.BARN_NAVN:
                 return barnetsNavn ?? '';
             case EFlettefeltverdi.YTELSE:
-                return localeString(tekster().frittståendeOrd.kontantstoette);
+                return localeString(tekster()[ESanitySteg.FELLES].frittståendeOrd.kontantstoette);
             default:
                 return '';
         }
