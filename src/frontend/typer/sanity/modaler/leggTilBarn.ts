@@ -1,7 +1,7 @@
 import { LocaleRecordString } from '../../common';
-import { IFellesModalFelterTekstinnhold } from './fellesModalFelter';
 
-export interface ILeggTilBarnTekstinnhold extends IFellesModalFelterTekstinnhold {
+export interface ILeggTilBarnTekstinnhold {
+    //todo: oppdater riktig struktur
     barnetsNavn: {
         etternavn: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
         fornavn: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
