@@ -1,18 +1,13 @@
 import React, { FC } from 'react';
 
-import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 
-import Modal from 'nav-frontend-modal';
-import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
-
-import { Button } from '@navikt/ds-react';
+import { Button, Modal } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { device } from '../../../Theme';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 
@@ -35,6 +30,9 @@ const ModalInnholdContainer = styled.div`
     flex-direction: column;
     padding: 1rem 2rem;
     max-width: 35rem;
+    > h1 {
+        font-size: 1.25rem;
+    }
 `;
 
 const ModalKnappeContainer = styled.div`
@@ -43,6 +41,11 @@ const ModalKnappeContainer = styled.div`
     gap: 1rem;
     flex-wrap: wrap;
     margin-top: 1rem;
+
+    > button {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 
     @media all and ${device.mobile} {
         justify-content: center;
@@ -53,23 +56,23 @@ const ModalKnappeContainer = styled.div`
     }
 `;
 
-const StyledSideTittel = styled(Sidetittel)`
-    && {
-        font-size: 1.25rem;
-        margin-bottom: 1rem;
-    }
-`;
-
 const FortsettPåSøknad: FC = () => {
     const { tekster, localeString } = useApp();
     const { fortsettPåSøknaden, startPåNytt, visStartPåNyttModal, settVisStartPåNyttModal } =
         useBekreftelseOgStartSoknad();
-    const { formatMessage } = useIntl();
 
     const {
         FORSIDE: { mellomlagretAlert },
         FELLES: {
             navigasjon: { fortsettKnapp, startPaaNyttKnapp },
+            modaler: {
+                startPåNytt: {
+                    startNySoeknadKnapp,
+                    startPaaNyttInfo,
+                    startPaaNyttTittel,
+                    startPaaNyttAvbryt,
+                },
+            },
         },
     } = tekster();
 
@@ -85,28 +88,28 @@ const FortsettPåSøknad: FC = () => {
                 {localeString(startPaaNyttKnapp)}
             </StyledButton>
             <Modal
-                isOpen={visStartPåNyttModal}
-                contentLabel={formatMessage({ id: 'felles.startpånytt.modal.startpånyttknapp' })}
-                onRequestClose={() => {
+                open={visStartPåNyttModal}
+                onClose={() => {
                     settVisStartPåNyttModal(false);
                 }}
             >
-                <ModalInnholdContainer>
-                    <StyledSideTittel>
-                        <SpråkTekst id={'felles.startpånytt.modal.startpånyttknapp'} />{' '}
-                    </StyledSideTittel>
-                    <Normaltekst>
-                        <SpråkTekst id={'felles.startpånytt.modal.tekst'} />
-                    </Normaltekst>
-                    <ModalKnappeContainer>
-                        <Button variant={'tertiary'} onClick={() => settVisStartPåNyttModal(false)}>
-                            <SpråkTekst id={'felles.startpånytt.modal.avbrytknapp'} />
-                        </Button>
-                        <Button variant={'secondary'} onClick={startPåNytt}>
-                            <SpråkTekst id={'felles.startpånytt.modal.startpånyttknapp'} />{' '}
-                        </Button>
-                    </ModalKnappeContainer>
-                </ModalInnholdContainer>
+                <Modal.Content>
+                    <ModalInnholdContainer>
+                        <TekstBlock block={startPaaNyttTittel} />
+                        <TekstBlock block={startPaaNyttInfo} />
+                        <ModalKnappeContainer>
+                            <Button
+                                variant={'tertiary'}
+                                onClick={() => settVisStartPåNyttModal(false)}
+                            >
+                                <TekstBlock block={startPaaNyttAvbryt} />
+                            </Button>
+                            <Button variant={'secondary'} onClick={startPåNytt}>
+                                <TekstBlock block={startNySoeknadKnapp} />
+                            </Button>
+                        </ModalKnappeContainer>
+                    </ModalInnholdContainer>
+                </Modal.Content>
             </Modal>
         </StyledFortsettPåSøknad>
     );
