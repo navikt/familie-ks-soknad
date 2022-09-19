@@ -1,7 +1,7 @@
 import { LocaleRecordBlock } from '../../common';
-import { IFellesModalFelterTekstinnhold } from './fellesModalFelter';
 
-export interface IEøsKontantstøtteTekstinnhold extends IFellesModalFelterTekstinnhold {
+export interface IEøsYtelseTekstinnhold {
+    //todo: oppdater riktig struktur
     belop: {
         feilmelding: LocaleRecordBlock;
         sporsmal: LocaleRecordBlock;

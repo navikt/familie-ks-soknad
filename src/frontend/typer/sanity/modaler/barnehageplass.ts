@@ -1,7 +1,7 @@
 import { LocaleRecordString } from '../../common';
-import { IFellesModalFelterTekstinnhold } from './fellesModalFelter';
 
-export interface IBarnehageplassTekstinnhold extends IFellesModalFelterTekstinnhold {
+export interface IBarnehageplassTekstinnhold {
+    //todo: oppdater riktig struktur
     antallTimer: {
         feilmelding: LocaleRecordString;
         sporsmal: LocaleRecordString;

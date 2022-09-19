@@ -1,7 +1,7 @@
 import { LocaleRecordString } from '../../common';
-import { IFellesModalFelterTekstinnhold } from './fellesModalFelter';
 
-export interface IUtenlandsoppholdTekstinnhold extends IFellesModalFelterTekstinnhold {
+export interface IUtenlandsoppholdTekstinnhold {
+    //todo: oppdater riktig struktur
     arsak: {
         feilmelding: LocaleRecordString;
         sporsmal: LocaleRecordString;

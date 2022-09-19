@@ -1,7 +1,7 @@
 import { LocaleRecordBlock } from '../../common';
-import { IFellesModalFelterTekstinnhold } from './fellesModalFelter';
 
-export interface IPensjonsperiodeTekstinnhold extends IFellesModalFelterTekstinnhold {
+export interface IPensjonsperiodeTekstinnhold {
+    //todo: oppdater riktig struktur
     dato: {
         farStartdato: { feilmelding: LocaleRecordBlock; sporsmal: LocaleRecordBlock };
         fikkStartdato: { feilmelding: LocaleRecordBlock; sporsmal: LocaleRecordBlock };
