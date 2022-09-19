@@ -6,7 +6,6 @@ ADR-dokument: https://github.com/navikt/familie/blob/master/doc/adr/0008-KS-lage
 
 ## Avhengigheter
 1. Node versjon >=16
-2. familie-ba-soknad-api (https://github.com/navikt/familie-ba-soknad-api)
 
 ## Log in på https://npm.pkg.github.com
 På github -> Settings -> Developer Settings -> Generate New Token
@@ -18,11 +17,8 @@ eksporter miljøvariabel NPM_TOKEN, f eks ved å legge til
 ## Kjør lokalt
 1. `yarn install`
 2. `yarn start:dev`
-3. Kjør opp familie-ba-soknad-api
-4. Dersom du ønsker mellomlagring må du også kjøre opp familie-dokument
 
-### Mellomlagring
-For å kjøre med mellomlagring må du ha familie-dokument kjørende (https://github.com/navikt/familie-dokument).
+For å kjøre med mellomlagring må du ha familie-dokument kjørende.
 
 # Bygg og deploy
 Appen bygges hos github actions, og gir beskjed til nais deploy om å deployere appen i gcp. Alle commits til brancher går til dev miljøet, appen er ikke satt opp i produksjon enda.
