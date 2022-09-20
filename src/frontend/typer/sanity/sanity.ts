@@ -62,3 +62,16 @@ export interface SpørsmålDokument {
     feilmelding: LocaleRecordBlock;
     alert: LocaleRecordBlock;
 }
+
+export enum ESanitySivilstandApiKey {
+    GIFT = 'sivilstandGift',
+    ENKE_ELLER_ENKEMANN = 'sivilstandEnkeEnkemann',
+    SKILT = 'sivilstandSkilt',
+    SEPARERT = 'sivilstandSeparert',
+    REGISTRERT_PARTNER = 'sivilstandRegistrertPartner',
+    SEPARERT_PARTNER = 'sivilstandSeparertPartner',
+    SKILT_PARTNER = 'sivilstandSkiltPartner',
+    GJENLEVENDE_PARTNER = 'sivilstandGjenlevendePartner',
+    UGIFT = 'sivilstandUgift',
+    UOPPGITT = 'sivilstandUoppgitt',
+}

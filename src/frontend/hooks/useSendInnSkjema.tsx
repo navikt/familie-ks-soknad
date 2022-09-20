@@ -5,19 +5,25 @@ import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon
 import { useApp } from '../context/AppContext';
 import Miljø from '../Miljø';
 import { ISøknadKontrakt } from '../typer/kontrakt/v1';
+import { ESanitySteg } from '../typer/sanity/sanity';
 import { dataISøknadKontraktFormatV1 } from '../utils/mappingTilKontrakt/søknad';
 import { sendInn } from '../utils/sendInnSkjema';
 
 export const useSendInnSkjema = (): {
     sendInnSkjema: () => Promise<[boolean, ISøknadKontrakt]>;
 } => {
-    const { axiosRequest, søknad, settInnsendingStatus, settSisteModellVersjon } = useApp();
+    const { axiosRequest, søknad, settInnsendingStatus, settSisteModellVersjon, tekster } =
+        useApp();
     const { soknadApi } = Miljø();
     const [valgtSpråk] = useSprakContext();
     const sendInnSkjema = async (): Promise<[boolean, ISøknadKontrakt]> => {
         settInnsendingStatus({ status: RessursStatus.HENTER });
 
-        const formatert: ISøknadKontrakt = dataISøknadKontraktFormatV1(valgtSpråk, søknad);
+        const formatert: ISøknadKontrakt = dataISøknadKontraktFormatV1(
+            valgtSpråk,
+            søknad,
+            tekster()[ESanitySteg.FELLES].frittståendeOrd
+        );
 
         const res = await sendInn<ISøknadKontrakt>(
             formatert,

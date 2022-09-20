@@ -10,9 +10,11 @@ import * as engelsk from '../assets/lang/en.json' assert { type: 'json' };
 import * as bokmål from '../assets/lang/nb.json' assert { type: 'json' };
 import * as nynorsk from '../assets/lang/nn.json' assert { type: 'json' };
 import { innebygdeFormatterere } from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
-import { AlternativtSvarForInput } from '../typer/common';
+import { AlternativtSvarForInput, LocaleRecordString } from '../typer/common';
 import { ESivilstand, Slektsforhold } from '../typer/kontrakt/generelle';
 import { IBarn } from '../typer/person';
+import { ESanitySivilstandApiKey } from '../typer/sanity/sanity';
+import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
 
 export const toSlektsforholdSpråkId = (slektsforhold: Slektsforhold): string => {
     switch (slektsforhold) {
@@ -81,21 +83,31 @@ export const hentUformaterteTekster = (tekstId: string): Record<LocaleType, stri
     return map as Record<LocaleType, string>;
 };
 
-export const hentSivilstatusSpråkId = (statuskode?: ESivilstand) => {
+export const hentSivilstatusSpråkId = (
+    tekster: IFrittståendeOrdTekstinnhold,
+    statuskode?: ESivilstand
+): LocaleRecordString => {
     switch (statuskode) {
         case ESivilstand.UGIFT:
+            return tekster[ESanitySivilstandApiKey.UGIFT];
         case ESivilstand.GIFT:
+            return tekster[ESanitySivilstandApiKey.GIFT];
         case ESivilstand.ENKE_ELLER_ENKEMANN:
+            return tekster[ESanitySivilstandApiKey.ENKE_ELLER_ENKEMANN];
         case ESivilstand.SKILT:
+            return tekster[ESanitySivilstandApiKey.SKILT];
         case ESivilstand.SEPARERT:
+            return tekster[ESanitySivilstandApiKey.SEPARERT];
         case ESivilstand.REGISTRERT_PARTNER:
+            return tekster[ESanitySivilstandApiKey.REGISTRERT_PARTNER];
         case ESivilstand.SEPARERT_PARTNER:
+            return tekster[ESanitySivilstandApiKey.SEPARERT_PARTNER];
         case ESivilstand.SKILT_PARTNER:
+            return tekster[ESanitySivilstandApiKey.SKILT_PARTNER];
         case ESivilstand.GJENLEVENDE_PARTNER:
-            return `felles.sivilstatus.kode.${statuskode}`;
-
+            return tekster[ESanitySivilstandApiKey.GJENLEVENDE_PARTNER];
         default:
-            return `felles.sivilstatus.kode.${ESivilstand.UOPPGITT}`;
+            return tekster[ESanitySivilstandApiKey.UOPPGITT];
     }
 };
 

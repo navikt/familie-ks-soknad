@@ -4,10 +4,10 @@ import { SpørsmålDokument } from '../../../typer/sanity/sanity';
 export interface IOmDegTekstinnhold {
     omDegTittel: LocaleRecordBlock;
     personopplysningerAlert: LocaleRecordBlock;
-    personopplysningAdresse: LocaleRecordString;
-    personopplysningIdent: LocaleRecordString;
-    personopplysningSivilstatus: LocaleRecordString;
-    personopplysningStatsborgerskap: LocaleRecordString;
+    adresse: LocaleRecordString;
+    idnummer: LocaleRecordString;
+    sivilstatus: LocaleRecordString;
+    statsborgerskap: LocaleRecordString;
     borDuPaDenneAdressen: {
         sporsmal: LocaleRecordString;
         feilmelding: LocaleRecordString;
