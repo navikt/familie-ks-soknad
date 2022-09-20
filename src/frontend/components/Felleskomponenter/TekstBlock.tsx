@@ -6,7 +6,7 @@ import { useApp } from '../../context/AppContext';
 import { LocaleRecordBlock } from '../../typer/common';
 import { EFlettefeltverdi, ESanitySteg } from '../../typer/sanity/sanity';
 
-const TekstBlock: React.FC<{ block: LocaleRecordBlock; barnetsNavn?: string }> = ({
+const TekstBlock: React.FC<{ block: LocaleRecordBlock | undefined; barnetsNavn?: string }> = ({
     block,
     barnetsNavn,
 }) => {
@@ -25,7 +25,7 @@ const TekstBlock: React.FC<{ block: LocaleRecordBlock; barnetsNavn?: string }> =
         }
     };
 
-    return (
+    return block ? (
         <PortableText
             value={localeBlock(block)}
             components={{
@@ -51,7 +51,7 @@ const TekstBlock: React.FC<{ block: LocaleRecordBlock; barnetsNavn?: string }> =
                 },
             }}
         />
-    );
+    ) : null;
 };
 
 export default TekstBlock;
