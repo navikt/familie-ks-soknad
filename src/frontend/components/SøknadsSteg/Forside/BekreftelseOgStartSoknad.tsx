@@ -8,9 +8,7 @@ import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 import { Button } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { BekreftelseStatus, useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 
@@ -49,11 +47,14 @@ const BekreftelseOgStartSoknad: React.FC = () => {
     const { localeString, tekster } = useApp();
 
     const {
-        bekreftelsesboksFeilmelding,
-        bekreftelsesboksBroedtekst,
-        bekreftelsesboksErklaering,
-        bekreftelsesboksTittel,
-    } = tekster()[ESanitySteg.FORSIDE];
+        FORSIDE: {
+            bekreftelsesboksFeilmelding,
+            bekreftelsesboksBroedtekst,
+            bekreftelsesboksErklaering,
+            bekreftelsesboksTittel,
+        },
+        FELLES: { navigasjon },
+    } = tekster();
 
     return (
         <FormContainer onSubmit={event => onStartSøknad(event)}>
@@ -79,7 +80,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                 }
                 type={'submit'}
             >
-                <SpråkTekst id="forside.start-soknad.knapp" />
+                {localeString(navigasjon.startKnapp)}
             </StyledButton>
         </FormContainer>
     );

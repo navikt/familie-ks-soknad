@@ -16,6 +16,7 @@ import { IBarnehageplassTekstinnhold } from './modaler/barnehageplass';
 import { IEøsYtelseTekstinnhold } from './modaler/eøsYtelse';
 import { ILeggTilBarnTekstinnhold } from './modaler/leggTilBarn';
 import { IPensjonsperiodeTekstinnhold } from './modaler/pensjonsperiode';
+import { IStartPåNyttModal } from './modaler/startPåNytt';
 import { IUtenlandsoppholdTekstinnhold } from './modaler/utenlandsopphold';
 import { ESanitySteg } from './sanity';
 
@@ -34,6 +35,7 @@ export enum SanityModalPrefix {
     EOS_YTELSE = 'MODAL_EOS_YTELSE',
     BARNEHAGEPLASS = 'MODAL_BARNEHAGEPLASS',
     UTENLANDSOPPHOLD = 'MODAL_UTENLANDSOPPHOLD',
+    START_PAA_NYTT = 'MODAL_START_PAA_NYTT',
 }
 
 export interface ITekstinnhold {
@@ -84,6 +86,7 @@ export interface IModalerTekstinnhold {
         omsorgsperson: IEøsYtelseTekstinnhold;
     };
     leggTilBarn: ILeggTilBarnTekstinnhold;
+    startPåNytt: IStartPåNyttModal;
 }
 
 export interface IFrittståendeOrdTekstinnhold {
@@ -93,8 +96,7 @@ export interface IFrittståendeOrdTekstinnhold {
 }
 
 export interface INavigasjonTekstinnhold {
-    start: LocaleRecordString;
-    gaVidere: LocaleRecordString;
-    tilbake: LocaleRecordString;
-    avbryt: LocaleRecordString;
+    startKnapp: LocaleRecordString;
+    fortsettKnapp: LocaleRecordString;
+    startPaaNyttKnapp: LocaleRecordString;
 }

@@ -4,6 +4,7 @@ import { IBarnehageplassTekstinnhold } from '../typer/sanity/modaler/barnehagepl
 import { IEøsYtelseTekstinnhold } from '../typer/sanity/modaler/eøsYtelse';
 import { ILeggTilBarnTekstinnhold } from '../typer/sanity/modaler/leggTilBarn';
 import { IPensjonsperiodeTekstinnhold } from '../typer/sanity/modaler/pensjonsperiode';
+import { IStartPåNyttModal } from '../typer/sanity/modaler/startPåNytt';
 import { IUtenlandsoppholdTekstinnhold } from '../typer/sanity/modaler/utenlandsopphold';
 import {
     ESanitySteg,
@@ -110,6 +111,9 @@ const strukturertInnholdForModaler = (dokumenter: SanityDokument[]): IModalerTek
         leggTilBarn: strukturerInnholdForModal(
             SanityModalPrefix.LEGG_TIL_BARN
         ) as ILeggTilBarnTekstinnhold,
+        startPåNytt: strukturerInnholdForModal(
+            SanityModalPrefix.START_PAA_NYTT
+        ) as IStartPåNyttModal,
     };
 };
 
