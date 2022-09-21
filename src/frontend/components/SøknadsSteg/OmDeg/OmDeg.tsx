@@ -19,7 +19,6 @@ import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/Utenlandso
 import { UtenlandsoppholdModal } from '../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsoppholdModal';
 import { UtenlandsperiodeOppsummering } from '../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
 import { Personopplysninger } from './Personopplysninger';
-import { OmDegSpørsmålId, omDegSpørsmålSpråkId } from './spørsmål';
 import { useOmdeg } from './useOmdeg';
 
 const OmDeg: React.FC = () => {
@@ -37,7 +36,13 @@ const OmDeg: React.FC = () => {
     } = useOmdeg();
 
     const {
-        [ESanitySteg.OM_DEG]: { omDegTittel, medlemFolketrygd },
+        [ESanitySteg.OM_DEG]: {
+            omDegTittel,
+            borPaaAdressen,
+            oppholdtDegSammenhengende,
+            planleggerAaBoSammenhengende,
+            medlemAvFolketrygden,
+        },
     } = tekster();
 
     return (
@@ -58,14 +63,12 @@ const OmDeg: React.FC = () => {
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.borPåRegistrertAdresse}
-                    spørsmålTekstId={omDegSpørsmålSpråkId[OmDegSpørsmålId.borPåRegistrertAdresse]}
+                    spørsmålDokument={borPaaAdressen}
                 />
 
                 {skjema.felter.borPåRegistrertAdresse.verdi === ESvar.NEI && (
                     <AlertStripe variant={'warning'}>
-                        <SpråkTekst
-                            id={'omdeg.borpådenneadressen.kontakt-folkeregister-ukjent.alert'}
-                        />
+                        <TekstBlock block={borPaaAdressen.alert} />
                     </AlertStripe>
                 )}
             </KomponentGruppe>
@@ -75,12 +78,10 @@ const OmDeg: React.FC = () => {
                         <JaNeiSpm
                             skjema={skjema}
                             felt={skjema.felter.værtINorgeITolvMåneder}
-                            spørsmålTekstId={
-                                omDegSpørsmålSpråkId[OmDegSpørsmålId.værtINorgeITolvMåneder]
-                            }
+                            spørsmålDokument={oppholdtDegSammenhengende}
                             tilleggsinfo={
                                 <AlertStripe variant={'info'}>
-                                    <SpråkTekst id={'felles.korteopphold.info'} />
+                                    <TekstBlock block={oppholdtDegSammenhengende.alert} />
                                 </AlertStripe>
                             }
                         />
@@ -122,16 +123,12 @@ const OmDeg: React.FC = () => {
                             <JaNeiSpm
                                 skjema={skjema}
                                 felt={skjema.felter.planleggerÅBoINorgeTolvMnd}
-                                spørsmålTekstId={
-                                    omDegSpørsmålSpråkId[OmDegSpørsmålId.planleggerÅBoINorgeTolvMnd]
-                                }
+                                spørsmålDokument={planleggerAaBoSammenhengende}
                             />
                             {skjema.felter.planleggerÅBoINorgeTolvMnd.erSynlig &&
                                 skjema.felter.planleggerÅBoINorgeTolvMnd.verdi === ESvar.NEI && (
                                     <AlertStripe variant={'warning'} dynamisk>
-                                        <SpråkTekst
-                                            id={'omdeg.planlagt-opphold-sammenhengende.alert'}
-                                        />
+                                        <TekstBlock block={planleggerAaBoSammenhengende.alert} />
                                     </AlertStripe>
                                 )}
                         </KomponentGruppe>
@@ -142,11 +139,11 @@ const OmDeg: React.FC = () => {
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.yrkesaktivFemÅr}
-                    spørsmålTekstId={'todo.søker.yrkesaktiv'}
+                    spørsmålDokument={medlemAvFolketrygden}
                 />
                 {skjema.felter.yrkesaktivFemÅr.verdi === ESvar.NEI && (
                     <AlertStripe variant={'warning'} dynamisk>
-                        <TekstBlock block={medlemFolketrygd.alert} />
+                        <TekstBlock block={medlemAvFolketrygden.alert} />
                     </AlertStripe>
                 )}
             </KomponentGruppe>

@@ -13,6 +13,7 @@ import { innebygdeFormatterere } from '../components/Felleskomponenter/SpråkTek
 import { AlternativtSvarForInput } from '../typer/common';
 import { ESivilstand, Slektsforhold } from '../typer/kontrakt/generelle';
 import { IBarn } from '../typer/person';
+import { ESanitySivilstandApiKey } from '../typer/sanity/sanity';
 
 export const toSlektsforholdSpråkId = (slektsforhold: Slektsforhold): string => {
     switch (slektsforhold) {
@@ -81,21 +82,30 @@ export const hentUformaterteTekster = (tekstId: string): Record<LocaleType, stri
     return map as Record<LocaleType, string>;
 };
 
-export const hentSivilstatusSpråkId = (statuskode?: ESivilstand) => {
+export const sivilstandTilSanitySivilstandApiKey = (
+    statuskode: ESivilstand
+): ESanitySivilstandApiKey => {
     switch (statuskode) {
         case ESivilstand.UGIFT:
+            return ESanitySivilstandApiKey.UGIFT;
         case ESivilstand.GIFT:
+            return ESanitySivilstandApiKey.GIFT;
         case ESivilstand.ENKE_ELLER_ENKEMANN:
+            return ESanitySivilstandApiKey.ENKE_ELLER_ENKEMANN;
         case ESivilstand.SKILT:
+            return ESanitySivilstandApiKey.SKILT;
         case ESivilstand.SEPARERT:
+            return ESanitySivilstandApiKey.SEPARERT;
         case ESivilstand.REGISTRERT_PARTNER:
+            return ESanitySivilstandApiKey.REGISTRERT_PARTNER;
         case ESivilstand.SEPARERT_PARTNER:
+            return ESanitySivilstandApiKey.SEPARERT_PARTNER;
         case ESivilstand.SKILT_PARTNER:
+            return ESanitySivilstandApiKey.SKILT_PARTNER;
         case ESivilstand.GJENLEVENDE_PARTNER:
-            return `felles.sivilstatus.kode.${statuskode}`;
-
-        default:
-            return `felles.sivilstatus.kode.${ESivilstand.UOPPGITT}`;
+            return ESanitySivilstandApiKey.GJENLEVENDE_PARTNER;
+        case ESivilstand.UOPPGITT:
+            return ESanitySivilstandApiKey.UOPPGITT;
     }
 };
 

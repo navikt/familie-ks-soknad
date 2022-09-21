@@ -11,11 +11,13 @@ import { ESivilstand } from '../../typer/kontrakt/generelle';
 import { ISøknadKontrakt } from '../../typer/kontrakt/v1';
 import { ISøker } from '../../typer/person';
 import { PersonType } from '../../typer/personType';
+import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
+import { IFrittståendeOrdTekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknadSpørsmålMap } from '../../typer/spørsmål';
 import { ISøknad } from '../../typer/søknad';
 import { erDokumentasjonRelevant } from '../dokumentasjon';
 import {
-    hentSivilstatusSpråkId,
+    sivilstandTilSanitySivilstandApiKey,
     hentTekster,
     hentUformaterteTekster,
     landkodeTilSpråk,
@@ -49,7 +51,8 @@ const antallEøsSteg = (søker: ISøker, barnInkludertISøknaden: IBarnMedISøkn
 
 export const dataISøknadKontraktFormatV1 = (
     valgtSpråk: LocaleType,
-    søknad: ISøknad
+    søknad: ISøknad,
+    frittståendeOrdTekster: IFrittståendeOrdTekstinnhold
 ): ISøknadKontrakt => {
     const { søker } = søknad;
     // Raskeste måte å få tak i alle spørsmål minus de andre feltene på søker
@@ -199,35 +202,47 @@ export const dataISøknadKontraktFormatV1 = (
         dokumentasjon: søknad.dokumentasjon
             .filter(dok => erDokumentasjonRelevant(dok))
             .map(dok => dokumentasjonISøknadFormat(dok)),
-        teksterUtenomSpørsmål: [
-            'hvilkebarn.barn.bosted.adressesperre',
-            'ombarnet.fosterbarn',
-            'ombarnet.institusjon',
-            'ombarnet.opplystatbarnutlandopphold.info',
-            'ombarnet.barnetrygd-eøs',
-            'omdeg.annensamboer.spm',
-            'omdeg.personopplysninger.adressesperre.alert',
-            'omdeg.personopplysninger.ikke-registrert.alert',
-            'pdf.andreforelder.seksjonstittel',
-            'pdf.hvilkebarn.seksjonstittel',
-            'pdf.hvilkebarn.registrert-på-adresse',
-            'pdf.hvilkebarn.ikke-registrert-på-adresse',
-            'pdf.ombarnet.seksjonstittel',
-            'pdf.omdeg.seksjonstittel',
-            'pdf.bosted.seksjonstittel',
-            'pdf.ombarna.seksjonstittel',
-            'pdf.søker-for-tidsrom.seksjonstittel',
-            'pdf.søker.seksjonstittel',
-            'pdf.vedlegg.seksjonstittel',
-            'pdf.vedlegg.lastet-opp-antall',
-            'pdf.vedlegg.nummerering',
-            'dokumentasjon.har-sendt-inn.spm',
-            'dinlivssituasjon.sidetittel',
-            'eøs-om-deg.sidetittel',
-            'eøs-om-barn.sidetittel',
-            ...Object.values(ESivilstand).map(hentSivilstatusSpråkId),
-            ...Object.values(ESvar).map(jaNeiSvarTilSpråkId),
-        ].reduce((map, tekstId) => ({ ...map, [tekstId]: hentUformaterteTekster(tekstId) }), {}),
+        teksterUtenomSpørsmål: {
+            ...Object.values(ESivilstand).reduce(
+                (map, sivilstand) => ({
+                    ...map,
+                    [ESanitySivilstandApiKey[ESivilstand[sivilstand]]]:
+                        frittståendeOrdTekster[sivilstandTilSanitySivilstandApiKey(sivilstand)],
+                }),
+                {}
+            ),
+            ...[
+                'hvilkebarn.barn.bosted.adressesperre',
+                'ombarnet.fosterbarn',
+                'ombarnet.institusjon',
+                'ombarnet.opplystatbarnutlandopphold.info',
+                'ombarnet.barnetrygd-eøs',
+                'omdeg.annensamboer.spm',
+                'omdeg.personopplysninger.adressesperre.alert',
+                'omdeg.personopplysninger.ikke-registrert.alert',
+                'pdf.andreforelder.seksjonstittel',
+                'pdf.hvilkebarn.seksjonstittel',
+                'pdf.hvilkebarn.registrert-på-adresse',
+                'pdf.hvilkebarn.ikke-registrert-på-adresse',
+                'pdf.ombarnet.seksjonstittel',
+                'pdf.omdeg.seksjonstittel',
+                'pdf.bosted.seksjonstittel',
+                'pdf.ombarna.seksjonstittel',
+                'pdf.søker-for-tidsrom.seksjonstittel',
+                'pdf.søker.seksjonstittel',
+                'pdf.vedlegg.seksjonstittel',
+                'pdf.vedlegg.lastet-opp-antall',
+                'pdf.vedlegg.nummerering',
+                'dokumentasjon.har-sendt-inn.spm',
+                'dinlivssituasjon.sidetittel',
+                'eøs-om-deg.sidetittel',
+                'eøs-om-barn.sidetittel',
+                ...Object.values(ESvar).map(jaNeiSvarTilSpråkId),
+            ].reduce(
+                (map, tekstId) => ({ ...map, [tekstId]: hentUformaterteTekster(tekstId) }),
+                {}
+            ),
+        },
         originalSpråk: valgtSpråk,
     };
 };

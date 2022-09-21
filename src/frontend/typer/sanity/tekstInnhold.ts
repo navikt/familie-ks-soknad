@@ -93,6 +93,16 @@ export interface IFrittståendeOrdTekstinnhold {
     kontantstoette: LocaleRecordString;
     ordinaerBarnetrygd: LocaleRecordString;
     utvidetBarnetrygd: LocaleRecordString;
+    sivilstandUoppgitt: LocaleRecordString;
+    sivilstandEnkeEnkemann: LocaleRecordString;
+    sivilstandGift: LocaleRecordString;
+    sivilstandSkiltPartner: LocaleRecordString;
+    sivilstandSkilt: LocaleRecordString;
+    sivilstandRegistrertPartner: LocaleRecordString;
+    sivilstandUgift: LocaleRecordString;
+    sivilstandGjenlevendePartner: LocaleRecordString;
+    sivilstandSeparert: LocaleRecordString;
+    sivilstandSeparertPartner: LocaleRecordString;
 }
 
 export interface INavigasjonTekstinnhold {

@@ -2252,40 +2252,6 @@ export const testdata4: TilKontraktTestData = {
                 nb: 'Barnetrygd etter EØS-reglene - Om {barn}',
                 nn: 'Barnetrygd etter EØS-reglane - Om {barn}',
             },
-            'felles.sivilstatus.kode.GIFT': { en: 'Married', nb: 'Gift', nn: 'Gift' },
-            'felles.sivilstatus.kode.ENKE_ELLER_ENKEMANN': {
-                en: 'Widow(er)',
-                nb: 'Enke/Enkemann',
-                nn: 'Enke/enkemann',
-            },
-            'felles.sivilstatus.kode.SKILT': { en: 'Divorced', nb: 'Skilt', nn: 'Skilt' },
-            'felles.sivilstatus.kode.SEPARERT': { en: 'Separated', nb: 'Separert', nn: 'Separert' },
-            'felles.sivilstatus.kode.REGISTRERT_PARTNER': {
-                en: 'Registered partner',
-                nb: 'Registrert partner',
-                nn: 'Registrert partner',
-            },
-            'felles.sivilstatus.kode.SEPARERT_PARTNER': {
-                en: 'Separated partner',
-                nb: 'Separert partner',
-                nn: 'Separert partner',
-            },
-            'felles.sivilstatus.kode.SKILT_PARTNER': {
-                en: 'Divorced partner',
-                nb: 'Skilt partner',
-                nn: 'Skilt partner',
-            },
-            'felles.sivilstatus.kode.GJENLEVENDE_PARTNER': {
-                en: 'Surviving partner',
-                nb: 'Gjenlevende partner',
-                nn: 'Attlevande partner',
-            },
-            'felles.sivilstatus.kode.UGIFT': { en: 'Unmarried', nb: 'Ugift', nn: 'Ugift' },
-            'felles.sivilstatus.kode.UOPPGITT': {
-                en: 'Not specified',
-                nb: 'Ikke oppgitt',
-                nn: 'Ikkje oppgitt',
-            },
             'felles.svaralternativ.ja': { en: 'Yes', nb: 'Ja', nn: 'Ja' },
             'felles.svaralternativ.nei': { en: 'No', nb: 'Nei', nn: 'Nei' },
             'felles.svaralternativ.vetikke': {

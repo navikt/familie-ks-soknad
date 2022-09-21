@@ -1,15 +1,15 @@
 import { LocaleRecordBlock } from '../../common';
-import { ISpørsmålDokument } from '../sanity';
+import { ISanitySpørsmålDokument } from '../sanity';
 
 export interface IArbeidsperiodeTekstinnhold {
     tittel: LocaleRecordBlock;
-    arbeidsgiver: ISpørsmålDokument;
-    arbeidsperiodenAvsluttet: ISpørsmålDokument;
-    hvilketLandFortid: ISpørsmålDokument;
-    hvilketLandNaatid: ISpørsmålDokument;
-    sluttdatoArbeidsperiodeFortid: ISpørsmålDokument;
-    sluttdatoArbeidsperiodeFremtid: ISpørsmålDokument;
-    startdatoArbeidsperiode: ISpørsmålDokument;
+    arbeidsgiver: ISanitySpørsmålDokument;
+    arbeidsperiodenAvsluttet: ISanitySpørsmålDokument;
+    hvilketLandFortid: ISanitySpørsmålDokument;
+    hvilketLandNaatid: ISanitySpørsmålDokument;
+    sluttdatoArbeidsperiodeFortid: ISanitySpørsmålDokument;
+    sluttdatoArbeidsperiodeFremtid: ISanitySpørsmålDokument;
+    startdatoArbeidsperiode: ISanitySpørsmålDokument;
     flerePerioder: LocaleRecordBlock;
     fjernKnapp: LocaleRecordBlock;
     leggTilKnapp: LocaleRecordBlock;

@@ -10,18 +10,22 @@ import { ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { AlternativtSvarForInput } from '../../../typer/common';
+import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { logSpørsmålBesvart } from '../../../utils/amplitude';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 
 interface IJaNeiSpmProps {
     skjema: ISkjema<SkjemaFeltTyper, string>;
     felt: Felt<ESvar | null>;
-    spørsmålTekstId: string;
+    /** @deprecated **/
+    spørsmålTekstId?: string; // todo: legacy, fjerne denne når vi går over til sanity
     tilleggsinfoTekstId?: string;
     tilleggsinfo?: ReactNode;
     inkluderVetIkke?: boolean;
     språkValues?: Record<string, ReactNode> | undefined;
+    spørsmålDokument?: ISanitySpørsmålDokument;
 }
 
 const TilleggsinfoWrapper = styled.div`
@@ -36,6 +40,7 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
     tilleggsinfo,
     inkluderVetIkke = false,
     språkValues,
+    spørsmålDokument,
 }) => {
     const ref = useRef<RadioPanelGruppe>(null);
     const [mounted, settMounted] = useState(false);
@@ -46,30 +51,41 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             jaNeiRef.props.onChange(null, felt.verdi);
-            logSpørsmålBesvart(spørsmålTekstId, felt.verdi ?? AlternativtSvarForInput.UKJENT);
+            spørsmålDokument &&
+                logSpørsmålBesvart(
+                    spørsmålDokument.api_navn,
+                    felt.verdi ?? AlternativtSvarForInput.UKJENT
+                );
         }
         settMounted(true);
     }, [felt.verdi]);
 
     return felt.erSynlig ? (
-        <span id={felt.id}>
+        <span id={felt.id} data-testid={felt.id}>
             <JaNeiSpørsmål
                 {...felt.hentNavInputProps(skjema.visFeilmeldinger)}
                 initiellVerdi={felt.verdi}
                 name={guid()}
                 ref={ref}
                 legend={
-                    <>
-                        <Element>
-                            <SpråkTekst id={spørsmålTekstId} values={språkValues} />
-                        </Element>
-                        {tilleggsinfoTekstId && (
-                            <Normaltekst>
-                                <SpråkTekst id={tilleggsinfoTekstId} />
-                            </Normaltekst>
-                        )}
-                        <TilleggsinfoWrapper>{tilleggsinfo}</TilleggsinfoWrapper>
-                    </>
+                    spørsmålTekstId ? (
+                        <>
+                            <Element>
+                                <SpråkTekst id={spørsmålTekstId} values={språkValues} />
+                            </Element>
+                            {tilleggsinfoTekstId && (
+                                <Normaltekst>
+                                    <SpråkTekst id={tilleggsinfoTekstId} />
+                                </Normaltekst>
+                            )}
+                            <TilleggsinfoWrapper>{tilleggsinfo}</TilleggsinfoWrapper>
+                        </>
+                    ) : spørsmålDokument ? (
+                        <>
+                            <TekstBlock block={spørsmålDokument.sporsmal} />
+                            <TilleggsinfoWrapper>{tilleggsinfo}</TilleggsinfoWrapper>
+                        </>
+                    ) : null
                 }
                 labelTekstForRadios={{
                     ja: <SpråkTekst id={'felles.svaralternativ.ja'} />,

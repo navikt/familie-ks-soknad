@@ -16,9 +16,10 @@ export type SanityDokument = SanityDokumentBase & {
     [fieldNavn: string]: unknown;
 };
 
-export interface ISpørsmålDokument extends SanityDokumentBase {
+export interface ISanitySpørsmålDokument extends SanityDokument {
     sporsmal: LocaleRecordBlock;
     feilmelding: LocaleRecordBlock;
+    alert?: LocaleRecordBlock;
 }
 
 export enum ESanitySteg {
@@ -57,8 +58,15 @@ export enum EFlettefeltverdi {
     KLOKKESLETT = 'KLOKKESLETT',*/
 }
 
-export interface SpørsmålDokument {
-    sporsmal: LocaleRecordBlock;
-    feilmelding: LocaleRecordBlock;
-    alert: LocaleRecordBlock;
+export enum ESanitySivilstandApiKey {
+    GIFT = 'sivilstandGift',
+    ENKE_ELLER_ENKEMANN = 'sivilstandEnkeEnkemann',
+    SKILT = 'sivilstandSkilt',
+    SEPARERT = 'sivilstandSeparert',
+    REGISTRERT_PARTNER = 'sivilstandRegistrertPartner',
+    SEPARERT_PARTNER = 'sivilstandSeparertPartner',
+    SKILT_PARTNER = 'sivilstandSkiltPartner',
+    GJENLEVENDE_PARTNER = 'sivilstandGjenlevendePartner',
+    UGIFT = 'sivilstandUgift',
+    UOPPGITT = 'sivilstandUoppgitt',
 }

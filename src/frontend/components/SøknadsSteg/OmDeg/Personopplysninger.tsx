@@ -9,12 +9,10 @@ import { useSprakContext } from '@navikt/familie-sprakvelger';
 import { useApp } from '../../../context/AppContext';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { genererAdresseVisning } from '../../../utils/adresse';
-import { hentSivilstatusSpråkId, landkodeTilSpråk } from '../../../utils/språk';
+import { sivilstandTilSanitySivilstandApiKey, landkodeTilSpråk } from '../../../utils/språk';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import { omDegPersonopplysningerSpråkId } from './spørsmål';
 
 export const Personopplysninger: React.FC = () => {
     const [valgtLocale] = useSprakContext();
@@ -23,7 +21,14 @@ export const Personopplysninger: React.FC = () => {
     const søker = søknad.søker;
 
     const {
-        [ESanitySteg.OM_DEG]: { personopplysningerAlert, personopplysningIdent },
+        [ESanitySteg.OM_DEG]: {
+            personopplysningerAlert,
+            idnummer,
+            statsborgerskap,
+            sivilstatus,
+            adresse,
+        },
+        [ESanitySteg.FELLES]: { frittståendeOrd },
     } = tekster();
 
     return (
@@ -33,14 +38,12 @@ export const Personopplysninger: React.FC = () => {
             </AlertStripe>
 
             <Informasjonsbolk>
-                <Element>{localeString(personopplysningIdent)}</Element>
+                <Element>{localeString(idnummer)}</Element>
                 <Normaltekst>{søker.ident}</Normaltekst>
             </Informasjonsbolk>
 
             <Informasjonsbolk>
-                <Element>
-                    <SpråkTekst id={omDegPersonopplysningerSpråkId.søkerStatsborgerskap} />
-                </Element>
+                <Element>{localeString(statsborgerskap)}</Element>
                 <Normaltekst>
                     {søker.statsborgerskap
                         .map((statsborgerskap: { landkode: Alpha3Code }) =>
@@ -51,18 +54,16 @@ export const Personopplysninger: React.FC = () => {
             </Informasjonsbolk>
 
             <Informasjonsbolk>
-                <Element>
-                    <SpråkTekst id={omDegPersonopplysningerSpråkId.søkerSivilstatus} />
-                </Element>
+                <Element>{localeString(sivilstatus)}</Element>
                 <Normaltekst>
-                    <SpråkTekst id={hentSivilstatusSpråkId(søker.sivilstand.type)} />
+                    {localeString(
+                        frittståendeOrd[sivilstandTilSanitySivilstandApiKey(søker.sivilstand.type)]
+                    )}
                 </Normaltekst>
             </Informasjonsbolk>
 
             <Informasjonsbolk>
-                <Element>
-                    <SpråkTekst id={omDegPersonopplysningerSpråkId.søkerAdresse} />
-                </Element>
+                <Element>{localeString(adresse)}</Element>
                 {genererAdresseVisning(søker)}
             </Informasjonsbolk>
         </>

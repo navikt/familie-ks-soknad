@@ -1,7 +1,6 @@
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
-import { ESivilstand } from '../typer/kontrakt/generelle';
-import { hentSivilstatusSpråkId, hentTekster, landkodeTilSpråk } from './språk';
+import { hentTekster, landkodeTilSpråk } from './språk';
 
 describe('hentTekster', () => {
     test('kan hente språktekster med hentTekster med ulike språk', () => {
@@ -22,21 +21,5 @@ describe('hentTekster', () => {
 describe('landkodeTilSpråk', () => {
     test('Kan ta inn landkode og gjøre om til språk', () => {
         expect(landkodeTilSpråk('NOR', 'nb')).toEqual('Norge');
-    });
-});
-
-describe('hentSivilstatusSpråkId', () => {
-    test('Skal returnere tekstid til sivilstatus kode UOPPGITT dersom sivilstanden er ukjent', () => {
-        // eslint-disable-next-line
-        // @ts-ignore fordi hele poenget er at det er en ukjent verdi
-        expect(hentSivilstatusSpråkId('JEGHARKJÆRESTE')).toEqual(
-            'felles.sivilstatus.kode.UOPPGITT'
-        );
-    });
-
-    test('Skal returnere tekstid til innsendt sivilstatus kode', () => {
-        expect(hentSivilstatusSpråkId(ESivilstand.GIFT)).toEqual(
-            `felles.sivilstatus.kode.${ESivilstand.GIFT}`
-        );
     });
 });

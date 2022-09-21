@@ -12,7 +12,7 @@ import {
     TestProvidere,
 } from '../../../utils/testing';
 import OmDeg from './OmDeg';
-import { OmDegSpørsmålId, omDegSpørsmålSpråkId } from './spørsmål';
+import { OmDegSpørsmålId } from './spørsmål';
 
 const TestKomponent = () => (
     <TestProvidere>
@@ -60,15 +60,11 @@ describe('OmDeg', () => {
                 statsborgerskap: [{ landkode: 'NOR' }],
             }),
         });
-        const { queryByText, container } = render(<TestKomponent />);
+        const { container, queryByTestId } = render(<TestKomponent />);
         // Lar async useEffect i AppContext bli ferdig
         await container.getElementsByClassName('navds-alert');
-        expect(
-            queryByText(omDegSpørsmålSpråkId[OmDegSpørsmålId.borPåRegistrertAdresse])
-        ).not.toBeInTheDocument();
-        expect(
-            queryByText(omDegSpørsmålSpråkId[OmDegSpørsmålId.værtINorgeITolvMåneder])
-        ).toBeInTheDocument();
+        expect(queryByTestId(OmDegSpørsmålId.borPåRegistrertAdresse)).not.toBeInTheDocument();
+        expect(queryByTestId(OmDegSpørsmålId.værtINorgeITolvMåneder)).toBeInTheDocument();
     });
 
     test('Søker med adresse får opp to spørsmål med en gang', async () => {
@@ -81,12 +77,10 @@ describe('OmDeg', () => {
                 yrkesaktivFemÅr: { id: OmDegSpørsmålId.yrkesaktivFemÅr, svar: null },
             }),
         });
-        const { queryByText } = render(<TestKomponent />);
+        const { queryByTestId } = render(<TestKomponent />);
 
-        expect(queryByText(omDegSpørsmålSpråkId['bor-på-registrert-adresse'])).toBeInTheDocument();
-        expect(
-            queryByText(omDegSpørsmålSpråkId['søker-vært-i-norge-sammenhengende-tolv-måneder'])
-        ).toBeInTheDocument();
+        expect(queryByTestId(OmDegSpørsmålId.borPåRegistrertAdresse)).toBeInTheDocument();
+        expect(queryByTestId(OmDegSpørsmålId.værtINorgeITolvMåneder)).toBeInTheDocument();
     });
 
     test('Søker med adressesperre får ikke opp spørsmål om bosted', async () => {
@@ -96,16 +90,12 @@ describe('OmDeg', () => {
                 statsborgerskap: [{ landkode: 'NOR' }],
             }),
         });
-        const { queryByText, container } = render(<TestKomponent />);
+        const { queryByTestId, container } = render(<TestKomponent />);
         // Lar async useEffect i AppContext bli ferdig
         await container.getElementsByClassName('navds-alert');
 
-        expect(
-            queryByText(omDegSpørsmålSpråkId[OmDegSpørsmålId.borPåRegistrertAdresse])
-        ).not.toBeInTheDocument();
+        expect(queryByTestId(OmDegSpørsmålId.borPåRegistrertAdresse)).not.toBeInTheDocument();
 
-        expect(
-            queryByText(omDegSpørsmålSpråkId['søker-vært-i-norge-sammenhengende-tolv-måneder'])
-        ).toBeInTheDocument();
+        expect(queryByTestId(OmDegSpørsmålId.værtINorgeITolvMåneder)).toBeInTheDocument();
     });
 });
