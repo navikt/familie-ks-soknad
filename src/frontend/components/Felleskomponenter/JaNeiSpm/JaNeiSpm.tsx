@@ -19,6 +19,7 @@ import TekstBlock from '../TekstBlock';
 interface IJaNeiSpmProps {
     skjema: ISkjema<SkjemaFeltTyper, string>;
     felt: Felt<ESvar | null>;
+    /** @deprecated **/
     spørsmålTekstId?: string; // todo: legacy, fjerne denne når vi går over til sanity
     tilleggsinfoTekstId?: string;
     tilleggsinfo?: ReactNode;
