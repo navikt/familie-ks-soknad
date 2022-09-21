@@ -32,7 +32,7 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, barn, erD
         skalSkjules: erDød,
     });
 
-    const andreForelderErDød = personType === PersonType.AndreForelder && erDød;
+    const andreForelderErDød = personType === PersonType.andreForelder && erDød;
 
     const periodenErAvsluttet = mottarEøsKontantstøtteNå.verdi === ESvar.NEI || andreForelderErDød;
 

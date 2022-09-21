@@ -84,7 +84,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
 
     const periodenErAvsluttet =
         mottarEøsKontantstøtteNå.verdi === ESvar.NEI ||
-        (personType === PersonType.AndreForelder && erDød);
+        (personType === PersonType.andreForelder && erDød);
 
     const hentSpørsmålTekstId = kontantstøttePeriodeModalSpørsmålSpråkId(
         personType,

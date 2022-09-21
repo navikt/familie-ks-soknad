@@ -21,9 +21,9 @@ interface KontantstøttePeriodeProps {
 }
 
 type KontantstøttePeriodeOppsummeringPersonTypeProps =
-    | { personType: PersonType.Søker; erDød?: boolean }
-    | { personType: PersonType.Omsorgsperson; erDød?: boolean }
-    | { personType: PersonType.AndreForelder; erDød: boolean };
+    | { personType: PersonType.søker; erDød?: boolean }
+    | { personType: PersonType.omsorgsperson; erDød?: boolean }
+    | { personType: PersonType.andreForelder; erDød: boolean };
 
 type Props = KontantstøttePeriodeProps & KontantstøttePeriodeOppsummeringPersonTypeProps;
 
@@ -45,7 +45,7 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
 
     const periodenErAvsluttet =
         mottarEøsKontantstøtteNå.svar === ESvar.NEI ||
-        (personType === PersonType.AndreForelder && erDød);
+        (personType === PersonType.andreForelder && erDød);
     const [valgtLocale] = useSprakContext();
 
     const hentSpørsmålTekstId = kontantstøttePeriodeModalSpørsmålSpråkId(

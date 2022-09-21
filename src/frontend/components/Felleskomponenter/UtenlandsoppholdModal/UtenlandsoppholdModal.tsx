@@ -36,9 +36,9 @@ import {
 } from './utenlandsoppholdSpråkUtils';
 
 type PersonTypeMedBarn =
-    | { personType: PersonType.Søker; barn?: never }
-    | { personType: PersonType.Barn; barn: IBarnMedISøknad }
-    | { personType: PersonType.AndreForelder; barn: IBarnMedISøknad };
+    | { personType: PersonType.søker; barn?: never }
+    | { personType: PersonType.barn; barn: IBarnMedISøknad }
+    | { personType: PersonType.andreForelder; barn: IBarnMedISøknad };
 
 type Props = PersonTypeMedBarn &
     ReturnType<typeof useModal> & {

@@ -40,7 +40,7 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
 
     const periodenErAvsluttet: boolean =
         arbeidsperiodeAvsluttet?.svar === ESvar.JA ||
-        (personType === PersonType.AndreForelder && erDød);
+        (personType === PersonType.andreForelder && erDød);
 
     const hentSpørsmålTekstId = arbeidsperiodeModalSpørsmålSpråkId(personType, periodenErAvsluttet);
 

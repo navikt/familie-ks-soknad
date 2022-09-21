@@ -110,7 +110,7 @@ const AndreForelderOppsummering: React.FC<{
                         periode={periode}
                         nummer={index + 1}
                         barn={barn}
-                        personType={PersonType.AndreForelder}
+                        personType={PersonType.andreForelder}
                     />
                 ))}
                 {andreForelder[andreForelderDataKeySpørsmål.planleggerÅBoINorgeTolvMnd].svar && (
@@ -172,7 +172,7 @@ const AndreForelderOppsummering: React.FC<{
                         nummer={index + 1}
                         arbeidsperiode={periode}
                         gjelderUtlandet={true}
-                        personType={PersonType.AndreForelder}
+                        personType={PersonType.andreForelder}
                         erDød={barn[barnDataKeySpørsmål.andreForelderErDød].svar === ESvar.JA}
                     />
                 ))}
@@ -199,7 +199,7 @@ const AndreForelderOppsummering: React.FC<{
                         nummer={index + 1}
                         pensjonsperiode={periode}
                         gjelderUtlandet={true}
-                        personType={PersonType.AndreForelder}
+                        personType={PersonType.andreForelder}
                         erDød={barn[barnDataKeySpørsmål.andreForelderErDød].svar === ESvar.JA}
                         barn={barn}
                     />

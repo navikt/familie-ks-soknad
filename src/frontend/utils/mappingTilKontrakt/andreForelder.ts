@@ -105,7 +105,7 @@ export const andreForelderTilISøknadsfelt = (
               )
             : null,
         utenlandsperioder: utenlandsperioder.map((periode, index) =>
-            utenlandsperiodeTilISøknadsfelt(periode, index + 1, PersonType.AndreForelder)
+            utenlandsperiodeTilISøknadsfelt(periode, index + 1, PersonType.andreForelder)
         ),
         planleggerÅBoINorgeTolvMnd: planleggerÅBoINorgeTolvMnd.svar
             ? søknadsfeltBarn(
@@ -203,7 +203,7 @@ export const andreForelderTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: true,
-                personType: PersonType.AndreForelder,
+                personType: PersonType.andreForelder,
                 erDød: forelderErDød,
             })
         ),
@@ -212,7 +212,7 @@ export const andreForelderTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: true,
-                personType: PersonType.AndreForelder,
+                personType: PersonType.andreForelder,
                 erDød: forelderErDød,
                 barn,
             })
@@ -222,7 +222,7 @@ export const andreForelderTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: false,
-                personType: PersonType.AndreForelder,
+                personType: PersonType.andreForelder,
                 erDød: forelderErDød,
             })
         ),
@@ -231,7 +231,7 @@ export const andreForelderTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: false,
-                personType: PersonType.AndreForelder,
+                personType: PersonType.andreForelder,
                 erDød: forelderErDød,
                 barn,
             })
@@ -240,7 +240,7 @@ export const andreForelderTilISøknadsfelt = (
             tilIAndreUtbetalingsperioderIKontraktFormat({
                 periode,
                 periodeNummer: index + 1,
-                personType: PersonType.AndreForelder,
+                personType: PersonType.andreForelder,
                 erDød: forelderErDød,
                 barn,
             })
@@ -249,7 +249,7 @@ export const andreForelderTilISøknadsfelt = (
             tilIEøsKontantstøttePeriodeIKontraktFormat({
                 periode,
                 periodeNummer: index + 1,
-                personType: PersonType.AndreForelder,
+                personType: PersonType.andreForelder,
                 erDød: forelderErDød,
                 barn,
             })

@@ -12,13 +12,13 @@ import {
 
 export const årsakFeilmeldingSpråkId = (personType: PersonType): string => {
     switch (personType) {
-        case PersonType.Søker: {
+        case PersonType.søker: {
             return 'modal.beskriveopphold.feilmelding';
         }
-        case PersonType.Barn: {
+        case PersonType.barn: {
             return 'ombarnet.beskriveopphold.feilmelding';
         }
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
         default: {
             return 'todo.andreforelder.utenlandsopphold';
         }
@@ -27,13 +27,13 @@ export const årsakFeilmeldingSpråkId = (personType: PersonType): string => {
 
 export const årsakLabelSpråkId = (personType: PersonType): string => {
     switch (personType) {
-        case PersonType.Søker: {
+        case PersonType.søker: {
             return 'modal.beskriveopphold.spm';
         }
-        case PersonType.Barn: {
+        case PersonType.barn: {
             return 'ombarnet.beskriveopphold.spm';
         }
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
         default: {
             return 'todo.andreforelder.utenlandsopphold';
         }
@@ -45,13 +45,13 @@ export const årsakSpråkId = (
     personType: PersonType
 ): string => {
     switch (personType) {
-        case PersonType.Søker: {
+        case PersonType.søker: {
             return årsakSpråkIdsSøker[årsak];
         }
-        case PersonType.Barn: {
+        case PersonType.barn: {
             return årsakSpråkIdsBarn[årsak];
         }
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
         default: {
             return årsakSpråkIdsAndreForelder[årsak];
         }
@@ -60,13 +60,13 @@ export const årsakSpråkId = (
 
 export const landLabelSpråkId = (årsak: EUtenlandsoppholdÅrsak | '', personType: PersonType) => {
     switch (personType) {
-        case PersonType.Søker: {
+        case PersonType.søker: {
             return landLabelSpråkIdsSøker[årsak];
         }
-        case PersonType.Barn: {
+        case PersonType.barn: {
             return landLabelSpråkIdsBarn[årsak];
         }
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
         default: {
             return landLabelSpråkIdsAndreForelder[årsak];
         }
@@ -78,13 +78,13 @@ export const landFeilmeldingSpråkId = (
     personType: PersonType
 ) => {
     switch (personType) {
-        case PersonType.Søker: {
+        case PersonType.søker: {
             return landFeilmeldingSpråkIdsSøker[årsak];
         }
-        case PersonType.Barn: {
+        case PersonType.barn: {
             return landFeilmeldingSpråkIdsBarn[årsak];
         }
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
         default: {
             return landFeilmeldingSpråkIdsAndreForelder[årsak];
         }
@@ -115,9 +115,9 @@ export const fraDatoFeilmeldingSpråkId = (
 ) => {
     switch (årsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE:
-            return personType === PersonType.Barn
+            return personType === PersonType.barn
                 ? 'ombarnet.nårflyttetfranorge.feilmelding'
-                : personType === PersonType.Søker
+                : personType === PersonType.søker
                 ? 'modal.nårflyttetfra.feilmelding'
                 : 'todo.andreforelder.utenlandsopphold';
         default:
@@ -128,9 +128,9 @@ export const fraDatoFeilmeldingSpråkId = (
 export const fraDatoLabelSpråkId = (årsak: EUtenlandsoppholdÅrsak | '', personType: PersonType) => {
     switch (årsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE:
-            return personType === PersonType.Barn
+            return personType === PersonType.barn
                 ? 'ombarnet.nårflyttetfranorge.spm'
-                : personType === PersonType.Søker
+                : personType === PersonType.søker
                 ? 'modal.nårflyttetfra.spm'
                 : 'todo.andreforelder.utenlandsopphold';
         default:
@@ -141,9 +141,9 @@ export const fraDatoLabelSpråkId = (årsak: EUtenlandsoppholdÅrsak | '', perso
 export const tilDatoLabelSpråkId = (årsak: EUtenlandsoppholdÅrsak | '', personType: PersonType) => {
     switch (årsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE:
-            return personType === PersonType.Barn
+            return personType === PersonType.barn
                 ? 'ombarnet.nårflyttettilnorge.spm'
-                : personType === PersonType.Søker
+                : personType === PersonType.søker
                 ? 'modal.nårflyttettilnorge.spm'
                 : 'todo.andreforelder.utenlandsopphold';
         case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
@@ -159,9 +159,9 @@ export const tilDatoFeilmeldingSpråkId = (
 ) => {
     switch (årsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE:
-            return personType === PersonType.Barn
+            return personType === PersonType.barn
                 ? 'ombarnet.nårflyttettilnorge.feilmelding'
-                : personType === PersonType.Søker
+                : personType === PersonType.søker
                 ? 'modal.nårflyttettilnorge.feilmelding'
                 : 'todo.andreforelder.utenlandsopphold';
         case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:

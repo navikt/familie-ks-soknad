@@ -67,7 +67,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
                     personType,
                     erDød
                 )}
-                inkluderVetIkke={personType !== PersonType.Søker}
+                inkluderVetIkke={personType !== PersonType.søker}
                 språkValues={{
                     ...(barn && {
                         navn: barn.navn,
@@ -85,8 +85,8 @@ export const Pensjonsperiode: React.FC<Props> = ({
                             nummer={index + 1}
                             gjelderUtlandet={gjelderUtlandet}
                             personType={personType}
-                            erDød={personType === PersonType.AndreForelder && erDød}
-                            barn={personType !== PersonType.Søker ? barn : undefined}
+                            erDød={personType === PersonType.andreForelder && erDød}
+                            barn={personType !== PersonType.søker ? barn : undefined}
                         />
                     ))}
                     {registrertePensjonsperioder.verdi.length > 0 && (

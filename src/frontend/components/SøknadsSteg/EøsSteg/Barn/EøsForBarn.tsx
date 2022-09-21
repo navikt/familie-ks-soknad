@@ -240,7 +240,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                                     registrerteArbeidsperioder={
                                         skjema.felter.andreForelderArbeidsperioderNorge
                                     }
-                                    personType={PersonType.AndreForelder}
+                                    personType={PersonType.andreForelder}
                                     erDød={barn.andreForelderErDød.svar === ESvar.JA}
                                     barn={barn}
                                 />
@@ -253,7 +253,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                                         leggTilPensjonsperiodeNorgeAndreForelder
                                     }
                                     fjernPensjonsperiode={fjernPensjonsperiodeNorgeAndreForelder}
-                                    personType={PersonType.AndreForelder}
+                                    personType={PersonType.andreForelder}
                                     erDød={barn.andreForelderErDød.svar === ESvar.JA}
                                     barn={barn}
                                     gjelderUtlandet={false}
@@ -272,7 +272,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                                     fjernUtbetalingsperiode={
                                         fjernAndreUtbetalingsperiodeAndreForelder
                                     }
-                                    personType={PersonType.AndreForelder}
+                                    personType={PersonType.andreForelder}
                                     erDød={barn.andreForelderErDød.svar === ESvar.JA}
                                     barn={barn}
                                     registrerteUtbetalingsperioder={
@@ -327,7 +327,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                                         fjernKontantstøttePeriodeAndreForelder
                                     }
                                     barn={barn}
-                                    personType={PersonType.AndreForelder}
+                                    personType={PersonType.andreForelder}
                                     erDød={barn.andreForelderErDød.svar === ESvar.JA}
                                 />
                             </KomponentGruppe>

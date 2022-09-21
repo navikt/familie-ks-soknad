@@ -101,7 +101,7 @@ export const dataISøknadKontraktFormatV1 = (
             adresse: søknadsfelt('pdf.søker.adresse.label', sammeVerdiAlleSpråk(adresse)),
             adressebeskyttelse: søker.adressebeskyttelse,
             utenlandsperioder: utenlandsperioder.map((periode, index) =>
-                utenlandsperiodeTilISøknadsfelt(periode, index + 1, PersonType.Søker)
+                utenlandsperiodeTilISøknadsfelt(periode, index + 1, PersonType.søker)
             ),
             idNummer: idNummer.map(idnummerObj =>
                 idNummerTilISøknadsfelt(
@@ -119,7 +119,7 @@ export const dataISøknadKontraktFormatV1 = (
                     periode,
                     periodeNummer: index + 1,
                     gjelderUtlandet: true,
-                    personType: PersonType.Søker,
+                    personType: PersonType.søker,
                 })
             ),
             arbeidsperioderNorge: arbeidsperioderNorge.map((periode, index) =>
@@ -127,7 +127,7 @@ export const dataISøknadKontraktFormatV1 = (
                     periode,
                     periodeNummer: index + 1,
                     gjelderUtlandet: false,
-                    personType: PersonType.Søker,
+                    personType: PersonType.søker,
                 })
             ),
             pensjonsperioderUtland: pensjonsperioderUtland.map((periode, index) =>
@@ -135,7 +135,7 @@ export const dataISøknadKontraktFormatV1 = (
                     periode,
                     periodeNummer: index + 1,
                     gjelderUtlandet: true,
-                    personType: PersonType.Søker,
+                    personType: PersonType.søker,
                 })
             ),
             pensjonsperioderNorge: pensjonsperioderNorge.map((periode, index) =>
@@ -143,14 +143,14 @@ export const dataISøknadKontraktFormatV1 = (
                     periode,
                     periodeNummer: index + 1,
                     gjelderUtlandet: false,
-                    personType: PersonType.Søker,
+                    personType: PersonType.søker,
                 })
             ),
             andreUtbetalingsperioder: andreUtbetalingsperioder.map((periode, index) =>
                 tilIAndreUtbetalingsperioderIKontraktFormat({
                     periode,
                     periodeNummer: index + 1,
-                    personType: PersonType.Søker,
+                    personType: PersonType.søker,
                 })
             ),
         },
