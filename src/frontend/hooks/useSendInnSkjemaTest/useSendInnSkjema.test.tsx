@@ -1,6 +1,6 @@
 import { ESivilstand } from '../../typer/kontrakt/generelle';
-import { IFrittståendeOrdTekstinnhold } from '../../typer/sanity/tekstInnhold';
-import { hentSivilstatusSpråkId } from '../../utils/språk';
+import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
+import { sivilstandTilSanitySivilstandApiKey } from '../../utils/språk';
 import { silenceConsoleErrors } from '../../utils/testing';
 
 silenceConsoleErrors();
@@ -10,58 +10,36 @@ describe('useSendInnSkjema', () => {
         jest.useFakeTimers();
     });
 
-    const toLocaleRecordString = (ord: string) => ({
-        en: ord,
-        nb: ord,
-        nn: ord,
-    });
-
-    it('Kan mappe sivilstandenum til språktekster', () => {
-        const frittståendeOrdTekster = {
-            sivilstandUgift: toLocaleRecordString('ugift'),
-            sivilstandGift: toLocaleRecordString('gift'),
-            sivilstandEnkeEnkemann: toLocaleRecordString('enke'),
-            sivilstandSkilt: toLocaleRecordString('skilt'),
-            sivilstandSeparert: toLocaleRecordString('separert'),
-            sivilstandRegistrertPartner: toLocaleRecordString('registrert partner'),
-            sivilstandSeparertPartner: toLocaleRecordString('separert partner'),
-            sivilstandSkiltPartner: toLocaleRecordString('skilt partner'),
-            sivilstandGjenlevendePartner: toLocaleRecordString('gjenlevende'),
-            sivilstandUoppgitt: toLocaleRecordString('uoppgitt'),
-            kontantstoette: toLocaleRecordString(''),
-            ordinaerBarnetrygd: toLocaleRecordString(''),
-            utvidetBarnetrygd: toLocaleRecordString(''),
-        } as IFrittståendeOrdTekstinnhold;
-
-        expect(hentSivilstatusSpråkId(frittståendeOrdTekster, ESivilstand.GIFT)).toEqual(
-            frittståendeOrdTekster.sivilstandGift
+    it('Kan mappe sivilstandenum til sanity sivilstand', () => {
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.GIFT)).toEqual(
+            ESanitySivilstandApiKey.GIFT
         );
-        expect(hentSivilstatusSpråkId(frittståendeOrdTekster, ESivilstand.UGIFT)).toEqual(
-            frittståendeOrdTekster.sivilstandUgift
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.UGIFT)).toEqual(
+            ESanitySivilstandApiKey.UGIFT
         );
-        expect(
-            hentSivilstatusSpråkId(frittståendeOrdTekster, ESivilstand.ENKE_ELLER_ENKEMANN)
-        ).toEqual(frittståendeOrdTekster.sivilstandEnkeEnkemann);
-        expect(hentSivilstatusSpråkId(frittståendeOrdTekster, ESivilstand.SKILT)).toEqual(
-            frittståendeOrdTekster.sivilstandSkilt
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.ENKE_ELLER_ENKEMANN)).toEqual(
+            ESanitySivilstandApiKey.ENKE_ELLER_ENKEMANN
         );
-        expect(hentSivilstatusSpråkId(frittståendeOrdTekster, ESivilstand.SEPARERT)).toEqual(
-            frittståendeOrdTekster.sivilstandSeparert
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.SKILT)).toEqual(
+            ESanitySivilstandApiKey.SKILT
         );
-        expect(
-            hentSivilstatusSpråkId(frittståendeOrdTekster, ESivilstand.REGISTRERT_PARTNER)
-        ).toEqual(frittståendeOrdTekster.sivilstandRegistrertPartner);
-        expect(
-            hentSivilstatusSpråkId(frittståendeOrdTekster, ESivilstand.SEPARERT_PARTNER)
-        ).toEqual(frittståendeOrdTekster.sivilstandSeparertPartner);
-        expect(hentSivilstatusSpråkId(frittståendeOrdTekster, ESivilstand.SKILT_PARTNER)).toEqual(
-            frittståendeOrdTekster.sivilstandSkiltPartner
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.SEPARERT)).toEqual(
+            ESanitySivilstandApiKey.SEPARERT
         );
-        expect(
-            hentSivilstatusSpråkId(frittståendeOrdTekster, ESivilstand.GJENLEVENDE_PARTNER)
-        ).toEqual(frittståendeOrdTekster.sivilstandGjenlevendePartner);
-        expect(hentSivilstatusSpråkId(frittståendeOrdTekster, ESivilstand.UOPPGITT)).toEqual(
-            frittståendeOrdTekster.sivilstandUoppgitt
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.REGISTRERT_PARTNER)).toEqual(
+            ESanitySivilstandApiKey.REGISTRERT_PARTNER
+        );
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.SEPARERT_PARTNER)).toEqual(
+            ESanitySivilstandApiKey.SEPARERT_PARTNER
+        );
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.SKILT_PARTNER)).toEqual(
+            ESanitySivilstandApiKey.SKILT_PARTNER
+        );
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.GJENLEVENDE_PARTNER)).toEqual(
+            ESanitySivilstandApiKey.GJENLEVENDE_PARTNER
+        );
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.UOPPGITT)).toEqual(
+            ESanitySivilstandApiKey.UOPPGITT
         );
     });
 });

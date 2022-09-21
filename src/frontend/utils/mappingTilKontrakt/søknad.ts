@@ -17,7 +17,7 @@ import { ISøknadSpørsmålMap } from '../../typer/spørsmål';
 import { ISøknad } from '../../typer/søknad';
 import { erDokumentasjonRelevant } from '../dokumentasjon';
 import {
-    hentSivilstatusSpråkId,
+    sivilstandTilSanitySivilstandApiKey,
     hentTekster,
     hentUformaterteTekster,
     landkodeTilSpråk,
@@ -52,7 +52,7 @@ const antallEøsSteg = (søker: ISøker, barnInkludertISøknaden: IBarnMedISøkn
 export const dataISøknadKontraktFormatV1 = (
     valgtSpråk: LocaleType,
     søknad: ISøknad,
-    tekster: IFrittståendeOrdTekstinnhold
+    frittståendeOrdTekster: IFrittståendeOrdTekstinnhold
 ): ISøknadKontrakt => {
     const { søker } = søknad;
     // Raskeste måte å få tak i alle spørsmål minus de andre feltene på søker
@@ -206,10 +206,8 @@ export const dataISøknadKontraktFormatV1 = (
             ...Object.values(ESivilstand).reduce(
                 (map, sivilstand) => ({
                     ...map,
-                    [ESanitySivilstandApiKey[ESivilstand[sivilstand]]]: hentSivilstatusSpråkId(
-                        tekster,
-                        sivilstand
-                    ),
+                    [ESanitySivilstandApiKey[ESivilstand[sivilstand]]]:
+                        frittståendeOrdTekster[sivilstandTilSanitySivilstandApiKey(sivilstand)],
                 }),
                 {}
             ),
