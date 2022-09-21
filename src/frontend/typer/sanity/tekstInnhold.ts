@@ -73,6 +73,7 @@ export interface IModalerTekstinnhold {
     utenlandsopphold: {
         søker: IUtenlandsoppholdTekstinnhold;
         barn: IUtenlandsoppholdTekstinnhold;
+        andreForelder: IUtenlandsoppholdTekstinnhold;
     };
     barnehageplass: IBarnehageplassTekstinnhold;
     andreUtbetalinger: {
