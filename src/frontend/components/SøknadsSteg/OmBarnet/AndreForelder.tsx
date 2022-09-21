@@ -172,6 +172,13 @@ const AndreForelder: React.FC<{
                                 {skjema.felter.andreForelderRegistrerteUtenlandsperioder
                                     .erSynlig && (
                                     <>
+                                        <UtenlandsoppholdModal
+                                            erÅpen={utenlandsmodalAndreForelderErÅpen}
+                                            toggleModal={toggleUtenlandsmodalAndreForelder}
+                                            onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
+                                            personType={PersonType.AndreForelder}
+                                            barn={barn}
+                                        />
                                         {utenlandsperioder.map((periode, index) => (
                                             <UtenlandsperiodeOppsummering
                                                 key={index}
@@ -211,13 +218,6 @@ const AndreForelder: React.FC<{
                                         />
                                     </>
                                 )}
-                                <UtenlandsoppholdModal
-                                    erÅpen={utenlandsmodalAndreForelderErÅpen}
-                                    toggleModal={toggleUtenlandsmodalAndreForelder}
-                                    onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                                    personType={PersonType.AndreForelder}
-                                    barn={barn}
-                                />
                             </KomponentGruppe>
                         )}
                         {skjema.felter.andreForelderPlanleggerÅBoINorgeTolvMnd.erSynlig && (

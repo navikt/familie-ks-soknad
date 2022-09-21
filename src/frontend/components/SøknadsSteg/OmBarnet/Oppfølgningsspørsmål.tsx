@@ -171,36 +171,45 @@ const Oppfølgningsspørsmål: React.FC<{
                     tittelId={'ombarnet.opplystatbarnutlandopphold.info'}
                     språkValues={{ navn: barn.navn }}
                 >
-                    {utenlandsperioder.map((periode, index) => (
-                        <UtenlandsperiodeOppsummering
-                            key={index}
-                            periode={periode}
-                            nummer={index + 1}
-                            fjernPeriodeCallback={fjernUtenlandsperiode}
+                    <>
+                        <UtenlandsoppholdModal
+                            erÅpen={utenlandsmodalErÅpen}
+                            toggleModal={toggleUtenlandsmodal}
+                            onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
                             barn={barn}
                             personType={PersonType.Barn}
                         />
-                    ))}
-                    {utenlandsperioder.length > 0 && (
-                        <Element>
-                            <SpråkTekst
-                                id={'ombarnet.flereopphold.spm'}
-                                values={{ barn: barn.navn }}
+                        {utenlandsperioder.map((periode, index) => (
+                            <UtenlandsperiodeOppsummering
+                                key={index}
+                                periode={periode}
+                                nummer={index + 1}
+                                fjernPeriodeCallback={fjernUtenlandsperiode}
+                                barn={barn}
+                                personType={PersonType.Barn}
                             />
-                        </Element>
-                    )}
-                    <LeggTilKnapp
-                        id={UtenlandsoppholdSpørsmålId.utenlandsopphold}
-                        språkTekst={'felles.leggtilutenlands.knapp'}
-                        onClick={toggleUtenlandsmodal}
-                        feilmelding={
-                            skjema.felter.barnRegistrerteUtenlandsperioder.erSynlig &&
-                            skjema.felter.barnRegistrerteUtenlandsperioder.feilmelding &&
-                            skjema.visFeilmeldinger && (
-                                <SpråkTekst id={'felles.leggtilutenlands.feilmelding'} />
-                            )
-                        }
-                    />
+                        ))}
+                        {utenlandsperioder.length > 0 && (
+                            <Element>
+                                <SpråkTekst
+                                    id={'ombarnet.flereopphold.spm'}
+                                    values={{ barn: barn.navn }}
+                                />
+                            </Element>
+                        )}
+                        <LeggTilKnapp
+                            id={UtenlandsoppholdSpørsmålId.utenlandsopphold}
+                            språkTekst={'felles.leggtilutenlands.knapp'}
+                            onClick={toggleUtenlandsmodal}
+                            feilmelding={
+                                skjema.felter.barnRegistrerteUtenlandsperioder.erSynlig &&
+                                skjema.felter.barnRegistrerteUtenlandsperioder.feilmelding &&
+                                skjema.visFeilmeldinger && (
+                                    <SpråkTekst id={'felles.leggtilutenlands.feilmelding'} />
+                                )
+                            }
+                        />
+                    </>
                     {skjema.felter.planleggerÅBoINorge12Mnd.erSynlig && (
                         <KomponentGruppe inline dynamisk>
                             <JaNeiSpm
@@ -281,13 +290,6 @@ const Oppfølgningsspørsmål: React.FC<{
                     />
                 </KomponentGruppe>
             )}
-            <UtenlandsoppholdModal
-                erÅpen={utenlandsmodalErÅpen}
-                toggleModal={toggleUtenlandsmodal}
-                onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                barn={barn}
-                personType={PersonType.Barn}
-            />
         </>
     );
 };

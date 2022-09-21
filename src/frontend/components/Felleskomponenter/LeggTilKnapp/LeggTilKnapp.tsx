@@ -12,7 +12,8 @@ import SpråkTekst from '../SpråkTekst/SpråkTekst';
 
 interface Props {
     onClick: () => void | Promise<void>;
-    språkTekst: string;
+    /** @deprecated **/
+    språkTekst?: string; //todo: legacy - fjerne når vi er ferdig med sanity
     feilmelding?: ReactNode;
     id?: string;
 }
@@ -24,7 +25,13 @@ const StyledButton = styled(Button)<{ feilmelding: boolean }>`
     }
 `;
 
-export const LeggTilKnapp: React.FC<Props> = ({ onClick, språkTekst, feilmelding, id }) => (
+export const LeggTilKnapp: React.FC<Props> = ({
+    onClick,
+    språkTekst,
+    feilmelding,
+    id,
+    children,
+}) => (
     <>
         <StyledButton
             id={id}
@@ -34,7 +41,8 @@ export const LeggTilKnapp: React.FC<Props> = ({ onClick, språkTekst, feilmeldin
             $feilmelding={!!feilmelding}
         >
             <AddCircle />
-            <SpråkTekst id={språkTekst} />
+            {språkTekst && <SpråkTekst id={språkTekst} />}
+            {children}
         </StyledButton>
         {!!feilmelding && <Feilmelding>{feilmelding}</Feilmelding>}
     </>

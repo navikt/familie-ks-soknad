@@ -24,15 +24,12 @@ import {
     årsakSpråkId,
 } from './utenlandsoppholdSpråkUtils';
 
-type PersonTypeMedBarn =
-    | { personType: PersonType.Søker; barn?: never }
-    | { personType: PersonType.Barn; barn: IBarnMedISøknad }
-    | { personType: PersonType.AndreForelder; barn: IBarnMedISøknad };
-
-type Props = PersonTypeMedBarn & {
+type Props = {
     periode: IUtenlandsperiode;
     nummer: number;
     fjernPeriodeCallback?: (periode: IUtenlandsperiode) => void;
+    personType: PersonType;
+    barn?: IBarnMedISøknad;
 };
 
 export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
