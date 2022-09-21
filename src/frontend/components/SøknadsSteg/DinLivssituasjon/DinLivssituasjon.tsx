@@ -12,7 +12,6 @@ import { Pensjonsperiode } from '../../Felleskomponenter/Pensjonsmodal/Pensjonsp
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
-import { DinLivssituasjonSpørsmålId, dinLivssituasjonSpørsmålSpråkId } from './spørsmål';
 import { useDinLivssituasjon } from './useDinLivssituasjon';
 
 const DinLivssituasjon: React.FC = () => {
@@ -29,7 +28,7 @@ const DinLivssituasjon: React.FC = () => {
     } = useDinLivssituasjon();
 
     const {
-        [ESanitySteg.DIN_LIVSSITUASJON]: { dinLivssituasjonTittel },
+        [ESanitySteg.DIN_LIVSSITUASJON]: { dinLivssituasjonTittel, asylsoeker },
     } = tekster();
 
     return (
@@ -46,12 +45,13 @@ const DinLivssituasjon: React.FC = () => {
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.erAsylsøker}
-                    spørsmålTekstId={
-                        dinLivssituasjonSpørsmålSpråkId[DinLivssituasjonSpørsmålId.erAsylsøker]
-                    }
+                    spørsmålDokument={asylsoeker}
                 />
                 {skjema.felter.erAsylsøker.verdi === ESvar.JA && (
-                    <VedleggNotis dynamisk språkTekstId={'omdeg.asylsøker.alert'} />
+                    <VedleggNotis
+                        dynamisk
+                        vedleggsTekst={asylsoeker.vedleggsnotis && asylsoeker.vedleggsnotis}
+                    />
                 )}
 
                 <Arbeidsperiode

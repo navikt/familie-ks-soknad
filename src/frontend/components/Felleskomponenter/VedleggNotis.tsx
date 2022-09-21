@@ -6,6 +6,8 @@ import { Normaltekst } from 'nav-frontend-typografi';
 
 import { FileContent } from '@navikt/ds-icons';
 
+import { useApp } from '../../context/AppContext';
+import { LocaleRecordString } from '../../typer/common';
 import SpråkTekst from './SpråkTekst/SpråkTekst';
 
 const NotisWrapper = styled.div`
@@ -33,17 +35,22 @@ const NotisInnhold = styled.div`
 `;
 
 export const VedleggNotis: React.FC<{
-    språkTekstId: string;
+    språkTekstId?: string;
     dynamisk?: boolean;
     språkValues?: Record<string, ReactNode>;
-}> = ({ språkTekstId, dynamisk = false, språkValues = {} }) => {
+    vedleggsTekst?: LocaleRecordString;
+}> = ({ språkTekstId, dynamisk = false, språkValues = {}, vedleggsTekst }) => {
+    const { localeString } = useApp();
     return (
         <NotisWrapper aria-live={dynamisk ? 'polite' : 'off'}>
             <StyledFileContent role={'img'} focusable={false} aria-label={'vedleggsikon'} />
             <NotisInnhold>
-                <Normaltekst>
-                    <SpråkTekst id={språkTekstId} values={språkValues} />
-                </Normaltekst>
+                {språkTekstId && (
+                    <Normaltekst>
+                        <SpråkTekst id={språkTekstId} values={språkValues} />
+                    </Normaltekst>
+                )}
+                {vedleggsTekst && localeString(vedleggsTekst)}
             </NotisInnhold>
         </NotisWrapper>
     );
