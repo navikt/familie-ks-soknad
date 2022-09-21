@@ -9,7 +9,7 @@ import { useSprakContext } from '@navikt/familie-sprakvelger';
 import { useApp } from '../../../context/AppContext';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { genererAdresseVisning } from '../../../utils/adresse';
-import { hentSivilstatusSpråkId, landkodeTilSpråk } from '../../../utils/språk';
+import { sivilstandTilSanitySivilstandApiKey, landkodeTilSpråk } from '../../../utils/språk';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
@@ -56,7 +56,9 @@ export const Personopplysninger: React.FC = () => {
             <Informasjonsbolk>
                 <Element>{localeString(sivilstatus)}</Element>
                 <Normaltekst>
-                    {localeString(hentSivilstatusSpråkId(frittståendeOrd, søker.sivilstand.type))}
+                    {localeString(
+                        frittståendeOrd[sivilstandTilSanitySivilstandApiKey(søker.sivilstand.type)]
+                    )}
                 </Normaltekst>
             </Informasjonsbolk>
 
