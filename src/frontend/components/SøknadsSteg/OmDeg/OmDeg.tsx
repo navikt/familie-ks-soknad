@@ -78,7 +78,7 @@ const OmDeg: React.FC = () => {
                         />
                         {skjema.felter.værtINorgeITolvMåneder.verdi === ESvar.NEI && (
                             <Utenlandsperiode
-                                personType={PersonType.Søker}
+                                personType={PersonType.søker}
                                 skjema={skjema}
                                 leggTilUtenlandsperiode={leggTilUtenlandsperiode}
                                 fjernPeriodeUtenlandsperiode={fjernUtenlandsperiode}

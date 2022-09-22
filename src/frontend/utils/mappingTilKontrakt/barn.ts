@@ -100,14 +100,14 @@ export const barnISøknadsFormat = (
             ? søknadsfeltBarn('pdf.barn.alder.label', hentTekster('felles.år', { alder }), barn)
             : null,
         utenlandsperioder: utenlandsperioder.map((periode, index) =>
-            utenlandsperiodeTilISøknadsfelt(periode, index + 1, PersonType.Barn, barn)
+            utenlandsperiodeTilISøknadsfelt(periode, index + 1, PersonType.barn, barn)
         ),
         eøsKontantstøttePerioder: eøsKontantstøttePerioder.map((periode, index) =>
             tilIEøsKontantstøttePeriodeIKontraktFormat({
                 periode,
                 periodeNummer: index + 1,
                 barn,
-                personType: PersonType.Søker,
+                personType: PersonType.søker,
             })
         ),
         barnehageplassPerioder: barnehageplassPerioder.map((periode, index) =>

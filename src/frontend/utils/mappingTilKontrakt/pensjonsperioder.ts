@@ -30,7 +30,7 @@ export const tilIPensjonsperiodeIKontraktFormat = ({
     const { mottarPensjonNå, pensjonsland, pensjonFra, pensjonTil } = periode;
 
     const periodenErAvsluttet =
-        mottarPensjonNå?.svar === ESvar.NEI || (personType === PersonType.AndreForelder && erDød);
+        mottarPensjonNå?.svar === ESvar.NEI || (personType === PersonType.andreForelder && erDød);
 
     const hentPensjonsperiodeSpråkId = pensjonsperiodeModalSpørsmålSpråkId(
         personType,

@@ -30,7 +30,7 @@ export const useArbeidsperiodeSkjema = (
 ) => {
     const { erEøsLand } = useEøs();
 
-    const andreForelderErDød = personType === PersonType.AndreForelder && erDød;
+    const andreForelderErDød = personType === PersonType.andreForelder && erDød;
 
     const arbeidsperiodeAvsluttet = useJaNeiSpmFelt({
         søknadsfelt: { id: ArbeidsperiodeSpørsmålsId.arbeidsperiodeAvsluttet, svar: null },

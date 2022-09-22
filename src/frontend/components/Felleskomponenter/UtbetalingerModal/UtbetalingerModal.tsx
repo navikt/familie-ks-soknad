@@ -37,7 +37,7 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
         useUtbetalingerSkjema(personType, barn, erDød);
 
-    const andreForelderErDød: boolean = personType === PersonType.AndreForelder && !!erDød;
+    const andreForelderErDød: boolean = personType === PersonType.andreForelder && !!erDød;
     const periodenErAvsluttet: boolean =
         skjema.felter.fårUtbetalingNå.verdi === ESvar.NEI || andreForelderErDød;
 

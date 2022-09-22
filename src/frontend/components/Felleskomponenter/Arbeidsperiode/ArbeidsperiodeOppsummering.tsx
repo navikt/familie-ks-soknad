@@ -27,9 +27,9 @@ interface Props {
 }
 
 type ArbeidperiodeOppsummeringPersonTypeProps =
-    | { personType: PersonType.Søker; erDød?: boolean }
-    | { personType: PersonType.Omsorgsperson; erDød?: boolean }
-    | { personType: PersonType.AndreForelder; erDød: boolean };
+    | { personType: PersonType.søker; erDød?: boolean }
+    | { personType: PersonType.omsorgsperson; erDød?: boolean }
+    | { personType: PersonType.andreForelder; erDød: boolean };
 
 type ArbeidsperiodeOppsummeringProps = Props & ArbeidperiodeOppsummeringPersonTypeProps;
 
@@ -54,7 +54,7 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
 
     const periodenErAvsluttet =
         arbeidsperiodeAvsluttet?.svar === ESvar.JA ||
-        (personType === PersonType.AndreForelder && erDød);
+        (personType === PersonType.andreForelder && erDød);
 
     const hentSpørsmålTekstId = arbeidsperiodeModalSpørsmålSpråkId(personType, periodenErAvsluttet);
 

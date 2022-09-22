@@ -92,7 +92,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                     key={`arbeidsperiode-omsorgsperson-utland-${index}`}
                     arbeidsperiode={arbeidsperiode}
                     nummer={index + 1}
-                    personType={PersonType.Omsorgsperson}
+                    personType={PersonType.omsorgsperson}
                     gjelderUtlandet={true}
                 />
             ))}
@@ -112,7 +112,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                     key={`arbeidsperiode-omsorgsperson-norge-${index}`}
                     arbeidsperiode={arbeidsperiode}
                     nummer={index + 1}
-                    personType={PersonType.Omsorgsperson}
+                    personType={PersonType.omsorgsperson}
                     gjelderUtlandet={false}
                 />
             ))}
@@ -132,7 +132,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                     key={`pensjonsperiode-omsorgsperson-utland-${index}`}
                     pensjonsperiode={pensjonsperiode}
                     nummer={index + 1}
-                    personType={PersonType.Omsorgsperson}
+                    personType={PersonType.omsorgsperson}
                     gjelderUtlandet={true}
                     barn={barn}
                 />
@@ -153,7 +153,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                     key={`pensjonsperiode-omsorgsperson-norge-${index}`}
                     pensjonsperiode={pensjonsperiode}
                     nummer={index + 1}
-                    personType={PersonType.Omsorgsperson}
+                    personType={PersonType.omsorgsperson}
                     gjelderUtlandet={false}
                     barn={barn}
                 />
@@ -174,7 +174,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                     key={`utbetalingsperiode-omsorgsperson-${index}`}
                     utbetalingsperiode={utbetalingsperiode}
                     nummer={index + 1}
-                    personType={PersonType.Omsorgsperson}
+                    personType={PersonType.omsorgsperson}
                     barn={barn}
                 />
             ))}
@@ -230,7 +230,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                     nummer={index + 1}
                     kontantstøttePeriode={periode}
                     barnetsNavn={barn.navn}
-                    personType={PersonType.Omsorgsperson}
+                    personType={PersonType.omsorgsperson}
                 />
             ))}
         </StyledOppsummeringsFeltGruppe>

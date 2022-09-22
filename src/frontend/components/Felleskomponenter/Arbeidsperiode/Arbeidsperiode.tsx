@@ -64,7 +64,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                 skjema={skjema}
                 felt={arbeiderEllerArbeidetFelt}
                 spørsmålTekstId={arbeidsperiodeSpørsmålSpråkId(gjelderUtlandet, personType, erDød)}
-                inkluderVetIkke={personType !== PersonType.Søker}
+                inkluderVetIkke={personType !== PersonType.søker}
                 språkValues={{
                     ...(barnetsNavn && {
                         navn: barnetsNavn,
@@ -82,7 +82,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                             nummer={index + 1}
                             gjelderUtlandet={gjelderUtlandet}
                             personType={personType}
-                            erDød={personType === PersonType.AndreForelder && erDød}
+                            erDød={personType === PersonType.andreForelder && erDød}
                         />
                     ))}
                     {registrerteArbeidsperioder.verdi.length > 0 && (

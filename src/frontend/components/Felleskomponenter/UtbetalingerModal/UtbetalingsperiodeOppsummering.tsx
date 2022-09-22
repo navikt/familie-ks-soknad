@@ -22,9 +22,9 @@ interface Props {
 }
 
 type UtbetalingsperiodeOppsummeringPersonTypeProps =
-    | { personType: PersonType.Søker; erDød?: boolean; barn?: IBarnMedISøknad | undefined }
-    | { personType: PersonType.Omsorgsperson; erDød?: boolean; barn: IBarnMedISøknad | undefined }
-    | { personType: PersonType.AndreForelder; erDød: boolean; barn: IBarnMedISøknad | undefined };
+    | { personType: PersonType.søker; erDød?: boolean; barn?: IBarnMedISøknad | undefined }
+    | { personType: PersonType.omsorgsperson; erDød?: boolean; barn: IBarnMedISøknad | undefined }
+    | { personType: PersonType.andreForelder; erDød: boolean; barn: IBarnMedISøknad | undefined };
 
 type UtbetalingsperiodeOppsummeringProps = Props & UtbetalingsperiodeOppsummeringPersonTypeProps;
 
@@ -41,7 +41,7 @@ export const UtbetalingsperiodeOppsummering: React.FC<UtbetalingsperiodeOppsumme
         utbetalingsperiode;
 
     const periodenErAvsluttet =
-        fårUtbetalingNå?.svar === ESvar.NEI || (personType === PersonType.AndreForelder && erDød);
+        fårUtbetalingNå?.svar === ESvar.NEI || (personType === PersonType.andreForelder && erDød);
 
     const hentSpørsmålTekstId = utbetalingsperiodeModalSpørsmålSpråkIder(
         personType,

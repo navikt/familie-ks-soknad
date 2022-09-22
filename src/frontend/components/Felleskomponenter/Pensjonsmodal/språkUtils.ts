@@ -13,11 +13,11 @@ import { PensjonsperiodeSpørsmålId } from './spørsmål';
 
 export const mottarPensjonNåFeilmeldingSpråkId = (personType: PersonType): string => {
     switch (personType) {
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
             return 'ombarnet.andre-forelder.pensjonnå.feilmelding';
-        case PersonType.Omsorgsperson:
+        case PersonType.omsorgsperson:
             return 'modal.omsorgsperson.pensjonnå.feilmelding';
-        case PersonType.Søker:
+        case PersonType.søker:
         default:
             return 'modal.fårdupensjonnå.feilmelding';
     }
@@ -25,17 +25,17 @@ export const mottarPensjonNåFeilmeldingSpråkId = (personType: PersonType): str
 
 export const pensjonslandFeilmeldingSpråkId = (personType, periodenErAvsluttet) => {
     switch (personType) {
-        case PersonType.AndreForelder: {
+        case PersonType.andreForelder: {
             return periodenErAvsluttet
                 ? 'modal.hvilketlandpensjonandreforelder.feilmelding'
                 : 'ombarnet.andre-forelder.utenlandspensjon.land.feilmelding';
         }
-        case PersonType.Omsorgsperson: {
+        case PersonType.omsorgsperson: {
             return periodenErAvsluttet
                 ? 'modal.hvilketlandpensjon-fortid-omsorgsperson.feilmelding'
                 : 'modal.hvilketlandpensjon-nåtid-omsorgsperson.feilmelding';
         }
-        case PersonType.Søker:
+        case PersonType.søker:
         default: {
             return periodenErAvsluttet
                 ? 'felles.hvilketlandpensjon.feilmelding'
@@ -46,17 +46,17 @@ export const pensjonslandFeilmeldingSpråkId = (personType, periodenErAvsluttet)
 
 export const pensjonFraDatoFeilmeldingSpråkId = (personType, periodenErAvsluttet) => {
     switch (personType) {
-        case PersonType.AndreForelder: {
+        case PersonType.andreForelder: {
             return periodenErAvsluttet
                 ? 'modal.franårandreforelderpensjon.feilmelding'
                 : 'pensjonmodal.franårpensjonandreforelder.nåtid.feilmelding';
         }
-        case PersonType.Omsorgsperson: {
+        case PersonType.omsorgsperson: {
             return periodenErAvsluttet
                 ? 'felles.modal.franårpensjon-omsorgsperson-fortid.feilmelding'
                 : 'felles.modal.franårpensjon-omsorgsperson-nåtid.feilmelding';
         }
-        case PersonType.Søker:
+        case PersonType.søker:
         default: {
             return periodenErAvsluttet
                 ? 'felles.modal.franårfikkpensjon.feilmelding'
@@ -80,15 +80,15 @@ export const pensjonFlerePerioderSpmSpråkId = (
     personType: PersonType
 ): string => {
     switch (personType) {
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
             return gjelderUtlandet
                 ? 'ombarnet.flerepensjonsperioder.spm'
                 : 'eøs-om-barn.leggtilpensjonandreforelder.spm';
-        case PersonType.Omsorgsperson:
+        case PersonType.omsorgsperson:
             return gjelderUtlandet
                 ? 'eøs-om-barn.omsorgsperson-pensjon-utland-flere-perioder.spm'
                 : 'eøs-om-barn.omsorgsperson-pensjon-norge-flere-perioder.spm';
-        case PersonType.Søker:
+        case PersonType.søker:
         default:
             return gjelderUtlandet
                 ? 'omdeg.leggtilpensjonutland.spm'
@@ -102,7 +102,7 @@ export const mottarEllerMottattPensjonSpråkId = (
     erDød?: boolean
 ): string => {
     switch (personType) {
-        case PersonType.AndreForelder: {
+        case PersonType.andreForelder: {
             if (erDød) {
                 return gjelderUtlandet
                     ? omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.andreForelderPensjonUtlandEnke]
@@ -113,12 +113,12 @@ export const mottarEllerMottattPensjonSpråkId = (
                     : eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.andreForelderPensjonNorge];
             }
         }
-        case PersonType.Omsorgsperson: {
+        case PersonType.omsorgsperson: {
             return gjelderUtlandet
                 ? eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.omsorgspersonPensjonUtland]
                 : eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.omsorgspersonPensjonNorge];
         }
-        case PersonType.Søker:
+        case PersonType.søker:
         default: {
             return gjelderUtlandet
                 ? dinLivssituasjonSpørsmålSpråkId[DinLivssituasjonSpørsmålId.mottarUtenlandspensjon]
@@ -184,11 +184,11 @@ export const pensjonsperiodeModalSpørsmålSpråkId =
     (personType: PersonType, periodenErAvsluttet: boolean) =>
     (spørsmålId: PensjonsperiodeSpørsmålId): string => {
         switch (personType) {
-            case PersonType.AndreForelder:
+            case PersonType.andreForelder:
                 return pensjonAndreForelderSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
-            case PersonType.Omsorgsperson:
+            case PersonType.omsorgsperson:
                 return pensjonOmsorgspersonSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
-            case PersonType.Søker:
+            case PersonType.søker:
             default:
                 return pensjonSøkerSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
         }

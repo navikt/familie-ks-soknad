@@ -18,9 +18,9 @@ import { UtenlandsoppholdModal } from './UtenlandsoppholdModal';
 import { UtenlandsperiodeOppsummering } from './UtenlandsperiodeOppsummering';
 
 type PersonTypeMedBarn =
-    | { personType: PersonType.Søker; barn?: never }
-    | { personType: PersonType.Barn; barn: IBarnMedISøknad }
-    | { personType: PersonType.AndreForelder; barn: IBarnMedISøknad };
+    | { personType: PersonType.søker; barn?: never }
+    | { personType: PersonType.barn; barn: IBarnMedISøknad }
+    | { personType: PersonType.andreForelder; barn: IBarnMedISøknad };
 
 type Props = PersonTypeMedBarn & {
     skjema: ISkjema<IOmDegFeltTyper, string>;
@@ -49,11 +49,11 @@ export const Utenlandsperiode: React.FC<Props> = ({
     const teksterForPersontype = () => {
         // todo: rekfatorer persontype så vi slipper denne
         switch (personType) {
-            case PersonType.Barn:
+            case PersonType.barn:
                 return utenlandsopphold.barn;
-            case PersonType.AndreForelder:
+            case PersonType.andreForelder:
                 return utenlandsopphold.andreForelder;
-            case PersonType.Søker:
+            case PersonType.søker:
             default:
                 return utenlandsopphold.søker;
         }

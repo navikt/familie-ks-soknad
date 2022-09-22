@@ -177,7 +177,7 @@ const Oppfølgningsspørsmål: React.FC<{
                             toggleModal={toggleUtenlandsmodal}
                             onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
                             barn={barn}
-                            personType={PersonType.Barn}
+                            personType={PersonType.barn}
                         />
                         {utenlandsperioder.map((periode, index) => (
                             <UtenlandsperiodeOppsummering
@@ -186,7 +186,7 @@ const Oppfølgningsspørsmål: React.FC<{
                                 nummer={index + 1}
                                 fjernPeriodeCallback={fjernUtenlandsperiode}
                                 barn={barn}
-                                personType={PersonType.Barn}
+                                personType={PersonType.barn}
                             />
                         ))}
                         {utenlandsperioder.length > 0 && (
@@ -274,7 +274,7 @@ const Oppfølgningsspørsmål: React.FC<{
                             leggTilKontantstøttePeriode={leggTilKontantstøttePeriode}
                             fjernKontantstøttePeriode={fjernKontantstøttePeriode}
                             barn={barn}
-                            personType={PersonType.Søker}
+                            personType={PersonType.søker}
                         />
                     </KomponentGruppe>
                 </SkjemaFieldset>

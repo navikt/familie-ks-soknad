@@ -11,13 +11,13 @@ export const mottarEllerMottattUtbetalingSpråkId = (
     erDød?: boolean
 ): string => {
     switch (personType) {
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
             return erDød
                 ? eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.andreForelderAndreUtbetalingerEnke]
                 : eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.andreForelderAndreUtbetalinger];
-        case PersonType.Omsorgsperson:
+        case PersonType.omsorgsperson:
             return eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.omsorgspersonAndreUtbetalinger];
-        case PersonType.Søker:
+        case PersonType.søker:
         default:
             return eøsSøkerSpørsmålSpråkId[EøsSøkerSpørsmålId.utbetalinger];
     }
@@ -25,11 +25,11 @@ export const mottarEllerMottattUtbetalingSpråkId = (
 
 export const utbetalingerFlerePerioderSpmSpråkId = (personType: PersonType) => {
     switch (personType) {
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
             return 'eøs-om-barn.andreforelder-utbetalinger-andreperioder.spm';
-        case PersonType.Omsorgsperson:
+        case PersonType.omsorgsperson:
             return 'eøs-om-barn.omsorgsperson-utbetalinger-flere-perioder.spm';
-        case PersonType.Søker:
+        case PersonType.søker:
         default:
             return 'eøs-om-deg.flere-utbetalinger.spm';
     }
@@ -37,11 +37,11 @@ export const utbetalingerFlerePerioderSpmSpråkId = (personType: PersonType) => 
 
 export const fårUtbetalingNåFeilmelding = (personType: PersonType) => {
     switch (personType) {
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
             return 'eøs.andreforelderutbetalinger.feilmelding';
-        case PersonType.Omsorgsperson:
+        case PersonType.omsorgsperson:
             return 'modal.omsorgsperson-utbetalinger.feilmelding';
-        case PersonType.Søker:
+        case PersonType.søker:
         default:
             return 'eøs.utbetalinger.feilmelding';
     }
@@ -52,15 +52,15 @@ export const utbetalingslandFeilmelding = (
     periodenErAvsluttet: boolean
 ) => {
     switch (personType) {
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
             return periodenErAvsluttet
                 ? 'modal.andreforelder-utbetalingerland-fikk.feilmelding'
                 : 'modal.andreforelder-utbetalingerland-får.feilmelding';
-        case PersonType.Omsorgsperson:
+        case PersonType.omsorgsperson:
             return periodenErAvsluttet
                 ? 'modal.omsorgsperson-utbetalingerland-fortid.feilmelding'
                 : 'modal.omsorgsperson-utbetalingerland-nåtid.feilmelding';
-        case PersonType.Søker:
+        case PersonType.søker:
         default:
             return periodenErAvsluttet
                 ? 'modal.utbetalingsland-fikk-søker.feilmeldinger'
@@ -121,11 +121,11 @@ export const utbetalingsperiodeModalSpørsmålSpråkIder =
     (personType: PersonType, periodenErAvsluttet: boolean) =>
     (spørsmålId: UtbetalingerSpørsmålId): string => {
         switch (personType) {
-            case PersonType.AndreForelder:
+            case PersonType.andreForelder:
                 return utbetalingerAndreForelderSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
-            case PersonType.Omsorgsperson:
+            case PersonType.omsorgsperson:
                 return utbetalingerOmsorgspersonSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
-            case PersonType.Søker:
+            case PersonType.søker:
             default:
                 return utbetalingerSøkerSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
         }

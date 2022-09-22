@@ -33,7 +33,7 @@ export const usePensjonSkjema = ({
 }: IUsePensjonSkjemaParams) => {
     const { erEøsLand } = useEøs();
 
-    const erAndreForelderDød = personType === PersonType.AndreForelder && !!erDød;
+    const erAndreForelderDød = personType === PersonType.andreForelder && !!erDød;
 
     const mottarPensjonNå = useJaNeiSpmFelt({
         søknadsfelt: { id: PensjonsperiodeSpørsmålId.mottarPensjonNå, svar: null },

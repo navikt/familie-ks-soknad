@@ -51,7 +51,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                 skjema={skjema}
                 felt={tilhørendeJaNeiSpmFelt}
                 spørsmålTekstId={mottarEllerMottattUtbetalingSpråkId(personType, erDød)}
-                inkluderVetIkke={personType !== PersonType.Søker}
+                inkluderVetIkke={personType !== PersonType.søker}
                 språkValues={{
                     ...(barn && {
                         navn: barnetsNavn,
@@ -68,7 +68,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                             fjernPeriodeCallback={fjernUtbetalingsperiode}
                             nummer={index + 1}
                             personType={personType}
-                            erDød={personType === PersonType.AndreForelder && erDød}
+                            erDød={personType === PersonType.andreForelder && erDød}
                             barn={barn}
                         />
                     ))}

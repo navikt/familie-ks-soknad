@@ -191,7 +191,7 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, 
                             periode={periode}
                             nummer={index + 1}
                             barn={barn}
-                            personType={PersonType.Barn}
+                            personType={PersonType.barn}
                         />
                     ))}
                     {barn[barnDataKeySpørsmål.planleggerÅBoINorge12Mnd].svar && (
@@ -277,7 +277,7 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, 
                             nummer={index + 1}
                             kontantstøttePeriode={periode}
                             barnetsNavn={barn.navn}
-                            personType={PersonType.Søker}
+                            personType={PersonType.søker}
                         />
                     ))}
                 </StyledOppsummeringsFeltGruppe>

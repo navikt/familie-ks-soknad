@@ -135,7 +135,7 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                 arbeiderEllerArbeidetFelt={skjema.felter.omsorgspersonArbeidUtland}
                 registrerteArbeidsperioder={skjema.felter.omsorgspersonArbeidsperioderUtland}
                 gjelderUtlandet
-                personType={PersonType.Omsorgsperson}
+                personType={PersonType.omsorgsperson}
                 barn={barn}
             />
             <Arbeidsperiode
@@ -145,7 +145,7 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                 arbeiderEllerArbeidetFelt={skjema.felter.omsorgspersonArbeidNorge}
                 registrerteArbeidsperioder={skjema.felter.omsorgspersonArbeidsperioderNorge}
                 gjelderUtlandet={false}
-                personType={PersonType.Omsorgsperson}
+                personType={PersonType.omsorgsperson}
                 barn={barn}
             />
             <Pensjonsperiode
@@ -153,7 +153,7 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                 mottarEllerMottattPensjonFelt={skjema.felter.omsorgspersonPensjonUtland}
                 leggTilPensjonsperiode={leggTilPensjonsperiodeUtlandOmsorgsperson}
                 fjernPensjonsperiode={fjernPensjonsperiodeUtlandOmsorgsperson}
-                personType={PersonType.Omsorgsperson}
+                personType={PersonType.omsorgsperson}
                 barn={barn}
                 gjelderUtlandet={true}
                 registrertePensjonsperioder={skjema.felter.omsorgspersonPensjonsperioderUtland}
@@ -163,7 +163,7 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                 mottarEllerMottattPensjonFelt={skjema.felter.omsorgspersonPensjonNorge}
                 leggTilPensjonsperiode={leggTilPensjonsperiodeNorgeOmsorgsperson}
                 fjernPensjonsperiode={fjernPensjonsperiodeNorgeOmsorgsperson}
-                personType={PersonType.Omsorgsperson}
+                personType={PersonType.omsorgsperson}
                 barn={barn}
                 gjelderUtlandet={false}
                 registrertePensjonsperioder={skjema.felter.omsorgspersonPensjonsperioderNorge}
@@ -173,7 +173,7 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                 tilhørendeJaNeiSpmFelt={skjema.felter.omsorgspersonAndreUtbetalinger}
                 leggTilUtbetalingsperiode={leggTilAndreUtbetalingsperiodeOmsorgsperson}
                 fjernUtbetalingsperiode={fjernAndreUtbetalingsperiodeOmsorgsperson}
-                personType={PersonType.Omsorgsperson}
+                personType={PersonType.omsorgsperson}
                 barn={barn}
                 registrerteUtbetalingsperioder={skjema.felter.omsorgspersonAndreUtbetalingsperioder}
             />
@@ -216,7 +216,7 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                 leggTilKontantstøttePeriode={leggTilKontantstøttePeriodeOmsorgsperson}
                 fjernKontantstøttePeriode={fjernKontantstøttePeriodeOmsorgsperson}
                 barn={barn}
-                personType={PersonType.Omsorgsperson}
+                personType={PersonType.omsorgsperson}
             />
         </SkjemaFieldset>
     );

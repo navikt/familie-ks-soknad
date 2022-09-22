@@ -97,7 +97,7 @@ export const omsorgspersonTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: true,
-                personType: PersonType.Omsorgsperson,
+                personType: PersonType.omsorgsperson,
             })
         ),
         arbeidNorge: søknadsfeltBarn(
@@ -110,7 +110,7 @@ export const omsorgspersonTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: false,
-                personType: PersonType.Omsorgsperson,
+                personType: PersonType.omsorgsperson,
             })
         ),
         pensjonUtland: søknadsfeltBarn(
@@ -123,7 +123,7 @@ export const omsorgspersonTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: true,
-                personType: PersonType.Omsorgsperson,
+                personType: PersonType.omsorgsperson,
                 barn: barn,
             })
         ),
@@ -137,7 +137,7 @@ export const omsorgspersonTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: false,
-                personType: PersonType.Omsorgsperson,
+                personType: PersonType.omsorgsperson,
                 barn: barn,
             })
         ),
@@ -150,7 +150,7 @@ export const omsorgspersonTilISøknadsfelt = (
             tilIAndreUtbetalingsperioderIKontraktFormat({
                 periode,
                 periodeNummer: index + 1,
-                personType: PersonType.Omsorgsperson,
+                personType: PersonType.omsorgsperson,
                 barn,
             })
         ),
@@ -179,7 +179,7 @@ export const omsorgspersonTilISøknadsfelt = (
             tilIEøsKontantstøttePeriodeIKontraktFormat({
                 periode,
                 periodeNummer: index + 1,
-                personType: PersonType.Omsorgsperson,
+                personType: PersonType.omsorgsperson,
                 barn: barn,
             })
         ),

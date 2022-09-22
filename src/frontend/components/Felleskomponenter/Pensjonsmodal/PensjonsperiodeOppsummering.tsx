@@ -25,9 +25,9 @@ interface Props {
 }
 
 type PensjonsperiodeOppsummeringPersonTypeProps =
-    | { personType: PersonType.Søker; erDød?: boolean; barn?: IBarnMedISøknad | undefined }
-    | { personType: PersonType.Omsorgsperson; erDød?: boolean; barn: IBarnMedISøknad | undefined }
-    | { personType: PersonType.AndreForelder; erDød: boolean; barn: IBarnMedISøknad | undefined };
+    | { personType: PersonType.søker; erDød?: boolean; barn?: IBarnMedISøknad | undefined }
+    | { personType: PersonType.omsorgsperson; erDød?: boolean; barn: IBarnMedISøknad | undefined }
+    | { personType: PersonType.andreForelder; erDød: boolean; barn: IBarnMedISøknad | undefined };
 
 type PensjonsperiodeOppsummeringProps = Props & PensjonsperiodeOppsummeringPersonTypeProps;
 
@@ -44,7 +44,7 @@ export const PensjonsperiodeOppsummering: React.FC<PensjonsperiodeOppsummeringPr
     const { mottarPensjonNå, pensjonsland, pensjonFra, pensjonTil } = pensjonsperiode;
 
     const periodenErAvsluttet =
-        mottarPensjonNå?.svar === ESvar.NEI || (personType === PersonType.AndreForelder && !!erDød);
+        mottarPensjonNå?.svar === ESvar.NEI || (personType === PersonType.andreForelder && !!erDød);
 
     const hentPensjonsperiodeSpråkIder = pensjonsperiodeModalSpørsmålSpråkId(
         personType,
