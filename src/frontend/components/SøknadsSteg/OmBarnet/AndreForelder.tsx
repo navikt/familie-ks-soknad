@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Element } from 'nav-frontend-typografi';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import { ISkjema } from '@navikt/familie-skjema';
 
@@ -15,16 +13,12 @@ import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidspe
 import Datovelger from '../../Felleskomponenter/Datovelger/Datovelger';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
-import { LeggTilKnapp } from '../../Felleskomponenter/LeggTilKnapp/LeggTilKnapp';
 import { Pensjonsperiode } from '../../Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
 import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
-import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
-import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
-import { UtenlandsoppholdModal } from '../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsoppholdModal';
-import { UtenlandsperiodeOppsummering } from '../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
+import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
 import AndreForelderOppsummering from '../Oppsummering/OppsummeringSteg/OmBarnet/AndreForelderOppsummering';
 import SammeSomAnnetBarnRadio from './SammeSomAnnetBarnRadio';
 import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from './spørsmål';
@@ -35,7 +29,6 @@ const AndreForelder: React.FC<{
     andreBarnSomErFyltUt: IBarnMedISøknad[];
     leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
     fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
-    utenlandsperioder: IUtenlandsperiode[];
     leggTilArbeidsperiode: (periode: IArbeidsperiode) => void;
     fjernArbeidsperiode: (periode: IArbeidsperiode) => void;
     leggTilPensjonsperiode: (periode: IPensjonsperiode) => void;
@@ -46,7 +39,6 @@ const AndreForelder: React.FC<{
     andreBarnSomErFyltUt,
     leggTilUtenlandsperiode,
     fjernUtenlandsperiode,
-    utenlandsperioder,
     leggTilArbeidsperiode,
     fjernArbeidsperiode,
     leggTilPensjonsperiode,
@@ -56,10 +48,6 @@ const AndreForelder: React.FC<{
         annetBarn => annetBarn.id === skjema.felter.sammeForelderSomAnnetBarn.verdi
     );
 
-    const {
-        erÅpen: utenlandsmodalAndreForelderErÅpen,
-        toggleModal: toggleUtenlandsmodalAndreForelder,
-    } = useModal();
     return (
         <SkjemaFieldset tittelId={'ombarnet.andre-forelder'}>
             <KomponentGruppe>
@@ -172,49 +160,16 @@ const AndreForelder: React.FC<{
                                 {skjema.felter.andreForelderRegistrerteUtenlandsperioder
                                     .erSynlig && (
                                     <>
-                                        <UtenlandsoppholdModal
-                                            erÅpen={utenlandsmodalAndreForelderErÅpen}
-                                            toggleModal={toggleUtenlandsmodalAndreForelder}
-                                            onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
+                                        <Utenlandsperiode
                                             personType={PersonType.andreForelder}
-                                            barn={barn}
-                                        />
-                                        {utenlandsperioder.map((periode, index) => (
-                                            <UtenlandsperiodeOppsummering
-                                                key={index}
-                                                periode={periode}
-                                                nummer={index + 1}
-                                                fjernPeriodeCallback={fjernUtenlandsperiode}
-                                                personType={PersonType.andreForelder}
-                                                barn={barn}
-                                            />
-                                        ))}
-                                        {utenlandsperioder.length > 0 && (
-                                            <Element>
-                                                <SpråkTekst
-                                                    id={
-                                                        'TODO har den andre forelderen flere perioder med utenlandsopphold spørmål'
-                                                    }
-                                                />
-                                            </Element>
-                                        )}
-                                        <LeggTilKnapp
-                                            id={UtenlandsoppholdSpørsmålId.utenlandsopphold}
-                                            språkTekst={'felles.leggtilutenlands.knapp'}
-                                            onClick={toggleUtenlandsmodalAndreForelder}
-                                            feilmelding={
+                                            skjema={skjema}
+                                            leggTilUtenlandsperiode={leggTilUtenlandsperiode}
+                                            fjernPeriodeUtenlandsperiode={fjernUtenlandsperiode}
+                                            registrerteUtenlandsperioder={
                                                 skjema.felter
                                                     .andreForelderRegistrerteUtenlandsperioder
-                                                    .erSynlig &&
-                                                skjema.felter
-                                                    .andreForelderRegistrerteUtenlandsperioder
-                                                    .feilmelding &&
-                                                skjema.visFeilmeldinger && (
-                                                    <SpråkTekst
-                                                        id={'felles.leggtilutenlands.feilmelding'}
-                                                    />
-                                                )
                                             }
+                                            barn={barn}
                                         />
                                     </>
                                 )}

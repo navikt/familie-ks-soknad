@@ -40,7 +40,6 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         utenlandsperioderBarn,
         leggTilUtenlandsperiodeAndreForelder,
         fjernUtenlandsperiodeAndreForelder,
-        utenlandsperioderAndreForelder,
         leggTilArbeidsperiode,
         fjernArbeidsperiode,
         leggTilPensjonsperiode,
@@ -88,7 +87,6 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     andreBarnSomErFyltUt={andreBarnSomErFyltUt}
                     leggTilUtenlandsperiode={leggTilUtenlandsperiodeAndreForelder}
                     fjernUtenlandsperiode={fjernUtenlandsperiodeAndreForelder}
-                    utenlandsperioder={utenlandsperioderAndreForelder}
                     leggTilArbeidsperiode={leggTilArbeidsperiode}
                     fjernArbeidsperiode={fjernArbeidsperiode}
                     leggTilPensjonsperiode={leggTilPensjonsperiode}
