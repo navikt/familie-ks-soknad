@@ -16,17 +16,17 @@ export const arbeidslandFeilmelding = (
     personType: PersonType
 ): string => {
     switch (personType) {
-        case PersonType.AndreForelder: {
+        case PersonType.andreForelder: {
             return periodenErAvsluttet
                 ? 'enkeenkemann.andreforelder-arbeidutland.land.feilmelding'
                 : 'ombarnet.andre-forelder.arbeid-utland.land.feilmelding';
         }
-        case PersonType.Omsorgsperson: {
+        case PersonType.omsorgsperson: {
             return periodenErAvsluttet
                 ? 'modal.omsorgsperson-arbeid-utland.land-fortid.feilmelding'
                 : 'modal.omsorgsperson-arbeid-utland.land-nåtid.feilmelding';
         }
-        case PersonType.Søker:
+        case PersonType.søker:
         default:
             return periodenErAvsluttet
                 ? 'dinlivssituasjon.arbeid-utland.land.feilmelding'
@@ -54,15 +54,15 @@ export const arbeidsperiodeFlereSpørsmål = (
     personType: PersonType
 ): string => {
     switch (personType) {
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
             return gjelderUtlandet
                 ? 'eøs.andre-forelder.arbeid-utland-perioder.spm'
                 : 'eøs-om-barn.annenforelderflerearbeidsperiodenorge.spm';
-        case PersonType.Omsorgsperson:
+        case PersonType.omsorgsperson:
             return gjelderUtlandet
                 ? 'eøs-om-barn.omsorgsperson-arbeid-utland-perioder.spm'
                 : 'eøs-om-barn.omsorgspersonflerearbeidsperiodenorge.spm';
-        case PersonType.Søker:
+        case PersonType.søker:
         default:
             return gjelderUtlandet
                 ? 'eøs.arbeid-utland-perioder.spm'
@@ -81,7 +81,7 @@ export const arbeidsperiodeSpørsmålSpråkId = (
     erDød?: boolean
 ): string => {
     switch (personType) {
-        case PersonType.AndreForelder: {
+        case PersonType.andreForelder: {
             if (erDød) {
                 return gjelderUtlandet
                     ? omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.andreForelderArbeidUtlandetEnke]
@@ -92,12 +92,12 @@ export const arbeidsperiodeSpørsmålSpråkId = (
                     : eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.andreForelderArbeidNorge];
             }
         }
-        case PersonType.Omsorgsperson: {
+        case PersonType.omsorgsperson: {
             return gjelderUtlandet
                 ? eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.omsorgspersonArbeidUtland]
                 : eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.omsorgspersonArbeidNorge];
         }
-        case PersonType.Søker:
+        case PersonType.søker:
         default:
             return gjelderUtlandet
                 ? dinLivssituasjonSpørsmålSpråkId[DinLivssituasjonSpørsmålId.arbeidIUtlandet]
@@ -160,11 +160,11 @@ export const arbeidsperiodeModalSpørsmålSpråkId =
     (personType: PersonType, periodenErAvsluttet: boolean) =>
     (spørsmålId: ArbeidsperiodeSpørsmålsId): string => {
         switch (personType) {
-            case PersonType.AndreForelder:
+            case PersonType.andreForelder:
                 return arbeidsperiodeAndreForelderSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
-            case PersonType.Omsorgsperson:
+            case PersonType.omsorgsperson:
                 return arbeidsperiodeOmsorgspersonSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
-            case PersonType.Søker:
+            case PersonType.søker:
             default:
                 return arbeidsperiodeSøkerSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
         }

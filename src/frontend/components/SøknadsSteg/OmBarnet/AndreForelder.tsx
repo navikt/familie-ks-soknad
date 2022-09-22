@@ -178,7 +178,7 @@ const AndreForelder: React.FC<{
                                                 periode={periode}
                                                 nummer={index + 1}
                                                 fjernPeriodeCallback={fjernUtenlandsperiode}
-                                                personType={PersonType.AndreForelder}
+                                                personType={PersonType.andreForelder}
                                                 barn={barn}
                                             />
                                         ))}
@@ -215,7 +215,7 @@ const AndreForelder: React.FC<{
                                     erÅpen={utenlandsmodalAndreForelderErÅpen}
                                     toggleModal={toggleUtenlandsmodalAndreForelder}
                                     onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                                    personType={PersonType.AndreForelder}
+                                    personType={PersonType.andreForelder}
                                     barn={barn}
                                 />
                             </KomponentGruppe>
@@ -250,7 +250,7 @@ const AndreForelder: React.FC<{
                                     leggTilArbeidsperiode={leggTilArbeidsperiode}
                                     fjernArbeidsperiode={fjernArbeidsperiode}
                                     gjelderUtlandet
-                                    personType={PersonType.AndreForelder}
+                                    personType={PersonType.andreForelder}
                                     barn={barn}
                                     erDød={barn.andreForelderErDød.svar === ESvar.JA}
                                     registrerteArbeidsperioder={
@@ -265,7 +265,7 @@ const AndreForelder: React.FC<{
                                     leggTilPensjonsperiode={leggTilPensjonsperiode}
                                     fjernPensjonsperiode={fjernPensjonsperiode}
                                     gjelderUtlandet={true}
-                                    personType={PersonType.AndreForelder}
+                                    personType={PersonType.andreForelder}
                                     erDød={barn.andreForelderErDød.svar === ESvar.JA}
                                     barn={barn}
                                     registrertePensjonsperioder={

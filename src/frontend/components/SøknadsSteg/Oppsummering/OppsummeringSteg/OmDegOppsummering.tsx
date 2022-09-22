@@ -106,7 +106,7 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         key={index}
                         periode={periode}
                         nummer={index + 1}
-                        personType={PersonType.Søker}
+                        personType={PersonType.søker}
                     />
                 ))}
                 {søknad.søker.planleggerÅBoINorgeTolvMnd.svar && (

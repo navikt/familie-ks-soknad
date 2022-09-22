@@ -74,7 +74,7 @@ export const PensjonModal: React.FC<Props> = ({
         : 'felles.leggtilpensjon.norge.modal.tittel';
 
     const periodenErAvsluttet =
-        mottarPensjonNå.verdi === ESvar.NEI || (personType === PersonType.AndreForelder && !!erDød);
+        mottarPensjonNå.verdi === ESvar.NEI || (personType === PersonType.andreForelder && !!erDød);
 
     const hentSpørsmålTekstId = pensjonsperiodeModalSpørsmålSpråkId(
         personType,

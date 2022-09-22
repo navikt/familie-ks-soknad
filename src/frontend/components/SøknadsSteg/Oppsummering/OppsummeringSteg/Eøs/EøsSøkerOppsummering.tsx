@@ -66,7 +66,7 @@ const EøsSøkerOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         key={`arbeidsperiode-søker-norge-${index}`}
                         arbeidsperiode={arbeidsperiode}
                         nummer={index + 1}
-                        personType={PersonType.Søker}
+                        personType={PersonType.søker}
                         gjelderUtlandet={false}
                     />
                 ))}
@@ -78,7 +78,7 @@ const EøsSøkerOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         pensjonsperiode={pensjonsperiode}
                         nummer={index + 1}
                         gjelderUtlandet={false}
-                        personType={PersonType.Søker}
+                        personType={PersonType.søker}
                     />
                 ))}
 
@@ -88,7 +88,7 @@ const EøsSøkerOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         key={`utbetalingsperiode-søker-norge-${index}`}
                         utbetalingsperiode={utbetalingsperiode}
                         nummer={index + 1}
-                        personType={PersonType.Søker}
+                        personType={PersonType.søker}
                     />
                 ))}
             </StyledOppsummeringsFeltGruppe>

@@ -64,7 +64,7 @@ const DinLivssituasjonOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         nummer={index + 1}
                         arbeidsperiode={periode}
                         gjelderUtlandet={true}
-                        personType={PersonType.Søker}
+                        personType={PersonType.søker}
                     />
                 ))}
 
@@ -87,7 +87,7 @@ const DinLivssituasjonOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         nummer={index + 1}
                         pensjonsperiode={periode}
                         gjelderUtlandet={true}
-                        personType={PersonType.Søker}
+                        personType={PersonType.søker}
                     />
                 ))}
             </StyledOppsummeringsFeltGruppe>

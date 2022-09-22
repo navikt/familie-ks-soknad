@@ -8,17 +8,17 @@ export const kontantstøtteLandFeilmelding = (
     personType: PersonType
 ): string => {
     switch (personType) {
-        case PersonType.AndreForelder: {
+        case PersonType.andreForelder: {
             return periodenErAvsluttet
                 ? 'modal.annenforelder-barnetrygd-fortid.feilmelding'
                 : 'modal.annenforelder-barnetrygd-nåtid.feilmelding';
         }
-        case PersonType.Omsorgsperson: {
+        case PersonType.omsorgsperson: {
             return periodenErAvsluttet
                 ? 'modal.omsorgsperson-barnetrygd-fortid.feilmelding'
                 : 'modal.omsorgsperson-barnetrygd-nåtid.feilmelding';
         }
-        case PersonType.Søker:
+        case PersonType.søker:
         default: {
             return periodenErAvsluttet
                 ? 'modal.hvilketlandbarnetrygd.feilmelding'
@@ -29,15 +29,15 @@ export const kontantstøtteLandFeilmelding = (
 
 export const kontantstøtteSpørsmålSpråkId = (personType: PersonType, erDød?: boolean): string => {
     switch (personType) {
-        case PersonType.AndreForelder: {
+        case PersonType.andreForelder: {
             return erDød
                 ? eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.andreForelderKontantstøtteGjenlevende]
                 : eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.andreForelderKontantstøtte];
         }
-        case PersonType.Omsorgsperson: {
+        case PersonType.omsorgsperson: {
             return eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.omsorgspersonKontantstøtte];
         }
-        case PersonType.Søker:
+        case PersonType.søker:
         default:
             return omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.mottarEllerMottokEøsKontantstøtte];
     }
@@ -45,11 +45,11 @@ export const kontantstøtteSpørsmålSpråkId = (personType: PersonType, erDød?
 
 export const kontantstøttePeriodeFlereSpørsmål = (personType: PersonType): string => {
     switch (personType) {
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
             return 'eøs-om-barn.andre-forelder-barnetrygd-flere-perioder.spm';
-        case PersonType.Omsorgsperson:
+        case PersonType.omsorgsperson:
             return 'eøs-om-barn.omsorgsperson-barnetrygd-flere-perioder.spm';
-        case PersonType.Søker:
+        case PersonType.søker:
         default:
             return 'ombarnet.trygdandreperioder.spm';
     }
@@ -57,11 +57,11 @@ export const kontantstøttePeriodeFlereSpørsmål = (personType: PersonType): st
 
 export const mottarKontantstøtteNåFeilmelding = (personType: PersonType) => {
     switch (personType) {
-        case PersonType.AndreForelder:
+        case PersonType.andreForelder:
             return 'modal.barnetrygdnå-annenforelder.feilmelding';
-        case PersonType.Omsorgsperson:
+        case PersonType.omsorgsperson:
             return 'modal.barnetrygdnå-omsorgsperson.feilmelding';
-        case PersonType.Søker:
+        case PersonType.søker:
         default:
             return 'modal.barnetrygdnå.feilmelding';
     }
@@ -117,16 +117,16 @@ export const kontantstøttePeriodeModalSpørsmålSpråkId =
     (personType: PersonType, periodenErAvsluttet: boolean) =>
     (spørsmålId: KontantstøttePeriodeSpørsmålId): string => {
         switch (personType) {
-            case PersonType.AndreForelder:
+            case PersonType.andreForelder:
                 return kontantstøttePeriodeAndreForelderSpørsmålSpråkId(periodenErAvsluttet)[
                     spørsmålId
                 ];
-            case PersonType.Omsorgsperson: {
+            case PersonType.omsorgsperson: {
                 return kontantstøttePeriodeOmsorgspersonSpørsmålSpråkId(periodenErAvsluttet)[
                     spørsmålId
                 ];
             }
-            case PersonType.Søker:
+            case PersonType.søker:
             default:
                 return kontantstøttePeriodeSøkerSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
         }

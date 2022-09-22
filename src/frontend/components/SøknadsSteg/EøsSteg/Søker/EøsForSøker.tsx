@@ -66,7 +66,7 @@ const EøsForSøker: React.FC = () => {
                     leggTilArbeidsperiode={leggTilArbeidsperiode}
                     fjernArbeidsperiode={fjernArbeidsperiode}
                     registrerteArbeidsperioder={skjema.felter.registrerteArbeidsperioder}
-                    personType={PersonType.Søker}
+                    personType={PersonType.søker}
                 />
                 <Pensjonsperiode
                     skjema={skjema}
@@ -75,7 +75,7 @@ const EøsForSøker: React.FC = () => {
                     leggTilPensjonsperiode={leggTilPensjonsperiode}
                     fjernPensjonsperiode={fjernPensjonsperiode}
                     registrertePensjonsperioder={skjema.felter.registrertePensjonsperioder}
-                    personType={PersonType.Søker}
+                    personType={PersonType.søker}
                 />
                 <Utbetalingsperiode
                     skjema={skjema}
@@ -83,7 +83,7 @@ const EøsForSøker: React.FC = () => {
                     fjernUtbetalingsperiode={fjernAndreUtbetalingsperiode}
                     tilhørendeJaNeiSpmFelt={skjema.felter.andreUtbetalinger}
                     registrerteUtbetalingsperioder={skjema.felter.registrerteAndreUtbetalinger}
-                    personType={PersonType.Søker}
+                    personType={PersonType.søker}
                 />
             </KomponentGruppe>
         </Steg>

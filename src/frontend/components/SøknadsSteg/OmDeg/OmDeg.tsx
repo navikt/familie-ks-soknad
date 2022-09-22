@@ -93,7 +93,7 @@ const OmDeg: React.FC = () => {
                                         periode={periode}
                                         nummer={index + 1}
                                         fjernPeriodeCallback={fjernUtenlandsperiode}
-                                        personType={PersonType.Søker}
+                                        personType={PersonType.søker}
                                     />
                                 ))}
                                 {utenlandsperioder.length > 0 && (
@@ -151,7 +151,7 @@ const OmDeg: React.FC = () => {
                 erÅpen={erÅpen}
                 toggleModal={toggleModal}
                 onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                personType={PersonType.Søker}
+                personType={PersonType.søker}
             />
         </Steg>
     );

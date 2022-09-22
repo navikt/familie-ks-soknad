@@ -90,7 +90,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
 
     const periodenErAvsluttet =
         arbeidsperiodeAvsluttet.verdi === ESvar.JA ||
-        (personType === PersonType.AndreForelder && erDød);
+        (personType === PersonType.andreForelder && erDød);
 
     const hentSpørsmålTekstId = arbeidsperiodeModalSpørsmålSpråkId(personType, periodenErAvsluttet);
 

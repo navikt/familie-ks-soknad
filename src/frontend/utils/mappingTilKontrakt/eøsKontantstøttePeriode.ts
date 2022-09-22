@@ -33,7 +33,7 @@ export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
     } = periode;
     const periodenErAvsluttet =
         mottarEøsKontantstøtteNå.svar === ESvar.NEI ||
-        (personType === PersonType.AndreForelder && erDød);
+        (personType === PersonType.andreForelder && erDød);
 
     const hentSpørsmålTekstId = (spørsmålId: KontantstøttePeriodeSpørsmålId) => {
         const kontantstøttePeriodeSpørsmålSpråkIder = kontantstøttePeriodeModalSpørsmålSpråkId(

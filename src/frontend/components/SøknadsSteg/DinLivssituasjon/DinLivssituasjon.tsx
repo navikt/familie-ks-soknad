@@ -61,7 +61,7 @@ const DinLivssituasjon: React.FC = () => {
                     gjelderUtlandet={true}
                     arbeiderEllerArbeidetFelt={skjema.felter.arbeidIUtlandet}
                     registrerteArbeidsperioder={skjema.felter.registrerteArbeidsperioder}
-                    personType={PersonType.Søker}
+                    personType={PersonType.søker}
                 />
 
                 <Pensjonsperiode
@@ -71,7 +71,7 @@ const DinLivssituasjon: React.FC = () => {
                     leggTilPensjonsperiode={leggTilPensjonsperiode}
                     fjernPensjonsperiode={fjernPensjonsperiode}
                     gjelderUtlandet={true}
-                    personType={PersonType.Søker}
+                    personType={PersonType.søker}
                 />
             </KomponentGruppe>
         </Steg>

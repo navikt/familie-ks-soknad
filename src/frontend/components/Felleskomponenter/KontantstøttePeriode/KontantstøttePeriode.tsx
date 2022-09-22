@@ -50,9 +50,9 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                 skjema={skjema}
                 felt={tilhørendeJaNeiSpmFelt}
                 spørsmålTekstId={kontantstøtteSpørsmålSpråkId(personType, erDød)}
-                inkluderVetIkke={personType !== PersonType.Søker}
+                inkluderVetIkke={personType !== PersonType.søker}
                 språkValues={{
-                    ...(personType !== PersonType.Søker && {
+                    ...(personType !== PersonType.søker && {
                         barn: barn.navn,
                     }),
                 }}
@@ -67,7 +67,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                             nummer={index + 1}
                             barnetsNavn={barn.navn}
                             personType={personType}
-                            erDød={personType === PersonType.AndreForelder && erDød}
+                            erDød={personType === PersonType.andreForelder && erDød}
                         />
                     ))}
 

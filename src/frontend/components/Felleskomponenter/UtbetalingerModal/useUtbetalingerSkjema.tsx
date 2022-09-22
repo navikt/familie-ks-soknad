@@ -20,7 +20,7 @@ export interface IUseUtbetalingerSkjemaParams {
 }
 
 export const useUtbetalingerSkjema = (personType, barn, erDød) => {
-    const andreForelderErDød = personType === PersonType.AndreForelder && erDød;
+    const andreForelderErDød = personType === PersonType.andreForelder && erDød;
 
     const fårUtbetalingNå = useJaNeiSpmFelt({
         søknadsfelt: { id: UtbetalingerSpørsmålId.fårUtbetalingNå, svar: null },

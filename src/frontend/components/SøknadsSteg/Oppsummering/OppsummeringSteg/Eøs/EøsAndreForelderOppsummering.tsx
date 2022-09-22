@@ -87,7 +87,7 @@ const EøsAndreForelderOppsummering: React.FC<{
                         key={`arbeidsperiode-andre-forelder-norge-${index}`}
                         arbeidsperiode={arbeidsperiode}
                         nummer={index + 1}
-                        personType={PersonType.AndreForelder}
+                        personType={PersonType.andreForelder}
                         erDød={andreForelderErDød}
                         gjelderUtlandet={false}
                     />
@@ -98,7 +98,7 @@ const EøsAndreForelderOppsummering: React.FC<{
                         key={`pensjonsperiode-andre-forelder-norge-${index}`}
                         pensjonsperiode={pensjonsperiode}
                         nummer={index + 1}
-                        personType={PersonType.AndreForelder}
+                        personType={PersonType.andreForelder}
                         erDød={andreForelderErDød}
                         barn={barn}
                         gjelderUtlandet={false}
@@ -110,7 +110,7 @@ const EøsAndreForelderOppsummering: React.FC<{
                         key={`utbetalingsperiode-andre-forelder-${index}`}
                         utbetalingsperiode={utbetalingsperiode}
                         nummer={index + 1}
-                        personType={PersonType.AndreForelder}
+                        personType={PersonType.andreForelder}
                         erDød={andreForelderErDød}
                         barn={barn}
                     />
@@ -143,7 +143,7 @@ const EøsAndreForelderOppsummering: React.FC<{
                         nummer={index + 1}
                         kontantstøttePeriode={periode}
                         barnetsNavn={barn.navn}
-                        personType={PersonType.AndreForelder}
+                        personType={PersonType.andreForelder}
                         erDød={andreForelderErDød}
                     />
                 ))}
