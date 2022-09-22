@@ -46,18 +46,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
         },
     } = tekster();
 
-    const teksterForPersontype = () => {
-        // todo: rekfatorer persontype så vi slipper denne
-        switch (personType) {
-            case PersonType.barn:
-                return utenlandsopphold.barn;
-            case PersonType.andreForelder:
-                return utenlandsopphold.andreForelder;
-            case PersonType.søker:
-            default:
-                return utenlandsopphold.søker;
-        }
-    };
+    const { flerePerioder, leggTilFeilmelding, leggTilKnapp } = utenlandsopphold[personType];
 
     return (
         <>
@@ -80,7 +69,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
             ))}
             {registrerteUtenlandsperioder.verdi.length > 0 && (
                 <Element>
-                    <TekstBlock block={teksterForPersontype().flerePerioder} />
+                    <TekstBlock block={flerePerioder} />
                 </Element>
             )}
             <LeggTilKnapp
@@ -89,12 +78,10 @@ export const Utenlandsperiode: React.FC<Props> = ({
                 feilmelding={
                     registrerteUtenlandsperioder.erSynlig &&
                     registrerteUtenlandsperioder.feilmelding &&
-                    skjema.visFeilmeldinger && (
-                        <TekstBlock block={teksterForPersontype().leggTilFeilmelding} />
-                    )
+                    skjema.visFeilmeldinger && <TekstBlock block={leggTilFeilmelding} />
                 }
             >
-                <TekstBlock block={teksterForPersontype().leggTilKnapp} />
+                <TekstBlock block={leggTilKnapp} />
             </LeggTilKnapp>
         </>
     );
