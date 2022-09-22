@@ -3,6 +3,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { Normaltekst } from 'nav-frontend-typografi';
+
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
@@ -211,7 +213,9 @@ const OmBarnaDine: React.FC = () => {
                 >
                     {hvemBarnehageplass.vedleggsnotis ? (
                         <VedleggNotis>
-                            {localeString(hvemBarnehageplass.vedleggsnotis)}
+                            <Normaltekst>
+                                {localeString(hvemBarnehageplass.vedleggsnotis)}
+                            </Normaltekst>
                         </VedleggNotis>
                     ) : null}
                 </HvilkeBarnCheckboxGruppe>
