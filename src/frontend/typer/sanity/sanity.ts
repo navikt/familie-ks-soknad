@@ -1,4 +1,4 @@
-import { LocaleRecordBlock } from '../common';
+import { LocaleRecordBlock, LocaleRecordString } from '../common';
 
 export interface SanityDokumentBase {
     _createdAt: string;
@@ -20,6 +20,7 @@ export interface ISanitySpørsmålDokument extends SanityDokument {
     sporsmal: LocaleRecordBlock;
     feilmelding: LocaleRecordBlock;
     alert?: LocaleRecordBlock;
+    vedleggsnotis?: LocaleRecordString;
 }
 
 export enum ESanitySteg {

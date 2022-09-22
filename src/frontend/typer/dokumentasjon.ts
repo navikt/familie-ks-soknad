@@ -38,5 +38,7 @@ export const dokumentasjonsbehovTilSpråkId = (dokumentasjonsbehov: Dokumentasjo
             return 'dokumentasjon.bekreftelseborsammen.vedleggtittel';
         case Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE:
             return 'dokumentasjon.oppholdstillatelse.vedleggtittel';
+        case Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS:
+            return 'dokumentasjon.barnehageplass.vedleggtittel';
     }
 };

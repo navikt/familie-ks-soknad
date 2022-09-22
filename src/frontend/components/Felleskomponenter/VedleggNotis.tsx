@@ -33,17 +33,23 @@ const NotisInnhold = styled.div`
 `;
 
 export const VedleggNotis: React.FC<{
-    språkTekstId: string;
+    /**
+     * @deprecated skal bruke tekster fra sanity
+     */
+    språkTekstId?: string;
+    children?: ReactNode;
     dynamisk?: boolean;
     språkValues?: Record<string, ReactNode>;
-}> = ({ språkTekstId, dynamisk = false, språkValues = {} }) => {
+}> = ({ språkTekstId, dynamisk = false, språkValues = {}, children }) => {
     return (
         <NotisWrapper aria-live={dynamisk ? 'polite' : 'off'}>
             <StyledFileContent role={'img'} focusable={false} aria-label={'vedleggsikon'} />
             <NotisInnhold>
-                <Normaltekst>
-                    <SpråkTekst id={språkTekstId} values={språkValues} />
-                </Normaltekst>
+                {children || (
+                    <Normaltekst>
+                        <SpråkTekst id={språkTekstId} values={språkValues} />
+                    </Normaltekst>
+                )}
             </NotisInnhold>
         </NotisWrapper>
     );
