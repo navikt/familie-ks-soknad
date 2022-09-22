@@ -8,6 +8,7 @@ import { useApp } from '../../../context/AppContext';
 import { device } from '../../../Theme';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
+import ModalContent from '../../Felleskomponenter/ModalContent';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 
@@ -23,16 +24,6 @@ const StyledFortsettPåSøknad = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-`;
-
-const ModalInnholdContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 2rem;
-    max-width: 35rem;
-    > h1 {
-        font-size: 1.25rem;
-    }
 `;
 
 const ModalKnappeContainer = styled.div`
@@ -93,23 +84,18 @@ const FortsettPåSøknad: FC = () => {
                     settVisStartPåNyttModal(false);
                 }}
             >
-                <Modal.Content>
-                    <ModalInnholdContainer>
-                        <TekstBlock block={startPaaNyttTittel} />
-                        <TekstBlock block={startPaaNyttInfo} />
-                        <ModalKnappeContainer>
-                            <Button
-                                variant={'tertiary'}
-                                onClick={() => settVisStartPåNyttModal(false)}
-                            >
-                                <TekstBlock block={startPaaNyttAvbryt} />
-                            </Button>
-                            <Button variant={'secondary'} onClick={startPåNytt}>
-                                <TekstBlock block={startNySoeknadKnapp} />
-                            </Button>
-                        </ModalKnappeContainer>
-                    </ModalInnholdContainer>
-                </Modal.Content>
+                <ModalContent>
+                    <TekstBlock block={startPaaNyttTittel} />
+                    <TekstBlock block={startPaaNyttInfo} />
+                    <ModalKnappeContainer>
+                        <Button variant={'tertiary'} onClick={() => settVisStartPåNyttModal(false)}>
+                            <TekstBlock block={startPaaNyttAvbryt} />
+                        </Button>
+                        <Button variant={'secondary'} onClick={startPåNytt}>
+                            <TekstBlock block={startNySoeknadKnapp} />
+                        </Button>
+                    </ModalKnappeContainer>
+                </ModalContent>
             </Modal>
         </StyledFortsettPåSøknad>
     );

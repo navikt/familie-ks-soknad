@@ -4,9 +4,12 @@ import { useIntl } from 'react-intl';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
+import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
@@ -25,6 +28,7 @@ import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeilopps
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 import { tilDatoUkjentLabelSpråkId, UtenlandsoppholdSpørsmålId } from './spørsmål';
 import { useUtenlandsoppholdSkjema } from './useUtenlandsoppholdSkjema';
 import {
@@ -48,12 +52,21 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
     personType,
     barn,
 }) => {
+    const { tekster } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
         useUtenlandsoppholdSkjema({
             personType,
         });
 
     const { formatMessage } = useIntl();
+
+    const {
+        [ESanitySteg.FELLES]: {
+            modaler: { utenlandsopphold },
+        },
+    } = tekster();
+
+    const { tittel, leggTilKnapp } = utenlandsopphold[personType] as IUtenlandsoppholdTekstinnhold;
 
     const onLeggTil = () => {
         if (!validerFelterOgVisFeilmelding()) {
@@ -92,9 +105,9 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
     return (
         <SkjemaModal
             erÅpen={erÅpen}
-            modalTittelSpråkId={'modal.utenlandsopphold.tittel'}
+            tittel={<TekstBlock block={tittel} barnetsNavn={barn?.navn} />}
+            submitKnappTekst={<TekstBlock block={leggTilKnapp} />}
             onSubmitCallback={onLeggTil}
-            submitKnappSpråkId={'felles.leggtilutenlands.knapp'}
             toggleModal={toggleModal}
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
