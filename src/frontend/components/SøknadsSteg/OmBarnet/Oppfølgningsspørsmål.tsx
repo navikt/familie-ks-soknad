@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Element } from 'nav-frontend-typografi';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
@@ -22,15 +20,11 @@ import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasj
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import { KontantstøttePeriode } from '../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriode';
-import { LeggTilKnapp } from '../../Felleskomponenter/LeggTilKnapp/LeggTilKnapp';
 import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
-import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
-import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
-import { UtenlandsoppholdModal } from '../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsoppholdModal';
-import { UtenlandsperiodeOppsummering } from '../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
+import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
 import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from './spørsmål';
 
@@ -39,7 +33,6 @@ const Oppfølgningsspørsmål: React.FC<{
     skjema: ISkjema<IOmBarnetUtvidetFeltTyper, string>;
     leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
     fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
-    utenlandsperioder: IUtenlandsperiode[];
     leggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
     fjernKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
     registrerteEøsKontantstøttePerioder: Felt<IEøsKontantstøttePeriode[]>;
@@ -51,7 +44,6 @@ const Oppfølgningsspørsmål: React.FC<{
     skjema,
     leggTilUtenlandsperiode,
     fjernUtenlandsperiode,
-    utenlandsperioder,
     leggTilKontantstøttePeriode,
     fjernKontantstøttePeriode,
     registrerteEøsKontantstøttePerioder,
@@ -59,8 +51,6 @@ const Oppfølgningsspørsmål: React.FC<{
     fjernBarnehageplassPeriode,
     registrerteBarnehageplassPerioder,
 }) => {
-    const { erÅpen: utenlandsmodalErÅpen, toggleModal: toggleUtenlandsmodal } = useModal();
-
     return (
         <>
             {barn[barnDataKeySpørsmål.erFosterbarn].svar === ESvar.JA && (
@@ -172,42 +162,15 @@ const Oppfølgningsspørsmål: React.FC<{
                     språkValues={{ navn: barn.navn }}
                 >
                     <>
-                        <UtenlandsoppholdModal
-                            erÅpen={utenlandsmodalErÅpen}
-                            toggleModal={toggleUtenlandsmodal}
-                            onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                            barn={barn}
+                        <Utenlandsperiode
                             personType={PersonType.barn}
-                        />
-                        {utenlandsperioder.map((periode, index) => (
-                            <UtenlandsperiodeOppsummering
-                                key={index}
-                                periode={periode}
-                                nummer={index + 1}
-                                fjernPeriodeCallback={fjernUtenlandsperiode}
-                                barn={barn}
-                                personType={PersonType.barn}
-                            />
-                        ))}
-                        {utenlandsperioder.length > 0 && (
-                            <Element>
-                                <SpråkTekst
-                                    id={'ombarnet.flereopphold.spm'}
-                                    values={{ barn: barn.navn }}
-                                />
-                            </Element>
-                        )}
-                        <LeggTilKnapp
-                            id={UtenlandsoppholdSpørsmålId.utenlandsopphold}
-                            språkTekst={'felles.leggtilutenlands.knapp'}
-                            onClick={toggleUtenlandsmodal}
-                            feilmelding={
-                                skjema.felter.barnRegistrerteUtenlandsperioder.erSynlig &&
-                                skjema.felter.barnRegistrerteUtenlandsperioder.feilmelding &&
-                                skjema.visFeilmeldinger && (
-                                    <SpråkTekst id={'felles.leggtilutenlands.feilmelding'} />
-                                )
+                            skjema={skjema}
+                            leggTilUtenlandsperiode={leggTilUtenlandsperiode}
+                            fjernPeriodeUtenlandsperiode={fjernUtenlandsperiode}
+                            registrerteUtenlandsperioder={
+                                skjema.felter.barnRegistrerteUtenlandsperioder
                             }
+                            barn={barn}
                         />
                     </>
                     {skjema.felter.planleggerÅBoINorge12Mnd.erSynlig && (
