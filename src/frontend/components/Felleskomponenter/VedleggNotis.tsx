@@ -45,11 +45,13 @@ export const VedleggNotis: React.FC<{
         <NotisWrapper aria-live={dynamisk ? 'polite' : 'off'}>
             <StyledFileContent role={'img'} focusable={false} aria-label={'vedleggsikon'} />
             <NotisInnhold>
-                {children || (
+                {children ? (
+                    children
+                ) : språkTekstId ? (
                     <Normaltekst>
                         <SpråkTekst id={språkTekstId} values={språkValues} />
                     </Normaltekst>
-                )}
+                ) : null}
             </NotisInnhold>
         </NotisWrapper>
     );
