@@ -3,13 +3,14 @@ import {
     fraDatoLabelSpråkId,
     landLabelSpråkId,
     tilDatoLabelSpråkId,
+    utenlandsoppholdÅrsakTilTekst,
     årsakLabelSpråkId,
-    årsakSpråkId,
 } from '../../components/Felleskomponenter/UtenlandsoppholdModal/utenlandsoppholdSpråkUtils';
 import { IBarnMedISøknad } from '../../typer/barn';
 import { ISøknadsfelt, IUtenlandsperiodeIKontraktFormat } from '../../typer/kontrakt/generelle';
 import { IUtenlandsperiode } from '../../typer/perioder';
 import { PersonType } from '../../typer/personType';
+import { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenlandsopphold';
 import { hentTekster, landkodeTilSpråk } from '../språk';
 import {
     sammeVerdiAlleSpråk,
@@ -21,6 +22,7 @@ export const utenlandsperiodeTilISøknadsfelt = (
     utenlandperiode: IUtenlandsperiode,
     periodeNummer: number,
     personType: PersonType,
+    tekster: IUtenlandsoppholdTekstinnhold,
     barn?: IBarnMedISøknad
 ): ISøknadsfelt<IUtenlandsperiodeIKontraktFormat> => {
     return {
@@ -30,8 +32,9 @@ export const utenlandsperiodeTilISøknadsfelt = (
                 label: hentTekster(årsakLabelSpråkId(personType), {
                     ...(barn && { barn: barn.navn }),
                 }),
-                verdi: hentTekster(
-                    årsakSpråkId(utenlandperiode.utenlandsoppholdÅrsak.svar, personType)
+                verdi: utenlandsoppholdÅrsakTilTekst(
+                    utenlandperiode.utenlandsoppholdÅrsak.svar,
+                    tekster
                 ),
             },
             oppholdsland: {

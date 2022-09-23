@@ -13,6 +13,8 @@ import { ERegistrertBostedType } from '../../typer/kontrakt/generelle';
 import { ISøknadIKontraktBarn } from '../../typer/kontrakt/v1';
 import { ISøker } from '../../typer/person';
 import { PersonType } from '../../typer/personType';
+import { ESanitySteg } from '../../typer/sanity/sanity';
+import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknadSpørsmålMap } from '../../typer/spørsmål';
 import { hentTekster } from '../språk';
 import { andreForelderTilISøknadsfelt } from './andreForelder';
@@ -32,7 +34,8 @@ import { utenlandsperiodeTilISøknadsfelt } from './utenlandsperiode';
 export const barnISøknadsFormat = (
     barn: IBarnMedISøknad,
     søker: ISøker,
-    valgtSpråk: LocaleType
+    valgtSpråk: LocaleType,
+    tekster: ITekstinnhold
 ): ISøknadIKontraktBarn => {
     /* eslint-disable @typescript-eslint/no-unused-vars */
     const {
@@ -57,6 +60,7 @@ export const barnISøknadsFormat = (
         ...barnSpørsmål
     } = barn;
     const typetBarnSpørsmål = barnSpørsmål as unknown as ISøknadSpørsmålMap;
+    const fellesTekster = tekster[ESanitySteg.FELLES];
 
     const registertBostedVerdi = (): ERegistrertBostedType => {
         /**
@@ -100,7 +104,13 @@ export const barnISøknadsFormat = (
             ? søknadsfeltBarn('pdf.barn.alder.label', hentTekster('felles.år', { alder }), barn)
             : null,
         utenlandsperioder: utenlandsperioder.map((periode, index) =>
-            utenlandsperiodeTilISøknadsfelt(periode, index + 1, PersonType.barn, barn)
+            utenlandsperiodeTilISøknadsfelt(
+                periode,
+                index + 1,
+                PersonType.barn,
+                fellesTekster.modaler.utenlandsopphold[PersonType.barn],
+                barn
+            )
         ),
         eøsKontantstøttePerioder: eøsKontantstøttePerioder.map((periode, index) =>
             tilIEøsKontantstøttePeriodeIKontraktFormat({
@@ -123,7 +133,7 @@ export const barnISøknadsFormat = (
             )
         ),
         andreForelder: andreForelder
-            ? andreForelderTilISøknadsfelt(andreForelder, barn, valgtSpråk)
+            ? andreForelderTilISøknadsfelt(andreForelder, barn, valgtSpråk, tekster)
             : null,
 
         omsorgsperson: omsorgsperson ? omsorgspersonTilISøknadsfelt(omsorgsperson, barn) : null,

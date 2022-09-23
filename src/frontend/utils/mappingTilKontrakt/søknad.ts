@@ -11,8 +11,8 @@ import { ESivilstand } from '../../typer/kontrakt/generelle';
 import { ISøknadKontrakt } from '../../typer/kontrakt/v1';
 import { ISøker } from '../../typer/person';
 import { PersonType } from '../../typer/personType';
-import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
-import { IFrittståendeOrdTekstinnhold } from '../../typer/sanity/tekstInnhold';
+import { ESanitySivilstandApiKey, ESanitySteg } from '../../typer/sanity/sanity';
+import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknadSpørsmålMap } from '../../typer/spørsmål';
 import { ISøknad } from '../../typer/søknad';
 import { erDokumentasjonRelevant } from '../dokumentasjon';
@@ -52,7 +52,7 @@ const antallEøsSteg = (søker: ISøker, barnInkludertISøknaden: IBarnMedISøkn
 export const dataISøknadKontraktFormatV1 = (
     valgtSpråk: LocaleType,
     søknad: ISøknad,
-    frittståendeOrdTekster: IFrittståendeOrdTekstinnhold
+    tekster: ITekstinnhold
 ): ISøknadKontrakt => {
     const { søker } = søknad;
     // Raskeste måte å få tak i alle spørsmål minus de andre feltene på søker
@@ -79,6 +79,7 @@ export const dataISøknadKontraktFormatV1 = (
     } = søker;
     const { barnInkludertISøknaden } = søknad;
     const typetSøkerSpørsmål: ISøknadSpørsmålMap = søkerSpørsmål as unknown as ISøknadSpørsmålMap;
+    const fellesTekster = tekster[ESanitySteg.FELLES];
 
     return {
         kontraktVersjon: 1,
@@ -101,7 +102,12 @@ export const dataISøknadKontraktFormatV1 = (
             adresse: søknadsfelt('pdf.søker.adresse.label', sammeVerdiAlleSpråk(adresse)),
             adressebeskyttelse: søker.adressebeskyttelse,
             utenlandsperioder: utenlandsperioder.map((periode, index) =>
-                utenlandsperiodeTilISøknadsfelt(periode, index + 1, PersonType.søker)
+                utenlandsperiodeTilISøknadsfelt(
+                    periode,
+                    index + 1,
+                    PersonType.søker,
+                    fellesTekster.modaler.utenlandsopphold[PersonType.søker]
+                )
             ),
             idNummer: idNummer.map(idnummerObj =>
                 idNummerTilISøknadsfelt(
@@ -154,7 +160,9 @@ export const dataISøknadKontraktFormatV1 = (
                 })
             ),
         },
-        barn: barnInkludertISøknaden.map(barn => barnISøknadsFormat(barn, søker, valgtSpråk)),
+        barn: barnInkludertISøknaden.map(barn =>
+            barnISøknadsFormat(barn, søker, valgtSpråk, tekster)
+        ),
         spørsmål: {
             erNoenAvBarnaFosterbarn: søknadsfelt(
                 språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.erNoenAvBarnaFosterbarn),
@@ -207,7 +215,9 @@ export const dataISøknadKontraktFormatV1 = (
                 (map, sivilstand) => ({
                     ...map,
                     [ESanitySivilstandApiKey[ESivilstand[sivilstand]]]:
-                        frittståendeOrdTekster[sivilstandTilSanitySivilstandApiKey(sivilstand)],
+                        fellesTekster.frittståendeOrd[
+                            sivilstandTilSanitySivilstandApiKey(sivilstand)
+                        ],
                 }),
                 {}
             ),

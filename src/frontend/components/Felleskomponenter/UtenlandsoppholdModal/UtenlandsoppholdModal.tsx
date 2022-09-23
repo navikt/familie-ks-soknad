@@ -8,7 +8,6 @@ import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
-import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
@@ -35,8 +34,7 @@ import {
     fraDatoLabelSpråkId,
     landLabelSpråkId,
     tilDatoLabelSpråkId,
-    årsakLabelSpråkId,
-    årsakSpråkId,
+    utenlandsoppholdÅrsakTilTekst,
 } from './utenlandsoppholdSpråkUtils';
 
 type Props = ReturnType<typeof useModal> & {
@@ -52,7 +50,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
     personType,
     barn,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, localeString } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
         useUtenlandsoppholdSkjema({
             personType,
@@ -60,13 +58,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
 
     const { formatMessage } = useIntl();
 
-    const {
-        [ESanitySteg.FELLES]: {
-            modaler: { utenlandsopphold },
-        },
-    } = tekster();
-
-    const { tittel, leggTilKnapp } = utenlandsopphold[personType] as IUtenlandsoppholdTekstinnhold;
+    const teksterForPersonType = tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
 
     const onLeggTil = () => {
         if (!validerFelterOgVisFeilmelding()) {
@@ -105,8 +97,8 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
     return (
         <SkjemaModal
             erÅpen={erÅpen}
-            tittel={<TekstBlock block={tittel} barnetsNavn={barn?.navn} />}
-            submitKnappTekst={<TekstBlock block={leggTilKnapp} />}
+            tittel={<TekstBlock block={teksterForPersonType.tittel} barnetsNavn={barn?.navn} />}
+            submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
             onSubmitCallback={onLeggTil}
             toggleModal={toggleModal}
             valideringErOk={valideringErOk}
@@ -120,10 +112,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                         )}
                         felt={skjema.felter.utenlandsoppholdÅrsak}
                         label={
-                            <SpråkTekst
-                                id={årsakLabelSpråkId(personType)}
-                                values={{ ...(barn && { barn: barn.navn }) }}
-                            />
+                            <TekstBlock block={teksterForPersonType.periodeBeskrivelse.sporsmal} />
                         }
                         skjema={skjema}
                         placeholder={formatMessage({ id: 'felles.velg-årsak.placeholder' })}
@@ -131,14 +120,11 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                     >
                         {Object.keys(EUtenlandsoppholdÅrsak).map((årsak, number) => (
                             <option key={number} value={årsak}>
-                                {formatMessage(
-                                    {
-                                        id: årsakSpråkId(
-                                            årsak as EUtenlandsoppholdÅrsak,
-                                            personType
-                                        ),
-                                    },
-                                    { ...(barn && { barn: barn.navn }) }
+                                {localeString(
+                                    utenlandsoppholdÅrsakTilTekst(
+                                        årsak as EUtenlandsoppholdÅrsak,
+                                        teksterForPersonType
+                                    )
                                 )}
                             </option>
                         ))}

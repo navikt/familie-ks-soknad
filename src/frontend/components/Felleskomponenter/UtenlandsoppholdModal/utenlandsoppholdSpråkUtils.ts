@@ -1,4 +1,6 @@
+import { LocaleRecordString } from '../../../typer/common';
 import { PersonType } from '../../../typer/personType';
+import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 import {
     landFeilmeldingSpråkIdsSøker,
@@ -54,6 +56,27 @@ export const årsakSpråkId = (
         case PersonType.andreForelder:
         default: {
             return årsakSpråkIdsAndreForelder[årsak];
+        }
+    }
+};
+
+export const utenlandsoppholdÅrsakTilTekst = (
+    årsak: EUtenlandsoppholdÅrsak | '',
+    tekster: IUtenlandsoppholdTekstinnhold
+): LocaleRecordString => {
+    switch (årsak) {
+        case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE: {
+            return tekster.valgalternativPermanentIUtland;
+        }
+        case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE: {
+            return tekster.valgalternativPermanentINorge;
+        }
+        case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
+            return tekster.valgalternativOppholdUtenforNorgeTidligere;
+        case EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE:
+            return tekster.valgalternativOppholdUtenforNorgeNaa;
+        default: {
+            return tekster.valgalternativPlaceholder;
         }
     }
 };
