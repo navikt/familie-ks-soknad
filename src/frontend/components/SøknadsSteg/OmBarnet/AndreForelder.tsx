@@ -164,7 +164,7 @@ const AndreForelder: React.FC<{
                                             personType={PersonType.andreForelder}
                                             skjema={skjema}
                                             leggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                                            fjernPeriodeUtenlandsperiode={fjernUtenlandsperiode}
+                                            fjernUtenlandsperiode={fjernUtenlandsperiode}
                                             registrerteUtenlandsperioder={
                                                 skjema.felter
                                                     .andreForelderRegistrerteUtenlandsperioder

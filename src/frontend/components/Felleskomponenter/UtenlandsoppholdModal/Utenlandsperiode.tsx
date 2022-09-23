@@ -25,14 +25,14 @@ type PersonTypeMedBarn =
 type Props = PersonTypeMedBarn & {
     skjema: ISkjema<IOmDegFeltTyper | IOmBarnetUtvidetFeltTyper, string>;
     leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
-    fjernPeriodeUtenlandsperiode: (periode: IUtenlandsperiode) => void;
+    fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
     registrerteUtenlandsperioder: Felt<IUtenlandsperiode[]>;
 };
 
 export const Utenlandsperiode: React.FC<Props> = ({
     skjema,
     leggTilUtenlandsperiode,
-    fjernPeriodeUtenlandsperiode,
+    fjernUtenlandsperiode,
     registrerteUtenlandsperioder,
     barn,
     personType,
@@ -62,7 +62,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
                     key={index}
                     periode={periode}
                     nummer={index + 1}
-                    fjernPeriodeCallback={fjernPeriodeUtenlandsperiode}
+                    fjernPeriodeCallback={fjernUtenlandsperiode}
                     personType={personType}
                     barn={barn}
                 />

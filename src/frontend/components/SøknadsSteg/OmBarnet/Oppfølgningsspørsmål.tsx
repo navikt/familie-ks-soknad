@@ -166,7 +166,7 @@ const Oppfølgningsspørsmål: React.FC<{
                             personType={PersonType.barn}
                             skjema={skjema}
                             leggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                            fjernPeriodeUtenlandsperiode={fjernUtenlandsperiode}
+                            fjernUtenlandsperiode={fjernUtenlandsperiode}
                             registrerteUtenlandsperioder={
                                 skjema.felter.barnRegistrerteUtenlandsperioder
                             }
