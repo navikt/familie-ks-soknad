@@ -81,7 +81,7 @@ const OmDeg: React.FC = () => {
                                 personType={PersonType.søker}
                                 skjema={skjema}
                                 leggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                                fjernPeriodeUtenlandsperiode={fjernUtenlandsperiode}
+                                fjernUtenlandsperiode={fjernUtenlandsperiode}
                                 registrerteUtenlandsperioder={
                                     skjema.felter.registrerteUtenlandsperioder
                                 }
