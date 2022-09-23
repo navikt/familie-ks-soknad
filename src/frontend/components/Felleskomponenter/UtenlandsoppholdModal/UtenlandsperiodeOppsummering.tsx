@@ -6,9 +6,11 @@ import { Normaltekst } from 'nav-frontend-typografi';
 
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
+import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { formaterDato } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { formaterDatoMedUkjent } from '../../../utils/visning';
@@ -20,8 +22,8 @@ import {
     fraDatoLabelSpråkId,
     landLabelSpråkId,
     tilDatoLabelSpråkId,
+    utenlandsoppholdÅrsakTilTekst,
     årsakLabelSpråkId,
-    årsakSpråkId,
 } from './utenlandsoppholdSpråkUtils';
 
 type Props = {
@@ -40,11 +42,13 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
     personType,
 }) => {
     const [valgtLocale] = useSprakContext();
+    const { localeString, tekster } = useApp();
     const intl = useIntl();
     const { formatMessage } = intl;
     const { oppholdsland, utenlandsoppholdÅrsak, oppholdslandFraDato, oppholdslandTilDato } =
         periode;
     const årsak = utenlandsoppholdÅrsak.svar;
+    const teksterForPersonType = tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
 
     return (
         <>
@@ -63,10 +67,7 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                     }
                 >
                     <Normaltekst>
-                        <SpråkTekst
-                            id={årsakSpråkId(årsak, personType)}
-                            values={{ barn: barn ? barn.navn : undefined }}
-                        />
+                        {localeString(utenlandsoppholdÅrsakTilTekst(årsak, teksterForPersonType))}
                     </Normaltekst>
                 </OppsummeringFelt>
 

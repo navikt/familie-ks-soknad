@@ -7,9 +7,6 @@ import {
     landLabelSpråkIdsAndreForelder,
     landLabelSpråkIdsBarn,
     landLabelSpråkIdsSøker,
-    årsakSpråkIdsAndreForelder,
-    årsakSpråkIdsBarn,
-    årsakSpråkIdsSøker,
 } from './spørsmål';
 
 export const årsakFeilmeldingSpråkId = (personType: PersonType): string => {
@@ -38,24 +35,6 @@ export const årsakLabelSpråkId = (personType: PersonType): string => {
         case PersonType.andreForelder:
         default: {
             return 'todo.andreforelder.utenlandsopphold';
-        }
-    }
-};
-
-export const årsakSpråkId = (
-    årsak: EUtenlandsoppholdÅrsak | '',
-    personType: PersonType
-): string => {
-    switch (personType) {
-        case PersonType.søker: {
-            return årsakSpråkIdsSøker[årsak];
-        }
-        case PersonType.barn: {
-            return årsakSpråkIdsBarn[årsak];
-        }
-        case PersonType.andreForelder:
-        default: {
-            return årsakSpråkIdsAndreForelder[årsak];
         }
     }
 };
