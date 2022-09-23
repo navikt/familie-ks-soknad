@@ -1,42 +1,25 @@
-import { LocaleRecordString } from '../../common';
+import { LocaleRecordBlock } from '../../common';
+import { ISanitySpørsmålDokument } from '../sanity';
 
 export interface IUtenlandsoppholdTekstinnhold {
-    //todo: oppdater riktig struktur
-    arsak: {
-        feilmelding: LocaleRecordString;
-        sporsmal: LocaleRecordString;
-        valgalternativer: {
-            oppholdUtenforNorgeNa: LocaleRecordString;
-            oppholdUtenforNorgeTidligere: LocaleRecordString;
-            permanentFraNorge: LocaleRecordString;
-            permanentTilNorge: LocaleRecordString;
-        };
-    };
-    dato: {
-        flyttetFraNorgeDato: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
-        flyttetTilNorgeDato: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
-        oppholdUtlandFortidSluttdato: {
-            feilmelding: LocaleRecordString;
-            sporsmal: LocaleRecordString;
-        };
-        oppholdUtlandFramtidSluttdato: {
-            feilmelding: LocaleRecordString;
-            sporsmal: LocaleRecordString;
-        };
-        oppholdUtlandStartdato: {
-            feilmelding: LocaleRecordString;
-            sporsmal: LocaleRecordString;
-        };
-        ukjentSluttdato: { label: LocaleRecordString };
-    };
-    land: {
-        landFlyttetFra: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
-        landFlyttetTil: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
-        landNavaerendeOpphold: {
-            feilmelding: LocaleRecordString;
-            sporsmal: LocaleRecordString;
-        };
-        landTidligereOpphold: { feilmelding: LocaleRecordString; sporsmal: LocaleRecordString };
-    };
-    flerePerioderSporsmal: LocaleRecordString;
+    flyttetFraNorgeDato: ISanitySpørsmålDokument;
+    flyttetTilNorgeDato: ISanitySpørsmålDokument;
+    landFlyttetFra: ISanitySpørsmålDokument;
+    landFlyttetTil: ISanitySpørsmålDokument;
+    periodeBeskrivelse: ISanitySpørsmålDokument;
+    naavaerendeOpphold: ISanitySpørsmålDokument;
+    sluttdatoFortid: ISanitySpørsmålDokument;
+    sluttdatoFremtid: ISanitySpørsmålDokument;
+    startdato: ISanitySpørsmålDokument;
+    tidligereOpphold: ISanitySpørsmålDokument;
+    fjernKnapp: LocaleRecordBlock;
+    flerePerioder: LocaleRecordBlock;
+    leggTilFeilmelding: LocaleRecordBlock;
+    leggTilKnapp: LocaleRecordBlock;
+    tittel: LocaleRecordBlock;
+    valgalternativOppholdUtenforNorgeNaa: LocaleRecordBlock;
+    valgalternativOppholdUtenforNorgeTidligere: LocaleRecordBlock;
+    valgalternativPermanentINorge: LocaleRecordBlock;
+    valgalternativPermanentIUtland: LocaleRecordBlock;
+    valgalternativPlaceholder: LocaleRecordBlock;
 }

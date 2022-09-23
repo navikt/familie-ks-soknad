@@ -35,15 +35,11 @@ import {
     årsakSpråkId,
 } from './utenlandsoppholdSpråkUtils';
 
-type PersonTypeMedBarn =
-    | { personType: PersonType.søker; barn?: never }
-    | { personType: PersonType.barn; barn: IBarnMedISøknad }
-    | { personType: PersonType.andreForelder; barn: IBarnMedISøknad };
-
-type Props = PersonTypeMedBarn &
-    ReturnType<typeof useModal> & {
-        onLeggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
-    };
+type Props = ReturnType<typeof useModal> & {
+    onLeggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
+    personType: PersonType;
+    barn?: IBarnMedISøknad;
+};
 
 export const UtenlandsoppholdModal: React.FC<Props> = ({
     erÅpen,

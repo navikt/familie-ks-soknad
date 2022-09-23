@@ -97,8 +97,9 @@ const strukturertInnholdForModaler = (dokumenter: SanityDokument[]): IModalerTek
             omsorgsperson: andreUtbetalinger(SanityPersonType.OMSORGSPERSON),
         },
         utenlandsopphold: {
-            søker: utenlandsopphold(SanityPersonType.ANDRE_FORELDER),
-            barn: utenlandsopphold(SanityPersonType.SOKER),
+            søker: utenlandsopphold(SanityPersonType.SOKER),
+            barn: utenlandsopphold(SanityPersonType.BARN),
+            andreForelder: utenlandsopphold(SanityPersonType.ANDRE_FORELDER),
         },
         eøsYtelse: {
             søker: eøsYtelse(SanityPersonType.SOKER),

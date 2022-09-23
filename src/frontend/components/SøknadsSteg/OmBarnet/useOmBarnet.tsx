@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, FeltState, ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
@@ -46,7 +46,6 @@ import { flyttetPermanentFraNorge } from '../../../utils/utenlandsopphold';
 import { arbeidsperiodeFeilmelding } from '../../Felleskomponenter/Arbeidsperiode/arbeidsperiodeSpråkUtils';
 import { pensjonsperiodeFeilmelding } from '../../Felleskomponenter/Pensjonsmodal/språkUtils';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
-import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { idNummerLand } from '../EøsSteg/idnummerUtils';
 import { OmBarnetSpørsmålsId } from './spørsmål';
 
@@ -64,8 +63,6 @@ export const useOmBarnet = (
     fjernUtenlandsperiodeBarn: (periode: IUtenlandsperiode) => void;
     leggTilUtenlandsperiodeAndreForelder: (periode: IUtenlandsperiode) => void;
     fjernUtenlandsperiodeAndreForelder: (periode: IUtenlandsperiode) => void;
-    utenlandsperioderBarn: IUtenlandsperiode[];
-    utenlandsperioderAndreForelder: IUtenlandsperiode[];
     leggTilArbeidsperiode: (periode: IArbeidsperiode) => void;
     fjernArbeidsperiode: (periode: IArbeidsperiode) => void;
     leggTilPensjonsperiode: (periode: IPensjonsperiode) => void;
@@ -85,14 +82,6 @@ export const useOmBarnet = (
     }
 
     const andreForelder = gjeldendeBarn.andreForelder;
-
-    const [barnUtenlandsperioder, settBarnUtenlandsperioder] = useState<IUtenlandsperiode[]>(
-        gjeldendeBarn.utenlandsperioder
-    );
-
-    const [andreForelderUtenlandsperioder, settAndreForelderUtenlandsperioder] = useState<
-        IUtenlandsperiode[]
-    >(andreForelder?.utenlandsperioder ?? []);
 
     const skalFeltetVises = (
         søknadsdataFelt: Exclude<
@@ -202,20 +191,20 @@ export const useOmBarnet = (
     });
 
     /*---UTENLANDSOPPHOLD---*/
-    const barnRegistrerteUtenlandsperioder = useFelt<IUtenlandsperiode[]>({
-        feltId: UtenlandsoppholdSpørsmålId.utenlandsopphold,
-        verdi: gjeldendeBarn.utenlandsperioder,
-        valideringsfunksjon: felt => {
+    const {
+        fjernPeriode: fjernUtenlandsperiodeBarn,
+        leggTilPeriode: leggTilUtenlandsperiodeBarn,
+        registrertePerioder: barnRegistrerteUtenlandsperioder,
+    } = usePerioder<IUtenlandsperiode>(
+        gjeldendeBarn.andreForelder?.utenlandsperioder ?? [],
+        {},
+        () => skalFeltetVises(barnDataKeySpørsmål.boddMindreEnn12MndINorge),
+        felt => {
             return felt.verdi.length
                 ? ok(felt)
                 : feil(felt, <SpråkTekst id={'felles.leggtilutenlands.feilmelding'} />);
-        },
-        skalFeltetVises: () => skalFeltetVises(barnDataKeySpørsmål.boddMindreEnn12MndINorge),
-    });
-
-    useEffect(() => {
-        barnRegistrerteUtenlandsperioder.validerOgSettFelt(barnUtenlandsperioder);
-    }, [barnUtenlandsperioder]);
+        }
+    );
 
     const planleggerÅBoINorge12Mnd = useJaNeiSpmFelt({
         søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.planleggerÅBoINorge12Mnd],
@@ -223,19 +212,9 @@ export const useOmBarnet = (
         feilmeldingSpråkVerdier: { barn: gjeldendeBarn.navn },
         skalSkjules:
             !skalFeltetVises(barnDataKeySpørsmål.boddMindreEnn12MndINorge) ||
-            flyttetPermanentFraNorge(barnUtenlandsperioder) ||
-            !barnUtenlandsperioder.length,
+            flyttetPermanentFraNorge(barnRegistrerteUtenlandsperioder.verdi) ||
+            !barnRegistrerteUtenlandsperioder.verdi.length,
     });
-
-    const leggTilUtenlandsperiodeBarn = (periode: IUtenlandsperiode) => {
-        settBarnUtenlandsperioder(prevState => prevState.concat(periode));
-    };
-
-    const fjernUtenlandsperiodeBarn = (periodeSomSkalFjernes: IUtenlandsperiode) => {
-        settBarnUtenlandsperioder(prevState =>
-            prevState.filter(periode => periode !== periodeSomSkalFjernes)
-        );
-    };
 
     /*--- PÅGÅENDE SØKNAD KONTANTSTØTTE FRA ANNET EØSLAND ---*/
     const pågåendeSøknadFraAnnetEøsLand = useJaNeiSpmFelt({
@@ -428,32 +407,23 @@ export const useOmBarnet = (
         feilmeldingSpråkVerdier: { navn: gjeldendeBarn.navn },
     });
 
-    const andreForelderRegistrerteUtenlandsperioder = useFelt<IUtenlandsperiode[]>({
-        feltId: UtenlandsoppholdSpørsmålId.utenlandsopphold,
-        verdi: gjeldendeBarn.andreForelder?.utenlandsperioder ?? [],
-        valideringsfunksjon: felt => {
-            return felt.verdi.length
+    const {
+        fjernPeriode: fjernUtenlandsperiodeAndreForelder,
+        leggTilPeriode: leggTilUtenlandsperiodeAndreForelder,
+        registrertePerioder: andreForelderRegistrerteUtenlandsperioder,
+    } = usePerioder<IUtenlandsperiode>(
+        gjeldendeBarn.andreForelder?.utenlandsperioder ?? [],
+        { andreForelderVærtINorgeITolvMåneder },
+        avhengigheter => avhengigheter.andreForelderVærtINorgeITolvMåneder.verdi === ESvar.NEI,
+        (felt, avhengigheter) => {
+            return avhengigheter?.andreForelderVærtINorgeITolvMåneder.verdi === ESvar.JA ||
+                (avhengigheter?.andreForelderVærtINorgeITolvMåneder.verdi === ESvar.NEI &&
+                    felt.verdi.length)
                 ? ok(felt)
                 : feil(felt, <SpråkTekst id={'felles.leggtilutenlands.feilmelding'} />);
-        },
-        avhengigheter: { andreForelderVærtINorgeITolvMåneder },
-        skalFeltetVises: avhengigheter =>
-            avhengigheter.andreForelderVærtINorgeITolvMåneder.verdi === ESvar.NEI,
-    });
+        }
+    );
 
-    useEffect(() => {
-        andreForelderRegistrerteUtenlandsperioder.validerOgSettFelt(andreForelderUtenlandsperioder);
-    }, [andreForelderUtenlandsperioder]);
-
-    const leggTilUtenlandsperiodeAndreForelder = (periode: IUtenlandsperiode) => {
-        settAndreForelderUtenlandsperioder(prevState => prevState.concat(periode));
-    };
-
-    const fjernUtenlandsperiodeAndreForelder = (periodeSomSkalFjernes: IUtenlandsperiode) => {
-        settAndreForelderUtenlandsperioder(prevState =>
-            prevState.filter(periode => periode !== periodeSomSkalFjernes)
-        );
-    };
     const andreForelderPlanleggerÅBoINorgeTolvMnd = useJaNeiSpmFelt({
         søknadsfelt: gjeldendeBarn.andreForelder?.planleggerÅBoINorgeTolvMnd,
         feilmeldingSpråkId: 'todo.andreforelder.utenlandsopphold',
@@ -463,10 +433,10 @@ export const useOmBarnet = (
             },
         },
         skalSkjules:
-            flyttetPermanentFraNorge(andreForelderUtenlandsperioder) ||
+            flyttetPermanentFraNorge(andreForelderRegistrerteUtenlandsperioder.verdi) ||
             andreForelderVærtINorgeITolvMåneder.verdi === ESvar.JA ||
             (andreForelderVærtINorgeITolvMåneder.verdi === ESvar.NEI &&
-                !andreForelderUtenlandsperioder.length),
+                !andreForelderRegistrerteUtenlandsperioder.verdi.length),
     });
 
     const andreForelderArbeidUtlandet = useJaNeiSpmFelt({
@@ -894,8 +864,8 @@ export const useOmBarnet = (
     }, [
         andreForelderArbeidUtlandet,
         andreForelderPensjonUtland,
-        barnUtenlandsperioder,
-        andreForelderUtenlandsperioder,
+        barnRegistrerteUtenlandsperioder,
+        andreForelderRegistrerteUtenlandsperioder,
     ]);
 
     const oppdaterSøknad = () => {
@@ -967,10 +937,8 @@ export const useOmBarnet = (
         validerAlleSynligeFelter,
         leggTilUtenlandsperiodeBarn,
         fjernUtenlandsperiodeBarn,
-        utenlandsperioderBarn: barnUtenlandsperioder,
         leggTilUtenlandsperiodeAndreForelder,
         fjernUtenlandsperiodeAndreForelder,
-        utenlandsperioderAndreForelder: andreForelderUtenlandsperioder,
         leggTilArbeidsperiode,
         fjernArbeidsperiode,
         leggTilPensjonsperiode,
