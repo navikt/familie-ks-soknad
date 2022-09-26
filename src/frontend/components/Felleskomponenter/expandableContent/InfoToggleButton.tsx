@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import NavFrontendChevron from 'nav-frontend-chevron';
+import { Collapse, Expand } from '@navikt/ds-icons';
 
 interface Props {
     controlsId: string;
@@ -69,9 +69,7 @@ const InfoToggleButton = (props: Props) => {
         >
             <ButtonInnholdWrapper>
                 <LabelContainer>{children}</LabelContainer>
-                <ChevronContainer>
-                    <NavFrontendChevron type={isOpen ? 'opp' : 'ned'} />
-                </ChevronContainer>
+                <ChevronContainer>{isOpen ? <Collapse /> : <Expand />}</ChevronContainer>
             </ButtonInnholdWrapper>
         </StyledButton>
     );
