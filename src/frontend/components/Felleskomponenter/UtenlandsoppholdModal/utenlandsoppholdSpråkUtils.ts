@@ -1,13 +1,8 @@
-import { LocaleRecordString } from '../../../typer/common';
+import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
 import { PersonType } from '../../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
-import {
-    landFeilmeldingSpråkIdsSøker,
-    landLabelSpråkIdsAndreForelder,
-    landLabelSpråkIdsBarn,
-    landLabelSpråkIdsSøker,
-} from './spørsmål';
+import { landFeilmeldingSpråkIdsSøker } from './spørsmål';
 
 export const årsakFeilmeldingSpråkId = (personType: PersonType): string => {
     switch (personType) {
@@ -45,17 +40,20 @@ export const utenlandsoppholdÅrsakTilTekst = (
     }
 };
 
-export const landLabelSpråkId = (årsak: EUtenlandsoppholdÅrsak | '', personType: PersonType) => {
-    switch (personType) {
-        case PersonType.søker: {
-            return landLabelSpråkIdsSøker[årsak];
-        }
-        case PersonType.barn: {
-            return landLabelSpråkIdsBarn[årsak];
-        }
-        case PersonType.andreForelder:
+export const hentLandSpørsmålForÅrsak = (
+    årsak: EUtenlandsoppholdÅrsak | '',
+    tekster: IUtenlandsoppholdTekstinnhold
+): LocaleRecordBlock => {
+    switch (årsak) {
+        case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE:
+            return tekster.landFlyttetTil.sporsmal;
+        case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE:
+            return tekster.landFlyttetFra.sporsmal;
+        case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
+            return tekster.tidligereOpphold.sporsmal;
+        case EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE:
         default: {
-            return landLabelSpråkIdsAndreForelder[årsak];
+            return tekster.naavaerendeOpphold.sporsmal;
         }
     }
 };

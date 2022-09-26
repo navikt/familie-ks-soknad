@@ -1,7 +1,7 @@
 import { tilDatoUkjentLabelSpråkId } from '../../components/Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import {
     fraDatoLabelSpråkId,
-    landLabelSpråkId,
+    hentLandSpørsmålForÅrsak,
     tilDatoLabelSpråkId,
     utenlandsoppholdÅrsakTilTekst,
 } from '../../components/Felleskomponenter/UtenlandsoppholdModal/utenlandsoppholdSpråkUtils';
@@ -38,9 +38,9 @@ export const utenlandsperiodeTilISøknadsfelt = (
                 ),
             },
             oppholdsland: {
-                label: hentTekster(
-                    landLabelSpråkId(utenlandperiode.utenlandsoppholdÅrsak.svar, personType),
-                    { ...(barn && { barn: barn.navn }) }
+                label: sanitizedLocaleRecord(
+                    hentLandSpørsmålForÅrsak(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster),
+                    barn?.navn
                 ),
                 verdi: verdiCallbackAlleSpråk(locale =>
                     landkodeTilSpråk(utenlandperiode.oppholdsland.svar, locale)

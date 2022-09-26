@@ -52,23 +52,29 @@ const cache = createIntlCache();
 
 const innholdForLocale = (
     sanityTekst: LocaleRecordString | LocaleRecordBlock,
-    locale: LocaleType
+    locale: LocaleType,
+    barnetsNavn?: string
 ) => {
     return typeof sanityTekst[locale] !== 'string' ? (
-        <TekstBlock block={sanityTekst as LocaleRecordBlock} spesifisertLocale={locale} />
+        <TekstBlock
+            block={sanityTekst as LocaleRecordBlock}
+            spesifisertLocale={locale}
+            barnetsNavn={barnetsNavn}
+        />
     ) : (
         sanityTekst[locale]
     );
 };
 
 export const sanitizedLocaleRecord = (
-    sanityTekst: LocaleRecordString | LocaleRecordBlock
+    sanityTekst: LocaleRecordString | LocaleRecordBlock,
+    barnetsNavn?: string
 ): Record<LocaleType, string> => {
     return {
         //todo: caster til string enn så lenge, til vi får støtte for at Portable Text kan returnere tekst i stedet for ReactNode
-        [LocaleType.en]: innholdForLocale(sanityTekst, LocaleType.en) as string,
-        [LocaleType.nn]: innholdForLocale(sanityTekst, LocaleType.nn) as string,
-        [LocaleType.nb]: innholdForLocale(sanityTekst, LocaleType.nb) as string,
+        [LocaleType.en]: innholdForLocale(sanityTekst, LocaleType.en, barnetsNavn) as string,
+        [LocaleType.nn]: innholdForLocale(sanityTekst, LocaleType.nn, barnetsNavn) as string,
+        [LocaleType.nb]: innholdForLocale(sanityTekst, LocaleType.nb, barnetsNavn) as string,
     };
 };
 

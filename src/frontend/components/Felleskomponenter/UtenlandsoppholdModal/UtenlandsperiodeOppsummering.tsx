@@ -21,7 +21,7 @@ import TekstBlock from '../TekstBlock';
 import { tilDatoUkjentLabelSpråkId } from './spørsmål';
 import {
     fraDatoLabelSpråkId,
-    landLabelSpråkId,
+    hentLandSpørsmålForÅrsak,
     tilDatoLabelSpråkId,
     utenlandsoppholdÅrsakTilTekst,
 } from './utenlandsoppholdSpråkUtils';
@@ -68,9 +68,12 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
 
                 <OppsummeringFelt
                     tittel={
-                        <SpråkTekst
-                            id={landLabelSpråkId(årsak, personType)}
-                            values={{ barn: barn ? barn.navn : undefined }}
+                        <TekstBlock
+                            block={hentLandSpørsmålForÅrsak(
+                                utenlandsoppholdÅrsak.svar,
+                                teksterForPersonType
+                            )}
+                            barnetsNavn={barn && barn.navn}
                         />
                     }
                     søknadsvar={landkodeTilSpråk(oppholdsland.svar, valgtLocale)}

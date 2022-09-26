@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
-
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
@@ -32,7 +30,7 @@ import { tilDatoUkjentLabelSpråkId, UtenlandsoppholdSpørsmålId } from './spø
 import { useUtenlandsoppholdSkjema } from './useUtenlandsoppholdSkjema';
 import {
     fraDatoLabelSpråkId,
-    landLabelSpråkId,
+    hentLandSpørsmålForÅrsak,
     tilDatoLabelSpråkId,
     utenlandsoppholdÅrsakTilTekst,
 } from './utenlandsoppholdSpråkUtils';
@@ -55,8 +53,6 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
         useUtenlandsoppholdSkjema({
             personType,
         });
-
-    const { formatMessage } = useIntl();
 
     const teksterForPersonType = tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
 
@@ -115,7 +111,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                             <TekstBlock block={teksterForPersonType.periodeBeskrivelse.sporsmal} />
                         }
                         skjema={skjema}
-                        placeholder={formatMessage({ id: 'felles.velg-årsak.placeholder' })}
+                        placeholder={localeString(teksterForPersonType.valgalternativPlaceholder)}
                         bredde={'fullbredde'}
                     >
                         {Object.keys(EUtenlandsoppholdÅrsak).map((årsak, number) => (
@@ -134,15 +130,13 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                     felt={skjema.felter.oppholdsland}
                     skjema={skjema}
                     label={
-                        landLabelSpråkId(skjema.felter.utenlandsoppholdÅrsak.verdi, personType) && (
-                            <SpråkTekst
-                                id={landLabelSpråkId(
-                                    skjema.felter.utenlandsoppholdÅrsak.verdi,
-                                    personType
-                                )}
-                                values={{ ...(barn && { barn: barn.navn }) }}
-                            />
-                        )
+                        <TekstBlock
+                            block={hentLandSpørsmålForÅrsak(
+                                skjema.felter.utenlandsoppholdÅrsak.verdi,
+                                teksterForPersonType
+                            )}
+                            barnetsNavn={barn && barn.navn}
+                        />
                     }
                     dynamisk
                     ekskluderNorge
