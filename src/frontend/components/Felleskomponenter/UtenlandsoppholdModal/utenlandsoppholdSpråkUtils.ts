@@ -24,21 +24,6 @@ export const årsakFeilmeldingSpråkId = (personType: PersonType): string => {
     }
 };
 
-export const årsakLabelSpråkId = (personType: PersonType): string => {
-    switch (personType) {
-        case PersonType.søker: {
-            return 'modal.beskriveopphold.spm';
-        }
-        case PersonType.barn: {
-            return 'ombarnet.beskriveopphold.spm';
-        }
-        case PersonType.andreForelder:
-        default: {
-            return 'todo.andreforelder.utenlandsopphold';
-        }
-    }
-};
-
 export const utenlandsoppholdÅrsakTilTekst = (
     årsak: EUtenlandsoppholdÅrsak | '',
     tekster: IUtenlandsoppholdTekstinnhold

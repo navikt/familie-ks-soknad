@@ -17,13 +17,13 @@ import { formaterDatoMedUkjent } from '../../../utils/visning';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 import { tilDatoUkjentLabelSpråkId } from './spørsmål';
 import {
     fraDatoLabelSpråkId,
     landLabelSpråkId,
     tilDatoLabelSpråkId,
     utenlandsoppholdÅrsakTilTekst,
-    årsakLabelSpråkId,
 } from './utenlandsoppholdSpråkUtils';
 
 type Props = {
@@ -59,12 +59,7 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                 fjernPeriodeCallback={fjernPeriodeCallback && (() => fjernPeriodeCallback(periode))}
             >
                 <OppsummeringFelt
-                    tittel={
-                        <SpråkTekst
-                            id={årsakLabelSpråkId(personType)}
-                            values={{ barn: barn ? barn.navn : undefined }}
-                        />
-                    }
+                    tittel={<TekstBlock block={teksterForPersonType.periodeBeskrivelse.sporsmal} />}
                 >
                     <Normaltekst>
                         {localeString(utenlandsoppholdÅrsakTilTekst(årsak, teksterForPersonType))}
