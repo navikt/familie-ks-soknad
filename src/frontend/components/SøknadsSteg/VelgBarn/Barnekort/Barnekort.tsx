@@ -7,6 +7,8 @@ import navFarger from 'nav-frontend-core';
 import { Checkbox } from 'nav-frontend-skjema';
 import { Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 
+import { NavdsGlobalColorGray200 } from '@navikt/ds-tokens/dist/tokens';
+
 import { useApp } from '../../../../context/AppContext';
 import { device } from '../../../../Theme';
 import { IBarn } from '../../../../typer/person';
@@ -29,7 +31,7 @@ export const StyledBarnekort = styled.div`
     max-width: calc(16.3rem - 0.3rem * 2);
     padding: 2rem;
     margin: 0 0.3125rem 0.625rem;
-    background-color: ${navFarger.navLysGra};
+    background-color: ${NavdsGlobalColorGray200};
     @media all and ${device.mobile} {
         width: 100%;
     }
