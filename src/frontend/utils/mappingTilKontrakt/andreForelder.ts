@@ -112,7 +112,6 @@ export const andreForelderTilISøknadsfelt = (
             utenlandsperiodeTilISøknadsfelt(
                 periode,
                 index + 1,
-                PersonType.andreForelder,
                 fellesTekster.modaler.utenlandsopphold[PersonType.andreForelder]
             )
         ),

@@ -40,7 +40,7 @@ export const utenlandsoppholdÅrsakTilTekst = (
     }
 };
 
-export const hentLandSpørsmålForÅrsak = (
+export const hentLandSpørsmål = (
     årsak: EUtenlandsoppholdÅrsak | '',
     tekster: IUtenlandsoppholdTekstinnhold
 ): LocaleRecordBlock => {
@@ -110,31 +110,34 @@ export const fraDatoFeilmeldingSpråkId = (
     }
 };
 
-export const fraDatoLabelSpråkId = (årsak: EUtenlandsoppholdÅrsak | '', personType: PersonType) => {
+export const hentFraDatoSpørsmål = (
+    årsak: EUtenlandsoppholdÅrsak | '',
+    tekster: IUtenlandsoppholdTekstinnhold
+): LocaleRecordBlock => {
     switch (årsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE:
-            return personType === PersonType.barn
-                ? 'ombarnet.nårflyttetfranorge.spm'
-                : personType === PersonType.søker
-                ? 'modal.nårflyttetfra.spm'
-                : 'todo.andreforelder.utenlandsopphold';
-        default:
-            return 'felles.nårstartetoppholdet.spm';
+            return tekster.flyttetFraNorgeDato.sporsmal;
+        case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
+        case EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE:
+        default: {
+            return tekster.startdato.sporsmal;
+        }
     }
 };
 
-export const tilDatoLabelSpråkId = (årsak: EUtenlandsoppholdÅrsak | '', personType: PersonType) => {
+export const hentTilDatoSpørsmål = (
+    årsak: EUtenlandsoppholdÅrsak | '',
+    tekster: IUtenlandsoppholdTekstinnhold
+): LocaleRecordBlock => {
     switch (årsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE:
-            return personType === PersonType.barn
-                ? 'ombarnet.nårflyttettilnorge.spm'
-                : personType === PersonType.søker
-                ? 'modal.nårflyttettilnorge.spm'
-                : 'todo.andreforelder.utenlandsopphold';
+            return tekster.flyttetTilNorgeDato.sporsmal;
         case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
-            return 'felles.nåravsluttetoppholdet.spm';
-        default:
-            return 'felles.nåravsluttesoppholdet.spm';
+            return tekster.sluttdatoFortid.sporsmal;
+        case EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE:
+        default: {
+            return tekster.sluttdatoFremtid.sporsmal;
+        }
     }
 };
 

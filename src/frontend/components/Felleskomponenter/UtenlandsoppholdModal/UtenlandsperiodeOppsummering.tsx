@@ -16,13 +16,12 @@ import { landkodeTilSpråk } from '../../../utils/språk';
 import { formaterDatoMedUkjent } from '../../../utils/visning';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import TekstBlock from '../TekstBlock';
 import { tilDatoUkjentLabelSpråkId } from './spørsmål';
 import {
-    fraDatoLabelSpråkId,
-    hentLandSpørsmålForÅrsak,
-    tilDatoLabelSpråkId,
+    hentFraDatoSpørsmål,
+    hentLandSpørsmål,
+    hentTilDatoSpørsmål,
     utenlandsoppholdÅrsakTilTekst,
 } from './utenlandsoppholdSpråkUtils';
 
@@ -69,7 +68,7 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                 <OppsummeringFelt
                     tittel={
                         <TekstBlock
-                            block={hentLandSpørsmålForÅrsak(
+                            block={hentLandSpørsmål(
                                 utenlandsoppholdÅrsak.svar,
                                 teksterForPersonType
                             )}
@@ -82,9 +81,9 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                 {oppholdslandFraDato && (
                     <OppsummeringFelt
                         tittel={
-                            <SpråkTekst
-                                id={fraDatoLabelSpråkId(årsak, personType)}
-                                values={{ barn: barn ? barn.navn : undefined }}
+                            <TekstBlock
+                                block={hentFraDatoSpørsmål(årsak, teksterForPersonType)}
+                                barnetsNavn={barn?.navn}
                             />
                         }
                         søknadsvar={formaterDato(oppholdslandFraDato.svar)}
@@ -94,9 +93,9 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                 {oppholdslandTilDato && (
                     <OppsummeringFelt
                         tittel={
-                            <SpråkTekst
-                                id={tilDatoLabelSpråkId(årsak, personType)}
-                                values={{ barn: barn ? barn.navn : undefined }}
+                            <TekstBlock
+                                block={hentTilDatoSpørsmål(årsak, teksterForPersonType)}
+                                barnetsNavn={barn?.navn}
                             />
                         }
                         søknadsvar={formaterDatoMedUkjent(

@@ -107,7 +107,6 @@ export const barnISøknadsFormat = (
             utenlandsperiodeTilISøknadsfelt(
                 periode,
                 index + 1,
-                PersonType.barn,
                 fellesTekster.modaler.utenlandsopphold[PersonType.barn],
                 barn
             )

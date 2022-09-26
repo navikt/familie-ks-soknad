@@ -105,7 +105,6 @@ export const dataISøknadKontraktFormatV1 = (
                 utenlandsperiodeTilISøknadsfelt(
                     periode,
                     index + 1,
-                    PersonType.søker,
                     fellesTekster.modaler.utenlandsopphold[PersonType.søker]
                 )
             ),

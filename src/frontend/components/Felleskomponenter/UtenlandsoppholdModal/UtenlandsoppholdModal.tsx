@@ -24,14 +24,13 @@ import { SkjemaCheckbox } from '../SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import TekstBlock from '../TekstBlock';
 import { tilDatoUkjentLabelSpråkId, UtenlandsoppholdSpørsmålId } from './spørsmål';
 import { useUtenlandsoppholdSkjema } from './useUtenlandsoppholdSkjema';
 import {
-    fraDatoLabelSpråkId,
-    hentLandSpørsmålForÅrsak,
-    tilDatoLabelSpråkId,
+    hentFraDatoSpørsmål,
+    hentLandSpørsmål,
+    hentTilDatoSpørsmål,
     utenlandsoppholdÅrsakTilTekst,
 } from './utenlandsoppholdSpråkUtils';
 
@@ -131,7 +130,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                     skjema={skjema}
                     label={
                         <TekstBlock
-                            block={hentLandSpørsmålForÅrsak(
+                            block={hentLandSpørsmål(
                                 skjema.felter.utenlandsoppholdÅrsak.verdi,
                                 teksterForPersonType
                             )}
@@ -146,12 +145,12 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                     <Datovelger
                         felt={skjema.felter.oppholdslandFraDato}
                         label={
-                            <SpråkTekst
-                                id={fraDatoLabelSpråkId(
+                            <TekstBlock
+                                block={hentFraDatoSpørsmål(
                                     skjema.felter.utenlandsoppholdÅrsak.verdi,
-                                    personType
+                                    teksterForPersonType
                                 )}
-                                values={{ ...(barn && { barn: barn.navn }) }}
+                                barnetsNavn={barn?.navn}
                             />
                         }
                         skjema={skjema}
@@ -166,12 +165,12 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                         <Datovelger
                             felt={skjema.felter.oppholdslandTilDato}
                             label={
-                                <SpråkTekst
-                                    id={tilDatoLabelSpråkId(
+                                <TekstBlock
+                                    block={hentTilDatoSpørsmål(
                                         skjema.felter.utenlandsoppholdÅrsak.verdi,
-                                        personType
+                                        teksterForPersonType
                                     )}
-                                    values={{ ...(barn && { barn: barn.navn }) }}
+                                    barnetsNavn={barn?.navn}
                                 />
                             }
                             skjema={skjema}
