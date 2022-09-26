@@ -1,13 +1,10 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
-
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -17,7 +14,6 @@ import { formaterDatoMedUkjent } from '../../../utils/visning';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import TekstBlock from '../TekstBlock';
-import { tilDatoUkjentLabelSpråkId } from './spørsmål';
 import {
     hentFraDatoSpørsmål,
     hentLandSpørsmål,
@@ -30,20 +26,16 @@ type Props = {
     nummer: number;
     fjernPeriodeCallback?: (periode: IUtenlandsperiode) => void;
     personType: PersonType;
-    barn?: IBarnMedISøknad;
 };
 
 export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
     periode,
     nummer,
     fjernPeriodeCallback,
-    barn,
     personType,
 }) => {
     const [valgtLocale] = useSprakContext();
     const { localeString, tekster } = useApp();
-    const intl = useIntl();
-    const { formatMessage } = intl;
     const { oppholdsland, utenlandsoppholdÅrsak, oppholdslandFraDato, oppholdslandTilDato } =
         periode;
     const årsak = utenlandsoppholdÅrsak.svar;
@@ -72,7 +64,6 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                                 utenlandsoppholdÅrsak.svar,
                                 teksterForPersonType
                             )}
-                            barnetsNavn={barn && barn.navn}
                         />
                     }
                     søknadsvar={landkodeTilSpråk(oppholdsland.svar, valgtLocale)}
@@ -81,10 +72,7 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                 {oppholdslandFraDato && (
                     <OppsummeringFelt
                         tittel={
-                            <TekstBlock
-                                block={hentFraDatoSpørsmål(årsak, teksterForPersonType)}
-                                barnetsNavn={barn?.navn}
-                            />
+                            <TekstBlock block={hentFraDatoSpørsmål(årsak, teksterForPersonType)} />
                         }
                         søknadsvar={formaterDato(oppholdslandFraDato.svar)}
                     />
@@ -93,14 +81,11 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                 {oppholdslandTilDato && (
                     <OppsummeringFelt
                         tittel={
-                            <TekstBlock
-                                block={hentTilDatoSpørsmål(årsak, teksterForPersonType)}
-                                barnetsNavn={barn?.navn}
-                            />
+                            <TekstBlock block={hentTilDatoSpørsmål(årsak, teksterForPersonType)} />
                         }
                         søknadsvar={formaterDatoMedUkjent(
                             oppholdslandTilDato.svar,
-                            formatMessage({ id: tilDatoUkjentLabelSpråkId })
+                            localeString(teksterForPersonType.sluttdatoFremtid.checkboxLabel)
                         )}
                     />
                 )}

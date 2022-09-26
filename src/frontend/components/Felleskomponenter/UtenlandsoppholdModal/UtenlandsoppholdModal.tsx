@@ -25,7 +25,7 @@ import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeilopps
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
-import { tilDatoUkjentLabelSpråkId, UtenlandsoppholdSpørsmålId } from './spørsmål';
+import { UtenlandsoppholdSpørsmålId } from './spørsmål';
 import { useUtenlandsoppholdSkjema } from './useUtenlandsoppholdSkjema';
 import {
     hentFraDatoSpørsmål,
@@ -134,7 +134,6 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                                 skjema.felter.utenlandsoppholdÅrsak.verdi,
                                 teksterForPersonType
                             )}
-                            barnetsNavn={barn && barn.navn}
                         />
                     }
                     dynamisk
@@ -150,7 +149,6 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                                     skjema.felter.utenlandsoppholdÅrsak.verdi,
                                     teksterForPersonType
                                 )}
-                                barnetsNavn={barn?.navn}
                             />
                         }
                         skjema={skjema}
@@ -170,7 +168,6 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                                         skjema.felter.utenlandsoppholdÅrsak.verdi,
                                         teksterForPersonType
                                     )}
-                                    barnetsNavn={barn?.navn}
                                 />
                             }
                             skjema={skjema}
@@ -192,7 +189,9 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                     {skjema.felter.oppholdslandTilDatoUkjent.erSynlig && (
                         <SkjemaCheckbox
                             felt={skjema.felter.oppholdslandTilDatoUkjent}
-                            labelSpråkTekstId={tilDatoUkjentLabelSpråkId}
+                            labelSpråkTekstId={localeString(
+                                teksterForPersonType.sluttdatoFremtid.checkboxLabel
+                            )}
                         />
                     )}
                 </>

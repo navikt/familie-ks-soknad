@@ -107,8 +107,7 @@ export const barnISøknadsFormat = (
             utenlandsperiodeTilISøknadsfelt(
                 periode,
                 index + 1,
-                fellesTekster.modaler.utenlandsopphold[PersonType.barn],
-                barn
+                fellesTekster.modaler.utenlandsopphold[PersonType.barn]
             )
         ),
         eøsKontantstøttePerioder: eøsKontantstøttePerioder.map((periode, index) =>

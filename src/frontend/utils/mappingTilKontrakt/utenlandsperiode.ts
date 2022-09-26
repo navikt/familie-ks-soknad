@@ -5,7 +5,6 @@ import {
     hentTilDatoSpørsmål,
     utenlandsoppholdÅrsakTilTekst,
 } from '../../components/Felleskomponenter/UtenlandsoppholdModal/utenlandsoppholdSpråkUtils';
-import { IBarnMedISøknad } from '../../typer/barn';
 import { ISøknadsfelt, IUtenlandsperiodeIKontraktFormat } from '../../typer/kontrakt/generelle';
 import { IUtenlandsperiode } from '../../typer/perioder';
 import { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenlandsopphold';
@@ -19,8 +18,7 @@ import {
 export const utenlandsperiodeTilISøknadsfelt = (
     utenlandperiode: IUtenlandsperiode,
     periodeNummer: number,
-    tekster: IUtenlandsoppholdTekstinnhold,
-    barn?: IBarnMedISøknad
+    tekster: IUtenlandsoppholdTekstinnhold
 ): ISøknadsfelt<IUtenlandsperiodeIKontraktFormat> => {
     const { periodeBeskrivelse } = tekster;
     return {
@@ -37,8 +35,7 @@ export const utenlandsperiodeTilISøknadsfelt = (
             },
             oppholdsland: {
                 label: sanitizedLocaleRecord(
-                    hentLandSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster),
-                    barn?.navn
+                    hentLandSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster)
                 ),
                 verdi: verdiCallbackAlleSpråk(locale =>
                     landkodeTilSpråk(utenlandperiode.oppholdsland.svar, locale)
@@ -46,15 +43,13 @@ export const utenlandsperiodeTilISøknadsfelt = (
             },
             oppholdslandFraDato: {
                 label: sanitizedLocaleRecord(
-                    hentFraDatoSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster),
-                    barn?.navn
+                    hentFraDatoSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster)
                 ),
                 verdi: sammeVerdiAlleSpråk(utenlandperiode.oppholdslandFraDato?.svar),
             },
             oppholdslandTilDato: {
                 label: sanitizedLocaleRecord(
-                    hentTilDatoSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster),
-                    barn?.navn
+                    hentTilDatoSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster)
                 ),
                 verdi: utenlandperiode.oppholdslandTilDato?.svar
                     ? sammeVerdiAlleSpråkEllerUkjentSpråktekst(
