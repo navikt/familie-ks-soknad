@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 import { Alpha3Code, alpha3ToAlpha2, getName } from 'i18n-iso-countries';
 import reactElementToJSXString from 'react-element-to-jsx-string';
@@ -10,7 +10,8 @@ import * as engelsk from '../assets/lang/en.json' assert { type: 'json' };
 import * as bokmål from '../assets/lang/nb.json' assert { type: 'json' };
 import * as nynorsk from '../assets/lang/nn.json' assert { type: 'json' };
 import { innebygdeFormatterere } from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
-import { AlternativtSvarForInput } from '../typer/common';
+import TekstBlock from '../components/Felleskomponenter/TekstBlock';
+import { AlternativtSvarForInput, LocaleRecordBlock, LocaleRecordString } from '../typer/common';
 import { ESivilstand, Slektsforhold } from '../typer/kontrakt/generelle';
 import { IBarn } from '../typer/person';
 import { ESanitySivilstandApiKey } from '../typer/sanity/sanity';
@@ -48,6 +49,28 @@ const texts: Record<LocaleType, Record<string, string>> = {
 };
 
 const cache = createIntlCache();
+
+const innholdForLocale = (
+    sanityTekst: LocaleRecordString | LocaleRecordBlock,
+    locale: LocaleType
+) => {
+    return typeof sanityTekst[locale] !== 'string' ? (
+        <TekstBlock block={sanityTekst as LocaleRecordBlock} spesifisertLocale={locale} />
+    ) : (
+        sanityTekst[locale]
+    );
+};
+
+export const sanitizedLocaleRecord = (
+    sanityTekst: LocaleRecordString | LocaleRecordBlock
+): Record<LocaleType, string> => {
+    return {
+        //todo: caster til string enn så lenge, til vi får støtte for at Portable Text kan returnere tekst i stedet for ReactNode
+        [LocaleType.en]: innholdForLocale(sanityTekst, LocaleType.en) as string,
+        [LocaleType.nn]: innholdForLocale(sanityTekst, LocaleType.nn) as string,
+        [LocaleType.nb]: innholdForLocale(sanityTekst, LocaleType.nb) as string,
+    };
+};
 
 export const hentTekster = (
     tekstId: string,

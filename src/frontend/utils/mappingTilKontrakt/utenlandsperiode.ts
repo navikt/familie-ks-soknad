@@ -4,14 +4,13 @@ import {
     landLabelSpråkId,
     tilDatoLabelSpråkId,
     utenlandsoppholdÅrsakTilTekst,
-    årsakLabelSpråkId,
 } from '../../components/Felleskomponenter/UtenlandsoppholdModal/utenlandsoppholdSpråkUtils';
 import { IBarnMedISøknad } from '../../typer/barn';
 import { ISøknadsfelt, IUtenlandsperiodeIKontraktFormat } from '../../typer/kontrakt/generelle';
 import { IUtenlandsperiode } from '../../typer/perioder';
 import { PersonType } from '../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenlandsopphold';
-import { hentTekster, landkodeTilSpråk } from '../språk';
+import { hentTekster, landkodeTilSpråk, sanitizedLocaleRecord } from '../språk';
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjentSpråktekst,
@@ -25,16 +24,17 @@ export const utenlandsperiodeTilISøknadsfelt = (
     tekster: IUtenlandsoppholdTekstinnhold,
     barn?: IBarnMedISøknad
 ): ISøknadsfelt<IUtenlandsperiodeIKontraktFormat> => {
+    const { periodeBeskrivelse } = tekster;
     return {
         label: hentTekster('felles.leggtilutenlands.opphold', { x: periodeNummer }),
         verdi: sammeVerdiAlleSpråk({
             utenlandsoppholdÅrsak: {
-                label: hentTekster(årsakLabelSpråkId(personType), {
-                    ...(barn && { barn: barn.navn }),
-                }),
-                verdi: utenlandsoppholdÅrsakTilTekst(
-                    utenlandperiode.utenlandsoppholdÅrsak.svar,
-                    tekster
+                label: sanitizedLocaleRecord(periodeBeskrivelse.sporsmal),
+                verdi: sanitizedLocaleRecord(
+                    utenlandsoppholdÅrsakTilTekst(
+                        utenlandperiode.utenlandsoppholdÅrsak.svar,
+                        tekster
+                    )
                 ),
             },
             oppholdsland: {
