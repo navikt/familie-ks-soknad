@@ -196,7 +196,7 @@ export const useOmBarnet = (
         leggTilPeriode: leggTilUtenlandsperiodeBarn,
         registrertePerioder: barnRegistrerteUtenlandsperioder,
     } = usePerioder<IUtenlandsperiode>(
-        gjeldendeBarn.andreForelder?.utenlandsperioder ?? [],
+        gjeldendeBarn.utenlandsperioder ?? [],
         {},
         () => skalFeltetVises(barnDataKeySpørsmål.boddMindreEnn12MndINorge),
         felt => {
@@ -565,7 +565,7 @@ export const useOmBarnet = (
             institusjonOppholdSluttdato,
             institusjonOppholdSluttVetIkke,
             utbetaltForeldrepengerEllerEngangsstønad,
-            barnRegistrerteUtenlandsperioder: barnRegistrerteUtenlandsperioder,
+            barnRegistrerteUtenlandsperioder,
             planleggerÅBoINorge12Mnd,
             pågåendeSøknadFraAnnetEøsLand,
             pågåendeSøknadHvilketLand,
