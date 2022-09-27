@@ -68,6 +68,7 @@ const SkjemaModal: React.FC<{
                     <StyledButton
                         variant={valideringErOk() ? 'primary' : 'secondary'}
                         type={'submit'}
+                        data-testid={'submit-knapp-i-modal'}
                         loading={!!submitSpinner}
                         onClick={event => {
                             event.preventDefault();

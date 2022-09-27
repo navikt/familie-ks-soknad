@@ -177,7 +177,7 @@ describe('VelgBarn', () => {
             søknad.barnInkludertISøknaden = nySøknad.barnInkludertISøknaden;
         });
 
-        const { getByText, getByLabelText } = render(
+        const { getByText, queryByTestId } = render(
             <TestProvidere>
                 <VelgBarn />
             </TestProvidere>
@@ -189,8 +189,7 @@ describe('VelgBarn', () => {
         const leggTilBarnKnapp = getByText(/hvilkebarn.leggtilbarn.kort.knapp/);
         act(() => leggTilBarnKnapp.click());
 
-        const modal = getByLabelText('hvilkebarn.leggtilbarn.modal.tittel');
-        const leggTilKnappIModal = modal.querySelector('button');
+        const leggTilKnappIModal = queryByTestId('submit-knapp-i-modal');
 
         const jaKnapp = getByText('felles.svaralternativ.ja');
         act(() => jaKnapp.click());

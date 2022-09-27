@@ -15,7 +15,7 @@ const StyledModalContent = styled(Modal.Content)`
         padding: 2rem 0;
     }
 
-    max-width: 45rem;
+    width: 45rem;
 `;
 
 const ModalContent: React.FC = ({ children }) => {
