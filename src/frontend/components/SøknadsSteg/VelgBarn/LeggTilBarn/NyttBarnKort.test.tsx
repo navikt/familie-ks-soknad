@@ -37,7 +37,7 @@ test(`Kan legge til barn`, async () => {
     jest.spyOn(fnrvalidator, 'idnr').mockReturnValue({ status: 'valid', type: 'fnr' });
     const åpen: number[] = [];
 
-    const { getByRole, getByText, getByLabelText, rerender } = render(
+    const { getByRole, getByText, queryByTestId, rerender } = render(
         <IntlProvider locale={'nb'}>
             <HttpProvider>
                 <NyttBarnKort
@@ -77,8 +77,7 @@ test(`Kan legge til barn`, async () => {
         </IntlProvider>
     );
 
-    const modal = await waitFor(() => getByLabelText('hvilkebarn.leggtilbarn.modal.tittel'));
-    const leggTilKnappIModal = modal.querySelector('button');
+    const leggTilKnappIModal = queryByTestId('submit-knapp-i-modal');
     expect(leggTilKnappIModal).toBeInTheDocument();
     expect(leggTilKnappIModal).toHaveClass('navds-button--secondary');
 
@@ -129,6 +128,6 @@ test(`Kan legge til barn`, async () => {
         </IntlProvider>
     );
 
-    await waitFor(() => expect(modal).not.toBeInTheDocument());
+    await waitFor(() => expect(leggTilKnappIModal).not.toBeInTheDocument());
     await waitFor(() => expect(submitMock.mock.calls.length).toBe(1));
 });
