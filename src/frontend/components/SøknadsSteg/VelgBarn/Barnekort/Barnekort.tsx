@@ -3,11 +3,14 @@ import React, { ReactNode } from 'react';
 import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 
-import navFarger from 'nav-frontend-core';
 import { Checkbox } from 'nav-frontend-skjema';
 import { Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 
-import { NavdsGlobalColorGray200 } from '@navikt/ds-tokens/dist/tokens';
+import {
+    NavdsGlobalColorGray200,
+    NavdsGlobalColorPurple100,
+    NavdsGlobalColorPurple600,
+} from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../../context/AppContext';
 import { device } from '../../../../Theme';
@@ -50,8 +53,8 @@ const InformasjonsboksInnhold = styled.div`
 
 const BarnekortHeader = styled.div`
     height: 8rem;
-    background-color: ${navFarger.navLillaDarken60};
-    border-bottom: 0.25rem solid ${navFarger.navLillaLighten20};
+    background-color: ${NavdsGlobalColorPurple600};
+    border-bottom: 0.25rem solid ${NavdsGlobalColorPurple100};
     border-radius: 0.3rem 0.3rem 0 0;
     display: flex;
     align-items: flex-end;
