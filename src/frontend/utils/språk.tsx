@@ -66,7 +66,7 @@ const innholdForLocale = (
     );
 };
 
-export const sanitizedLocaleRecord = (
+export const tilRestLocaleRecord = (
     sanityTekst: LocaleRecordString | LocaleRecordBlock,
     barnetsNavn?: string
 ): Record<LocaleType, string> => {

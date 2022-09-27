@@ -8,7 +8,7 @@ import {
 import { ISøknadsfelt, IUtenlandsperiodeIKontraktFormat } from '../../typer/kontrakt/generelle';
 import { IUtenlandsperiode } from '../../typer/perioder';
 import { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenlandsopphold';
-import { hentTekster, landkodeTilSpråk, sanitizedLocaleRecord } from '../språk';
+import { hentTekster, landkodeTilSpråk, tilRestLocaleRecord } from '../språk';
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjentSpråktekst,
@@ -25,8 +25,8 @@ export const utenlandsperiodeTilISøknadsfelt = (
         label: hentTekster('felles.leggtilutenlands.opphold', { x: periodeNummer }),
         verdi: sammeVerdiAlleSpråk({
             utenlandsoppholdÅrsak: {
-                label: sanitizedLocaleRecord(periodeBeskrivelse.sporsmal),
-                verdi: sanitizedLocaleRecord(
+                label: tilRestLocaleRecord(periodeBeskrivelse.sporsmal),
+                verdi: tilRestLocaleRecord(
                     utenlandsoppholdÅrsakTilTekst(
                         utenlandperiode.utenlandsoppholdÅrsak.svar,
                         tekster
@@ -34,7 +34,7 @@ export const utenlandsperiodeTilISøknadsfelt = (
                 ),
             },
             oppholdsland: {
-                label: sanitizedLocaleRecord(
+                label: tilRestLocaleRecord(
                     hentLandSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster)
                 ),
                 verdi: verdiCallbackAlleSpråk(locale =>
@@ -42,13 +42,13 @@ export const utenlandsperiodeTilISøknadsfelt = (
                 ),
             },
             oppholdslandFraDato: {
-                label: sanitizedLocaleRecord(
+                label: tilRestLocaleRecord(
                     hentFraDatoSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster)
                 ),
                 verdi: sammeVerdiAlleSpråk(utenlandperiode.oppholdslandFraDato?.svar),
             },
             oppholdslandTilDato: {
-                label: sanitizedLocaleRecord(
+                label: tilRestLocaleRecord(
                     hentTilDatoSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster)
                 ),
                 verdi: utenlandperiode.oppholdslandTilDato?.svar
