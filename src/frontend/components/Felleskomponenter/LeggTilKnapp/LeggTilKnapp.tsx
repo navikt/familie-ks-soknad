@@ -38,7 +38,7 @@ export const LeggTilKnapp: React.FC<Props> = ({
             variant={'tertiary'}
             type={'button'}
             onClick={onClick}
-            $feilmelding={!!feilmelding}
+            feilmelding={!!feilmelding}
         >
             <AddCircle />
             {språkTekst && <SpråkTekst id={språkTekst} />}
