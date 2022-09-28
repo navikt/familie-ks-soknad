@@ -188,7 +188,7 @@ const tranformMarks = (
 
 // Denne funksjonen har kopiert mye fra en tråd i Sanity-slacken:
 // https://sanity-io.slack.com/archives/CF876M37F/p1664206409432079?thread_ts=1663841434.772959&cid=CF876M37F
-export const tilPlainTekstHof =
+export const plainTekstHof =
     (
         flettefeltTilTekst: (flettefeltVerdi: EFlettefeltverdi, barnetsNavn?: string) => string,
         søknadLocale: LocaleType

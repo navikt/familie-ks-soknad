@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { PortableTextBlock } from '@portabletext/types';
 import createUseContext from 'constate';
 import { Alpha3Code } from 'i18n-iso-countries';
 import { useIntl } from 'react-intl';
@@ -24,7 +23,7 @@ import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { initialStateSøknad, ISøknad } from '../typer/søknad';
 import { InnloggetStatus } from '../utils/autentisering';
 import { mapBarnResponsTilBarn } from '../utils/barn';
-import { tilPlainTekstHof } from '../utils/sanity';
+import { plainTekstHof } from '../utils/sanity';
 import { preferredAxios } from './axios';
 import { useInnloggetContext } from './InnloggetContext';
 import { useLastRessurserContext } from './LastRessurserContext';
@@ -213,8 +212,6 @@ const [AppProvider, useApp] = createUseContext(() => {
 
     const localeString = (key: LocaleRecordString): string => key[valgtLocale];
 
-    const localeBlock = (key: LocaleRecordBlock): PortableTextBlock[] => key[valgtLocale];
-
     const tekster = (): ITekstinnhold => {
         if (teksterRessurs.status === RessursStatus.SUKSESS) {
             return teksterRessurs.data;
@@ -239,16 +236,16 @@ const [AppProvider, useApp] = createUseContext(() => {
         }
     };
 
-    const tilPlainTekst = tilPlainTekstHof(flettefeltTilTekst, valgtLocale);
+    const plainTekst = plainTekstHof(flettefeltTilTekst, valgtLocale);
 
     const tilRestLocaleRecord = (
         sanityTekst: LocaleRecordString | LocaleRecordBlock,
         barnetsNavn?: string
     ): Record<LocaleType, string> => {
         return {
-            [LocaleType.en]: tilPlainTekst(sanityTekst, barnetsNavn, LocaleType.en),
-            [LocaleType.nn]: tilPlainTekst(sanityTekst, barnetsNavn, LocaleType.nn),
-            [LocaleType.nb]: tilPlainTekst(sanityTekst, barnetsNavn, LocaleType.nb),
+            [LocaleType.en]: plainTekst(sanityTekst, barnetsNavn, LocaleType.en),
+            [LocaleType.nn]: plainTekst(sanityTekst, barnetsNavn, LocaleType.nn),
+            [LocaleType.nb]: plainTekst(sanityTekst, barnetsNavn, LocaleType.nb),
         };
     };
 
@@ -279,10 +276,9 @@ const [AppProvider, useApp] = createUseContext(() => {
         eøsLand,
         settEøsLand,
         localeString,
-        localeBlock,
         tekster,
         flettefeltTilTekst,
-        tilPlainTekst,
+        plainTekst,
         tilRestLocaleRecord,
     };
 });

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { PortableText } from '@portabletext/react';
 
-import { LocaleType } from '@navikt/familie-sprakvelger';
+import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../context/AppContext';
 import { LocaleRecordBlock } from '../../typer/common';
@@ -10,13 +10,13 @@ import { LocaleRecordBlock } from '../../typer/common';
 const TekstBlock: React.FC<{
     block: LocaleRecordBlock | undefined;
     barnetsNavn?: string;
-    spesifisertLocale?: LocaleType;
-}> = ({ block, barnetsNavn, spesifisertLocale }) => {
-    const { localeBlock, flettefeltTilTekst } = useApp();
+}> = ({ block, barnetsNavn }) => {
+    const [valgtLocale] = useSprakContext();
+    const { flettefeltTilTekst } = useApp();
 
     return block ? (
         <PortableText
-            value={spesifisertLocale ? block[spesifisertLocale] : localeBlock(block)}
+            value={block[valgtLocale]}
             components={{
                 marks: {
                     flettefelt: props => {
