@@ -12,6 +12,8 @@ import {
 import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../typer/barn';
 import { IAndreForelderIKontraktFormat } from '../../typer/kontrakt/v1';
 import { PersonType } from '../../typer/personType';
+import { ESanitySteg } from '../../typer/sanity/sanity';
+import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { landkodeTilSpråk } from '../språk';
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
 import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
@@ -30,7 +32,8 @@ import { utenlandsperiodeTilISøknadsfelt } from './utenlandsperiode';
 export const andreForelderTilISøknadsfelt = (
     andreForelder: IAndreForelder,
     barn: IBarnMedISøknad,
-    valgtSpråk: LocaleType
+    valgtSpråk: LocaleType,
+    tekster: ITekstinnhold
 ): IAndreForelderIKontraktFormat => {
     const {
         navn,
@@ -60,6 +63,7 @@ export const andreForelderTilISøknadsfelt = (
         kanIkkeGiOpplysninger,
     } = andreForelder;
     const forelderErDød = barn[barnDataKeySpørsmål.andreForelderErDød].svar === ESvar.JA;
+    const fellesTekster = tekster[ESanitySteg.FELLES];
     return {
         kanIkkeGiOpplysninger: søknadsfeltBarn(
             språktekstIdFraSpørsmålId(kanIkkeGiOpplysninger.id),
@@ -105,7 +109,11 @@ export const andreForelderTilISøknadsfelt = (
               )
             : null,
         utenlandsperioder: utenlandsperioder.map((periode, index) =>
-            utenlandsperiodeTilISøknadsfelt(periode, index + 1, PersonType.andreForelder)
+            utenlandsperiodeTilISøknadsfelt(
+                periode,
+                index + 1,
+                fellesTekster.modaler.utenlandsopphold[PersonType.andreForelder]
+            )
         ),
         planleggerÅBoINorgeTolvMnd: planleggerÅBoINorgeTolvMnd.svar
             ? søknadsfeltBarn(

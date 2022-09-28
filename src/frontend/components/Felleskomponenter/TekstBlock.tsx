@@ -2,14 +2,17 @@ import React from 'react';
 
 import { PortableText } from '@portabletext/react';
 
+import { LocaleType } from '@navikt/familie-sprakvelger';
+
 import { useApp } from '../../context/AppContext';
 import { LocaleRecordBlock } from '../../typer/common';
 import { EFlettefeltverdi, ESanitySteg } from '../../typer/sanity/sanity';
 
-const TekstBlock: React.FC<{ block: LocaleRecordBlock | undefined; barnetsNavn?: string }> = ({
-    block,
-    barnetsNavn,
-}) => {
+const TekstBlock: React.FC<{
+    block: LocaleRecordBlock | undefined;
+    barnetsNavn?: string;
+    spesifisertLocale?: LocaleType;
+}> = ({ block, barnetsNavn, spesifisertLocale }) => {
     const { localeBlock, localeString, tekster, søknad } = useApp();
 
     const flettefeltTilTekst = (flettefeltVerdi: EFlettefeltverdi): string => {
@@ -27,7 +30,7 @@ const TekstBlock: React.FC<{ block: LocaleRecordBlock | undefined; barnetsNavn?:
 
     return block ? (
         <PortableText
-            value={localeBlock(block)}
+            value={spesifisertLocale ? block[spesifisertLocale] : localeBlock(block)}
             components={{
                 marks: {
                     flettefelt: props => {
@@ -42,7 +45,7 @@ const TekstBlock: React.FC<{ block: LocaleRecordBlock | undefined; barnetsNavn?:
                             <a
                                 target={props.value.blank ? '_blank' : '_self'}
                                 rel={'noopener noreferrer'}
-                                href={props.value.href}
+                                href={encodeURI(props.value.href)}
                             >
                                 {props.text}
                             </a>

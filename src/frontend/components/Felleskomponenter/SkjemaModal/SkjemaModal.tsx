@@ -1,29 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 
-import Modal from 'nav-frontend-modal';
 import { Innholdstittel } from 'nav-frontend-typografi';
 
-import { Button } from '@navikt/ds-react';
+import { Button, Modal } from '@navikt/ds-react';
 
-import { device } from '../../../Theme';
+import ModalContent from '../ModalContent';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
-
-const StyledModal = styled(Modal)`
-    && {
-        padding: 2rem;
-    }
-
-    width: 45rem;
-    @media all and ${device.mobile} {
-        width: 95%;
-        && {
-            padding: 2rem -100% 2rem -100%;
-        }
-    }
-`;
 
 const StyledButton = styled(Button)`
     && {
@@ -41,12 +25,16 @@ const StyledInnholdstittel = styled(Innholdstittel)`
 const SkjemaModal: React.FC<{
     erÅpen: boolean;
     toggleModal: () => void;
-    modalTittelSpråkId: string;
+    /** @deprecated **/
+    modalTittelSpråkId?: string; //todo: fjerne når vi har gått over til sanity
     submitSpinner?: boolean;
     valideringErOk: () => boolean;
     onAvbrytCallback?: () => void;
-    submitKnappSpråkId: string;
+    /** @deprecated **/
+    submitKnappSpråkId?: string; //todo: fjerne når vi har gått over til sanity
     onSubmitCallback: () => void;
+    tittel?: ReactNode;
+    submitKnappTekst?: ReactNode;
 }> = ({
     erÅpen,
     toggleModal,
@@ -56,39 +44,43 @@ const SkjemaModal: React.FC<{
     onAvbrytCallback,
     submitKnappSpråkId,
     onSubmitCallback,
+    tittel,
+    submitKnappTekst,
     children,
 }) => {
-    const { formatMessage } = useIntl();
-
     return (
-        <StyledModal
-            isOpen={erÅpen}
-            contentLabel={formatMessage({ id: modalTittelSpråkId })}
-            onRequestClose={() => {
+        <Modal
+            open={erÅpen}
+            onClose={() => {
                 toggleModal();
                 onAvbrytCallback && onAvbrytCallback();
             }}
-            /* aria-modal blir satt til true så vi trenger ikke å gjøre aria-hidden på appen */
-            ariaHideApp={false}
         >
-            <form>
-                <StyledInnholdstittel>
-                    <SpråkTekst id={modalTittelSpråkId} />
-                </StyledInnholdstittel>
-                {children}
-                <StyledButton
-                    variant={valideringErOk() ? 'primary' : 'secondary'}
-                    type={'submit'}
-                    loading={!!submitSpinner}
-                    onClick={event => {
-                        event.preventDefault();
-                        onSubmitCallback();
-                    }}
-                >
-                    <SpråkTekst id={submitKnappSpråkId} />
-                </StyledButton>
-            </form>
-        </StyledModal>
+            <ModalContent>
+                {modalTittelSpråkId && (
+                    <StyledInnholdstittel>
+                        <SpråkTekst id={modalTittelSpråkId} />
+                    </StyledInnholdstittel>
+                )}
+                {tittel}
+                <form>
+                    {children}
+                    <StyledButton
+                        variant={valideringErOk() ? 'primary' : 'secondary'}
+                        type={'submit'}
+                        data-testid={'submit-knapp-i-modal'}
+                        loading={!!submitSpinner}
+                        onClick={event => {
+                            event.preventDefault();
+                            onSubmitCallback();
+                        }}
+                    >
+                        {submitKnappSpråkId && <SpråkTekst id={submitKnappSpråkId} />}
+                        {submitKnappTekst}
+                    </StyledButton>
+                </form>
+            </ModalContent>
+        </Modal>
     );
 };
 

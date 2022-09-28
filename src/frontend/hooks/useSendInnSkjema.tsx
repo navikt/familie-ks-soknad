@@ -5,7 +5,6 @@ import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon
 import { useApp } from '../context/AppContext';
 import Miljø from '../Miljø';
 import { ISøknadKontrakt } from '../typer/kontrakt/v1';
-import { ESanitySteg } from '../typer/sanity/sanity';
 import { dataISøknadKontraktFormatV1 } from '../utils/mappingTilKontrakt/søknad';
 import { sendInn } from '../utils/sendInnSkjema';
 
@@ -22,7 +21,7 @@ export const useSendInnSkjema = (): {
         const formatert: ISøknadKontrakt = dataISøknadKontraktFormatV1(
             valgtSpråk,
             søknad,
-            tekster()[ESanitySteg.FELLES].frittståendeOrd
+            tekster()
         );
 
         const res = await sendInn<ISøknadKontrakt>(
