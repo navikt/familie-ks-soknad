@@ -6,27 +6,13 @@ import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../context/AppContext';
 import { LocaleRecordBlock } from '../../typer/common';
-import { EFlettefeltverdi, ESanitySteg } from '../../typer/sanity/sanity';
 
 const TekstBlock: React.FC<{
     block: LocaleRecordBlock | undefined;
     barnetsNavn?: string;
     spesifisertLocale?: LocaleType;
 }> = ({ block, barnetsNavn, spesifisertLocale }) => {
-    const { localeBlock, localeString, tekster, søknad } = useApp();
-
-    const flettefeltTilTekst = (flettefeltVerdi: EFlettefeltverdi): string => {
-        switch (flettefeltVerdi) {
-            case EFlettefeltverdi.SØKER_NAVN:
-                return søknad.søker.navn;
-            case EFlettefeltverdi.BARN_NAVN:
-                return barnetsNavn ?? '';
-            case EFlettefeltverdi.YTELSE:
-                return localeString(tekster()[ESanitySteg.FELLES].frittståendeOrd.kontantstoette);
-            default:
-                return '';
-        }
-    };
+    const { localeBlock, flettefeltTilTekst } = useApp();
 
     return block ? (
         <PortableText
@@ -35,7 +21,11 @@ const TekstBlock: React.FC<{
                 marks: {
                     flettefelt: props => {
                         if (props?.value?.flettefeltVerdi) {
-                            return <span>{flettefeltTilTekst(props.value.flettefeltVerdi)}</span>;
+                            return (
+                                <span>
+                                    {flettefeltTilTekst(props.value.flettefeltVerdi, barnetsNavn)}
+                                </span>
+                            );
                         } else {
                             throw new Error(`Fant ikke flettefeltVerdi`);
                         }

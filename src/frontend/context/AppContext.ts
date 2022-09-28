@@ -19,10 +19,12 @@ import { IKvittering } from '../typer/kvittering';
 import { IMellomlagretKontantstøtte } from '../typer/mellomlager';
 import { ISøkerRespons } from '../typer/person';
 import { RouteEnum } from '../typer/routes';
+import { EFlettefeltverdi, ESanitySteg } from '../typer/sanity/sanity';
 import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { initialStateSøknad, ISøknad } from '../typer/søknad';
 import { InnloggetStatus } from '../utils/autentisering';
 import { mapBarnResponsTilBarn } from '../utils/barn';
+import { toPlainTextHof } from '../utils/to-plain-text';
 import { preferredAxios } from './axios';
 import { useInnloggetContext } from './InnloggetContext';
 import { useLastRessurserContext } from './LastRessurserContext';
@@ -221,6 +223,24 @@ const [AppProvider, useApp] = createUseContext(() => {
         }
     };
 
+    const flettefeltTilTekst = (
+        flettefeltVerdi: EFlettefeltverdi,
+        barnetsNavn?: string
+    ): string => {
+        switch (flettefeltVerdi) {
+            case EFlettefeltverdi.SØKER_NAVN:
+                return søknad.søker.navn;
+            case EFlettefeltverdi.BARN_NAVN:
+                return barnetsNavn ?? '';
+            case EFlettefeltverdi.YTELSE:
+                return localeString(tekster()[ESanitySteg.FELLES].frittståendeOrd.kontantstoette);
+            default:
+                return '';
+        }
+    };
+
+    const toPlainText = toPlainTextHof(flettefeltTilTekst);
+
     return {
         axiosRequest,
         sluttbruker,
@@ -250,6 +270,8 @@ const [AppProvider, useApp] = createUseContext(() => {
         localeString,
         localeBlock,
         tekster,
+        flettefeltTilTekst,
+        toPlainText,
     };
 });
 
