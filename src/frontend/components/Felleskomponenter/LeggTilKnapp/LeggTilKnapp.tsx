@@ -18,7 +18,7 @@ interface Props {
     id?: string;
 }
 
-const StyledButton = styled(Button)<{ feilmelding: boolean }>`
+const StyledButton = styled(Button)`
     && {
         margin: 0.5rem 0 0.5rem 0;
         border: ${props => (props.$feilmelding ? `2px solid ${NavdsGlobalColorRed500}` : 'none')};
@@ -38,7 +38,7 @@ export const LeggTilKnapp: React.FC<Props> = ({
             variant={'tertiary'}
             type={'button'}
             onClick={onClick}
-            feilmelding={!!feilmelding}
+            $feilmelding={!!feilmelding}
         >
             <AddCircle />
             {språkTekst && <SpråkTekst id={språkTekst} />}
