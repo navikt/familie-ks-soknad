@@ -1,4 +1,4 @@
-import { LocaleRecordBlock } from '../../common';
+import { LocaleRecordBlock, LocaleRecordString } from '../../common';
 import { ISanitySpørsmålDokument } from '../sanity';
 
 export interface IUtenlandsoppholdTekstinnhold {
@@ -17,9 +17,9 @@ export interface IUtenlandsoppholdTekstinnhold {
     leggTilFeilmelding: LocaleRecordBlock;
     leggTilKnapp: LocaleRecordBlock;
     tittel: LocaleRecordBlock;
-    valgalternativOppholdUtenforNorgeNaa: LocaleRecordBlock;
-    valgalternativOppholdUtenforNorgeTidligere: LocaleRecordBlock;
-    valgalternativPermanentINorge: LocaleRecordBlock;
-    valgalternativPermanentIUtland: LocaleRecordBlock;
-    valgalternativPlaceholder: LocaleRecordBlock;
+    valgalternativOppholdUtenforNorgeNaa: LocaleRecordString;
+    valgalternativOppholdUtenforNorgeTidligere: LocaleRecordString;
+    valgalternativPermanentINorge: LocaleRecordString;
+    valgalternativPermanentIUtland: LocaleRecordString;
+    valgalternativPlaceholder: LocaleRecordString;
 }

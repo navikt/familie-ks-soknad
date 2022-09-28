@@ -1,14 +1,8 @@
+import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
 import { PersonType } from '../../../typer/personType';
+import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
-import {
-    landFeilmeldingSpråkIdsSøker,
-    landLabelSpråkIdsAndreForelder,
-    landLabelSpråkIdsBarn,
-    landLabelSpråkIdsSøker,
-    årsakSpråkIdsAndreForelder,
-    årsakSpråkIdsBarn,
-    årsakSpråkIdsSøker,
-} from './spørsmål';
+import { landFeilmeldingSpråkIdsSøker } from './spørsmål';
 
 export const årsakFeilmeldingSpråkId = (personType: PersonType): string => {
     switch (personType) {
@@ -25,50 +19,41 @@ export const årsakFeilmeldingSpråkId = (personType: PersonType): string => {
     }
 };
 
-export const årsakLabelSpråkId = (personType: PersonType): string => {
-    switch (personType) {
-        case PersonType.søker: {
-            return 'modal.beskriveopphold.spm';
-        }
-        case PersonType.barn: {
-            return 'ombarnet.beskriveopphold.spm';
-        }
-        case PersonType.andreForelder:
-        default: {
-            return 'todo.andreforelder.utenlandsopphold';
-        }
-    }
-};
-
-export const årsakSpråkId = (
+export const utenlandsoppholdÅrsakTilTekst = (
     årsak: EUtenlandsoppholdÅrsak | '',
-    personType: PersonType
-): string => {
-    switch (personType) {
-        case PersonType.søker: {
-            return årsakSpråkIdsSøker[årsak];
+    tekster: IUtenlandsoppholdTekstinnhold
+): LocaleRecordString => {
+    switch (årsak) {
+        case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE: {
+            return tekster.valgalternativPermanentIUtland;
         }
-        case PersonType.barn: {
-            return årsakSpråkIdsBarn[årsak];
+        case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE: {
+            return tekster.valgalternativPermanentINorge;
         }
-        case PersonType.andreForelder:
+        case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
+            return tekster.valgalternativOppholdUtenforNorgeTidligere;
+        case EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE:
+            return tekster.valgalternativOppholdUtenforNorgeNaa;
         default: {
-            return årsakSpråkIdsAndreForelder[årsak];
+            return tekster.valgalternativPlaceholder;
         }
     }
 };
 
-export const landLabelSpråkId = (årsak: EUtenlandsoppholdÅrsak | '', personType: PersonType) => {
-    switch (personType) {
-        case PersonType.søker: {
-            return landLabelSpråkIdsSøker[årsak];
-        }
-        case PersonType.barn: {
-            return landLabelSpråkIdsBarn[årsak];
-        }
-        case PersonType.andreForelder:
+export const hentLandSpørsmål = (
+    årsak: EUtenlandsoppholdÅrsak | '',
+    tekster: IUtenlandsoppholdTekstinnhold
+): LocaleRecordBlock => {
+    switch (årsak) {
+        case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE:
+            return tekster.landFlyttetTil.sporsmal;
+        case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE:
+            return tekster.landFlyttetFra.sporsmal;
+        case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
+            return tekster.tidligereOpphold.sporsmal;
+        case EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE:
         default: {
-            return landLabelSpråkIdsAndreForelder[årsak];
+            return tekster.naavaerendeOpphold.sporsmal;
         }
     }
 };
@@ -125,31 +110,34 @@ export const fraDatoFeilmeldingSpråkId = (
     }
 };
 
-export const fraDatoLabelSpråkId = (årsak: EUtenlandsoppholdÅrsak | '', personType: PersonType) => {
+export const hentFraDatoSpørsmål = (
+    årsak: EUtenlandsoppholdÅrsak | '',
+    tekster: IUtenlandsoppholdTekstinnhold
+): LocaleRecordBlock => {
     switch (årsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE:
-            return personType === PersonType.barn
-                ? 'ombarnet.nårflyttetfranorge.spm'
-                : personType === PersonType.søker
-                ? 'modal.nårflyttetfra.spm'
-                : 'todo.andreforelder.utenlandsopphold';
-        default:
-            return 'felles.nårstartetoppholdet.spm';
+            return tekster.flyttetFraNorgeDato.sporsmal;
+        case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
+        case EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE:
+        default: {
+            return tekster.startdato.sporsmal;
+        }
     }
 };
 
-export const tilDatoLabelSpråkId = (årsak: EUtenlandsoppholdÅrsak | '', personType: PersonType) => {
+export const hentTilDatoSpørsmål = (
+    årsak: EUtenlandsoppholdÅrsak | '',
+    tekster: IUtenlandsoppholdTekstinnhold
+): LocaleRecordBlock => {
     switch (årsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE:
-            return personType === PersonType.barn
-                ? 'ombarnet.nårflyttettilnorge.spm'
-                : personType === PersonType.søker
-                ? 'modal.nårflyttettilnorge.spm'
-                : 'todo.andreforelder.utenlandsopphold';
+            return tekster.flyttetTilNorgeDato.sporsmal;
         case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
-            return 'felles.nåravsluttetoppholdet.spm';
-        default:
-            return 'felles.nåravsluttesoppholdet.spm';
+            return tekster.sluttdatoFortid.sporsmal;
+        case EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE:
+        default: {
+            return tekster.sluttdatoFremtid.sporsmal;
+        }
     }
 };
 

@@ -109,7 +109,6 @@ const AndreForelderOppsummering: React.FC<{
                         key={index}
                         periode={periode}
                         nummer={index + 1}
-                        barn={barn}
                         personType={PersonType.andreForelder}
                     />
                 ))}

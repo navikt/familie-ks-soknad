@@ -1,26 +1,22 @@
 import { LocaleRecordBlock, LocaleRecordString } from '../common';
 
-export interface SanityDokumentBase {
+export interface SanityDokument {
     _createdAt: string;
     _rev: string;
     _type: string;
     _id: string;
     api_navn: string;
     steg: ESanitySteg;
-    tittel: string;
     visningsnavn: string;
     ytelse: string;
 }
-
-export type SanityDokument = SanityDokumentBase & {
-    [fieldNavn: string]: unknown;
-};
 
 export interface ISanitySpørsmålDokument extends SanityDokument {
     sporsmal: LocaleRecordBlock;
     feilmelding: LocaleRecordBlock;
     alert?: LocaleRecordBlock;
     vedleggsnotis?: LocaleRecordString;
+    checkboxLabel?: LocaleRecordString;
 }
 
 export enum ESanitySteg {

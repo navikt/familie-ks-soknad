@@ -64,7 +64,6 @@ export const Utenlandsperiode: React.FC<Props> = ({
                     nummer={index + 1}
                     fjernPeriodeCallback={fjernUtenlandsperiode}
                     personType={personType}
-                    barn={barn}
                 />
             ))}
             {registrerteUtenlandsperioder.verdi.length > 0 && (
