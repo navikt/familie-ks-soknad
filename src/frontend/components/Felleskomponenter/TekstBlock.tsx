@@ -45,7 +45,7 @@ const TekstBlock: React.FC<{
                             <a
                                 target={props.value.blank ? '_blank' : '_self'}
                                 rel={'noopener noreferrer'}
-                                href={props.value.href}
+                                href={encodeURI(props.value.href)}
                             >
                                 {props.text}
                             </a>
