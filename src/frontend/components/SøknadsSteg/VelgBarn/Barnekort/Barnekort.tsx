@@ -7,9 +7,9 @@ import { Checkbox } from 'nav-frontend-skjema';
 import { Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 
 import {
-    NavdsGlobalColorGray200,
-    NavdsGlobalColorPurple100,
-    NavdsGlobalColorPurple600,
+    NavdsGlobalColorGray100,
+    NavdsGlobalColorPurple400,
+    NavdsGlobalColorPurple800,
 } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../../context/AppContext';
@@ -34,7 +34,7 @@ export const StyledBarnekort = styled.div`
     max-width: calc(16.3rem - 0.3rem * 2);
     padding: 2rem;
     margin: 0 0.3125rem 0.625rem;
-    background-color: ${NavdsGlobalColorGray200};
+    background-color: ${NavdsGlobalColorGray100};
     @media all and ${device.mobile} {
         width: 100%;
     }
@@ -53,8 +53,8 @@ const InformasjonsboksInnhold = styled.div`
 
 const BarnekortHeader = styled.div`
     height: 8rem;
-    background-color: ${NavdsGlobalColorPurple600};
-    border-bottom: 0.25rem solid ${NavdsGlobalColorPurple100};
+    background-color: ${NavdsGlobalColorPurple800};
+    border-bottom: 0.25rem solid ${NavdsGlobalColorPurple400};
     border-radius: 0.3rem 0.3rem 0 0;
     display: flex;
     align-items: flex-end;

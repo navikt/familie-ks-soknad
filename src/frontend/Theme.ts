@@ -1,6 +1,6 @@
 import { createGlobalStyle, css } from 'styled-components';
 
-import { NavdsGlobalColorGray800 } from '@navikt/ds-tokens/dist/tokens';
+import { NavdsGlobalColorGray900 } from '@navikt/ds-tokens/dist/tokens';
 
 export const device = {
     mobile: css`(max-width: 30rem)`,
@@ -10,7 +10,7 @@ export const device = {
 export const GlobalStyle = createGlobalStyle`
   :root {
     --innhold-bredde: 32.75rem;
-    color: ${NavdsGlobalColorGray800};
+    color: ${NavdsGlobalColorGray900};
     font-family: 'Source Sans Pro', Arial, sans-serif;
 
     && label,
