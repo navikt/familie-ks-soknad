@@ -172,9 +172,7 @@ const tranformMarks = (
 ) => {
     return span.marks?.map(name => node => {
         const markDef = block.markDefs?.find(({ _key }) => _key === name);
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        const mark = customMarks?.[name] ?? customMarks?.[markDef?._type];
+        const mark = markDef && customMarks[markDef._type];
 
         return mark
             ? {
@@ -188,6 +186,8 @@ const tranformMarks = (
     });
 };
 
+// Denne funksjonen har kopiert mye fra en tråd i Sanity-slacken:
+// https://sanity-io.slack.com/archives/CF876M37F/p1664206409432079?thread_ts=1663841434.772959&cid=CF876M37F
 export const tilPlainTekstHof =
     (
         flettefeltTilTekst: (flettefeltVerdi: EFlettefeltverdi, barnetsNavn?: string) => string,
@@ -229,9 +229,9 @@ export const tilPlainTekstHof =
 
                     const transformedMarks = tranformMarks(child, block, marks);
 
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
-                    tekst += pipe(node => node, ...transformedMarks)(child).text;
+                    tekst += transformedMarks
+                        ? pipe(node => node, ...transformedMarks)(child).text
+                        : pipe(node => node)(child).text;
                     previousElementIsNonSpan = false;
                 } else {
                     previousElementIsNonSpan = true;
