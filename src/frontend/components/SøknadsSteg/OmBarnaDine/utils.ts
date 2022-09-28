@@ -49,7 +49,7 @@ export const genererOppdaterteBarn = (
         );
         const harBarnehageplass: ESvar = genererSvarForSpørsmålBarn(
             barn,
-            skjema.felter.hvemBarnehageplass
+            skjema.felter.hvemHarBarnehageplass
         );
 
         const andreForelderErDød: ESvar = genererSvarForSpørsmålBarn(

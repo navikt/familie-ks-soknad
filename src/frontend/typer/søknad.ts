@@ -66,6 +66,11 @@ export const initialStateSøknad: ISøknad = {
             'dokumentasjon.bekreftelseborsammen.informasjon'
         ),
         genererInitiellDokumentasjon(
+            Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS,
+            dokumentasjonsbehovTilSpråkId(Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS),
+            null
+        ),
+        genererInitiellDokumentasjon(
             Dokumentasjonsbehov.ANNEN_DOKUMENTASJON,
             dokumentasjonsbehovTilSpråkId(Dokumentasjonsbehov.ANNEN_DOKUMENTASJON),
             null

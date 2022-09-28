@@ -3,6 +3,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { Normaltekst } from 'nav-frontend-typografi';
+
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
@@ -28,11 +30,11 @@ const OmBarnaDine: React.FC = () => {
         useOmBarnaDine();
 
     const history = useHistory();
-    const { søknad, tekster } = useApp();
+    const { søknad, tekster, localeString } = useApp();
     const { barnInkludertISøknaden } = søknad;
 
     const {
-        [ESanitySteg.OM_BARNA]: { omBarnaTittel },
+        [ESanitySteg.OM_BARNA]: { omBarnaTittel, hvemBarnehageplass },
     } = tekster();
 
     if (!barnInkludertISøknaden.length) {
@@ -201,16 +203,22 @@ const OmBarnaDine: React.FC = () => {
                     }
                 />
                 <HvilkeBarnCheckboxGruppe
-                    legendSpråkId={
-                        omBarnaDineSpørsmålSpråkId[OmBarnaDineSpørsmålId.hvemBarnehageplass]
-                    }
-                    skjemafelt={skjema.felter.hvemBarnehageplass}
+                    legend={<TekstBlock block={hvemBarnehageplass.sporsmal} />}
+                    skjemafelt={skjema.felter.hvemHarBarnehageplass}
                     søknadsdatafelt={barnDataKeySpørsmål.harBarnehageplass}
                     nullstillValgteBarn={
                         skjema.felter.harEllerTildeltBarnehageplass.verdi === ESvar.NEI
                     }
                     visFeilmelding={skjema.visFeilmeldinger}
-                />
+                >
+                    {hvemBarnehageplass.vedleggsnotis ? (
+                        <VedleggNotis>
+                            <Normaltekst>
+                                {localeString(hvemBarnehageplass.vedleggsnotis)}
+                            </Normaltekst>
+                        </VedleggNotis>
+                    ) : null}
+                </HvilkeBarnCheckboxGruppe>
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.erAvdødPartnerForelder}

@@ -97,7 +97,7 @@ export const useOmBarnaDine = (): {
         feilmeldingSpråkId: 'todo.ombarnadine.barnehageplass',
     });
 
-    const hvemBarnehageplass = useBarnCheckboxFelt(
+    const hvemHarBarnehageplass = useBarnCheckboxFelt(
         barnDataKeySpørsmål.harBarnehageplass,
         'todo.ombarnadine.barnehageplass',
         harEllerTildeltBarnehageplass
@@ -222,6 +222,11 @@ export const useOmBarnaDine = (): {
                             ...dok,
                             gjelderForBarnId: hvemErFosterbarn.verdi,
                         };
+                    case Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS:
+                        return {
+                            ...dok,
+                            gjelderForBarnId: hvemHarBarnehageplass.verdi,
+                        };
                     default:
                         return dok;
                 }
@@ -248,7 +253,7 @@ export const useOmBarnaDine = (): {
             hvemKontantstøtteFraAnnetEøsland,
             hvemTolvMndSammenhengendeINorge,
             hvemErSøktAsylFor,
-            hvemBarnehageplass,
+            hvemHarBarnehageplass,
             hvemAvdødPartner,
         },
         skjemanavn: 'ombarnadine',
