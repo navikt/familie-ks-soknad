@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, ReactNode, useEffect, useState } from 'react';
 
 import { Checkbox, CheckboxGruppe } from 'nav-frontend-skjema';
 import { Element } from 'nav-frontend-typografi';
@@ -12,7 +12,11 @@ import { BarnetsId } from '../../../typer/common';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 
 interface Props {
-    legendSpråkId: string;
+    /*
+     * @deprecated bruk legend
+     */
+    legendSpråkId?: string;
+    legend?: ReactNode;
     skjemafelt: Felt<BarnetsId[]>;
     visFeilmelding: boolean;
     søknadsdatafelt: barnDataKeySpørsmål;
@@ -21,6 +25,7 @@ interface Props {
 
 const HvilkeBarnCheckboxGruppe: React.FC<Props> = ({
     legendSpråkId,
+    legend,
     skjemafelt,
     søknadsdatafelt,
     nullstillValgteBarn,
@@ -62,9 +67,11 @@ const HvilkeBarnCheckboxGruppe: React.FC<Props> = ({
             <CheckboxGruppe
                 aria-live={'polite'}
                 legend={
-                    <Element>
-                        <SpråkTekst id={legendSpråkId} />
-                    </Element>
+                    legend || (
+                        <Element>
+                            <SpråkTekst id={legendSpråkId} />
+                        </Element>
+                    )
                 }
                 {...skjemafelt.hentNavBaseSkjemaProps(visFeilmelding)}
                 utenFeilPropagering
