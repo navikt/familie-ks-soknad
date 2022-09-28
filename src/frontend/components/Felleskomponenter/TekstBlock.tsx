@@ -42,7 +42,7 @@ const TekstBlock: React.FC<{ block: LocaleRecordBlock | undefined; barnetsNavn?:
                             <a
                                 target={props.value.blank ? '_blank' : '_self'}
                                 rel={'noopener noreferrer'}
-                                href={props.value.href}
+                                href={encodeURI(props.value.href)}
                             >
                                 {props.text}
                             </a>
