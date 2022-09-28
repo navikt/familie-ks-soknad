@@ -24,7 +24,7 @@ import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { initialStateSøknad, ISøknad } from '../typer/søknad';
 import { InnloggetStatus } from '../utils/autentisering';
 import { mapBarnResponsTilBarn } from '../utils/barn';
-import { toPlainTextHof } from '../utils/to-plain-text';
+import { tilPlainTekstHof } from '../utils/sanity';
 import { preferredAxios } from './axios';
 import { useInnloggetContext } from './InnloggetContext';
 import { useLastRessurserContext } from './LastRessurserContext';
@@ -213,7 +213,7 @@ const [AppProvider, useApp] = createUseContext(() => {
 
     const localeString = (key: LocaleRecordString): string => key[valgtLocale];
 
-    const localeBlock = (key: LocaleRecordBlock): PortableTextBlock => key[valgtLocale];
+    const localeBlock = (key: LocaleRecordBlock): PortableTextBlock[] => key[valgtLocale];
 
     const tekster = (): ITekstinnhold => {
         if (teksterRessurs.status === RessursStatus.SUKSESS) {
@@ -239,7 +239,7 @@ const [AppProvider, useApp] = createUseContext(() => {
         }
     };
 
-    const toPlainText = toPlainTextHof(flettefeltTilTekst);
+    const tilPlainTekst = tilPlainTekstHof(flettefeltTilTekst, valgtLocale);
 
     return {
         axiosRequest,
@@ -271,7 +271,7 @@ const [AppProvider, useApp] = createUseContext(() => {
         localeBlock,
         tekster,
         flettefeltTilTekst,
-        toPlainText,
+        tilPlainTekst,
     };
 });
 

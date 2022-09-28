@@ -1,3 +1,15 @@
+import { isPortableTextSpan } from '@portabletext/toolkit';
+import {
+    ArbitraryTypedObject,
+    PortableTextBlock,
+    PortableTextMarkDefinition,
+    PortableTextSpan,
+} from '@portabletext/types';
+import { pipe } from 'ramda';
+
+import { LocaleType } from '@navikt/familie-sprakvelger';
+
+import { LocaleRecordBlock } from '../typer/common';
 import { IAndreUtbetalingerTekstinnhold } from '../typer/sanity/modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from '../typer/sanity/modaler/arbeidsperiode';
 import { IBarnehageplassTekstinnhold } from '../typer/sanity/modaler/barnehageplass';
@@ -7,6 +19,7 @@ import { IPensjonsperiodeTekstinnhold } from '../typer/sanity/modaler/pensjonspe
 import { IStartPåNyttModal } from '../typer/sanity/modaler/startPåNytt';
 import { IUtenlandsoppholdTekstinnhold } from '../typer/sanity/modaler/utenlandsopphold';
 import {
+    EFlettefeltverdi,
     ESanitySteg,
     frittståendeOrdPrefix,
     modalPrefix,
@@ -146,3 +159,89 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
     };
     return tekstInnhold as ITekstinnhold;
 };
+
+const tranformMarks = (
+    span: PortableTextSpan,
+    block: PortableTextBlock<
+        PortableTextMarkDefinition,
+        ArbitraryTypedObject | PortableTextSpan,
+        string,
+        string
+    >,
+    customMarks: { flettefelt: (props: { value: { flettefeltVerdi } }) => string }
+) => {
+    return span.marks?.map(name => node => {
+        const markDef = block.markDefs?.find(({ _key }) => _key === name);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const mark = customMarks?.[name] ?? customMarks?.[markDef?._type];
+
+        return mark
+            ? {
+                  ...node,
+                  text: mark({
+                      ...node,
+                      value: markDef,
+                  }),
+              }
+            : node;
+    });
+};
+
+export const tilPlainTekstHof =
+    (
+        flettefeltTilTekst: (flettefeltVerdi: EFlettefeltverdi, barnetsNavn?: string) => string,
+        søknadLocale: LocaleType
+    ) =>
+    (block: LocaleRecordBlock, barnetsNavn?: string, spesifikkLocale?: LocaleType): string => {
+        const blocksForLocale = block[spesifikkLocale ?? søknadLocale];
+
+        const marks = {
+            flettefelt: props => {
+                if (props.value.flettefeltVerdi) {
+                    return flettefeltTilTekst(props.value.flettefeltVerdi, barnetsNavn);
+                } else {
+                    throw new Error(`Fant ikke flettefeltVerdi`);
+                }
+            },
+        };
+
+        const leadingSpace = /^\s/;
+        const trailingSpace = /^\s/;
+
+        let tekst = '';
+
+        blocksForLocale.forEach((block, index) => {
+            let previousElementIsNonSpan = false;
+
+            block.children.forEach(child => {
+                if (isPortableTextSpan(child)) {
+                    // If the previous element was a non-span, and we have no natural whitespace
+                    // between the previous and the next span, insert it to give the spans some
+                    // room to breathe. However, don't do so if this is the first span.
+                    tekst +=
+                        previousElementIsNonSpan &&
+                        tekst &&
+                        !trailingSpace.test(tekst) &&
+                        !leadingSpace.test(child.text)
+                            ? ' '
+                            : '';
+
+                    const transformedMarks = tranformMarks(child, block, marks);
+
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    tekst += pipe(node => node, ...transformedMarks)(child).text;
+                    previousElementIsNonSpan = false;
+                } else {
+                    previousElementIsNonSpan = true;
+                }
+            });
+
+            if (index !== blocksForLocale.length - 1) {
+                tekst += '\n\n';
+            }
+        });
+
+        return tekst;
+    };
