@@ -5,7 +5,7 @@ import createUseContext from 'constate';
 import { Alpha3Code } from 'i18n-iso-countries';
 import { useIntl } from 'react-intl';
 
-import { useSprakContext } from '@navikt/familie-sprakvelger';
+import { LocaleType, useSprakContext } from '@navikt/familie-sprakvelger';
 import {
     byggHenterRessurs,
     byggTomRessurs,
@@ -241,6 +241,17 @@ const [AppProvider, useApp] = createUseContext(() => {
 
     const tilPlainTekst = tilPlainTekstHof(flettefeltTilTekst, valgtLocale);
 
+    const tilRestLocaleRecord = (
+        sanityTekst: LocaleRecordString | LocaleRecordBlock,
+        barnetsNavn?: string
+    ): Record<LocaleType, string> => {
+        return {
+            [LocaleType.en]: tilPlainTekst(sanityTekst, barnetsNavn, LocaleType.en),
+            [LocaleType.nn]: tilPlainTekst(sanityTekst, barnetsNavn, LocaleType.nn),
+            [LocaleType.nb]: tilPlainTekst(sanityTekst, barnetsNavn, LocaleType.nb),
+        };
+    };
+
     return {
         axiosRequest,
         sluttbruker,
@@ -272,6 +283,7 @@ const [AppProvider, useApp] = createUseContext(() => {
         tekster,
         flettefeltTilTekst,
         tilPlainTekst,
+        tilRestLocaleRecord,
     };
 });
 

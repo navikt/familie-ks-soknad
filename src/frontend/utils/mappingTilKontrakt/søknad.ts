@@ -7,7 +7,7 @@ import {
 } from '../../components/SøknadsSteg/EøsSteg/Søker/spørsmål';
 import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { IBarnMedISøknad } from '../../typer/barn';
-import { ESivilstand } from '../../typer/kontrakt/generelle';
+import { ESivilstand, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { ISøknadKontrakt } from '../../typer/kontrakt/v1';
 import { ISøker } from '../../typer/person';
 import { PersonType } from '../../typer/personType';
@@ -52,7 +52,8 @@ const antallEøsSteg = (søker: ISøker, barnInkludertISøknaden: IBarnMedISøkn
 export const dataISøknadKontraktFormatV1 = (
     valgtSpråk: LocaleType,
     søknad: ISøknad,
-    tekster: ITekstinnhold
+    tekster: ITekstinnhold,
+    tilRestLocaleRecord: TilRestLocaleRecord
 ): ISøknadKontrakt => {
     const { søker } = søknad;
     // Raskeste måte å få tak i alle spørsmål minus de andre feltene på søker
@@ -105,7 +106,8 @@ export const dataISøknadKontraktFormatV1 = (
                 utenlandsperiodeTilISøknadsfelt(
                     periode,
                     index + 1,
-                    fellesTekster.modaler.utenlandsopphold[PersonType.søker]
+                    fellesTekster.modaler.utenlandsopphold[PersonType.søker],
+                    tilRestLocaleRecord
                 )
             ),
             idNummer: idNummer.map(idnummerObj =>
@@ -160,7 +162,7 @@ export const dataISøknadKontraktFormatV1 = (
             ),
         },
         barn: barnInkludertISøknaden.map(barn =>
-            barnISøknadsFormat(barn, søker, valgtSpråk, tekster)
+            barnISøknadsFormat(barn, søker, valgtSpråk, tekster, tilRestLocaleRecord)
         ),
         spørsmål: {
             erNoenAvBarnaFosterbarn: søknadsfelt(

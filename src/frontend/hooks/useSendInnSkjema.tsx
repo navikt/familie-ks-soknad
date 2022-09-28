@@ -11,8 +11,14 @@ import { sendInn } from '../utils/sendInnSkjema';
 export const useSendInnSkjema = (): {
     sendInnSkjema: () => Promise<[boolean, ISøknadKontrakt]>;
 } => {
-    const { axiosRequest, søknad, settInnsendingStatus, settSisteModellVersjon, tekster } =
-        useApp();
+    const {
+        axiosRequest,
+        søknad,
+        settInnsendingStatus,
+        settSisteModellVersjon,
+        tekster,
+        tilRestLocaleRecord,
+    } = useApp();
     const { soknadApi } = Miljø();
     const [valgtSpråk] = useSprakContext();
     const sendInnSkjema = async (): Promise<[boolean, ISøknadKontrakt]> => {
@@ -21,7 +27,8 @@ export const useSendInnSkjema = (): {
         const formatert: ISøknadKontrakt = dataISøknadKontraktFormatV1(
             valgtSpråk,
             søknad,
-            tekster()
+            tekster(),
+            tilRestLocaleRecord
         );
 
         const res = await sendInn<ISøknadKontrakt>(

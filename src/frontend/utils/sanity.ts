@@ -9,7 +9,7 @@ import { pipe } from 'ramda';
 
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
-import { LocaleRecordBlock } from '../typer/common';
+import { LocaleRecordBlock, LocaleRecordString } from '../typer/common';
 import { IAndreUtbetalingerTekstinnhold } from '../typer/sanity/modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from '../typer/sanity/modaler/arbeidsperiode';
 import { IBarnehageplassTekstinnhold } from '../typer/sanity/modaler/barnehageplass';
@@ -193,8 +193,16 @@ export const tilPlainTekstHof =
         flettefeltTilTekst: (flettefeltVerdi: EFlettefeltverdi, barnetsNavn?: string) => string,
         søknadLocale: LocaleType
     ) =>
-    (block: LocaleRecordBlock, barnetsNavn?: string, spesifikkLocale?: LocaleType): string => {
-        const blocksForLocale = block[spesifikkLocale ?? søknadLocale];
+    (
+        localeRecord: LocaleRecordBlock | LocaleRecordString,
+        barnetsNavn?: string,
+        spesifikkLocale?: LocaleType
+    ): string => {
+        const innholdForLocale = localeRecord[spesifikkLocale ?? søknadLocale];
+
+        if (typeof innholdForLocale === 'string') {
+            return innholdForLocale;
+        }
 
         const marks = {
             flettefelt: props => {
@@ -211,7 +219,7 @@ export const tilPlainTekstHof =
 
         let tekst = '';
 
-        blocksForLocale.forEach((block, index) => {
+        innholdForLocale.forEach((block, index) => {
             let previousElementIsNonSpan = false;
 
             block.children.forEach(child => {
@@ -238,7 +246,7 @@ export const tilPlainTekstHof =
                 }
             });
 
-            if (index !== blocksForLocale.length - 1) {
+            if (index !== innholdForLocale.length - 1) {
                 tekst += '\n\n';
             }
         });
