@@ -5,10 +5,14 @@ import {
     hentTilDatoSpørsmål,
     utenlandsoppholdÅrsakTilTekst,
 } from '../../components/Felleskomponenter/UtenlandsoppholdModal/utenlandsoppholdSpråkUtils';
-import { ISøknadsfelt, IUtenlandsperiodeIKontraktFormat } from '../../typer/kontrakt/generelle';
+import {
+    ISøknadsfelt,
+    IUtenlandsperiodeIKontraktFormat,
+    TilRestLocaleRecord,
+} from '../../typer/kontrakt/generelle';
 import { IUtenlandsperiode } from '../../typer/perioder';
 import { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenlandsopphold';
-import { hentTekster, landkodeTilSpråk, tilRestLocaleRecord } from '../språk';
+import { hentTekster, landkodeTilSpråk } from '../språk';
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjentSpråktekst,
@@ -18,7 +22,8 @@ import {
 export const utenlandsperiodeTilISøknadsfelt = (
     utenlandperiode: IUtenlandsperiode,
     periodeNummer: number,
-    tekster: IUtenlandsoppholdTekstinnhold
+    tekster: IUtenlandsoppholdTekstinnhold,
+    tilRestLocaleRecord: TilRestLocaleRecord
 ): ISøknadsfelt<IUtenlandsperiodeIKontraktFormat> => {
     const { periodeBeskrivelse } = tekster;
     return {

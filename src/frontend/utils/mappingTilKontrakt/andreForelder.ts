@@ -10,6 +10,7 @@ import {
     omBarnetSpørsmålSpråkId,
 } from '../../components/SøknadsSteg/OmBarnet/spørsmål';
 import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../typer/barn';
+import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IAndreForelderIKontraktFormat } from '../../typer/kontrakt/v1';
 import { PersonType } from '../../typer/personType';
 import { ESanitySteg } from '../../typer/sanity/sanity';
@@ -33,7 +34,8 @@ export const andreForelderTilISøknadsfelt = (
     andreForelder: IAndreForelder,
     barn: IBarnMedISøknad,
     valgtSpråk: LocaleType,
-    tekster: ITekstinnhold
+    tekster: ITekstinnhold,
+    tilRestLocaleRecord: TilRestLocaleRecord
 ): IAndreForelderIKontraktFormat => {
     const {
         navn,
@@ -112,7 +114,8 @@ export const andreForelderTilISøknadsfelt = (
             utenlandsperiodeTilISøknadsfelt(
                 periode,
                 index + 1,
-                fellesTekster.modaler.utenlandsopphold[PersonType.andreForelder]
+                fellesTekster.modaler.utenlandsopphold[PersonType.andreForelder],
+                tilRestLocaleRecord
             )
         ),
         planleggerÅBoINorgeTolvMnd: planleggerÅBoINorgeTolvMnd.svar

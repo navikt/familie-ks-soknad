@@ -28,8 +28,7 @@ const StyledSpråkvelger = styled(Sprakvelger)`
 `;
 
 const Forside: React.FC = () => {
-    const { mellomlagretVerdi, settNåværendeRoute } = useApp();
-    const { tekster } = useApp();
+    const { mellomlagretVerdi, settNåværendeRoute, tekster } = useApp();
 
     const {
         [ESanitySteg.FORSIDE]: {
