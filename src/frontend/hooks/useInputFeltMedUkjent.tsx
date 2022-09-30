@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react';
 
-import { guid } from 'nav-frontend-js-utils';
+import { v4 as uuidv4 } from 'uuid';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, Felt, FeltState, ok, useFelt } from '@navikt/familie-skjema';
@@ -33,7 +33,7 @@ const useInputFeltMedUkjent = ({
     nullstillVedAvhengighetEndring?: boolean;
 }) => {
     const inputFelt = useFelt<string>({
-        feltId: søknadsfelt ? søknadsfelt.id : guid(),
+        feltId: søknadsfelt ? søknadsfelt.id : uuidv4(),
         verdi: søknadsfelt
             ? trimWhiteSpace(formaterInitVerdiForInputMedUkjent(søknadsfelt.svar))
             : '',
