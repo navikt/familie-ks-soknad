@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
 
+import { Loader } from '@navikt/ds-react';
 import {
     Ressurs,
     RessursStatus,
@@ -78,7 +78,7 @@ const renderHelse = (ressurs: Ressurs<string>, tjeneste: string) => {
             {ressurs.status === RessursStatus.SUKSESS && (
                 <Normaltekst children={`suksess (${ressurs.data})`} />
             )}
-            {ressurs.status === RessursStatus.HENTER && <NavFrontendSpinner />}
+            {ressurs.status === RessursStatus.HENTER && <Loader />}
             {ressurs.status === RessursStatus.FEILET && (
                 <Normaltekst children={`feilet (${ressurs.frontendFeilmelding})`} />
             )}
