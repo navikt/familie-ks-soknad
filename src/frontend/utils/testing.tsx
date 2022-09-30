@@ -59,7 +59,7 @@ export const spyOnUseApp = søknad => {
     }));
     const tekster = jest.fn().mockImplementation(() => mockDeep<ITekstinnhold>());
     const localeString = jest.fn();
-    const localeBlock = jest.fn();
+    const tilRestLocaleRecord = jest.fn();
     const settSøknad = jest.fn();
     const erPåKvitteringsside = jest.fn().mockImplementation(() => false);
     const erStegUtfyltFrafør = jest.fn().mockImplementation(() => true);
@@ -109,7 +109,7 @@ export const spyOnUseApp = søknad => {
         systemetFeiler: jest.fn().mockReturnValue(false),
         tekster,
         localeString,
-        localeBlock,
+        tilRestLocaleRecord,
     });
     jest.spyOn(appContext, 'useApp').mockImplementation(useAppMock);
 

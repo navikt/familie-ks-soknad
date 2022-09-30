@@ -27,4 +27,6 @@ export const tomString: TomString = '';
 
 export type LocaleRecordString = Record<LocaleType, string> & { [key: string]: unknown };
 
-export type LocaleRecordBlock = Record<LocaleType, PortableTextBlock> & { [key: string]: unknown };
+export type LocaleRecordBlock = Record<LocaleType, PortableTextBlock[]> & {
+    [key: string]: unknown;
+};

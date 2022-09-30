@@ -9,7 +9,7 @@ import {
     omBarnetSpørsmålSpråkId,
 } from '../../components/SøknadsSteg/OmBarnet/spørsmål';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../typer/barn';
-import { ERegistrertBostedType } from '../../typer/kontrakt/generelle';
+import { ERegistrertBostedType, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { ISøknadIKontraktBarn } from '../../typer/kontrakt/v1';
 import { ISøker } from '../../typer/person';
 import { PersonType } from '../../typer/personType';
@@ -35,7 +35,8 @@ export const barnISøknadsFormat = (
     barn: IBarnMedISøknad,
     søker: ISøker,
     valgtSpråk: LocaleType,
-    tekster: ITekstinnhold
+    tekster: ITekstinnhold,
+    tilRestLocaleRecord: TilRestLocaleRecord
 ): ISøknadIKontraktBarn => {
     /* eslint-disable @typescript-eslint/no-unused-vars */
     const {
@@ -107,7 +108,8 @@ export const barnISøknadsFormat = (
             utenlandsperiodeTilISøknadsfelt(
                 periode,
                 index + 1,
-                fellesTekster.modaler.utenlandsopphold[PersonType.barn]
+                fellesTekster.modaler.utenlandsopphold[PersonType.barn],
+                tilRestLocaleRecord
             )
         ),
         eøsKontantstøttePerioder: eøsKontantstøttePerioder.map((periode, index) =>
@@ -131,7 +133,13 @@ export const barnISøknadsFormat = (
             )
         ),
         andreForelder: andreForelder
-            ? andreForelderTilISøknadsfelt(andreForelder, barn, valgtSpråk, tekster)
+            ? andreForelderTilISøknadsfelt(
+                  andreForelder,
+                  barn,
+                  valgtSpråk,
+                  tekster,
+                  tilRestLocaleRecord
+              )
             : null,
 
         omsorgsperson: omsorgsperson ? omsorgspersonTilISøknadsfelt(omsorgsperson, barn) : null,

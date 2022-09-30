@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 
 import { Alpha3Code, alpha3ToAlpha2, getName } from 'i18n-iso-countries';
 import reactElementToJSXString from 'react-element-to-jsx-string';
@@ -10,8 +10,7 @@ import * as engelsk from '../assets/lang/en.json' assert { type: 'json' };
 import * as bokmål from '../assets/lang/nb.json' assert { type: 'json' };
 import * as nynorsk from '../assets/lang/nn.json' assert { type: 'json' };
 import { innebygdeFormatterere } from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
-import TekstBlock from '../components/Felleskomponenter/TekstBlock';
-import { AlternativtSvarForInput, LocaleRecordBlock, LocaleRecordString } from '../typer/common';
+import { AlternativtSvarForInput } from '../typer/common';
 import { ESivilstand, Slektsforhold } from '../typer/kontrakt/generelle';
 import { IBarn } from '../typer/person';
 import { ESanitySivilstandApiKey } from '../typer/sanity/sanity';
@@ -49,34 +48,6 @@ const texts: Record<LocaleType, Record<string, string>> = {
 };
 
 const cache = createIntlCache();
-
-const innholdForLocale = (
-    sanityTekst: LocaleRecordString | LocaleRecordBlock,
-    locale: LocaleType,
-    barnetsNavn?: string
-) => {
-    return typeof sanityTekst[locale] !== 'string' ? (
-        <TekstBlock
-            block={sanityTekst as LocaleRecordBlock}
-            spesifisertLocale={locale}
-            barnetsNavn={barnetsNavn}
-        />
-    ) : (
-        sanityTekst[locale]
-    );
-};
-
-export const tilRestLocaleRecord = (
-    sanityTekst: LocaleRecordString | LocaleRecordBlock,
-    barnetsNavn?: string
-): Record<LocaleType, string> => {
-    return {
-        //todo: caster til string enn så lenge, til vi får støtte for at Portable Text kan returnere tekst i stedet for ReactNode
-        [LocaleType.en]: innholdForLocale(sanityTekst, LocaleType.en, barnetsNavn) as string,
-        [LocaleType.nn]: innholdForLocale(sanityTekst, LocaleType.nn, barnetsNavn) as string,
-        [LocaleType.nb]: innholdForLocale(sanityTekst, LocaleType.nb, barnetsNavn) as string,
-    };
-};
 
 export const hentTekster = (
     tekstId: string,
