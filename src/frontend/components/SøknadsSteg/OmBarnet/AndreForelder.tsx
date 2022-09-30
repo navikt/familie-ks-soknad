@@ -5,7 +5,7 @@ import { ISkjema } from '@navikt/familie-skjema';
 
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../typer/common';
-import { IArbeidsperiode, IPensjonsperiode, IUtenlandsperiode } from '../../../typer/perioder';
+import { IArbeidsperiode, IPensjonsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import { dagensDato } from '../../../utils/dato';
@@ -18,7 +18,6 @@ import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaChe
 import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
-import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
 import AndreForelderOppsummering from '../Oppsummering/OppsummeringSteg/OmBarnet/AndreForelderOppsummering';
 import SammeSomAnnetBarnRadio from './SammeSomAnnetBarnRadio';
 import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from './spørsmål';
@@ -27,8 +26,6 @@ const AndreForelder: React.FC<{
     barn: IBarnMedISøknad;
     skjema: ISkjema<IOmBarnetUtvidetFeltTyper, string>;
     andreBarnSomErFyltUt: IBarnMedISøknad[];
-    leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
-    fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
     leggTilArbeidsperiode: (periode: IArbeidsperiode) => void;
     fjernArbeidsperiode: (periode: IArbeidsperiode) => void;
     leggTilPensjonsperiode: (periode: IPensjonsperiode) => void;
@@ -37,8 +34,6 @@ const AndreForelder: React.FC<{
     barn,
     skjema,
     andreBarnSomErFyltUt,
-    leggTilUtenlandsperiode,
-    fjernUtenlandsperiode,
     leggTilArbeidsperiode,
     fjernArbeidsperiode,
     leggTilPensjonsperiode,
@@ -148,44 +143,6 @@ const AndreForelder: React.FC<{
                                 </KomponentGruppe>
                             )}
                         </KomponentGruppe>
-                        {skjema.felter.andreForelderVærtINorgeITolvMåneder.erSynlig && (
-                            <KomponentGruppe>
-                                <JaNeiSpm
-                                    skjema={skjema}
-                                    felt={skjema.felter.andreForelderVærtINorgeITolvMåneder}
-                                    spørsmålTekstId={
-                                        'todo andre forelder sammenhengende opphold norge?'
-                                    }
-                                />
-                                {skjema.felter.andreForelderRegistrerteUtenlandsperioder
-                                    .erSynlig && (
-                                    <>
-                                        <Utenlandsperiode
-                                            personType={PersonType.andreForelder}
-                                            skjema={skjema}
-                                            leggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                                            fjernUtenlandsperiode={fjernUtenlandsperiode}
-                                            registrerteUtenlandsperioder={
-                                                skjema.felter
-                                                    .andreForelderRegistrerteUtenlandsperioder
-                                            }
-                                            barn={barn}
-                                        />
-                                    </>
-                                )}
-                            </KomponentGruppe>
-                        )}
-                        {skjema.felter.andreForelderPlanleggerÅBoINorgeTolvMnd.erSynlig && (
-                            <KomponentGruppe inline dynamisk>
-                                <JaNeiSpm
-                                    skjema={skjema}
-                                    felt={skjema.felter.andreForelderPlanleggerÅBoINorgeTolvMnd}
-                                    spørsmålTekstId={
-                                        'todo.andreforelder.utenlandsopphold.planlegger'
-                                    }
-                                />
-                            </KomponentGruppe>
-                        )}
                         {skjema.felter.andreForelderYrkesaktivFemÅr.erSynlig && (
                             <KomponentGruppe>
                                 <JaNeiSpm

@@ -69,15 +69,12 @@ export enum barnDataKeySpørsmål {
 }
 
 export interface IAndreForelder {
-    utenlandsperioder: IUtenlandsperiode[];
     arbeidsperioderUtland: IArbeidsperiode[];
     pensjonsperioderUtland: IPensjonsperiode[];
     kanIkkeGiOpplysninger: ISøknadSpørsmål<ESvar>;
     [andreForelderDataKeySpørsmål.navn]: ISøknadSpørsmål<string | ''>;
     [andreForelderDataKeySpørsmål.fnr]: ISøknadSpørsmål<string | AlternativtSvarForInput.UKJENT>;
     [andreForelderDataKeySpørsmål.fødselsdato]: ISøknadSpørsmål<DatoMedUkjent>;
-    [andreForelderDataKeySpørsmål.værtINorgeITolvMåneder]: ISøknadSpørsmål<ESvar | null>;
-    [andreForelderDataKeySpørsmål.planleggerÅBoINorgeTolvMnd]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.yrkesaktivFemÅr]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.arbeidUtlandet]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.pensjonUtland]: ISøknadSpørsmål<ESvar | null>;

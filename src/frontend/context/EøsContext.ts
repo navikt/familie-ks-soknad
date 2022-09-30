@@ -71,9 +71,6 @@ const [EøsProvider, useEøs] = createUseContext(() => {
                       barn.andreForelder.pensjonsperioderUtland.map(
                           periode => periode.pensjonsland.svar
                       ),
-                      barn.andreForelder.utenlandsperioder.map(
-                          periode => periode.oppholdsland.svar
-                      ),
                   ]
                 : []),
             barn.utenlandsperioder.map(periode => periode.oppholdsland.svar),
