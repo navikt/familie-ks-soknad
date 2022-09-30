@@ -3,8 +3,7 @@ import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import { Alpha3Code, getName } from 'i18n-iso-countries';
 import { useIntl } from 'react-intl';
 import styled from 'styled-components';
-
-import { guid } from 'nav-frontend-js-utils';
+import { v4 as uuidv4 } from 'uuid';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, Felt, FeltState, ISkjema, ok, useFelt } from '@navikt/familie-skjema';
@@ -61,13 +60,13 @@ export const IdNummer: React.FC<{
             skalViseVetIkkeCheckbox && idNummerVerdiFraSøknad === AlternativtSvarForInput.UKJENT
                 ? ESvar.JA
                 : ESvar.NEI,
-        feltId: `${guid()}idnummer-ukjent-${landAlphaCode}`,
+        feltId: `${uuidv4()}idnummer-ukjent-${landAlphaCode}`,
         skalFeltetVises: () => skalViseVetIkkeCheckbox,
     });
 
     const idNummerFelt = useInputFeltMedUkjent({
         søknadsfelt: {
-            id: `${guid()}${idNummerKeyPrefix}${landAlphaCode}`,
+            id: `${uuidv4()}${idNummerKeyPrefix}${landAlphaCode}`,
             svar:
                 idNummerVerdiFraSøknad && idNummerVerdiFraSøknad !== AlternativtSvarForInput.UKJENT
                     ? idNummerVerdiFraSøknad
