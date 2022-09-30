@@ -22,8 +22,6 @@ export enum andreForelderDataKeySpørsmål {
     fnr = 'fnr',
     yrkesaktivFemÅr = 'yrkesaktivFemÅr',
     fødselsdato = 'fødselsdato',
-    værtINorgeITolvMåneder = 'værtINorgeITolvMåneder',
-    planleggerÅBoINorgeTolvMnd = 'planleggerÅBoINorgeTolvMnd',
 
     arbeidUtlandet = 'arbeidUtlandet',
     pensjonUtland = 'pensjonUtland',

@@ -85,43 +85,6 @@ const AndreForelderOppsummering: React.FC<{
                         )}
                     />
                 )}
-                {andreForelder[andreForelderDataKeySpørsmål.værtINorgeITolvMåneder].svar && (
-                    <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnetSpørsmålSpråkId[
-                                        andreForelder[
-                                            andreForelderDataKeySpørsmål.værtINorgeITolvMåneder
-                                        ].id
-                                    ]
-                                }
-                            />
-                        }
-                        søknadsvar={
-                            andreForelder[andreForelderDataKeySpørsmål.værtINorgeITolvMåneder].svar
-                        }
-                    />
-                )}
-                {andreForelder[andreForelderDataKeySpørsmål.planleggerÅBoINorgeTolvMnd].svar && (
-                    <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnetSpørsmålSpråkId[
-                                        andreForelder[
-                                            andreForelderDataKeySpørsmål.planleggerÅBoINorgeTolvMnd
-                                        ].id
-                                    ]
-                                }
-                            />
-                        }
-                        søknadsvar={
-                            andreForelder[andreForelderDataKeySpørsmål.planleggerÅBoINorgeTolvMnd]
-                                .svar
-                        }
-                    />
-                )}
                 {andreForelder[andreForelderDataKeySpørsmål.yrkesaktivFemÅr].svar && (
                     <OppsummeringFelt
                         tittel={
