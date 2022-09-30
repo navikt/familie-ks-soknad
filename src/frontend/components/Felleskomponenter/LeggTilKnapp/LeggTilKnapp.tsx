@@ -2,11 +2,11 @@ import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
-import navFarger from 'nav-frontend-core';
 import { Feilmelding } from 'nav-frontend-typografi';
 
 import { AddCircle } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
+import { NavdsGlobalColorRed500 } from '@navikt/ds-tokens/dist/tokens';
 
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
 
@@ -18,10 +18,10 @@ interface Props {
     id?: string;
 }
 
-const StyledButton = styled(Button)<{ feilmelding: boolean }>`
+const StyledButton = styled(Button)`
     && {
         margin: 0.5rem 0 0.5rem 0;
-        border: ${props => (props.$feilmelding ? `2px solid ${navFarger.redError}` : 'none')};
+        border: ${props => (props.$feilmelding ? `2px solid ${NavdsGlobalColorRed500}` : 'none')};
     }
 `;
 
