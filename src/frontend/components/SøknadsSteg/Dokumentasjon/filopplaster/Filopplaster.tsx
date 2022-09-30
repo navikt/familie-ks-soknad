@@ -3,11 +3,11 @@ import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
 
-import navFarger from 'nav-frontend-core';
 import Modal from 'nav-frontend-modal';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import { Upload } from '@navikt/ds-icons';
+import { NavdsGlobalColorBlue500, NavdsSemanticColorBorder } from '@navikt/ds-tokens/dist/tokens';
 
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
@@ -31,18 +31,18 @@ const FilopplastningBoks = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px dashed ${navFarger.navGra80};
+    border: 2px dashed ${NavdsSemanticColorBorder};
     border-radius: 4px;
     background-color: rgba(204, 222, 230, 0.5);
     width: 100%;
     padding: 1rem;
     margin: 2rem 0 1rem 0;
-    color: ${navFarger.navBla};
+    color: ${NavdsGlobalColorBlue500};
     box-sizing: border-box;
 
     :focus,
     :hover {
-        border: 2px solid ${navFarger.navBla};
+        border: 2px solid ${NavdsGlobalColorBlue500};
         cursor: pointer;
     }
 `;
