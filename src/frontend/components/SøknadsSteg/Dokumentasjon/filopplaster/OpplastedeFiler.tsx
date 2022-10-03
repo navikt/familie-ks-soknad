@@ -2,11 +2,11 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import navFarger from 'nav-frontend-core';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import { Attachment, DeleteFilled } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
+import { NavdsSemanticColorDivider } from '@navikt/ds-tokens/dist/tokens';
 
 import { IVedlegg } from '../../../../typer/dokumentasjon';
 import { formaterFilstørrelse } from '../../../../utils/dokumentasjon';
@@ -25,7 +25,8 @@ const FilRad = styled.li<{ skillelinje: boolean }>`
     display: flex;
     justify-content: space-between;
     padding: 1rem 0;
-    border-bottom: ${props => (props.skillelinje ? `1px solid ${navFarger.navGra20}` : 'none')};
+    border-bottom: ${props =>
+        props.skillelinje ? `1px solid ${NavdsSemanticColorDivider}` : 'none'};
 `;
 
 const FilTekstWrapper = styled.div`
