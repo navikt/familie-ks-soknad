@@ -30,7 +30,7 @@ const OmBarnaDine: React.FC = () => {
         useOmBarnaDine();
 
     const history = useHistory();
-    const { søknad, tekster, localeString } = useApp();
+    const { søknad, tekster, plainTekst } = useApp();
     const { barnInkludertISøknaden } = søknad;
 
     const {
@@ -214,7 +214,7 @@ const OmBarnaDine: React.FC = () => {
                     {hvemBarnehageplass.vedleggsnotis ? (
                         <VedleggNotis>
                             <Normaltekst>
-                                {localeString(hvemBarnehageplass.vedleggsnotis)}
+                                {plainTekst(hvemBarnehageplass.vedleggsnotis)}
                             </Normaltekst>
                         </VedleggNotis>
                     ) : null}

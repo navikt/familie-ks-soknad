@@ -210,8 +210,6 @@ const [AppProvider, useApp] = createUseContext(() => {
         return lasterRessurser() || innloggetStatus === InnloggetStatus.IKKE_VERIFISERT;
     };
 
-    const localeString = (key: LocaleRecordString): string => key[valgtLocale];
-
     const tekster = (): ITekstinnhold => {
         if (teksterRessurs.status === RessursStatus.SUKSESS) {
             return teksterRessurs.data;
@@ -230,7 +228,7 @@ const [AppProvider, useApp] = createUseContext(() => {
             case EFlettefeltverdi.BARN_NAVN:
                 return barnetsNavn ?? '';
             case EFlettefeltverdi.YTELSE:
-                return localeString(tekster()[ESanitySteg.FELLES].frittståendeOrd.kontantstoette);
+                return plainTekst(tekster()[ESanitySteg.FELLES].frittståendeOrd.kontantstoette);
             default:
                 return '';
         }
@@ -275,7 +273,6 @@ const [AppProvider, useApp] = createUseContext(() => {
         settSisteModellVersjon,
         eøsLand,
         settEøsLand,
-        localeString,
         tekster,
         flettefeltTilTekst,
         plainTekst,

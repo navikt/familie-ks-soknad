@@ -35,7 +35,7 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
     personType,
 }) => {
     const [valgtLocale] = useSprakContext();
-    const { localeString, tekster } = useApp();
+    const { plainTekst, tekster } = useApp();
     const { oppholdsland, utenlandsoppholdÅrsak, oppholdslandFraDato, oppholdslandTilDato } =
         periode;
     const årsak = utenlandsoppholdÅrsak.svar;
@@ -53,7 +53,7 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                     tittel={<TekstBlock block={teksterForPersonType.periodeBeskrivelse.sporsmal} />}
                 >
                     <Normaltekst>
-                        {localeString(utenlandsoppholdÅrsakTilTekst(årsak, teksterForPersonType))}
+                        {plainTekst(utenlandsoppholdÅrsakTilTekst(årsak, teksterForPersonType))}
                     </Normaltekst>
                 </OppsummeringFelt>
 
@@ -85,7 +85,7 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                         }
                         søknadsvar={formaterDatoMedUkjent(
                             oppholdslandTilDato.svar,
-                            localeString(teksterForPersonType.sluttdatoFremtid.checkboxLabel)
+                            plainTekst(teksterForPersonType.sluttdatoFremtid.checkboxLabel)
                         )}
                     />
                 )}
