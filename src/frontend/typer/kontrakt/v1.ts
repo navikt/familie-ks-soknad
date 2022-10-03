@@ -85,8 +85,6 @@ export interface IAndreForelderIKontraktFormat {
     navn: ISøknadsfelt<string> | null;
     fnr: ISøknadsfelt<string> | null;
     fødselsdato: ISøknadsfelt<string> | null;
-    værtINorgeSisteTolvMåneder: ISøknadsfelt<ESvar> | null;
-    planleggerÅBoINorgeTolvMnd: ISøknadsfelt<ESvar> | null;
     yrkesaktivFemÅr: ISøknadsfelt<ESvar> | null;
     pensjonUtland: ISøknadsfelt<ESvar> | null;
     arbeidUtlandet: ISøknadsfelt<ESvar> | null;
@@ -97,7 +95,6 @@ export interface IAndreForelderIKontraktFormat {
     arbeidNorge: ISøknadsfelt<ESvar> | null;
     andreUtbetalinger: ISøknadsfelt<ESvar> | null;
     kontantstøtteFraEøs: ISøknadsfelt<ESvar> | null;
-    utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
     arbeidsperioderUtland: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
     pensjonsperioderUtland: ISøknadsfelt<IPensjonsperiodeIKontraktFormat>[];
     arbeidsperioderNorge: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
