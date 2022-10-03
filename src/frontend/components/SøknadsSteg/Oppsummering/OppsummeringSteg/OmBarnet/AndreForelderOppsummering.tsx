@@ -16,7 +16,6 @@ import { formaterDatoMedUkjent } from '../../../../../utils/visning';
 import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
 import SpråkTekst from '../../../../Felleskomponenter/SpråkTekst/SpråkTekst';
-import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
 import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from '../../../OmBarnet/spørsmål';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
@@ -84,51 +83,6 @@ const AndreForelderOppsummering: React.FC<{
                                 ],
                             })
                         )}
-                    />
-                )}
-                {andreForelder[andreForelderDataKeySpørsmål.værtINorgeITolvMåneder].svar && (
-                    <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnetSpørsmålSpråkId[
-                                        andreForelder[
-                                            andreForelderDataKeySpørsmål.værtINorgeITolvMåneder
-                                        ].id
-                                    ]
-                                }
-                            />
-                        }
-                        søknadsvar={
-                            andreForelder[andreForelderDataKeySpørsmål.værtINorgeITolvMåneder].svar
-                        }
-                    />
-                )}
-                {andreForelder.utenlandsperioder.map((periode, index) => (
-                    <UtenlandsperiodeOppsummering
-                        key={index}
-                        periode={periode}
-                        nummer={index + 1}
-                        personType={PersonType.andreForelder}
-                    />
-                ))}
-                {andreForelder[andreForelderDataKeySpørsmål.planleggerÅBoINorgeTolvMnd].svar && (
-                    <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnetSpørsmålSpråkId[
-                                        andreForelder[
-                                            andreForelderDataKeySpørsmål.planleggerÅBoINorgeTolvMnd
-                                        ].id
-                                    ]
-                                }
-                            />
-                        }
-                        søknadsvar={
-                            andreForelder[andreForelderDataKeySpørsmål.planleggerÅBoINorgeTolvMnd]
-                                .svar
-                        }
                     />
                 )}
                 {andreForelder[andreForelderDataKeySpørsmål.yrkesaktivFemÅr].svar && (

@@ -133,13 +133,7 @@ export const barnISøknadsFormat = (
             )
         ),
         andreForelder: andreForelder
-            ? andreForelderTilISøknadsfelt(
-                  andreForelder,
-                  barn,
-                  valgtSpråk,
-                  tekster,
-                  tilRestLocaleRecord
-              )
+            ? andreForelderTilISøknadsfelt(andreForelder, barn, valgtSpråk)
             : null,
 
         omsorgsperson: omsorgsperson ? omsorgspersonTilISøknadsfelt(omsorgsperson, barn) : null,
