@@ -3,10 +3,13 @@ import React, { useEffect } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, FeltState, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IBarnehageplassPerioderFeltTyper } from '../../../typer/skjema';
 import {
     dagenEtterDato,
@@ -21,6 +24,10 @@ import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 
 export const useBarnehageplassPeriodeSkjema = barn => {
+    const { tekster } = useApp();
+    const barnehageplassTekster: IBarnehageplassTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
+
     const barnehageplassPeriodeBeskrivelse = useFelt<EBarnehageplassPeriodeBeskrivelse | ''>({
         feltId: BarnehageplassPeriodeSpørsmålId.barnehageplassPeriodeBeskrivelse,
         verdi: '',
@@ -42,10 +49,9 @@ export const useBarnehageplassPeriodeSkjema = barn => {
 
     const barnehageplassLand = useLanddropdownFelt({
         søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.barnehageplassLand, svar: '' },
-        feilmeldingSpråkId: 'todo.ombarnet.barnehageplass.periode',
+        feilmelding: barnehageplassTekster.barnehageHvilketLand.feilmelding,
         skalFeltetVises: barnehageplassUtlandet.verdi === ESvar.JA,
         nullstillVedAvhengighetEndring: true,
-        feilmeldingSpråkVerdier: { barn: barn.navn },
     });
 
     const offentligStøtte = useJaNeiSpmFelt({

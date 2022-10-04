@@ -1,6 +1,7 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import { useFelt, useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
@@ -8,13 +9,11 @@ import useInputFelt from '../../../hooks/useInputFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { PersonType } from '../../../typer/personType';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IArbeidsperioderFeltTyper } from '../../../typer/skjema';
 import { dagensDato, erSammeDatoSomDagensDato, gårsdagensDato } from '../../../utils/dato';
 import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
-import {
-    arbeidslandFeilmelding,
-    tilDatoArbeidsperiodeFeilmelding,
-} from './arbeidsperiodeSpråkUtils';
+import { tilDatoArbeidsperiodeFeilmelding } from './arbeidsperiodeSpråkUtils';
 import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
 
 export interface IUseArbeidsperiodeSkjemaParams {
@@ -28,7 +27,9 @@ export const useArbeidsperiodeSkjema = (
     personType: PersonType,
     erDød = false
 ) => {
+    const { tekster } = useApp();
     const { erEøsLand } = useEøs();
+    const teksterForPersonType = tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode[personType];
 
     const andreForelderErDød = personType === PersonType.andreForelder && erDød;
 
@@ -42,7 +43,9 @@ export const useArbeidsperiodeSkjema = (
 
     const arbeidsperiodeLand = useLanddropdownFelt({
         søknadsfelt: { id: ArbeidsperiodeSpørsmålsId.arbeidsperiodeLand, svar: '' },
-        feilmeldingSpråkId: arbeidslandFeilmelding(periodenErAvsluttet, personType),
+        feilmelding: periodenErAvsluttet
+            ? teksterForPersonType.hvilketLandFortid.feilmelding
+            : teksterForPersonType.hvilketLandNaatid.feilmelding,
         skalFeltetVises:
             (arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
                 andreForelderErDød) &&

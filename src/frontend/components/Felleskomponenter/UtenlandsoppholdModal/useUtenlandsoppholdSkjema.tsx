@@ -3,10 +3,12 @@ import React, { useEffect } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, FeltState, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { PersonType } from '../../../typer/personType';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IUtenlandsoppholdFeltTyper } from '../../../typer/skjema';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 import { dagenEtterDato } from '../../../utils/dato';
@@ -20,7 +22,7 @@ import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import { UtenlandsoppholdSpørsmålId } from './spørsmål';
 import {
     fraDatoFeilmeldingSpråkId,
-    landFeilmeldingSpråkId,
+    landFeilmeldingTekst,
     tilDatoFeilmeldingSpråkId,
     årsakFeilmeldingSpråkId,
 } from './utenlandsoppholdSpråkUtils';
@@ -30,6 +32,9 @@ export interface IUseUtenlandsoppholdSkjemaParams {
 }
 
 export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSkjemaParams) => {
+    const { tekster } = useApp();
+    const teksterForPersontype = tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
+
     const utenlandsoppholdÅrsak = useFelt<EUtenlandsoppholdÅrsak | ''>({
         feltId: UtenlandsoppholdSpørsmålId.årsakUtenlandsopphold,
         verdi: '',
@@ -45,7 +50,7 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
 
     const oppholdsland = useLanddropdownFelt({
         søknadsfelt: { id: UtenlandsoppholdSpørsmålId.landUtenlandsopphold, svar: '' },
-        feilmeldingSpråkId: landFeilmeldingSpråkId(utenlandsoppholdÅrsak.verdi, personType),
+        feilmelding: landFeilmeldingTekst(utenlandsoppholdÅrsak.verdi, teksterForPersontype),
         skalFeltetVises: !!utenlandsoppholdÅrsak.verdi,
         nullstillVedAvhengighetEndring: true,
     });

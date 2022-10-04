@@ -23,27 +23,6 @@ export const mottarPensjonNåFeilmeldingSpråkId = (personType: PersonType): str
     }
 };
 
-export const pensjonslandFeilmeldingSpråkId = (personType, periodenErAvsluttet) => {
-    switch (personType) {
-        case PersonType.andreForelder: {
-            return periodenErAvsluttet
-                ? 'modal.hvilketlandpensjonandreforelder.feilmelding'
-                : 'ombarnet.andre-forelder.utenlandspensjon.land.feilmelding';
-        }
-        case PersonType.omsorgsperson: {
-            return periodenErAvsluttet
-                ? 'modal.hvilketlandpensjon-fortid-omsorgsperson.feilmelding'
-                : 'modal.hvilketlandpensjon-nåtid-omsorgsperson.feilmelding';
-        }
-        case PersonType.søker:
-        default: {
-            return periodenErAvsluttet
-                ? 'felles.hvilketlandpensjon.feilmelding'
-                : 'omdeg.utenlandspensjon.land.feilmelding';
-        }
-    }
-};
-
 export const pensjonFraDatoFeilmeldingSpråkId = (personType, periodenErAvsluttet) => {
     switch (personType) {
         case PersonType.andreForelder: {
