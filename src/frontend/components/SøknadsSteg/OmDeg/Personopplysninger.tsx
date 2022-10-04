@@ -17,7 +17,7 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 export const Personopplysninger: React.FC = () => {
     const [valgtLocale] = useSprakContext();
 
-    const { søknad, tekster, localeString } = useApp();
+    const { søknad, tekster, plainTekst } = useApp();
     const søker = søknad.søker;
 
     const {
@@ -38,12 +38,12 @@ export const Personopplysninger: React.FC = () => {
             </AlertStripe>
 
             <Informasjonsbolk>
-                <Element>{localeString(idnummer)}</Element>
+                <Element>{plainTekst(idnummer)}</Element>
                 <Normaltekst>{søker.ident}</Normaltekst>
             </Informasjonsbolk>
 
             <Informasjonsbolk>
-                <Element>{localeString(statsborgerskap)}</Element>
+                <Element>{plainTekst(statsborgerskap)}</Element>
                 <Normaltekst>
                     {søker.statsborgerskap
                         .map((statsborgerskap: { landkode: Alpha3Code }) =>
@@ -54,16 +54,16 @@ export const Personopplysninger: React.FC = () => {
             </Informasjonsbolk>
 
             <Informasjonsbolk>
-                <Element>{localeString(sivilstatus)}</Element>
+                <Element>{plainTekst(sivilstatus)}</Element>
                 <Normaltekst>
-                    {localeString(
+                    {plainTekst(
                         frittståendeOrd[sivilstandTilSanitySivilstandApiKey(søker.sivilstand.type)]
                     )}
                 </Normaltekst>
             </Informasjonsbolk>
 
             <Informasjonsbolk>
-                <Element>{localeString(adresse)}</Element>
+                <Element>{plainTekst(adresse)}</Element>
                 {genererAdresseVisning(søker)}
             </Informasjonsbolk>
         </>
