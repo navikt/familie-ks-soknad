@@ -3,19 +3,18 @@ import { useEffect } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { PersonType } from '../../../typer/personType';
+import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IPensjonsperiodeFeltTyper } from '../../../typer/skjema';
 import { dagenEtterDato, dagensDato, gårsdagensDato } from '../../../utils/dato';
-import {
-    mottarPensjonNåFeilmeldingSpråkId,
-    pensjonFraDatoFeilmeldingSpråkId,
-    pensjonslandFeilmeldingSpråkId,
-} from './språkUtils';
+import { mottarPensjonNåFeilmeldingSpråkId, pensjonFraDatoFeilmeldingSpråkId } from './språkUtils';
 import { PensjonsperiodeSpørsmålId } from './spørsmål';
 
 export interface IUsePensjonSkjemaParams {
@@ -31,7 +30,10 @@ export const usePensjonSkjema = ({
     erDød,
     barn,
 }: IUsePensjonSkjemaParams) => {
+    const { tekster } = useApp();
     const { erEøsLand } = useEøs();
+    const teksterForPersonType: IPensjonsperiodeTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.pensjonsperiode[personType];
 
     const erAndreForelderDød = personType === PersonType.andreForelder && !!erDød;
 
@@ -50,7 +52,9 @@ export const usePensjonSkjema = ({
 
     const pensjonsland = useLanddropdownFelt({
         søknadsfelt: { id: PensjonsperiodeSpørsmålId.pensjonsland, svar: '' },
-        feilmeldingSpråkId: pensjonslandFeilmeldingSpråkId(personType, periodenErAvsluttet),
+        feilmelding: periodenErAvsluttet
+            ? teksterForPersonType.pensjonLandFortid.feilmelding
+            : teksterForPersonType.pensjonLandNaatid.feilmelding,
         skalFeltetVises:
             (mottarPensjonNå.valideringsstatus === Valideringsstatus.OK || erAndreForelderDød) &&
             gjelderUtland,

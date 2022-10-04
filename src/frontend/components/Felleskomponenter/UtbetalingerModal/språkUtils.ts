@@ -47,27 +47,6 @@ export const fårUtbetalingNåFeilmelding = (personType: PersonType) => {
     }
 };
 
-export const utbetalingslandFeilmelding = (
-    personType: PersonType,
-    periodenErAvsluttet: boolean
-) => {
-    switch (personType) {
-        case PersonType.andreForelder:
-            return periodenErAvsluttet
-                ? 'modal.andreforelder-utbetalingerland-fikk.feilmelding'
-                : 'modal.andreforelder-utbetalingerland-får.feilmelding';
-        case PersonType.omsorgsperson:
-            return periodenErAvsluttet
-                ? 'modal.omsorgsperson-utbetalingerland-fortid.feilmelding'
-                : 'modal.omsorgsperson-utbetalingerland-nåtid.feilmelding';
-        case PersonType.søker:
-        default:
-            return periodenErAvsluttet
-                ? 'modal.utbetalingsland-fikk-søker.feilmeldinger'
-                : 'modal.utbetalingsland-får-søker.feilmelding';
-    }
-};
-
 const utbetalingsperiodeFellesSpørsmålSpråkId = (
     periodenErAvsluttet: boolean
 ): Record<

@@ -49,7 +49,6 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, barn, erD
             mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK ||
             andreForelderErDød,
         nullstillVedAvhengighetEndring: true,
-        barnetsNavn: barn.navn,
     });
 
     const fraDatoKontantstøttePeriode = useDatovelgerFelt({

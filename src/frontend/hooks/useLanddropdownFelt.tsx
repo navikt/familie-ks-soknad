@@ -13,13 +13,11 @@ const useLanddropdownFelt = ({
     feilmelding,
     skalFeltetVises,
     nullstillVedAvhengighetEndring = false,
-    barnetsNavn,
 }: {
     søknadsfelt: ISøknadSpørsmål<Alpha3Code | ''>;
     feilmelding: LocaleRecordBlock;
     skalFeltetVises: boolean;
     nullstillVedAvhengighetEndring?: boolean;
-    barnetsNavn?: string;
 }) => {
     return useFelt<Alpha3Code | ''>({
         feltId: søknadsfelt.id,
@@ -33,7 +31,7 @@ const useLanddropdownFelt = ({
                 : feil(
                       felt,
                       avhengigheter?.feilmelding ? (
-                          <TekstBlock block={avhengigheter.feilmelding} barnetsNavn={barnetsNavn} />
+                          <TekstBlock block={avhengigheter.feilmelding} />
                       ) : (
                           ''
                       )
