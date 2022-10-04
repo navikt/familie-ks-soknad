@@ -3,13 +3,14 @@ import { useEffect } from 'react';
 import { ESvar, ISODateString } from '@navikt/familie-form-elements';
 import { Avhengigheter, Felt, FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
+import { LocaleRecordBlock } from '../typer/common';
 import { validerDato } from '../utils/dato';
 
 const useDatovelgerFeltMedUkjent = ({
     feltId,
     initiellVerdi,
     vetIkkeCheckbox,
-    feilmeldingSpråkId,
+    feilmelding,
     skalFeltetVises,
     nullstillVedAvhengighetEndring = true,
     sluttdatoAvgrensning = '',
@@ -20,7 +21,7 @@ const useDatovelgerFeltMedUkjent = ({
     feltId;
     initiellVerdi;
     vetIkkeCheckbox: Felt<ESvar>;
-    feilmeldingSpråkId: string;
+    feilmelding: LocaleRecordBlock;
     skalFeltetVises: boolean;
     nullstillVedAvhengighetEndring?: boolean;
     sluttdatoAvgrensning?: ISODateString;
@@ -42,13 +43,13 @@ const useDatovelgerFeltMedUkjent = ({
 
             const startdatoAvgrensning = avhengigheter && avhengigheter.startdatoAvgrensning;
             const sluttdatoAvgrensning = avhengigheter && avhengigheter.sluttdatoAvgrensning;
-            const feilmeldingSpråkId = avhengigheter && avhengigheter.feilmeldingSpråkId;
+            const feilmelding = avhengigheter && (avhengigheter.feilmelding as LocaleRecordBlock);
             const customStartdatoFeilmelding =
                 avhengigheter && avhengigheter.customStartdatoFeilmelding;
 
             return validerDato(
                 felt,
-                feilmeldingSpråkId,
+                feilmelding,
                 startdatoAvgrensning,
                 sluttdatoAvgrensning,
                 customStartdatoFeilmelding
@@ -60,7 +61,7 @@ const useDatovelgerFeltMedUkjent = ({
             startdatoAvgrensning,
             sluttdatoAvgrensning,
             customStartdatoFeilmelding,
-            feilmeldingSpråkId,
+            feilmelding,
             ...avhengigheter,
         },
         nullstillVedAvhengighetEndring,

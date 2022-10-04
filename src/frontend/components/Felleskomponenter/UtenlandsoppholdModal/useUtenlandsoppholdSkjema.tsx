@@ -8,6 +8,7 @@ import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { PersonType } from '../../../typer/personType';
+import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IUtenlandsoppholdFeltTyper } from '../../../typer/skjema';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
@@ -18,13 +19,12 @@ import {
     hentMaxAvgrensningPåFraDato,
     hentMaxAvgrensningPåTilDato,
 } from '../../../utils/utenlandsopphold';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 import { UtenlandsoppholdSpørsmålId } from './spørsmål';
 import {
-    fraDatoFeilmeldingSpråkId,
-    landFeilmeldingTekst,
-    tilDatoFeilmeldingSpråkId,
-    årsakFeilmeldingSpråkId,
+    hentFraDatoFeilmelding,
+    hentLandFeilmelding,
+    hentTilDatoFeilmelding,
 } from './utenlandsoppholdSpråkUtils';
 
 export interface IUseUtenlandsoppholdSkjemaParams {
@@ -33,7 +33,8 @@ export interface IUseUtenlandsoppholdSkjemaParams {
 
 export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSkjemaParams) => {
     const { tekster } = useApp();
-    const teksterForPersontype = tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
+    const teksterForPersontype: IUtenlandsoppholdTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
 
     const utenlandsoppholdÅrsak = useFelt<EUtenlandsoppholdÅrsak | ''>({
         feltId: UtenlandsoppholdSpørsmålId.årsakUtenlandsopphold,
@@ -41,7 +42,10 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
         valideringsfunksjon: (felt: FeltState<EUtenlandsoppholdÅrsak | ''>) =>
             felt.verdi !== ''
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={årsakFeilmeldingSpråkId(personType)} />),
+                : feil(
+                      felt,
+                      <TekstBlock block={teksterForPersontype.periodeBeskrivelse.feilmelding} />
+                  ),
     });
 
     useEffect(() => {
@@ -50,7 +54,7 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
 
     const oppholdsland = useLanddropdownFelt({
         søknadsfelt: { id: UtenlandsoppholdSpørsmålId.landUtenlandsopphold, svar: '' },
-        feilmelding: landFeilmeldingTekst(utenlandsoppholdÅrsak.verdi, teksterForPersontype),
+        feilmelding: hentLandFeilmelding(utenlandsoppholdÅrsak.verdi, teksterForPersontype),
         skalFeltetVises: !!utenlandsoppholdÅrsak.verdi,
         nullstillVedAvhengighetEndring: true,
     });
@@ -63,7 +67,7 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
         skalFeltetVises:
             !!utenlandsoppholdÅrsak.verdi &&
             utenlandsoppholdÅrsak.verdi !== EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE,
-        feilmeldingSpråkId: fraDatoFeilmeldingSpråkId(utenlandsoppholdÅrsak.verdi, personType),
+        feilmelding: hentFraDatoFeilmelding(utenlandsoppholdÅrsak.verdi, teksterForPersontype),
         sluttdatoAvgrensning: hentMaxAvgrensningPåFraDato(utenlandsoppholdÅrsak.verdi),
         avhengigheter: { utenlandsoppholdÅrsak },
         nullstillVedAvhengighetEndring: true,
@@ -83,7 +87,7 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
         feltId: UtenlandsoppholdSpørsmålId.tilDatoUtenlandsopphold,
         initiellVerdi: '',
         vetIkkeCheckbox: oppholdslandTilDatoUkjent,
-        feilmeldingSpråkId: tilDatoFeilmeldingSpråkId(utenlandsoppholdÅrsak.verdi, personType),
+        feilmelding: hentTilDatoFeilmelding(utenlandsoppholdÅrsak.verdi, teksterForPersontype),
         skalFeltetVises:
             !!utenlandsoppholdÅrsak.verdi &&
             utenlandsoppholdÅrsak.verdi !== EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE,

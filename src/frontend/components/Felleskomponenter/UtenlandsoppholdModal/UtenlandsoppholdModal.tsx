@@ -31,7 +31,7 @@ import {
     hentFraDatoSpørsmål,
     hentLandSpørsmål,
     hentTilDatoSpørsmål,
-    utenlandsoppholdÅrsakTilTekst,
+    hentUtenlandsoppholdÅrsak,
 } from './utenlandsoppholdSpråkUtils';
 
 type Props = ReturnType<typeof useModal> & {
@@ -116,7 +116,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                         {Object.keys(EUtenlandsoppholdÅrsak).map((årsak, number) => (
                             <option key={number} value={årsak}>
                                 {plainTekst(
-                                    utenlandsoppholdÅrsakTilTekst(
+                                    hentUtenlandsoppholdÅrsak(
                                         årsak as EUtenlandsoppholdÅrsak,
                                         teksterForPersonType
                                     )

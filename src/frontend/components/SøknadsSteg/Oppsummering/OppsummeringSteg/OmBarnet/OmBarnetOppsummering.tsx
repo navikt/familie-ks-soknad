@@ -12,9 +12,8 @@ import {
     IBarnMedISøknad,
 } from '../../../../../typer/barn';
 import { PersonType } from '../../../../../typer/personType';
-import { formaterDato } from '../../../../../utils/dato';
+import { formaterDato, formaterDatoMedUkjent } from '../../../../../utils/dato';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
-import { formaterDatoMedUkjent } from '../../../../../utils/visning';
 import { BarnehageplassPeriodeOppsummering } from '../../../../Felleskomponenter/Barnehagemodal/barnehageplassPeriodeOppsummering';
 import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
 import SpråkTekst from '../../../../Felleskomponenter/SpråkTekst/SpråkTekst';

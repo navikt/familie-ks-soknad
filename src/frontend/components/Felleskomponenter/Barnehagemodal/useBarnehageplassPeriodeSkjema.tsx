@@ -82,9 +82,19 @@ export const useBarnehageplassPeriodeSkjema = barn => {
         },
     });
 
+    const periodenErAvsluttet =
+        barnehageplassPeriodeBeskrivelse.verdi ===
+        EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE;
+
+    const periodenHarIkkeStartet =
+        barnehageplassPeriodeBeskrivelse.verdi ===
+        EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN;
+
     const startetIBarnehagen = useDatovelgerFelt({
         søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.startetIBarnehagen, svar: '' },
-        feilmeldingSpråkId: 'todo.ombarnet.barnehageplass.periode',
+        feilmelding: periodenHarIkkeStartet
+            ? barnehageplassTekster.startdatoFremtid.feilmelding
+            : barnehageplassTekster.startdatoFortid.feilmelding,
         skalFeltetVises: true,
         startdatoAvgrensning:
             barnehageplassPeriodeBeskrivelse.verdi ===
@@ -115,7 +125,9 @@ export const useBarnehageplassPeriodeSkjema = barn => {
         feltId: BarnehageplassPeriodeSpørsmålId.slutterIBarnehagen,
         initiellVerdi: '',
         vetIkkeCheckbox: slutterIBarnehagenVetIkke,
-        feilmeldingSpråkId: 'todo.ombarnet.barnehageplass.periode',
+        feilmelding: periodenErAvsluttet
+            ? barnehageplassTekster.sluttdatoFortid.feilmelding
+            : barnehageplassTekster.sluttdatoFremtid.feilmelding,
         skalFeltetVises: true,
         startdatoAvgrensning:
             barnehageplassPeriodeBeskrivelse.verdi ===

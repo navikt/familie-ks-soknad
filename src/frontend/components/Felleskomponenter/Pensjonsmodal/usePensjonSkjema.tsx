@@ -14,7 +14,7 @@ import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pens
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IPensjonsperiodeFeltTyper } from '../../../typer/skjema';
 import { dagenEtterDato, dagensDato, gårsdagensDato } from '../../../utils/dato';
-import { mottarPensjonNåFeilmeldingSpråkId, pensjonFraDatoFeilmeldingSpråkId } from './språkUtils';
+import { mottarPensjonNåFeilmeldingSpråkId } from './språkUtils';
 import { PensjonsperiodeSpørsmålId } from './spørsmål';
 
 export interface IUsePensjonSkjemaParams {
@@ -69,7 +69,7 @@ export const usePensjonSkjema = ({
         skalFeltetVises:
             (mottarPensjonNå.valideringsstatus === Valideringsstatus.OK || erAndreForelderDød) &&
             (!gjelderUtland || !!erEøsLand(pensjonsland.verdi)),
-        feilmeldingSpråkId: pensjonFraDatoFeilmeldingSpråkId(personType, periodenErAvsluttet),
+        feilmelding: teksterForPersonType.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
         avhengigheter: { mottarPensjonNå },
         nullstillVedAvhengighetEndring: true,
@@ -83,7 +83,7 @@ export const usePensjonSkjema = ({
         skalFeltetVises:
             (mottarPensjonNå.verdi === ESvar.NEI || erAndreForelderDød) &&
             (!gjelderUtland || !!erEøsLand(pensjonsland.verdi)),
-        feilmeldingSpråkId: 'felles.nåravsluttetpensjon.feilmelding',
+        feilmelding: teksterForPersonType.sluttdato.feilmelding,
         sluttdatoAvgrensning: dagensDato(),
         startdatoAvgrensning: dagenEtterDato(pensjonFraDato.verdi),
         avhengigheter: { mottarPensjonNå, pensjonFraDato },

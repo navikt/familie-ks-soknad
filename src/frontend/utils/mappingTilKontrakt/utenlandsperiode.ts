@@ -3,7 +3,7 @@ import {
     hentFraDatoSpørsmål,
     hentLandSpørsmål,
     hentTilDatoSpørsmål,
-    utenlandsoppholdÅrsakTilTekst,
+    hentUtenlandsoppholdÅrsak,
 } from '../../components/Felleskomponenter/UtenlandsoppholdModal/utenlandsoppholdSpråkUtils';
 import {
     ISøknadsfelt,
@@ -32,10 +32,7 @@ export const utenlandsperiodeTilISøknadsfelt = (
             utenlandsoppholdÅrsak: {
                 label: tilRestLocaleRecord(periodeBeskrivelse.sporsmal),
                 verdi: tilRestLocaleRecord(
-                    utenlandsoppholdÅrsakTilTekst(
-                        utenlandperiode.utenlandsoppholdÅrsak.svar,
-                        tekster
-                    )
+                    hentUtenlandsoppholdÅrsak(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster)
                 ),
             },
             oppholdsland: {

@@ -11,11 +11,6 @@ import {
 import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from '../../SøknadsSteg/OmBarnet/spørsmål';
 import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
 
-export const tilDatoArbeidsperiodeFeilmelding = (periodenErAvsluttet: boolean): string =>
-    periodenErAvsluttet
-        ? 'felles.nåravsluttetarbeidsperiode.feilmelding'
-        : 'felles.nåravsluttesarbeidsperiode.feilmelding';
-
 export const arbeidsperiodeOppsummeringOverskrift = (gjelderUtlandet: boolean): string =>
     gjelderUtlandet
         ? 'felles.flerearbeidsperioderutland.periode'

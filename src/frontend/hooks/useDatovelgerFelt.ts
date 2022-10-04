@@ -1,13 +1,14 @@
 import { ISODateString } from '@navikt/familie-form-elements';
 import { Avhengigheter, useFelt } from '@navikt/familie-skjema';
 
+import { LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { validerDato } from '../utils/dato';
 
 const useDatovelgerFelt = ({
     søknadsfelt,
     skalFeltetVises,
-    feilmeldingSpråkId,
+    feilmelding,
     sluttdatoAvgrensning = '',
     startdatoAvgrensning = '',
     avhengigheter,
@@ -15,7 +16,7 @@ const useDatovelgerFelt = ({
 }: {
     søknadsfelt: ISøknadSpørsmål<ISODateString>;
     skalFeltetVises: boolean;
-    feilmeldingSpråkId: string;
+    feilmelding: LocaleRecordBlock;
     sluttdatoAvgrensning?: ISODateString;
     startdatoAvgrensning?: ISODateString;
     avhengigheter?: Avhengigheter;
@@ -27,21 +28,16 @@ const useDatovelgerFelt = ({
         valideringsfunksjon: (felt, avhengigheter) => {
             const startdatoAvgrensning = avhengigheter && avhengigheter.startdatoAvgrensning;
             const sluttdatoAvgrensning = avhengigheter && avhengigheter.sluttdatoAvgrensning;
-            const feilmeldingSpråkId = avhengigheter && avhengigheter.feilmeldingSpråkId;
+            const feilmelding = avhengigheter && (avhengigheter.feilmelding as LocaleRecordBlock);
 
-            return validerDato(
-                felt,
-                feilmeldingSpråkId,
-                startdatoAvgrensning,
-                sluttdatoAvgrensning
-            );
+            return validerDato(felt, feilmelding, startdatoAvgrensning, sluttdatoAvgrensning);
         },
         skalFeltetVises: avhengigheter => avhengigheter?.skalFeltetVises,
         avhengigheter: {
             sluttdatoAvgrensning,
             startdatoAvgrensning,
             skalFeltetVises,
-            feilmeldingSpråkId,
+            feilmelding,
             ...avhengigheter,
         },
         nullstillVedAvhengighetEndring,

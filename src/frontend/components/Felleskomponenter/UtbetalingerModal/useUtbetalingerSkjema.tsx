@@ -54,7 +54,7 @@ export const useUtbetalingerSkjema = (personType, barn, erDød) => {
         },
         skalFeltetVises:
             andreForelderErDød || fårUtbetalingNå.valideringsstatus === Valideringsstatus.OK,
-        feilmeldingSpråkId: 'felles.nårbegynteutbetalingene.feilmelding',
+        feilmelding: teksterForPersontype.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
         nullstillVedAvhengighetEndring: true,
     });
@@ -70,9 +70,9 @@ export const useUtbetalingerSkjema = (personType, barn, erDød) => {
         feltId: UtbetalingerSpørsmålId.utbetalingTilDato,
         initiellVerdi: '',
         vetIkkeCheckbox: utbetalingTilDatoUkjent,
-        feilmeldingSpråkId: periodenErAvsluttet
-            ? 'felles.nårstoppetutbetalingene.feilmelding'
-            : 'felles.nårstopperutbetalingene.feilmelding',
+        feilmelding: periodenErAvsluttet
+            ? teksterForPersontype.sluttdatoFortid.feilmelding
+            : teksterForPersontype.sluttdatoFremtid.feilmelding,
         skalFeltetVises:
             andreForelderErDød || fårUtbetalingNå.valideringsstatus === Valideringsstatus.OK,
         sluttdatoAvgrensning: periodenErAvsluttet ? dagensDato() : undefined,
