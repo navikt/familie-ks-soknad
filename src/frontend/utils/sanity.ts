@@ -157,6 +157,7 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
             dokumenterFiltrertPåPrefix(fellesDokumenter, navigasjonPrefix)
         ) as INavigasjonTekstinnhold,
     };
+    console.log(tekstInnhold);
     return tekstInnhold as ITekstinnhold;
 };
 

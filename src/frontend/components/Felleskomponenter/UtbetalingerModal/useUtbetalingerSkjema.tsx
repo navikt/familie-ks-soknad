@@ -37,7 +37,7 @@ export const useUtbetalingerSkjema = (personType, barn, erDød) => {
         skalFeltetVises:
             fårUtbetalingNå.valideringsstatus === Valideringsstatus.OK || andreForelderErDød,
         nullstillVedAvhengighetEndring: true,
-        feilmeldingSpråkVerdier: barn ? { barn: barn.navn } : undefined,
+        barnetsNavn: barn?.navn,
     });
 
     const utbetalingFraDato = useDatovelgerFelt({

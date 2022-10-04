@@ -11,29 +11,6 @@ import {
 import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from '../../SøknadsSteg/OmBarnet/spørsmål';
 import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
 
-export const arbeidslandFeilmelding = (
-    periodenErAvsluttet: boolean,
-    personType: PersonType
-): string => {
-    switch (personType) {
-        case PersonType.andreForelder: {
-            return periodenErAvsluttet
-                ? 'enkeenkemann.andreforelder-arbeidutland.land.feilmelding'
-                : 'ombarnet.andre-forelder.arbeid-utland.land.feilmelding';
-        }
-        case PersonType.omsorgsperson: {
-            return periodenErAvsluttet
-                ? 'modal.omsorgsperson-arbeid-utland.land-fortid.feilmelding'
-                : 'modal.omsorgsperson-arbeid-utland.land-nåtid.feilmelding';
-        }
-        case PersonType.søker:
-        default:
-            return periodenErAvsluttet
-                ? 'dinlivssituasjon.arbeid-utland.land.feilmelding'
-                : 'omdeg.arbeid-utland.land.feilmelding';
-    }
-};
-
 export const tilDatoArbeidsperiodeFeilmelding = (periodenErAvsluttet: boolean): string =>
     periodenErAvsluttet
         ? 'felles.nåravsluttetarbeidsperiode.feilmelding'
