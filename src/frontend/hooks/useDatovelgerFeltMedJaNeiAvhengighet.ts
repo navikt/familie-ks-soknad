@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { ESvar, ISODateString } from '@navikt/familie-form-elements';
 import { Felt, useFelt } from '@navikt/familie-skjema';
 
+import { LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { validerDato } from '../utils/dato';
 
@@ -10,14 +11,14 @@ const useDatovelgerFeltMedJaNeiAvhengighet = ({
     søknadsfelt,
     avhengigSvarCondition,
     avhengighet,
-    feilmeldingSpråkId,
+    feilmelding,
     sluttdatoAvgrensning = '',
     startdatoAvgrensning = '',
 }: {
     søknadsfelt: ISøknadSpørsmål<ISODateString>;
     avhengigSvarCondition: ESvar;
     avhengighet: Felt<ESvar | null>;
-    feilmeldingSpråkId: string;
+    feilmelding: LocaleRecordBlock;
     sluttdatoAvgrensning?: ISODateString;
     startdatoAvgrensning?: ISODateString;
 }) => {
@@ -30,12 +31,7 @@ const useDatovelgerFeltMedJaNeiAvhengighet = ({
             const startdatoAvgrensning = avhengigheter && avhengigheter.startdatoAvgrensning;
             const sluttdatoAvgrensning = avhengigheter && avhengigheter.sluttdatoAvgrensning;
 
-            return validerDato(
-                felt,
-                feilmeldingSpråkId,
-                startdatoAvgrensning,
-                sluttdatoAvgrensning
-            );
+            return validerDato(felt, feilmelding, startdatoAvgrensning, sluttdatoAvgrensning);
         },
         skalFeltetVises: avhengigheter => {
             return avhengigheter && (avhengigheter.jaNeiSpm as Felt<ESvar | null>)
