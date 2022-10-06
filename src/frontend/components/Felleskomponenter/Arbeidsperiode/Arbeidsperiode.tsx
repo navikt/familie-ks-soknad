@@ -5,6 +5,7 @@ import { Element } from 'nav-frontend-typografi';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import {
@@ -23,7 +24,7 @@ import {
     arbeidsperiodeFeilmelding,
     arbeidsperiodeFlereSpørsmål,
     arbeidsperiodeLeggTilFlereKnapp,
-    arbeidsperiodeSpørsmålSpråkId,
+    arbeidsperiodeSpørsmålDokument,
 } from './arbeidsperiodeSpråkUtils';
 import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
 
@@ -55,6 +56,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
     erDød,
     barn,
 }) => {
+    const { tekster } = useApp();
     const { erÅpen: arbeidsmodalErÅpen, toggleModal: toggleArbeidsmodal } = useModal();
     const barnetsNavn = !!barn && barn.navn;
 
@@ -63,7 +65,12 @@ export const Arbeidsperiode: React.FC<Props> = ({
             <JaNeiSpm
                 skjema={skjema}
                 felt={arbeiderEllerArbeidetFelt}
-                spørsmålTekstId={arbeidsperiodeSpørsmålSpråkId(gjelderUtlandet, personType, erDød)}
+                spørsmålDokument={arbeidsperiodeSpørsmålDokument(
+                    gjelderUtlandet,
+                    personType,
+                    tekster,
+                    erDød
+                )}
                 inkluderVetIkke={personType !== PersonType.søker}
                 språkValues={{
                     ...(barnetsNavn && {
