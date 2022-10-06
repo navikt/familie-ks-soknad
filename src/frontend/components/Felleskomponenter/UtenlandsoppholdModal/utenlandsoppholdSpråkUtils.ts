@@ -1,24 +1,8 @@
 import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
-import { PersonType } from '../../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 
-export const årsakFeilmeldingSpråkId = (personType: PersonType): string => {
-    switch (personType) {
-        case PersonType.søker: {
-            return 'modal.beskriveopphold.feilmelding';
-        }
-        case PersonType.barn: {
-            return 'ombarnet.beskriveopphold.feilmelding';
-        }
-        case PersonType.andreForelder:
-        default: {
-            return 'todo.andreforelder.utenlandsopphold';
-        }
-    }
-};
-
-export const utenlandsoppholdÅrsakTilTekst = (
+export const hentUtenlandsoppholdÅrsak = (
     årsak: EUtenlandsoppholdÅrsak | '',
     tekster: IUtenlandsoppholdTekstinnhold
 ): LocaleRecordString => {
@@ -57,7 +41,7 @@ export const hentLandSpørsmål = (
     }
 };
 
-export const landFeilmeldingTekst = (
+export const hentLandFeilmelding = (
     årsak: EUtenlandsoppholdÅrsak | '',
     tekster: IUtenlandsoppholdTekstinnhold
 ): LocaleRecordBlock => {
@@ -75,19 +59,15 @@ export const landFeilmeldingTekst = (
     }
 };
 
-export const fraDatoFeilmeldingSpråkId = (
+export const hentFraDatoFeilmelding = (
     årsak: EUtenlandsoppholdÅrsak | '',
-    personType: PersonType
+    tekster: IUtenlandsoppholdTekstinnhold
 ) => {
     switch (årsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE:
-            return personType === PersonType.barn
-                ? 'ombarnet.nårflyttetfranorge.feilmelding'
-                : personType === PersonType.søker
-                ? 'modal.nårflyttetfra.feilmelding'
-                : 'todo.andreforelder.utenlandsopphold';
+            return tekster.flyttetFraNorgeDato.feilmelding;
         default:
-            return 'felles.nårstartetoppholdet.feilmelding';
+            return tekster.startdato.feilmelding;
     }
 };
 
@@ -122,20 +102,16 @@ export const hentTilDatoSpørsmål = (
     }
 };
 
-export const tilDatoFeilmeldingSpråkId = (
+export const hentTilDatoFeilmelding = (
     årsak: EUtenlandsoppholdÅrsak | '',
-    personType: PersonType
+    tekster: IUtenlandsoppholdTekstinnhold
 ) => {
     switch (årsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE:
-            return personType === PersonType.barn
-                ? 'ombarnet.nårflyttettilnorge.feilmelding'
-                : personType === PersonType.søker
-                ? 'modal.nårflyttettilnorge.feilmelding'
-                : 'todo.andreforelder.utenlandsopphold';
+            return tekster.flyttetTilNorgeDato.feilmelding;
         case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
-            return 'felles.nåravsluttetoppholdet.feilmelding';
+            return tekster.sluttdatoFortid.feilmelding;
         default:
-            return 'felles.nåravsluttesoppholdet.feilmelding';
+            return tekster.sluttdatoFremtid.feilmelding;
     }
 };

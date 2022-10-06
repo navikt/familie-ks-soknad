@@ -23,27 +23,6 @@ export const mottarPensjonNåFeilmeldingSpråkId = (personType: PersonType): str
     }
 };
 
-export const pensjonFraDatoFeilmeldingSpråkId = (personType, periodenErAvsluttet) => {
-    switch (personType) {
-        case PersonType.andreForelder: {
-            return periodenErAvsluttet
-                ? 'modal.franårandreforelderpensjon.feilmelding'
-                : 'pensjonmodal.franårpensjonandreforelder.nåtid.feilmelding';
-        }
-        case PersonType.omsorgsperson: {
-            return periodenErAvsluttet
-                ? 'felles.modal.franårpensjon-omsorgsperson-fortid.feilmelding'
-                : 'felles.modal.franårpensjon-omsorgsperson-nåtid.feilmelding';
-        }
-        case PersonType.søker:
-        default: {
-            return periodenErAvsluttet
-                ? 'felles.modal.franårfikkpensjon.feilmelding'
-                : 'pensjonmodal.franårpensjon.nåtid.feilmelding';
-        }
-    }
-};
-
 export const pensjonsperiodeKnappSpråkId = (gjelderUtlandet: boolean): string =>
     gjelderUtlandet
         ? 'felles.leggtilpensjon.utland.modal.tittel'

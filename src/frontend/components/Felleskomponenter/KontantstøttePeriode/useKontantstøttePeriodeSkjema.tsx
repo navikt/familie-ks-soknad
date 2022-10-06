@@ -56,7 +56,8 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, barn, erD
         skalFeltetVises:
             mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK ||
             andreForelderErDød,
-        feilmeldingSpråkId: 'modal.trygdnårbegynte.feilmelding',
+        feilmelding: teksterForPersonType.startdato.feilmelding,
+
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
         nullstillVedAvhengighetEndring: true,
     });
@@ -64,7 +65,7 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, barn, erD
     const tilDatoKontantstøttePeriode = useDatovelgerFelt({
         søknadsfelt: { id: KontantstøttePeriodeSpørsmålId.tilDatoKontantstøttePeriode, svar: '' },
         skalFeltetVises: periodenErAvsluttet || andreForelderErDød,
-        feilmeldingSpråkId: 'modal.trygdnåravsluttet.spm',
+        feilmelding: teksterForPersonType.sluttdato.feilmelding,
         sluttdatoAvgrensning: dagensDato(),
         startdatoAvgrensning: dagenEtterDato(fraDatoKontantstøttePeriode.verdi),
     });

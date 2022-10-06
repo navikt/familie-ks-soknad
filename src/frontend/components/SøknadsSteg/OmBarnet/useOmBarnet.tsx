@@ -29,6 +29,7 @@ import {
     IUtenlandsperiode,
 } from '../../../typer/perioder';
 import { IIdNummer } from '../../../typer/person';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import { erNorskPostnummer, valideringAdresse } from '../../../utils/adresse';
 import {
@@ -47,6 +48,7 @@ import { arbeidsperiodeFeilmelding } from '../../Felleskomponenter/Arbeidsperiod
 import { pensjonsperiodeFeilmelding } from '../../Felleskomponenter/Pensjonsmodal/språkUtils';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { idNummerLand } from '../EøsSteg/idnummerUtils';
+import { IOmBarnetTekstinnhold } from './innholdTyper';
 import { OmBarnetSpørsmålsId } from './spørsmål';
 
 export const useOmBarnet = (
@@ -70,8 +72,9 @@ export const useOmBarnet = (
     leggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
     fjernBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
 } => {
-    const { søknad, settSøknad } = useApp();
+    const { søknad, settSøknad, tekster } = useApp();
     const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } = useEøs();
+    const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
 
     const gjeldendeBarn = søknad.barnInkludertISøknaden.find(barn => barn.id === barnetsUuid);
 
@@ -150,7 +153,7 @@ export const useOmBarnet = (
     const institusjonOppholdStartdato = useDatovelgerFelt({
         søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.institusjonOppholdStartdato],
         skalFeltetVises: skalFeltetVises(barnDataKeySpørsmål.oppholderSegIInstitusjon),
-        feilmeldingSpråkId: 'ombarnet.institusjon.startdato.feilmelding',
+        feilmelding: teksterForSteg.institusjonNaarStartet.feilmelding,
         sluttdatoAvgrensning: dagensDato(),
     });
 
@@ -171,7 +174,7 @@ export const useOmBarnet = (
                 ? gjeldendeBarn[barnDataKeySpørsmål.institusjonOppholdSluttdato].svar
                 : '',
         vetIkkeCheckbox: institusjonOppholdSluttVetIkke,
-        feilmeldingSpråkId: 'ombarnet.institusjon.sluttdato.feilmelding',
+        feilmelding: teksterForSteg.institusjonNaarAvsluttes.feilmelding,
         skalFeltetVises: skalFeltetVises(barnDataKeySpørsmål.oppholderSegIInstitusjon),
         nullstillVedAvhengighetEndring: false,
         startdatoAvgrensning: erSammeDatoSomDagensDato(institusjonOppholdStartdato.verdi)
@@ -374,7 +377,7 @@ export const useOmBarnet = (
             andreForelder?.[andreForelderDataKeySpørsmål.fødselsdato].svar
         ),
         vetIkkeCheckbox: andreForelderFødselsdatoUkjent,
-        feilmeldingSpråkId: 'ombarnet.andre-forelder.fødselsdato.feilmelding',
+        feilmelding: teksterForSteg.foedselsdatoAndreForelder.feilmelding,
         skalFeltetVises:
             andreForelderFnrUkjent.erSynlig &&
             andreForelderFnrUkjent.verdi === ESvar.JA &&

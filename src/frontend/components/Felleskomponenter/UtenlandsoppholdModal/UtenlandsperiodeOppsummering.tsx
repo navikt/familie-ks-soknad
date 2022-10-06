@@ -8,9 +8,8 @@ import { useApp } from '../../../context/AppContext';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { formaterDato } from '../../../utils/dato';
+import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
-import { formaterDatoMedUkjent } from '../../../utils/visning';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import TekstBlock from '../TekstBlock';
@@ -18,7 +17,7 @@ import {
     hentFraDatoSpørsmål,
     hentLandSpørsmål,
     hentTilDatoSpørsmål,
-    utenlandsoppholdÅrsakTilTekst,
+    hentUtenlandsoppholdÅrsak,
 } from './utenlandsoppholdSpråkUtils';
 
 type Props = {
@@ -53,7 +52,7 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                     tittel={<TekstBlock block={teksterForPersonType.periodeBeskrivelse.sporsmal} />}
                 >
                     <Normaltekst>
-                        {plainTekst(utenlandsoppholdÅrsakTilTekst(årsak, teksterForPersonType))}
+                        {plainTekst(hentUtenlandsoppholdÅrsak(årsak, teksterForPersonType))}
                     </Normaltekst>
                 </OppsummeringFelt>
 
