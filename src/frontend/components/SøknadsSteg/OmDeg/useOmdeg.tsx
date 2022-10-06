@@ -10,12 +10,15 @@ import { usePerioder } from '../../../hooks/usePerioder';
 import { AlternativtSvarForInput } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { IIdNummer } from '../../../typer/person';
+import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmDegFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
 import { flyttetPermanentFraNorge } from '../../../utils/utenlandsopphold';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { idNummerLandMedPeriodeType, PeriodeType } from '../EøsSteg/idnummerUtils';
+import { IOmDegTekstinnhold } from './innholdTyper';
 
 export const useOmdeg = (): {
     skjema: ISkjema<IOmDegFeltTyper, string>;
@@ -26,20 +29,23 @@ export const useOmdeg = (): {
     leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
     fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
 } => {
-    const { søknad, settSøknad } = useApp();
+    const { søknad, settSøknad, tekster } = useApp();
     const { erEøsLand } = useEøs();
     const søker = søknad.søker;
     const { skalTriggeEøsForSøker, søkerTriggerEøs, settSøkerTriggerEøs } = useEøs();
+    const teksterForSteg: IOmDegTekstinnhold = tekster()[ESanitySteg.OM_DEG];
+    const teksterForUtenlandsperiode: IUtenlandsoppholdTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold.søker;
 
     const borPåRegistrertAdresse = useJaNeiSpmFelt({
         søknadsfelt: søker.borPåRegistrertAdresse,
-        feilmeldingSpråkId: 'omdeg.borpådenneadressen.feilmelding',
+        feilmelding: teksterForSteg.borPaaAdressen.feilmelding,
         skalSkjules: !søker.adresse || søker.adressebeskyttelse,
     });
 
     const værtINorgeITolvMåneder = useJaNeiSpmFelt({
         søknadsfelt: søker.værtINorgeITolvMåneder,
-        feilmeldingSpråkId: 'omdeg.oppholdtsammenhengende.feilmelding',
+        feilmelding: teksterForSteg.oppholdtDegSammenhengende.feilmelding,
     });
 
     const {
@@ -54,13 +60,13 @@ export const useOmdeg = (): {
             return avhengigheter?.værtINorgeITolvMåneder.verdi === ESvar.JA ||
                 (avhengigheter?.værtINorgeITolvMåneder.verdi === ESvar.NEI && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={'felles.leggtilutenlands.feilmelding'} />);
+                : feil(felt, <TekstBlock block={teksterForUtenlandsperiode.leggTilFeilmelding} />);
         }
     );
 
     const planleggerÅBoINorgeTolvMnd = useJaNeiSpmFelt({
         søknadsfelt: søker.planleggerÅBoINorgeTolvMnd,
-        feilmeldingSpråkId: 'omdeg.planlagt-opphold-sammenhengende.feilmelding',
+        feilmelding: teksterForSteg.planleggerAaBoSammenhengende.feilmelding,
         avhengigheter: {
             værtINorgeITolvMåneder: { hovedSpørsmål: værtINorgeITolvMåneder },
         },
@@ -73,7 +79,7 @@ export const useOmdeg = (): {
 
     const yrkesaktivFemÅr = useJaNeiSpmFelt({
         søknadsfelt: søker.yrkesaktivFemÅr,
-        feilmeldingSpråkId: 'todo.søker.yrkesaktiv',
+        feilmelding: teksterForSteg.medlemAvFolketrygden.feilmelding,
     });
 
     useEffect(() => {

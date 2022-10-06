@@ -62,7 +62,10 @@ const BekreftelseOgStartSoknad: React.FC = () => {
 
     return (
         <FormContainer onSubmit={event => onStartSøknad(event)}>
-            <Informasjonsbolk tittel={plainTekst(bekreftelsesboksTittel)}>
+            <Informasjonsbolk
+                tittel={plainTekst(bekreftelsesboksTittel)}
+                data-testid={'bekreftelsesboks-container'}
+            >
                 <StyledBekreftCheckboksPanel
                     label={plainTekst(bekreftelsesboksErklaering)}
                     onChange={bekreftelseOnChange}
@@ -83,6 +86,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                     bekreftelseStatus === BekreftelseStatus.BEKREFTET ? 'primary' : 'secondary'
                 }
                 type={'submit'}
+                data-testid={'start-søknad-knapp'}
             >
                 {plainTekst(navigasjon.startKnapp)}
             </StyledButton>
