@@ -6,6 +6,8 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { feil, Felt, FeltState, ok, useFelt, Valideringsstatus } from '@navikt/familie-skjema';
 
 import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../components/Felleskomponenter/TekstBlock';
+import { LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -41,13 +43,15 @@ export const erRelevanteAvhengigheterValidert = (avhengigheter: { [key: string]:
 const useJaNeiSpmFelt = ({
     søknadsfelt,
     feilmeldingSpråkId,
+    feilmelding,
     avhengigheter,
     nullstillVedAvhengighetEndring = false,
     skalSkjules = false,
     feilmeldingSpråkVerdier,
 }: {
     søknadsfelt?: ISøknadSpørsmål<ESvar | null>;
-    feilmeldingSpråkId: string;
+    feilmeldingSpråkId?: string;
+    feilmelding?: LocaleRecordBlock;
     avhengigheter?: Record<string, FeltGruppe | undefined>;
     nullstillVedAvhengighetEndring?: boolean;
     skalSkjules?: boolean;
@@ -64,7 +68,11 @@ const useJaNeiSpmFelt = ({
                 ? ok(felt)
                 : feil(
                       felt,
-                      <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
+                      feilmelding ? (
+                          <TekstBlock block={feilmelding} />
+                      ) : (
+                          <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
+                      )
                   );
         },
         skalFeltetVises: (avhengigheter: { [key: string]: FeltGruppe }) => {
