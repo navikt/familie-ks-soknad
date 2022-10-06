@@ -24,8 +24,10 @@ interface IJaNeiSpmProps {
     tilleggsinfoTekstId?: string;
     tilleggsinfo?: ReactNode;
     inkluderVetIkke?: boolean;
+    /** @deprecated **/ // todo: legacy, fjerne denne når vi går over til sanity
     språkValues?: Record<string, ReactNode> | undefined;
     spørsmålDokument?: ISanitySpørsmålDokument;
+    barnetsNavn?: string;
 }
 
 const TilleggsinfoWrapper = styled.div`
@@ -41,6 +43,7 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
     inkluderVetIkke = false,
     språkValues,
     spørsmålDokument,
+    barnetsNavn,
 }) => {
     const ref = useRef<RadioPanelGruppe>(null);
     const [mounted, settMounted] = useState(false);
@@ -82,7 +85,10 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
                         </>
                     ) : spørsmålDokument ? (
                         <>
-                            <TekstBlock block={spørsmålDokument.sporsmal} />
+                            <TekstBlock
+                                block={spørsmålDokument.sporsmal}
+                                barnetsNavn={barnetsNavn}
+                            />
                             <TilleggsinfoWrapper>{tilleggsinfo}</TilleggsinfoWrapper>
                         </>
                     ) : null

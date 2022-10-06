@@ -72,12 +72,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                     erDød
                 )}
                 inkluderVetIkke={personType !== PersonType.søker}
-                språkValues={{
-                    ...(barnetsNavn && {
-                        navn: barnetsNavn,
-                        barn: barnetsNavn,
-                    }),
-                }}
+                barnetsNavn={barn?.navn}
             />
             {arbeiderEllerArbeidetFelt.verdi === ESvar.JA && (
                 <>

@@ -10,4 +10,6 @@ export interface IOmBarnetTekstinnhold {
     /* Andre forelder */
     arbeidUtenforNorgeAndreForelder: ISanitySpørsmålDokument;
     arbeidUtenforNorgeAndreForelderGjenlevende: ISanitySpørsmålDokument;
+    pensjonUtlandAndreForelder: ISanitySpørsmålDokument;
+    pensjonUtlandAndreForelderGjenlevende: ISanitySpørsmålDokument;
 }
