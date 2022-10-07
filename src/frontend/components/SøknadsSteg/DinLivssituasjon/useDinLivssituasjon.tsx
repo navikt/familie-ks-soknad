@@ -12,12 +12,13 @@ import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { IArbeidsperiode, IPensjonsperiode } from '../../../typer/perioder';
 import { ISøker } from '../../../typer/person';
+import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
+import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IDinLivssituasjonFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
-import { arbeidsperiodeFeilmelding } from '../../Felleskomponenter/Arbeidsperiode/arbeidsperiodeSpråkUtils';
-import { pensjonsperiodeFeilmelding } from '../../Felleskomponenter/Pensjonsmodal/språkUtils';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { idNummerLand } from '../EøsSteg/idnummerUtils';
 import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
 
@@ -32,20 +33,25 @@ export const useDinLivssituasjon = (): {
     leggTilPensjonsperiode: (periode: IPensjonsperiode) => void;
     fjernPensjonsperiode: (periode: IPensjonsperiode) => void;
 } => {
-    const { søknad, settSøknad } = useApp();
+    const { søknad, settSøknad, tekster } = useApp();
     const { skalTriggeEøsForSøker, søkerTriggerEøs, settSøkerTriggerEøs, erEøsLand } = useEøs();
     const søker = søknad.søker;
+    const teksterForSteg = tekster()[ESanitySteg.DIN_LIVSSITUASJON];
+    const teksterForArbeidsperiode: IArbeidsperiodeTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode.søker;
+    const teksterForPensjonsperiode: IPensjonsperiodeTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.pensjonsperiode.søker;
 
     /*--- ASYL ARBEID OG PENSJON ----*/
 
     const erAsylsøker = useJaNeiSpmFelt({
         søknadsfelt: søker.erAsylsøker,
-        feilmeldingSpråkId: 'omdeg.asylsøker.feilmelding',
+        feilmelding: teksterForSteg.asylsoeker.feilmelding,
     });
 
     const arbeidIUtlandet = useJaNeiSpmFelt({
         søknadsfelt: søker.arbeidIUtlandet,
-        feilmeldingSpråkId: 'eøs.arbeid-utland.feilmelding',
+        feilmelding: teksterForSteg.arbeidUtenforNorge.feilmelding,
     });
 
     const {
@@ -60,13 +66,13 @@ export const useDinLivssituasjon = (): {
             return avhengigheter?.arbeidIUtlandet.verdi === ESvar.NEI ||
                 (avhengigheter?.arbeidIUtlandet.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={arbeidsperiodeFeilmelding(true)} />);
+                : feil(felt, <TekstBlock block={teksterForArbeidsperiode.leggTilFeilmelding} />);
         }
     );
 
     const mottarUtenlandspensjon = useJaNeiSpmFelt({
         søknadsfelt: søker.mottarUtenlandspensjon,
-        feilmeldingSpråkId: 'omdeg.pensjonutland.feilmelding',
+        feilmelding: teksterForSteg.pensjonUtland.feilmelding,
     });
 
     const {
@@ -81,7 +87,7 @@ export const useDinLivssituasjon = (): {
             return avhengigheter?.mottarUtenlandspensjon.verdi === ESvar.NEI ||
                 (avhengigheter?.mottarUtenlandspensjon.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={pensjonsperiodeFeilmelding(true)} />);
+                : feil(felt, <TekstBlock block={teksterForPensjonsperiode.leggTilFeilmelding} />);
         }
     );
 
