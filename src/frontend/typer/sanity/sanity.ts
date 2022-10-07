@@ -45,9 +45,9 @@ export enum ESanityFlettefeltverdi {
     SØKER_NAVN = 'SØKER_NAVN',
     YTELSE = 'YTELSE',
     I_UTENFOR = 'I_UTENFOR',
+    UTLANDET_NORGE = 'UTLANDET_NORGE',
     /*
     Legger inn disse kommentert ut, så kan vi ta de inn en etter en når vi støtter dem
-    UTLANDET_NORGE = 'UTLANDET_NORGE',
     PERSONTYPE = 'PERSONTYPE',
     ANTALL = 'ANTALL',
     TOTAL_ANTALL = 'TOTAL_ANTALL',

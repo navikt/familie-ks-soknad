@@ -105,6 +105,8 @@ export interface IFrittståendeOrdTekstinnhold {
     sivilstandSeparertPartner: LocaleRecordString;
     i: LocaleRecordString;
     utenfor: LocaleRecordString;
+    utlandet: LocaleRecordString;
+    norge: LocaleRecordString;
 }
 
 export interface INavigasjonTekstinnhold {

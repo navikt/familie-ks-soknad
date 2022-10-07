@@ -93,7 +93,13 @@ export const useDinLivssituasjon = (): {
             return avhengigheter?.mottarUtenlandspensjon.verdi === ESvar.NEI ||
                 (avhengigheter?.mottarUtenlandspensjon.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <TekstBlock block={teksterForPensjonsperiode.leggTilFeilmelding} />);
+                : feil(
+                      felt,
+                      <TekstBlock
+                          block={teksterForPensjonsperiode.leggTilFeilmelding}
+                          flettefelter={{ gjelderUtland: true }}
+                      />
+                  );
         }
     );
 
