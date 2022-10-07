@@ -12,8 +12,10 @@ export interface ISøknadsfelt<T> {
 
 export type TilRestLocaleRecord = (
     sanityTekst: LocaleRecordString | LocaleRecordBlock,
-    barnetsNavn?: string | undefined
+    flettefelter?: FlettefeltVerdier
 ) => Record<LocaleType, string>;
+
+export type FlettefeltVerdier = { barnetsNavn?: string; gjelderUtland?: boolean };
 
 export interface IUtenlandsperiodeIKontraktFormat {
     utenlandsoppholdÅrsak: ISøknadsfelt<string>;

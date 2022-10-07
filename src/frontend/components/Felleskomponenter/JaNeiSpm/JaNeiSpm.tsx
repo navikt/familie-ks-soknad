@@ -87,7 +87,7 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
                         <>
                             <TekstBlock
                                 block={spørsmålDokument.sporsmal}
-                                barnetsNavn={barnetsNavn}
+                                flettefelter={{ barnetsNavn }}
                             />
                             <TilleggsinfoWrapper>{tilleggsinfo}</TilleggsinfoWrapper>
                         </>

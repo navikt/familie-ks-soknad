@@ -103,6 +103,8 @@ export interface IFrittståendeOrdTekstinnhold {
     sivilstandGjenlevendePartner: LocaleRecordString;
     sivilstandSeparert: LocaleRecordString;
     sivilstandSeparertPartner: LocaleRecordString;
+    i: LocaleRecordString;
+    utenfor: LocaleRecordString;
 }
 
 export interface INavigasjonTekstinnhold {

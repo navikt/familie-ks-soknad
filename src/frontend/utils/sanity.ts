@@ -10,6 +10,7 @@ import { pipe } from 'ramda';
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import { LocaleRecordBlock, LocaleRecordString } from '../typer/common';
+import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
 import { IAndreUtbetalingerTekstinnhold } from '../typer/sanity/modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from '../typer/sanity/modaler/arbeidsperiode';
 import { IBarnehageplassTekstinnhold } from '../typer/sanity/modaler/barnehageplass';
@@ -19,7 +20,7 @@ import { IPensjonsperiodeTekstinnhold } from '../typer/sanity/modaler/pensjonspe
 import { IStartPåNyttModal } from '../typer/sanity/modaler/startPåNytt';
 import { IUtenlandsoppholdTekstinnhold } from '../typer/sanity/modaler/utenlandsopphold';
 import {
-    EFlettefeltverdi,
+    ESanityFlettefeltverdi,
     ESanitySteg,
     frittståendeOrdPrefix,
     modalPrefix,
@@ -189,12 +190,15 @@ const tranformMarks = (
 // https://sanity-io.slack.com/archives/CF876M37F/p1664206409432079?thread_ts=1663841434.772959&cid=CF876M37F
 export const plainTekstHof =
     (
-        flettefeltTilTekst: (flettefeltVerdi: EFlettefeltverdi, barnetsNavn?: string) => string,
+        flettefeltTilTekst: (
+            flettefeltVerdi: ESanityFlettefeltverdi,
+            flettefelter?: FlettefeltVerdier
+        ) => string,
         søknadLocale: LocaleType
     ) =>
     (
         localeRecord: LocaleRecordBlock | LocaleRecordString | undefined,
-        barnetsNavn?: string,
+        flettefelter?: FlettefeltVerdier,
         spesifikkLocale?: LocaleType
     ): string => {
         if (!localeRecord) {
@@ -210,7 +214,7 @@ export const plainTekstHof =
         const marks = {
             flettefelt: props => {
                 if (props.value.flettefeltVerdi) {
-                    return flettefeltTilTekst(props.value.flettefeltVerdi, barnetsNavn);
+                    return flettefeltTilTekst(props.value.flettefeltVerdi, flettefelter);
                 } else {
                     throw new Error(`Fant ikke flettefeltVerdi`);
                 }

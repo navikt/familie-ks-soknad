@@ -66,7 +66,13 @@ export const useDinLivssituasjon = (): {
             return avhengigheter?.arbeidIUtlandet.verdi === ESvar.NEI ||
                 (avhengigheter?.arbeidIUtlandet.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <TekstBlock block={teksterForArbeidsperiode.leggTilFeilmelding} />);
+                : feil(
+                      felt,
+                      <TekstBlock
+                          block={teksterForArbeidsperiode.leggTilFeilmelding}
+                          flettefelter={{ gjelderUtland: true }}
+                      />
+                  );
         }
     );
 

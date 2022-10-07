@@ -21,7 +21,6 @@ import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import { ArbeidsperiodeModal } from './ArbeidsperiodeModal';
 import { ArbeidsperiodeOppsummering } from './ArbeidsperiodeOppsummering';
 import {
-    arbeidsperiodeFeilmelding,
     arbeidsperiodeFlereSpørsmål,
     arbeidsperiodeLeggTilFlereKnapp,
     arbeidsperiodeSpørsmålDokument,
@@ -103,10 +102,8 @@ export const Arbeidsperiode: React.FC<Props> = ({
                         id={ArbeidsperiodeSpørsmålsId.arbeidsperioder}
                         feilmelding={
                             registrerteArbeidsperioder.erSynlig &&
-                            registrerteArbeidsperioder.feilmelding &&
-                            skjema.visFeilmeldinger && (
-                                <SpråkTekst id={arbeidsperiodeFeilmelding(gjelderUtlandet)} />
-                            )
+                            skjema.visFeilmeldinger &&
+                            registrerteArbeidsperioder.feilmelding
                         }
                     />
                     <ArbeidsperiodeModal
