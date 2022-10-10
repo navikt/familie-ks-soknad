@@ -13,12 +13,12 @@ import {
 } from '@navikt/familie-typer';
 
 import Miljø, { basePath } from '../Miljø';
-import { LocaleRecordBlock, LocaleRecordString } from '../typer/common';
+import { FlettefeltVerdier, TilRestLocaleRecord } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { IMellomlagretKontantstøtte } from '../typer/mellomlager';
 import { ISøkerRespons } from '../typer/person';
 import { RouteEnum } from '../typer/routes';
-import { EFlettefeltverdi, ESanitySteg } from '../typer/sanity/sanity';
+import { ESanityFlettefeltverdi, ESanitySteg } from '../typer/sanity/sanity';
 import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { initialStateSøknad, ISøknad } from '../typer/søknad';
 import { InnloggetStatus } from '../utils/autentisering';
@@ -219,16 +219,25 @@ const [AppProvider, useApp] = createUseContext(() => {
     };
 
     const flettefeltTilTekst = (
-        flettefeltVerdi: EFlettefeltverdi,
-        barnetsNavn?: string
+        sanityFlettefelt: ESanityFlettefeltverdi,
+        flettefelter?: FlettefeltVerdier
     ): string => {
-        switch (flettefeltVerdi) {
-            case EFlettefeltverdi.SØKER_NAVN:
+        const frittståendeOrd = tekster()[ESanitySteg.FELLES].frittståendeOrd;
+        switch (sanityFlettefelt) {
+            case ESanityFlettefeltverdi.SØKER_NAVN:
                 return søknad.søker.navn;
-            case EFlettefeltverdi.BARN_NAVN:
-                return barnetsNavn ?? '';
-            case EFlettefeltverdi.YTELSE:
-                return plainTekst(tekster()[ESanitySteg.FELLES].frittståendeOrd.kontantstoette);
+            case ESanityFlettefeltverdi.BARN_NAVN:
+                return flettefelter?.barnetsNavn ?? '';
+            case ESanityFlettefeltverdi.YTELSE:
+                return plainTekst(frittståendeOrd.kontantstoette);
+            case ESanityFlettefeltverdi.I_UTENFOR:
+                return plainTekst(
+                    flettefelter?.gjelderUtland ? frittståendeOrd.utenfor : frittståendeOrd.i
+                );
+            case ESanityFlettefeltverdi.UTLANDET_NORGE:
+                return plainTekst(
+                    flettefelter?.gjelderUtland ? frittståendeOrd.utlandet : frittståendeOrd.norge
+                );
             default:
                 return '';
         }
@@ -236,14 +245,14 @@ const [AppProvider, useApp] = createUseContext(() => {
 
     const plainTekst = plainTekstHof(flettefeltTilTekst, valgtLocale);
 
-    const tilRestLocaleRecord = (
-        sanityTekst: LocaleRecordString | LocaleRecordBlock,
-        barnetsNavn?: string
+    const tilRestLocaleRecord: TilRestLocaleRecord = (
+        sanityTekst,
+        flettefelter
     ): Record<LocaleType, string> => {
         return {
-            [LocaleType.en]: plainTekst(sanityTekst, barnetsNavn, LocaleType.en),
-            [LocaleType.nn]: plainTekst(sanityTekst, barnetsNavn, LocaleType.nn),
-            [LocaleType.nb]: plainTekst(sanityTekst, barnetsNavn, LocaleType.nb),
+            [LocaleType.en]: plainTekst(sanityTekst, flettefelter, LocaleType.en),
+            [LocaleType.nn]: plainTekst(sanityTekst, flettefelter, LocaleType.nn),
+            [LocaleType.nb]: plainTekst(sanityTekst, flettefelter, LocaleType.nb),
         };
     };
 

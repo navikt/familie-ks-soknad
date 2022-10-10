@@ -51,9 +51,11 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         [ESanitySteg.OM_BARNET]: { omBarnetTittel },
     } = tekster();
 
+    const barnetsNavn = barn?.navn;
+
     return barn ? (
         <Steg
-            tittel={<TekstBlock block={omBarnetTittel} barnetsNavn={barn.navn} />}
+            tittel={<TekstBlock block={omBarnetTittel} flettefelter={{ barnetsNavn }} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

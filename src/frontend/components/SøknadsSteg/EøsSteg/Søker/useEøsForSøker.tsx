@@ -12,12 +12,14 @@ import { usePerioder } from '../../../../hooks/usePerioder';
 import { AlternativtSvarForInput } from '../../../../typer/common';
 import { IArbeidsperiode, IPensjonsperiode, IUtbetalingsperiode } from '../../../../typer/perioder';
 import { ISøker } from '../../../../typer/person';
+import { IArbeidsperiodeTekstinnhold } from '../../../../typer/sanity/modaler/arbeidsperiode';
+import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { IEøsForSøkerFeltTyper } from '../../../../typer/skjema';
 import { valideringAdresse } from '../../../../utils/adresse';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
-import { arbeidsperiodeFeilmelding } from '../../../Felleskomponenter/Arbeidsperiode/arbeidsperiodeSpråkUtils';
 import { pensjonsperiodeFeilmelding } from '../../../Felleskomponenter/Pensjonsmodal/språkUtils';
 import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { idNummerKeyPrefix } from '../idnummerUtils';
 import { EøsSøkerSpørsmålId } from './spørsmål';
 
@@ -36,7 +38,10 @@ export const useEøsForSøker = (): {
     settIdNummerFelter: Dispatch<SetStateAction<Felt<string>[]>>;
     idNummerFelter: Felt<string>[];
 } => {
-    const { søknad, settSøknad } = useApp();
+    const { søknad, settSøknad, tekster } = useApp();
+
+    const teksterForArbeidsperiode: IArbeidsperiodeTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode.søker;
 
     const [idNummerFelter, settIdNummerFelter] = useState<Felt<string>[]>([]);
 
@@ -69,7 +74,13 @@ export const useEøsForSøker = (): {
             return avhengigheter?.arbeidINorge.verdi === ESvar.NEI ||
                 (avhengigheter?.arbeidINorge.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={arbeidsperiodeFeilmelding(false)} />);
+                : feil(
+                      felt,
+                      <TekstBlock
+                          block={teksterForArbeidsperiode.leggTilFeilmelding}
+                          flettefelter={{ gjelderUtland: false }}
+                      />
+                  );
         }
     );
 

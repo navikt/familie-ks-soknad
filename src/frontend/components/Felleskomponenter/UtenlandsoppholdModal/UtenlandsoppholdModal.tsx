@@ -55,6 +55,8 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
 
     const teksterForPersonType = tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
 
+    const barnetsNavn = barn?.navn;
+
     const onLeggTil = () => {
         if (!validerFelterOgVisFeilmelding()) {
             return false;
@@ -92,7 +94,9 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
     return (
         <SkjemaModal
             erÅpen={erÅpen}
-            tittel={<TekstBlock block={teksterForPersonType.tittel} barnetsNavn={barn?.navn} />}
+            tittel={
+                <TekstBlock block={teksterForPersonType.tittel} flettefelter={{ barnetsNavn }} />
+            }
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
             onSubmitCallback={onLeggTil}
             toggleModal={toggleModal}

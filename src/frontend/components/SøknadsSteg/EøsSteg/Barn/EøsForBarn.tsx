@@ -77,9 +77,11 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         [ESanitySteg.EØS_FOR_BARN]: { eoesForBarnTittel },
     } = tekster();
 
+    const barnetsNavn = barn.navn;
+
     return (
         <Steg
-            tittel={<TekstBlock block={eoesForBarnTittel} barnetsNavn={barn.navn} />}
+            tittel={<TekstBlock block={eoesForBarnTittel} flettefelter={{ barnetsNavn }} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
