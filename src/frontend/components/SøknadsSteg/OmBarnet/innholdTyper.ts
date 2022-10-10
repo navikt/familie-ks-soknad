@@ -6,4 +6,10 @@ export interface IOmBarnetTekstinnhold {
     institusjonNaarAvsluttes: ISanitySpørsmålDokument;
     institusjonNaarStartet: ISanitySpørsmålDokument;
     foedselsdatoAndreForelder: ISanitySpørsmålDokument;
+
+    /* Andre forelder */
+    arbeidUtenforNorgeAndreForelder: ISanitySpørsmålDokument;
+    arbeidUtenforNorgeAndreForelderGjenlevende: ISanitySpørsmålDokument;
+    pensjonUtlandAndreForelder: ISanitySpørsmålDokument;
+    pensjonUtlandAndreForelderGjenlevende: ISanitySpørsmålDokument;
 }

@@ -193,10 +193,14 @@ export const plainTekstHof =
         søknadLocale: LocaleType
     ) =>
     (
-        localeRecord: LocaleRecordBlock | LocaleRecordString,
+        localeRecord: LocaleRecordBlock | LocaleRecordString | undefined,
         barnetsNavn?: string,
         spesifikkLocale?: LocaleType
     ): string => {
+        if (!localeRecord) {
+            throw new Error(`Mangler tekst som skulle eksistert`);
+        }
+
         const innholdForLocale = localeRecord[spesifikkLocale ?? søknadLocale];
 
         if (typeof innholdForLocale === 'string') {

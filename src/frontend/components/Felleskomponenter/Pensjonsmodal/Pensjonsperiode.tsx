@@ -5,6 +5,7 @@ import { Element } from 'nav-frontend-typografi';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import { IPensjonsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import {
@@ -20,7 +21,7 @@ import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import { PensjonModal } from './Pensjonsmodal';
 import { PensjonsperiodeOppsummering } from './PensjonsperiodeOppsummering';
 import {
-    mottarEllerMottattPensjonSpråkId,
+    pensjonSpørsmålDokument,
     pensjonFlerePerioderSpmSpråkId,
     pensjonsperiodeFeilmelding,
     pensjonsperiodeKnappSpråkId,
@@ -55,6 +56,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
     erDød,
     barn,
 }) => {
+    const { tekster } = useApp();
     const { erÅpen: pensjonsmodalErÅpen, toggleModal: togglePensjonsmodal } = useModal();
 
     return (
@@ -62,18 +64,14 @@ export const Pensjonsperiode: React.FC<Props> = ({
             <JaNeiSpm
                 skjema={skjema}
                 felt={mottarEllerMottattPensjonFelt}
-                spørsmålTekstId={mottarEllerMottattPensjonSpråkId(
+                spørsmålDokument={pensjonSpørsmålDokument(
                     gjelderUtlandet,
                     personType,
+                    tekster,
                     erDød
                 )}
                 inkluderVetIkke={personType !== PersonType.søker}
-                språkValues={{
-                    ...(barn && {
-                        navn: barn.navn,
-                        barn: barn.navn,
-                    }),
-                }}
+                barnetsNavn={barn?.navn}
             />
             {mottarEllerMottattPensjonFelt.verdi === ESvar.JA && (
                 <>
