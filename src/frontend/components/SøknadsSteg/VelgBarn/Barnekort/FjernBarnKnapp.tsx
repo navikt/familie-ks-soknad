@@ -5,8 +5,10 @@ import styled from 'styled-components';
 import { DeleteFilled } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
 
-import { BarnetsId } from '../../../../typer/common';
-import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import { useApp } from '../../../../context/AppContext';
+import { BarnetsId, LocaleRecordBlock } from '../../../../typer/common';
+import { ESanitySteg } from '../../../../typer/sanity/sanity';
+import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 
 const StyledButton = styled(Button)`
     && {
@@ -18,6 +20,10 @@ export const FjernBarnKnapp: React.FC<{
     barnId: BarnetsId;
     fjernBarnCallback: (ident: string) => void;
 }> = ({ barnId, fjernBarnCallback }) => {
+    const { tekster } = useApp();
+    const knappetekst: LocaleRecordBlock =
+        tekster()[ESanitySteg.FELLES].modaler.leggTilBarn.fjernKnapp;
+
     return (
         <StyledButton
             type={'button'}
@@ -25,7 +31,7 @@ export const FjernBarnKnapp: React.FC<{
             onClick={() => fjernBarnCallback(barnId)}
         >
             <DeleteFilled aria-hidden />
-            <SpråkTekst id={'hvilkebarn.fjern-barn.knapp'} />
+            <TekstBlock block={knappetekst} />
         </StyledButton>
     );
 };
