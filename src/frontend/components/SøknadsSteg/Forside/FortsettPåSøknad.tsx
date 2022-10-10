@@ -48,7 +48,7 @@ const ModalKnappeContainer = styled.div`
 `;
 
 const FortsettPåSøknad: FC = () => {
-    const { tekster, localeString } = useApp();
+    const { tekster, plainTekst } = useApp();
     const { fortsettPåSøknaden, startPåNytt, visStartPåNyttModal, settVisStartPåNyttModal } =
         useBekreftelseOgStartSoknad();
 
@@ -74,9 +74,9 @@ const FortsettPåSøknad: FC = () => {
                     <TekstBlock block={mellomlagretAlert} />
                 </AlertStripe>
             </KomponentGruppe>
-            <StyledButton onClick={fortsettPåSøknaden}>{localeString(fortsettKnapp)}</StyledButton>
+            <StyledButton onClick={fortsettPåSøknaden}>{plainTekst(fortsettKnapp)}</StyledButton>
             <StyledButton variant={'secondary'} onClick={() => settVisStartPåNyttModal(true)}>
-                {localeString(startPaaNyttKnapp)}
+                {plainTekst(startPaaNyttKnapp)}
             </StyledButton>
             <Modal
                 open={visStartPåNyttModal}

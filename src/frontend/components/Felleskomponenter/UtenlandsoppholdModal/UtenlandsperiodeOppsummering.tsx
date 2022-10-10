@@ -8,9 +8,8 @@ import { useApp } from '../../../context/AppContext';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { formaterDato } from '../../../utils/dato';
+import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
-import { formaterDatoMedUkjent } from '../../../utils/visning';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import TekstBlock from '../TekstBlock';
@@ -18,7 +17,7 @@ import {
     hentFraDatoSpørsmål,
     hentLandSpørsmål,
     hentTilDatoSpørsmål,
-    utenlandsoppholdÅrsakTilTekst,
+    hentUtenlandsoppholdÅrsak,
 } from './utenlandsoppholdSpråkUtils';
 
 type Props = {
@@ -35,7 +34,7 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
     personType,
 }) => {
     const [valgtLocale] = useSprakContext();
-    const { localeString, tekster } = useApp();
+    const { plainTekst, tekster } = useApp();
     const { oppholdsland, utenlandsoppholdÅrsak, oppholdslandFraDato, oppholdslandTilDato } =
         periode;
     const årsak = utenlandsoppholdÅrsak.svar;
@@ -53,7 +52,7 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                     tittel={<TekstBlock block={teksterForPersonType.periodeBeskrivelse.sporsmal} />}
                 >
                     <Normaltekst>
-                        {localeString(utenlandsoppholdÅrsakTilTekst(årsak, teksterForPersonType))}
+                        {plainTekst(hentUtenlandsoppholdÅrsak(årsak, teksterForPersonType))}
                     </Normaltekst>
                 </OppsummeringFelt>
 
@@ -85,7 +84,7 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                         }
                         søknadsvar={formaterDatoMedUkjent(
                             oppholdslandTilDato.svar,
-                            localeString(teksterForPersonType.sluttdatoFremtid.checkboxLabel)
+                            plainTekst(teksterForPersonType.sluttdatoFremtid.checkboxLabel)
                         )}
                     />
                 )}

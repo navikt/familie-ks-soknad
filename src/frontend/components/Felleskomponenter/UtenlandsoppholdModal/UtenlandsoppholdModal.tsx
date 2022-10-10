@@ -31,7 +31,7 @@ import {
     hentFraDatoSpørsmål,
     hentLandSpørsmål,
     hentTilDatoSpørsmål,
-    utenlandsoppholdÅrsakTilTekst,
+    hentUtenlandsoppholdÅrsak,
 } from './utenlandsoppholdSpråkUtils';
 
 type Props = ReturnType<typeof useModal> & {
@@ -47,7 +47,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
     personType,
     barn,
 }) => {
-    const { tekster, localeString } = useApp();
+    const { tekster, plainTekst } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
         useUtenlandsoppholdSkjema({
             personType,
@@ -110,13 +110,13 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                             <TekstBlock block={teksterForPersonType.periodeBeskrivelse.sporsmal} />
                         }
                         skjema={skjema}
-                        placeholder={localeString(teksterForPersonType.valgalternativPlaceholder)}
+                        placeholder={plainTekst(teksterForPersonType.valgalternativPlaceholder)}
                         bredde={'fullbredde'}
                     >
                         {Object.keys(EUtenlandsoppholdÅrsak).map((årsak, number) => (
                             <option key={number} value={årsak}>
-                                {localeString(
-                                    utenlandsoppholdÅrsakTilTekst(
+                                {plainTekst(
+                                    hentUtenlandsoppholdÅrsak(
                                         årsak as EUtenlandsoppholdÅrsak,
                                         teksterForPersonType
                                     )
@@ -189,7 +189,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                     {skjema.felter.oppholdslandTilDatoUkjent.erSynlig && (
                         <SkjemaCheckbox
                             felt={skjema.felter.oppholdslandTilDatoUkjent}
-                            labelSpråkTekstId={localeString(
+                            labelSpråkTekstId={plainTekst(
                                 teksterForPersonType.sluttdatoFremtid.checkboxLabel
                             )}
                         />

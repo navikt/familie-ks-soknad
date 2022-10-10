@@ -7,9 +7,9 @@ export interface IArbeidsperiodeTekstinnhold {
     arbeidsperiodenAvsluttet: ISanitySpørsmålDokument;
     hvilketLandFortid: ISanitySpørsmålDokument;
     hvilketLandNaatid: ISanitySpørsmålDokument;
-    sluttdatoArbeidsperiodeFortid: ISanitySpørsmålDokument;
-    sluttdatoArbeidsperiodeFremtid: ISanitySpørsmålDokument;
-    startdatoArbeidsperiode: ISanitySpørsmålDokument;
+    sluttdatoFortid: ISanitySpørsmålDokument;
+    sluttdatoFremtid: ISanitySpørsmålDokument;
+    startdato: ISanitySpørsmålDokument;
     flerePerioder: LocaleRecordBlock;
     fjernKnapp: LocaleRecordBlock;
     leggTilKnapp: LocaleRecordBlock;

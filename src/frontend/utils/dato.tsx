@@ -6,7 +6,8 @@ import { ISODateString } from '@navikt/familie-form-elements';
 import { feil, FeltState, ok } from '@navikt/familie-skjema';
 
 import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
-import { AlternativtSvarForInput } from '../typer/common';
+import TekstBlock from '../components/Felleskomponenter/TekstBlock';
+import { AlternativtSvarForInput, DatoMedUkjent, LocaleRecordBlock } from '../typer/common';
 
 export const erDatoFormatGodkjent = (verdi: string) => {
     /*FamilieDatoVelger har allerede sin egen validering.
@@ -43,13 +44,13 @@ export const dagenEtterDato = (dato: ISODateString) =>
 
 export const validerDato = (
     feltState: FeltState<string>,
-    feilmeldingSpråkId: string,
+    feilmelding: LocaleRecordBlock | undefined,
     startdatoAvgrensning = '',
     sluttdatoAvgrensning = '',
     customStartdatoFeilmelding = ''
 ): FeltState<string> => {
     if (feltState.verdi === '') {
-        return feil(feltState, feilmeldingSpråkId ? <SpråkTekst id={feilmeldingSpråkId} /> : '');
+        return feil(feltState, feilmelding ? <TekstBlock block={feilmelding} /> : '');
     }
     if (!erDatoFormatGodkjent(feltState.verdi)) {
         return feil(feltState, <SpråkTekst id={'felles.dato-format.feilmelding'} />);
@@ -91,3 +92,9 @@ export const formaterDato = (isoDateString: ISODateString) =>
     isoDateString === AlternativtSvarForInput.UKJENT
         ? isoDateString
         : dayjs(isoDateString).format('DD.MM.YYYY');
+
+export const formaterDatoMedUkjent = (datoMedUkjent: DatoMedUkjent, tekstForUkjent): string => {
+    return datoMedUkjent === AlternativtSvarForInput.UKJENT
+        ? tekstForUkjent
+        : formaterDato(datoMedUkjent);
+};

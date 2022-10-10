@@ -48,7 +48,7 @@ export const bekreftelseBoksBorderFarge = (status: BekreftelseStatus) => {
 
 const BekreftelseOgStartSoknad: React.FC = () => {
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
-    const { localeString, tekster } = useApp();
+    const { plainTekst, tekster } = useApp();
 
     const {
         FORSIDE: {
@@ -62,14 +62,17 @@ const BekreftelseOgStartSoknad: React.FC = () => {
 
     return (
         <FormContainer onSubmit={event => onStartSøknad(event)}>
-            <Informasjonsbolk tittel={localeString(bekreftelsesboksTittel)}>
+            <Informasjonsbolk
+                tittel={plainTekst(bekreftelsesboksTittel)}
+                data-testid={'bekreftelsesboks-container'}
+            >
                 <StyledBekreftCheckboksPanel
-                    label={localeString(bekreftelsesboksErklaering)}
+                    label={plainTekst(bekreftelsesboksErklaering)}
                     onChange={bekreftelseOnChange}
                     checked={bekreftelseStatus === BekreftelseStatus.BEKREFTET}
                     feil={
                         bekreftelseStatus === BekreftelseStatus.FEIL && (
-                            <span role={'alert'}>{localeString(bekreftelsesboksFeilmelding)}</span>
+                            <span role={'alert'}>{plainTekst(bekreftelsesboksFeilmelding)}</span>
                         )
                     }
                     status={bekreftelseStatus}
@@ -83,8 +86,9 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                     bekreftelseStatus === BekreftelseStatus.BEKREFTET ? 'primary' : 'secondary'
                 }
                 type={'submit'}
+                data-testid={'start-søknad-knapp'}
             >
-                {localeString(navigasjon.startKnapp)}
+                {plainTekst(navigasjon.startKnapp)}
             </StyledButton>
         </FormContainer>
     );

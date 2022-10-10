@@ -10,11 +10,8 @@ import {
     omBarnetSpørsmålSpråkId,
 } from '../../components/SøknadsSteg/OmBarnet/spørsmål';
 import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../typer/barn';
-import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IAndreForelderIKontraktFormat } from '../../typer/kontrakt/v1';
 import { PersonType } from '../../typer/personType';
-import { ESanitySteg } from '../../typer/sanity/sanity';
-import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { landkodeTilSpråk } from '../språk';
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
 import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
@@ -28,22 +25,16 @@ import {
 } from './hjelpefunksjoner';
 import { idNummerTilISøknadsfelt } from './idNummer';
 import { tilIPensjonsperiodeIKontraktFormat } from './pensjonsperioder';
-import { utenlandsperiodeTilISøknadsfelt } from './utenlandsperiode';
 
 export const andreForelderTilISøknadsfelt = (
     andreForelder: IAndreForelder,
     barn: IBarnMedISøknad,
-    valgtSpråk: LocaleType,
-    tekster: ITekstinnhold,
-    tilRestLocaleRecord: TilRestLocaleRecord
+    valgtSpråk: LocaleType
 ): IAndreForelderIKontraktFormat => {
     const {
         navn,
         fnr,
         fødselsdato,
-        værtINorgeITolvMåneder,
-        utenlandsperioder,
-        planleggerÅBoINorgeTolvMnd,
         yrkesaktivFemÅr,
         pensjonUtland,
         arbeidUtlandet,
@@ -65,7 +56,6 @@ export const andreForelderTilISøknadsfelt = (
         kanIkkeGiOpplysninger,
     } = andreForelder;
     const forelderErDød = barn[barnDataKeySpørsmål.andreForelderErDød].svar === ESvar.JA;
-    const fellesTekster = tekster[ESanitySteg.FELLES];
     return {
         kanIkkeGiOpplysninger: søknadsfeltBarn(
             språktekstIdFraSpørsmålId(kanIkkeGiOpplysninger.id),
@@ -102,26 +92,6 @@ export const andreForelderTilISøknadsfelt = (
                       omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.andreForelderFødselsdatoUkjent]
                   ),
                   barn
-              )
-            : null,
-        værtINorgeSisteTolvMåneder: værtINorgeITolvMåneder.svar
-            ? søknadsfeltBarn(
-                  språktekstIdFraSpørsmålId(værtINorgeITolvMåneder.id),
-                  sammeVerdiAlleSpråk(værtINorgeITolvMåneder.svar)
-              )
-            : null,
-        utenlandsperioder: utenlandsperioder.map((periode, index) =>
-            utenlandsperiodeTilISøknadsfelt(
-                periode,
-                index + 1,
-                fellesTekster.modaler.utenlandsopphold[PersonType.andreForelder],
-                tilRestLocaleRecord
-            )
-        ),
-        planleggerÅBoINorgeTolvMnd: planleggerÅBoINorgeTolvMnd.svar
-            ? søknadsfeltBarn(
-                  språktekstIdFraSpørsmålId(planleggerÅBoINorgeTolvMnd.id),
-                  sammeVerdiAlleSpråk(planleggerÅBoINorgeTolvMnd.svar)
               )
             : null,
         yrkesaktivFemÅr: yrkesaktivFemÅr.svar

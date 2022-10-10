@@ -58,7 +58,7 @@ export const spyOnUseApp = søknad => {
         data: mockDeep<ISøkerRespons>({ sivilstand: { type: ESivilstand.UGIFT }, ...søknad.søker }),
     }));
     const tekster = jest.fn().mockImplementation(() => mockDeep<ITekstinnhold>());
-    const localeString = jest.fn();
+    const plainTekst = jest.fn();
     const tilRestLocaleRecord = jest.fn();
     const settSøknad = jest.fn();
     const erPåKvitteringsside = jest.fn().mockImplementation(() => false);
@@ -108,7 +108,7 @@ export const spyOnUseApp = søknad => {
         systemetOK: () => jest.fn().mockReturnValue(true),
         systemetFeiler: jest.fn().mockReturnValue(false),
         tekster,
-        localeString,
+        plainTekst,
         tilRestLocaleRecord,
     });
     jest.spyOn(appContext, 'useApp').mockImplementation(useAppMock);
@@ -317,7 +317,6 @@ export const mekkGyldigSøknad = (): ISøknad => {
                         svar: 'Heisannveien 15',
                     },
                     andreUtbetalingsperioder: [],
-                    utenlandsperioder: [],
                     arbeidsperioderNorge: [],
                     pensjonsperioderUtland: [],
                     arbeidsperioderUtland: [],
@@ -339,14 +338,6 @@ export const mekkGyldigSøknad = (): ISøknad => {
                     [andreForelderDataKeySpørsmål.fødselsdato]: {
                         id: OmBarnetSpørsmålsId.andreForelderFødselsdato,
                         svar: AlternativtSvarForInput.UKJENT,
-                    },
-                    [andreForelderDataKeySpørsmål.værtINorgeITolvMåneder]: {
-                        id: OmBarnetSpørsmålsId.andreForelderVærtINorgeSisteTolvMåneder,
-                        svar: ESvar.JA,
-                    },
-                    [andreForelderDataKeySpørsmål.planleggerÅBoINorgeTolvMnd]: {
-                        id: OmBarnetSpørsmålsId.andreForelderPlanleggerÅBoINorgeTolvMnd,
-                        svar: ESvar.JA,
                     },
                     [andreForelderDataKeySpørsmål.yrkesaktivFemÅr]: {
                         id: OmBarnetSpørsmålsId.andreForelderYrkesaktivFemÅr,

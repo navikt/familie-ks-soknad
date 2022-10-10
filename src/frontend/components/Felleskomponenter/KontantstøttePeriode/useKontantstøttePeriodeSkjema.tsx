@@ -3,19 +3,19 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, FeltState, ok, useFelt, useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { PersonType } from '../../../typer/personType';
+import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IKontantstøttePerioderFeltTyper } from '../../../typer/skjema';
 import { dagenEtterDato, dagensDato, gårsdagensDato } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import {
-    kontantstøtteLandFeilmelding,
-    mottarKontantstøtteNåFeilmelding,
-} from './kontantstøttePeriodeSpråkUtils';
+import { mottarKontantstøtteNåFeilmelding } from './kontantstøttePeriodeSpråkUtils';
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 
 export interface IUsePensjonsperiodeSkjemaParams {
@@ -25,6 +25,10 @@ export interface IUsePensjonsperiodeSkjemaParams {
 }
 
 export const useKontantstøttePeriodeSkjema = (personType: PersonType, barn, erDød) => {
+    const { tekster } = useApp();
+    const teksterForPersonType: IEøsYtelseTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.eøsYtelse[personType];
+
     const mottarEøsKontantstøtteNå = useJaNeiSpmFelt({
         søknadsfelt: { id: KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå, svar: null },
         feilmeldingSpråkId: mottarKontantstøtteNåFeilmelding(personType),
@@ -38,12 +42,13 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, barn, erD
 
     const kontantstøtteLand = useLanddropdownFelt({
         søknadsfelt: { id: KontantstøttePeriodeSpørsmålId.kontantstøtteLand, svar: '' },
-        feilmeldingSpråkId: kontantstøtteLandFeilmelding(periodenErAvsluttet, personType),
+        feilmelding: periodenErAvsluttet
+            ? teksterForPersonType.ytelseLandFortid.feilmelding
+            : teksterForPersonType.ytelseLandNaatid.feilmelding,
         skalFeltetVises:
             mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK ||
             andreForelderErDød,
         nullstillVedAvhengighetEndring: true,
-        feilmeldingSpråkVerdier: { barn: barn.navn },
     });
 
     const fraDatoKontantstøttePeriode = useDatovelgerFelt({
@@ -51,7 +56,8 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, barn, erD
         skalFeltetVises:
             mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK ||
             andreForelderErDød,
-        feilmeldingSpråkId: 'modal.trygdnårbegynte.feilmelding',
+        feilmelding: teksterForPersonType.startdato.feilmelding,
+
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
         nullstillVedAvhengighetEndring: true,
     });
@@ -59,7 +65,7 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, barn, erD
     const tilDatoKontantstøttePeriode = useDatovelgerFelt({
         søknadsfelt: { id: KontantstøttePeriodeSpørsmålId.tilDatoKontantstøttePeriode, svar: '' },
         skalFeltetVises: periodenErAvsluttet || andreForelderErDød,
-        feilmeldingSpråkId: 'modal.trygdnåravsluttet.spm',
+        feilmelding: teksterForPersonType.sluttdato.feilmelding,
         sluttdatoAvgrensning: dagensDato(),
         startdatoAvgrensning: dagenEtterDato(fraDatoKontantstøttePeriode.verdi),
     });

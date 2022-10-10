@@ -112,7 +112,6 @@ const strukturertInnholdForModaler = (dokumenter: SanityDokument[]): IModalerTek
         utenlandsopphold: {
             søker: utenlandsopphold(SanityPersonType.SOKER),
             barn: utenlandsopphold(SanityPersonType.BARN),
-            andreForelder: utenlandsopphold(SanityPersonType.ANDRE_FORELDER),
         },
         eøsYtelse: {
             søker: eøsYtelse(SanityPersonType.SOKER),
@@ -194,10 +193,14 @@ export const plainTekstHof =
         søknadLocale: LocaleType
     ) =>
     (
-        localeRecord: LocaleRecordBlock | LocaleRecordString,
+        localeRecord: LocaleRecordBlock | LocaleRecordString | undefined,
         barnetsNavn?: string,
         spesifikkLocale?: LocaleType
     ): string => {
+        if (!localeRecord) {
+            throw new Error(`Mangler tekst som skulle eksistert`);
+        }
+
         const innholdForLocale = localeRecord[spesifikkLocale ?? søknadLocale];
 
         if (typeof innholdForLocale === 'string') {

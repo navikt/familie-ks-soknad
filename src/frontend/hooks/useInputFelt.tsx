@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { guid } from 'nav-frontend-js-utils';
+import { v4 as uuidv4 } from 'uuid';
 
 import { feil, FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
@@ -21,10 +21,10 @@ const useInputFelt = ({
     skalVises?: boolean;
     customValidering?: ((felt: FeltState<string>) => FeltState<string>) | undefined;
     nullstillVedAvhengighetEndring?: boolean;
-    feilmeldingSpråkVerdier?: { [key: string]: ReactNode };
+    feilmeldingSpråkVerdier?: Record<string, ReactNode>;
 }) =>
     useFelt<string>({
-        feltId: søknadsfelt?.id ?? guid(),
+        feltId: søknadsfelt?.id ?? uuidv4(),
         verdi: søknadsfelt ? trimWhiteSpace(søknadsfelt.svar) : '',
         valideringsfunksjon: (felt: FeltState<string>) => {
             const feltVerdi = trimWhiteSpace(felt.verdi);
