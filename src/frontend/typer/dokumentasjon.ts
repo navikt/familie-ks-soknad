@@ -49,7 +49,11 @@ export const dokumentasjonsbehovTilTittelSanityApiNavn = (
         case Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE:
             return TittelSanityApiNavn.vedtakOmOppholdstillatelseTittel;
         case Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS:
-            throw Error('BEKREFTELESE_PÅ_BARNEHAGEPLASS er ikke lagt til'); // TODO: Legg inn riktig her
+            /**
+             * TODO: Legg inn riktig apiNavn
+             * Favro: https://favro.com/organization/98c34fb974ce445eac854de0/077068028bffba85055cca2d?card=Tea-9957
+             */
+            throw Error('BEKREFTELESE_PÅ_BARNEHAGEPLASS er ikke lagt til');
     }
 };
 
