@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import styled from 'styled-components';
 
+import { BodyShort } from '@navikt/ds-react';
 import { LocaleType, Sprakvelger } from '@navikt/familie-sprakvelger';
 
 import VeilederSnakkeboble from '../../../assets/VeilederSnakkeboble';
@@ -50,7 +51,14 @@ const Forside: React.FC = () => {
 
     return (
         <InnholdContainer>
-            <VeilederSnakkeboble tekst={<TekstBlock block={veilederhilsen} />} posisjon={'høyre'} />
+            <VeilederSnakkeboble
+                tekst={
+                    <BodyShort>
+                        <TekstBlock block={veilederhilsen} />
+                    </BodyShort>
+                }
+                posisjon={'høyre'}
+            />
 
             <TittelContainer>
                 <TekstBlock block={soeknadstittel} />

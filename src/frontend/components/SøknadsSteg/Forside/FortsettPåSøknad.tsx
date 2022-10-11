@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import styled from 'styled-components';
 
-import { Button, Modal } from '@navikt/ds-react';
+import { BodyShort, Button, Modal } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { device } from '../../../Theme';
@@ -32,11 +32,6 @@ const ModalKnappeContainer = styled.div`
     gap: 1rem;
     flex-wrap: wrap;
     margin-top: 1rem;
-
-    > button {
-        padding-top: 0;
-        padding-bottom: 0;
-    }
 
     @media all and ${device.mobile} {
         justify-content: center;
@@ -71,7 +66,9 @@ const FortsettPåSøknad: FC = () => {
         <StyledFortsettPåSøknad role={'navigation'}>
             <KomponentGruppe>
                 <AlertStripe inline={false} variant={'info'}>
-                    <TekstBlock block={mellomlagretAlert} />
+                    <BodyShort>
+                        <TekstBlock block={mellomlagretAlert} />
+                    </BodyShort>
                 </AlertStripe>
             </KomponentGruppe>
             <StyledButton onClick={fortsettPåSøknaden}>{plainTekst(fortsettKnapp)}</StyledButton>
@@ -86,7 +83,9 @@ const FortsettPåSøknad: FC = () => {
             >
                 <ModalContent>
                     <TekstBlock block={startPaaNyttTittel} />
-                    <TekstBlock block={startPaaNyttInfo} />
+                    <BodyShort>
+                        <TekstBlock block={startPaaNyttInfo} />
+                    </BodyShort>
                     <ModalKnappeContainer>
                         <Button variant={'tertiary'} onClick={() => settVisStartPåNyttModal(false)}>
                             <TekstBlock block={startPaaNyttAvbryt} />

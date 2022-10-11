@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { BodyShort } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
@@ -59,7 +60,9 @@ const OmDeg: React.FC = () => {
 
                 {skjema.felter.borPåRegistrertAdresse.verdi === ESvar.NEI && (
                     <AlertStripe variant={'warning'}>
-                        <TekstBlock block={borPaaAdressen.alert} />
+                        <BodyShort>
+                            <TekstBlock block={borPaaAdressen.alert} />
+                        </BodyShort>
                     </AlertStripe>
                 )}
             </KomponentGruppe>
@@ -72,7 +75,9 @@ const OmDeg: React.FC = () => {
                             spørsmålDokument={oppholdtDegSammenhengende}
                             tilleggsinfo={
                                 <AlertStripe variant={'info'}>
-                                    <TekstBlock block={oppholdtDegSammenhengende.alert} />
+                                    <BodyShort>
+                                        <TekstBlock block={oppholdtDegSammenhengende.alert} />
+                                    </BodyShort>
                                 </AlertStripe>
                             }
                         />

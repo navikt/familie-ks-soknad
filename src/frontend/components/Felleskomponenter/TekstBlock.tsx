@@ -19,6 +19,9 @@ const TekstBlock: React.FC<{
         <PortableText
             value={block[valgtLocale]}
             components={{
+                block: {
+                    normal: ({ children }) => <>{children}</>,
+                },
                 marks: {
                     flettefelt: props => {
                         if (props?.value?.flettefeltVerdi) {
@@ -37,6 +40,7 @@ const TekstBlock: React.FC<{
                                 target={props.value.blank ? '_blank' : '_self'}
                                 rel={'noopener noreferrer'}
                                 href={encodeURI(props.value.href)}
+                                style={{ display: 'inline-block' }}
                             >
                                 {props.text}
                             </a>
