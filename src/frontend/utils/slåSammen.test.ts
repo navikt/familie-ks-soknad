@@ -9,7 +9,7 @@ describe('slåSammen', () => {
         expect(slåSammen(['test'])).toEqual('test');
     });
 
-    test('Returnerer kommaseparert liste med og på slutten ved flere elementer', () => {
+    test('Returnerer kommaseparert streng med og på slutten ved flere elementer', () => {
         const sammenslåttTekst1 = slåSammen(['test1', 'test2', 'test3']);
         expect(sammenslåttTekst1).toEqual('test1, test2 og test3');
 
