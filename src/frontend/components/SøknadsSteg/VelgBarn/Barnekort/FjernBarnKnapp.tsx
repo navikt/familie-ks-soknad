@@ -29,6 +29,7 @@ export const FjernBarnKnapp: React.FC<{
             type={'button'}
             variant={'tertiary'}
             onClick={() => fjernBarnCallback(barnId)}
+            data-testid={'fjern-barn-knapp'}
         >
             <DeleteFilled aria-hidden />
             <TekstBlock block={knappetekst} />

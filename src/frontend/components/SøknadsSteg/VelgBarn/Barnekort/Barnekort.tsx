@@ -138,6 +138,7 @@ const Barnekort: React.FC<IBarnekortProps> = ({
                     label={<TekstBlock block={soekOmYtelseForBarnetSjekkboks} />}
                     aria-label={`${plainTekst(soekOmYtelseForBarnetSjekkboks)} ${barn.navn}`}
                     onChange={() => velgBarnCallback(barn, erMedISøknad)}
+                    data-testid={'velg-barn-checkbox'}
                 />
             </InformasjonsboksInnhold>
             {erRegistrertManuelt && (
