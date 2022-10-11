@@ -11,13 +11,11 @@ import useFørsteRender from '../../../hooks/useFørsteRender';
 import { useSendInnSkjema } from '../../../hooks/useSendInnSkjema';
 import { IDokumentasjon, IVedlegg } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { erDokumentasjonRelevant } from '../../../utils/dokumentasjon';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { Feilside } from '../../Felleskomponenter/Feilside/Feilside';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import PictureScanningGuide from '../../Felleskomponenter/PictureScanningGuide/PictureScanningGuide';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import LastOppVedlegg from './LastOppVedlegg';
@@ -33,9 +31,8 @@ const Dokumentasjon: React.FC = () => {
     const { sendInnSkjema } = useSendInnSkjema();
     const [slettaVedlegg, settSlettaVedlegg] = useState<IVedlegg[]>([]);
 
-    const {
-        [ESanitySteg.DOKUMENTASJON]: { dokumentasjonTittel },
-    } = tekster();
+    const { dokumentasjonInfo, dokumentasjonTittel, forLangTidDokumentasjon, nudgeDokumentasjon } =
+        tekster().DOKUMENTASJON;
 
     const oppdaterDokumentasjon = (
         dokumentasjonsbehov: Dokumentasjonsbehov,
@@ -82,9 +79,7 @@ const Dokumentasjon: React.FC = () => {
             {slettaVedlegg.length > 0 && (
                 <KomponentGruppe>
                     <AlertStripe variant={'warning'}>
-                        <Normaltekst>
-                            <SpråkTekst id={'dokumentasjon.forlangtid.info'} />
-                        </Normaltekst>
+                        <TekstBlock block={forLangTidDokumentasjon} />
                         <ul>
                             {slettaVedlegg.map(vedlegg => (
                                 <li key={vedlegg.dokumentId}>
@@ -97,11 +92,11 @@ const Dokumentasjon: React.FC = () => {
             )}
             <KomponentGruppe>
                 <AlertStripe variant={'info'} inline={false}>
-                    <SpråkTekst id={'dokumentasjon.nudge'} />
+                    <TekstBlock block={nudgeDokumentasjon} />
                 </AlertStripe>
 
                 <Normaltekst>
-                    <SpråkTekst id={'dokumentasjon.info'} />
+                    <TekstBlock block={dokumentasjonInfo} />
                 </Normaltekst>
                 <PictureScanningGuide />
             </KomponentGruppe>

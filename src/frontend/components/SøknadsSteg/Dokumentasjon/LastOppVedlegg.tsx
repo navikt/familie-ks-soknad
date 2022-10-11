@@ -7,11 +7,17 @@ import { Checkbox } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
 
 import { useApp } from '../../../context/AppContext';
-import { EFiltyper, IDokumentasjon, IVedlegg } from '../../../typer/dokumentasjon';
+import {
+    dokumentasjonsbehovTilBeskrivelseSanityApiNavn,
+    dokumentasjonsbehovTilTittelSanityApiNavn,
+    EFiltyper,
+    IDokumentasjon,
+    IVedlegg,
+} from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
-import EksternLenke from '../../Felleskomponenter/EksternLenke/EksternLenke';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import { slåSammen } from '../../../utils/slåSammen';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import Filopplaster from './filopplaster/Filopplaster';
 
 interface Props {
@@ -29,7 +35,8 @@ const Container = styled.div`
 `;
 
 const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDokumentasjon }) => {
-    const { søknad } = useApp();
+    const { søknad, tekster, plainTekst } = useApp();
+    const dokumentasjonstekster = tekster().DOKUMENTASJON;
     const intl = useIntl();
     const settHarSendtInnTidligere = (event: React.ChangeEvent<HTMLInputElement>) => {
         const huketAv = event.target.checked;
@@ -37,22 +44,10 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
         oppdaterDokumentasjon(dokumentasjon.dokumentasjonsbehov, vedlegg, huketAv);
     };
 
-    const formatertListeMedBarn = () => {
-        const barnDokGjelderFor = søknad.barnInkludertISøknaden.filter(barn =>
-            dokumentasjon.gjelderForBarnId.find(id => id === barn.id)
-        );
-
-        return barnDokGjelderFor.map((barn, index) => {
-            const visningsNavn = barn.navn;
-            if (index === 0) {
-                return visningsNavn;
-            } else {
-                return index === barnDokGjelderFor.length - 1
-                    ? ` ${intl.formatMessage({ id: 'felles.og' })} ${visningsNavn}`
-                    : `, ${visningsNavn}`;
-            }
-        });
-    };
+    const barnDokGjelderFor = søknad.barnInkludertISøknaden.filter(barn =>
+        dokumentasjon.gjelderForBarnId.find(id => id === barn.id)
+    );
+    const barnasNavn = slåSammen(barnDokGjelderFor.map(barn => barn.navn));
 
     const antallVedlegg = () => {
         const dokSomKrevesForBarn = søknad.dokumentasjon.filter(dok => dok.gjelderForBarnId.length);
@@ -72,9 +67,11 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
         return antallVedlegg;
     };
 
-    const dokTittel = (
-        <SpråkTekst id={dokumentasjon.tittelSpråkId} values={{ barn: formatertListeMedBarn() }} />
-    );
+    const tittelBlock =
+        dokumentasjonstekster[
+            dokumentasjonsbehovTilTittelSanityApiNavn(dokumentasjon.dokumentasjonsbehov)
+        ];
+    const dokTittel = <TekstBlock block={tittelBlock} flettefelter={{ barnetsNavn: barnasNavn }} />;
 
     const skalViseAnnenDokumentasjonsBeskrivelse = () => {
         return (
@@ -83,39 +80,26 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
         );
     };
 
+    const dokumentasjonsbeskrivelse = dokumentasjonsbehovTilBeskrivelseSanityApiNavn(
+        dokumentasjon.dokumentasjonsbehov
+    );
+
     return (
         <Container>
             <Undertittel>
                 {dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON && (
-                    <>
-                        <SpråkTekst
-                            id={'dokumentasjon.vedleggsnummer'}
-                            values={{
-                                vedleggsnummer: vedleggNr,
-                                antallvedlegg: antallVedlegg(),
-                            }}
-                        />
-                        &nbsp;
-                    </>
+                    <TekstBlock
+                        block={dokumentasjonstekster.vedleggXavY}
+                        flettefelter={{
+                            antall: vedleggNr.toString(),
+                            totaltAntall: antallVedlegg().toString(),
+                        }}
+                    />
                 )}
                 {dokTittel}
             </Undertittel>
-            {dokumentasjon.beskrivelseSpråkId && skalViseAnnenDokumentasjonsBeskrivelse() && (
-                <>
-                    <SpråkTekst
-                        id={dokumentasjon.beskrivelseSpråkId}
-                        values={{
-                            barn: formatertListeMedBarn(),
-                            meklingsattestLenke: (
-                                <EksternLenke
-                                    lenkeSpråkId={'dokumentasjon.meklingsattest.lenke'}
-                                    lenkeTekstSpråkId={'dokumentasjon.meklingsattest.lenketekst'}
-                                    target="_blank"
-                                />
-                            ),
-                        }}
-                    />
-                </>
+            {dokumentasjonsbeskrivelse && skalViseAnnenDokumentasjonsBeskrivelse() && (
+                <TekstBlock block={dokumentasjonstekster[dokumentasjonsbeskrivelse]} />
             )}
             {!dokumentasjon.harSendtInn && (
                 <Filopplaster
@@ -128,10 +112,10 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
             <br />
             {dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON && (
                 <Checkbox
-                    label={<SpråkTekst id={'dokumentasjon.har-sendt-inn.spm'} />}
+                    label={plainTekst(dokumentasjonstekster.sendtInnTidligere)}
                     aria-label={`${intl.formatMessage({
                         id: 'dokumentasjon.har-sendt-inn.spm',
-                    })} (${dokTittel})`}
+                    })} (${plainTekst(tittelBlock, { barnetsNavn: barnasNavn })})`}
                     checked={dokumentasjon.harSendtInn}
                     onChange={settHarSendtInnTidligere}
                 />

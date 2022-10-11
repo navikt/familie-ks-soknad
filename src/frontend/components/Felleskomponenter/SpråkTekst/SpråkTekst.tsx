@@ -12,6 +12,9 @@ export const innebygdeFormatterere = {
     bokmål: msg => <span lang="nb">{msg}</span>,
 };
 
+/**
+ * @deprecated - Bruk TekstBlock med tekst fra Sanity
+ */
 const SpråkTekst: React.FC<MessageProps> = props => {
     const propsMedFellesFunksjoner: MessageProps = {
         ...props,

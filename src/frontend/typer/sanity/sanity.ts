@@ -46,11 +46,11 @@ export enum ESanityFlettefeltverdi {
     YTELSE = 'YTELSE',
     I_UTENFOR = 'I_UTENFOR',
     UTLANDET_NORGE = 'UTLANDET_NORGE',
+    ANTALL = 'ANTALL',
+    TOTAL_ANTALL = 'TOTAL_ANTALL',
     /*
     Legger inn disse kommentert ut, så kan vi ta de inn en etter en når vi støtter dem
     PERSONTYPE = 'PERSONTYPE',
-    ANTALL = 'ANTALL',
-    TOTAL_ANTALL = 'TOTAL_ANTALL',
     DATO = 'DATO',
     KLOKKESLETT = 'KLOKKESLETT',*/
 }
