@@ -17,6 +17,7 @@ const useInputFeltMedUkjent = ({
     søknadsfelt,
     avhengighet,
     feilmeldingSpråkId,
+    feilmelding,
     erFnrInput = false,
     skalVises = true,
     customValidering = undefined,
@@ -25,7 +26,8 @@ const useInputFeltMedUkjent = ({
 }: {
     søknadsfelt: ISøknadSpørsmål<DatoMedUkjent> | { id: IdNummerKey; svar: string } | null;
     avhengighet: Felt<ESvar>;
-    feilmeldingSpråkId: string;
+    feilmeldingSpråkId?: string; //todo: fjerne denne når vi går over til Sanity
+    feilmelding?: ReactNode;
     erFnrInput?: boolean;
     skalVises?: boolean;
     customValidering?: ((felt: FeltState<string>) => FeltState<string>) | undefined;
@@ -45,7 +47,10 @@ const useInputFeltMedUkjent = ({
 
             if (erFnrInput) {
                 if (feltVerdi === '') {
-                    return feil(felt, <SpråkTekst id={feilmeldingSpråkId} />);
+                    return feil(
+                        felt,
+                        feilmeldingSpråkId ? <SpråkTekst id={feilmeldingSpråkId} /> : feilmelding
+                    );
                 } else if (idnr(feltVerdi).status !== 'valid') {
                     return feil(felt, <SpråkTekst id={'felles.fnr.feil-format.feilmelding'} />);
                 } else {
@@ -56,7 +61,14 @@ const useInputFeltMedUkjent = ({
                     ? customValidering
                         ? customValidering(felt)
                         : ok(felt)
-                    : feil(felt, <SpråkTekst id={feilmeldingSpråkId} values={språkVerdier} />);
+                    : feil(
+                          felt,
+                          feilmeldingSpråkId ? (
+                              <SpråkTekst id={feilmeldingSpråkId} values={språkVerdier} />
+                          ) : (
+                              feilmelding
+                          )
+                      );
             }
         },
         avhengigheter: { vetIkkeCheckbox: avhengighet, skalVises },

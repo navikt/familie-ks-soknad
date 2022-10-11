@@ -12,4 +12,7 @@ export interface ILeggTilBarnTekstinnhold {
     ikkeFoedtAlert: LocaleRecordBlock;
     barnetsNavnSubtittel: LocaleRecordBlock;
     foedselsnummerAlert: LocaleRecordBlock;
+    barnIkkeFoedtFeilmelding: LocaleRecordBlock;
+    foedselsnummerFeilmelding: LocaleRecordBlock;
+    sammeFoedselsnummerFeilmelding: LocaleRecordBlock;
 }
