@@ -26,6 +26,7 @@ const useInputFeltMedUkjent = ({
 }: {
     søknadsfelt: ISøknadSpørsmål<DatoMedUkjent> | { id: IdNummerKey; svar: string } | null;
     avhengighet: Felt<ESvar>;
+    /** @deprecated **/
     feilmeldingSpråkId?: string; //todo: fjerne denne når vi går over til Sanity
     feilmelding?: ReactNode;
     erFnrInput?: boolean;
