@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 
 import { Checkbox } from 'nav-frontend-skjema';
@@ -37,7 +36,6 @@ const Container = styled.div`
 const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDokumentasjon }) => {
     const { søknad, tekster, plainTekst } = useApp();
     const dokumentasjonstekster = tekster().DOKUMENTASJON;
-    const intl = useIntl();
     const settHarSendtInnTidligere = (event: React.ChangeEvent<HTMLInputElement>) => {
         const huketAv = event.target.checked;
         const vedlegg = huketAv ? [] : dokumentasjon.opplastedeVedlegg;
@@ -112,10 +110,11 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
             <br />
             {dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON && (
                 <Checkbox
+                    data-testid={'dokumentasjon-er-sendt-inn-checkboks'}
                     label={plainTekst(dokumentasjonstekster.sendtInnTidligere)}
-                    aria-label={`${intl.formatMessage({
-                        id: 'dokumentasjon.har-sendt-inn.spm',
-                    })} (${plainTekst(tittelBlock, { barnetsNavn: barnasNavn })})`}
+                    aria-label={`${plainTekst(
+                        dokumentasjonstekster.sendtInnTidligere
+                    )} (${plainTekst(tittelBlock, { barnetsNavn: barnasNavn })})`}
                     checked={dokumentasjon.harSendtInn}
                     onChange={settHarSendtInnTidligere}
                 />
