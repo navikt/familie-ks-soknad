@@ -10,7 +10,9 @@ interface SkjemaFeltInputProps extends InputProps {
     // eslint-disable-next-line
     felt: Felt<any>;
     visFeilmeldinger: boolean;
-    labelSpråkTekstId: string;
+    /** @deprecated **/
+    labelSpråkTekstId?: string;
+    label?: ReactNode;
     språkValues?: Record<string, ReactNode>;
     tilleggsinfo?: ReactNode;
     bredde?: 'fullbredde' | 'XXL' | 'XL' | 'L' | 'M' | 'S' | 'XS' | 'XXS';
@@ -23,6 +25,7 @@ export const SkjemaFeltInput: React.FC<SkjemaFeltInputProps> = props => {
     const {
         felt,
         labelSpråkTekstId,
+        label,
         visFeilmeldinger,
         språkValues,
         tilleggsinfo,
@@ -34,7 +37,13 @@ export const SkjemaFeltInput: React.FC<SkjemaFeltInputProps> = props => {
     return felt.erSynlig ? (
         <div>
             <Input
-                label={<SpråkTekst id={labelSpråkTekstId} values={språkValues} />}
+                label={
+                    labelSpråkTekstId ? (
+                        <SpråkTekst id={labelSpråkTekstId} values={språkValues} />
+                    ) : (
+                        label
+                    )
+                }
                 description={tilleggsinfo}
                 {...navInputPropsFraFeltHook}
                 {...øvrigePropsStøttetAvNavInput}

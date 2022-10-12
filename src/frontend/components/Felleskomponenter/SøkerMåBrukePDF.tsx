@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 
 import styled from 'styled-components';
 
@@ -10,7 +10,7 @@ import Informasjonsbolk from './Informasjonsbolk/Informasjonsbolk';
 import SpråkTekst from './SpråkTekst/SpråkTekst';
 
 interface Props {
-    advarselTekstId: string;
+    advarselTekst: ReactNode;
     utfyllendeAdvarselInfoId?: string;
 }
 
@@ -18,12 +18,10 @@ const LenkeContainer = styled.div`
     margin: 1.75rem 0;
 `;
 
-export const SøkerMåBrukePDF: FC<Props> = ({ advarselTekstId, utfyllendeAdvarselInfoId }) => {
+export const SøkerMåBrukePDF: FC<Props> = ({ advarselTekst, utfyllendeAdvarselInfoId }) => {
     return (
         <Informasjonsbolk aria-live={'polite'}>
-            <AlertStripe variant={'warning'}>
-                <SpråkTekst id={advarselTekstId} />
-            </AlertStripe>
+            <AlertStripe variant={'warning'}>{advarselTekst}</AlertStripe>
             {utfyllendeAdvarselInfoId && (
                 <Informasjonsbolk>
                     <Element>
