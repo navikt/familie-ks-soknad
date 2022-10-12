@@ -4,6 +4,7 @@ import Masonry from 'react-masonry-css';
 import styled from 'styled-components';
 
 import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
@@ -64,7 +65,10 @@ const VelgBarn: React.FC = () => {
                 }}
             >
                 <AlertStripe variant={'info'}>
-                    <TekstBlock block={hvisOpplysningeneIkkeStemmer} />
+                    <TekstBlock
+                        block={hvisOpplysningeneIkkeStemmer}
+                        typografi={Typografi.BodyShort}
+                    />
                 </AlertStripe>
 
                 <BarnekortContainer
