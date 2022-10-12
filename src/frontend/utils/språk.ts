@@ -10,6 +10,7 @@ import * as engelsk from '../assets/lang/en.json' assert { type: 'json' };
 import * as bokmål from '../assets/lang/nb.json' assert { type: 'json' };
 import * as nynorsk from '../assets/lang/nn.json' assert { type: 'json' };
 import { innebygdeFormatterere } from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
+import { IVelgBarnTekstinnhold } from '../components/SøknadsSteg/VelgBarn/innholdTyper';
 import { AlternativtSvarForInput } from '../typer/common';
 import { ESivilstand, Slektsforhold } from '../typer/kontrakt/generelle';
 import { IBarn } from '../typer/person';
@@ -109,12 +110,12 @@ export const sivilstandTilSanitySivilstandApiKey = (
     }
 };
 
-export const hentBostedSpråkId = (barn: IBarn) => {
+export const hentBostedSpråkId = (barn: IBarn, teksterForSteg: IVelgBarnTekstinnhold) => {
     if (barn.adressebeskyttelse) {
-        return 'hvilkebarn.barn.bosted.adressesperre';
+        return teksterForSteg.registrertMedAdressesperre;
     } else if (barn.borMedSøker) {
-        return 'hvilkebarn.barn.bosted.din-adresse';
+        return teksterForSteg.registrertPaaAdressenDin;
     } else {
-        return 'hvilkebarn.barn.bosted.ikke-din-adresse';
+        return teksterForSteg.ikkeRegistrertPaaAdressenDin;
     }
 };

@@ -1,11 +1,13 @@
 import React from 'react';
 
 import { SkjemaGruppe } from 'nav-frontend-skjema';
-import { Element } from 'nav-frontend-typografi';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { Valideringsstatus } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../../context/AppContext';
+import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
+import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { visFeiloppsummering } from '../../../../utils/hjelpefunksjoner';
 import AlertStripe from '../../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
@@ -14,9 +16,8 @@ import { SkjemaCheckbox } from '../../../Felleskomponenter/SkjemaCheckbox/Skjema
 import { SkjemaFeiloppsummering } from '../../../Felleskomponenter/SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import { SkjemaFeltInput } from '../../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../../../Felleskomponenter/SkjemaModal/SkjemaModal';
-import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { SøkerMåBrukePDF } from '../../../Felleskomponenter/SøkerMåBrukePDF';
-import { VelgBarnSpørsmålId, velgBarnSpørsmålSpråkId } from '../spørsmål';
+import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { useLeggTilBarn } from './useLeggTilBarn';
 
 const LeggTilBarnModal: React.FC<{
@@ -25,6 +26,22 @@ const LeggTilBarnModal: React.FC<{
 }> = ({ erÅpen, toggleModal }) => {
     const { skjema, nullstillSkjema, valideringErOk, leggTilBarn, validerFelterOgVisFeilmelding } =
         useLeggTilBarn();
+    const { tekster, plainTekst } = useApp();
+
+    const teksterForLeggTilBarnModal: ILeggTilBarnTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
+
+    const {
+        tittel,
+        fornavn,
+        etternavn,
+        foedselsnummerEllerDNummer,
+        erBarnetFoedt,
+        leggTilKnapp,
+        ikkeFoedtAlert,
+        barnetsNavnSubtittel,
+        foedselsnummerAlert,
+    } = teksterForLeggTilBarnModal;
 
     const submitOgLukk = () => {
         if (!validerFelterOgVisFeilmelding()) {
@@ -36,8 +53,8 @@ const LeggTilBarnModal: React.FC<{
 
     return (
         <SkjemaModal
-            modalTittelSpråkId={'hvilkebarn.leggtilbarn.modal.tittel'}
-            submitKnappSpråkId={'hvilkebarn.leggtilbarn.kort.knapp'}
+            tittel={<TekstBlock block={tittel} />}
+            submitKnappTekst={<TekstBlock block={leggTilKnapp} />}
             erÅpen={erÅpen}
             toggleModal={toggleModal}
             valideringErOk={valideringErOk}
@@ -48,51 +65,35 @@ const LeggTilBarnModal: React.FC<{
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.erFødt}
-                    spørsmålTekstId={velgBarnSpørsmålSpråkId[VelgBarnSpørsmålId.leggTilBarnErFødt]}
+                    spørsmålDokument={erBarnetFoedt}
                 />
                 {skjema.felter.erFødt.verdi === ESvar.NEI && (
                     <AlertStripe variant={'warning'}>
-                        <SpråkTekst id={'hvilkebarn.leggtilbarn.barn-ikke-født.alert'} />
+                        <TekstBlock block={ikkeFoedtAlert} />
                     </AlertStripe>
                 )}
             </SkjemaGruppe>
             {skjema.felter.erFødt.valideringsstatus === Valideringsstatus.OK && (
                 <KomponentGruppe dynamisk>
-                    <SkjemaGruppe
-                        legend={
-                            <Element>
-                                <SpråkTekst
-                                    id={velgBarnSpørsmålSpråkId[VelgBarnSpørsmålId.barnetsNavn]}
-                                />
-                            </Element>
-                        }
-                    >
+                    <SkjemaGruppe legend={<TekstBlock block={barnetsNavnSubtittel} />}>
                         <SkjemaFeltInput
                             felt={skjema.felter.fornavn}
                             visFeilmeldinger={skjema.visFeilmeldinger}
-                            labelSpråkTekstId={
-                                velgBarnSpørsmålSpråkId[VelgBarnSpørsmålId.leggTilBarnFornavn]
-                            }
+                            label={<TekstBlock block={fornavn.sporsmal} />}
                             disabled={skjema.felter.navnetErUbestemt.verdi === ESvar.JA}
                         />
 
                         <SkjemaFeltInput
                             felt={skjema.felter.etternavn}
                             visFeilmeldinger={skjema.visFeilmeldinger}
-                            labelSpråkTekstId={
-                                velgBarnSpørsmålSpråkId[VelgBarnSpørsmålId.leggTilBarnEtternavn]
-                            }
+                            label={<TekstBlock block={etternavn.sporsmal} />}
                             disabled={skjema.felter.navnetErUbestemt.verdi === ESvar.JA}
                         />
 
                         <SkjemaCheckbox
                             felt={skjema.felter.navnetErUbestemt}
                             visFeilmeldinger={skjema.visFeilmeldinger}
-                            labelSpråkTekstId={
-                                velgBarnSpørsmålSpråkId[
-                                    VelgBarnSpørsmålId.leggTilBarnNavnIkkeBestemt
-                                ]
-                            }
+                            label={plainTekst(etternavn.checkboxLabel)}
                         />
                     </SkjemaGruppe>
 
@@ -100,22 +101,18 @@ const LeggTilBarnModal: React.FC<{
                         <SkjemaFeltInput
                             felt={skjema.felter.ident}
                             visFeilmeldinger={skjema.visFeilmeldinger}
-                            labelSpråkTekstId={
-                                velgBarnSpørsmålSpråkId[VelgBarnSpørsmålId.leggTilBarnFnr]
-                            }
+                            label={<TekstBlock block={foedselsnummerEllerDNummer.sporsmal} />}
                             disabled={skjema.felter.ikkeFåttIdentChecked.verdi === ESvar.JA}
                         />
 
                         <SkjemaCheckbox
                             felt={skjema.felter.ikkeFåttIdentChecked}
                             visFeilmeldinger={skjema.visFeilmeldinger}
-                            labelSpråkTekstId={
-                                velgBarnSpørsmålSpråkId[VelgBarnSpørsmålId.leggTilBarnIkkeFåttFnr]
-                            }
+                            label={plainTekst(foedselsnummerEllerDNummer.checkboxLabel)}
                         />
                         {skjema.felter.ikkeFåttIdentChecked.verdi === ESvar.JA && (
                             <SøkerMåBrukePDF
-                                advarselTekstId={'hvilkebarn.leggtilbarn.ikke-fått-fnr.alert'}
+                                advarselTekst={<TekstBlock block={foedselsnummerAlert} />}
                             />
                         )}
                     </SkjemaGruppe>

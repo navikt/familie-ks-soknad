@@ -6,8 +6,12 @@ import { Ingress } from 'nav-frontend-typografi';
 
 import { Button } from '@navikt/ds-react';
 
-import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import { useApp } from '../../../../context/AppContext';
+import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
+import { ESanitySteg } from '../../../../typer/sanity/sanity';
+import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { StyledBarnekort } from '../Barnekort/Barnekort';
+import { IVelgBarnTekstinnhold } from '../innholdTyper';
 
 const StyledIngress = styled(Ingress)`
     && {
@@ -25,13 +29,19 @@ const StyledButton = styled(Button)`
 `;
 
 export const NyttBarnKort: React.FC<{ onLeggTilBarn: () => void }> = ({ onLeggTilBarn }) => {
+    const { tekster } = useApp();
+    const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
+    const teksterForLeggTilBarnModal: ILeggTilBarnTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
+    const { soekeForUregistrerteBarn } = teksterForSteg;
+
     return (
         <StyledBarnekort>
             <StyledIngress>
-                <SpråkTekst id={'hvilkebarn.leggtilbarn.kort'} />
+                <TekstBlock block={soekeForUregistrerteBarn} />
             </StyledIngress>
             <StyledButton type={'button'} variant={'secondary'} onClick={() => onLeggTilBarn()}>
-                <SpråkTekst id={'hvilkebarn.leggtilbarn.kort.knapp'} />
+                <TekstBlock block={teksterForLeggTilBarnModal.leggTilKnapp} />
             </StyledButton>
         </StyledBarnekort>
     );
