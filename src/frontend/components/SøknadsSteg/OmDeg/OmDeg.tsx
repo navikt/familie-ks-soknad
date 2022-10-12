@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { BodyShort } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
@@ -60,9 +60,7 @@ const OmDeg: React.FC = () => {
 
                 {skjema.felter.borPåRegistrertAdresse.verdi === ESvar.NEI && (
                     <AlertStripe variant={'warning'}>
-                        <BodyShort>
-                            <TekstBlock block={borPaaAdressen.alert} />
-                        </BodyShort>
+                        <TekstBlock block={borPaaAdressen.alert} typografi={Typografi.BodyShort} />
                     </AlertStripe>
                 )}
             </KomponentGruppe>
@@ -75,9 +73,10 @@ const OmDeg: React.FC = () => {
                             spørsmålDokument={oppholdtDegSammenhengende}
                             tilleggsinfo={
                                 <AlertStripe variant={'info'}>
-                                    <BodyShort>
-                                        <TekstBlock block={oppholdtDegSammenhengende.alert} />
-                                    </BodyShort>
+                                    <TekstBlock
+                                        block={oppholdtDegSammenhengende.alert}
+                                        typografi={Typografi.BodyShort}
+                                    />
                                 </AlertStripe>
                             }
                         />

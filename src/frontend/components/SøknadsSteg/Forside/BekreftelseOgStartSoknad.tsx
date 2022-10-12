@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 
-import { BodyLong, Button } from '@navikt/ds-react';
+import { Button } from '@navikt/ds-react';
 import {
     NavdsGlobalColorGreen500,
     NavdsGlobalColorNavRed,
@@ -12,6 +12,7 @@ import {
 } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { BekreftelseStatus, useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
@@ -77,9 +78,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                     }
                     status={bekreftelseStatus}
                 >
-                    <BodyLong>
-                        <TekstBlock block={bekreftelsesboksBroedtekst} />
-                    </BodyLong>
+                    <TekstBlock block={bekreftelsesboksBroedtekst} typografi={Typografi.BodyLong} />
                 </StyledBekreftCheckboksPanel>
             </Informasjonsbolk>
 

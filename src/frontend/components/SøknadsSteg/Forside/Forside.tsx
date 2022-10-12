@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 
 import styled from 'styled-components';
 
-import { BodyShort } from '@navikt/ds-react';
 import { LocaleType, Sprakvelger } from '@navikt/familie-sprakvelger';
 
 import VeilederSnakkeboble from '../../../assets/VeilederSnakkeboble';
 import { useApp } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import Miljø from '../../../Miljø';
+import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
@@ -52,11 +52,7 @@ const Forside: React.FC = () => {
     return (
         <InnholdContainer>
             <VeilederSnakkeboble
-                tekst={
-                    <BodyShort>
-                        <TekstBlock block={veilederhilsen} />
-                    </BodyShort>
-                }
+                tekst={<TekstBlock block={veilederhilsen} typografi={Typografi.BodyShort} />}
                 posisjon={'høyre'}
             />
 

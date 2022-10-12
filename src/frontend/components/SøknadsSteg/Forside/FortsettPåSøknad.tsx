@@ -2,10 +2,11 @@ import React, { FC } from 'react';
 
 import styled from 'styled-components';
 
-import { BodyShort, Button, Modal } from '@navikt/ds-react';
+import { Button, Modal } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { device } from '../../../Theme';
+import { Typografi } from '../../../typer/common';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import ModalContent from '../../Felleskomponenter/ModalContent';
@@ -66,9 +67,7 @@ const FortsettPåSøknad: FC = () => {
         <StyledFortsettPåSøknad role={'navigation'}>
             <KomponentGruppe>
                 <AlertStripe inline={false} variant={'info'}>
-                    <BodyShort>
-                        <TekstBlock block={mellomlagretAlert} />
-                    </BodyShort>
+                    <TekstBlock block={mellomlagretAlert} typografi={Typografi.BodyShort} />
                 </AlertStripe>
             </KomponentGruppe>
             <StyledButton onClick={fortsettPåSøknaden}>{plainTekst(fortsettKnapp)}</StyledButton>
@@ -82,10 +81,8 @@ const FortsettPåSøknad: FC = () => {
                 }}
             >
                 <ModalContent>
-                    <TekstBlock block={startPaaNyttTittel} />
-                    <BodyShort>
-                        <TekstBlock block={startPaaNyttInfo} />
-                    </BodyShort>
+                    <TekstBlock block={startPaaNyttTittel} typografi={Typografi.Heading} />
+                    <TekstBlock block={startPaaNyttInfo} typografi={Typografi.BodyShort} />
                     <ModalKnappeContainer>
                         <Button variant={'tertiary'} onClick={() => settVisStartPåNyttModal(false)}>
                             <TekstBlock block={startPaaNyttAvbryt} />
