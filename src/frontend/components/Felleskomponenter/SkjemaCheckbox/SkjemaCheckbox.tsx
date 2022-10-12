@@ -17,9 +17,11 @@ const StyledCheckbox = styled(Checkbox)`
 export const SkjemaCheckbox: React.FC<{
     felt: Felt<ESvar>;
     visFeilmeldinger?: boolean;
-    labelSpråkTekstId: string;
+    /** @deprecated **/
+    labelSpråkTekstId?: string;
+    label?: ReactNode;
     språkVerdier?: { [key: string]: ReactNode };
-}> = ({ felt, visFeilmeldinger = false, labelSpråkTekstId, språkVerdier }) => {
+}> = ({ felt, visFeilmeldinger = false, labelSpråkTekstId, språkVerdier, label }) => {
     useFørsteRender(() => {
         felt.validerOgSettFelt(felt.verdi);
     });
@@ -33,7 +35,13 @@ export const SkjemaCheckbox: React.FC<{
         <StyledCheckbox
             checked={felt.verdi === ESvar.JA}
             {...felt.hentNavInputProps(visFeilmeldinger)}
-            label={<SpråkTekst id={labelSpråkTekstId} values={språkVerdier} />}
+            label={
+                labelSpråkTekstId ? (
+                    <SpråkTekst id={labelSpråkTekstId} values={språkVerdier} />
+                ) : (
+                    label
+                )
+            }
             onChange={onChange}
         />
     ) : null;

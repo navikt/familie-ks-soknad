@@ -6,12 +6,11 @@ import styled from 'styled-components';
 import { useApp } from '../../../context/AppContext';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
-import EksternLenke from '../../Felleskomponenter/EksternLenke/EksternLenke';
 import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import Barnekort from './Barnekort/Barnekort';
+import { IVelgBarnTekstinnhold } from './innholdTyper';
 import LeggTilBarnModal from './LeggTilBarn/LeggTilBarnModal';
 import { NyttBarnKort } from './LeggTilBarn/NyttBarnKort';
 import { VelgBarnSpørsmålId } from './spørsmål';
@@ -47,9 +46,9 @@ const VelgBarn: React.FC = () => {
     const barnManueltLagtTil = søknad.barnRegistrertManuelt;
     const barn = barnFraRespons.concat(barnManueltLagtTil);
 
-    const {
-        [ESanitySteg.VELG_BARN]: { velgBarnTittel },
-    } = tekster();
+    const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
+    const { velgBarnTittel, hvisOpplysningeneIkkeStemmer, leseMerOmRegleneKontantstoette } =
+        teksterForSteg;
 
     return (
         <>
@@ -65,12 +64,7 @@ const VelgBarn: React.FC = () => {
                 }}
             >
                 <AlertStripe variant={'info'}>
-                    <SpråkTekst id={'hvilkebarn.info.alert'} />
-                    <EksternLenke
-                        lenkeSpråkId={'hvilkebarn.endre-opplysninger.lenke'}
-                        lenkeTekstSpråkId={'hvilkebarn.endre-opplysninger.lenketekst'}
-                        target="_blank"
-                    />
+                    <TekstBlock block={hvisOpplysningeneIkkeStemmer} />
                 </AlertStripe>
 
                 <BarnekortContainer
@@ -93,11 +87,7 @@ const VelgBarn: React.FC = () => {
                     <NyttBarnKort onLeggTilBarn={toggleModal} />
                 </BarnekortContainer>
                 <LenkeContainer>
-                    <EksternLenke
-                        lenkeSpråkId={'hvilkebarn.regelverk.lenke'}
-                        lenkeTekstSpråkId={'hvilkebarn.regelverk.lenketekst'}
-                        target="_blank"
-                    />
+                    <TekstBlock block={leseMerOmRegleneKontantstoette} />
                 </LenkeContainer>
             </Steg>
             <LeggTilBarnModal erÅpen={erÅpen} toggleModal={toggleModal} />

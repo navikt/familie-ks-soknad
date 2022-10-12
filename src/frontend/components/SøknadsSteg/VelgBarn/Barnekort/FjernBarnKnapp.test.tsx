@@ -20,7 +20,7 @@ describe('FjernBarnKnapp', () => {
         mockEøs();
     });
 
-    test(`Kan fjern-knapp dukker kun opp på manuelt registrerte barn`, () => {
+    test(`Fjern-knapp dukker kun opp på manuelt registrerte barn`, () => {
         silenceConsoleErrors();
 
         const registrertBarn: IBarn = {
@@ -47,16 +47,16 @@ describe('FjernBarnKnapp', () => {
             },
             barnRegistrertManuelt: [registrertBarn],
         });
-        const { getAllByText } = render(
+        const { queryAllByTestId } = render(
             <TestProvidere>
                 <VelgBarn />
             </TestProvidere>
         );
 
-        const fnrLabels = getAllByText(/hvilkebarn.barn.fødselsnummer/);
-        expect(fnrLabels.length).toBe(2);
+        const antallBarnekortTilsammen = queryAllByTestId('velg-barn-checkbox');
+        expect(antallBarnekortTilsammen?.length).toBe(2);
 
-        const fjernKnapper = getAllByText(/hvilkebarn.fjern-barn.knapp/);
+        const fjernKnapper = queryAllByTestId('fjern-barn-knapp');
         expect(fjernKnapper.length).toBe(1);
     });
 
@@ -80,14 +80,14 @@ describe('FjernBarnKnapp', () => {
             barnRegistrertManuelt: [registrertBarn],
             dokumentasjon: [],
         });
-        const { getByText } = render(
+        const { queryByTestId } = render(
             <TestProvidere>
                 <VelgBarn />
             </TestProvidere>
         );
 
-        const fjernKnapp = getByText(/hvilkebarn.fjern-barn.knapp/);
-        act(() => fjernKnapp.click());
+        const fjernKnapp = queryByTestId('fjern-barn-knapp');
+        act(() => fjernKnapp?.click());
 
         expect(settSøknad).toHaveBeenCalledTimes(1);
         expect(settSøknad).toHaveBeenCalledWith({

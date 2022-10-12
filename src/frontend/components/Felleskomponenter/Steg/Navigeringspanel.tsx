@@ -82,6 +82,7 @@ const Navigeringspanel: React.FC<{
                 placeself={'start'}
                 gridarea={'gåVidere'}
                 loading={innsendingStatus.status === RessursStatus.HENTER}
+                data-testid={'gå-videre-knapp'}
             >
                 <SpråkTekst
                     id={
