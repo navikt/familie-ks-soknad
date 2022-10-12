@@ -81,7 +81,7 @@ const FortsettPåSøknad: FC = () => {
                 }}
             >
                 <ModalContent>
-                    <TekstBlock block={startPaaNyttTittel} typografi={Typografi.Heading} />
+                    <TekstBlock block={startPaaNyttTittel} typografi={Typografi.HeadingH1} />
                     <TekstBlock block={startPaaNyttInfo} typografi={Typografi.BodyShort} />
                     <ModalKnappeContainer>
                         <Button variant={'tertiary'} onClick={() => settVisStartPåNyttModal(false)}>

@@ -6,9 +6,10 @@ import { BodyShort, Label } from '@navikt/ds-react';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { genererAdresseVisning } from '../../../utils/adresse';
-import { sivilstandTilSanitySivilstandApiKey, landkodeTilSpråk } from '../../../utils/språk';
+import { landkodeTilSpråk, sivilstandTilSanitySivilstandApiKey } from '../../../utils/språk';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
@@ -33,9 +34,7 @@ export const Personopplysninger: React.FC = () => {
     return (
         <>
             <AlertStripe variant={'info'}>
-                <BodyShort>
-                    <TekstBlock block={personopplysningerAlert} />
-                </BodyShort>
+                <TekstBlock block={personopplysningerAlert} typografi={Typografi.BodyShort} />
             </AlertStripe>
 
             <Informasjonsbolk>

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import styled from 'styled-components';
 
+import { Heading } from '@navikt/ds-react';
 import { LocaleType, Sprakvelger } from '@navikt/familie-sprakvelger';
 
 import VeilederSnakkeboble from '../../../assets/VeilederSnakkeboble';
@@ -57,7 +58,9 @@ const Forside: React.FC = () => {
             />
 
             <TittelContainer>
-                <TekstBlock block={soeknadstittel} />
+                <Heading level={'1'} size={'xlarge'}>
+                    <TekstBlock block={soeknadstittel} />
+                </Heading>
             </TittelContainer>
 
             <StyledSpråkvelger støttedeSprak={[LocaleType.nn, LocaleType.nb, LocaleType.en]} />

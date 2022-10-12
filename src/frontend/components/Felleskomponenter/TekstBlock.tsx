@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { PortableText } from '@portabletext/react';
+import styled from 'styled-components';
 
 import {
     BodyLong,
@@ -17,11 +18,15 @@ import { useApp } from '../../context/AppContext';
 import { LocaleRecordBlock, Typografi } from '../../typer/common';
 import { FlettefeltVerdier } from '../../typer/kontrakt/generelle';
 
+const StyledLabel = styled(Label)`
+    display: block;
+`;
+
 const typografiWrapper = (content: JSX.Element, typografi?: Typografi): JSX.Element => {
     switch (typografi) {
-        case Typografi.Heading:
+        case Typografi.HeadingH1:
             return (
-                <Heading level={'1'} size={'medium'}>
+                <Heading level={'1'} size={'xsmall'}>
                     {content}
                 </Heading>
             );
@@ -32,7 +37,7 @@ const typografiWrapper = (content: JSX.Element, typografi?: Typografi): JSX.Elem
         case Typografi.BodyShort:
             return <BodyShort>{content}</BodyShort>;
         case Typografi.Label:
-            return <Label>{content}</Label>;
+            return <StyledLabel>{content}</StyledLabel>;
         case Typografi.Detail:
             return <Detail>{content}</Detail>;
         case Typografi.ErrorMessage:
@@ -57,6 +62,7 @@ const TekstBlock: React.FC<{
                   components={{
                       block: {
                           normal: ({ children }) => <>{children}</>,
+                          h1: ({ children }) => <>{children}</>,
                       },
                       marks: {
                           flettefelt: props => {
