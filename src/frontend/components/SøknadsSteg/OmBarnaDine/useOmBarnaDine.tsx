@@ -9,8 +9,10 @@ import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnaDineFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
+import { IOmBarnaTekstinnhold } from './innholdTyper';
 import { OmBarnaDineSpørsmålId } from './spørsmål';
 import useBarnCheckboxFelt from './useBarnCheckboxFelt';
 import { genererOppdaterteBarn } from './utils';
@@ -24,6 +26,8 @@ export const useOmBarnaDine = (): {
 } => {
     const { søknad, settSøknad } = useApp();
     const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } = useEøs();
+    const { tekster } = useApp();
+    const ombarnaTekster: IOmBarnaTekstinnhold = tekster()[ESanitySteg.OM_BARNA];
 
     const erNoenAvBarnaFosterbarn = useJaNeiSpmFelt({
         søknadsfelt: søknad.erNoenAvBarnaFosterbarn,
@@ -94,7 +98,7 @@ export const useOmBarnaDine = (): {
 
     const harEllerTildeltBarnehageplass = useJaNeiSpmFelt({
         søknadsfelt: søknad.harEllerTildeltBarnehageplass,
-        feilmeldingSpråkId: 'todo.ombarnadine.barnehageplass',
+        feilmelding: ombarnaTekster.barnehageplass.feilmelding,
     });
 
     const hvemHarBarnehageplass = useBarnCheckboxFelt(

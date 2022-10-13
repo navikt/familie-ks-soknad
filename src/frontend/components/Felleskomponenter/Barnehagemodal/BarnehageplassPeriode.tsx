@@ -10,7 +10,7 @@ import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
-import Informasjonsbolk from '../Informasjonsbolk/Informasjonsbolk';
+import { IOmBarnetTekstinnhold } from '../../SøknadsSteg/OmBarnet/innholdTyper';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
@@ -38,10 +38,17 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
     const { tekster } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
+    const oppfølgingstekst: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
+    const barnetsNavn = barn?.navn;
 
     return (
         <>
-            <Informasjonsbolk tittelId={'tittel'} />
+            <Element>
+                <TekstBlock
+                    block={oppfølgingstekst.opplystBarnehageplass}
+                    flettefelter={{ barnetsNavn }}
+                />
+            </Element>
             {registrerteBarnehageplassPerioder.verdi.map((periode, index) => (
                 <BarnehageplassPeriodeOppsummering
                     key={`barnehageplass-periode-${index}`}
