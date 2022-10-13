@@ -19,11 +19,11 @@ import {
     morgendagensDato,
 } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 
-export const useBarnehageplassPeriodeSkjema = barn => {
+export const useBarnehageplassPeriodeSkjema = () => {
     const { tekster } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
@@ -34,7 +34,10 @@ export const useBarnehageplassPeriodeSkjema = barn => {
         valideringsfunksjon: (felt: FeltState<EBarnehageplassPeriodeBeskrivelse | ''>) =>
             felt.verdi !== ''
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />),
+                : feil(
+                      felt,
+                      <TekstBlock block={barnehageplassTekster.periodebeskrivelse.feilmelding} />
+                  ),
     });
 
     useEffect(() => {
@@ -43,26 +46,30 @@ export const useBarnehageplassPeriodeSkjema = barn => {
 
     const barnehageplassUtlandet = useJaNeiSpmFelt({
         søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.barnehageplassUtlandet, svar: null },
-        feilmeldingSpråkId: 'todo.ombarnet.barnehageplass.periode',
-        feilmeldingSpråkVerdier: { barn: barn.navn },
+        feilmelding: barnehageplassTekster.utland.feilmelding,
+        nullstillVedAvhengighetEndring: true,
+        skalSkjules: !barnehageplassPeriodeBeskrivelse.verdi,
     });
 
     const barnehageplassLand = useLanddropdownFelt({
         søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.barnehageplassLand, svar: '' },
-        feilmelding: barnehageplassTekster.barnehageHvilketLand.feilmelding,
+        feilmelding: barnehageplassTekster.hvilketLand.feilmelding,
         skalFeltetVises: barnehageplassUtlandet.verdi === ESvar.JA,
         nullstillVedAvhengighetEndring: true,
     });
 
     const offentligStøtte = useJaNeiSpmFelt({
         søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.offentligStøtte, svar: null },
-        feilmeldingSpråkId: 'todo.ombarnet.barnehageplass.periode',
-        skalSkjules: barnehageplassUtlandet.verdi === ESvar.NEI,
+        feilmelding: barnehageplassTekster.offentligStoette.feilmelding,
+        skalSkjules: !(barnehageplassUtlandet.verdi === ESvar.JA),
+        nullstillVedAvhengighetEndring: true,
     });
 
     const antallTimer = useFelt<string>({
         verdi: '',
         feltId: BarnehageplassPeriodeSpørsmålId.antallTimer,
+        avhengigheter: { barnehageplassPeriodeBeskrivelse },
+        skalFeltetVises: avhengigheter => !!avhengigheter.barnehageplassPeriodeBeskrivelse.verdi,
         valideringsfunksjon: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
             if (verdi.match(/^[\d\s.\\/,.]{1,7}$/)) {
@@ -70,13 +77,8 @@ export const useBarnehageplassPeriodeSkjema = barn => {
             } else {
                 return feil(
                     felt,
-                    <SpråkTekst
-                        id={
-                            verdi === ''
-                                ? 'todo.ombarnet.barnehageplass.periode'
-                                : 'todo.ombarnet.barnehageplass.periode'
-                        }
-                    />
+                    <TekstBlock block={barnehageplassTekster.antallTimer.feilmelding} />
+                    //TODO trenger feilmelding om feil format?
                 );
             }
         },
@@ -95,7 +97,7 @@ export const useBarnehageplassPeriodeSkjema = barn => {
         feilmelding: periodenHarIkkeStartet
             ? barnehageplassTekster.startdatoFremtid.feilmelding
             : barnehageplassTekster.startdatoFortid.feilmelding,
-        skalFeltetVises: true,
+        skalFeltetVises: !!barnehageplassPeriodeBeskrivelse.verdi,
         startdatoAvgrensning:
             barnehageplassPeriodeBeskrivelse.verdi ===
             EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
@@ -128,7 +130,7 @@ export const useBarnehageplassPeriodeSkjema = barn => {
         feilmelding: periodenErAvsluttet
             ? barnehageplassTekster.sluttdatoFortid.feilmelding
             : barnehageplassTekster.sluttdatoFremtid.feilmelding,
-        skalFeltetVises: true,
+        skalFeltetVises: !!barnehageplassPeriodeBeskrivelse.verdi,
         startdatoAvgrensning:
             barnehageplassPeriodeBeskrivelse.verdi ===
             EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ

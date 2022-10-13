@@ -4,13 +4,16 @@ import { Element } from 'nav-frontend-typografi';
 
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
+import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import Informasjonsbolk from '../Informasjonsbolk/Informasjonsbolk';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 import { BarnehageplassPeriodeModal } from './BarnehageplassPeriodeModal';
 import { BarnehageplassPeriodeOppsummering } from './barnehageplassPeriodeOppsummering';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
@@ -32,10 +35,13 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
 }) => {
     const { erÅpen: barnehageplassModalErÅpen, toggleModal: toggleBarnehageplassModal } =
         useModal();
+    const { tekster } = useApp();
+    const barnehageplassTekster: IBarnehageplassTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
 
     return (
         <>
-            <Informasjonsbolk tittelId={'todo.ombarnet.barnehageplass.oppfølging'} />
+            <Informasjonsbolk tittelId={'tittel'} />
             {registrerteBarnehageplassPerioder.verdi.map((periode, index) => (
                 <BarnehageplassPeriodeOppsummering
                     key={`barnehageplass-periode-${index}`}
@@ -47,25 +53,23 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
             ))}
             {registrerteBarnehageplassPerioder.verdi.length > 0 && (
                 <Element>
-                    <SpråkTekst
-                        id={'todo.ombarnet.barnehageplass.periode'}
-                        values={{ barn: barn.navn }}
-                    />
+                    <TekstBlock block={barnehageplassTekster.flerePerioder} />
                 </Element>
             )}
 
             <LeggTilKnapp
                 onClick={toggleBarnehageplassModal}
-                språkTekst={'todo.ombarnet.barnehageplass.periode'}
                 id={BarnehageplassPeriodeSpørsmålId.barnehageplassPeriode}
                 feilmelding={
                     registrerteBarnehageplassPerioder.erSynlig &&
                     registrerteBarnehageplassPerioder.feilmelding &&
                     skjema.visFeilmeldinger && (
-                        <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
+                        <TekstBlock block={barnehageplassTekster.leggTilFeilmelding} />
                     )
                 }
-            />
+            >
+                <TekstBlock block={barnehageplassTekster.leggTilKnapp} />
+            </LeggTilKnapp>
             <BarnehageplassPeriodeModal
                 erÅpen={barnehageplassModalErÅpen}
                 toggleModal={toggleBarnehageplassModal}
