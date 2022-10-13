@@ -4,6 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -12,9 +13,9 @@ import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
 import {
     harTilhørendeFomFelt,
-    hentMinAvgrensningPåTilDato,
     hentMaxAvgrensningPåFraDato,
     hentMaxAvgrensningPåTilDato,
+    hentMinAvgrensningPåTilDato,
 } from '../../../utils/utenlandsopphold';
 import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
@@ -95,7 +96,11 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
         <SkjemaModal
             erÅpen={erÅpen}
             tittel={
-                <TekstBlock block={teksterForPersonType.tittel} flettefelter={{ barnetsNavn }} />
+                <TekstBlock
+                    block={teksterForPersonType.tittel}
+                    flettefelter={{ barnetsNavn }}
+                    typografi={Typografi.HeadingH1}
+                />
             }
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
             onSubmitCallback={onLeggTil}
