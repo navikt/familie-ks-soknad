@@ -34,7 +34,7 @@ const OmBarnaDine: React.FC = () => {
     const { barnInkludertISøknaden } = søknad;
 
     const {
-        [ESanitySteg.OM_BARNA]: { omBarnaTittel, hvemBarnehageplass },
+        [ESanitySteg.OM_BARNA]: { omBarnaTittel, hvemBarnehageplass, barnehageplass },
     } = tekster();
 
     if (!barnInkludertISøknaden.length) {
@@ -196,11 +196,7 @@ const OmBarnaDine: React.FC = () => {
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.harEllerTildeltBarnehageplass}
-                    spørsmålTekstId={
-                        omBarnaDineSpørsmålSpråkId[
-                            OmBarnaDineSpørsmålId.harEllerTildeltBarnehageplass
-                        ]
-                    }
+                    spørsmålDokument={barnehageplass}
                 />
                 <HvilkeBarnCheckboxGruppe
                     legend={<TekstBlock block={hvemBarnehageplass.sporsmal} />}

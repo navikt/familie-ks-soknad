@@ -8,7 +8,9 @@ import { DeleteFilled } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
 import { NavdsSemanticColorBorder } from '@navikt/ds-tokens/dist/tokens';
 
+import { LocaleRecordBlock } from '../../../typer/common';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 
 const PeriodeContainer = styled.div<{ bottomBorder: boolean }>`
     margin: 2rem 0;
@@ -32,12 +34,14 @@ const PeriodeOppsummering: React.FC<{
     nummer: number;
     fjernPeriodeCallback?: () => void;
     fjernKnappSpråkId?: string;
-    tittelSpråkId: string;
+    fjernKnappTekst?: LocaleRecordBlock;
+    tittelSpråkId?: string;
     vedleggNotis?: ReactNode;
 }> = ({
     nummer,
     fjernPeriodeCallback = undefined,
     fjernKnappSpråkId,
+    fjernKnappTekst,
     tittelSpråkId,
     vedleggNotis,
     children,
@@ -57,7 +61,11 @@ const PeriodeOppsummering: React.FC<{
                     onClick={() => fjernPeriodeCallback()}
                 >
                     <DeleteFilled />
-                    <SpråkTekst id={fjernKnappSpråkId} />
+                    {fjernKnappTekst ? (
+                        <TekstBlock block={fjernKnappTekst} />
+                    ) : (
+                        <SpråkTekst id={fjernKnappSpråkId} />
+                    )}
                 </StyledButton>
             )}
             {vedleggNotis}

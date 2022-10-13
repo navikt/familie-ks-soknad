@@ -48,7 +48,6 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
                     barnehageplassPeriode={periode}
                     fjernPeriodeCallback={fjernBarnehageplassPeriode}
                     nummer={index + 1}
-                    barnetsNavn={barn.navn}
                 />
             ))}
             {registrerteBarnehageplassPerioder.verdi.length > 0 && (
