@@ -1,11 +1,4 @@
 export enum OmBarnetSpørsmålsId {
-    institusjonIUtland = 'institusjonIUtland',
-    institusjonsnavn = 'institusjonsnavn',
-    institusjonsadresse = 'institusjonsadresse',
-    institusjonspostnummer = 'institusjonspostnummer',
-    institusjonOppholdStartdato = 'institusjon-opphold-startdato',
-    institusjonOppholdSluttdato = 'institusjon-opphold-sluttdato',
-    institusjonOppholdVetIkke = 'institusjon-opphold-ukjent-sluttdato',
     utbetaltForeldrepengerEllerEngangsstønad = 'utbetalt-foreldrepenger-eller-engangsstønad',
     planleggerÅBoINorge12Mnd = 'barn-planlegger-å-bo-sammenhengende-i-norge-12mnd',
     pågåendeSøknadFraAnnetEøsLand = 'pågående-søknad-fra-annet-eøsland',
@@ -30,13 +23,6 @@ export enum OmBarnetSpørsmålsId {
 }
 
 export const omBarnetSpørsmålSpråkId: Record<OmBarnetSpørsmålsId, string> = {
-    [OmBarnetSpørsmålsId.institusjonIUtland]: 'ombarnet.institusjon.i-utlandet',
-    [OmBarnetSpørsmålsId.institusjonsnavn]: 'ombarnet.institusjon.navn.spm',
-    [OmBarnetSpørsmålsId.institusjonsadresse]: 'ombarnet.institusjon.adresse.spm',
-    [OmBarnetSpørsmålsId.institusjonspostnummer]: 'ombarnet.institusjon.postnummer.spm',
-    [OmBarnetSpørsmålsId.institusjonOppholdStartdato]: 'ombarnet.institusjon.startdato.spm',
-    [OmBarnetSpørsmålsId.institusjonOppholdSluttdato]: 'ombarnet.institusjon.sluttdato.spm',
-    [OmBarnetSpørsmålsId.institusjonOppholdVetIkke]: 'ombarnet.institusjon.ukjent-sluttdato.spm',
     [OmBarnetSpørsmålsId.utbetaltForeldrepengerEllerEngangsstønad]:
         'todo.ombarnet.utbetalt.foreldrepenger.engangsstønad',
     [OmBarnetSpørsmålsId.planleggerÅBoINorge12Mnd]: 'ombarnet.oppholdtsammenhengende.spm',
