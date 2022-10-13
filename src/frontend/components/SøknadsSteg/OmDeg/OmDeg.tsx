@@ -39,7 +39,7 @@ const OmDeg: React.FC = () => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={omDegTittel} typografi={Typografi.HeadingH1} />}
+            tittel={<TekstBlock block={omDegTittel} typografi={Typografi.StegHeadingH1} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
