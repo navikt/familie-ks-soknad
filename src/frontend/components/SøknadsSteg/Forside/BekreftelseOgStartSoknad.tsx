@@ -12,6 +12,7 @@ import {
 } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { BekreftelseStatus, useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
@@ -77,7 +78,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                     }
                     status={bekreftelseStatus}
                 >
-                    <TekstBlock block={bekreftelsesboksBroedtekst} />
+                    <TekstBlock block={bekreftelsesboksBroedtekst} typografi={Typografi.BodyLong} />
                 </StyledBekreftCheckboksPanel>
             </Informasjonsbolk>
 
