@@ -6,7 +6,7 @@ import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { useSteg } from '../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { BarnetsId } from '../../../typer/common';
+import { BarnetsId, Typografi } from '../../../typer/common';
 import { IBarn } from '../../../typer/person';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IVelgBarnFeltTyper } from '../../../typer/skjema';
@@ -55,7 +55,13 @@ export const useVelgBarn = (): {
         valideringsfunksjon: (felt, avhengigheter) => {
             return avhengigheter?.barnSomSkalVæreMed.length > 0
                 ? ok(felt)
-                : feil(felt, <TekstBlock block={teksterForSteg.maaVelgeEtBarnForAaGaaVidere} />);
+                : feil(
+                      felt,
+                      <TekstBlock
+                          block={teksterForSteg.maaVelgeEtBarnForAaGaaVidere}
+                          typografi={Typografi.ErrorMessage}
+                      />
+                  );
         },
         avhengigheter: { barnSomSkalVæreMed },
     });

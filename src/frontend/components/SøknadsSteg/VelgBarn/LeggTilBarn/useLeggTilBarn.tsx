@@ -13,7 +13,7 @@ import {
 
 import { useApp } from '../../../../context/AppContext';
 import useInputFeltMedUkjent from '../../../../hooks/useInputFeltMedUkjent';
-import { ESvarMedUbesvart, LocaleRecordBlock } from '../../../../typer/common';
+import { ESvarMedUbesvart, LocaleRecordBlock, Typografi } from '../../../../typer/common';
 import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { ILeggTilBarnTyper } from '../../../../typer/skjema';
@@ -47,12 +47,18 @@ export const useLeggTilBarn = (): {
                 case ESvar.NEI:
                     return feil(
                         felt,
-                        <TekstBlock block={teksterForModal.barnIkkeFoedtFeilmelding} />
+                        <TekstBlock
+                            block={teksterForModal.barnIkkeFoedtFeilmelding}
+                            typografi={Typografi.ErrorMessage}
+                        />
                     );
                 default:
                     return feil(
                         felt,
-                        <TekstBlock block={teksterForModal.erBarnetFoedt.feilmelding} />
+                        <TekstBlock
+                            block={teksterForModal.erBarnetFoedt.feilmelding}
+                            typografi={Typografi.ErrorMessage}
+                        />
                     );
             }
         },
@@ -71,7 +77,12 @@ export const useLeggTilBarn = (): {
             svar: '',
         },
         avhengighet: navnetErUbestemt,
-        feilmelding: <TekstBlock block={teksterForModal.fornavn.feilmelding} />,
+        feilmelding: (
+            <TekstBlock
+                block={teksterForModal.fornavn.feilmelding}
+                typografi={Typografi.ErrorMessage}
+            />
+        ),
         skalVises: erFødt.valideringsstatus === Valideringsstatus.OK,
     });
 
@@ -81,7 +92,12 @@ export const useLeggTilBarn = (): {
             svar: '',
         },
         avhengighet: navnetErUbestemt,
-        feilmelding: <TekstBlock block={teksterForModal.etternavn.feilmelding} />,
+        feilmelding: (
+            <TekstBlock
+                block={teksterForModal.etternavn.feilmelding}
+                typografi={Typografi.ErrorMessage}
+            />
+        ),
         skalVises: erFødt.valideringsstatus === Valideringsstatus.OK,
     });
 
@@ -90,7 +106,13 @@ export const useLeggTilBarn = (): {
         valideringsfunksjon: felt =>
             felt.verdi === ESvar.NEI
                 ? ok(felt)
-                : feil(felt, <TekstBlock block={teksterForModal.foedselsnummerFeilmelding} />),
+                : feil(
+                      felt,
+                      <TekstBlock
+                          block={teksterForModal.foedselsnummerFeilmelding}
+                          typografi={Typografi.ErrorMessage}
+                      />
+                  ),
         skalFeltetVises: ({ erFødt }) => erFødt.verdi === ESvar.JA,
         avhengigheter: { erFødt },
     });
@@ -101,12 +123,23 @@ export const useLeggTilBarn = (): {
             svar: '',
         },
         avhengighet: ikkeFåttIdentChecked,
-        feilmelding: <TekstBlock block={teksterForModal.foedselsnummerEllerDNummer.feilmelding} />,
+        feilmelding: (
+            <TekstBlock
+                block={teksterForModal.foedselsnummerEllerDNummer.feilmelding}
+                typografi={Typografi.ErrorMessage}
+            />
+        ),
         erFnrInput: true,
         skalVises: erFødt.valideringsstatus === Valideringsstatus.OK,
         customValidering: (felt: FeltState<string>) => {
             return erBarnRegistrertFraFør(søknad, felt.verdi)
-                ? feil(felt, <TekstBlock block={teksterForModal.sammeFoedselsnummerFeilmelding} />)
+                ? feil(
+                      felt,
+                      <TekstBlock
+                          block={teksterForModal.sammeFoedselsnummerFeilmelding}
+                          typografi={Typografi.ErrorMessage}
+                      />
+                  )
                 : ok(felt);
         },
     });
