@@ -18,6 +18,7 @@ const StyledOppsummeringsFelt = styled.div`
 `;
 
 interface IOppsummeringsFeltProps {
+    /** @deprecated **/
     tittel?: ReactNode;
     spørsmålstekst?: LocaleRecordBlock;
     søknadsvar?: ReactNode | null;
