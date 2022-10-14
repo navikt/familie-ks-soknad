@@ -6,6 +6,7 @@ import { Button, Modal } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { device } from '../../../Theme';
+import { Typografi } from '../../../typer/common';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import ModalContent from '../../Felleskomponenter/ModalContent';
@@ -32,11 +33,6 @@ const ModalKnappeContainer = styled.div`
     gap: 1rem;
     flex-wrap: wrap;
     margin-top: 1rem;
-
-    > button {
-        padding-top: 0;
-        padding-bottom: 0;
-    }
 
     @media all and ${device.mobile} {
         justify-content: center;
@@ -71,7 +67,7 @@ const FortsettPåSøknad: FC = () => {
         <StyledFortsettPåSøknad role={'navigation'}>
             <KomponentGruppe>
                 <AlertStripe inline={false} variant={'info'}>
-                    <TekstBlock block={mellomlagretAlert} />
+                    <TekstBlock block={mellomlagretAlert} typografi={Typografi.BodyShort} />
                 </AlertStripe>
             </KomponentGruppe>
             <StyledButton onClick={fortsettPåSøknaden}>{plainTekst(fortsettKnapp)}</StyledButton>
@@ -85,8 +81,8 @@ const FortsettPåSøknad: FC = () => {
                 }}
             >
                 <ModalContent>
-                    <TekstBlock block={startPaaNyttTittel} />
-                    <TekstBlock block={startPaaNyttInfo} />
+                    <TekstBlock block={startPaaNyttTittel} typografi={Typografi.ModalHeadingH1} />
+                    <TekstBlock block={startPaaNyttInfo} typografi={Typografi.BodyShort} />
                     <ModalKnappeContainer>
                         <Button variant={'tertiary'} onClick={() => settVisStartPåNyttModal(false)}>
                             <TekstBlock block={startPaaNyttAvbryt} />

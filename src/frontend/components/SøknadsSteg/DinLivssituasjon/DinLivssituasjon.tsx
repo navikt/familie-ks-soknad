@@ -4,6 +4,7 @@ import { BodyShort } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
@@ -35,7 +36,9 @@ const DinLivssituasjon: React.FC = () => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={dinLivssituasjonTittel} />}
+            tittel={
+                <TekstBlock block={dinLivssituasjonTittel} typografi={Typografi.StegHeadingH1} />
+            }
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

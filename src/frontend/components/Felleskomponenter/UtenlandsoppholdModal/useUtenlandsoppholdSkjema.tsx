@@ -7,6 +7,7 @@ import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { Typografi } from '../../../typer/common';
 import { PersonType } from '../../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -15,9 +16,9 @@ import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 import { dagenEtterDato } from '../../../utils/dato';
 import {
     harTilhørendeFomFelt,
-    hentMinAvgrensningPåTilDato,
     hentMaxAvgrensningPåFraDato,
     hentMaxAvgrensningPåTilDato,
+    hentMinAvgrensningPåTilDato,
 } from '../../../utils/utenlandsopphold';
 import TekstBlock from '../TekstBlock';
 import { UtenlandsoppholdSpørsmålId } from './spørsmål';
@@ -44,7 +45,10 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
                 ? ok(felt)
                 : feil(
                       felt,
-                      <TekstBlock block={teksterForPersontype.periodeBeskrivelse.feilmelding} />
+                      <TekstBlock
+                          block={teksterForPersontype.periodeBeskrivelse.feilmelding}
+                          typografi={Typografi.ErrorMessage}
+                      />
                   ),
     });
 

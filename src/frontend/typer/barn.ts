@@ -1,6 +1,6 @@
 import { Alpha3Code } from 'i18n-iso-countries';
 
-import { ESvar, ISODateString } from '@navikt/familie-form-elements';
+import { ESvar } from '@navikt/familie-form-elements';
 
 import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent } from './common';
 import { Slektsforhold } from './kontrakt/generelle';
@@ -48,12 +48,6 @@ export enum barnDataKeySpørsmål {
     harBarnehageplass = 'harBarnehageplass',
     andreForelderErDød = 'andreForelderErDød',
     oppholderSegIInstitusjon = 'oppholderSegIInstitusjon',
-    institusjonIUtland = 'institusjonIUtland',
-    institusjonsnavn = 'institusjonsnavn',
-    institusjonsadresse = 'institusjonsadresse',
-    institusjonspostnummer = 'institusjonspostnummer',
-    institusjonOppholdStartdato = 'institusjonOppholdStartdato',
-    institusjonOppholdSluttdato = 'institusjonOppholdSluttdato',
     utbetaltForeldrepengerEllerEngangsstønad = 'utbetaltForeldrepengerEllerEngangsstønad',
     boddMindreEnn12MndINorge = 'boddMindreEnn12MndINorge',
     planleggerÅBoINorge12Mnd = 'planleggerÅBoINorge12Mnd',
@@ -114,12 +108,6 @@ export interface IBarnMedISøknad extends IBarn {
     [barnDataKeySpørsmål.harBarnehageplass]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.andreForelderErDød]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.oppholderSegIInstitusjon]: ISøknadSpørsmål<ESvar | null>;
-    [barnDataKeySpørsmål.institusjonIUtland]: ISøknadSpørsmål<ESvar>;
-    [barnDataKeySpørsmål.institusjonsnavn]: ISøknadSpørsmål<string>;
-    [barnDataKeySpørsmål.institusjonsadresse]: ISøknadSpørsmål<string>;
-    [barnDataKeySpørsmål.institusjonspostnummer]: ISøknadSpørsmål<string>;
-    [barnDataKeySpørsmål.institusjonOppholdStartdato]: ISøknadSpørsmål<ISODateString>;
-    [barnDataKeySpørsmål.institusjonOppholdSluttdato]: ISøknadSpørsmål<DatoMedUkjent>;
     [barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.boddMindreEnn12MndINorge]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.planleggerÅBoINorge12Mnd]: ISøknadSpørsmål<ESvar | null>;

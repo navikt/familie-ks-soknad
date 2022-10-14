@@ -2,21 +2,26 @@ import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { Element } from 'nav-frontend-typografi';
 
+import { BodyLong } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { LocaleRecordBlock, Typografi } from '../../../typer/common';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { jaNeiSvarTilSpråkId } from '../../../utils/spørsmål';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 const StyledOppsummeringsFelt = styled.div`
     margin-bottom: 1rem;
 `;
 
 interface IOppsummeringsFeltProps {
+    /** @deprecated **/
     tittel?: ReactNode;
-    søknadsvar?: string | null;
+    spørsmålstekst?: LocaleRecordBlock;
+    søknadsvar?: ReactNode | null;
 }
 
 const StyledElement = styled(Element)`
@@ -28,22 +33,22 @@ const StyledElement = styled(Element)`
 export const OppsummeringFelt: React.FC<IOppsummeringsFeltProps> = ({
     tittel,
     søknadsvar,
+    spørsmålstekst,
     children,
 }) => {
     let språktekstid: boolean | string = false;
-    if (søknadsvar && søknadsvar in ESvar) {
+    if (typeof søknadsvar === 'string' && søknadsvar in ESvar) {
         språktekstid = jaNeiSvarTilSpråkId(søknadsvar as ESvar);
-    } else if (søknadsvar && søknadsvar in ESivilstand) {
+    } else if (typeof søknadsvar === 'string' && søknadsvar in ESivilstand) {
         språktekstid = 'felles.sivilstatus.kode.' + søknadsvar;
     }
 
     return (
         <StyledOppsummeringsFelt>
             {tittel && <StyledElement>{tittel}</StyledElement>}
+            {spørsmålstekst && <TekstBlock block={spørsmålstekst} typografi={Typografi.Label} />}
             {søknadsvar ? (
-                <Normaltekst>
-                    {språktekstid ? <SpråkTekst id={språktekstid} /> : søknadsvar}
-                </Normaltekst>
+                <BodyLong>{språktekstid ? <SpråkTekst id={språktekstid} /> : søknadsvar}</BodyLong>
             ) : (
                 children
             )}

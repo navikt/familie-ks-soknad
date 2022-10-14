@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import {
     feil,
@@ -15,11 +13,13 @@ import {
 
 import { useApp } from '../../../../context/AppContext';
 import useInputFeltMedUkjent from '../../../../hooks/useInputFeltMedUkjent';
-import { ESvarMedUbesvart } from '../../../../typer/common';
+import { ESvarMedUbesvart, LocaleRecordBlock, Typografi } from '../../../../typer/common';
+import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
+import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { ILeggTilBarnTyper } from '../../../../typer/skjema';
 import { erBarnRegistrertFraFør, hentUid } from '../../../../utils/barn';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
-import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { VelgBarnSpørsmålId } from '../spørsmål';
 
 export const useLeggTilBarn = (): {
@@ -29,8 +29,13 @@ export const useLeggTilBarn = (): {
     nullstillSkjema: () => void;
     leggTilBarn: () => void;
 } => {
-    const { søknad, settSøknad, mellomlagre } = useApp();
-    const intl = useIntl();
+    const { søknad, settSøknad, mellomlagre, tekster, plainTekst } = useApp();
+
+    const teksterForModal: ILeggTilBarnTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
+
+    const navnIkkeBestemtTekst: LocaleRecordBlock =
+        tekster()[ESanitySteg.VELG_BARN].navnIkkeBestemtLabel;
 
     const erFødt = useFelt<ESvarMedUbesvart>({
         verdi: null,
@@ -42,12 +47,18 @@ export const useLeggTilBarn = (): {
                 case ESvar.NEI:
                     return feil(
                         felt,
-                        <SpråkTekst id={'hvilkebarn.leggtilbarn.barn-ikke-født.feilmelding'} />
+                        <TekstBlock
+                            block={teksterForModal.barnIkkeFoedtFeilmelding}
+                            typografi={Typografi.ErrorMessage}
+                        />
                     );
                 default:
                     return feil(
                         felt,
-                        <SpråkTekst id={'hvilkebarn.leggtilbarn.barnfødt.feilmelding'} />
+                        <TekstBlock
+                            block={teksterForModal.erBarnetFoedt.feilmelding}
+                            typografi={Typografi.ErrorMessage}
+                        />
                     );
             }
         },
@@ -66,7 +77,12 @@ export const useLeggTilBarn = (): {
             svar: '',
         },
         avhengighet: navnetErUbestemt,
-        feilmeldingSpråkId: 'hvilkebarn.leggtilbarn.fornavn.feilmelding',
+        feilmelding: (
+            <TekstBlock
+                block={teksterForModal.fornavn.feilmelding}
+                typografi={Typografi.ErrorMessage}
+            />
+        ),
         skalVises: erFødt.valideringsstatus === Valideringsstatus.OK,
     });
 
@@ -76,7 +92,12 @@ export const useLeggTilBarn = (): {
             svar: '',
         },
         avhengighet: navnetErUbestemt,
-        feilmeldingSpråkId: 'hvilkebarn.leggtilbarn.etternavn.feilmelding',
+        feilmelding: (
+            <TekstBlock
+                block={teksterForModal.etternavn.feilmelding}
+                typografi={Typografi.ErrorMessage}
+            />
+        ),
         skalVises: erFødt.valideringsstatus === Valideringsstatus.OK,
     });
 
@@ -87,7 +108,10 @@ export const useLeggTilBarn = (): {
                 ? ok(felt)
                 : feil(
                       felt,
-                      <SpråkTekst id={'hvilkebarn.leggtilbarn.ikke-fått-fnr.feilmelding'} />
+                      <TekstBlock
+                          block={teksterForModal.foedselsnummerFeilmelding}
+                          typografi={Typografi.ErrorMessage}
+                      />
                   ),
         skalFeltetVises: ({ erFødt }) => erFødt.verdi === ESvar.JA,
         avhengigheter: { erFødt },
@@ -99,14 +123,22 @@ export const useLeggTilBarn = (): {
             svar: '',
         },
         avhengighet: ikkeFåttIdentChecked,
-        feilmeldingSpråkId: 'hvilkebarn.leggtilbarn.fnr.feilmelding',
+        feilmelding: (
+            <TekstBlock
+                block={teksterForModal.foedselsnummerEllerDNummer.feilmelding}
+                typografi={Typografi.ErrorMessage}
+            />
+        ),
         erFnrInput: true,
         skalVises: erFødt.valideringsstatus === Valideringsstatus.OK,
         customValidering: (felt: FeltState<string>) => {
             return erBarnRegistrertFraFør(søknad, felt.verdi)
                 ? feil(
                       felt,
-                      <SpråkTekst id={'hvilkebarn.leggtilbarn.fnr.duplikat-barn.feilmelding'} />
+                      <TekstBlock
+                          block={teksterForModal.sammeFoedselsnummerFeilmelding}
+                          typografi={Typografi.ErrorMessage}
+                      />
                   )
                 : ok(felt);
         },
@@ -139,9 +171,7 @@ export const useLeggTilBarn = (): {
             barnRegistrertManuelt: søknad.barnRegistrertManuelt.concat([
                 {
                     id: hentUid(),
-                    navn:
-                        fulltNavn() ||
-                        intl.formatMessage({ id: 'hvilkebarn.barn.ingen-navn.placeholder' }),
+                    navn: fulltNavn() || plainTekst(navnIkkeBestemtTekst),
                     ident: ident.verdi,
                     borMedSøker: undefined,
                     alder: null,

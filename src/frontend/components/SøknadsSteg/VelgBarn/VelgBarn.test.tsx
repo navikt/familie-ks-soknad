@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { mockDeep } from 'jest-mock-extended';
 import { DeepPartial } from 'ts-essentials';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { byggSuksessRessurs, RessursStatus } from '@navikt/familie-typer';
-import fnrvalidator from '@navikt/fnrvalidator';
+import { RessursStatus } from '@navikt/familie-typer';
 
 import * as pdlRequest from '../../../context/pdl';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';
@@ -96,18 +95,18 @@ describe('VelgBarn', () => {
             søknad.barnInkludertISøknaden = nySøknad.barnInkludertISøknaden;
         });
 
-        const { getByText } = render(
+        const { queryByTestId } = render(
             <TestProvidere>
                 <VelgBarn />
             </TestProvidere>
         );
 
-        const fjernBarnKnapp = getByText(/hvilkebarn.fjern-barn.knapp/);
+        const fjernBarnKnapp = queryByTestId('fjern-barn-knapp');
 
-        act(() => fjernBarnKnapp.click());
+        act(() => fjernBarnKnapp?.click());
 
-        const gåVidere = getByText(/felles.navigasjon.gå-videre/);
-        act(() => gåVidere.click());
+        const gåVidere = queryByTestId('gå-videre-knapp');
+        act(() => gåVidere?.click());
 
         // Først blir barnet fjernet fra manuelt registrerte barn
         expect(settSøknad).toHaveBeenNthCalledWith(1, {
@@ -133,7 +132,7 @@ describe('VelgBarn', () => {
             erEøs: false,
         });
     });
-    test('Rendrer anonymt barnekort dersom det har adressebeskyttelse', () => {
+    test('Rendrer ikke navn eller fnr på barnekort dersom det har adressebeskyttelse', () => {
         const søknad = mockDeep<ISøknad>({
             søker: {
                 barn: [
@@ -154,67 +153,10 @@ describe('VelgBarn', () => {
             </TestProvidere>
         );
         const ident = queryByText(søknad.søker.barn[0].ident ?? 'finnes-ikke-kast-feil');
-        const infoTekst = queryByText(/hvilkebarn.barn.bosted.adressesperre/);
+        const navn = queryByText(søknad.søker.barn[0].navn ?? 'finnes-ikke-kast-feil');
 
         expect(ident).not.toBeInTheDocument();
-        expect(infoTekst).toBeInTheDocument();
-    });
-
-    test('Kan legge til, fjerne og så legge et barn til igjen', async () => {
-        jest.spyOn(fnrvalidator, 'idnr').mockReturnValue({ status: 'valid', type: 'fnr' });
-
-        const søknad = {
-            barnRegistrertManuelt: [manueltRegistrert],
-            barnInkludertISøknaden: [manueltRegistrert, fraPdlSomIBarnMedISøknad],
-            søker: { barn: [fraPdl] },
-            dokumentasjon: [],
-        };
-        const { settSøknad, axiosRequestMock } = spyOnUseApp(søknad);
-        axiosRequestMock.mockReturnValue(byggSuksessRessurs(false));
-
-        settSøknad.mockImplementation((nySøknad: ISøknad) => {
-            søknad.barnRegistrertManuelt = nySøknad.barnRegistrertManuelt;
-            søknad.barnInkludertISøknaden = nySøknad.barnInkludertISøknaden;
-        });
-
-        const { getByText, queryByTestId } = render(
-            <TestProvidere>
-                <VelgBarn />
-            </TestProvidere>
-        );
-
-        const fjernBarnKnapp = getByText(/hvilkebarn.fjern-barn.knapp/);
-        act(() => fjernBarnKnapp.click());
-
-        const leggTilBarnKnapp = getByText(/hvilkebarn.leggtilbarn.kort.knapp/);
-        act(() => leggTilBarnKnapp.click());
-
-        const leggTilKnappIModal = queryByTestId('submit-knapp-i-modal');
-
-        const jaKnapp = getByText('felles.svaralternativ.ja');
-        act(() => jaKnapp.click());
-
-        const fornavnLabel = getByText('hvilkebarn.leggtilbarn.fornavn.spm');
-        const etternavnLabel = getByText('hvilkebarn.leggtilbarn.etternavn.spm');
-        const idnrLabel = getByText('felles.fødsels-eller-dnummer.label');
-        expect(fornavnLabel).toBeInTheDocument();
-        expect(etternavnLabel).toBeInTheDocument();
-        expect(idnrLabel).toBeInTheDocument();
-        const fornavnInput = fornavnLabel.nextElementSibling || new Element();
-        const etternavnInput = etternavnLabel.nextElementSibling || new Element();
-        const idnrInput = idnrLabel.nextElementSibling || new Element();
-
-        act(() => {
-            fireEvent.input(fornavnInput, { target: { value: manueltRegistrert.navn } });
-            fireEvent.input(etternavnInput, { target: { value: 'whatever' } });
-            fireEvent.input(idnrInput, { target: { value: manueltRegistrert.ident } });
-        });
-
-        await act(() => leggTilKnappIModal?.click());
-
-        expect(søknad.barnRegistrertManuelt.length).toBe(1);
-        // Først fjernet vi barnet, så la vi det til igjen
-        expect(settSøknad).toHaveBeenCalledTimes(2);
+        expect(navn).not.toBeInTheDocument();
     });
 
     test('Kan huke av for barn', () => {
@@ -234,14 +176,12 @@ describe('VelgBarn', () => {
         };
         spyOnUseApp(søknad);
 
-        const { getByLabelText } = render(
+        const { queryByTestId } = render(
             <TestProvidere>
                 <VelgBarn />
             </TestProvidere>
         );
-        const checkbox: HTMLInputElement = getByLabelText(
-            /hvilkebarn.barn.søk-om.spm/
-        ) as HTMLInputElement;
+        const checkbox: HTMLInputElement = queryByTestId('velg-barn-checkbox') as HTMLInputElement;
         act(() => checkbox.click());
 
         expect(checkbox.checked).toBe(true);

@@ -7,7 +7,12 @@ import { feil, FeltState, ok } from '@navikt/familie-skjema';
 
 import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
 import TekstBlock from '../components/Felleskomponenter/TekstBlock';
-import { AlternativtSvarForInput, DatoMedUkjent, LocaleRecordBlock } from '../typer/common';
+import {
+    AlternativtSvarForInput,
+    DatoMedUkjent,
+    LocaleRecordBlock,
+    Typografi,
+} from '../typer/common';
 
 export const erDatoFormatGodkjent = (verdi: string) => {
     /*FamilieDatoVelger har allerede sin egen validering.
@@ -50,7 +55,10 @@ export const validerDato = (
     customStartdatoFeilmelding = ''
 ): FeltState<string> => {
     if (feltState.verdi === '') {
-        return feil(feltState, feilmelding ? <TekstBlock block={feilmelding} /> : '');
+        return feil(
+            feltState,
+            feilmelding ? <TekstBlock block={feilmelding} typografi={Typografi.ErrorMessage} /> : ''
+        );
     }
     if (!erDatoFormatGodkjent(feltState.verdi)) {
         return feil(feltState, <SpråkTekst id={'felles.dato-format.feilmelding'} />);

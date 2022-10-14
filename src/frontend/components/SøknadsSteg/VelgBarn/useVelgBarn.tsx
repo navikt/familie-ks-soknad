@@ -6,12 +6,14 @@ import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { useSteg } from '../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { BarnetsId } from '../../../typer/common';
+import { BarnetsId, Typografi } from '../../../typer/common';
 import { IBarn } from '../../../typer/person';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IVelgBarnFeltTyper } from '../../../typer/skjema';
 import { setUserProperty, UserProperty } from '../../../utils/amplitude';
 import { genererInitialBarnMedISøknad } from '../../../utils/barn';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
+import { IVelgBarnTekstinnhold } from './innholdTyper';
 import { VelgBarnSpørsmålId } from './spørsmål';
 
 export const useVelgBarn = (): {
@@ -24,12 +26,14 @@ export const useVelgBarn = (): {
     fjernBarn: (ident: string) => void;
     validerAlleSynligeFelter: () => void;
 } => {
-    const { søknad, settSøknad, mellomlagre } = useApp();
+    const { søknad, settSøknad, mellomlagre, tekster } = useApp();
     const { barnInkludertISøknaden } = søknad;
     const { settBarnForSteg } = useSteg();
     const { settBarnSomTriggerEøs } = useEøs();
     const [barnSomSkalVæreMed, settBarnSomSkalVæreMed] =
         useState<IBarnMedISøknad[]>(barnInkludertISøknaden);
+
+    const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
 
     useEffect(() => {
         settBarnForSteg(barnSomSkalVæreMed);
@@ -51,7 +55,13 @@ export const useVelgBarn = (): {
         valideringsfunksjon: (felt, avhengigheter) => {
             return avhengigheter?.barnSomSkalVæreMed.length > 0
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={'hvilkebarn.ingen-barn-valgt.feilmelding'} />);
+                : feil(
+                      felt,
+                      <TekstBlock
+                          block={teksterForSteg.maaVelgeEtBarnForAaGaaVidere}
+                          typografi={Typografi.ErrorMessage}
+                      />
+                  );
         },
         avhengigheter: { barnSomSkalVæreMed },
     });

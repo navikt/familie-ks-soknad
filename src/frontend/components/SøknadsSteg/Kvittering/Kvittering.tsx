@@ -8,6 +8,7 @@ import { RessursStatus } from '@navikt/familie-typer';
 
 import { useApp } from '../../../context/AppContext';
 import { useSteg } from '../../../context/StegContext';
+import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { setUserProperty, UserProperty } from '../../../utils/amplitude';
@@ -58,7 +59,7 @@ const Kvittering: React.FC = () => {
     }, []);
 
     return (
-        <Steg tittel={<TekstBlock block={kvitteringTittel} />}>
+        <Steg tittel={<TekstBlock block={kvitteringTittel} typografi={Typografi.StegHeadingH1} />}>
             <KomponentGruppe>
                 <AlertStripe variant="success">
                     <SpråkTekst

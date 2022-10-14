@@ -2,8 +2,6 @@ import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
-import { Feilmelding } from 'nav-frontend-typografi';
-
 import { AddCircle } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
 import { NavdsGlobalColorRed500 } from '@navikt/ds-tokens/dist/tokens';
@@ -44,6 +42,6 @@ export const LeggTilKnapp: React.FC<Props> = ({
             {språkTekst && <SpråkTekst id={språkTekst} />}
             {children}
         </StyledButton>
-        {!!feilmelding && <Feilmelding>{feilmelding}</Feilmelding>}
+        {!!feilmelding && feilmelding}
     </>
 );

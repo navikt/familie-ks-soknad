@@ -6,7 +6,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../../context/AppContext';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../typer/barn';
-import { BarnetsId } from '../../../../typer/common';
+import { BarnetsId, Typografi } from '../../../../typer/common';
 import { PersonType } from '../../../../typer/personType';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { skalSkjuleAndreForelderFelt } from '../../../../utils/barn';
@@ -81,7 +81,13 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={eoesForBarnTittel} flettefelter={{ barnetsNavn }} />}
+            tittel={
+                <TekstBlock
+                    block={eoesForBarnTittel}
+                    flettefelter={{ barnetsNavn }}
+                    typografi={Typografi.StegHeadingH1}
+                />
+            }
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

@@ -30,3 +30,15 @@ export type LocaleRecordString = Record<LocaleType, string> & { [key: string]: u
 export type LocaleRecordBlock = Record<LocaleType, PortableTextBlock[]> & {
     [key: string]: unknown;
 };
+
+export enum Typografi {
+    StegHeadingH1 = 'StegHeadingH1',
+    ModalHeadingH1 = 'ModalHeadingH1',
+    ForsideHeadingH1 = 'ForsideHeadingH1',
+    Ingress = 'Ingress',
+    BodyLong = 'BodyLong',
+    BodyShort = 'BodyShort',
+    Label = 'Label',
+    Detail = 'Detail',
+    ErrorMessage = 'ErrorMessage',
+}

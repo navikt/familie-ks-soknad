@@ -9,6 +9,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
@@ -18,6 +19,7 @@ import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
 import HvilkeBarnCheckboxGruppe from './HvilkeBarnCheckboxGruppe';
+import { IOmBarnaTekstinnhold } from './innholdTyper';
 import { OmBarnaDineSpørsmålId, omBarnaDineSpørsmålSpråkId } from './spørsmål';
 import { useOmBarnaDine } from './useOmBarnaDine';
 
@@ -33,9 +35,9 @@ const OmBarnaDine: React.FC = () => {
     const { søknad, tekster, plainTekst } = useApp();
     const { barnInkludertISøknaden } = søknad;
 
-    const {
-        [ESanitySteg.OM_BARNA]: { omBarnaTittel, hvemBarnehageplass },
-    } = tekster();
+    const teksterForSteg: IOmBarnaTekstinnhold = tekster()[ESanitySteg.OM_BARNA];
+    const { omBarnaTittel, hvemBarnehageplass, fosterbarn, institusjonKontantstoette } =
+        teksterForSteg;
 
     if (!barnInkludertISøknaden.length) {
         history.push('/velg-barn');
@@ -43,7 +45,7 @@ const OmBarnaDine: React.FC = () => {
     }
     return (
         <Steg
-            tittel={<TekstBlock block={omBarnaTittel} />}
+            tittel={<TekstBlock block={omBarnaTittel} typografi={Typografi.StegHeadingH1} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
@@ -68,6 +70,11 @@ const OmBarnaDine: React.FC = () => {
                     nullstillValgteBarn={skjema.felter.erNoenAvBarnaFosterbarn.verdi === ESvar.NEI}
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
+                {skjema.felter.erNoenAvBarnaFosterbarn.verdi === ESvar.JA && (
+                    <AlertStripe variant={'warning'}>
+                        <TekstBlock block={fosterbarn.alert} typografi={Typografi.BodyShort} />
+                    </AlertStripe>
+                )}
 
                 <JaNeiSpm
                     skjema={skjema}
@@ -83,7 +90,6 @@ const OmBarnaDine: React.FC = () => {
                         </AlertStripe>
                     }
                 />
-
                 <HvilkeBarnCheckboxGruppe
                     legendSpråkId={
                         omBarnaDineSpørsmålSpråkId[
@@ -97,6 +103,15 @@ const OmBarnaDine: React.FC = () => {
                     }
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
+                {skjema.felter.oppholderBarnSegIInstitusjon.verdi === ESvar.JA && (
+                    <AlertStripe variant={'warning'}>
+                        <TekstBlock
+                            block={institusjonKontantstoette.alert}
+                            typografi={Typografi.BodyShort}
+                        />
+                    </AlertStripe>
+                )}
+
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.erBarnAdoptertFraUtland}

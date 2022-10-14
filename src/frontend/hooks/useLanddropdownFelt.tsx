@@ -5,7 +5,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { feil, FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import TekstBlock from '../components/Felleskomponenter/TekstBlock';
-import { LocaleRecordBlock } from '../typer/common';
+import { LocaleRecordBlock, Typografi } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 
 const useLanddropdownFelt = ({
@@ -31,7 +31,10 @@ const useLanddropdownFelt = ({
                 : feil(
                       felt,
                       avhengigheter?.feilmelding ? (
-                          <TekstBlock block={avhengigheter.feilmelding} />
+                          <TekstBlock
+                              block={avhengigheter.feilmelding}
+                              typografi={Typografi.ErrorMessage}
+                          />
                       ) : (
                           ''
                       )

@@ -5,8 +5,10 @@ import { useIntl } from 'react-intl';
 import { useApp } from '../../../../context/AppContext';
 import { useRoutes } from '../../../../context/RoutesContext';
 import { RouteEnum } from '../../../../typer/routes';
+import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { hentBostedSpråkId } from '../../../../utils/språk';
 import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import { IVelgBarnTekstinnhold } from '../../VelgBarn/innholdTyper';
 import { VelgBarnSpørsmålId, velgBarnSpørsmålSpråkId } from '../../VelgBarn/spørsmål';
 import { useVelgBarn } from '../../VelgBarn/useVelgBarn';
 import { OppsummeringFelt } from '../OppsummeringFelt';
@@ -19,9 +21,10 @@ interface Props {
 
 const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
     const { formatMessage } = useIntl();
-    const { søknad } = useApp();
+    const { søknad, tekster, plainTekst } = useApp();
     const { hentRouteObjektForRouteEnum } = useRoutes();
     const velgBarnHook = useVelgBarn();
+    const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
 
     return (
         <Oppsummeringsbolk
@@ -57,9 +60,7 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                     ) && (
                         <OppsummeringFelt
                             tittel={<SpråkTekst id={'hvilkebarn.barn.bosted'} />}
-                            søknadsvar={formatMessage({
-                                id: hentBostedSpråkId(barn),
-                            })}
+                            søknadsvar={plainTekst(hentBostedSpråkId(barn, teksterForSteg))}
                         />
                     )}
                 </StyledOppsummeringsFeltGruppe>
