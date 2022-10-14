@@ -97,15 +97,25 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
                 {dokTittel}
             </Undertittel>
             {dokumentasjonsbeskrivelse && skalViseAnnenDokumentasjonsBeskrivelse() && (
-                <TekstBlock block={dokumentasjonstekster[dokumentasjonsbeskrivelse]} />
+                <TekstBlock
+                    data-testid={'dokumentasjonsbeskrivelse'}
+                    block={dokumentasjonstekster[dokumentasjonsbeskrivelse]}
+                />
             )}
             {!dokumentasjon.harSendtInn && (
-                <Filopplaster
-                    oppdaterDokumentasjon={oppdaterDokumentasjon}
-                    dokumentasjon={dokumentasjon}
-                    maxFilstørrelse={1024 * 1024 * 10}
-                    tillatteFiltyper={[EFiltyper.PNG, EFiltyper.PDF, EFiltyper.JPG, EFiltyper.JPEG]}
-                />
+                <div data-testid={'dokumentopplaster'}>
+                    <Filopplaster
+                        oppdaterDokumentasjon={oppdaterDokumentasjon}
+                        dokumentasjon={dokumentasjon}
+                        maxFilstørrelse={1024 * 1024 * 10}
+                        tillatteFiltyper={[
+                            EFiltyper.PNG,
+                            EFiltyper.PDF,
+                            EFiltyper.JPG,
+                            EFiltyper.JPEG,
+                        ]}
+                    />
+                </div>
             )}
             <br />
             {dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON && (
