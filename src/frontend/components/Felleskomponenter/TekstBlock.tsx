@@ -24,9 +24,21 @@ const StyledLabel = styled(Label)`
 
 const typografiWrapper = (content: JSX.Element, typografi?: Typografi): JSX.Element => {
     switch (typografi) {
-        case Typografi.HeadingH1:
+        case Typografi.StegHeadingH1:
             return (
                 <Heading level={'1'} size={'xsmall'}>
+                    {content}
+                </Heading>
+            );
+        case Typografi.ModalHeadingH1:
+            return (
+                <Heading level={'1'} size={'large'}>
+                    {content}
+                </Heading>
+            );
+        case Typografi.ForsideHeadingH1:
+            return (
+                <Heading level={'1'} size={'xlarge'}>
                     {content}
                 </Heading>
             );

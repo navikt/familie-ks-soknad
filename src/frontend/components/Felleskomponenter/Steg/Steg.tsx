@@ -46,9 +46,6 @@ const TittelContainer = styled.div`
     && {
         margin: 4rem auto 3rem auto;
     }
-    > * {
-        font-size: 1.125rem;
-    }
 `;
 
 const Form = styled.form`
