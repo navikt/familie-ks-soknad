@@ -9,6 +9,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
@@ -43,7 +44,7 @@ const OmBarnaDine: React.FC = () => {
     }
     return (
         <Steg
-            tittel={<TekstBlock block={omBarnaTittel} />}
+            tittel={<TekstBlock block={omBarnaTittel} typografi={Typografi.StegHeadingH1} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

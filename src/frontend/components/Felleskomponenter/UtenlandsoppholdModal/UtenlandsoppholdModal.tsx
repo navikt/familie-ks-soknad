@@ -99,7 +99,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                 <TekstBlock
                     block={teksterForPersonType.tittel}
                     flettefelter={{ barnetsNavn }}
-                    typografi={Typografi.HeadingH1}
+                    typografi={Typografi.ModalHeadingH1}
                 />
             }
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}

@@ -18,9 +18,10 @@ const StyledOppsummeringsFelt = styled.div`
 `;
 
 interface IOppsummeringsFeltProps {
+    /** @deprecated **/
     tittel?: ReactNode;
     spørsmålstekst?: LocaleRecordBlock;
-    søknadsvar?: string | null;
+    søknadsvar?: ReactNode | null;
 }
 
 const StyledElement = styled(Element)`
@@ -36,9 +37,9 @@ export const OppsummeringFelt: React.FC<IOppsummeringsFeltProps> = ({
     children,
 }) => {
     let språktekstid: boolean | string = false;
-    if (søknadsvar && søknadsvar in ESvar) {
+    if (typeof søknadsvar === 'string' && søknadsvar in ESvar) {
         språktekstid = jaNeiSvarTilSpråkId(søknadsvar as ESvar);
-    } else if (søknadsvar && søknadsvar in ESivilstand) {
+    } else if (typeof søknadsvar === 'string' && søknadsvar in ESivilstand) {
         språktekstid = 'felles.sivilstatus.kode.' + søknadsvar;
     }
 

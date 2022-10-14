@@ -19,7 +19,6 @@ const StyledNormalTekst = styled(Normaltekst)`
 
 export const StyledSideTittel = styled(Sidetittel)`
     && {
-        font-size: 1.25rem;
         margin: 1rem auto;
     }
 `;

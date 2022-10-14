@@ -3,8 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Checkbox } from 'nav-frontend-skjema';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 
+import { Heading } from '@navikt/ds-react';
 import {
     NavdsGlobalColorGray100,
     NavdsGlobalColorPurple400,
@@ -13,13 +13,13 @@ import {
 
 import { useApp } from '../../../../context/AppContext';
 import { device } from '../../../../Theme';
-import { Typografi } from '../../../../typer/common';
 import { IBarn } from '../../../../typer/person';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { hentBostedSpråkId } from '../../../../utils/språk';
 import { formaterFnr } from '../../../../utils/visning';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { TilfeldigBarnIkon } from '../../../Felleskomponenter/TilfeldigBarnIkon/TilfeldigBarnIkon';
+import { OppsummeringFelt } from '../../Oppsummering/OppsummeringFelt';
 import { IVelgBarnTekstinnhold } from '../innholdTyper';
 import { FjernBarnKnapp } from './FjernBarnKnapp';
 
@@ -43,7 +43,7 @@ export const StyledBarnekort = styled.div`
 `;
 
 const StyledCheckbox = styled(Checkbox)`
-    margin-top: 2.75rem;
+    margin-top: 1.75rem;
 `;
 
 const InformasjonsboksInnhold = styled.div`
@@ -67,11 +67,9 @@ const BarnekortHeader = styled.div`
     width: 100%;
 `;
 
-const StyledUndertittel = styled(Undertittel)`
+const StyledHeading = styled(Heading)`
     text-transform: uppercase;
-    && {
-        font-weight: 700;
-    }
+    margin-bottom: 1rem;
 `;
 
 const Barnekort: React.FC<IBarnekortProps> = ({
@@ -108,34 +106,31 @@ const Barnekort: React.FC<IBarnekortProps> = ({
                 <TilfeldigBarnIkon />
             </BarnekortHeader>
             <InformasjonsboksInnhold>
-                <StyledUndertittel>
+                <StyledHeading size={'xsmall'} level={'2'}>
                     {barn.adressebeskyttelse ? (
                         <TekstBlock block={navnErstatterForAdressesperre} />
                     ) : (
                         barn.navn
                     )}
-                </StyledUndertittel>
+                </StyledHeading>
                 {!barn.adressebeskyttelse && (
-                    <>
-                        <TekstBlock block={foedselsnummerLabel} typografi={Typografi.Label} />
-                        <Normaltekst>{formaterFnr(barn.ident)}</Normaltekst>
-                    </>
+                    <OppsummeringFelt
+                        spørsmålstekst={foedselsnummerLabel}
+                        søknadsvar={formaterFnr(barn.ident)}
+                    />
                 )}
                 {barn.alder && ( // Barn med undefined fødselsdato i pdl eller som søker har lagt inn selv har alder -null-
-                    <>
-                        <TekstBlock block={alderLabel} typografi={Typografi.Label} />
-                        <Normaltekst>{`${barn.alder} ${plainTekst(aar)}`}</Normaltekst>
-                    </>
+                    <OppsummeringFelt
+                        spørsmålstekst={alderLabel}
+                        søknadsvar={`${barn.alder} ${plainTekst(aar)}`}
+                    />
                 )}
 
                 {!erRegistrertManuelt && (
-                    <>
-                        <TekstBlock block={registrertBostedLabel} typografi={Typografi.Label} />
-                        <TekstBlock
-                            block={hentBostedSpråkId(barn, teksterForSteg)}
-                            typografi={Typografi.BodyShort}
-                        />
-                    </>
+                    <OppsummeringFelt
+                        spørsmålstekst={registrertBostedLabel}
+                        søknadsvar={<TekstBlock block={hentBostedSpråkId(barn, teksterForSteg)} />}
+                    />
                 )}
                 <StyledCheckbox
                     checked={erMedISøknad}
