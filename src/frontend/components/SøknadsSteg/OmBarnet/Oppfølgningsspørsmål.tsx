@@ -11,17 +11,13 @@ import {
 } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
-import { dagensDato, erSammeDatoSomDagensDato, morgendagensDato } from '../../../utils/dato';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { BarnehageplassPeriode } from '../../Felleskomponenter/Barnehagemodal/BarnehageplassPeriode';
-import Datovelger from '../../Felleskomponenter/Datovelger/Datovelger';
 import { LandDropdown } from '../../Felleskomponenter/Dropdowns/LandDropdown';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import { KontantstøttePeriode } from '../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriode';
-import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
-import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
@@ -64,85 +60,6 @@ const Oppfølgningsspørsmål: React.FC<{
                 </KomponentGruppe>
             )}
 
-            {barn[barnDataKeySpørsmål.oppholderSegIInstitusjon].svar === ESvar.JA && (
-                <SkjemaFieldset tittelId={'ombarnet.institusjon'} språkValues={{ navn: barn.navn }}>
-                    <SkjemaCheckbox
-                        labelSpråkTekstId={
-                            omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.institusjonIUtland]
-                        }
-                        felt={skjema.felter.institusjonIUtlandCheckbox}
-                    />
-                    <SkjemaFeltInput
-                        felt={skjema.felter.institusjonsnavn}
-                        visFeilmeldinger={skjema.visFeilmeldinger}
-                        labelSpråkTekstId={
-                            omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.institusjonsnavn]
-                        }
-                    />
-                    <SkjemaFeltInput
-                        felt={skjema.felter.institusjonsadresse}
-                        visFeilmeldinger={skjema.visFeilmeldinger}
-                        labelSpråkTekstId={
-                            omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.institusjonsadresse]
-                        }
-                    />
-                    <SkjemaFeltInput
-                        felt={skjema.felter.institusjonspostnummer}
-                        visFeilmeldinger={skjema.visFeilmeldinger}
-                        labelSpråkTekstId={
-                            omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.institusjonspostnummer]
-                        }
-                        bredde={'S'}
-                    />
-                    <Datovelger
-                        felt={skjema.felter.institusjonOppholdStartdato}
-                        skjema={skjema}
-                        avgrensMaxDato={dagensDato()}
-                        label={
-                            <SpråkTekst
-                                id={
-                                    omBarnetSpørsmålSpråkId[
-                                        OmBarnetSpørsmålsId.institusjonOppholdStartdato
-                                    ]
-                                }
-                            />
-                        }
-                    />
-                    <>
-                        <Datovelger
-                            felt={skjema.felter.institusjonOppholdSluttdato}
-                            avgrensMinDato={
-                                erSammeDatoSomDagensDato(
-                                    skjema.felter.institusjonOppholdStartdato.verdi
-                                )
-                                    ? morgendagensDato()
-                                    : dagensDato()
-                            }
-                            skjema={skjema}
-                            label={
-                                <SpråkTekst
-                                    id={
-                                        omBarnetSpørsmålSpråkId[
-                                            OmBarnetSpørsmålsId.institusjonOppholdSluttdato
-                                        ]
-                                    }
-                                />
-                            }
-                            disabled={
-                                skjema.felter.institusjonOppholdSluttVetIkke.verdi === ESvar.JA
-                            }
-                        />
-                        <SkjemaCheckbox
-                            labelSpråkTekstId={
-                                omBarnetSpørsmålSpråkId[
-                                    OmBarnetSpørsmålsId.institusjonOppholdVetIkke
-                                ]
-                            }
-                            felt={skjema.felter.institusjonOppholdSluttVetIkke}
-                        />
-                    </>
-                </SkjemaFieldset>
-            )}
             {skjema.felter.utbetaltForeldrepengerEllerEngangsstønad.erSynlig && (
                 <KomponentGruppe>
                     <Informasjonsbolk

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
@@ -12,7 +10,6 @@ import {
     IBarnMedISøknad,
 } from '../../../../../typer/barn';
 import { PersonType } from '../../../../../typer/personType';
-import { formaterDato, formaterDatoMedUkjent } from '../../../../../utils/dato';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
 import { BarnehageplassPeriodeOppsummering } from '../../../../Felleskomponenter/Barnehagemodal/barnehageplassPeriodeOppsummering';
 import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
@@ -33,8 +30,6 @@ interface Props {
 }
 
 const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, index }) => {
-    const intl = useIntl();
-    const { formatMessage } = intl;
     const { hentStegObjektForBarn } = useSteg();
     const [valgtLocale] = useSprakContext();
     const omBarnetHook = useOmBarnet(barn.id);
@@ -53,105 +48,7 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn, 
                     tittel={<SpråkTekst id={'ombarnet.fosterbarn'} values={{ navn: barn.navn }} />}
                 />
             )}
-            {barn[barnDataKeySpørsmål.oppholderSegIInstitusjon].svar === ESvar.JA && (
-                <StyledOppsummeringsFeltGruppe>
-                    <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst id={'ombarnet.institusjon'} values={{ navn: barn.navn }} />
-                        }
-                    />
 
-                    {barn[barnDataKeySpørsmål.institusjonIUtland].svar === ESvar.JA ? (
-                        <OppsummeringFelt
-                            tittel={
-                                <SpråkTekst
-                                    id={
-                                        omBarnetSpørsmålSpråkId[
-                                            OmBarnetSpørsmålsId.institusjonIUtland
-                                        ]
-                                    }
-                                />
-                            }
-                        />
-                    ) : (
-                        <>
-                            <OppsummeringFelt
-                                tittel={
-                                    <SpråkTekst
-                                        id={
-                                            omBarnetSpørsmålSpråkId[
-                                                OmBarnetSpørsmålsId.institusjonsnavn
-                                            ]
-                                        }
-                                    />
-                                }
-                                søknadsvar={barn[barnDataKeySpørsmål.institusjonsnavn].svar}
-                            />
-
-                            <OppsummeringFelt
-                                tittel={
-                                    <SpråkTekst
-                                        id={
-                                            omBarnetSpørsmålSpråkId[
-                                                OmBarnetSpørsmålsId.institusjonsadresse
-                                            ]
-                                        }
-                                    />
-                                }
-                                søknadsvar={barn[barnDataKeySpørsmål.institusjonsadresse].svar}
-                            />
-
-                            <OppsummeringFelt
-                                tittel={
-                                    <SpråkTekst
-                                        id={
-                                            omBarnetSpørsmålSpråkId[
-                                                OmBarnetSpørsmålsId.institusjonspostnummer
-                                            ]
-                                        }
-                                    />
-                                }
-                                søknadsvar={barn[barnDataKeySpørsmål.institusjonspostnummer].svar}
-                            />
-                        </>
-                    )}
-
-                    <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnetSpørsmålSpråkId[
-                                        OmBarnetSpørsmålsId.institusjonOppholdStartdato
-                                    ]
-                                }
-                            />
-                        }
-                        søknadsvar={formaterDato(
-                            barn[barnDataKeySpørsmål.institusjonOppholdStartdato].svar
-                        )}
-                    />
-
-                    <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnetSpørsmålSpråkId[
-                                        OmBarnetSpørsmålsId.institusjonOppholdSluttdato
-                                    ]
-                                }
-                            />
-                        }
-                        søknadsvar={formaterDatoMedUkjent(
-                            barn[barnDataKeySpørsmål.institusjonOppholdSluttdato].svar,
-                            formatMessage({
-                                id: omBarnetSpørsmålSpråkId[
-                                    OmBarnetSpørsmålsId.institusjonOppholdVetIkke
-                                ],
-                            })
-                        )}
-                    />
-                </StyledOppsummeringsFeltGruppe>
-            )}
             {barn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad].svar && (
                 <StyledOppsummeringsFeltGruppe>
                     <OppsummeringFelt

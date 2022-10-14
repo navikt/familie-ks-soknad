@@ -9,7 +9,6 @@ import {
     genererSvarForSpørsmålBarn,
 } from '../components/SøknadsSteg/OmBarnaDine/utils';
 import { IBarnMedISøknad } from '../typer/barn';
-import { AlternativtSvarForInput } from '../typer/common';
 import { IOmBarnaDineFeltTyper } from '../typer/skjema';
 import { ISøknad } from '../typer/søknad';
 
@@ -37,11 +36,6 @@ describe('genererOppdaterteBarn', () => {
                 idNummer: [],
                 utenlandsperioder: [],
                 eøsKontantstøttePerioder: [],
-                institusjonsnavn: { svar: 'Narvesen' },
-                institusjonsadresse: { svar: 'Narvesen' },
-                institusjonspostnummer: { svar: '2020' },
-                institusjonOppholdStartdato: { svar: '2020-09-08' },
-                institusjonOppholdSluttdato: { svar: AlternativtSvarForInput.UKJENT },
                 planleggerÅBoINorge12Mnd: { svar: ESvar.JA },
             },
         ],
@@ -86,11 +80,6 @@ describe('genererOppdaterteBarn', () => {
                 oppholderSegIInstitusjon: objectContaining({ svar: 'NEI' }),
                 boddMindreEnn12MndINorge: objectContaining({ svar: 'NEI' }),
                 kontantstøtteFraAnnetEøsland: objectContaining({ svar: 'JA' }),
-                institusjonsnavn: objectContaining({ svar: '' }),
-                institusjonsadresse: objectContaining({ svar: '' }),
-                institusjonspostnummer: objectContaining({ svar: '' }),
-                institusjonOppholdStartdato: objectContaining({ svar: '' }),
-                institusjonOppholdSluttdato: objectContaining({ svar: '' }),
                 planleggerÅBoINorge12Mnd: objectContaining({ svar: null }),
             }),
         ]);

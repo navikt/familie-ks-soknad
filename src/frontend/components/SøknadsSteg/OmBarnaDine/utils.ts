@@ -187,54 +187,6 @@ export const genererOppdaterteBarn = (
                 ...barn[barnDataKeySpørsmål.andreForelderErDød],
                 svar: andreForelderErDød,
             },
-            [barnDataKeySpørsmål.institusjonIUtland]: {
-                ...barn[barnDataKeySpørsmål.institusjonIUtland],
-                svar: genererSvarForOppfølgningspørsmålBarn(
-                    oppholderSegIInstitusjon,
-                    barn[barnDataKeySpørsmål.institusjonIUtland],
-                    ESvar.NEI
-                ),
-            },
-            [barnDataKeySpørsmål.institusjonsnavn]: {
-                ...barn[barnDataKeySpørsmål.institusjonsnavn],
-                svar: genererSvarForOppfølgningspørsmålBarn(
-                    oppholderSegIInstitusjon,
-                    barn[barnDataKeySpørsmål.institusjonsnavn],
-                    ''
-                ),
-            },
-            [barnDataKeySpørsmål.institusjonsadresse]: {
-                ...barn[barnDataKeySpørsmål.institusjonsadresse],
-                svar: genererSvarForOppfølgningspørsmålBarn(
-                    oppholderSegIInstitusjon,
-                    barn[barnDataKeySpørsmål.institusjonsadresse],
-                    ''
-                ),
-            },
-            [barnDataKeySpørsmål.institusjonspostnummer]: {
-                ...barn[barnDataKeySpørsmål.institusjonspostnummer],
-                svar: genererSvarForOppfølgningspørsmålBarn(
-                    oppholderSegIInstitusjon,
-                    barn[barnDataKeySpørsmål.institusjonspostnummer],
-                    ''
-                ),
-            },
-            [barnDataKeySpørsmål.institusjonOppholdStartdato]: {
-                ...barn[barnDataKeySpørsmål.institusjonOppholdStartdato],
-                svar: genererSvarForOppfølgningspørsmålBarn(
-                    oppholderSegIInstitusjon,
-                    barn[barnDataKeySpørsmål.institusjonOppholdStartdato],
-                    ''
-                ),
-            },
-            [barnDataKeySpørsmål.institusjonOppholdSluttdato]: {
-                ...barn[barnDataKeySpørsmål.institusjonOppholdSluttdato],
-                svar: genererSvarForOppfølgningspørsmålBarn(
-                    oppholderSegIInstitusjon,
-                    barn[barnDataKeySpørsmål.institusjonOppholdSluttdato],
-                    ''
-                ),
-            },
             [barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad]: {
                 ...barn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad],
                 svar: genererSvarForOppfølgningspørsmålBarn(

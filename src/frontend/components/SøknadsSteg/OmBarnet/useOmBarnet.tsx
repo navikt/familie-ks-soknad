@@ -5,9 +5,7 @@ import { feil, FeltState, ISkjema, ok, useFelt, useSkjema } from '@navikt/famili
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
-import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
-import useInputFelt from '../../../hooks/useInputFelt';
 import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFeltMedJaNeiAvhengighet from '../../../hooks/useLanddropdownFeltMedJaNeiAvhengighet';
@@ -31,14 +29,13 @@ import {
 import { IIdNummer } from '../../../typer/person';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
-import { erNorskPostnummer, valideringAdresse } from '../../../utils/adresse';
 import {
     filtrerteRelevanteIdNummerForBarn,
     genererInitiellAndreForelder,
     nullstilteEøsFelterForBarn,
     skalViseBorMedOmsorgsperson,
 } from '../../../utils/barn';
-import { dagensDato, erSammeDatoSomDagensDato, morgendagensDato } from '../../../utils/dato';
+import { dagensDato } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import { formaterInitVerdiForInputMedUkjent, formaterVerdiForCheckbox } from '../../../utils/input';
 import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
@@ -103,87 +100,6 @@ export const useOmBarnet = (
                 barnISøknad.sammeForelderSomAnnetBarnMedId.svar === null)
     );
 
-    /*---INSTITUSJON---*/
-
-    const institusjonIUtlandCheckbox = useFelt<ESvar>({
-        verdi: gjeldendeBarn[barnDataKeySpørsmål.institusjonIUtland].svar,
-        feltId: OmBarnetSpørsmålsId.institusjonIUtland,
-        skalFeltetVises: () => skalFeltetVises(barnDataKeySpørsmål.oppholderSegIInstitusjon),
-    });
-
-    const institusjonsnavn = useInputFelt({
-        søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.institusjonsnavn],
-        feilmeldingSpråkId: 'ombarnet.institusjon.navn.feilmelding',
-        skalVises:
-            skalFeltetVises(barnDataKeySpørsmål.oppholderSegIInstitusjon) &&
-            institusjonIUtlandCheckbox.verdi === ESvar.NEI,
-    });
-
-    const institusjonsadresse = useInputFelt({
-        søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.institusjonsadresse],
-        feilmeldingSpråkId: 'ombarnet.institusjon.adresse.feilmelding',
-        skalVises:
-            skalFeltetVises(barnDataKeySpørsmål.oppholderSegIInstitusjon) &&
-            institusjonIUtlandCheckbox.verdi === ESvar.NEI,
-        customValidering: valideringAdresse,
-    });
-
-    const institusjonspostnummer = useFelt<string>({
-        verdi: gjeldendeBarn[barnDataKeySpørsmål.institusjonspostnummer].svar,
-        feltId: gjeldendeBarn[barnDataKeySpørsmål.institusjonspostnummer].id,
-        valideringsfunksjon: felt =>
-            erNorskPostnummer(trimWhiteSpace(felt.verdi))
-                ? ok(felt)
-                : feil(
-                      felt,
-                      <SpråkTekst
-                          id={
-                              trimWhiteSpace(felt.verdi) === ''
-                                  ? 'ombarnet.institusjon.postnummer.feilmelding'
-                                  : 'ombarnet.institusjon.postnummer.format.feilmelding'
-                          }
-                      />
-                  ),
-        skalFeltetVises: avhengigheter =>
-            skalFeltetVises(barnDataKeySpørsmål.oppholderSegIInstitusjon) &&
-            avhengigheter.institusjonIUtlandCheckbox.verdi === ESvar.NEI,
-        avhengigheter: { institusjonIUtlandCheckbox },
-    });
-
-    const institusjonOppholdStartdato = useDatovelgerFelt({
-        søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.institusjonOppholdStartdato],
-        skalFeltetVises: skalFeltetVises(barnDataKeySpørsmål.oppholderSegIInstitusjon),
-        feilmelding: teksterForSteg.institusjonNaarStartet.feilmelding,
-        sluttdatoAvgrensning: dagensDato(),
-    });
-
-    const institusjonOppholdSluttVetIkke = useFelt<ESvar>({
-        verdi:
-            gjeldendeBarn[barnDataKeySpørsmål.institusjonOppholdSluttdato].svar ===
-            AlternativtSvarForInput.UKJENT
-                ? ESvar.JA
-                : ESvar.NEI,
-        feltId: OmBarnetSpørsmålsId.institusjonOppholdVetIkke,
-    });
-
-    const institusjonOppholdSluttdato = useDatovelgerFeltMedUkjent({
-        feltId: gjeldendeBarn[barnDataKeySpørsmål.institusjonOppholdSluttdato].id,
-        initiellVerdi:
-            gjeldendeBarn[barnDataKeySpørsmål.institusjonOppholdSluttdato].svar !==
-            AlternativtSvarForInput.UKJENT
-                ? gjeldendeBarn[barnDataKeySpørsmål.institusjonOppholdSluttdato].svar
-                : '',
-        vetIkkeCheckbox: institusjonOppholdSluttVetIkke,
-        feilmelding: teksterForSteg.institusjonNaarAvsluttes.feilmelding,
-        skalFeltetVises: skalFeltetVises(barnDataKeySpørsmål.oppholderSegIInstitusjon),
-        nullstillVedAvhengighetEndring: false,
-        startdatoAvgrensning: erSammeDatoSomDagensDato(institusjonOppholdStartdato.verdi)
-            ? morgendagensDato()
-            : dagensDato(),
-        customStartdatoFeilmelding: erSammeDatoSomDagensDato(institusjonOppholdStartdato.verdi)
-            ? undefined
-            : 'felles.dato.tilbake-i-tid.feilmelding',
-    });
     /*---ADOPERT---*/
     const utbetaltForeldrepengerEllerEngangsstønad = useJaNeiSpmFelt({
         søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad],
@@ -506,13 +422,6 @@ export const useOmBarnet = (
         string
     >({
         felter: {
-            institusjonIUtlandCheckbox,
-            institusjonsnavn,
-            institusjonsadresse,
-            institusjonspostnummer,
-            institusjonOppholdStartdato,
-            institusjonOppholdSluttdato,
-            institusjonOppholdSluttVetIkke,
             utbetaltForeldrepengerEllerEngangsstønad,
             barnRegistrerteUtenlandsperioder,
             planleggerÅBoINorge12Mnd,
@@ -695,35 +604,6 @@ export const useOmBarnet = (
             utenlandsperioder: skalFeltetVises(barnDataKeySpørsmål.boddMindreEnn12MndINorge)
                 ? utenlandsperioder
                 : [],
-            institusjonIUtland: {
-                ...barn.institusjonIUtland,
-                svar: institusjonIUtlandCheckbox.verdi,
-            },
-            institusjonsnavn: {
-                ...barn.institusjonsnavn,
-                svar: institusjonsnavn.erSynlig ? trimWhiteSpace(institusjonsnavn.verdi) : '',
-            },
-            institusjonsadresse: {
-                ...barn.institusjonsadresse,
-                svar: institusjonsadresse.erSynlig ? trimWhiteSpace(institusjonsadresse.verdi) : '',
-            },
-            institusjonspostnummer: {
-                ...barn.institusjonspostnummer,
-                svar: institusjonspostnummer.erSynlig
-                    ? trimWhiteSpace(institusjonspostnummer.verdi)
-                    : '',
-            },
-            institusjonOppholdStartdato: {
-                ...barn.institusjonOppholdStartdato,
-                svar: institusjonOppholdStartdato.verdi,
-            },
-            institusjonOppholdSluttdato: {
-                ...barn.institusjonOppholdSluttdato,
-                svar: svarForSpørsmålMedUkjent(
-                    institusjonOppholdSluttVetIkke,
-                    institusjonOppholdSluttdato
-                ),
-            },
             utbetaltForeldrepengerEllerEngangsstønad: {
                 ...barn.utbetaltForeldrepengerEllerEngangsstønad,
                 svar: utbetaltForeldrepengerEllerEngangsstønad.verdi,
