@@ -9,6 +9,7 @@ import { RessursStatus } from '@navikt/familie-typer';
 import { useApp } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { useSendInnSkjema } from '../../../hooks/useSendInnSkjema';
+import { Typografi } from '../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -73,7 +74,7 @@ const Dokumentasjon: React.FC = () => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={dokumentasjonTittel} />}
+            tittel={<TekstBlock block={dokumentasjonTittel} typografi={Typografi.StegHeadingH1} />}
             gåVidereCallback={async () => {
                 const [success, _] = await sendInnSkjema();
                 return success;

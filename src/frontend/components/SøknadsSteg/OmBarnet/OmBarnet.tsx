@@ -7,7 +7,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
-import { BarnetsId } from '../../../typer/common';
+import { BarnetsId, Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import EksternLenke from '../../Felleskomponenter/EksternLenke/EksternLenke';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
@@ -55,7 +55,13 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
 
     return barn ? (
         <Steg
-            tittel={<TekstBlock block={omBarnetTittel} flettefelter={{ barnetsNavn }} />}
+            tittel={
+                <TekstBlock
+                    block={omBarnetTittel}
+                    flettefelter={{ barnetsNavn }}
+                    typografi={Typografi.StegHeadingH1}
+                />
+            }
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

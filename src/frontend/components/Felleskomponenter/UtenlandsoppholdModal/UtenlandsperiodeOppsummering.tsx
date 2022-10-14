@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Normaltekst } from 'nav-frontend-typografi';
-
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
@@ -12,7 +10,6 @@ import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
-import TekstBlock from '../TekstBlock';
 import {
     hentFraDatoSpørsmål,
     hentLandSpørsmål,
@@ -49,39 +46,28 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                 fjernPeriodeCallback={fjernPeriodeCallback && (() => fjernPeriodeCallback(periode))}
             >
                 <OppsummeringFelt
-                    tittel={<TekstBlock block={teksterForPersonType.periodeBeskrivelse.sporsmal} />}
-                >
-                    <Normaltekst>
-                        {plainTekst(hentUtenlandsoppholdÅrsak(årsak, teksterForPersonType))}
-                    </Normaltekst>
-                </OppsummeringFelt>
+                    spørsmålstekst={teksterForPersonType.periodeBeskrivelse.sporsmal}
+                    søknadsvar={plainTekst(hentUtenlandsoppholdÅrsak(årsak, teksterForPersonType))}
+                />
 
                 <OppsummeringFelt
-                    tittel={
-                        <TekstBlock
-                            block={hentLandSpørsmål(
-                                utenlandsoppholdÅrsak.svar,
-                                teksterForPersonType
-                            )}
-                        />
-                    }
+                    spørsmålstekst={hentLandSpørsmål(
+                        utenlandsoppholdÅrsak.svar,
+                        teksterForPersonType
+                    )}
                     søknadsvar={landkodeTilSpråk(oppholdsland.svar, valgtLocale)}
                 />
 
                 {oppholdslandFraDato && (
                     <OppsummeringFelt
-                        tittel={
-                            <TekstBlock block={hentFraDatoSpørsmål(årsak, teksterForPersonType)} />
-                        }
+                        spørsmålstekst={hentFraDatoSpørsmål(årsak, teksterForPersonType)}
                         søknadsvar={formaterDato(oppholdslandFraDato.svar)}
                     />
                 )}
 
                 {oppholdslandTilDato && (
                     <OppsummeringFelt
-                        tittel={
-                            <TekstBlock block={hentTilDatoSpørsmål(årsak, teksterForPersonType)} />
-                        }
+                        spørsmålstekst={hentTilDatoSpørsmål(årsak, teksterForPersonType)}
                         søknadsvar={formaterDatoMedUkjent(
                             oppholdslandTilDato.svar,
                             plainTekst(teksterForPersonType.sluttdatoFremtid.checkboxLabel)

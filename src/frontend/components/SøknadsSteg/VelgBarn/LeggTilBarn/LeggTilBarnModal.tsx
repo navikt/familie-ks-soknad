@@ -6,6 +6,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Valideringsstatus } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../../context/AppContext';
+import { Typografi } from '../../../../typer/common';
 import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { visFeiloppsummering } from '../../../../utils/hjelpefunksjoner';
@@ -53,7 +54,7 @@ const LeggTilBarnModal: React.FC<{
 
     return (
         <SkjemaModal
-            tittel={<TekstBlock block={tittel} />}
+            tittel={<TekstBlock block={tittel} typografi={Typografi.ModalHeadingH1} />}
             submitKnappTekst={<TekstBlock block={leggTilKnapp} />}
             erÅpen={erÅpen}
             toggleModal={toggleModal}
@@ -69,7 +70,7 @@ const LeggTilBarnModal: React.FC<{
                 />
                 {skjema.felter.erFødt.verdi === ESvar.NEI && (
                     <AlertStripe variant={'warning'}>
-                        <TekstBlock block={ikkeFoedtAlert} />
+                        <TekstBlock block={ikkeFoedtAlert} typografi={Typografi.BodyShort} />
                     </AlertStripe>
                 )}
             </SkjemaGruppe>
