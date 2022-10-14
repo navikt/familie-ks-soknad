@@ -2,13 +2,16 @@ import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { Element } from 'nav-frontend-typografi';
 
+import { BodyLong } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { LocaleRecordBlock, Typografi } from '../../../typer/common';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { jaNeiSvarTilSpråkId } from '../../../utils/spørsmål';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 const StyledOppsummeringsFelt = styled.div`
     margin-bottom: 1rem;
@@ -16,6 +19,7 @@ const StyledOppsummeringsFelt = styled.div`
 
 interface IOppsummeringsFeltProps {
     tittel?: ReactNode;
+    spørsmålstekst?: LocaleRecordBlock;
     søknadsvar?: string | null;
 }
 
@@ -28,6 +32,7 @@ const StyledElement = styled(Element)`
 export const OppsummeringFelt: React.FC<IOppsummeringsFeltProps> = ({
     tittel,
     søknadsvar,
+    spørsmålstekst,
     children,
 }) => {
     let språktekstid: boolean | string = false;
@@ -40,10 +45,9 @@ export const OppsummeringFelt: React.FC<IOppsummeringsFeltProps> = ({
     return (
         <StyledOppsummeringsFelt>
             {tittel && <StyledElement>{tittel}</StyledElement>}
+            {spørsmålstekst && <TekstBlock block={spørsmålstekst} typografi={Typografi.Label} />}
             {søknadsvar ? (
-                <Normaltekst>
-                    {språktekstid ? <SpråkTekst id={språktekstid} /> : søknadsvar}
-                </Normaltekst>
+                <BodyLong>{språktekstid ? <SpråkTekst id={språktekstid} /> : søknadsvar}</BodyLong>
             ) : (
                 children
             )}

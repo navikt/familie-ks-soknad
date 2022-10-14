@@ -1,9 +1,8 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
-import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 
 import { ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
@@ -45,15 +44,10 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
     spørsmålDokument,
     barnetsNavn,
 }) => {
-    const ref = useRef<RadioPanelGruppe>(null);
     const [mounted, settMounted] = useState(false);
 
     useEffect(() => {
-        const jaNeiRef = ref.current;
-        if (mounted && jaNeiRef) {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            jaNeiRef.props.onChange(null, felt.verdi);
+        if (mounted) {
             spørsmålDokument &&
                 logSpørsmålBesvart(
                     spørsmålDokument.api_navn,
@@ -69,7 +63,8 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
                 {...felt.hentNavInputProps(skjema.visFeilmeldinger)}
                 initiellVerdi={felt.verdi}
                 name={uuidv4()}
-                ref={ref}
+                size={'medium'}
+                error={felt.hentNavInputProps(skjema.visFeilmeldinger).feil}
                 legend={
                     spørsmålTekstId ? (
                         <>
@@ -89,7 +84,9 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
                                 block={spørsmålDokument.sporsmal}
                                 flettefelter={{ barnetsNavn }}
                             />
-                            <TilleggsinfoWrapper>{tilleggsinfo}</TilleggsinfoWrapper>
+                            {tilleggsinfo && (
+                                <TilleggsinfoWrapper>{tilleggsinfo}</TilleggsinfoWrapper>
+                            )}
                         </>
                     ) : null
                 }

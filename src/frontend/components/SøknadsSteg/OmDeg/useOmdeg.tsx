@@ -7,7 +7,7 @@ import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import { usePerioder } from '../../../hooks/usePerioder';
-import { AlternativtSvarForInput } from '../../../typer/common';
+import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { IIdNummer } from '../../../typer/person';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
@@ -60,7 +60,13 @@ export const useOmdeg = (): {
             return avhengigheter?.værtINorgeITolvMåneder.verdi === ESvar.JA ||
                 (avhengigheter?.værtINorgeITolvMåneder.verdi === ESvar.NEI && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <TekstBlock block={teksterForUtenlandsperiode.leggTilFeilmelding} />);
+                : feil(
+                      felt,
+                      <TekstBlock
+                          block={teksterForUtenlandsperiode.leggTilFeilmelding}
+                          typografi={Typografi.ErrorMessage}
+                      />
+                  );
         }
     );
 

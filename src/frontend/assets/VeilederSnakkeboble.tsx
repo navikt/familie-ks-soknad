@@ -2,8 +2,6 @@ import React from 'react';
 
 import Veileder, { VeilederProps } from 'nav-frontend-veileder';
 
-import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
-
 const VeilederSnakkeboble: React.FC<VeilederProps> = props => (
     <Veileder {...props}>
         <svg
@@ -12,9 +10,7 @@ const VeilederSnakkeboble: React.FC<VeilederProps> = props => (
             aria-labelledby="veileder-title"
             role={'img'}
         >
-            <title id="veileder-title">
-                <SpråkTekst id="felles.veilederillustrasjon.tittel" />
-            </title>
+            <title id="veileder-title">{props.tekst}</title>
             <path
                 fill="#e7e5e2"
                 d="M14 50.7C15 52.3 17.9 81 26.5 81S39 51.8 39 50.3c-13.2-7.6-25 .4-25 .4z"

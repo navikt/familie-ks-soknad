@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { Element } from 'nav-frontend-typografi';
-
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -67,9 +66,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
                 />
             ))}
             {registrerteUtenlandsperioder.verdi.length > 0 && (
-                <Element>
-                    <TekstBlock block={flerePerioder} />
-                </Element>
+                <TekstBlock block={flerePerioder} typografi={Typografi.Label} />
             )}
             <LeggTilKnapp
                 id={UtenlandsoppholdSpørsmålId.utenlandsopphold}
@@ -77,7 +74,9 @@ export const Utenlandsperiode: React.FC<Props> = ({
                 feilmelding={
                     registrerteUtenlandsperioder.erSynlig &&
                     registrerteUtenlandsperioder.feilmelding &&
-                    skjema.visFeilmeldinger && <TekstBlock block={leggTilFeilmelding} />
+                    skjema.visFeilmeldinger && (
+                        <TekstBlock block={leggTilFeilmelding} typografi={Typografi.ErrorMessage} />
+                    )
                 }
             >
                 <TekstBlock block={leggTilKnapp} />

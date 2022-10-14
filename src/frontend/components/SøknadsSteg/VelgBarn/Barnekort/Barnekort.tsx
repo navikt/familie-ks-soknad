@@ -13,6 +13,7 @@ import {
 
 import { useApp } from '../../../../context/AppContext';
 import { device } from '../../../../Theme';
+import { Typografi } from '../../../../typer/common';
 import { IBarn } from '../../../../typer/person';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { hentBostedSpråkId } from '../../../../utils/språk';
@@ -116,21 +117,24 @@ const Barnekort: React.FC<IBarnekortProps> = ({
                 </StyledUndertittel>
                 {!barn.adressebeskyttelse && (
                     <>
-                        <TekstBlock block={foedselsnummerLabel} />
+                        <TekstBlock block={foedselsnummerLabel} typografi={Typografi.Label} />
                         <Normaltekst>{formaterFnr(barn.ident)}</Normaltekst>
                     </>
                 )}
                 {barn.alder && ( // Barn med undefined fødselsdato i pdl eller som søker har lagt inn selv har alder -null-
                     <>
-                        <TekstBlock block={alderLabel} />
+                        <TekstBlock block={alderLabel} typografi={Typografi.Label} />
                         <Normaltekst>{`${barn.alder} ${plainTekst(aar)}`}</Normaltekst>
                     </>
                 )}
 
                 {!erRegistrertManuelt && (
                     <>
-                        <TekstBlock block={registrertBostedLabel} />
-                        <TekstBlock block={hentBostedSpråkId(barn, teksterForSteg)} />
+                        <TekstBlock block={registrertBostedLabel} typografi={Typografi.Label} />
+                        <TekstBlock
+                            block={hentBostedSpråkId(barn, teksterForSteg)}
+                            typografi={Typografi.BodyShort}
+                        />
                     </>
                 )}
                 <StyledCheckbox
