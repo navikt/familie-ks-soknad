@@ -27,7 +27,7 @@ export const useOmBarnaDine = (): {
     const { søknad, settSøknad } = useApp();
     const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } = useEøs();
     const { tekster } = useApp();
-    const ombarnaTekster: IOmBarnaTekstinnhold = tekster()[ESanitySteg.OM_BARNA];
+    const omBarnaTekster: IOmBarnaTekstinnhold = tekster()[ESanitySteg.OM_BARNA];
 
     const erNoenAvBarnaFosterbarn = useJaNeiSpmFelt({
         søknadsfelt: søknad.erNoenAvBarnaFosterbarn,
@@ -98,7 +98,7 @@ export const useOmBarnaDine = (): {
 
     const harEllerTildeltBarnehageplass = useJaNeiSpmFelt({
         søknadsfelt: søknad.harEllerTildeltBarnehageplass,
-        feilmelding: ombarnaTekster.barnehageplass.feilmelding,
+        feilmelding: omBarnaTekster.barnehageplass.feilmelding,
     });
 
     const hvemHarBarnehageplass = useBarnCheckboxFelt(
