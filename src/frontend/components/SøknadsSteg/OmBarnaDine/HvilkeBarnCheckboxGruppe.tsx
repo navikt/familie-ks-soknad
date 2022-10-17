@@ -1,7 +1,6 @@
 import React, { ChangeEvent, ReactNode, useEffect, useState } from 'react';
 
 import { Checkbox, CheckboxGruppe } from 'nav-frontend-skjema';
-import { Element } from 'nav-frontend-typografi';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt } from '@navikt/familie-skjema';
@@ -9,14 +8,9 @@ import { Felt } from '@navikt/familie-skjema';
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { BarnetsId } from '../../../typer/common';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 
 interface Props {
-    /*
-     * @deprecated bruk legend
-     */
-    legendSpråkId?: string;
-    legend?: ReactNode;
+    legend: ReactNode;
     skjemafelt: Felt<BarnetsId[]>;
     visFeilmelding: boolean;
     søknadsdatafelt: barnDataKeySpørsmål;
@@ -24,7 +18,6 @@ interface Props {
 }
 
 const HvilkeBarnCheckboxGruppe: React.FC<Props> = ({
-    legendSpråkId,
     legend,
     skjemafelt,
     søknadsdatafelt,
@@ -66,13 +59,7 @@ const HvilkeBarnCheckboxGruppe: React.FC<Props> = ({
         <>
             <CheckboxGruppe
                 aria-live={'polite'}
-                legend={
-                    legend || (
-                        <Element>
-                            <SpråkTekst id={legendSpråkId} />
-                        </Element>
-                    )
-                }
+                legend={legend}
                 {...skjemafelt.hentNavBaseSkjemaProps(visFeilmelding)}
                 utenFeilPropagering
             >
