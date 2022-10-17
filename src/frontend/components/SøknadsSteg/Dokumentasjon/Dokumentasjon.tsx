@@ -12,7 +12,6 @@ import { useSendInnSkjema } from '../../../hooks/useSendInnSkjema';
 import { Typografi } from '../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
-import { erDokumentasjonRelevant } from '../../../utils/dokumentasjon';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { Feilside } from '../../Felleskomponenter/Feilside/Feilside';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
@@ -80,7 +79,10 @@ const Dokumentasjon: React.FC = () => {
             {slettaVedlegg.length > 0 && (
                 <KomponentGruppe>
                     <AlertStripe variant={'warning'}>
-                        <TekstBlock block={forLangTidDokumentasjon} />
+                        <TekstBlock
+                            block={forLangTidDokumentasjon}
+                            typografi={Typografi.BodyLong}
+                        />
                         <ul>
                             {slettaVedlegg.map(vedlegg => (
                                 <li key={vedlegg.dokumentId}>
@@ -93,11 +95,11 @@ const Dokumentasjon: React.FC = () => {
             )}
             <KomponentGruppe>
                 <AlertStripe variant={'info'} inline={false}>
-                    <TekstBlock block={nudgeDokumentasjon} />
+                    <TekstBlock block={nudgeDokumentasjon} typografi={Typografi.BodyLong} />
                 </AlertStripe>
 
                 <Normaltekst>
-                    <TekstBlock block={dokumentasjonInfo} />
+                    <TekstBlock block={dokumentasjonInfo} typografi={Typografi.BodyLong} />
                 </Normaltekst>
                 <PictureScanningGuide />
             </KomponentGruppe>

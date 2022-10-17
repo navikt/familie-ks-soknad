@@ -3,9 +3,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Checkbox } from 'nav-frontend-skjema';
-import { Undertittel } from 'nav-frontend-typografi';
+
+import { Heading } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import {
     dokumentasjonsbehovTilBeskrivelseSanityApiNavn,
     dokumentasjonsbehovTilTittelSanityApiNavn,
@@ -69,7 +71,6 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
         dokumentasjonstekster[
             dokumentasjonsbehovTilTittelSanityApiNavn(dokumentasjon.dokumentasjonsbehov)
         ];
-    const dokTittel = <TekstBlock block={tittelBlock} flettefelter={{ barnetsNavn: barnasNavn }} />;
 
     const skalViseAnnenDokumentasjonsBeskrivelse = () => {
         return (
@@ -82,24 +83,27 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
         dokumentasjon.dokumentasjonsbehov
     );
 
+    const vedleggXAvY = plainTekst(dokumentasjonstekster.vedleggXavY, {
+        antall: vedleggNr.toString(),
+        totaltAntall: antallVedlegg().toString(),
+    });
+    const vedleggtittel =
+        (dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON
+            ? vedleggXAvY
+            : '') +
+        ' ' +
+        plainTekst(tittelBlock, { barnetsNavn: barnasNavn });
+
     return (
         <Container>
-            <Undertittel>
-                {dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON && (
-                    <TekstBlock
-                        block={dokumentasjonstekster.vedleggXavY}
-                        flettefelter={{
-                            antall: vedleggNr.toString(),
-                            totaltAntall: antallVedlegg().toString(),
-                        }}
-                    />
-                )}
-                {dokTittel}
-            </Undertittel>
+            <Heading level={'2'} size={'small'}>
+                {vedleggtittel}
+            </Heading>
             {dokumentasjonsbeskrivelse && skalViseAnnenDokumentasjonsBeskrivelse() && (
                 <TekstBlock
                     data-testid={'dokumentasjonsbeskrivelse'}
                     block={dokumentasjonstekster[dokumentasjonsbeskrivelse]}
+                    typografi={Typografi.BodyLong}
                 />
             )}
             {!dokumentasjon.harSendtInn && (
