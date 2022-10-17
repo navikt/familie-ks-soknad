@@ -8,7 +8,7 @@ import { DeleteFilled } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
 import { NavdsSemanticColorBorder } from '@navikt/ds-tokens/dist/tokens';
 
-import { LocaleRecordBlock } from '../../../typer/common';
+import { LocaleRecordBlock, Typografi } from '../../../typer/common';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import TekstBlock from '../TekstBlock';
 
@@ -24,18 +24,20 @@ const StyledButton = styled(Button)`
     }
 `;
 
-const StyledElement = styled(Element)`
+const PeriodeTittel = styled.div`
     && {
         margin-bottom: 1.125rem;
     }
 `;
 
 const PeriodeOppsummering: React.FC<{
-    nummer: number;
+    nummer?: number;
     fjernPeriodeCallback?: () => void;
     fjernKnappSpråkId?: string;
     fjernKnappTekst?: LocaleRecordBlock;
     tittelSpråkId?: string;
+    tittel?: LocaleRecordBlock;
+    antall?: string;
     vedleggNotis?: ReactNode;
 }> = ({
     nummer,
@@ -43,6 +45,8 @@ const PeriodeOppsummering: React.FC<{
     fjernKnappSpråkId,
     fjernKnappTekst,
     tittelSpråkId,
+    tittel,
+    antall,
     vedleggNotis,
     children,
 }) => {
@@ -50,9 +54,20 @@ const PeriodeOppsummering: React.FC<{
 
     return (
         <PeriodeContainer bottomBorder={skalHaBottomBorder}>
-            <StyledElement>
-                <SpråkTekst id={tittelSpråkId} values={{ x: nummer }} />
-            </StyledElement>
+            <PeriodeTittel>
+                {tittelSpråkId && nummer && (
+                    <Element>
+                        <SpråkTekst id={tittelSpråkId} values={{ x: nummer }} />
+                    </Element>
+                )}
+                {tittel && antall && (
+                    <TekstBlock
+                        block={tittel}
+                        flettefelter={{ antall }}
+                        typografi={Typografi.Label}
+                    />
+                )}
+            </PeriodeTittel>
             {children}
             {fjernPeriodeCallback !== undefined && (
                 <StyledButton
@@ -61,11 +76,8 @@ const PeriodeOppsummering: React.FC<{
                     onClick={() => fjernPeriodeCallback()}
                 >
                     <DeleteFilled />
-                    {fjernKnappTekst ? (
-                        <TekstBlock block={fjernKnappTekst} />
-                    ) : (
-                        <SpråkTekst id={fjernKnappSpråkId} />
-                    )}
+                    {fjernKnappTekst && <TekstBlock block={fjernKnappTekst} />}
+                    {fjernKnappSpråkId && <SpråkTekst id={fjernKnappSpråkId} />}
                 </StyledButton>
             )}
             {vedleggNotis}

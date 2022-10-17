@@ -8,6 +8,7 @@ import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barne
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { formaterDato } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
+import { IOmBarnetTekstinnhold } from '../../SøknadsSteg/OmBarnet/innholdTyper';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import { hentBarnehageplassBeskrivelse } from './barnehageplassSpråkUtils';
@@ -38,15 +39,15 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
     const { tekster, plainTekst } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
-
+    const omBarnetTekster: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     return (
         <PeriodeOppsummering
             fjernPeriodeCallback={
                 fjernPeriodeCallback && (() => fjernPeriodeCallback(barnehageplassPeriode))
             }
             fjernKnappTekst={barnehageplassTekster.fjernKnapp}
-            nummer={nummer}
-            tittelSpråkId={'todo.ombarnet.barnehageplass.periode'}
+            antall={nummer.toString()}
+            tittel={omBarnetTekster.periodeBarnehageplass}
         >
             <OppsummeringFelt
                 spørsmålstekst={barnehageplassTekster.periodebeskrivelse.sporsmal}

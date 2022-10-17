@@ -15,7 +15,7 @@ export type TilRestLocaleRecord = (
     flettefelter?: FlettefeltVerdier
 ) => Record<LocaleType, string>;
 
-export type FlettefeltVerdier = { barnetsNavn?: string; gjelderUtland?: boolean };
+export type FlettefeltVerdier = { barnetsNavn?: string; gjelderUtland?: boolean; antall?: string };
 
 export interface IUtenlandsperiodeIKontraktFormat {
     utenlandsoppholdÅrsak: ISøknadsfelt<string>;
