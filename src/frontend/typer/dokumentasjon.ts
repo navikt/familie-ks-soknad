@@ -29,7 +29,7 @@ export enum TittelSanityApiNavn {
     bekreftelseFraBarnevernetTittel = 'bekreftelseFraBarnevernetTittel',
     bekreftelsePaaAtBarnBorSammenMedDegTittel = 'bekreftelsePaaAtBarnBorSammenMedDegTittel',
     vedtakOmOppholdstillatelseTittel = 'vedtakOmOppholdstillatelseTittel',
-    //BEKREFTELESE_PÅ_BARNEHAGEPLASS = 'BEKREFTELESE_PÅ_BARNEHAGEPLASS',
+    bekreftelsePaaBarnehageplassTittel = 'bekreftelsePaaBarnehageplassTittel',
 }
 
 export const dokumentasjonsbehovTilTittelSanityApiNavn = (
@@ -49,11 +49,7 @@ export const dokumentasjonsbehovTilTittelSanityApiNavn = (
         case Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE:
             return TittelSanityApiNavn.vedtakOmOppholdstillatelseTittel;
         case Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS:
-            /**
-             * TODO: Legg inn riktig apiNavn
-             * Favro: https://favro.com/organization/98c34fb974ce445eac854de0/077068028bffba85055cca2d?card=Tea-9957
-             */
-            throw Error('BEKREFTELESE_PÅ_BARNEHAGEPLASS er ikke lagt til');
+            return TittelSanityApiNavn.bekreftelsePaaBarnehageplassTittel;
     }
 };
 
@@ -63,6 +59,7 @@ export enum BeskrivelseSanityApiNavn {
     bekreftelseFraBarnevernet = 'bekreftelseFraBarnevernet',
     bekreftelsePaaAtBarnBorSammenMedDeg = 'bekreftelsePaaAtBarnBorSammenMedDeg',
     vedtakOmOppholdstillatelse = 'vedtakOmOppholdstillatelse',
+    bekreftelsePaaBarnehageplass = 'bekreftelsePaaBarnehageplass',
 }
 
 export const dokumentasjonsbehovTilBeskrivelseSanityApiNavn = (
@@ -82,6 +79,6 @@ export const dokumentasjonsbehovTilBeskrivelseSanityApiNavn = (
         case Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE:
             return BeskrivelseSanityApiNavn.vedtakOmOppholdstillatelse;
         case Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS:
-            return null;
+            return BeskrivelseSanityApiNavn.bekreftelsePaaBarnehageplass;
     }
 };
