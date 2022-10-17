@@ -7,7 +7,6 @@ import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
-import { Typografi } from '../../../typer/common';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -38,10 +37,7 @@ export const useOmBarnaDine = (): {
 
     const hvemErFosterbarn = useBarnCheckboxFelt(
         barnDataKeySpørsmål.erFosterbarn,
-        <TekstBlock
-            block={teksterForSteg.hvemFosterbarn.feilmelding}
-            typografi={Typografi.ErrorMessage}
-        />,
+        <TekstBlock block={teksterForSteg.hvemFosterbarn.feilmelding} />,
         erNoenAvBarnaFosterbarn
     );
 
@@ -52,10 +48,7 @@ export const useOmBarnaDine = (): {
 
     const hvemOppholderSegIInstitusjon = useBarnCheckboxFelt(
         barnDataKeySpørsmål.oppholderSegIInstitusjon,
-        <TekstBlock
-            block={teksterForSteg.hvemInstitusjon.feilmelding}
-            typografi={Typografi.ErrorMessage}
-        />,
+        <TekstBlock block={teksterForSteg.hvemInstitusjon.feilmelding} />,
         oppholderBarnSegIInstitusjon
     );
 
@@ -66,10 +59,7 @@ export const useOmBarnaDine = (): {
 
     const hvemErAdoptertFraUtland = useBarnCheckboxFelt(
         barnDataKeySpørsmål.erAdoptertFraUtland,
-        <TekstBlock
-            block={teksterForSteg.hvemAdoptertKontantstoette.feilmelding}
-            typografi={Typografi.ErrorMessage}
-        />,
+        <TekstBlock block={teksterForSteg.hvemAdoptertKontantstoette.feilmelding} />,
         erBarnAdoptertFraUtland
     );
 
@@ -80,10 +70,7 @@ export const useOmBarnaDine = (): {
 
     const hvemErSøktAsylFor = useBarnCheckboxFelt(
         barnDataKeySpørsmål.erAsylsøker,
-        <TekstBlock
-            block={teksterForSteg.hvemAsyl.feilmelding}
-            typografi={Typografi.ErrorMessage}
-        />,
+        <TekstBlock block={teksterForSteg.hvemAsyl.feilmelding} />,
         søktAsylForBarn
     );
 
@@ -94,10 +81,7 @@ export const useOmBarnaDine = (): {
 
     const hvemTolvMndSammenhengendeINorge = useBarnCheckboxFelt(
         barnDataKeySpørsmål.boddMindreEnn12MndINorge,
-        <TekstBlock
-            block={teksterForSteg.hvemOppholdUtenforNorge.feilmelding}
-            typografi={Typografi.ErrorMessage}
-        />,
+        <TekstBlock block={teksterForSteg.hvemOppholdUtenforNorge.feilmelding} />,
         barnOppholdtSegTolvMndSammenhengendeINorge,
         ESvar.NEI
     );
@@ -109,10 +93,7 @@ export const useOmBarnaDine = (): {
 
     const hvemKontantstøtteFraAnnetEøsland = useBarnCheckboxFelt(
         barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland,
-        <TekstBlock
-            block={teksterForSteg.hvemSoektYtelse.feilmelding}
-            typografi={Typografi.ErrorMessage}
-        />,
+        <TekstBlock block={teksterForSteg.hvemSoektYtelse.feilmelding} />,
         mottarKontantstøtteForBarnFraAnnetEøsland
     );
 
@@ -123,10 +104,7 @@ export const useOmBarnaDine = (): {
 
     const hvemHarBarnehageplass = useBarnCheckboxFelt(
         barnDataKeySpørsmål.harBarnehageplass,
-        <TekstBlock
-            block={teksterForSteg.hvemBarnehageplass.feilmelding}
-            typografi={Typografi.ErrorMessage}
-        />,
+        <TekstBlock block={teksterForSteg.hvemBarnehageplass.feilmelding} />,
         harEllerTildeltBarnehageplass
     );
 
@@ -152,7 +130,6 @@ export const useOmBarnaDine = (): {
                     ? teksterForSteg.hvemAvBarnaAvdoedPartner.feilmelding
                     : teksterForSteg.hvemAvBarnaAvdoedEktefelle.feilmelding
             }
-            typografi={Typografi.ErrorMessage}
         />,
         erAvdødPartnerForelder
     );

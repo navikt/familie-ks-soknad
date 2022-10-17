@@ -3,8 +3,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Normaltekst } from 'nav-frontend-typografi';
-
 import { BodyShort } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
@@ -136,10 +134,9 @@ const OmBarnaDine: React.FC = () => {
                 {skjema.felter.erBarnAdoptertFraUtland.verdi === ESvar.JA && (
                     <VedleggNotisWrapper>
                         <VedleggNotis dynamisk>
-                            <TekstBlock
-                                block={adoptertKontantstoette.alert}
-                                typografi={Typografi.BodyShort}
-                            />
+                            <BodyShort>
+                                {plainTekst(adoptertKontantstoette.vedleggsnotis)}
+                            </BodyShort>
                         </VedleggNotis>
                     </VedleggNotisWrapper>
                 )}
@@ -158,7 +155,7 @@ const OmBarnaDine: React.FC = () => {
                 {skjema.felter.søktAsylForBarn.verdi === ESvar.JA && (
                     <VedleggNotisWrapper>
                         <VedleggNotis dynamisk>
-                            <TekstBlock block={asyl.alert} typografi={Typografi.BodyShort} />
+                            <BodyShort>{plainTekst(asyl.vedleggsnotis)}</BodyShort>
                         </VedleggNotis>
                     </VedleggNotisWrapper>
                 )}
@@ -214,9 +211,7 @@ const OmBarnaDine: React.FC = () => {
                 >
                     {hvemBarnehageplass.vedleggsnotis ? (
                         <VedleggNotis>
-                            <Normaltekst>
-                                {plainTekst(hvemBarnehageplass.vedleggsnotis)}
-                            </Normaltekst>
+                            <BodyShort>{plainTekst(hvemBarnehageplass.vedleggsnotis)}</BodyShort>
                         </VedleggNotis>
                     ) : null}
                 </HvilkeBarnCheckboxGruppe>
