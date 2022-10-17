@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useApp } from '../../../../context/AppContext';
+import { Typografi } from '../../../../typer/common';
 import { PersonType } from '../../../../typer/personType';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { Arbeidsperiode } from '../../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
@@ -37,7 +38,7 @@ const EøsForSøker: React.FC = () => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={eoesForSoekerTittel} />}
+            tittel={<TekstBlock block={eoesForSoekerTittel} typografi={Typografi.StegHeadingH1} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

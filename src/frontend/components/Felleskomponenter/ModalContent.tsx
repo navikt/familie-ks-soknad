@@ -10,7 +10,6 @@ const StyledModalContent = styled(Modal.Content)`
     }
 
     > h1 {
-        font-size: 1.25rem;
         text-align: center;
         padding: 2rem 0;
     }

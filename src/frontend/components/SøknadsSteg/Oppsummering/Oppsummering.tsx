@@ -9,6 +9,7 @@ import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { useSteg } from '../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
@@ -55,7 +56,7 @@ const Oppsummering: React.FC = () => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={oppsummeringTittel} />}
+            tittel={<TekstBlock block={oppsummeringTittel} typografi={Typografi.StegHeadingH1} />}
             gåVidereCallback={gåVidereCallback}
         >
             <StyledNormaltekst>

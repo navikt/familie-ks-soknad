@@ -170,30 +170,6 @@ export const genererInitialBarnMedISøknad = (barn: IBarn): IBarnMedISøknad => 
             id: OmBarnaDineSpørsmålId.hvemOppholderSegIInstitusjon,
             svar: null,
         },
-        [barnDataKeySpørsmål.institusjonIUtland]: {
-            id: OmBarnetSpørsmålsId.institusjonIUtland,
-            svar: ESvar.NEI,
-        },
-        [barnDataKeySpørsmål.institusjonsnavn]: {
-            id: OmBarnetSpørsmålsId.institusjonsnavn,
-            svar: '',
-        },
-        [barnDataKeySpørsmål.institusjonsadresse]: {
-            id: OmBarnetSpørsmålsId.institusjonsadresse,
-            svar: '',
-        },
-        [barnDataKeySpørsmål.institusjonspostnummer]: {
-            id: OmBarnetSpørsmålsId.institusjonspostnummer,
-            svar: '',
-        },
-        [barnDataKeySpørsmål.institusjonOppholdStartdato]: {
-            id: OmBarnetSpørsmålsId.institusjonOppholdStartdato,
-            svar: '',
-        },
-        [barnDataKeySpørsmål.institusjonOppholdSluttdato]: {
-            id: OmBarnetSpørsmålsId.institusjonOppholdSluttdato,
-            svar: '',
-        },
         [barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad]: {
             id: OmBarnetSpørsmålsId.utbetaltForeldrepengerEllerEngangsstønad,
             svar: null,

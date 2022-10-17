@@ -4,10 +4,6 @@ import {
     EøsBarnSpørsmålId,
     eøsBarnSpørsmålSpråkId,
 } from '../../components/SøknadsSteg/EøsSteg/Barn/spørsmål';
-import {
-    OmBarnetSpørsmålsId,
-    omBarnetSpørsmålSpråkId,
-} from '../../components/SøknadsSteg/OmBarnet/spørsmål';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../typer/barn';
 import { ERegistrertBostedType, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { ISøknadIKontraktBarn } from '../../typer/kontrakt/v1';
@@ -49,7 +45,6 @@ export const barnISøknadsFormat = (
         adressebeskyttelse,
         andreForelder,
         omsorgsperson,
-        institusjonOppholdSluttdato,
         utenlandsperioder,
         // Nye felter under utvikling av EØS full
         eøsKontantstøttePerioder,
@@ -142,14 +137,6 @@ export const barnISøknadsFormat = (
                 navn: navn,
                 barn: navn,
             }),
-            [barnDataKeySpørsmål.institusjonOppholdSluttdato]: søknadsfeltBarn(
-                språktekstIdFraSpørsmålId(OmBarnetSpørsmålsId.institusjonOppholdSluttdato),
-                sammeVerdiAlleSpråkEllerUkjentSpråktekst(
-                    institusjonOppholdSluttdato.svar,
-                    omBarnetSpørsmålSpråkId['institusjon-opphold-ukjent-sluttdato']
-                ),
-                barn
-            ),
             [barnDataKeySpørsmål.adresse]: søknadsfeltBarn(
                 språktekstIdFraSpørsmålId(EøsBarnSpørsmålId.barnetsAdresse),
                 sammeVerdiAlleSpråkEllerUkjentSpråktekst(

@@ -2,23 +2,15 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Ingress } from 'nav-frontend-typografi';
-
 import { Button } from '@navikt/ds-react';
 
 import { useApp } from '../../../../context/AppContext';
+import { Typografi } from '../../../../typer/common';
 import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { StyledBarnekort } from '../Barnekort/Barnekort';
 import { IVelgBarnTekstinnhold } from '../innholdTyper';
-
-const StyledIngress = styled(Ingress)`
-    && {
-        font-size: 1rem;
-        font-weight: 600;
-    }
-`;
 
 const StyledButton = styled(Button)`
     && {
@@ -37,9 +29,7 @@ export const NyttBarnKort: React.FC<{ onLeggTilBarn: () => void }> = ({ onLeggTi
 
     return (
         <StyledBarnekort>
-            <StyledIngress>
-                <TekstBlock block={soekeForUregistrerteBarn} />
-            </StyledIngress>
+            <TekstBlock block={soekeForUregistrerteBarn} typografi={Typografi.BodyLong} />
             <StyledButton type={'button'} variant={'secondary'} onClick={() => onLeggTilBarn()}>
                 <TekstBlock block={teksterForLeggTilBarnModal.leggTilKnapp} />
             </StyledButton>

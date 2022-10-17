@@ -32,7 +32,9 @@ export type LocaleRecordBlock = Record<LocaleType, PortableTextBlock[]> & {
 };
 
 export enum Typografi {
-    HeadingH1 = 'HeadingH1',
+    StegHeadingH1 = 'StegHeadingH1',
+    ModalHeadingH1 = 'ModalHeadingH1',
+    ForsideHeadingH1 = 'ForsideHeadingH1',
     Ingress = 'Ingress',
     BodyLong = 'BodyLong',
     BodyShort = 'BodyShort',
