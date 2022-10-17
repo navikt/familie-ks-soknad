@@ -12,6 +12,7 @@ import { useSendInnSkjema } from '../../../hooks/useSendInnSkjema';
 import { Typografi } from '../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
+import { erDokumentasjonRelevant } from '../../../utils/dokumentasjon';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { Feilside } from '../../Felleskomponenter/Feilside/Feilside';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
