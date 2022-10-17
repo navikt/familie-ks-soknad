@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { Element } from 'nav-frontend-typografi';
-
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -15,7 +14,7 @@ import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 import { BarnehageplassPeriodeModal } from './BarnehageplassPeriodeModal';
-import { BarnehageplassPeriodeOppsummering } from './barnehageplassPeriodeOppsummering';
+import { BarnehageplassPeriodeOppsummering } from './BarnehageplassPeriodeOppsummering';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 
 interface BarnehageplassPeriodeProps {
@@ -43,12 +42,12 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
 
     return (
         <>
-            <Element>
-                <TekstBlock
-                    block={oppfølgingstekst.opplystBarnehageplass}
-                    flettefelter={{ barnetsNavn }}
-                />
-            </Element>
+            <TekstBlock
+                block={oppfølgingstekst.opplystBarnehageplass}
+                flettefelter={{ barnetsNavn }}
+                typografi={Typografi.Label}
+            />
+
             {registrerteBarnehageplassPerioder.verdi.map((periode, index) => (
                 <BarnehageplassPeriodeOppsummering
                     key={`barnehageplass-periode-${index}`}
@@ -58,9 +57,10 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
                 />
             ))}
             {registrerteBarnehageplassPerioder.verdi.length > 0 && (
-                <Element>
-                    <TekstBlock block={barnehageplassTekster.flerePerioder} />
-                </Element>
+                <TekstBlock
+                    block={barnehageplassTekster.flerePerioder}
+                    typografi={Typografi.Label}
+                />
             )}
 
             <LeggTilKnapp
@@ -68,10 +68,8 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
                 id={BarnehageplassPeriodeSpørsmålId.barnehageplassPeriode}
                 feilmelding={
                     registrerteBarnehageplassPerioder.erSynlig &&
-                    registrerteBarnehageplassPerioder.feilmelding &&
-                    skjema.visFeilmeldinger && (
-                        <TekstBlock block={barnehageplassTekster.leggTilFeilmelding} />
-                    )
+                    skjema.visFeilmeldinger &&
+                    registrerteBarnehageplassPerioder.feilmelding
                 }
             >
                 <TekstBlock block={barnehageplassTekster.leggTilKnapp} />

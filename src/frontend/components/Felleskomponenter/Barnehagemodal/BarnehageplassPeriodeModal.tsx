@@ -6,6 +6,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -24,9 +25,9 @@ import useModal from '../SkjemaModal/useModal';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import TekstBlock from '../TekstBlock';
 import {
-    hentTilDatoSpørsmål,
     hentBarnehageplassBeskrivelse,
     hentFraDatoSpørsmål,
+    hentTilDatoSpørsmål,
 } from './barnehageplassSpråkUtils';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
@@ -102,13 +103,17 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
         toggleModal();
         nullstillSkjema();
     };
-    const barnetsNavn = barn?.navn;
+    const barnetsNavn = barn.navn;
 
     return (
         <SkjemaModal
             erÅpen={erÅpen}
             tittel={
-                <TekstBlock block={barnehageplassTekster.tittel} flettefelter={{ barnetsNavn }} />
+                <TekstBlock
+                    block={barnehageplassTekster.tittel}
+                    flettefelter={{ barnetsNavn }}
+                    typografi={Typografi.ModalHeadingH1}
+                />
             }
             onSubmitCallback={onLeggTil}
             submitKnappTekst={<TekstBlock block={barnehageplassTekster.leggTilKnapp} />}

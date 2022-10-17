@@ -8,6 +8,7 @@ import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { Typografi } from '../../../typer/common';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IBarnehageplassPerioderFeltTyper } from '../../../typer/skjema';
@@ -36,7 +37,10 @@ export const useBarnehageplassPeriodeSkjema = () => {
                 ? ok(felt)
                 : feil(
                       felt,
-                      <TekstBlock block={barnehageplassTekster.periodebeskrivelse.feilmelding} />
+                      <TekstBlock
+                          block={barnehageplassTekster.periodebeskrivelse.feilmelding}
+                          typografi={Typografi.ErrorMessage}
+                      />
                   ),
     });
 

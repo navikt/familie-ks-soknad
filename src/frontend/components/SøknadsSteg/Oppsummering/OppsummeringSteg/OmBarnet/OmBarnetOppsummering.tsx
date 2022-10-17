@@ -11,7 +11,7 @@ import {
 } from '../../../../../typer/barn';
 import { PersonType } from '../../../../../typer/personType';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
-import { BarnehageplassPeriodeOppsummering } from '../../../../Felleskomponenter/Barnehagemodal/barnehageplassPeriodeOppsummering';
+import { BarnehageplassPeriodeOppsummering } from '../../../../Felleskomponenter/Barnehagemodal/BarnehageplassPeriodeOppsummering';
 import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
 import SpråkTekst from '../../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';

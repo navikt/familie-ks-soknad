@@ -11,6 +11,7 @@ export const hentBarnehageplassBeskrivelse = (
             return tekster.valgalternativBarnehageplassTidligere;
         case EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN:
             return tekster.valgalternativBarnehageplassIFremtid;
+        case EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ:
         default:
             return tekster.valgalternativBarnehageplassNaa;
     }

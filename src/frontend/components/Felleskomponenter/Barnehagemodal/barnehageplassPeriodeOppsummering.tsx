@@ -49,7 +49,7 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
             tittelSpråkId={'todo.ombarnet.barnehageplass.periode'}
         >
             <OppsummeringFelt
-                tittel={plainTekst(barnehageplassTekster.periodebeskrivelse.sporsmal)}
+                spørsmålstekst={barnehageplassTekster.periodebeskrivelse.sporsmal}
                 søknadsvar={plainTekst(
                     hentBarnehageplassBeskrivelse(
                         barnehageplassPeriodeBeskrivelse.svar,
@@ -59,41 +59,41 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
             />
 
             <OppsummeringFelt
-                tittel={plainTekst(barnehageplassTekster.utland.sporsmal)}
+                spørsmålstekst={barnehageplassTekster.utland.sporsmal}
                 søknadsvar={barnehageplassUtlandet.svar}
             />
             {barnehageplassLand.svar && (
                 <OppsummeringFelt
-                    tittel={plainTekst(barnehageplassTekster.hvilketLand.sporsmal)}
+                    spørsmålstekst={barnehageplassTekster.hvilketLand.sporsmal}
                     søknadsvar={landkodeTilSpråk(barnehageplassLand.svar, valgtLocale)}
                 />
             )}
             {offentligStøtte.svar && (
                 <OppsummeringFelt
-                    tittel={plainTekst(barnehageplassTekster.offentligStoette.sporsmal)}
+                    spørsmålstekst={barnehageplassTekster.offentligStoette.sporsmal}
                     søknadsvar={offentligStøtte.svar}
                 />
             )}
             <OppsummeringFelt
-                tittel={plainTekst(barnehageplassTekster.antallTimer.sporsmal)}
+                spørsmålstekst={barnehageplassTekster.antallTimer.sporsmal}
                 søknadsvar={antallTimer.svar}
             />
 
             <OppsummeringFelt
-                tittel={
+                spørsmålstekst={
                     barnehageplassPeriodeBeskrivelse.svar ===
                     EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
-                        ? plainTekst(barnehageplassTekster.startdatoFremtid.sporsmal)
-                        : plainTekst(barnehageplassTekster.startdatoFortid.sporsmal)
+                        ? barnehageplassTekster.startdatoFremtid.sporsmal
+                        : barnehageplassTekster.startdatoFortid.sporsmal
                 }
                 søknadsvar={formaterDato(startetIBarnehagen.svar)}
             />
             <OppsummeringFelt
-                tittel={
+                spørsmålstekst={
                     barnehageplassPeriodeBeskrivelse.svar ===
                     EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                        ? plainTekst(barnehageplassTekster.sluttdatoFortid.sporsmal)
-                        : plainTekst(barnehageplassTekster.sluttdatoFremtid.sporsmal)
+                        ? barnehageplassTekster.sluttdatoFortid.sporsmal
+                        : barnehageplassTekster.sluttdatoFremtid.sporsmal
                 }
                 søknadsvar={formaterDato(slutterIBarnehagen.svar)}
             />
