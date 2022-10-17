@@ -6,6 +6,7 @@ import { feil, FeltState, ok, useFelt, useSkjema } from '@navikt/familie-skjema'
 import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
+import useInputFelt from '../../../hooks/useInputFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { Typografi } from '../../../typer/common';
@@ -69,20 +70,21 @@ export const useBarnehageplassPeriodeSkjema = () => {
         nullstillVedAvhengighetEndring: true,
     });
 
-    const antallTimer = useFelt<string>({
-        verdi: '',
-        feltId: BarnehageplassPeriodeSpørsmålId.antallTimer,
-        avhengigheter: { barnehageplassPeriodeBeskrivelse },
-        skalFeltetVises: avhengigheter => !!avhengigheter.barnehageplassPeriodeBeskrivelse.verdi,
-        valideringsfunksjon: (felt: FeltState<string>) => {
+    const antallTimer = useInputFelt({
+        søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.antallTimer, svar: '' },
+        feilmelding: barnehageplassTekster.antallTimer.feilmelding,
+        skalVises: !!barnehageplassPeriodeBeskrivelse.verdi,
+        customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
             if (verdi.match(/^[\d\s.\\/,.]{1,7}$/)) {
                 return ok(felt);
             } else {
                 return feil(
                     felt,
-                    <TekstBlock block={barnehageplassTekster.antallTimer.feilmelding} />
-                    //TODO trenger feilmelding om feil format?
+                    <TekstBlock
+                        block={barnehageplassTekster.ugyldigTimer}
+                        typografi={Typografi.ErrorMessage}
+                    />
                 );
             }
         },
