@@ -2,26 +2,28 @@ import React from 'react';
 
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
+import { useApp } from '../../../context/AppContext';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
+import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { formaterDato } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
+import { IOmBarnetTekstinnhold } from '../../SøknadsSteg/OmBarnet/innholdTyper';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
+import { hentBarnehageplassBeskrivelse } from './barnehageplassSpråkUtils';
+import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 
 interface BarnehageplassPeriodeProps {
     barnehageplassPeriode: IBarnehageplassPeriode;
     nummer: number;
     fjernPeriodeCallback?: (barnehageplassPeriode: IBarnehageplassPeriode) => void;
-    barnetsNavn: string;
 }
 
 export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodeProps> = ({
     barnehageplassPeriode,
     nummer,
     fjernPeriodeCallback = undefined,
-    barnetsNavn,
 }) => {
     const {
         barnehageplassPeriodeBeskrivelse,
@@ -34,54 +36,66 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
     } = barnehageplassPeriode;
 
     const [valgtLocale] = useSprakContext();
-
-    const spørsmålSpråkTekst = (spørsmålId: BarnehageplassPeriodeSpørsmålId) => (
-        <SpråkTekst id={spørsmålId} values={{ barn: barnetsNavn }} />
-    );
-
+    const { tekster, plainTekst } = useApp();
+    const barnehageplassTekster: IBarnehageplassTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
+    const omBarnetTekster: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     return (
         <PeriodeOppsummering
             fjernPeriodeCallback={
                 fjernPeriodeCallback && (() => fjernPeriodeCallback(barnehageplassPeriode))
             }
-            fjernKnappSpråkId={'todo.ombarnet.barnehageplass.periode'}
+            fjernKnappTekst={barnehageplassTekster.fjernKnapp}
             nummer={nummer}
-            tittelSpråkId={'todo.ombarnet.barnehageplass.periode'}
+            tittel={omBarnetTekster.periodeBarnehageplass}
         >
             <OppsummeringFelt
-                tittel={spørsmålSpråkTekst(
-                    BarnehageplassPeriodeSpørsmålId.barnehageplassPeriodeBeskrivelse
+                spørsmålstekst={barnehageplassTekster.periodebeskrivelse.sporsmal}
+                søknadsvar={plainTekst(
+                    hentBarnehageplassBeskrivelse(
+                        barnehageplassPeriodeBeskrivelse.svar,
+                        barnehageplassTekster
+                    )
                 )}
-                søknadsvar={barnehageplassPeriodeBeskrivelse.svar}
             />
 
             <OppsummeringFelt
-                tittel={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.barnehageplassUtlandet)}
+                spørsmålstekst={barnehageplassTekster.utland.sporsmal}
                 søknadsvar={barnehageplassUtlandet.svar}
             />
             {barnehageplassLand.svar && (
                 <OppsummeringFelt
-                    tittel={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.barnehageplassLand)}
+                    spørsmålstekst={barnehageplassTekster.hvilketLand.sporsmal}
                     søknadsvar={landkodeTilSpråk(barnehageplassLand.svar, valgtLocale)}
                 />
             )}
             {offentligStøtte.svar && (
                 <OppsummeringFelt
-                    tittel={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.offentligStøtte)}
+                    spørsmålstekst={barnehageplassTekster.offentligStoette.sporsmal}
                     søknadsvar={offentligStøtte.svar}
                 />
             )}
             <OppsummeringFelt
-                tittel={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.antallTimer)}
+                spørsmålstekst={barnehageplassTekster.antallTimer.sporsmal}
                 søknadsvar={antallTimer.svar}
             />
 
             <OppsummeringFelt
-                tittel={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.startetIBarnehagen)}
+                spørsmålstekst={
+                    barnehageplassPeriodeBeskrivelse.svar ===
+                    EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
+                        ? barnehageplassTekster.startdatoFremtid.sporsmal
+                        : barnehageplassTekster.startdatoFortid.sporsmal
+                }
                 søknadsvar={formaterDato(startetIBarnehagen.svar)}
             />
             <OppsummeringFelt
-                tittel={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.slutterIBarnehagen)}
+                spørsmålstekst={
+                    barnehageplassPeriodeBeskrivelse.svar ===
+                    EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                        ? barnehageplassTekster.sluttdatoFortid.sporsmal
+                        : barnehageplassTekster.sluttdatoFremtid.sporsmal
+                }
                 søknadsvar={formaterDato(slutterIBarnehagen.svar)}
             />
         </PeriodeOppsummering>

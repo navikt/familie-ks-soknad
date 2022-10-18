@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
-import styled from 'styled-components';
-
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
+import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { dagenEtterDato, dagensDato, gårsdagensDato, morgendagensDato } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
-import AlertStripe from '../AlertStripe/AlertStripe';
 import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
 import StyledDropdown from '../Dropdowns/StyledDropdown';
@@ -19,8 +19,12 @@ import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeilopps
 import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import { beskrivelseSpråkId } from './barnehageplassSpråkUtils';
+import TekstBlock from '../TekstBlock';
+import {
+    hentBarnehageplassBeskrivelse,
+    hentFraDatoSpørsmål,
+    hentTilDatoSpørsmål,
+} from './barnehageplassSpråkUtils';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 import { useBarnehageplassPeriodeSkjema } from './useBarnehageplassPeriodeSkjema';
@@ -32,9 +36,6 @@ export interface IUseBarnehageplassSkjemaParams {
 interface Props extends ReturnType<typeof useModal>, IUseBarnehageplassSkjemaParams {
     onLeggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
 }
-const StyledAlertStripe = styled(AlertStripe)`
-    margin: 1rem 0 1rem 0;
-`;
 
 export const BarnehageplassPeriodeModal: React.FC<Props> = ({
     erÅpen,
@@ -43,7 +44,10 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
     barn,
 }) => {
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
-        useBarnehageplassPeriodeSkjema(barn);
+        useBarnehageplassPeriodeSkjema();
+    const { tekster, plainTekst } = useApp();
+    const barnehageplassTekster: IBarnehageplassTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
 
     const {
         barnehageplassPeriodeBeskrivelse,
@@ -54,7 +58,6 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
         startetIBarnehagen,
         slutterIBarnehagen,
     } = skjema.felter;
-    const { formatMessage } = useIntl();
 
     const onLeggTil = () => {
         if (!validerFelterOgVisFeilmelding()) {
@@ -93,16 +96,20 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
         toggleModal();
         nullstillSkjema();
     };
-    const spørsmålSpråkTekst = (spørsmålId: BarnehageplassPeriodeSpørsmålId) => (
-        <SpråkTekst id={spørsmålId} values={{ barn: barn.navn }} />
-    );
+    const barnetsNavn = barn.navn;
 
     return (
         <SkjemaModal
             erÅpen={erÅpen}
-            modalTittelSpråkId={'todo.ombarnet.barnehageplass.periode'}
+            tittel={
+                <TekstBlock
+                    block={barnehageplassTekster.tittel}
+                    flettefelter={{ barnetsNavn }}
+                    typografi={Typografi.ModalHeadingH1}
+                />
+            }
             onSubmitCallback={onLeggTil}
-            submitKnappSpråkId={'todo.ombarnet.barnehageplass.periode'}
+            submitKnappTekst={<TekstBlock block={barnehageplassTekster.leggTilKnapp} />}
             toggleModal={toggleModal}
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
@@ -115,44 +122,39 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                         )}
                         felt={skjema.felter.barnehageplassPeriodeBeskrivelse}
                         label={
-                            <SpråkTekst
-                                id={'todo.ombarnet.barnehageplass.periode'}
-                                values={{ ...(barn && { barn: barn.navn }) }}
-                            />
+                            <TekstBlock block={barnehageplassTekster.periodebeskrivelse.sporsmal} />
                         }
                         skjema={skjema}
-                        placeholder={formatMessage({ id: 'todo.ombarnet.barnehageplass.periode' })}
+                        placeholder={plainTekst(barnehageplassTekster.valgalternativPlaceholder)}
                         bredde={'fullbredde'}
                     >
                         {Object.keys(EBarnehageplassPeriodeBeskrivelse).map(
                             (beskrivelse, number) => (
                                 <option key={number} value={beskrivelse}>
-                                    {formatMessage(
-                                        {
-                                            id: beskrivelseSpråkId(
-                                                beskrivelse as EBarnehageplassPeriodeBeskrivelse
-                                            ),
-                                        },
-                                        { ...(barn && { barn: barn.navn }) }
+                                    {plainTekst(
+                                        hentBarnehageplassBeskrivelse(
+                                            beskrivelse as EBarnehageplassPeriodeBeskrivelse,
+                                            barnehageplassTekster
+                                        )
                                     )}
                                 </option>
                             )
                         )}
                     </StyledDropdown>
                 </div>
-                <JaNeiSpm
-                    skjema={skjema}
-                    felt={skjema.felter.barnehageplassUtlandet}
-                    spørsmålTekstId={'todo.ombarnet.barnehageplass.periode'}
-                    språkValues={{ barn: barn.navn }}
-                />
+
+                {barnehageplassUtlandet.erSynlig && (
+                    <JaNeiSpm
+                        skjema={skjema}
+                        felt={skjema.felter.barnehageplassUtlandet}
+                        spørsmålDokument={barnehageplassTekster.utland}
+                    />
+                )}
                 {barnehageplassLand.erSynlig && (
                     <LandDropdown
                         felt={skjema.felter.barnehageplassLand}
                         skjema={skjema}
-                        label={spørsmålSpråkTekst(
-                            BarnehageplassPeriodeSpørsmålId.barnehageplassLand
-                        )}
+                        label={<TekstBlock block={barnehageplassTekster.hvilketLand.sporsmal} />}
                         dynamisk
                         ekskluderNorge
                     />
@@ -161,32 +163,29 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     <JaNeiSpm
                         skjema={skjema}
                         felt={skjema.felter.offentligStøtte}
-                        spørsmålTekstId={'todo.ombarnet.barnehageplass.periode'}
+                        spørsmålDokument={barnehageplassTekster.offentligStoette}
                     />
                 )}
-                <>
+                {antallTimer.erSynlig && (
                     <SkjemaFeltInput
                         felt={skjema.felter.antallTimer}
                         visFeilmeldinger={skjema.visFeilmeldinger}
-                        labelSpråkTekstId={'todo.ombarnet.barnehageplass.periode'}
-                        språkValues={{
-                            ...(barn && {
-                                barn: barn.navn,
-                            }),
-                        }}
+                        label={<TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />}
                         bredde={'S'}
                     />
-                    <StyledAlertStripe variant={'info'}>
-                        <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
-                    </StyledAlertStripe>
-                </>
-                <>
+                )}
+                {startetIBarnehagen.erSynlig && (
                     <Datovelger
                         felt={skjema.felter.startetIBarnehagen}
                         skjema={skjema}
-                        label={spørsmålSpråkTekst(
-                            BarnehageplassPeriodeSpørsmålId.startetIBarnehagen
-                        )}
+                        label={
+                            <TekstBlock
+                                block={hentFraDatoSpørsmål(
+                                    skjema.felter.barnehageplassPeriodeBeskrivelse.verdi,
+                                    barnehageplassTekster
+                                )}
+                            />
+                        }
                         calendarPosition={'fullscreen'}
                         avgrensMinDato={
                             barnehageplassPeriodeBeskrivelse.verdi ===
@@ -204,29 +203,35 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                                 : undefined
                         }
                     />
-                    <StyledAlertStripe variant={'info'}>
-                        <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
-                    </StyledAlertStripe>
-                </>
-                <Datovelger
-                    felt={skjema.felter.slutterIBarnehagen}
-                    skjema={skjema}
-                    label={spørsmålSpråkTekst(BarnehageplassPeriodeSpørsmålId.slutterIBarnehagen)}
-                    calendarPosition={'fullscreen'}
-                    avgrensMinDato={
-                        barnehageplassPeriodeBeskrivelse.verdi ===
-                        EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
-                            ? morgendagensDato()
-                            : dagenEtterDato(startetIBarnehagen.verdi)
-                    }
-                    avgrensMaxDato={
-                        barnehageplassPeriodeBeskrivelse.verdi ===
-                        EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                            ? dagensDato()
-                            : undefined
-                    }
-                    tilhørendeFraOgMedFelt={skjema.felter.startetIBarnehagen}
-                />
+                )}
+                {slutterIBarnehagen.erSynlig && (
+                    <Datovelger
+                        felt={skjema.felter.slutterIBarnehagen}
+                        skjema={skjema}
+                        label={
+                            <TekstBlock
+                                block={hentTilDatoSpørsmål(
+                                    skjema.felter.barnehageplassPeriodeBeskrivelse.verdi,
+                                    barnehageplassTekster
+                                )}
+                            />
+                        }
+                        calendarPosition={'fullscreen'}
+                        avgrensMinDato={
+                            barnehageplassPeriodeBeskrivelse.verdi ===
+                            EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
+                                ? morgendagensDato()
+                                : dagenEtterDato(startetIBarnehagen.verdi)
+                        }
+                        avgrensMaxDato={
+                            barnehageplassPeriodeBeskrivelse.verdi ===
+                            EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                                ? dagensDato()
+                                : undefined
+                        }
+                        tilhørendeFraOgMedFelt={skjema.felter.startetIBarnehagen}
+                    />
+                )}
             </KomponentGruppe>
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>

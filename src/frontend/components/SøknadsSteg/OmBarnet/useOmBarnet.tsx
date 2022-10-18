@@ -16,7 +16,7 @@ import {
     IAndreForelder,
     IBarnMedISøknad,
 } from '../../../typer/barn';
-import { AlternativtSvarForInput, BarnetsId } from '../../../typer/common';
+import { AlternativtSvarForInput, BarnetsId, Typografi } from '../../../typer/common';
 import { IDokumentasjon } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import {
@@ -27,6 +27,7 @@ import {
     IUtenlandsperiode,
 } from '../../../typer/perioder';
 import { IIdNummer } from '../../../typer/person';
+import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import {
@@ -44,6 +45,7 @@ import { flyttetPermanentFraNorge } from '../../../utils/utenlandsopphold';
 import { arbeidsperiodeFeilmelding } from '../../Felleskomponenter/Arbeidsperiode/arbeidsperiodeSpråkUtils';
 import { pensjonsperiodeFeilmelding } from '../../Felleskomponenter/Pensjonsmodal/språkUtils';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { idNummerLand } from '../EøsSteg/idnummerUtils';
 import { IOmBarnetTekstinnhold } from './innholdTyper';
 import { OmBarnetSpørsmålsId } from './spørsmål';
@@ -72,6 +74,8 @@ export const useOmBarnet = (
     const { søknad, settSøknad, tekster } = useApp();
     const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } = useEøs();
     const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
+    const barnehageplassTekster: IBarnehageplassTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
 
     const gjeldendeBarn = søknad.barnInkludertISøknaden.find(barn => barn.id === barnetsUuid);
 
@@ -182,7 +186,15 @@ export const useOmBarnet = (
         {},
         () => skalFeltetVises(barnDataKeySpørsmål.harBarnehageplass),
         felt => {
-            return felt.verdi.length ? ok(felt) : feil(felt, <SpråkTekst id={'TODO'} />);
+            return felt.verdi.length
+                ? ok(felt)
+                : feil(
+                      felt,
+                      <TekstBlock
+                          block={barnehageplassTekster.leggTilFeilmelding}
+                          typografi={Typografi.ErrorMessage}
+                      />
+                  );
         }
     );
     useEffect(() => {
