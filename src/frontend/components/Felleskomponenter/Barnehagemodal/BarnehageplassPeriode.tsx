@@ -37,13 +37,13 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
     const { tekster } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
-    const oppfølgingstekst: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
-    const barnetsNavn = barn?.navn;
+    const teksterForOmBarnetSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
+    const barnetsNavn = barn.navn;
 
     return (
         <>
             <TekstBlock
-                block={oppfølgingstekst.opplystBarnehageplass}
+                block={teksterForOmBarnetSteg.opplystBarnehageplass}
                 flettefelter={{ barnetsNavn }}
                 typografi={Typografi.Label}
             />
