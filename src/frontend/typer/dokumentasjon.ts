@@ -13,8 +13,6 @@ export interface IDokumentasjon {
     gjelderForSøker: boolean;
     harSendtInn: boolean;
     opplastedeVedlegg: IVedlegg[];
-    tittelSpråkId: string;
-    beskrivelseSpråkId: string | null;
 }
 
 export enum EFiltyper {
@@ -24,21 +22,63 @@ export enum EFiltyper {
     JPEG = 'image/jpeg',
 }
 
-export const dokumentasjonsbehovTilSpråkId = (dokumentasjonsbehov: Dokumentasjonsbehov): string => {
+export enum TittelSanityApiNavn {
+    bekreftelsePaaAdopsjonTittel = 'bekreftelsePaaAdopsjonTittel',
+    annenDokumentasjon = 'annenDokumentasjon',
+    avtaleOmDeltBostedTittel = 'avtaleOmDeltBostedTittel',
+    bekreftelseFraBarnevernetTittel = 'bekreftelseFraBarnevernetTittel',
+    bekreftelsePaaAtBarnBorSammenMedDegTittel = 'bekreftelsePaaAtBarnBorSammenMedDegTittel',
+    vedtakOmOppholdstillatelseTittel = 'vedtakOmOppholdstillatelseTittel',
+    bekreftelsePaaBarnehageplassTittel = 'bekreftelsePaaBarnehageplassTittel',
+}
+
+export const dokumentasjonsbehovTilTittelSanityApiNavn = (
+    dokumentasjonsbehov: Dokumentasjonsbehov
+): string => {
     switch (dokumentasjonsbehov) {
         case Dokumentasjonsbehov.ADOPSJON_DATO:
-            return 'dokumentasjon.adopsjon.vedleggtittel';
+            return TittelSanityApiNavn.bekreftelsePaaAdopsjonTittel;
         case Dokumentasjonsbehov.ANNEN_DOKUMENTASJON:
-            return 'dokumentasjon.annendokumentasjon.vedleggtittel';
+            return TittelSanityApiNavn.annenDokumentasjon;
         case Dokumentasjonsbehov.AVTALE_DELT_BOSTED:
-            return 'dokumentasjon.deltbosted.vedleggtittel';
+            return TittelSanityApiNavn.avtaleOmDeltBostedTittel;
         case Dokumentasjonsbehov.BEKREFTELSE_FRA_BARNEVERN:
-            return 'dokumentasjon.bekreftelsebarnevernet.vedleggtittel';
+            return TittelSanityApiNavn.bekreftelseFraBarnevernetTittel;
         case Dokumentasjonsbehov.BOR_FAST_MED_SØKER:
-            return 'dokumentasjon.bekreftelseborsammen.vedleggtittel';
+            return TittelSanityApiNavn.bekreftelsePaaAtBarnBorSammenMedDegTittel;
         case Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE:
-            return 'dokumentasjon.oppholdstillatelse.vedleggtittel';
+            return TittelSanityApiNavn.vedtakOmOppholdstillatelseTittel;
         case Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS:
-            return 'dokumentasjon.barnehageplass.vedleggtittel';
+            return TittelSanityApiNavn.bekreftelsePaaBarnehageplassTittel;
+    }
+};
+
+export enum BeskrivelseSanityApiNavn {
+    bekreftelsePaaAdopsjonKontantstoette = 'bekreftelsePaaAdopsjonKontantstoette',
+    avtaleOmDeltBosted = 'avtaleOmDeltBosted',
+    bekreftelseFraBarnevernet = 'bekreftelseFraBarnevernet',
+    bekreftelsePaaAtBarnBorSammenMedDeg = 'bekreftelsePaaAtBarnBorSammenMedDeg',
+    vedtakOmOppholdstillatelse = 'vedtakOmOppholdstillatelse',
+    bekreftelsePaaBarnehageplass = 'bekreftelsePaaBarnehageplass',
+}
+
+export const dokumentasjonsbehovTilBeskrivelseSanityApiNavn = (
+    dokumentasjonsbehov: Dokumentasjonsbehov
+): string | null => {
+    switch (dokumentasjonsbehov) {
+        case Dokumentasjonsbehov.ADOPSJON_DATO:
+            return BeskrivelseSanityApiNavn.bekreftelsePaaAdopsjonKontantstoette;
+        case Dokumentasjonsbehov.ANNEN_DOKUMENTASJON:
+            return null;
+        case Dokumentasjonsbehov.AVTALE_DELT_BOSTED:
+            return BeskrivelseSanityApiNavn.avtaleOmDeltBosted;
+        case Dokumentasjonsbehov.BEKREFTELSE_FRA_BARNEVERN:
+            return BeskrivelseSanityApiNavn.bekreftelseFraBarnevernet;
+        case Dokumentasjonsbehov.BOR_FAST_MED_SØKER:
+            return BeskrivelseSanityApiNavn.bekreftelsePaaAtBarnBorSammenMedDeg;
+        case Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE:
+            return BeskrivelseSanityApiNavn.vedtakOmOppholdstillatelse;
+        case Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS:
+            return BeskrivelseSanityApiNavn.bekreftelsePaaBarnehageplass;
     }
 };

@@ -15,6 +15,7 @@ export interface ISanitySpørsmålDokument extends SanityDokument {
     sporsmal: LocaleRecordBlock;
     feilmelding: LocaleRecordBlock;
     alert?: LocaleRecordBlock;
+    beskrivelse?: LocaleRecordString;
     vedleggsnotis?: LocaleRecordString;
     checkboxLabel?: LocaleRecordString;
 }
@@ -47,10 +48,10 @@ export enum ESanityFlettefeltverdi {
     I_UTENFOR = 'I_UTENFOR',
     UTLANDET_NORGE = 'UTLANDET_NORGE',
     ANTALL = 'ANTALL',
+    TOTAL_ANTALL = 'TOTAL_ANTALL',
     /*
     Legger inn disse kommentert ut, så kan vi ta de inn en etter en når vi støtter dem
     PERSONTYPE = 'PERSONTYPE',
-    TOTAL_ANTALL = 'TOTAL_ANTALL',
     DATO = 'DATO',
     KLOKKESLETT = 'KLOKKESLETT',*/
 }
