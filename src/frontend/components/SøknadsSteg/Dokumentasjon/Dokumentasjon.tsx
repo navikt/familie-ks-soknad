@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 
 import dayjs from 'dayjs';
 
-import { Normaltekst } from 'nav-frontend-typografi';
-
+import { BodyShort } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useApp } from '../../../context/AppContext';
@@ -87,7 +86,7 @@ const Dokumentasjon: React.FC = () => {
                         <ul>
                             {slettaVedlegg.map(vedlegg => (
                                 <li key={vedlegg.dokumentId}>
-                                    <Normaltekst>{vedlegg.navn}</Normaltekst>
+                                    <BodyShort>{vedlegg.navn}</BodyShort>
                                 </li>
                             ))}
                         </ul>
@@ -99,9 +98,7 @@ const Dokumentasjon: React.FC = () => {
                     <TekstBlock block={nudgeDokumentasjon} typografi={Typografi.BodyLong} />
                 </AlertStripe>
 
-                <Normaltekst>
-                    <TekstBlock block={dokumentasjonInfo} typografi={Typografi.BodyLong} />
-                </Normaltekst>
+                <TekstBlock block={dokumentasjonInfo} typografi={Typografi.BodyLong} />
                 <PictureScanningGuide />
             </KomponentGruppe>
             {søknad.dokumentasjon

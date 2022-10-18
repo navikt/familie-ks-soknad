@@ -85,7 +85,7 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
 
     const vedleggXAvY = plainTekst(dokumentasjonstekster.vedleggXavY, {
         antall: vedleggNr.toString(),
-        totaltAntall: antallVedlegg().toString(),
+        totalAntall: antallVedlegg().toString(),
     });
     const vedleggtittel =
         (dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON
