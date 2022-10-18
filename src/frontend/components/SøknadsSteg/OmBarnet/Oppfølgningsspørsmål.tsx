@@ -21,7 +21,6 @@ import { KontantstøttePeriode } from '../../Felleskomponenter/KontantstøttePer
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
-import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
 import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from './spørsmål';
 
 const Oppfølgningsspørsmål: React.FC<{
@@ -49,17 +48,6 @@ const Oppfølgningsspørsmål: React.FC<{
 }) => {
     return (
         <>
-            {barn[barnDataKeySpørsmål.erFosterbarn].svar === ESvar.JA && (
-                <KomponentGruppe>
-                    <Informasjonsbolk
-                        tittelId={'ombarnet.fosterbarn'}
-                        språkValues={{ navn: barn.navn }}
-                    >
-                        <VedleggNotis språkTekstId={'ombarnet.fosterbarn.vedleggsinfo'} />
-                    </Informasjonsbolk>
-                </KomponentGruppe>
-            )}
-
             {skjema.felter.utbetaltForeldrepengerEllerEngangsstønad.erSynlig && (
                 <KomponentGruppe>
                     <Informasjonsbolk
