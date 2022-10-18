@@ -126,7 +126,7 @@ export const useOmBarnaDine = (): {
         <TekstBlock
             block={
                 søknad.erAvdødPartnerForelder.id ===
-                OmBarnaDineSpørsmålId.erOppgittAvdødPartnerForelder
+                OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
                     ? teksterForSteg.hvemAvBarnaAvdoedPartner.feilmelding
                     : teksterForSteg.hvemAvBarnaAvdoedEktefelle.feilmelding
             }

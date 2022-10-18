@@ -1,12 +1,46 @@
+import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
+import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 
-export const beskrivelseSpråkId = (beskrivelse: EBarnehageplassPeriodeBeskrivelse | ''): string => {
+export const hentBarnehageplassBeskrivelse = (
+    beskrivelse: EBarnehageplassPeriodeBeskrivelse | '',
+    tekster: IBarnehageplassTekstinnhold
+): LocaleRecordString => {
     switch (beskrivelse) {
         case EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE:
-            return 'todo.ombarnet.barnehageplass.periode.tidligere';
+            return tekster.valgalternativBarnehageplassTidligere;
         case EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN:
-            return 'todo.ombarnet.barnehageplass.periode.fremtiden';
+            return tekster.valgalternativBarnehageplassIFremtid;
+        case EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ:
         default:
-            return 'todo.ombarnet.barnehageplass.periode.nå';
+            return tekster.valgalternativBarnehageplassNaa;
+    }
+};
+
+export const hentFraDatoSpørsmål = (
+    beskrivelse: EBarnehageplassPeriodeBeskrivelse | '',
+    tekster: IBarnehageplassTekstinnhold
+): LocaleRecordBlock => {
+    switch (beskrivelse) {
+        case EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN:
+            return tekster.startdatoFremtid.sporsmal;
+        case EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE:
+        case EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ:
+        default:
+            return tekster.startdatoFortid.sporsmal;
+    }
+};
+
+export const hentTilDatoSpørsmål = (
+    beskrivelse: EBarnehageplassPeriodeBeskrivelse | '',
+    tekster: IBarnehageplassTekstinnhold
+): LocaleRecordBlock => {
+    switch (beskrivelse) {
+        case EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE:
+            return tekster.sluttdatoFortid.sporsmal;
+        case EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN:
+        case EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ:
+        default:
+            return tekster.sluttdatoFremtid.sporsmal;
     }
 };

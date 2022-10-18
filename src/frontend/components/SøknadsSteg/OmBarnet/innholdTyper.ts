@@ -6,7 +6,8 @@ export interface IOmBarnetTekstinnhold {
     institusjonNaarAvsluttes: ISanitySpørsmålDokument;
     institusjonNaarStartet: ISanitySpørsmålDokument;
     foedselsdatoAndreForelder: ISanitySpørsmålDokument;
-
+    opplystBarnehageplass: LocaleRecordBlock;
+    periodeBarnehageplass: LocaleRecordBlock;
     /* Andre forelder */
     arbeidUtenforNorgeAndreForelder: ISanitySpørsmålDokument;
     arbeidUtenforNorgeAndreForelderGjenlevende: ISanitySpørsmålDokument;

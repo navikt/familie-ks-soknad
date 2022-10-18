@@ -224,6 +224,16 @@ const [AppProvider, useApp] = createUseContext(() => {
     ): string => {
         const frittståendeOrd = tekster()[ESanitySteg.FELLES].frittståendeOrd;
         switch (sanityFlettefelt) {
+            case ESanityFlettefeltverdi.ANTALL:
+                if (!flettefelter?.antall) {
+                    throw Error('Flettefeltet antall ikke sendt med');
+                }
+                return flettefelter.antall;
+            case ESanityFlettefeltverdi.TOTAL_ANTALL:
+                if (!flettefelter?.totalAntall) {
+                    throw Error('Flettefeltet totalAntall ikke sendt med');
+                }
+                return flettefelter.totalAntall;
             case ESanityFlettefeltverdi.SØKER_NAVN:
                 return søknad.søker.navn;
             case ESanityFlettefeltverdi.BARN_NAVN:
@@ -238,8 +248,6 @@ const [AppProvider, useApp] = createUseContext(() => {
                 return plainTekst(
                     flettefelter?.gjelderUtland ? frittståendeOrd.utlandet : frittståendeOrd.norge
                 );
-            default:
-                return '';
         }
     };
 

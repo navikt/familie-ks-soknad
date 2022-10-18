@@ -9,10 +9,10 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { Upload } from '@navikt/ds-icons';
 import { NavdsGlobalColorBlue500, NavdsSemanticColorBorder } from '@navikt/ds-tokens/dist/tokens';
 
+import { useApp } from '../../../../context/AppContext';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
 import AlertStripe from '../../../Felleskomponenter/AlertStripe/AlertStripe';
-import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import OpplastedeFiler from './OpplastedeFiler';
 import { useFilopplaster } from './useFilopplaster';
 
@@ -69,6 +69,8 @@ const Filopplaster: React.FC<Props> = ({
         oppdaterDokumentasjon
     );
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+    const { tekster, plainTekst } = useApp();
+    const { lastOppKnapp, slippFilenHer } = tekster().DOKUMENTASJON;
 
     return (
         <>
@@ -89,15 +91,7 @@ const Filopplaster: React.FC<Props> = ({
             <FilopplastningBoks type={'button'} {...getRootProps()}>
                 <input {...getInputProps()} />
                 <StyledUpload focusable={false} />
-                <Normaltekst>
-                    <SpråkTekst
-                        id={
-                            isDragActive
-                                ? 'dokumentasjon.last-opp-dokumentasjon.aktivknapp'
-                                : 'dokumentasjon.last-opp-dokumentasjon.knapp'
-                        }
-                    />
-                </Normaltekst>
+                <Normaltekst>{plainTekst(isDragActive ? slippFilenHer : lastOppKnapp)}</Normaltekst>
             </FilopplastningBoks>
             <OpplastedeFiler
                 filliste={dokumentasjon.opplastedeVedlegg}
