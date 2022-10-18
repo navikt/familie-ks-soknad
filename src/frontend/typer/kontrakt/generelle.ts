@@ -19,7 +19,7 @@ export type FlettefeltVerdier = {
     barnetsNavn?: string;
     gjelderUtland?: boolean;
     antall?: string;
-    totaltAntall?: string;
+    totalAntall?: string;
 };
 
 export interface IUtenlandsperiodeIKontraktFormat {

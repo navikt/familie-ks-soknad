@@ -230,10 +230,10 @@ const [AppProvider, useApp] = createUseContext(() => {
                 }
                 return flettefelter.antall;
             case ESanityFlettefeltverdi.TOTAL_ANTALL:
-                if (!flettefelter?.totaltAntall) {
-                    throw Error('Flettefeltet totaltAntall ikke sendt med');
+                if (!flettefelter?.totalAntall) {
+                    throw Error('Flettefeltet totalAntall ikke sendt med');
                 }
-                return flettefelter.totaltAntall;
+                return flettefelter.totalAntall;
             case ESanityFlettefeltverdi.SØKER_NAVN:
                 return søknad.søker.navn;
             case ESanityFlettefeltverdi.BARN_NAVN:
