@@ -15,6 +15,7 @@ export interface ISanitySpørsmålDokument extends SanityDokument {
     sporsmal: LocaleRecordBlock;
     feilmelding: LocaleRecordBlock;
     alert?: LocaleRecordBlock;
+    beskrivelse?: LocaleRecordString;
     vedleggsnotis?: LocaleRecordString;
     checkboxLabel?: LocaleRecordString;
 }

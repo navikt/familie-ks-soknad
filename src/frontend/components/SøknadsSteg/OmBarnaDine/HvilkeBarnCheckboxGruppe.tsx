@@ -1,22 +1,15 @@
-import React, { ChangeEvent, ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
-import { Checkbox, CheckboxGruppe } from 'nav-frontend-skjema';
-import { Element } from 'nav-frontend-typografi';
-
+import { CheckboxGroup, Checkbox } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { BarnetsId } from '../../../typer/common';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 
 interface Props {
-    /*
-     * @deprecated bruk legend
-     */
-    legendSpråkId?: string;
-    legend?: ReactNode;
+    legend: ReactNode;
     skjemafelt: Felt<BarnetsId[]>;
     visFeilmelding: boolean;
     søknadsdatafelt: barnDataKeySpørsmål;
@@ -24,7 +17,6 @@ interface Props {
 }
 
 const HvilkeBarnCheckboxGruppe: React.FC<Props> = ({
-    legendSpråkId,
     legend,
     skjemafelt,
     søknadsdatafelt,
@@ -47,47 +39,23 @@ const HvilkeBarnCheckboxGruppe: React.FC<Props> = ({
         nullstillValgteBarn && settValgteBarn([]);
     }, [nullstillValgteBarn]);
 
-    const oppdaterListeMedBarn = async (event: ChangeEvent, barnetsId: BarnetsId) => {
-        const barnetFinnesIListen = !!valgteBarn.find(id => id === barnetsId);
-        const barnChecked = (event.target as HTMLInputElement).checked;
-
-        // Legg til barn i listen i lokal state
-        if (barnChecked && !barnetFinnesIListen) {
-            settValgteBarn(prevState => [...prevState].concat(barnetsId));
-        }
-
-        // Fjern barn fra listen i lokal state
-        if (!barnChecked && barnetFinnesIListen) {
-            settValgteBarn(prevState => [...prevState].filter(id => id !== barnetsId));
-        }
-    };
-
     return skjemafelt.erSynlig ? (
         <>
-            <CheckboxGruppe
+            <CheckboxGroup
                 aria-live={'polite'}
-                legend={
-                    legend || (
-                        <Element>
-                            <SpråkTekst id={legendSpråkId} />
-                        </Element>
-                    )
-                }
+                legend={legend}
                 {...skjemafelt.hentNavBaseSkjemaProps(visFeilmelding)}
-                utenFeilPropagering
+                error={skjemafelt.hentNavBaseSkjemaProps(visFeilmelding).feil}
+                onChange={value => settValgteBarn(value)}
             >
                 {søknad.barnInkludertISøknaden.map((barnISøknad, index) => {
                     return (
-                        <Checkbox
-                            key={index}
-                            label={barnISøknad.navn}
-                            defaultChecked={!!valgteBarn.find(barnId => barnId === barnISøknad.id)}
-                            id={`${skjemafelt.id}${barnISøknad.id}`}
-                            onChange={event => oppdaterListeMedBarn(event, barnISøknad.id)}
-                        />
+                        <Checkbox key={index} value={barnISøknad.id}>
+                            {barnISøknad.navn}
+                        </Checkbox>
                     );
                 })}
-            </CheckboxGruppe>
+            </CheckboxGroup>
             {children}
         </>
     ) : null;

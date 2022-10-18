@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { ISkjema, useSkjema } from '@navikt/familie-skjema';
@@ -9,8 +9,11 @@ import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnaDineFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
+import { IOmBarnaTekstinnhold } from './innholdTyper';
 import { OmBarnaDineSpørsmålId } from './spørsmål';
 import useBarnCheckboxFelt from './useBarnCheckboxFelt';
 import { genererOppdaterteBarn } from './utils';
@@ -22,101 +25,96 @@ export const useOmBarnaDine = (): {
     oppdaterSøknad: () => void;
     validerAlleSynligeFelter: () => void;
 } => {
-    const { søknad, settSøknad } = useApp();
+    const { søknad, settSøknad, tekster } = useApp();
     const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } = useEøs();
+
+    const teksterForSteg: IOmBarnaTekstinnhold = tekster()[ESanitySteg.OM_BARNA];
 
     const erNoenAvBarnaFosterbarn = useJaNeiSpmFelt({
         søknadsfelt: søknad.erNoenAvBarnaFosterbarn,
-        feilmeldingSpråkId: 'ombarna.fosterbarn.feilmelding',
+        feilmelding: teksterForSteg.fosterbarn.feilmelding,
     });
 
     const hvemErFosterbarn = useBarnCheckboxFelt(
         barnDataKeySpørsmål.erFosterbarn,
-        'ombarna.fosterbarn.hvem.feilmelding',
+        <TekstBlock block={teksterForSteg.hvemFosterbarn.feilmelding} />,
         erNoenAvBarnaFosterbarn
     );
 
     const oppholderBarnSegIInstitusjon = useJaNeiSpmFelt({
         søknadsfelt: søknad.oppholderBarnSegIInstitusjon,
-        feilmeldingSpråkId: 'ombarna.institusjon.feilmelding',
+        feilmelding: teksterForSteg.institusjonKontantstoette.feilmelding,
     });
 
     const hvemOppholderSegIInstitusjon = useBarnCheckboxFelt(
         barnDataKeySpørsmål.oppholderSegIInstitusjon,
-        'ombarna.institusjon.hvem.feilmelding',
+        <TekstBlock block={teksterForSteg.hvemInstitusjon.feilmelding} />,
         oppholderBarnSegIInstitusjon
     );
 
     const erBarnAdoptertFraUtland = useJaNeiSpmFelt({
         søknadsfelt: søknad.erBarnAdoptertFraUtland,
-        feilmeldingSpråkId: 'ombarna.adoptert.feilmelding',
+        feilmelding: teksterForSteg.adoptertKontantstoette.feilmelding,
     });
 
     const hvemErAdoptertFraUtland = useBarnCheckboxFelt(
         barnDataKeySpørsmål.erAdoptertFraUtland,
-        'ombarna.adoptert.hvem.feilmelding',
+        <TekstBlock block={teksterForSteg.hvemAdoptertKontantstoette.feilmelding} />,
         erBarnAdoptertFraUtland
     );
 
     const søktAsylForBarn = useJaNeiSpmFelt({
         søknadsfelt: søknad.søktAsylForBarn,
-        feilmeldingSpråkId: 'ombarna.asyl.feilmelding',
+        feilmelding: teksterForSteg.asyl.feilmelding,
     });
 
     const hvemErSøktAsylFor = useBarnCheckboxFelt(
         barnDataKeySpørsmål.erAsylsøker,
-        'ombarna.asyl.hvem.feilmelding',
+        <TekstBlock block={teksterForSteg.hvemAsyl.feilmelding} />,
         søktAsylForBarn
     );
 
     const barnOppholdtSegTolvMndSammenhengendeINorge = useJaNeiSpmFelt({
         søknadsfelt: søknad.barnOppholdtSegTolvMndSammenhengendeINorge,
-        feilmeldingSpråkId: 'ombarna.sammenhengende-opphold.feilmelding',
+        feilmelding: teksterForSteg.sammenhengendeOppholdINorge.feilmelding,
     });
 
     const hvemTolvMndSammenhengendeINorge = useBarnCheckboxFelt(
         barnDataKeySpørsmål.boddMindreEnn12MndINorge,
-        'ombarna.sammenhengende-opphold.hvem.feilmelding',
+        <TekstBlock block={teksterForSteg.hvemOppholdUtenforNorge.feilmelding} />,
         barnOppholdtSegTolvMndSammenhengendeINorge,
         ESvar.NEI
     );
 
     const mottarKontantstøtteForBarnFraAnnetEøsland = useJaNeiSpmFelt({
         søknadsfelt: søknad.mottarKontantstøtteForBarnFraAnnetEøsland,
-        feilmeldingSpråkId: 'ombarna.barnetrygd-eøs-fortid.feilmelding',
+        feilmelding: teksterForSteg.soektYtelseEuEoes.feilmelding,
     });
 
     const hvemKontantstøtteFraAnnetEøsland = useBarnCheckboxFelt(
         barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland,
-        'ombarna.barnetrygd-eøs-fortid.hvem.feilmelding',
+        <TekstBlock block={teksterForSteg.hvemSoektYtelse.feilmelding} />,
         mottarKontantstøtteForBarnFraAnnetEøsland
     );
 
     const harEllerTildeltBarnehageplass = useJaNeiSpmFelt({
         søknadsfelt: søknad.harEllerTildeltBarnehageplass,
-        feilmeldingSpråkId: 'todo.ombarnadine.barnehageplass',
+        feilmelding: teksterForSteg.barnehageplass.feilmelding,
     });
 
     const hvemHarBarnehageplass = useBarnCheckboxFelt(
         barnDataKeySpørsmål.harBarnehageplass,
-        'todo.ombarnadine.barnehageplass',
+        <TekstBlock block={teksterForSteg.hvemBarnehageplass.feilmelding} />,
         harEllerTildeltBarnehageplass
     );
 
-    const avdødPartnerForelderFeilmelding = () => {
-        switch (søknad.erAvdødPartnerForelder.id) {
-            case OmBarnaDineSpørsmålId.erOppgittAvdødPartnerForelder:
-                return 'ombarna.enkeenkemann.feilmelding';
-            case OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder:
-                return 'ombarna.enkeenkemann.folkeregisteret-gjenlevende.feilmelding';
-            default:
-                return 'ombarna.enkeenkemann.folkeregisteret-enke.feilmelding';
-        }
-    };
-
     const erAvdødPartnerForelder = useJaNeiSpmFelt({
         søknadsfelt: søknad.erAvdødPartnerForelder,
-        feilmeldingSpråkId: avdødPartnerForelderFeilmelding(),
+        feilmelding:
+            søknad.erAvdødPartnerForelder.id ===
+            OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+                ? teksterForSteg.folkeregistrertGjenlevende.feilmelding
+                : teksterForSteg.folkeregistrertEnkeEnkemann.feilmelding,
         skalSkjules: !(
             søknad.søker.sivilstand.type === ESivilstand.ENKE_ELLER_ENKEMANN ||
             søknad.søker.sivilstand.type === ESivilstand.GJENLEVENDE_PARTNER
@@ -125,7 +123,14 @@ export const useOmBarnaDine = (): {
 
     const hvemAvdødPartner = useBarnCheckboxFelt(
         barnDataKeySpørsmål.andreForelderErDød,
-        'ombarna.enkeenkemann.hvem.feilmelding',
+        <TekstBlock
+            block={
+                søknad.erAvdødPartnerForelder.id ===
+                OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+                    ? teksterForSteg.hvemAvBarnaAvdoedPartner.feilmelding
+                    : teksterForSteg.hvemAvBarnaAvdoedEktefelle.feilmelding
+            }
+        />,
         erAvdødPartnerForelder
     );
 

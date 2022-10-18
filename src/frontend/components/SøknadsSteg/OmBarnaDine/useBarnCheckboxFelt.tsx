@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { Avhengigheter, feil, Felt, FeltState, ok, useFelt } from '@navikt/familie-skjema';
@@ -6,11 +6,10 @@ import { Avhengigheter, feil, Felt, FeltState, ok, useFelt } from '@navikt/famil
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { BarnetsId } from '../../../typer/common';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 
 const useBarnCheckboxFelt = (
     datafeltNavn: barnDataKeySpørsmål,
-    feilmeldingSpråkId: string,
+    feilmelding: ReactNode,
     avhengighet: Felt<ESvar | null>,
     avhengigJaNeiSpmSvarCondition = ESvar.JA
 ) => {
@@ -25,9 +24,7 @@ const useBarnCheckboxFelt = (
             .filter(barn => barn[datafeltNavn].svar === ESvar.JA)
             .map(barn => barn.id),
         valideringsfunksjon: (felt: FeltState<BarnetsId[]>) => {
-            return felt.verdi.length > 0
-                ? ok(felt)
-                : feil(felt, <SpråkTekst id={feilmeldingSpråkId} />);
+            return felt.verdi.length > 0 ? ok(felt) : feil(felt, feilmelding);
         },
         skalFeltetVises: (avhengigheter: Avhengigheter) => {
             return avhengigheter && avhengigheter.jaNeiSpm
