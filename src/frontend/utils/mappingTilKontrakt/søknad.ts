@@ -210,7 +210,7 @@ export const dataISøknadKontraktFormatV1 = (
         },
         dokumentasjon: søknad.dokumentasjon
             .filter(dok => erDokumentasjonRelevant(dok))
-            .map(dok => dokumentasjonISøknadFormat(dok)),
+            .map(dok => dokumentasjonISøknadFormat(dok, tekster, tilRestLocaleRecord)),
         teksterUtenomSpørsmål: {
             ...Object.values(ESivilstand).reduce(
                 (map, sivilstand) => ({

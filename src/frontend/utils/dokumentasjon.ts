@@ -14,13 +14,9 @@ export const formaterFilstørrelse = (bytes: number, decimals = 2) => {
 };
 
 export const genererInitiellDokumentasjon = (
-    dokumentasjonsbehov: Dokumentasjonsbehov,
-    tittelSpråkId: string,
-    beskrivelseSpråkId
+    dokumentasjonsbehov: Dokumentasjonsbehov
 ): IDokumentasjon => ({
     dokumentasjonsbehov,
-    tittelSpråkId,
-    beskrivelseSpråkId,
     gjelderForBarnId: [],
     gjelderForSøker: false,
     harSendtInn: false,
