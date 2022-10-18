@@ -1,7 +1,5 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
@@ -12,7 +10,6 @@ import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barne
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { dagenEtterDato, dagensDato, gårsdagensDato, morgendagensDato } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
-import AlertStripe from '../AlertStripe/AlertStripe';
 import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
 import StyledDropdown from '../Dropdowns/StyledDropdown';
@@ -22,7 +19,6 @@ import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeilopps
 import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import TekstBlock from '../TekstBlock';
 import {
     hentBarnehageplassBeskrivelse,
@@ -40,9 +36,6 @@ export interface IUseBarnehageplassSkjemaParams {
 interface Props extends ReturnType<typeof useModal>, IUseBarnehageplassSkjemaParams {
     onLeggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
 }
-const StyledAlertStripe = styled(AlertStripe)`
-    margin: 1rem 0 1rem 0;
-`;
 
 export const BarnehageplassPeriodeModal: React.FC<Props> = ({
     erÅpen,
@@ -174,54 +167,42 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     />
                 )}
                 {antallTimer.erSynlig && (
-                    <>
-                        <SkjemaFeltInput
-                            felt={skjema.felter.antallTimer}
-                            visFeilmeldinger={skjema.visFeilmeldinger}
-                            label={
-                                <TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />
-                            }
-                            bredde={'S'}
-                        />
-                        <StyledAlertStripe variant={'info'}>
-                            <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
-                        </StyledAlertStripe>
-                    </>
+                    <SkjemaFeltInput
+                        felt={skjema.felter.antallTimer}
+                        visFeilmeldinger={skjema.visFeilmeldinger}
+                        label={<TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />}
+                        bredde={'S'}
+                    />
                 )}
                 {startetIBarnehagen.erSynlig && (
-                    <>
-                        <Datovelger
-                            felt={skjema.felter.startetIBarnehagen}
-                            skjema={skjema}
-                            label={
-                                <TekstBlock
-                                    block={hentFraDatoSpørsmål(
-                                        skjema.felter.barnehageplassPeriodeBeskrivelse.verdi,
-                                        barnehageplassTekster
-                                    )}
-                                />
-                            }
-                            calendarPosition={'fullscreen'}
-                            avgrensMinDato={
-                                barnehageplassPeriodeBeskrivelse.verdi ===
-                                EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
-                                    ? dagensDato()
-                                    : undefined
-                            }
-                            avgrensMaxDato={
-                                barnehageplassPeriodeBeskrivelse.verdi ===
-                                EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
-                                    ? dagensDato()
-                                    : barnehageplassPeriodeBeskrivelse.verdi ===
-                                      EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                                    ? gårsdagensDato()
-                                    : undefined
-                            }
-                        />
-                        <StyledAlertStripe variant={'info'}>
-                            <SpråkTekst id={'todo.ombarnet.barnehageplass.periode'} />
-                        </StyledAlertStripe>
-                    </>
+                    <Datovelger
+                        felt={skjema.felter.startetIBarnehagen}
+                        skjema={skjema}
+                        label={
+                            <TekstBlock
+                                block={hentFraDatoSpørsmål(
+                                    skjema.felter.barnehageplassPeriodeBeskrivelse.verdi,
+                                    barnehageplassTekster
+                                )}
+                            />
+                        }
+                        calendarPosition={'fullscreen'}
+                        avgrensMinDato={
+                            barnehageplassPeriodeBeskrivelse.verdi ===
+                            EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
+                                ? dagensDato()
+                                : undefined
+                        }
+                        avgrensMaxDato={
+                            barnehageplassPeriodeBeskrivelse.verdi ===
+                            EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
+                                ? dagensDato()
+                                : barnehageplassPeriodeBeskrivelse.verdi ===
+                                  EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                                ? gårsdagensDato()
+                                : undefined
+                        }
+                    />
                 )}
                 {slutterIBarnehagen.erSynlig && (
                     <Datovelger
