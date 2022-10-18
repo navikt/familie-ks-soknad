@@ -12,6 +12,7 @@ import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
 
 const useInputFelt = ({
     søknadsfelt,
+    /** @deprecated **/
     feilmeldingSpråkId,
     feilmelding,
     skalVises = true,
