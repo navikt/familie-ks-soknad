@@ -7,7 +7,7 @@ import { feil, Felt, FeltState, ok, useFelt, Valideringsstatus } from '@navikt/f
 
 import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
 import TekstBlock from '../components/Felleskomponenter/TekstBlock';
-import { LocaleRecordBlock, Typografi } from '../typer/common';
+import { LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -50,6 +50,7 @@ const useJaNeiSpmFelt = ({
     feilmeldingSpråkVerdier,
 }: {
     søknadsfelt?: ISøknadSpørsmål<ESvar | null>;
+    /** @deprecated **/
     feilmeldingSpråkId?: string;
     feilmelding?: LocaleRecordBlock;
     avhengigheter?: Record<string, FeltGruppe | undefined>;
@@ -69,7 +70,7 @@ const useJaNeiSpmFelt = ({
                 : feil(
                       felt,
                       feilmelding ? (
-                          <TekstBlock block={feilmelding} typografi={Typografi.ErrorMessage} />
+                          <TekstBlock block={feilmelding} />
                       ) : (
                           <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
                       )

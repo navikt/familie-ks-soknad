@@ -3,8 +3,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Normaltekst } from 'nav-frontend-typografi';
-
+import { BodyShort } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
@@ -14,13 +13,12 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
 import HvilkeBarnCheckboxGruppe from './HvilkeBarnCheckboxGruppe';
 import { IOmBarnaTekstinnhold } from './innholdTyper';
-import { OmBarnaDineSpørsmålId, omBarnaDineSpørsmålSpråkId } from './spørsmål';
+import { OmBarnaDineSpørsmålId } from './spørsmål';
 import { useOmBarnaDine } from './useOmBarnaDine';
 
 const VedleggNotisWrapper = styled.div`
@@ -36,8 +34,27 @@ const OmBarnaDine: React.FC = () => {
     const { barnInkludertISøknaden } = søknad;
 
     const teksterForSteg: IOmBarnaTekstinnhold = tekster()[ESanitySteg.OM_BARNA];
-    const { omBarnaTittel, hvemBarnehageplass, fosterbarn, institusjonKontantstoette } =
-        teksterForSteg;
+    const {
+        omBarnaTittel,
+        hvemBarnehageplass,
+        fosterbarn,
+        institusjonKontantstoette,
+        adoptertKontantstoette,
+        asyl,
+        sammenhengendeOppholdINorge,
+        soektYtelseEuEoes,
+        barnehageplass,
+        folkeregistrertEnkeEnkemann,
+        folkeregistrertGjenlevende,
+        hvemFosterbarn,
+        hvemAdoptertKontantstoette,
+        hvemAsyl,
+        hvemAvBarnaAvdoedEktefelle,
+        hvemAvBarnaAvdoedPartner,
+        hvemInstitusjon,
+        hvemOppholdUtenforNorge,
+        hvemSoektYtelse,
+    } = teksterForSteg;
 
     if (!barnInkludertISøknaden.length) {
         history.push('/velg-barn');
@@ -57,14 +74,10 @@ const OmBarnaDine: React.FC = () => {
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.erNoenAvBarnaFosterbarn}
-                    spørsmålTekstId={
-                        omBarnaDineSpørsmålSpråkId[OmBarnaDineSpørsmålId.erNoenAvBarnaFosterbarn]
-                    }
+                    spørsmålDokument={fosterbarn}
                 />
                 <HvilkeBarnCheckboxGruppe
-                    legendSpråkId={
-                        omBarnaDineSpørsmålSpråkId[OmBarnaDineSpørsmålId.hvemErFosterbarn]
-                    }
+                    legend={<TekstBlock block={hvemFosterbarn.sporsmal} />}
                     skjemafelt={skjema.felter.hvemErFosterbarn}
                     søknadsdatafelt={barnDataKeySpørsmål.erFosterbarn}
                     nullstillValgteBarn={skjema.felter.erNoenAvBarnaFosterbarn.verdi === ESvar.NEI}
@@ -79,23 +92,17 @@ const OmBarnaDine: React.FC = () => {
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.oppholderBarnSegIInstitusjon}
-                    spørsmålTekstId={
-                        omBarnaDineSpørsmålSpråkId[
-                            OmBarnaDineSpørsmålId.oppholderBarnSegIInstitusjon
-                        ]
-                    }
+                    spørsmålDokument={institusjonKontantstoette}
                     tilleggsinfo={
                         <AlertStripe variant={'info'}>
-                            <SpråkTekst id={'ombarna.institusjon.info'} />
+                            <BodyShort>
+                                {plainTekst(institusjonKontantstoette.beskrivelse)}
+                            </BodyShort>
                         </AlertStripe>
                     }
                 />
                 <HvilkeBarnCheckboxGruppe
-                    legendSpråkId={
-                        omBarnaDineSpørsmålSpråkId[
-                            OmBarnaDineSpørsmålId.hvemOppholderSegIInstitusjon
-                        ]
-                    }
+                    legend={<TekstBlock block={hvemInstitusjon.sporsmal} />}
                     skjemafelt={skjema.felter.hvemOppholderSegIInstitusjon}
                     søknadsdatafelt={barnDataKeySpørsmål.oppholderSegIInstitusjon}
                     nullstillValgteBarn={
@@ -115,19 +122,10 @@ const OmBarnaDine: React.FC = () => {
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.erBarnAdoptertFraUtland}
-                    spørsmålTekstId={
-                        omBarnaDineSpørsmålSpråkId[OmBarnaDineSpørsmålId.erBarnAdoptertFraUtland]
-                    }
-                    tilleggsinfo={
-                        <AlertStripe variant={'info'}>
-                            <SpråkTekst id={'ombarna.adoptert.info'} />
-                        </AlertStripe>
-                    }
+                    spørsmålDokument={adoptertKontantstoette}
                 />
                 <HvilkeBarnCheckboxGruppe
-                    legendSpråkId={
-                        omBarnaDineSpørsmålSpråkId[OmBarnaDineSpørsmålId.hvemErAdoptertFraUtland]
-                    }
+                    legend={<TekstBlock block={hvemAdoptertKontantstoette.sporsmal} />}
                     skjemafelt={skjema.felter.hvemErAdoptertFraUtland}
                     søknadsdatafelt={barnDataKeySpørsmål.erAdoptertFraUtland}
                     nullstillValgteBarn={skjema.felter.erBarnAdoptertFraUtland.verdi === ESvar.NEI}
@@ -135,20 +133,20 @@ const OmBarnaDine: React.FC = () => {
                 />
                 {skjema.felter.erBarnAdoptertFraUtland.verdi === ESvar.JA && (
                     <VedleggNotisWrapper>
-                        <VedleggNotis dynamisk språkTekstId={'ombarna.adoptert.alert'} />
+                        <VedleggNotis dynamisk>
+                            <BodyShort>
+                                {plainTekst(adoptertKontantstoette.vedleggsnotis)}
+                            </BodyShort>
+                        </VedleggNotis>
                     </VedleggNotisWrapper>
                 )}
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.søktAsylForBarn}
-                    spørsmålTekstId={
-                        omBarnaDineSpørsmålSpråkId[OmBarnaDineSpørsmålId.søktAsylForBarn]
-                    }
+                    spørsmålDokument={asyl}
                 />
                 <HvilkeBarnCheckboxGruppe
-                    legendSpråkId={
-                        omBarnaDineSpørsmålSpråkId[OmBarnaDineSpørsmålId.hvemErSøktAsylFor]
-                    }
+                    legend={<TekstBlock block={hvemAsyl.sporsmal} />}
                     skjemafelt={skjema.felter.hvemErSøktAsylFor}
                     søknadsdatafelt={barnDataKeySpørsmål.erAsylsøker}
                     nullstillValgteBarn={skjema.felter.søktAsylForBarn.verdi === ESvar.NEI}
@@ -156,29 +154,26 @@ const OmBarnaDine: React.FC = () => {
                 />
                 {skjema.felter.søktAsylForBarn.verdi === ESvar.JA && (
                     <VedleggNotisWrapper>
-                        <VedleggNotis dynamisk språkTekstId={'ombarna.asyl.alert'} />
+                        <VedleggNotis dynamisk>
+                            <BodyShort>{plainTekst(asyl.vedleggsnotis)}</BodyShort>
+                        </VedleggNotis>
                     </VedleggNotisWrapper>
                 )}
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.barnOppholdtSegTolvMndSammenhengendeINorge}
-                    spørsmålTekstId={
-                        omBarnaDineSpørsmålSpråkId[
-                            OmBarnaDineSpørsmålId.barnOppholdtSegTolvMndSammenhengendeINorge
-                        ]
-                    }
+                    spørsmålDokument={sammenhengendeOppholdINorge}
                     tilleggsinfo={
                         <AlertStripe variant={'info'}>
-                            <SpråkTekst id={'felles.korteopphold.info'} />
+                            <TekstBlock
+                                block={sammenhengendeOppholdINorge.alert}
+                                typografi={Typografi.BodyShort}
+                            />
                         </AlertStripe>
                     }
                 />
                 <HvilkeBarnCheckboxGruppe
-                    legendSpråkId={
-                        omBarnaDineSpørsmålSpråkId[
-                            OmBarnaDineSpørsmålId.hvemTolvMndSammenhengendeINorge
-                        ]
-                    }
+                    legend={<TekstBlock block={hvemOppholdUtenforNorge.sporsmal} />}
                     skjemafelt={skjema.felter.hvemTolvMndSammenhengendeINorge}
                     søknadsdatafelt={barnDataKeySpørsmål.boddMindreEnn12MndINorge}
                     nullstillValgteBarn={
@@ -189,18 +184,10 @@ const OmBarnaDine: React.FC = () => {
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.mottarKontantstøtteForBarnFraAnnetEøsland}
-                    spørsmålTekstId={
-                        omBarnaDineSpørsmålSpråkId[
-                            OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland
-                        ]
-                    }
+                    spørsmålDokument={soektYtelseEuEoes}
                 />
                 <HvilkeBarnCheckboxGruppe
-                    legendSpråkId={
-                        omBarnaDineSpørsmålSpråkId[
-                            OmBarnaDineSpørsmålId.hvemKontantstøtteFraAnnetEøsland
-                        ]
-                    }
+                    legend={<TekstBlock block={hvemSoektYtelse.sporsmal} />}
                     skjemafelt={skjema.felter.hvemKontantstøtteFraAnnetEøsland}
                     søknadsdatafelt={barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland}
                     nullstillValgteBarn={
@@ -211,11 +198,7 @@ const OmBarnaDine: React.FC = () => {
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.harEllerTildeltBarnehageplass}
-                    spørsmålTekstId={
-                        omBarnaDineSpørsmålSpråkId[
-                            OmBarnaDineSpørsmålId.harEllerTildeltBarnehageplass
-                        ]
-                    }
+                    spørsmålDokument={barnehageplass}
                 />
                 <HvilkeBarnCheckboxGruppe
                     legend={<TekstBlock block={hvemBarnehageplass.sporsmal} />}
@@ -228,20 +211,30 @@ const OmBarnaDine: React.FC = () => {
                 >
                     {hvemBarnehageplass.vedleggsnotis ? (
                         <VedleggNotis>
-                            <Normaltekst>
-                                {plainTekst(hvemBarnehageplass.vedleggsnotis)}
-                            </Normaltekst>
+                            <BodyShort>{plainTekst(hvemBarnehageplass.vedleggsnotis)}</BodyShort>
                         </VedleggNotis>
                     ) : null}
                 </HvilkeBarnCheckboxGruppe>
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.erAvdødPartnerForelder}
-                    spørsmålTekstId={omBarnaDineSpørsmålSpråkId[søknad.erAvdødPartnerForelder.id]}
+                    spørsmålDokument={
+                        søknad.erAvdødPartnerForelder.id ===
+                        OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+                            ? folkeregistrertGjenlevende
+                            : folkeregistrertEnkeEnkemann
+                    }
                 />
                 <HvilkeBarnCheckboxGruppe
-                    legendSpråkId={
-                        omBarnaDineSpørsmålSpråkId[OmBarnaDineSpørsmålId.hvemAvdødPartner]
+                    legend={
+                        <TekstBlock
+                            block={
+                                søknad.erAvdødPartnerForelder.id ===
+                                OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+                                    ? hvemAvBarnaAvdoedPartner.sporsmal
+                                    : hvemAvBarnaAvdoedEktefelle.sporsmal
+                            }
+                        />
                     }
                     skjemafelt={skjema.felter.hvemAvdødPartner}
                     søknadsdatafelt={barnDataKeySpørsmål.andreForelderErDød}
