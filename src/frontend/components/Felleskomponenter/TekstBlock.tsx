@@ -42,6 +42,12 @@ const typografiWrapper = (content: JSX.Element, typografi?: Typografi): JSX.Elem
                     {content}
                 </Heading>
             );
+        case Typografi.PeriodeOppsummeringHeadingH2:
+            return (
+                <Heading level={'2'} size={'xsmall'} spacing>
+                    {content}
+                </Heading>
+            );
         case Typografi.Ingress:
             return <Ingress>{content}</Ingress>;
         case Typografi.BodyLong:

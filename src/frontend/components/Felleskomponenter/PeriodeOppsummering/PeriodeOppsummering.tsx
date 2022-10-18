@@ -24,20 +24,15 @@ const StyledButton = styled(Button)`
     }
 `;
 
-const PeriodeTittel = styled.div`
-    && {
-        margin-bottom: 1.125rem;
-    }
-`;
-
 const PeriodeOppsummering: React.FC<{
-    nummer?: number;
+    nummer: number;
     fjernPeriodeCallback?: () => void;
+    /** @deprecated **/
     fjernKnappSpråkId?: string;
-    fjernKnappTekst?: LocaleRecordBlock;
+    fjernKnappTekst?: LocaleRecordBlock; //TODO fjerne optional når deprecated er fjernet
+    /** @deprecated **/
     tittelSpråkId?: string;
-    tittel?: LocaleRecordBlock;
-    antall?: string;
+    tittel?: LocaleRecordBlock; //TODO fjerne optional når deprecated er fjernet
     vedleggNotis?: ReactNode;
 }> = ({
     nummer,
@@ -46,7 +41,6 @@ const PeriodeOppsummering: React.FC<{
     fjernKnappTekst,
     tittelSpråkId,
     tittel,
-    antall,
     vedleggNotis,
     children,
 }) => {
@@ -54,20 +48,18 @@ const PeriodeOppsummering: React.FC<{
 
     return (
         <PeriodeContainer bottomBorder={skalHaBottomBorder}>
-            <PeriodeTittel>
-                {tittelSpråkId && nummer && (
-                    <Element>
-                        <SpråkTekst id={tittelSpråkId} values={{ x: nummer }} />
-                    </Element>
-                )}
-                {tittel && antall && (
-                    <TekstBlock
-                        block={tittel}
-                        flettefelter={{ antall }}
-                        typografi={Typografi.Label}
-                    />
-                )}
-            </PeriodeTittel>
+            {tittelSpråkId && (
+                <Element>
+                    <SpråkTekst id={tittelSpråkId} values={{ x: nummer }} />
+                </Element>
+            )}
+            {tittel && (
+                <TekstBlock
+                    block={tittel}
+                    flettefelter={{ antall: nummer.toString() }}
+                    typografi={Typografi.PeriodeOppsummeringHeadingH2}
+                />
+            )}
             {children}
             {fjernPeriodeCallback !== undefined && (
                 <StyledButton

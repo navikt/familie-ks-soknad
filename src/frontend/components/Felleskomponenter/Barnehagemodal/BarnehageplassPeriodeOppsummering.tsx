@@ -46,7 +46,7 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
                 fjernPeriodeCallback && (() => fjernPeriodeCallback(barnehageplassPeriode))
             }
             fjernKnappTekst={barnehageplassTekster.fjernKnapp}
-            antall={nummer.toString()}
+            nummer={nummer}
             tittel={omBarnetTekster.periodeBarnehageplass}
         >
             <OppsummeringFelt
