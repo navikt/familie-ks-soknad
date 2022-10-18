@@ -57,7 +57,7 @@ const PeriodeOppsummering: React.FC<{
                 <TekstBlock
                     block={tittel}
                     flettefelter={{ antall: nummer.toString() }}
-                    typografi={Typografi.PeriodeOppsummeringHeadingH2}
+                    typografi={Typografi.HeadingH2}
                 />
             )}
             {children}

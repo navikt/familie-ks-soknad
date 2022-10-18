@@ -3,13 +3,16 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import {
     IBarnehageplassPeriode,
     IEøsKontantstøttePeriode,
     IUtenlandsperiode,
 } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { BarnehageplassPeriode } from '../../Felleskomponenter/Barnehagemodal/BarnehageplassPeriode';
@@ -19,9 +22,8 @@ import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import { KontantstøttePeriode } from '../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriode';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
-import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from './spørsmål';
 
 const Oppfølgningsspørsmål: React.FC<{
     barn: IBarnMedISøknad;
@@ -46,6 +48,17 @@ const Oppfølgningsspørsmål: React.FC<{
     fjernBarnehageplassPeriode,
     registrerteBarnehageplassPerioder,
 }) => {
+    const { tekster } = useApp();
+    const teksterForSteg = tekster()[ESanitySteg.OM_BARNET];
+    const {
+        paagaaendeSoeknadYtelse,
+        hvilketLandYtelse,
+        planlagtBoSammenhengendeINorge,
+        utbetaltForeldrepengerEllerEngangsstoenad,
+        opplystBarnOppholdUtenforNorge,
+        opplystFaarHarFaattEllerSoektYtelse,
+    } = teksterForSteg;
+
     return (
         <>
             {skjema.felter.utbetaltForeldrepengerEllerEngangsstønad.erSynlig && (
@@ -57,14 +70,18 @@ const Oppfølgningsspørsmål: React.FC<{
                     <JaNeiSpm
                         skjema={skjema}
                         felt={skjema.felter.utbetaltForeldrepengerEllerEngangsstønad}
-                        spørsmålTekstId={'todo.ombarnet.utbetalt.foreldrepenger.engangsstønad'}
+                        spørsmålDokument={utbetaltForeldrepengerEllerEngangsstoenad}
                     />
                 </KomponentGruppe>
             )}
             {barn[barnDataKeySpørsmål.boddMindreEnn12MndINorge].svar === ESvar.JA && (
                 <SkjemaFieldset
-                    tittelId={'ombarnet.opplystatbarnutlandopphold.info'}
-                    språkValues={{ navn: barn.navn }}
+                    tittel={
+                        <TekstBlock
+                            block={opplystBarnOppholdUtenforNorge}
+                            flettefelter={{ barnetsNavn: barn.navn }}
+                        />
+                    }
                 >
                     <>
                         <Utenlandsperiode
@@ -83,17 +100,14 @@ const Oppfølgningsspørsmål: React.FC<{
                             <JaNeiSpm
                                 skjema={skjema}
                                 felt={skjema.felter.planleggerÅBoINorge12Mnd}
-                                spørsmålTekstId={
-                                    omBarnetSpørsmålSpråkId[
-                                        OmBarnetSpørsmålsId.planleggerÅBoINorge12Mnd
-                                    ]
-                                }
-                                språkValues={{ barn: barn.navn }}
+                                spørsmålDokument={planlagtBoSammenhengendeINorge}
+                                barnetsNavn={barn.navn}
                             />
                             {skjema.felter.planleggerÅBoINorge12Mnd.verdi === ESvar.NEI && (
                                 <AlertStripe variant={'warning'} dynamisk>
-                                    <SpråkTekst
-                                        id={'ombarnet.planlagt-sammenhengende-opphold.alert'}
+                                    <TekstBlock
+                                        block={planlagtBoSammenhengendeINorge.alert}
+                                        typografi={Typografi.BodyLong}
                                     />
                                 </AlertStripe>
                             )}
@@ -103,18 +117,18 @@ const Oppfølgningsspørsmål: React.FC<{
             )}
             {barn[barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland].svar === ESvar.JA && (
                 <SkjemaFieldset
-                    tittelId={'ombarnet.barnetrygd-eøs'}
-                    språkValues={{ navn: barn.navn }}
+                    tittel={
+                        <TekstBlock
+                            block={opplystFaarHarFaattEllerSoektYtelse}
+                            flettefelter={{ barnetsNavn: barn.navn }}
+                        />
+                    }
                 >
                     <KomponentGruppe>
                         <JaNeiSpm
                             skjema={skjema}
                             felt={skjema.felter.pågåendeSøknadFraAnnetEøsLand}
-                            spørsmålTekstId={
-                                omBarnetSpørsmålSpråkId[
-                                    OmBarnetSpørsmålsId.pågåendeSøknadFraAnnetEøsLand
-                                ]
-                            }
+                            spørsmålDokument={paagaaendeSoeknadYtelse}
                         />
                         {skjema.felter.pågåendeSøknadHvilketLand.erSynlig && (
                             <LandDropdown
@@ -122,15 +136,7 @@ const Oppfølgningsspørsmål: React.FC<{
                                 skjema={skjema}
                                 kunEøs={true}
                                 ekskluderNorge
-                                label={
-                                    <SpråkTekst
-                                        id={
-                                            omBarnetSpørsmålSpråkId[
-                                                OmBarnetSpørsmålsId.pågåendeSøknadHvilketLand
-                                            ]
-                                        }
-                                    />
-                                }
+                                label={<TekstBlock block={hvilketLandYtelse.sporsmal} />}
                             />
                         )}
                         <KontantstøttePeriode
