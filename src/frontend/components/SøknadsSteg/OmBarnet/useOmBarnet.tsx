@@ -16,7 +16,7 @@ import {
     IAndreForelder,
     IBarnMedISøknad,
 } from '../../../typer/barn';
-import { AlternativtSvarForInput, BarnetsId, Typografi } from '../../../typer/common';
+import { AlternativtSvarForInput, BarnetsId } from '../../../typer/common';
 import { IDokumentasjon } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import {
@@ -67,7 +67,7 @@ export const useOmBarnet = (
     leggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
     fjernBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
 } => {
-    const { søknad, settSøknad, tekster } = useApp();
+    const { søknad, settSøknad, tekster, plainTekst } = useApp();
     const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } = useEøs();
     const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     const teksterForModaler = tekster()[ESanitySteg.FELLES].modaler;
@@ -120,9 +120,7 @@ export const useOmBarnet = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      <TekstBlock
-                          block={teksterForModaler.utenlandsopphold.barn.leggTilFeilmelding}
-                      />
+                      plainTekst(teksterForModaler.utenlandsopphold.barn.leggTilFeilmelding)
                   );
         }
     );
@@ -172,10 +170,7 @@ export const useOmBarnet = (
                 (avhengigheter?.mottarEllerMottokEøsKontantstøtte.verdi === ESvar.JA &&
                     felt.verdi.length)
                 ? ok(felt)
-                : feil(
-                      felt,
-                      <TekstBlock block={teksterForModaler.eøsYtelse.søker.leggTilFeilmelding} />
-                  );
+                : feil(felt, plainTekst(teksterForModaler.eøsYtelse.søker.leggTilFeilmelding));
         }
     );
     /*--- BARNEHAGEPLASS ---*/
@@ -190,13 +185,7 @@ export const useOmBarnet = (
         felt => {
             return felt.verdi.length
                 ? ok(felt)
-                : feil(
-                      felt,
-                      <TekstBlock
-                          block={teksterForModaler.barnehageplass.leggTilFeilmelding}
-                          typografi={Typografi.ErrorMessage}
-                      />
-                  );
+                : feil(felt, plainTekst(teksterForModaler.barnehageplass.leggTilFeilmelding));
         }
     );
     useEffect(() => {
@@ -374,10 +363,9 @@ export const useOmBarnet = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      <TekstBlock
-                          block={teksterForModaler.arbeidsperiode.søker.leggTilFeilmelding}
-                          flettefelter={{ gjelderUtland: true }}
-                      />
+                      plainTekst(teksterForModaler.arbeidsperiode.søker.leggTilFeilmelding, {
+                          gjelderUtland: true,
+                      })
                   );
         }
     );
@@ -419,10 +407,9 @@ export const useOmBarnet = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      <TekstBlock
-                          block={teksterForModaler.pensjonsperiode.søker.leggTilFeilmelding}
-                          flettefelter={{ gjelderUtland: true }}
-                      />
+                      plainTekst(teksterForModaler.pensjonsperiode.søker.leggTilFeilmelding, {
+                          gjelderUtland: true,
+                      })
                   );
         }
     );

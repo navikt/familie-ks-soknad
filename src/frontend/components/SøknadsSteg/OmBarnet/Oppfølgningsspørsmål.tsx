@@ -17,13 +17,13 @@ import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { BarnehageplassPeriode } from '../../Felleskomponenter/Barnehagemodal/BarnehageplassPeriode';
 import { LandDropdown } from '../../Felleskomponenter/Dropdowns/LandDropdown';
-import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import { KontantstøttePeriode } from '../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriode';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
+import { IOmBarnetTekstinnhold } from './innholdTyper';
 
 const Oppfølgningsspørsmål: React.FC<{
     barn: IBarnMedISøknad;
@@ -49,7 +49,7 @@ const Oppfølgningsspørsmål: React.FC<{
     registrerteBarnehageplassPerioder,
 }) => {
     const { tekster } = useApp();
-    const teksterForSteg = tekster()[ESanitySteg.OM_BARNET];
+    const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     const {
         paagaaendeSoeknadYtelse,
         hvilketLandYtelse,
@@ -57,29 +57,37 @@ const Oppfølgningsspørsmål: React.FC<{
         utbetaltForeldrepengerEllerEngangsstoenad,
         opplystBarnOppholdUtenforNorge,
         opplystFaarHarFaattEllerSoektYtelse,
+        opplystAdoptert,
     } = teksterForSteg;
+
+    const barnetsNavn = barn.navn;
 
     return (
         <>
-            {skjema.felter.utbetaltForeldrepengerEllerEngangsstønad.erSynlig && (
-                <KomponentGruppe>
-                    <Informasjonsbolk
-                        //TODO tekst om at barnet er adoptert
-                        tittelId={'todo.ombarnet.utbetalt.foreldrepenger.engangsstønad'}
-                    />
+            {barn[barnDataKeySpørsmål.erAdoptertFraUtland].svar === ESvar.JA && (
+                <SkjemaFieldset
+                    tittel={
+                        <TekstBlock
+                            block={opplystAdoptert}
+                            flettefelter={{ barnetsNavn }}
+                            typografi={Typografi.Label}
+                        />
+                    }
+                >
                     <JaNeiSpm
                         skjema={skjema}
                         felt={skjema.felter.utbetaltForeldrepengerEllerEngangsstønad}
                         spørsmålDokument={utbetaltForeldrepengerEllerEngangsstoenad}
                     />
-                </KomponentGruppe>
+                </SkjemaFieldset>
             )}
             {barn[barnDataKeySpørsmål.boddMindreEnn12MndINorge].svar === ESvar.JA && (
                 <SkjemaFieldset
                     tittel={
                         <TekstBlock
                             block={opplystBarnOppholdUtenforNorge}
-                            flettefelter={{ barnetsNavn: barn.navn }}
+                            flettefelter={{ barnetsNavn }}
+                            typografi={Typografi.Label}
                         />
                     }
                 >
@@ -120,7 +128,8 @@ const Oppfølgningsspørsmål: React.FC<{
                     tittel={
                         <TekstBlock
                             block={opplystFaarHarFaattEllerSoektYtelse}
-                            flettefelter={{ barnetsNavn: barn.navn }}
+                            flettefelter={{ barnetsNavn }}
+                            typografi={Typografi.Label}
                         />
                     }
                 >
