@@ -4,22 +4,29 @@ import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 export interface IOmBarnetTekstinnhold {
     omBarnetTittel: LocaleRecordBlock;
     borBarnFastSammenMedDeg: ISanitySpørsmålDokument;
-    opplystBarnehageplass: LocaleRecordBlock;
-    bosted: LocaleRecordString;
-    barnetsAndreForelder: LocaleRecordString;
-    fastBosted: LocaleRecordBlock;
     deltBosted: ISanitySpørsmålDokument;
-    periodeBarnehageplass: LocaleRecordBlock;
-    barnXAvY: LocaleRecordBlock;
     paagaaendeSoeknadYtelse: ISanitySpørsmålDokument;
     hvilketLandYtelse: ISanitySpørsmålDokument;
     planlagtBoSammenhengendeINorge: ISanitySpørsmålDokument;
     utbetaltForeldrepengerEllerEngangsstoenad: ISanitySpørsmålDokument;
-    opplystBarnOppholdUtenforNorge: LocaleRecordBlock;
-    opplystFaarHarFaattEllerSoektYtelse: LocaleRecordBlock;
     hvemErBarnSinAndreForelder: ISanitySpørsmålDokument;
+    faarEllerHarFaattYtelseFraAnnetLand: ISanitySpørsmålDokument;
+
+    /* Andre tekster */
     svaralternativSammeSomAnnenForelder: LocaleRecordBlock;
     svaralternativAnnenForelder: LocaleRecordBlock;
+    barnXAvY: LocaleRecordBlock;
+    fastBosted: LocaleRecordBlock;
+
+    /* Subtitler */
+    barnetsAndreForelder: LocaleRecordString;
+    bosted: LocaleRecordString;
+    periodeBarnehageplass: LocaleRecordBlock;
+
+    /* Oppfølgningstekster fra svar på Om Barna */
+    opplystBarnehageplass: LocaleRecordBlock;
+    opplystBarnOppholdUtenforNorge: LocaleRecordBlock;
+    opplystFaarHarFaattEllerSoektYtelse: LocaleRecordBlock;
 
     /* Andre forelder */
     navnAndreForelder: ISanitySpørsmålDokument;

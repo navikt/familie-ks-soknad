@@ -12,6 +12,7 @@ import { ISøknadSpørsmål } from '../typer/spørsmål';
 const useLanddropdownFeltMedJaNeiAvhengighet = ({
     søknadsfelt,
     feilmeldingSpråkId,
+    feilmelding,
     avhengigSvarCondition,
     avhengighet,
     nullstillVedAvhengighetEndring = true,
@@ -19,11 +20,14 @@ const useLanddropdownFeltMedJaNeiAvhengighet = ({
     feilmeldingSpråkVerdier,
 }: {
     søknadsfelt?: ISøknadSpørsmål<Alpha3Code | ''>;
-    feilmeldingSpråkId: string;
+    /** @deprecated **/
+    feilmeldingSpråkId?: string;
+    feilmelding?: ReactNode; // todo: fjerne optional når vi er ferdig med sanity
     avhengigSvarCondition: ESvar;
     avhengighet: Felt<ESvar | null>;
     nullstillVedAvhengighetEndring?: boolean;
     skalFeltetVises?: boolean;
+    /** @deprecated **/
     feilmeldingSpråkVerdier?: Record<string, ReactNode>;
 }) => {
     const skalViseFelt = jaNeiSpmVerdi => jaNeiSpmVerdi === avhengigSvarCondition;
@@ -44,7 +48,11 @@ const useLanddropdownFeltMedJaNeiAvhengighet = ({
                 ? ok(felt)
                 : feil(
                       felt,
-                      <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
+                      feilmelding ? (
+                          feilmelding
+                      ) : (
+                          <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
+                      )
                   );
         },
         nullstillVedAvhengighetEndring,

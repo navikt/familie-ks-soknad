@@ -8,6 +8,7 @@ import { feil, Felt, FeltState, ok, useFelt, Valideringsstatus } from '@navikt/f
 import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
 import TekstBlock from '../components/Felleskomponenter/TekstBlock';
 import { LocaleRecordBlock } from '../typer/common';
+import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -48,15 +49,18 @@ const useJaNeiSpmFelt = ({
     nullstillVedAvhengighetEndring = false,
     skalSkjules = false,
     feilmeldingSpråkVerdier,
+    flettefelter,
 }: {
     søknadsfelt?: ISøknadSpørsmål<ESvar | null>;
     /** @deprecated **/
     feilmeldingSpråkId?: string;
-    feilmelding?: LocaleRecordBlock;
+    feilmelding?: LocaleRecordBlock; // todo: fjern optional når vi fjerner deprecated felt
     avhengigheter?: Record<string, FeltGruppe | undefined>;
     nullstillVedAvhengighetEndring?: boolean;
     skalSkjules?: boolean;
+    /** @deprecated **/
     feilmeldingSpråkVerdier?: Record<string, ReactNode>;
+    flettefelter?: FlettefeltVerdier;
 }) => {
     const [harBlittVist, settHarBlittVist] = useState<boolean>(!avhengigheter);
 
@@ -70,7 +74,7 @@ const useJaNeiSpmFelt = ({
                 : feil(
                       felt,
                       feilmelding ? (
-                          <TekstBlock block={feilmelding} />
+                          <TekstBlock block={feilmelding} flettefelter={flettefelter} />
                       ) : (
                           <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
                       )
