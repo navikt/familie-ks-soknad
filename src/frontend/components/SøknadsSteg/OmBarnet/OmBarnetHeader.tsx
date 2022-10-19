@@ -36,7 +36,7 @@ export const OmBarnetHeader: React.FC<{ barn: IBarnMedISøknad }> = ({ barn }) =
         <HeaderWrapper>
             <TilfeldigBarnIkon byttVedRerender={false} />
             <HorisontalLinje />
-            <BarnCounterWrapper>
+            <BarnCounterWrapper data-testid={barn.id}>
                 <TekstBlock
                     block={tekster()[ESanitySteg.OM_BARNET].barnXAvY}
                     flettefelter={{
