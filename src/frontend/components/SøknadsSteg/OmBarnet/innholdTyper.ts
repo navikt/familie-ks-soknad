@@ -17,6 +17,10 @@ export interface IOmBarnetTekstinnhold {
     utbetaltForeldrepengerEllerEngangsstoenad: ISanitySpørsmålDokument;
     opplystBarnOppholdUtenforNorge: LocaleRecordBlock;
     opplystFaarHarFaattEllerSoektYtelse: LocaleRecordBlock;
+    hvemErBarnSinAndreForelder: ISanitySpørsmålDokument;
+    svaralternativSammeSomAnnenForelder: LocaleRecordBlock;
+    svaralternativAnnenForelder: LocaleRecordBlock;
+
     /* Andre forelder */
     navnAndreForelder: ISanitySpørsmålDokument;
     foedselsnummerDnummerAndreForelder: ISanitySpørsmålDokument;
