@@ -70,7 +70,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
                     erDød
                 )}
                 inkluderVetIkke={personType !== PersonType.søker}
-                barnetsNavn={barn?.navn}
+                flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {mottarEllerMottattPensjonFelt.verdi === ESvar.JA && (
                 <>

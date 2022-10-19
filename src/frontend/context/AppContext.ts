@@ -248,6 +248,8 @@ const [AppProvider, useApp] = createUseContext(() => {
                 return plainTekst(
                     flettefelter?.gjelderUtland ? frittståendeOrd.utlandet : frittståendeOrd.norge
                 );
+            case ESanityFlettefeltverdi.LAND:
+                return flettefelter?.land ?? '';
         }
     };
 

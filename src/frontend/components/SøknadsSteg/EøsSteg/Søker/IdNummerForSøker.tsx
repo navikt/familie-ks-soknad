@@ -7,7 +7,6 @@ import { useEøs } from '../../../../context/EøsContext';
 import { IEøsForSøkerFeltTyper } from '../../../../typer/skjema';
 import { IdNummer } from '../IdNummer';
 import { idNummerLandMedPeriodeType } from '../idnummerUtils';
-import { EøsSøkerSpørsmålId, eøsSøkerSpørsmålSpråkId } from './spørsmål';
 
 interface Props {
     skjema: ISkjema<IEøsForSøkerFeltTyper, string>;
@@ -16,7 +15,7 @@ interface Props {
 }
 
 const IdNummerForSøker: React.FC<Props> = ({ lesevisning = false, skjema, settIdNummerFelter }) => {
-    const { søknad } = useApp();
+    const { søknad, tekster } = useApp();
     const { søker } = søknad;
     const { arbeidsperioderUtland, pensjonsperioderUtland, utenlandsperioder } = søker;
     const { erEøsLand } = useEøs();
@@ -36,11 +35,6 @@ const IdNummerForSøker: React.FC<Props> = ({ lesevisning = false, skjema, settI
                 return (
                     !!landMedPeriodeType.land && (
                         <IdNummer
-                            spørsmålSpråkId={eøsSøkerSpørsmålSpråkId[EøsSøkerSpørsmålId.idNummer]}
-                            spørsmålCheckboxSpråkId={
-                                eøsSøkerSpørsmålSpråkId[EøsSøkerSpørsmålId.idNummerUkjent]
-                            }
-                            feilmeldingSpråkId={'eøs-om-deg.dittidnummer.feilmelding'}
                             idNummerVerdiFraSøknad={
                                 søker.idNummer.find(verdi => verdi.land === landMedPeriodeType.land)
                                     ?.idnummer
@@ -51,6 +45,7 @@ const IdNummerForSøker: React.FC<Props> = ({ lesevisning = false, skjema, settI
                             settIdNummerFelter={settIdNummerFelter}
                             landAlphaCode={landMedPeriodeType.land}
                             periodeType={landMedPeriodeType.periodeType}
+                            spørsmålDokument={tekster().EØS_FOR_SØKER.idNummer}
                         />
                     )
                 );

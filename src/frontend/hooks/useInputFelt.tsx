@@ -8,21 +8,26 @@ import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
 
+interface Props {
+    søknadsfelt: ISøknadSpørsmål<string> | null;
+    feilmeldingSpråkId?: string;
+    skalVises?: boolean;
+    customValidering?: ((felt: FeltState<string>) => FeltState<string>) | undefined;
+    nullstillVedAvhengighetEndring?: boolean;
+    feilmeldingSpråkVerdier?: Record<string, ReactNode>;
+    feilmelding?: ReactNode;
+}
+
 const useInputFelt = ({
     søknadsfelt,
+    /** @deprecated **/
     feilmeldingSpråkId,
     skalVises = true,
     customValidering = undefined,
     nullstillVedAvhengighetEndring = true,
     feilmeldingSpråkVerdier,
-}: {
-    søknadsfelt: ISøknadSpørsmål<string> | null;
-    feilmeldingSpråkId: string;
-    skalVises?: boolean;
-    customValidering?: ((felt: FeltState<string>) => FeltState<string>) | undefined;
-    nullstillVedAvhengighetEndring?: boolean;
-    feilmeldingSpråkVerdier?: Record<string, ReactNode>;
-}) =>
+    feilmelding,
+}: Props) =>
     useFelt<string>({
         feltId: søknadsfelt?.id ?? uuidv4(),
         verdi: søknadsfelt ? trimWhiteSpace(søknadsfelt.svar) : '',
@@ -34,7 +39,11 @@ const useInputFelt = ({
                     : ok(felt)
                 : feil(
                       felt,
-                      <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
+                      feilmelding ? (
+                          feilmelding
+                      ) : (
+                          <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
+                      )
                   );
         },
         avhengigheter: { skalVises },
