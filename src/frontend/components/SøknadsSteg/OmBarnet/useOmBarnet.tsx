@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, FeltState, ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
@@ -41,7 +41,6 @@ import { formaterInitVerdiForInputMedUkjent, formaterVerdiForCheckbox } from '..
 import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
 import { flyttetPermanentFraNorge } from '../../../utils/utenlandsopphold';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { idNummerLand } from '../EøsSteg/idnummerUtils';
 import { IOmBarnetTekstinnhold } from './innholdTyper';
 import { OmBarnetSpørsmålsId } from './spørsmål';
@@ -203,10 +202,9 @@ export const useOmBarnet = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      <TekstBlock
-                          block={teksterForSteg.hvemErBarnSinAndreForelder.feilmelding}
-                          flettefelter={{ barnetsNavn: gjeldendeBarn.navn }}
-                      />
+                      plainTekst(teksterForSteg.hvemErBarnSinAndreForelder.feilmelding, {
+                          barnetsNavn: gjeldendeBarn.navn,
+                      })
                   );
         },
         skalFeltetVises: () =>
@@ -326,7 +324,7 @@ export const useOmBarnet = (
                     : undefined,
         },
         skalSkjules: andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA,
-        feilmeldingSpråkVerdier: { navn: gjeldendeBarn.navn },
+        flettefelter: { barnetsNavn: gjeldendeBarn.navn },
     });
 
     const andreForelderYrkesaktivFemÅr = useJaNeiSpmFelt({
@@ -363,9 +361,12 @@ export const useOmBarnet = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      plainTekst(teksterForModaler.arbeidsperiode.søker.leggTilFeilmelding, {
-                          gjelderUtland: true,
-                      })
+                      plainTekst(
+                          teksterForModaler.arbeidsperiode.andreForelder.leggTilFeilmelding,
+                          {
+                              gjelderUtland: true,
+                          }
+                      )
                   );
         }
     );
@@ -407,9 +408,12 @@ export const useOmBarnet = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      plainTekst(teksterForModaler.pensjonsperiode.søker.leggTilFeilmelding, {
-                          gjelderUtland: true,
-                      })
+                      plainTekst(
+                          teksterForModaler.pensjonsperiode.andreForelder.leggTilFeilmelding,
+                          {
+                              gjelderUtland: true,
+                          }
+                      )
                   );
         }
     );

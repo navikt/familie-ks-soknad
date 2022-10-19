@@ -77,12 +77,7 @@ export const useLeggTilBarn = (): {
             svar: '',
         },
         avhengighet: navnetErUbestemt,
-        feilmelding: (
-            <TekstBlock
-                block={teksterForModal.fornavn.feilmelding}
-                typografi={Typografi.ErrorMessage}
-            />
-        ),
+        feilmelding: teksterForModal.fornavn.feilmelding,
         skalVises: erFødt.valideringsstatus === Valideringsstatus.OK,
     });
 
@@ -92,12 +87,7 @@ export const useLeggTilBarn = (): {
             svar: '',
         },
         avhengighet: navnetErUbestemt,
-        feilmelding: (
-            <TekstBlock
-                block={teksterForModal.etternavn.feilmelding}
-                typografi={Typografi.ErrorMessage}
-            />
-        ),
+        feilmelding: teksterForModal.etternavn.feilmelding,
         skalVises: erFødt.valideringsstatus === Valideringsstatus.OK,
     });
 
@@ -123,12 +113,7 @@ export const useLeggTilBarn = (): {
             svar: '',
         },
         avhengighet: ikkeFåttIdentChecked,
-        feilmelding: (
-            <TekstBlock
-                block={teksterForModal.foedselsnummerEllerDNummer.feilmelding}
-                typografi={Typografi.ErrorMessage}
-            />
-        ),
+        feilmelding: teksterForModal.foedselsnummerEllerDNummer.feilmelding,
         erFnrInput: true,
         skalVises: erFødt.valideringsstatus === Valideringsstatus.OK,
         customValidering: (felt: FeltState<string>) => {

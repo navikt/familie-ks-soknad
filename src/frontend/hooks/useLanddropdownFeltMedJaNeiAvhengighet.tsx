@@ -7,7 +7,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Avhengigheter, feil, Felt, FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
-import TekstBlock from '../components/Felleskomponenter/TekstBlock';
+import { useApp } from '../context/AppContext';
 import { LocaleRecordBlock } from '../typer/common';
 import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
@@ -35,6 +35,7 @@ const useLanddropdownFeltMedJaNeiAvhengighet = ({
     feilmeldingSpråkVerdier?: Record<string, ReactNode>;
     flettefelter?: FlettefeltVerdier;
 }) => {
+    const { plainTekst } = useApp();
     const skalViseFelt = jaNeiSpmVerdi => jaNeiSpmVerdi === avhengigSvarCondition;
 
     const landDropdown = useFelt<Alpha3Code | ''>({
@@ -54,7 +55,7 @@ const useLanddropdownFeltMedJaNeiAvhengighet = ({
                 : feil(
                       felt,
                       feilmelding ? (
-                          <TekstBlock block={feilmelding} flettefelter={flettefelter} />
+                          plainTekst(feilmelding, { ...flettefelter })
                       ) : (
                           <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
                       )

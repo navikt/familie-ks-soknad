@@ -29,8 +29,6 @@ const SammeSomAnnetBarnRadio: React.FC<{
     const { tekster } = useApp();
     const teksterForSteg = tekster()[ESanitySteg.OM_BARNET];
 
-    console.log(teksterForSteg);
-
     const radios = andreBarnSomErFyltUt
         .map(barn => ({
             label: (
