@@ -12,6 +12,7 @@ import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
 
 const useInputFelt = ({
     søknadsfelt,
+    /** @deprecated **/
     feilmeldingSpråkId,
     feilmelding,
     skalVises = true,
@@ -21,7 +22,7 @@ const useInputFelt = ({
 }: {
     søknadsfelt: ISøknadSpørsmål<string> | null;
     feilmeldingSpråkId?: string;
-    feilmelding?: LocaleRecordBlock;
+    feilmelding?: LocaleRecordBlock; // todo: fjerne optional når vi går over til sanity
     skalVises?: boolean;
     customValidering?: ((felt: FeltState<string>) => FeltState<string>) | undefined;
     nullstillVedAvhengighetEndring?: boolean;
