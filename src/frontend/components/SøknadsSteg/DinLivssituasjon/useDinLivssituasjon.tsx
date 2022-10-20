@@ -86,7 +86,12 @@ export const useDinLivssituasjon = (): {
             return avhengigheter?.mottarUtenlandspensjon.verdi === ESvar.NEI ||
                 (avhengigheter?.mottarUtenlandspensjon.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, plainTekst(teksterForPensjonsperiode.leggTilFeilmelding));
+                : feil(
+                      felt,
+                      plainTekst(teksterForPensjonsperiode.leggTilFeilmelding, {
+                          gjelderUtland: true,
+                      })
+                  );
         }
     );
 
