@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, ISkjema, ok, useSkjema } from '@navikt/familie-skjema';
@@ -7,7 +7,7 @@ import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import { usePerioder } from '../../../hooks/usePerioder';
-import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
+import { AlternativtSvarForInput } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { IIdNummer } from '../../../typer/person';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
@@ -16,7 +16,6 @@ import { IOmDegFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
 import { flyttetPermanentFraNorge } from '../../../utils/utenlandsopphold';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { idNummerLandMedPeriodeType, PeriodeType } from '../EøsSteg/idnummerUtils';
 import { IOmDegTekstinnhold } from './innholdTyper';
 
@@ -29,7 +28,7 @@ export const useOmdeg = (): {
     leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
     fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
 } => {
-    const { søknad, settSøknad, tekster } = useApp();
+    const { søknad, settSøknad, tekster, plainTekst } = useApp();
     const { erEøsLand } = useEøs();
     const søker = søknad.søker;
     const { skalTriggeEøsForSøker, søkerTriggerEøs, settSøkerTriggerEøs } = useEøs();
@@ -60,13 +59,7 @@ export const useOmdeg = (): {
             return avhengigheter?.værtINorgeITolvMåneder.verdi === ESvar.JA ||
                 (avhengigheter?.værtINorgeITolvMåneder.verdi === ESvar.NEI && felt.verdi.length)
                 ? ok(felt)
-                : feil(
-                      felt,
-                      <TekstBlock
-                          block={teksterForUtenlandsperiode.leggTilFeilmelding}
-                          typografi={Typografi.ErrorMessage}
-                      />
-                  );
+                : feil(felt, plainTekst(teksterForUtenlandsperiode.leggTilFeilmelding));
         }
     );
 

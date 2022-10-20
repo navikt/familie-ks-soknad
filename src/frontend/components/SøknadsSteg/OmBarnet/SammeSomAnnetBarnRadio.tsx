@@ -3,15 +3,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
-import { Element } from 'nav-frontend-typografi';
 
 import { ISkjema } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../typer/common';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
-import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from './spørsmål';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
+import { OmBarnetSpørsmålsId } from './spørsmål';
 
 const StyledRadioPanelGruppe = styled(RadioPanelGruppe)`
     && label:not(:last-child) {
@@ -25,19 +26,21 @@ const SammeSomAnnetBarnRadio: React.FC<{
     barnetsNavn: string;
 }> = ({ andreBarnSomErFyltUt, skjema, barnetsNavn }) => {
     const felt = skjema.felter.sammeForelderSomAnnetBarn;
+    const { tekster } = useApp();
+    const teksterForSteg = tekster()[ESanitySteg.OM_BARNET];
 
     const radios = andreBarnSomErFyltUt
         .map(barn => ({
             label: (
-                <SpråkTekst
-                    id={'ombarnet.svaralternativ.samme-som-barn'}
-                    values={{ navn: barn.navn }}
+                <TekstBlock
+                    block={teksterForSteg.svaralternativSammeSomAnnenForelder}
+                    flettefelter={{ barnetsNavn: barn.navn }}
                 />
             ),
             value: barn.id,
         }))
         .concat({
-            label: <SpråkTekst id={'ombarnet.svaralternativ.annen-forelder'} />,
+            label: <TekstBlock block={teksterForSteg.svaralternativAnnenForelder} />,
             value: AlternativtSvarForInput.ANNEN_FORELDER,
         });
 
@@ -45,12 +48,10 @@ const SammeSomAnnetBarnRadio: React.FC<{
         <StyledRadioPanelGruppe
             {...felt.hentNavInputProps(skjema.visFeilmeldinger)}
             legend={
-                <Element>
-                    <SpråkTekst
-                        id={omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.sammeForelderSomAnnetBarn]}
-                        values={{ barn: barnetsNavn }}
-                    />
-                </Element>
+                <TekstBlock
+                    block={teksterForSteg.hvemErBarnSinAndreForelder.sporsmal}
+                    flettefelter={{ barnetsNavn }}
+                />
             }
             checked={felt.verdi ?? undefined}
             name={OmBarnetSpørsmålsId.sammeForelderSomAnnetBarn}

@@ -1,12 +1,15 @@
 import React from 'react';
 
+import { Heading } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { ISkjema } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../typer/common';
 import { IArbeidsperiode, IPensjonsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import { dagensDato } from '../../../utils/dato';
 import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
@@ -17,10 +20,9 @@ import { Pensjonsperiode } from '../../Felleskomponenter/Pensjonsmodal/Pensjonsp
 import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import AndreForelderOppsummering from '../Oppsummering/OppsummeringSteg/OmBarnet/AndreForelderOppsummering';
 import SammeSomAnnetBarnRadio from './SammeSomAnnetBarnRadio';
-import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from './spørsmål';
 
 const AndreForelder: React.FC<{
     barn: IBarnMedISøknad;
@@ -39,12 +41,28 @@ const AndreForelder: React.FC<{
     leggTilPensjonsperiode,
     fjernPensjonsperiode,
 }) => {
+    const { tekster, plainTekst } = useApp();
     const barnMedSammeForelder: IBarnMedISøknad | undefined = andreBarnSomErFyltUt.find(
         annetBarn => annetBarn.id === skjema.felter.sammeForelderSomAnnetBarn.verdi
     );
 
+    const teksterForSteg = tekster()[ESanitySteg.OM_BARNET];
+    const {
+        barnetsAndreForelder,
+        navnAndreForelder,
+        foedselsdatoAndreForelder,
+        foedselsnummerDnummerAndreForelder,
+        medlemAvFolktetrygdenAndreForelder,
+    } = teksterForSteg;
+
     return (
-        <SkjemaFieldset tittelId={'ombarnet.andre-forelder'}>
+        <SkjemaFieldset
+            tittel={
+                <Heading level={'2'} size={'xsmall'} spacing>
+                    {plainTekst(barnetsAndreForelder)}
+                </Heading>
+            }
+        >
             <KomponentGruppe>
                 {skjema.felter.sammeForelderSomAnnetBarn.erSynlig && (
                     <SammeSomAnnetBarnRadio
@@ -62,22 +80,14 @@ const AndreForelder: React.FC<{
                                 <SkjemaFeltInput
                                     felt={skjema.felter.andreForelderNavn}
                                     visFeilmeldinger={skjema.visFeilmeldinger}
-                                    labelSpråkTekstId={
-                                        omBarnetSpørsmålSpråkId[
-                                            OmBarnetSpørsmålsId.andreForelderNavn
-                                        ]
-                                    }
+                                    label={<TekstBlock block={navnAndreForelder.sporsmal} />}
                                     disabled={
                                         skjema.felter.andreForelderKanIkkeGiOpplysninger.verdi ===
                                         ESvar.JA
                                     }
                                 />
                                 <SkjemaCheckbox
-                                    labelSpråkTekstId={
-                                        omBarnetSpørsmålSpråkId[
-                                            OmBarnetSpørsmålsId.andreForelderKanIkkeGiOpplysninger
-                                        ]
-                                    }
+                                    label={plainTekst(navnAndreForelder.checkboxLabel)}
                                     felt={skjema.felter.andreForelderKanIkkeGiOpplysninger}
                                 />
                             </div>
@@ -87,10 +97,12 @@ const AndreForelder: React.FC<{
                                         <SkjemaFeltInput
                                             felt={skjema.felter.andreForelderFnr}
                                             visFeilmeldinger={skjema.visFeilmeldinger}
-                                            labelSpråkTekstId={
-                                                omBarnetSpørsmålSpråkId[
-                                                    OmBarnetSpørsmålsId.andreForelderFnr
-                                                ]
+                                            label={
+                                                <TekstBlock
+                                                    block={
+                                                        foedselsnummerDnummerAndreForelder.sporsmal
+                                                    }
+                                                />
                                             }
                                             disabled={
                                                 skjema.felter.andreForelderFnrUkjent.verdi ===
@@ -98,11 +110,9 @@ const AndreForelder: React.FC<{
                                             }
                                         />
                                         <SkjemaCheckbox
-                                            labelSpråkTekstId={
-                                                omBarnetSpørsmålSpråkId[
-                                                    OmBarnetSpørsmålsId.andreForelderFnrUkjent
-                                                ]
-                                            }
+                                            label={plainTekst(
+                                                foedselsnummerDnummerAndreForelder.checkboxLabel
+                                            )}
                                             felt={skjema.felter.andreForelderFnrUkjent}
                                         />
                                     </>
@@ -115,13 +125,8 @@ const AndreForelder: React.FC<{
                                             felt={skjema.felter.andreForelderFødselsdato}
                                             skjema={skjema}
                                             label={
-                                                <SpråkTekst
-                                                    id={
-                                                        omBarnetSpørsmålSpråkId[
-                                                            OmBarnetSpørsmålsId
-                                                                .andreForelderFødselsdato
-                                                        ]
-                                                    }
+                                                <TekstBlock
+                                                    block={foedselsdatoAndreForelder.sporsmal}
                                                 />
                                             }
                                             avgrensMaxDato={dagensDato()}
@@ -131,12 +136,9 @@ const AndreForelder: React.FC<{
                                             }
                                         />
                                         <SkjemaCheckbox
-                                            labelSpråkTekstId={
-                                                omBarnetSpørsmålSpråkId[
-                                                    OmBarnetSpørsmålsId
-                                                        .andreForelderFødselsdatoUkjent
-                                                ]
-                                            }
+                                            label={plainTekst(
+                                                foedselsdatoAndreForelder.checkboxLabel
+                                            )}
                                             felt={skjema.felter.andreForelderFødselsdatoUkjent}
                                         />
                                     </>
@@ -148,7 +150,7 @@ const AndreForelder: React.FC<{
                                 <JaNeiSpm
                                     skjema={skjema}
                                     felt={skjema.felter.andreForelderYrkesaktivFemÅr}
-                                    spørsmålTekstId={'todo.andreforelder.yrkesaktiv'}
+                                    spørsmålDokument={medlemAvFolktetrygdenAndreForelder}
                                 />
                             </KomponentGruppe>
                         )}

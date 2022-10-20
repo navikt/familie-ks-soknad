@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { feil, FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../components/Felleskomponenter/TekstBlock';
+import { LocaleRecordBlock, Typografi } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
 
@@ -15,13 +17,14 @@ interface Props {
     customValidering?: ((felt: FeltState<string>) => FeltState<string>) | undefined;
     nullstillVedAvhengighetEndring?: boolean;
     feilmeldingSpråkVerdier?: Record<string, ReactNode>;
-    feilmelding?: ReactNode;
+    feilmelding?: LocaleRecordBlock; // todo: fjerne optional når vi går over til sanity
 }
 
 const useInputFelt = ({
     søknadsfelt,
     /** @deprecated **/
     feilmeldingSpråkId,
+    feilmelding,
     skalVises = true,
     customValidering = undefined,
     nullstillVedAvhengighetEndring = true,
@@ -39,10 +42,10 @@ const useInputFelt = ({
                     : ok(felt)
                 : feil(
                       felt,
-                      feilmelding ? (
-                          feilmelding
-                      ) : (
+                      feilmeldingSpråkId ? (
                           <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
+                      ) : (
+                          <TekstBlock block={feilmelding} typografi={Typografi.ErrorMessage} />
                       )
                   );
         },
