@@ -5,17 +5,19 @@ import { useIntl } from 'react-intl';
 import { ESvar } from '@navikt/familie-form-elements';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
+import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
+import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import {
-    arbeidsperiodeModalSpørsmålSpråkId,
-    arbeidsperiodeOppsummeringOverskrift,
-} from './arbeidsperiodeSpråkUtils';
+import TekstBlock from '../TekstBlock';
+import { arbeidsperiodeModalSpørsmålSpråkId } from './arbeidsperiodeSpråkUtils';
 import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
 
 interface Props {
@@ -40,6 +42,7 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
     personType,
     erDød = false,
 }) => {
+    const { tekster } = useApp();
     const [valgtLocale] = useSprakContext();
     const intl = useIntl();
     const { formatMessage } = intl;
@@ -50,6 +53,9 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
         fraDatoArbeidsperiode,
         tilDatoArbeidsperiode,
     } = arbeidsperiode;
+
+    const teksterForModal: IArbeidsperiodeTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode[personType];
 
     const periodenErAvsluttet =
         arbeidsperiodeAvsluttet?.svar === ESvar.JA ||
@@ -66,9 +72,14 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
             fjernPeriodeCallback={
                 fjernPeriodeCallback && (() => fjernPeriodeCallback(arbeidsperiode))
             }
-            fjernKnappSpråkId={'felles.fjernarbeidsperiode.knapp'}
-            nummer={nummer}
-            tittelSpråkId={arbeidsperiodeOppsummeringOverskrift(gjelderUtlandet)}
+            fjernKnappTekst={teksterForModal.fjernKnapp}
+            tittel={
+                <TekstBlock
+                    block={teksterForModal.oppsummeringstittel}
+                    flettefelter={{ antall: nummer.toString(), gjelderUtland: gjelderUtlandet }}
+                    typografi={Typografi.HeadingH2}
+                />
+            }
         >
             {arbeidsperiodeAvsluttet.svar && (
                 <OppsummeringFelt

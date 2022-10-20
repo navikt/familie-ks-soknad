@@ -3,14 +3,15 @@ import React from 'react';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { formaterDato } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
-import { IOmBarnetTekstinnhold } from '../../SøknadsSteg/OmBarnet/innholdTyper';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
+import TekstBlock from '../TekstBlock';
 import { hentBarnehageplassBeskrivelse } from './barnehageplassSpråkUtils';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 
@@ -39,15 +40,19 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
     const { tekster, plainTekst } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
-    const omBarnetTekster: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     return (
         <PeriodeOppsummering
             fjernPeriodeCallback={
                 fjernPeriodeCallback && (() => fjernPeriodeCallback(barnehageplassPeriode))
             }
             fjernKnappTekst={barnehageplassTekster.fjernKnapp}
-            nummer={nummer}
-            tittel={omBarnetTekster.periodeBarnehageplass}
+            tittel={
+                <TekstBlock
+                    block={barnehageplassTekster.oppsummeringstittel}
+                    flettefelter={{ antall: nummer.toString() }}
+                    typografi={Typografi.HeadingH2}
+                />
+            }
         >
             <OppsummeringFelt
                 spørsmålstekst={barnehageplassTekster.periodebeskrivelse.sporsmal}

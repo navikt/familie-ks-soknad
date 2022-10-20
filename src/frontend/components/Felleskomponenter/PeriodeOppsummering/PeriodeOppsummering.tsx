@@ -8,7 +8,7 @@ import { DeleteFilled } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
 import { NavdsSemanticColorBorder } from '@navikt/ds-tokens/dist/tokens';
 
-import { LocaleRecordBlock, Typografi } from '../../../typer/common';
+import { LocaleRecordBlock } from '../../../typer/common';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import TekstBlock from '../TekstBlock';
 
@@ -25,14 +25,15 @@ const StyledButton = styled(Button)`
 `;
 
 const PeriodeOppsummering: React.FC<{
-    nummer: number;
+    /** @deprecated **/
+    nummer?: number;
     fjernPeriodeCallback?: () => void;
     /** @deprecated **/
     fjernKnappSpråkId?: string;
     fjernKnappTekst?: LocaleRecordBlock; //TODO fjerne optional når deprecated er fjernet
     /** @deprecated **/
     tittelSpråkId?: string;
-    tittel?: LocaleRecordBlock; //TODO fjerne optional når deprecated er fjernet
+    tittel?: ReactNode; //TODO fjerne optional når deprecated er fjernet
     vedleggNotis?: ReactNode;
 }> = ({
     nummer,
@@ -53,13 +54,7 @@ const PeriodeOppsummering: React.FC<{
                     <SpråkTekst id={tittelSpråkId} values={{ x: nummer }} />
                 </Element>
             )}
-            {tittel && (
-                <TekstBlock
-                    block={tittel}
-                    flettefelter={{ antall: nummer.toString() }}
-                    typografi={Typografi.HeadingH2}
-                />
-            )}
+            {tittel}
             {children}
             {fjernPeriodeCallback !== undefined && (
                 <StyledButton

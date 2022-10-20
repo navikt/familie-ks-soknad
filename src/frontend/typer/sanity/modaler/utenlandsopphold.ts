@@ -22,4 +22,5 @@ export interface IUtenlandsoppholdTekstinnhold {
     valgalternativPermanentINorge: LocaleRecordString;
     valgalternativPermanentIUtland: LocaleRecordString;
     valgalternativPlaceholder: LocaleRecordString;
+    oppsummeringstittel: LocaleRecordBlock;
 }
