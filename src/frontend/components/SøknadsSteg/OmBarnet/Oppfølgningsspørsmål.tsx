@@ -109,7 +109,7 @@ const Oppfølgningsspørsmål: React.FC<{
                                 skjema={skjema}
                                 felt={skjema.felter.planleggerÅBoINorge12Mnd}
                                 spørsmålDokument={planlagtBoSammenhengendeINorge}
-                                barnetsNavn={barn.navn}
+                                flettefelter={{ barnetsNavn }}
                             />
                             {skjema.felter.planleggerÅBoINorge12Mnd.verdi === ESvar.NEI && (
                                 <AlertStripe variant={'warning'} dynamisk>

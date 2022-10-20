@@ -70,7 +70,7 @@ export const IdNummer: React.FC<{
                     : '',
         },
         avhengighet: idNummerUkjent,
-        feilmelding: <TekstBlock block={spørsmålDokument.feilmelding} />,
+        feilmelding: spørsmålDokument.feilmelding,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
             if (verdi.match(/^[0-9A-Za-z\s\-.\\/]{4,20}$/)) {

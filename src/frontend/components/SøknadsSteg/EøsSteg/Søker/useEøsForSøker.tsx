@@ -57,7 +57,7 @@ export const useEøsForSøker = (): {
             id: EøsSøkerSpørsmålId.adresseISøkeperiode,
             svar: søker.adresseISøkeperiode.svar,
         },
-        feilmelding: <TekstBlock block={hvorBor.feilmelding} />,
+        feilmelding: hvorBor.feilmelding,
         skalVises: søker.triggetEøs,
         customValidering: valideringAdresse,
     });

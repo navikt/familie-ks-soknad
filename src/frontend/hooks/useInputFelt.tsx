@@ -29,7 +29,6 @@ const useInputFelt = ({
     customValidering = undefined,
     nullstillVedAvhengighetEndring = true,
     feilmeldingSpråkVerdier,
-    feilmelding,
 }: Props) =>
     useFelt<string>({
         feltId: søknadsfelt?.id ?? uuidv4(),
