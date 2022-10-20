@@ -82,6 +82,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                             gjelderUtlandet={gjelderUtlandet}
                             personType={personType}
                             erDød={personType === PersonType.andreForelder && erDød}
+                            barn={personType !== PersonType.søker ? barn : undefined}
                         />
                     ))}
                     {registrerteArbeidsperioder.verdi.length > 0 && (
