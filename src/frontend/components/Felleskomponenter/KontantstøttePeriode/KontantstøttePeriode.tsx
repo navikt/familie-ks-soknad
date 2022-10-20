@@ -86,10 +86,8 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                         id={KontantstøttePeriodeSpørsmålId.kontantstøttePeriodeEøs}
                         feilmelding={
                             registrerteEøsKontantstøttePerioder.erSynlig &&
-                            registrerteEøsKontantstøttePerioder.feilmelding &&
-                            skjema.visFeilmeldinger && (
-                                <SpråkTekst id={'ombarnet.trygdandreperioder.feilmelding'} />
-                            )
+                            skjema.visFeilmeldinger &&
+                            registrerteEøsKontantstøttePerioder.feilmelding
                         }
                     />
                     <KontantstøttePeriodeModal

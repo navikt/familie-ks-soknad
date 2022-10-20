@@ -18,13 +18,13 @@ describe('OmBarnetHeader', () => {
         });
         spyOnUseApp(søknadsMock);
 
-        const { getByText, rerender } = render(
+        const { queryByTestId, rerender } = render(
             <TestProvidere tekster={{ 'ombarnet.undertittel': 'barn {x} av {antall}' }}>
                 <OmBarnetHeader barn={barn[0]} />
             </TestProvidere>
         );
 
-        expect(getByText(`barn 1 av 2`)).toBeInTheDocument();
+        expect(queryByTestId('testbarn-1')).toBeInTheDocument();
 
         rerender(
             <TestProvidere tekster={{ 'ombarnet.undertittel': 'barn {x} av {antall}' }}>
@@ -32,6 +32,6 @@ describe('OmBarnetHeader', () => {
             </TestProvidere>
         );
 
-        expect(getByText(`barn 2 av 2`)).toBeInTheDocument();
+        expect(queryByTestId('testbarn-2')).toBeInTheDocument();
     });
 });

@@ -1,33 +1,24 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
-import { Normaltekst } from 'nav-frontend-typografi';
-
+import { BodyShort, Heading } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { BarnetsId, Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import EksternLenke from '../../Felleskomponenter/EksternLenke/EksternLenke';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
 import AndreForelder from './AndreForelder';
+import { IOmBarnetTekstinnhold } from './innholdTyper';
 import { OmBarnetHeader } from './OmBarnetHeader';
 import Oppfølgningsspørsmål from './Oppfølgningsspørsmål';
-import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from './spørsmål';
 import { useOmBarnet } from './useOmBarnet';
 
-const EksternLenkeContainer = styled.div`
-    margin-bottom: 4rem;
-`;
-
 const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const {
         skjema,
         validerFelterOgVisFeilmelding,
@@ -47,9 +38,10 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         fjernBarnehageplassPeriode,
     } = useOmBarnet(barnetsId);
 
-    const {
-        [ESanitySteg.OM_BARNET]: { omBarnetTittel },
-    } = tekster();
+    const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
+
+    const { omBarnetTittel, fastBosted, bosted, borBarnFastSammenMedDeg, deltBosted } =
+        teksterForSteg;
 
     const barnetsNavn = barn?.navn;
 
@@ -97,33 +89,29 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
             )}
 
             {skjema.felter.borFastMedSøker.erSynlig && (
-                <SkjemaFieldset tittelId={'ombarnet.bosted'} dynamisk>
+                <SkjemaFieldset
+                    tittel={
+                        <Heading size={'xsmall'} level={'2'} spacing>
+                            {plainTekst(bosted)}
+                        </Heading>
+                    }
+                    dynamisk
+                >
                     {barn.andreForelderErDød?.svar !== ESvar.JA && (
-                        <>
-                            <div>
-                                <Normaltekst>
-                                    <SpråkTekst id={'ombarnet.bosted-info'} />
-                                </Normaltekst>
-                            </div>
-                            <EksternLenkeContainer>
-                                <EksternLenke
-                                    lenkeSpråkId={'ombarnet.les-mer-om-bosted.lenke'}
-                                    lenkeTekstSpråkId={'ombarnet.les-mer-om-bosted.lenketekst'}
-                                    target="_blank"
-                                />
-                            </EksternLenkeContainer>
-                        </>
+                        <TekstBlock block={fastBosted} typografi={Typografi.BodyLong} />
                     )}
                     <JaNeiSpm
                         skjema={skjema}
                         felt={skjema.felter.borFastMedSøker}
-                        spørsmålTekstId={
-                            omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.borFastMedSøker]
-                        }
-                        språkValues={{ navn: barn.navn }}
+                        spørsmålDokument={borBarnFastSammenMedDeg}
+                        barnetsNavn={barnetsNavn}
                     />
                     {skjema.felter.borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker && (
-                        <VedleggNotis språkTekstId={'ombarnet.bor-fast.vedleggsinfo'} dynamisk />
+                        <VedleggNotis dynamisk>
+                            <BodyShort>
+                                {plainTekst(borBarnFastSammenMedDeg.vedleggsnotis)}
+                            </BodyShort>
+                        </VedleggNotis>
                     )}
 
                     {skjema.felter.skriftligAvtaleOmDeltBosted.erSynlig && (
@@ -131,18 +119,13 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                             <JaNeiSpm
                                 skjema={skjema}
                                 felt={skjema.felter.skriftligAvtaleOmDeltBosted}
-                                spørsmålTekstId={
-                                    omBarnetSpørsmålSpråkId[
-                                        OmBarnetSpørsmålsId.skriftligAvtaleOmDeltBosted
-                                    ]
-                                }
-                                språkValues={{ navn: barn.navn }}
+                                spørsmålDokument={deltBosted}
+                                barnetsNavn={barnetsNavn}
                             />
                             {skjema.felter.skriftligAvtaleOmDeltBosted.verdi === ESvar.JA && (
-                                <VedleggNotis
-                                    språkTekstId={'ombarnet.delt-bosted.vedleggsinfo'}
-                                    dynamisk
-                                />
+                                <VedleggNotis dynamisk>
+                                    <BodyShort>{deltBosted.vedleggsnotis}</BodyShort>
+                                </VedleggNotis>
                             )}
                         </>
                     )}

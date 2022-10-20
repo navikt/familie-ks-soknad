@@ -52,7 +52,7 @@ export const TypografiWrapper: React.FC<Props> = ({ children, typografi }) => {
                     {children}
                 </Heading>
             );
-        case Typografi.PeriodeOppsummeringHeadingH2:
+        case Typografi.HeadingH2:
             return (
                 <Heading level={'2'} size={'xsmall'} spacing>
                     {children}
@@ -65,7 +65,7 @@ export const TypografiWrapper: React.FC<Props> = ({ children, typografi }) => {
         case Typografi.BodyShort:
             return <BodyShort>{children}</BodyShort>;
         case Typografi.Label:
-            return <StyledLabel>{children}</StyledLabel>;
+            return <StyledLabel spacing>{children}</StyledLabel>;
         case Typografi.Detail:
             return <Detail>{children}</Detail>;
         case Typografi.ErrorMessage:

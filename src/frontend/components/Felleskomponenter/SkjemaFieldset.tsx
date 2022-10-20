@@ -24,18 +24,23 @@ const StyledLegend = styled.legend`
 `;
 
 const SkjemaFieldset: React.FC<{
-    tittelId: string;
+    /** @deprecated **/
+    tittelId?: string;
+    tittel?: ReactNode; //todo: fjern optional når tittelId fjernes
     språkValues?: { [key: string]: ReactNode };
     dynamisk?: boolean;
     id?: string;
-}> = ({ tittelId, språkValues, dynamisk = false, id, children }) => {
+}> = ({ tittelId, tittel, språkValues, dynamisk = false, id, children }) => {
     return (
         <Container aria-live={dynamisk ? 'polite' : 'off'}>
-            <StyledLegend id={id}>
-                <Undertittel>
-                    <SpråkTekst id={tittelId} values={språkValues} />
-                </Undertittel>
-            </StyledLegend>
+            {tittelId && (
+                <StyledLegend id={id}>
+                    <Undertittel>
+                        <SpråkTekst id={tittelId} values={språkValues} />
+                    </Undertittel>
+                </StyledLegend>
+            )}
+            {tittel}
             {React.Children.map(children, child => {
                 return child && <div>{child}</div>;
             })}
