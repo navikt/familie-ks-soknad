@@ -1,6 +1,7 @@
 import { ISODateString } from '@navikt/familie-form-elements';
 import { Avhengigheter, useFelt } from '@navikt/familie-skjema';
 
+import { useApp } from '../context/AppContext';
 import { LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { validerDato } from '../utils/dato';
@@ -22,13 +23,15 @@ const useDatovelgerFelt = ({
     avhengigheter?: Avhengigheter;
     nullstillVedAvhengighetEndring?: boolean;
 }) => {
+    const { plainTekst } = useApp();
     return useFelt<ISODateString>({
         feltId: søknadsfelt.id,
         verdi: søknadsfelt.svar,
         valideringsfunksjon: (felt, avhengigheter) => {
             const startdatoAvgrensning = avhengigheter && avhengigheter.startdatoAvgrensning;
             const sluttdatoAvgrensning = avhengigheter && avhengigheter.sluttdatoAvgrensning;
-            const feilmelding = avhengigheter && (avhengigheter.feilmelding as LocaleRecordBlock);
+            const feilmelding =
+                avhengigheter && plainTekst(avhengigheter.feilmelding as LocaleRecordBlock);
 
             return validerDato(felt, feilmelding, startdatoAvgrensning, sluttdatoAvgrensning);
         },

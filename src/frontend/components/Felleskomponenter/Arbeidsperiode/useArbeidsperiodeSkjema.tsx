@@ -10,7 +10,6 @@ import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IArbeidsperioderFeltTyper } from '../../../typer/skjema';
 import { dagensDato, erSammeDatoSomDagensDato, gårsdagensDato } from '../../../utils/dato';
 import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
@@ -27,16 +26,16 @@ export const useArbeidsperiodeSkjema = (
     personType: PersonType,
     erDød = false
 ) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const { erEøsLand } = useEøs();
     const teksterForPersonType: IArbeidsperiodeTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode[personType];
+        tekster().FELLES.modaler.arbeidsperiode[personType];
 
     const andreForelderErDød = personType === PersonType.andreForelder && erDød;
 
     const arbeidsperiodeAvsluttet = useJaNeiSpmFelt({
         søknadsfelt: { id: ArbeidsperiodeSpørsmålsId.arbeidsperiodeAvsluttet, svar: null },
-        feilmeldingSpråkId: 'felles.erarbeidsperiodenavsluttet.feilmelding',
+        feilmelding: teksterForPersonType.arbeidsperiodenAvsluttet.feilmelding,
         skalSkjules: andreForelderErDød,
     });
 
@@ -56,7 +55,7 @@ export const useArbeidsperiodeSkjema = (
 
     const arbeidsgiver = useInputFelt({
         søknadsfelt: { id: ArbeidsperiodeSpørsmålsId.arbeidsgiver, svar: '' },
-        feilmeldingSpråkId: 'felles.oppgiarbeidsgiver.feilmelding',
+        feilmelding: teksterForPersonType.arbeidsgiver.feilmelding,
         skalVises: gjelderUtlandet
             ? erEøsLand(arbeidsperiodeLand.verdi)
             : arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
@@ -103,7 +102,9 @@ export const useArbeidsperiodeSkjema = (
         customStartdatoFeilmelding:
             erSammeDatoSomDagensDato(fraDatoArbeidsperiode.verdi) || periodenErAvsluttet
                 ? undefined
-                : 'felles.dato.tilbake-i-tid.feilmelding',
+                : plainTekst(
+                      tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
+                  ),
     });
 
     const skjema = useSkjema<IArbeidsperioderFeltTyper, 'string'>({
