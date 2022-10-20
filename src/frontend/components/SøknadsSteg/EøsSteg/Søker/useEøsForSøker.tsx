@@ -38,12 +38,7 @@ export const useEøsForSøker = (): {
     idNummerFelter: Felt<string>[];
 } => {
     const { søknad, settSøknad, tekster } = useApp();
-    const {
-        arbeidNorge,
-        hvorBor,
-        pensjonNorge: pensjonNorge1,
-        utbetalinger,
-    } = tekster().EØS_FOR_SØKER;
+    const { arbeidNorge, hvorBor, pensjonNorge, utbetalinger } = tekster().EØS_FOR_SØKER;
 
     const teksterForArbeidsperiode: IArbeidsperiodeTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode.søker;
@@ -106,7 +101,7 @@ export const useEøsForSøker = (): {
             return avhengigheter?.pensjonNorgeFelt.verdi === ESvar.NEI ||
                 (avhengigheter?.pensjonNorgeFelt.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <TekstBlock block={pensjonNorge1.feilmelding} />);
+                : feil(felt, <TekstBlock block={pensjonNorge.feilmelding} />);
         }
     );
 
