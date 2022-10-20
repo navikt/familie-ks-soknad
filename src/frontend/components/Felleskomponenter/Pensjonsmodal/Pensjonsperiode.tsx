@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { Element } from 'nav-frontend-typografi';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import { IPensjonsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import {
@@ -17,14 +16,10 @@ import {
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 import { PensjonModal } from './Pensjonsmodal';
 import { PensjonsperiodeOppsummering } from './PensjonsperiodeOppsummering';
-import {
-    pensjonSpørsmålDokument,
-    pensjonFlerePerioderSpmSpråkId,
-    pensjonsperiodeKnappSpråkId,
-} from './språkUtils';
+import { pensjonSpørsmålDokument } from './språkUtils';
 import { PensjonsperiodeSpørsmålId } from './spørsmål';
 
 interface PensjonsperiodeProps {
@@ -56,6 +51,8 @@ export const Pensjonsperiode: React.FC<Props> = ({
     barn,
 }) => {
     const { tekster } = useApp();
+    const teksterForModal = tekster().FELLES.modaler.pensjonsperiode[personType];
+
     const { erÅpen: pensjonsmodalErÅpen, toggleModal: togglePensjonsmodal } = useModal();
 
     return (
@@ -87,25 +84,26 @@ export const Pensjonsperiode: React.FC<Props> = ({
                         />
                     ))}
                     {registrertePensjonsperioder.verdi.length > 0 && (
-                        <Element>
-                            <SpråkTekst
-                                id={pensjonFlerePerioderSpmSpråkId(gjelderUtlandet, personType)}
-                                values={{
-                                    ...(barn && { barn: barn.navn }),
-                                }}
-                            />
-                        </Element>
+                        <TekstBlock
+                            block={teksterForModal.flerePerioder}
+                            typografi={Typografi.Label}
+                            flettefelter={{
+                                barnetsNavn: barn?.navn,
+                                gjelderUtland: gjelderUtlandet,
+                            }}
+                        />
                     )}
                     <LeggTilKnapp
                         onClick={togglePensjonsmodal}
-                        språkTekst={pensjonsperiodeKnappSpråkId(gjelderUtlandet)}
                         id={PensjonsperiodeSpørsmålId.pensjonsperioder}
                         feilmelding={
                             registrertePensjonsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&
                             registrertePensjonsperioder.feilmelding
                         }
-                    />
+                    >
+                        <TekstBlock block={teksterForModal.leggTilKnapp} />
+                    </LeggTilKnapp>
                     <PensjonModal
                         erÅpen={pensjonsmodalErÅpen}
                         toggleModal={togglePensjonsmodal}

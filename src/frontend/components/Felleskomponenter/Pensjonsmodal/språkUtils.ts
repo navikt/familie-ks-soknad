@@ -15,36 +15,10 @@ export const mottarPensjonNåFeilmeldingSpråkId = (personType: PersonType): str
     }
 };
 
-export const pensjonsperiodeKnappSpråkId = (gjelderUtlandet: boolean): string =>
-    gjelderUtlandet
-        ? 'felles.leggtilpensjon.utland.modal.tittel'
-        : 'felles.leggtilpensjon.norge.knapp';
-
 export const pensjonsperiodeFeilmelding = (gjelderUtlandet: boolean): string =>
     gjelderUtlandet
         ? 'felles.modal.leggtilpensjonutland.feilmelding'
         : 'felles.modal.leggtilpensjonnorge.feilmelding';
-
-export const pensjonFlerePerioderSpmSpråkId = (
-    gjelderUtlandet: boolean,
-    personType: PersonType
-): string => {
-    switch (personType) {
-        case PersonType.andreForelder:
-            return gjelderUtlandet
-                ? 'ombarnet.flerepensjonsperioder.spm'
-                : 'eøs-om-barn.leggtilpensjonandreforelder.spm';
-        case PersonType.omsorgsperson:
-            return gjelderUtlandet
-                ? 'eøs-om-barn.omsorgsperson-pensjon-utland-flere-perioder.spm'
-                : 'eøs-om-barn.omsorgsperson-pensjon-norge-flere-perioder.spm';
-        case PersonType.søker:
-        default:
-            return gjelderUtlandet
-                ? 'omdeg.leggtilpensjonutland.spm'
-                : 'eøs-om-deg.leggtilpensjon.spm';
-    }
-};
 
 export const pensjonSpørsmålDokument = (
     gjelderUtlandet: boolean,
