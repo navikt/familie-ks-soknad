@@ -67,7 +67,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
                     erDød
                 )}
                 inkluderVetIkke={personType !== PersonType.søker}
-                barnetsNavn={barn?.navn}
+                barnetsNavn={barn?.navn} //todo: fikse flettefelt når Halvor har merget sin
             />
             {mottarEllerMottattPensjonFelt.verdi === ESvar.JA && (
                 <>
