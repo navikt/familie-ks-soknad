@@ -8,7 +8,6 @@ import { Typografi } from '../../../typer/common';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { dagensDato, gårsdagensDato } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
@@ -48,7 +47,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
         useArbeidsperiodeSkjema(gjelderUtlandet, personType, erDød);
 
     const teksterForModal: IArbeidsperiodeTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode[personType];
+        tekster().FELLES.modaler.arbeidsperiode[personType];
 
     const {
         arbeidsperiodeAvsluttet,

@@ -8,7 +8,6 @@ import { Typografi } from '../../../typer/common';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
@@ -48,7 +47,7 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
     } = arbeidsperiode;
 
     const teksterForModal: IArbeidsperiodeTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode[personType];
+        tekster().FELLES.modaler.arbeidsperiode[personType];
 
     const periodenErAvsluttet =
         arbeidsperiodeAvsluttet?.svar === ESvar.JA ||

@@ -8,7 +8,6 @@ import { Typografi } from '../../../typer/common';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
 import {
     IDinLivssituasjonFeltTyper,
     IEøsForBarnFeltTyper,
@@ -55,7 +54,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
     const { tekster } = useApp();
     const { erÅpen: arbeidsmodalErÅpen, toggleModal: toggleArbeidsmodal } = useModal();
     const teksterForModal: IArbeidsperiodeTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode[personType];
+        tekster().FELLES.modaler.arbeidsperiode[personType];
     const { flerePerioder, leggTilKnapp } = teksterForModal;
 
     return (
@@ -113,6 +112,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                         gjelderUtlandet={gjelderUtlandet}
                         personType={personType}
                         erDød={erDød}
+                        barn={barn}
                     />
                 </>
             )}

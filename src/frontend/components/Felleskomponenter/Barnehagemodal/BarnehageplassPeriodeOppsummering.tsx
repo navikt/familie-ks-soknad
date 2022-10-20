@@ -6,7 +6,6 @@ import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { formaterDato } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
@@ -39,7 +38,7 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
     const [valgtLocale] = useSprakContext();
     const { tekster, plainTekst } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
+        tekster().FELLES.modaler.barnehageplass;
     return (
         <PeriodeOppsummering
             fjernPeriodeCallback={

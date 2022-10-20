@@ -7,7 +7,6 @@ import { Typografi } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
@@ -39,7 +38,7 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
         periode;
     const årsak = utenlandsoppholdÅrsak.svar;
     const teksterForPersonType: IUtenlandsoppholdTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
+        tekster().FELLES.modaler.utenlandsopphold[personType];
 
     return (
         <>
