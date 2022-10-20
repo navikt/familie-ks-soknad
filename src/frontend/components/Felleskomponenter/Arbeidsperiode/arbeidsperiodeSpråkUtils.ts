@@ -8,32 +8,6 @@ export const arbeidsperiodeOppsummeringOverskrift = (gjelderUtlandet: boolean): 
         ? 'felles.flerearbeidsperioderutland.periode'
         : 'felles.flerearbeidsperiodernorge.periode';
 
-export const arbeidsperiodeLeggTilFlereKnapp = (gjelderUtlandet: boolean): string =>
-    gjelderUtlandet
-        ? 'felles.flerearbeidsperioderutland.tittel'
-        : 'felles.flerearbeidsperiodernorge.tittel';
-
-export const arbeidsperiodeFlereSpørsmål = (
-    gjelderUtlandet: boolean,
-    personType: PersonType
-): string => {
-    switch (personType) {
-        case PersonType.andreForelder:
-            return gjelderUtlandet
-                ? 'eøs.andre-forelder.arbeid-utland-perioder.spm'
-                : 'eøs-om-barn.annenforelderflerearbeidsperiodenorge.spm';
-        case PersonType.omsorgsperson:
-            return gjelderUtlandet
-                ? 'eøs-om-barn.omsorgsperson-arbeid-utland-perioder.spm'
-                : 'eøs-om-barn.omsorgspersonflerearbeidsperiodenorge.spm';
-        case PersonType.søker:
-        default:
-            return gjelderUtlandet
-                ? 'eøs.arbeid-utland-perioder.spm'
-                : 'eøs-om-deg.flerearbeidsperioderinorge.spm';
-    }
-};
-
 export const arbeidsperiodeFeilmelding = (gjelderUtlandet: boolean): string =>
     gjelderUtlandet
         ? 'felles.flerearbeidsperioderutland.feilmelding'

@@ -2,8 +2,13 @@ import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { useApp } from '../../../context/AppContext';
+import { IBarnMedISøknad } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
+import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { dagensDato, gårsdagensDato } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
@@ -17,8 +22,7 @@ import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeilopps
 import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import { arbeidsperiodeModalSpørsmålSpråkId } from './arbeidsperiodeSpråkUtils';
+import TekstBlock from '../TekstBlock';
 import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
 import { IUseArbeidsperiodeSkjemaParams, useArbeidsperiodeSkjema } from './useArbeidsperiodeSkjema';
 
@@ -27,6 +31,7 @@ interface ArbeidsperiodeModalProps
         IUseArbeidsperiodeSkjemaParams {
     onLeggTilArbeidsperiode: (periode: IArbeidsperiode) => void;
     gjelderUtlandet: boolean;
+    barn?: IBarnMedISøknad;
 }
 
 export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
@@ -36,9 +41,14 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
     gjelderUtlandet = false,
     personType,
     erDød = false,
+    barn,
 }) => {
+    const { tekster, plainTekst } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
         useArbeidsperiodeSkjema(gjelderUtlandet, personType, erDød);
+
+    const teksterForModal: IArbeidsperiodeTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode[personType];
 
     const {
         arbeidsperiodeAvsluttet,
@@ -84,22 +94,22 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
         nullstillSkjema();
     };
 
-    const modalTittel = gjelderUtlandet
-        ? 'felles.flerearbeidsperioderutland.tittel'
-        : 'felles.flerearbeidsperiodernorge.tittel';
-
     const periodenErAvsluttet =
         arbeidsperiodeAvsluttet.verdi === ESvar.JA ||
         (personType === PersonType.andreForelder && erDød);
 
-    const hentSpørsmålTekstId = arbeidsperiodeModalSpørsmålSpråkId(personType, periodenErAvsluttet);
-
     return (
         <SkjemaModal
             erÅpen={erÅpen}
-            modalTittelSpråkId={modalTittel}
+            tittel={
+                <TekstBlock
+                    block={teksterForModal.tittel}
+                    flettefelter={{ gjelderUtland: gjelderUtlandet }}
+                    typografi={Typografi.ModalHeadingH1}
+                />
+            }
             onSubmitCallback={onLeggTil}
-            submitKnappSpråkId={'felles.leggtilarbeidsperiode.knapp'}
+            submitKnappTekst={<TekstBlock block={teksterForModal.leggTilKnapp} />}
             toggleModal={toggleModal}
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
@@ -109,9 +119,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                     <JaNeiSpm
                         skjema={skjema}
                         felt={skjema.felter.arbeidsperiodeAvsluttet}
-                        spørsmålTekstId={hentSpørsmålTekstId(
-                            ArbeidsperiodeSpørsmålsId.arbeidsperiodeAvsluttet
-                        )}
+                        spørsmålDokument={teksterForModal.arbeidsperiodenAvsluttet}
                     />
                 )}
                 {arbeidsperiodeLand.erSynlig && (
@@ -120,10 +128,13 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                             felt={skjema.felter.arbeidsperiodeLand}
                             skjema={skjema}
                             label={
-                                <SpråkTekst
-                                    id={hentSpørsmålTekstId(
-                                        ArbeidsperiodeSpørsmålsId.arbeidsperiodeLand
-                                    )}
+                                <TekstBlock
+                                    block={
+                                        periodenErAvsluttet
+                                            ? teksterForModal.hvilketLandFortid.sporsmal
+                                            : teksterForModal.hvilketLandNaatid.sporsmal
+                                    }
+                                    flettefelter={{ barnetsNavn: barn?.navn }}
                                 />
                             }
                             dynamisk
@@ -135,22 +146,14 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                     <SkjemaFeltInput
                         felt={skjema.felter.arbeidsgiver}
                         visFeilmeldinger={skjema.visFeilmeldinger}
-                        labelSpråkTekstId={hentSpørsmålTekstId(
-                            ArbeidsperiodeSpørsmålsId.arbeidsgiver
-                        )}
+                        label={<TekstBlock block={teksterForModal.arbeidsgiver.sporsmal} />}
                     />
                 )}
                 {fraDatoArbeidsperiode.erSynlig && (
                     <Datovelger
                         felt={skjema.felter.fraDatoArbeidsperiode}
                         skjema={skjema}
-                        label={
-                            <SpråkTekst
-                                id={hentSpørsmålTekstId(
-                                    ArbeidsperiodeSpørsmålsId.fraDatoArbeidsperiode
-                                )}
-                            />
-                        }
+                        label={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
                         calendarPosition={'fullscreen'}
                         avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
                     />
@@ -161,10 +164,12 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                             felt={skjema.felter.tilDatoArbeidsperiode}
                             skjema={skjema}
                             label={
-                                <SpråkTekst
-                                    id={hentSpørsmålTekstId(
-                                        ArbeidsperiodeSpørsmålsId.tilDatoArbeidsperiode
-                                    )}
+                                <TekstBlock
+                                    block={
+                                        periodenErAvsluttet
+                                            ? teksterForModal.sluttdatoFortid.sporsmal
+                                            : teksterForModal.sluttdatoFremtid.sporsmal
+                                    }
                                 />
                             }
                             avgrensMinDato={minTilDatoForUtbetalingEllerArbeidsperiode(
@@ -178,9 +183,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
 
                         <SkjemaCheckbox
                             felt={skjema.felter.tilDatoArbeidsperiodeUkjent}
-                            labelSpråkTekstId={hentSpørsmålTekstId(
-                                ArbeidsperiodeSpørsmålsId.tilDatoArbeidsperiodeVetIkke
-                            )}
+                            label={plainTekst(teksterForModal.sluttdatoFremtid.checkboxLabel)}
                         />
                     </>
                 )}

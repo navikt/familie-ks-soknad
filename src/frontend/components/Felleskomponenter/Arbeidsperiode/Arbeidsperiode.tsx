@@ -1,13 +1,14 @@
 import React from 'react';
 
-import { Element } from 'nav-frontend-typografi';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
+import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import {
     IDinLivssituasjonFeltTyper,
     IEøsForBarnFeltTyper,
@@ -17,14 +18,10 @@ import {
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 import { ArbeidsperiodeModal } from './ArbeidsperiodeModal';
 import { ArbeidsperiodeOppsummering } from './ArbeidsperiodeOppsummering';
-import {
-    arbeidsperiodeFlereSpørsmål,
-    arbeidsperiodeLeggTilFlereKnapp,
-    arbeidsperiodeSpørsmålDokument,
-} from './arbeidsperiodeSpråkUtils';
+import { arbeidsperiodeSpørsmålDokument } from './arbeidsperiodeSpråkUtils';
 import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
 
 interface ArbeidsperiodeProps {
@@ -57,7 +54,9 @@ export const Arbeidsperiode: React.FC<Props> = ({
 }) => {
     const { tekster } = useApp();
     const { erÅpen: arbeidsmodalErÅpen, toggleModal: toggleArbeidsmodal } = useModal();
-    const barnetsNavn = !!barn && barn.navn;
+    const teksterForModal: IArbeidsperiodeTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode[personType];
+    const { flerePerioder, leggTilKnapp } = teksterForModal;
 
     return (
         <>
@@ -87,25 +86,26 @@ export const Arbeidsperiode: React.FC<Props> = ({
                         />
                     ))}
                     {registrerteArbeidsperioder.verdi.length > 0 && (
-                        <Element>
-                            <SpråkTekst
-                                id={arbeidsperiodeFlereSpørsmål(gjelderUtlandet, personType)}
-                                values={{
-                                    ...(barnetsNavn && { barn: barnetsNavn }),
-                                }}
-                            />
-                        </Element>
+                        <TekstBlock
+                            block={flerePerioder}
+                            typografi={Typografi.Label}
+                            flettefelter={{
+                                gjelderUtland: gjelderUtlandet,
+                                barnetsNavn: barn?.navn,
+                            }}
+                        />
                     )}
                     <LeggTilKnapp
                         onClick={toggleArbeidsmodal}
-                        språkTekst={arbeidsperiodeLeggTilFlereKnapp(gjelderUtlandet)}
                         id={ArbeidsperiodeSpørsmålsId.arbeidsperioder}
                         feilmelding={
                             registrerteArbeidsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&
                             registrerteArbeidsperioder.feilmelding
                         }
-                    />
+                    >
+                        <TekstBlock block={leggTilKnapp} />
+                    </LeggTilKnapp>
                     <ArbeidsperiodeModal
                         erÅpen={arbeidsmodalErÅpen}
                         toggleModal={toggleArbeidsmodal}
