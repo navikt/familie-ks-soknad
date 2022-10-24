@@ -13,7 +13,6 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IUtbetalingerFeltTyper } from '../../../typer/skjema';
 import { dagensDato, erSammeDatoSomDagensDato, gårsdagensDato } from '../../../utils/dato';
 import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
-import { fårUtbetalingNåFeilmelding } from './språkUtils';
 import { UtbetalingerSpørsmålId } from './spørsmål';
 
 export interface IUseUtbetalingerSkjemaParams {
@@ -23,16 +22,16 @@ export interface IUseUtbetalingerSkjemaParams {
 }
 
 export const useUtbetalingerSkjema = (personType, barn, erDød) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const teksterForPersontype: IAndreUtbetalingerTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.andreUtbetalinger[personType];
     const andreForelderErDød = personType === PersonType.andreForelder && erDød;
 
     const fårUtbetalingNå = useJaNeiSpmFelt({
         søknadsfelt: { id: UtbetalingerSpørsmålId.fårUtbetalingNå, svar: null },
-        feilmeldingSpråkId: fårUtbetalingNåFeilmelding(personType),
         skalSkjules: andreForelderErDød,
-        feilmeldingSpråkVerdier: barn ? { barn: barn.navn } : undefined,
+        feilmelding: teksterForPersontype.faarUtbetalingerNaa.feilmelding,
+        flettefelter: { barnetsNavn: barn?.navn },
     });
 
     const periodenErAvsluttet = fårUtbetalingNå.verdi === ESvar.NEI || andreForelderErDød;
@@ -83,7 +82,9 @@ export const useUtbetalingerSkjema = (personType, barn, erDød) => {
         customStartdatoFeilmelding:
             erSammeDatoSomDagensDato(utbetalingFraDato.verdi) || periodenErAvsluttet
                 ? undefined
-                : 'felles.dato.tilbake-i-tid.feilmelding',
+                : plainTekst(
+                      tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
+                  ),
     });
 
     const skjema = useSkjema<IUtbetalingerFeltTyper, 'string'>({

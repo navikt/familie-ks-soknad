@@ -3,16 +3,17 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
+import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { IUtbetalingsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
+import { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import { utbetalingsperiodeModalSpørsmålSpråkIder } from './språkUtils';
-import { UtbetalingerSpørsmålId } from './spørsmål';
+import TekstBlock from '../TekstBlock';
 
 interface Props {
     utbetalingsperiode: IUtbetalingsperiode;
@@ -35,55 +36,60 @@ export const UtbetalingsperiodeOppsummering: React.FC<UtbetalingsperiodeOppsumme
     erDød = false,
     barn = undefined,
 }) => {
+    const { tekster, plainTekst } = useApp();
     const [valgtLocale] = useSprakContext();
     const { fårUtbetalingNå, utbetalingLand, utbetalingFraDato, utbetalingTilDato } =
         utbetalingsperiode;
 
+    const teksterForPersontype: IAndreUtbetalingerTekstinnhold =
+        tekster().FELLES.modaler.andreUtbetalinger[personType];
+
     const periodenErAvsluttet =
         fårUtbetalingNå?.svar === ESvar.NEI || (personType === PersonType.andreForelder && erDød);
-
-    const hentSpørsmålTekstId = utbetalingsperiodeModalSpørsmålSpråkIder(
-        personType,
-        periodenErAvsluttet
-    );
-
-    const utbetalingerSpørsmålSpråkTekst = (spørsmålId: UtbetalingerSpørsmålId) => (
-        <SpråkTekst
-            id={hentSpørsmålTekstId(spørsmålId)}
-            values={{
-                ...(barn && { barn: barn.navn }),
-            }}
-        />
-    );
 
     return (
         <PeriodeOppsummering
             fjernPeriodeCallback={
                 fjernPeriodeCallback && (() => fjernPeriodeCallback(utbetalingsperiode))
             }
-            fjernKnappSpråkId={'felles.fjernytelse.knapp'}
-            nummer={nummer}
-            tittelSpråkId={'felles.flereytelser.periode'}
+            fjernKnappTekst={teksterForPersontype.fjernKnapp}
+            tittel={
+                <TekstBlock
+                    block={teksterForPersontype.oppsummeringstittel}
+                    flettefelter={{ antall: nummer.toString() }}
+                    typografi={Typografi.HeadingH2}
+                />
+            }
         >
             {fårUtbetalingNå.svar && (
                 <OppsummeringFelt
-                    tittel={utbetalingerSpørsmålSpråkTekst(UtbetalingerSpørsmålId.fårUtbetalingNå)}
+                    spørsmålstekst={teksterForPersontype.faarUtbetalingerNaa.sporsmal}
                     søknadsvar={fårUtbetalingNå.svar}
+                    flettefelter={{ barnetsNavn: barn?.navn }}
                 />
             )}
             <OppsummeringFelt
-                tittel={utbetalingerSpørsmålSpråkTekst(UtbetalingerSpørsmålId.utbetalingLand)}
+                spørsmålstekst={
+                    periodenErAvsluttet
+                        ? teksterForPersontype.utbetalingLandFortid.sporsmal
+                        : teksterForPersontype.utbetalingLandNaatid.sporsmal
+                }
+                flettefelter={{ barnetsNavn: barn?.navn }}
                 søknadsvar={landkodeTilSpråk(utbetalingLand.svar, valgtLocale)}
             />
             <OppsummeringFelt
-                tittel={utbetalingerSpørsmålSpråkTekst(UtbetalingerSpørsmålId.utbetalingFraDato)}
+                spørsmålstekst={teksterForPersontype.startdato.sporsmal}
                 søknadsvar={formaterDato(utbetalingFraDato.svar)}
             />
             <OppsummeringFelt
-                tittel={utbetalingerSpørsmålSpråkTekst(UtbetalingerSpørsmålId.utbetalingTilDato)}
+                spørsmålstekst={
+                    periodenErAvsluttet
+                        ? teksterForPersontype.sluttdatoFortid.sporsmal
+                        : teksterForPersontype.sluttdatoFremtid.sporsmal
+                }
                 søknadsvar={formaterDatoMedUkjent(
                     utbetalingTilDato.svar,
-                    utbetalingerSpørsmålSpråkTekst(UtbetalingerSpørsmålId.utbetalingTilDatoVetIkke)
+                    plainTekst(teksterForPersontype.sluttdatoFremtid.checkboxLabel)
                 )}
             />
         </PeriodeOppsummering>

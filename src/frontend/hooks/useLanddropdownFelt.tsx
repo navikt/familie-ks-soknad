@@ -1,11 +1,9 @@
-import React from 'react';
-
 import { Alpha3Code } from 'i18n-iso-countries';
 
 import { feil, FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
-import TekstBlock from '../components/Felleskomponenter/TekstBlock';
-import { LocaleRecordBlock, Typografi } from '../typer/common';
+import { useApp } from '../context/AppContext';
+import { LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 
 const useLanddropdownFelt = ({
@@ -19,6 +17,7 @@ const useLanddropdownFelt = ({
     skalFeltetVises: boolean;
     nullstillVedAvhengighetEndring?: boolean;
 }) => {
+    const { plainTekst } = useApp();
     return useFelt<Alpha3Code | ''>({
         feltId: søknadsfelt.id,
         verdi: søknadsfelt.svar,
@@ -30,14 +29,7 @@ const useLanddropdownFelt = ({
                 ? ok(felt)
                 : feil(
                       felt,
-                      avhengigheter?.feilmelding ? (
-                          <TekstBlock
-                              block={avhengigheter.feilmelding}
-                              typografi={Typografi.ErrorMessage}
-                          />
-                      ) : (
-                          ''
-                      )
+                      avhengigheter?.feilmelding ? plainTekst(avhengigheter?.feilmelding) : ''
                   );
         },
         nullstillVedAvhengighetEndring,
