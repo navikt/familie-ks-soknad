@@ -1,5 +1,5 @@
 import { PersonType } from '../../../typer/personType';
-import { ESanitySteg, ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
+import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { ITekstinnhold } from '../../../typer/sanity/tekstInnhold';
 import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
 
@@ -7,32 +7,6 @@ export const arbeidsperiodeOppsummeringOverskrift = (gjelderUtlandet: boolean): 
     gjelderUtlandet
         ? 'felles.flerearbeidsperioderutland.periode'
         : 'felles.flerearbeidsperiodernorge.periode';
-
-export const arbeidsperiodeLeggTilFlereKnapp = (gjelderUtlandet: boolean): string =>
-    gjelderUtlandet
-        ? 'felles.flerearbeidsperioderutland.tittel'
-        : 'felles.flerearbeidsperiodernorge.tittel';
-
-export const arbeidsperiodeFlereSpørsmål = (
-    gjelderUtlandet: boolean,
-    personType: PersonType
-): string => {
-    switch (personType) {
-        case PersonType.andreForelder:
-            return gjelderUtlandet
-                ? 'eøs.andre-forelder.arbeid-utland-perioder.spm'
-                : 'eøs-om-barn.annenforelderflerearbeidsperiodenorge.spm';
-        case PersonType.omsorgsperson:
-            return gjelderUtlandet
-                ? 'eøs-om-barn.omsorgsperson-arbeid-utland-perioder.spm'
-                : 'eøs-om-barn.omsorgspersonflerearbeidsperiodenorge.spm';
-        case PersonType.søker:
-        default:
-            return gjelderUtlandet
-                ? 'eøs.arbeid-utland-perioder.spm'
-                : 'eøs-om-deg.flerearbeidsperioderinorge.spm';
-    }
-};
 
 export const arbeidsperiodeFeilmelding = (gjelderUtlandet: boolean): string =>
     gjelderUtlandet
@@ -49,24 +23,24 @@ export const arbeidsperiodeSpørsmålDokument = (
         case PersonType.andreForelder: {
             if (erDød) {
                 return gjelderUtlandet
-                    ? tekster()[ESanitySteg.OM_BARNET].arbeidUtenforNorgeAndreForelderGjenlevende
-                    : tekster()[ESanitySteg.EØS_FOR_BARN].arbeidNorgeAndreForelderGjenlevende;
+                    ? tekster().OM_BARNET.arbeidUtenforNorgeAndreForelderGjenlevende
+                    : tekster().EØS_FOR_BARN.arbeidNorgeAndreForelderGjenlevende;
             } else {
                 return gjelderUtlandet
-                    ? tekster()[ESanitySteg.OM_BARNET].arbeidUtenforNorgeAndreForelder
-                    : tekster()[ESanitySteg.EØS_FOR_BARN].arbeidNorgeAndreForelder;
+                    ? tekster().OM_BARNET.arbeidUtenforNorgeAndreForelder
+                    : tekster().EØS_FOR_BARN.arbeidNorgeAndreForelder;
             }
         }
         case PersonType.omsorgsperson: {
             return gjelderUtlandet
-                ? tekster()[ESanitySteg.EØS_FOR_BARN].arbeidUtenforNorgeOmsorgsperson
-                : tekster()[ESanitySteg.EØS_FOR_BARN].arbeidNorgeOmsorgsperson;
+                ? tekster().EØS_FOR_BARN.arbeidUtenforNorgeOmsorgsperson
+                : tekster().EØS_FOR_BARN.arbeidNorgeOmsorgsperson;
         }
         case PersonType.søker:
         default:
             return gjelderUtlandet
-                ? tekster()[ESanitySteg.DIN_LIVSSITUASJON].arbeidUtenforNorge
-                : tekster()[ESanitySteg.EØS_FOR_SØKER].arbeidNorge;
+                ? tekster().DIN_LIVSSITUASJON.arbeidUtenforNorge
+                : tekster().EØS_FOR_SØKER.arbeidNorge;
     }
 };
 

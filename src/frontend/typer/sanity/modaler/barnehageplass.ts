@@ -21,4 +21,5 @@ export interface IBarnehageplassTekstinnhold {
     valgalternativBarnehageplassNaa: LocaleRecordString;
     valgalternativBarnehageplassTidligere: LocaleRecordString;
     valgalternativPlaceholder: LocaleRecordString;
+    oppsummeringstittel: LocaleRecordBlock;
 }

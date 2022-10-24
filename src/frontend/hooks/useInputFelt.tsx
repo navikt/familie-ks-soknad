@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { feil, FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
-import TekstBlock from '../components/Felleskomponenter/TekstBlock';
-import { LocaleRecordBlock, Typografi } from '../typer/common';
+import { useApp } from '../context/AppContext';
+import { LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
 
@@ -30,8 +30,9 @@ const useInputFelt = ({
     customValidering = undefined,
     nullstillVedAvhengighetEndring = true,
     feilmeldingSpråkVerdier,
-}: Props) =>
-    useFelt<string>({
+}: Props) => {
+    const { plainTekst } = useApp();
+    return useFelt<string>({
         feltId: søknadsfelt?.id ?? uuidv4(),
         verdi: søknadsfelt ? trimWhiteSpace(søknadsfelt.svar) : '',
         valideringsfunksjon: (felt: FeltState<string>) => {
@@ -45,7 +46,7 @@ const useInputFelt = ({
                       feilmeldingSpråkId ? (
                           <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
                       ) : (
-                          <TekstBlock block={feilmelding} typografi={Typografi.ErrorMessage} />
+                          plainTekst(feilmelding)
                       )
                   );
         },
@@ -53,5 +54,6 @@ const useInputFelt = ({
         skalFeltetVises: avhengigheter => avhengigheter.skalVises,
         nullstillVedAvhengighetEndring,
     });
+};
 
 export default useInputFelt;
