@@ -5,13 +5,13 @@ import styled from 'styled-components';
 
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../../context/AppContext';
 import { useEøs } from '../../../../context/EøsContext';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../typer/barn';
 import { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
 import { skalSpørreOmIdNummerForPågåendeSøknadEøsLand } from '../../../../utils/barn';
 import { IdNummer } from '../IdNummer';
 import { idNummerLandMedPeriodeType, PeriodeType } from '../idnummerUtils';
-import { EøsBarnSpørsmålId, eøsBarnSpørsmålSpråkId } from './spørsmål';
 
 const IdNummerForBarn: React.FC<{
     landAlphaCode: Alpha3Code | '';
@@ -28,12 +28,10 @@ const IdNummerForBarn: React.FC<{
     periodeType = undefined,
     lesevisning = false,
 }) => {
+    const { tekster } = useApp();
     return (
         <IdNummer
             lesevisning={lesevisning}
-            spørsmålSpråkId={eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.idNummer]}
-            spørsmålCheckboxSpråkId={eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.idNummerUkjent]}
-            feilmeldingSpråkId={'eøs-om-barn.barnidnummer.feilmelding'}
             idNummerVerdiFraSøknad={
                 barn.idNummer.find(verdi => verdi.land === landAlphaCode)?.idnummer
             }
@@ -42,6 +40,7 @@ const IdNummerForBarn: React.FC<{
             landAlphaCode={landAlphaCode}
             periodeType={periodeType}
             barn={barn}
+            spørsmålDokument={tekster().EØS_FOR_BARN.idNummerBarn}
         />
     );
 };

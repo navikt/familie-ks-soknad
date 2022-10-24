@@ -20,6 +20,7 @@ export type FlettefeltVerdier = {
     gjelderUtland?: boolean;
     antall?: string;
     totalAntall?: string;
+    land?: string;
 };
 
 export interface IUtenlandsperiodeIKontraktFormat {
