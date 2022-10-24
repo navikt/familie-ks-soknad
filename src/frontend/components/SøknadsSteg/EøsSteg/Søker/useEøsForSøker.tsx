@@ -17,7 +17,6 @@ import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { IEøsForSøkerFeltTyper } from '../../../../typer/skjema';
 import { valideringAdresse } from '../../../../utils/adresse';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
-import { pensjonsperiodeFeilmelding } from '../../../Felleskomponenter/Pensjonsmodal/språkUtils';
 import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { idNummerKeyPrefix } from '../idnummerUtils';
@@ -39,6 +38,7 @@ export const useEøsForSøker = (): {
     idNummerFelter: Felt<string>[];
 } => {
     const { søknad, settSøknad, tekster } = useApp();
+    const { arbeidNorge, hvorBor, pensjonNorge, utbetalinger } = tekster().EØS_FOR_SØKER;
 
     const teksterForArbeidsperiode: IArbeidsperiodeTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode.søker;
@@ -52,14 +52,14 @@ export const useEøsForSøker = (): {
             id: EøsSøkerSpørsmålId.adresseISøkeperiode,
             svar: søker.adresseISøkeperiode.svar,
         },
-        feilmeldingSpråkId: 'eøs-om-deg.dittoppholdssted.feilmelding',
+        feilmelding: hvorBor.feilmelding,
         skalVises: søker.triggetEøs,
         customValidering: valideringAdresse,
     });
 
     const arbeidINorge = useJaNeiSpmFelt({
         søknadsfelt: søker.arbeidINorge,
-        feilmeldingSpråkId: 'eøs-om-deg.arbeidsperioderinorge.feilmelding',
+        feilmelding: arbeidNorge.feilmelding,
     });
 
     const {
@@ -84,7 +84,7 @@ export const useEøsForSøker = (): {
         }
     );
 
-    const pensjonNorge = useJaNeiSpmFelt({
+    const pensjonNorgeFelt = useJaNeiSpmFelt({
         søknadsfelt: søker.pensjonNorge,
         feilmeldingSpråkId: 'eøs-om-deg.pensjoninorge.feilmelding',
     });
@@ -94,20 +94,20 @@ export const useEøsForSøker = (): {
         registrertePerioder: registrertePensjonsperioder,
     } = usePerioder<IPensjonsperiode>(
         søker.pensjonsperioderNorge,
-        { pensjonNorge },
-        avhengigheter => avhengigheter.pensjonNorge.verdi === ESvar.JA,
+        { pensjonNorgeFelt },
+        avhengigheter => avhengigheter.pensjonNorgeFelt.verdi === ESvar.JA,
 
         (felt, avhengigheter) => {
-            return avhengigheter?.pensjonNorge.verdi === ESvar.NEI ||
-                (avhengigheter?.pensjonNorge.verdi === ESvar.JA && felt.verdi.length)
+            return avhengigheter?.pensjonNorgeFelt.verdi === ESvar.NEI ||
+                (avhengigheter?.pensjonNorgeFelt.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={pensjonsperiodeFeilmelding(false)} />);
+                : feil(felt, <TekstBlock block={pensjonNorge.feilmelding} />);
         }
     );
 
     const andreUtbetalinger = useJaNeiSpmFelt({
         søknadsfelt: søker.andreUtbetalinger,
-        feilmeldingSpråkId: 'eøs-om-deg.utbetalinger.feilmelding',
+        feilmelding: utbetalinger.feilmelding,
     });
     const {
         fjernPeriode: fjernAndreUtbetalingsperiode,
@@ -186,7 +186,7 @@ export const useEøsForSøker = (): {
             adresseISøkeperiode,
             arbeidINorge,
             registrerteArbeidsperioder,
-            pensjonNorge,
+            pensjonNorge: pensjonNorgeFelt,
             registrertePensjonsperioder,
             andreUtbetalinger,
             registrerteAndreUtbetalinger,

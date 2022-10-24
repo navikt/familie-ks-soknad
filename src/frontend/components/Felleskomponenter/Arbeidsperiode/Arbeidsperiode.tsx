@@ -69,7 +69,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                     erDød
                 )}
                 inkluderVetIkke={personType !== PersonType.søker}
-                barnetsNavn={barn?.navn}
+                flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {arbeiderEllerArbeidetFelt.verdi === ESvar.JA && (
                 <>
@@ -82,6 +82,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                             gjelderUtlandet={gjelderUtlandet}
                             personType={personType}
                             erDød={personType === PersonType.andreForelder && erDød}
+                            barn={personType !== PersonType.søker ? barn : undefined}
                         />
                     ))}
                     {registrerteArbeidsperioder.verdi.length > 0 && (

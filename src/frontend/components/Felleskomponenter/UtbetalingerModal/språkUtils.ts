@@ -1,25 +1,23 @@
 import { PersonType } from '../../../typer/personType';
-import { EøsBarnSpørsmålId, eøsBarnSpørsmålSpråkId } from '../../SøknadsSteg/EøsSteg/Barn/spørsmål';
-import {
-    EøsSøkerSpørsmålId,
-    eøsSøkerSpørsmålSpråkId,
-} from '../../SøknadsSteg/EøsSteg/Søker/spørsmål';
+import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
+import { ITekstinnhold } from '../../../typer/sanity/tekstInnhold';
 import { UtbetalingerSpørsmålId } from './spørsmål';
 
-export const mottarEllerMottattUtbetalingSpråkId = (
+export const mottarEllerMottattUtbetalingApiNavn = (
     personType: PersonType,
+    tekster: ITekstinnhold,
     erDød?: boolean
-): string => {
+): ISanitySpørsmålDokument => {
     switch (personType) {
         case PersonType.andreForelder:
             return erDød
-                ? eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.andreForelderAndreUtbetalingerEnke]
-                : eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.andreForelderAndreUtbetalinger];
+                ? tekster.EØS_FOR_BARN.utbetalingerAndreForelderGjenlevende
+                : tekster.EØS_FOR_BARN.utbetalingerAndreForelder;
         case PersonType.omsorgsperson:
-            return eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.omsorgspersonAndreUtbetalinger];
+            return tekster.EØS_FOR_BARN.utbetalingerOmsorgsperson;
         case PersonType.søker:
         default:
-            return eøsSøkerSpørsmålSpråkId[EøsSøkerSpørsmålId.utbetalinger];
+            return tekster.EØS_FOR_SØKER.utbetalinger;
     }
 };
 
