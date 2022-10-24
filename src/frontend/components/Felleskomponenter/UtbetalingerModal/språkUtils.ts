@@ -21,18 +21,6 @@ export const mottarEllerMottattUtbetalingApiNavn = (
     }
 };
 
-export const fårUtbetalingNåFeilmelding = (personType: PersonType) => {
-    switch (personType) {
-        case PersonType.andreForelder:
-            return 'eøs.andreforelderutbetalinger.feilmelding';
-        case PersonType.omsorgsperson:
-            return 'modal.omsorgsperson-utbetalinger.feilmelding';
-        case PersonType.søker:
-        default:
-            return 'eøs.utbetalinger.feilmelding';
-    }
-};
-
 const utbetalingsperiodeFellesSpørsmålSpråkId = (
     periodenErAvsluttet: boolean
 ): Record<
