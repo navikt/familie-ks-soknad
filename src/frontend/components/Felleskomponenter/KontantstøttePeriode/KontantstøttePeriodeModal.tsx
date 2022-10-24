@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
+import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
@@ -29,6 +30,7 @@ import {
 
 interface Props extends ReturnType<typeof useModal>, IUsePensjonsperiodeSkjemaParams {
     onLeggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
+    barn: IBarnMedISøknad;
 }
 const StyledAlertStripe = styled(AlertStripe)`
     margin: 1rem 0 1rem 0;
@@ -44,7 +46,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
 }) => {
     const { tekster } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
-        useKontantstøttePeriodeSkjema(personType, barn, erDød);
+        useKontantstøttePeriodeSkjema(personType, erDød);
 
     const teksterForPersonType: IEøsYtelseTekstinnhold =
         tekster().FELLES.modaler.eøsYtelse[personType];
