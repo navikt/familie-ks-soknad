@@ -21,18 +21,6 @@ export const mottarEllerMottattUtbetalingApiNavn = (
     }
 };
 
-export const utbetalingerFlerePerioderSpmSpråkId = (personType: PersonType) => {
-    switch (personType) {
-        case PersonType.andreForelder:
-            return 'eøs-om-barn.andreforelder-utbetalinger-andreperioder.spm';
-        case PersonType.omsorgsperson:
-            return 'eøs-om-barn.omsorgsperson-utbetalinger-flere-perioder.spm';
-        case PersonType.søker:
-        default:
-            return 'eøs-om-deg.flere-utbetalinger.spm';
-    }
-};
-
 export const fårUtbetalingNåFeilmelding = (personType: PersonType) => {
     switch (personType) {
         case PersonType.andreForelder:

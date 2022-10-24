@@ -1,22 +1,18 @@
 import React from 'react';
 
-import { Element } from 'nav-frontend-typografi';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import { IUtbetalingsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import {
-    mottarEllerMottattUtbetalingApiNavn,
-    utbetalingerFlerePerioderSpmSpråkId,
-} from './språkUtils';
+import TekstBlock from '../TekstBlock';
+import { mottarEllerMottattUtbetalingApiNavn } from './språkUtils';
 import { UtbetalingerSpørsmålId } from './spørsmål';
 import { UtbetalingerModal } from './UtbetalingerModal';
 import { UtbetalingsperiodeOppsummering } from './UtbetalingsperiodeOppsummering';
@@ -45,6 +41,8 @@ export const Utbetalingsperiode: React.FC<Props> = ({
     const { tekster } = useApp();
     const { erÅpen: utbetalingermodalErÅpen, toggleModal: toggleUtbetalingsmodal } = useModal();
 
+    const teksterForPersontype = tekster().FELLES.modaler.andreUtbetalinger[personType];
+
     const barnetsNavn = barn && barn.navn;
 
     return (
@@ -70,23 +68,26 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                         />
                     ))}
                     {registrerteUtbetalingsperioder.verdi.length > 0 && (
-                        <Element>
-                            <SpråkTekst
-                                id={utbetalingerFlerePerioderSpmSpråkId(personType)}
-                                values={{
-                                    ...(barn && { barn: barnetsNavn }),
-                                }}
-                            />
-                        </Element>
+                        <TekstBlock
+                            block={teksterForPersontype.flerePerioder}
+                            typografi={Typografi.Label}
+                            flettefelter={{
+                                barnetsNavn: barn?.navn,
+                            }}
+                        />
                     )}
                     <LeggTilKnapp
                         onClick={toggleUtbetalingsmodal}
-                        språkTekst={'felles.flereytelser.knapp'}
                         id={UtbetalingerSpørsmålId.utbetalingsperioder}
                         feilmelding={
-                            skjema.visFeilmeldinger && registrerteUtbetalingsperioder.feilmelding
+                            registrerteUtbetalingsperioder.erSynlig &&
+                            skjema.visFeilmeldinger &&
+                            registrerteUtbetalingsperioder.feilmelding
                         }
-                    />
+                    >
+                        <TekstBlock block={teksterForPersontype.leggTilKnapp} />
+                    </LeggTilKnapp>
+
                     <UtbetalingerModal
                         erÅpen={utbetalingermodalErÅpen}
                         toggleModal={toggleUtbetalingsmodal}
