@@ -5,6 +5,7 @@ import { Element } from 'nav-frontend-typografi';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import { IUtbetalingsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
@@ -13,7 +14,7 @@ import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import {
-    mottarEllerMottattUtbetalingSpråkId,
+    mottarEllerMottattUtbetalingApiNavn,
     utbetalingerFlerePerioderSpmSpråkId,
 } from './språkUtils';
 import { UtbetalingerSpørsmålId } from './spørsmål';
@@ -41,6 +42,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
     erDød,
     barn,
 }) => {
+    const { tekster } = useApp();
     const { erÅpen: utbetalingermodalErÅpen, toggleModal: toggleUtbetalingsmodal } = useModal();
 
     const barnetsNavn = barn && barn.navn;
@@ -50,14 +52,9 @@ export const Utbetalingsperiode: React.FC<Props> = ({
             <JaNeiSpm
                 skjema={skjema}
                 felt={tilhørendeJaNeiSpmFelt}
-                spørsmålTekstId={mottarEllerMottattUtbetalingSpråkId(personType, erDød)}
                 inkluderVetIkke={personType !== PersonType.søker}
-                språkValues={{
-                    ...(barn && {
-                        navn: barnetsNavn,
-                        barn: barnetsNavn,
-                    }),
-                }}
+                spørsmålDokument={mottarEllerMottattUtbetalingApiNavn(personType, tekster(), erDød)}
+                flettefelter={{ barnetsNavn: barnetsNavn }}
             />
             {tilhørendeJaNeiSpmFelt.verdi === ESvar.JA && (
                 <>

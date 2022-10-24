@@ -237,7 +237,10 @@ const [AppProvider, useApp] = createUseContext(() => {
             case ESanityFlettefeltverdi.SØKER_NAVN:
                 return søknad.søker.navn;
             case ESanityFlettefeltverdi.BARN_NAVN:
-                return flettefelter?.barnetsNavn ?? '';
+                if (!flettefelter?.barnetsNavn) {
+                    throw Error('Flettefeltet barnetsNavn ikke sendt med');
+                }
+                return flettefelter.barnetsNavn;
             case ESanityFlettefeltverdi.YTELSE:
                 return plainTekst(frittståendeOrd.kontantstoette);
             case ESanityFlettefeltverdi.I_UTENFOR:
@@ -248,6 +251,11 @@ const [AppProvider, useApp] = createUseContext(() => {
                 return plainTekst(
                     flettefelter?.gjelderUtland ? frittståendeOrd.utlandet : frittståendeOrd.norge
                 );
+            case ESanityFlettefeltverdi.LAND:
+                if (!flettefelter?.land) {
+                    throw Error('Flettefeltet land ikke sendt med');
+                }
+                return flettefelter.land;
         }
     };
 

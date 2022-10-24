@@ -9,6 +9,7 @@ import { ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { AlternativtSvarForInput } from '../../../typer/common';
+import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { logSpørsmålBesvart } from '../../../utils/amplitude';
@@ -26,7 +27,7 @@ interface IJaNeiSpmProps {
     /** @deprecated **/ // todo: legacy, fjerne denne når vi går over til sanity
     språkValues?: Record<string, ReactNode> | undefined;
     spørsmålDokument?: ISanitySpørsmålDokument;
-    barnetsNavn?: string;
+    flettefelter?: FlettefeltVerdier;
 }
 
 const TilleggsinfoWrapper = styled.div`
@@ -42,7 +43,7 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
     inkluderVetIkke = false,
     språkValues,
     spørsmålDokument,
-    barnetsNavn,
+    flettefelter,
 }) => {
     const [mounted, settMounted] = useState(false);
 
@@ -82,7 +83,7 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
                         <>
                             <TekstBlock
                                 block={spørsmålDokument.sporsmal}
-                                flettefelter={{ barnetsNavn }}
+                                flettefelter={flettefelter}
                             />
                             {tilleggsinfo && (
                                 <TilleggsinfoWrapper>{tilleggsinfo}</TilleggsinfoWrapper>

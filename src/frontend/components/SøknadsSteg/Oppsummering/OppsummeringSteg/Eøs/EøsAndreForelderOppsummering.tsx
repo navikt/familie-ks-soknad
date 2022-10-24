@@ -90,6 +90,7 @@ const EøsAndreForelderOppsummering: React.FC<{
                         personType={PersonType.andreForelder}
                         erDød={andreForelderErDød}
                         gjelderUtlandet={false}
+                        barn={barn}
                     />
                 ))}
                 {jaNeiSpmOppsummering(andreForelderDataKeySpørsmål.pensjonNorge)}

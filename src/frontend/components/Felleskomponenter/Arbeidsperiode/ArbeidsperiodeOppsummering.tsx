@@ -4,6 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
+import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
@@ -22,9 +23,9 @@ interface Props {
 }
 
 type ArbeidperiodeOppsummeringPersonTypeProps =
-    | { personType: PersonType.søker; erDød?: boolean }
-    | { personType: PersonType.omsorgsperson; erDød?: boolean }
-    | { personType: PersonType.andreForelder; erDød: boolean };
+    | { personType: PersonType.søker; erDød?: boolean; barn?: IBarnMedISøknad | undefined }
+    | { personType: PersonType.omsorgsperson; erDød?: boolean; barn: IBarnMedISøknad | undefined }
+    | { personType: PersonType.andreForelder; erDød: boolean; barn: IBarnMedISøknad | undefined };
 
 type ArbeidsperiodeOppsummeringProps = Props & ArbeidperiodeOppsummeringPersonTypeProps;
 
@@ -35,6 +36,7 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
     gjelderUtlandet,
     personType,
     erDød = false,
+    barn,
 }) => {
     const { tekster, plainTekst } = useApp();
     const [valgtLocale] = useSprakContext();
@@ -80,6 +82,7 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
                             ? teksterForModal.hvilketLandFortid.sporsmal
                             : teksterForModal.hvilketLandNaatid.sporsmal
                     }
+                    flettefelter={{ barnetsNavn: barn?.navn }}
                     søknadsvar={landkodeTilSpråk(arbeidsperiodeland.svar, valgtLocale)}
                 />
             )}

@@ -104,7 +104,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                         skjema={skjema}
                         felt={skjema.felter.borFastMedSøker}
                         spørsmålDokument={borBarnFastSammenMedDeg}
-                        barnetsNavn={barnetsNavn}
+                        flettefelter={{ barnetsNavn }}
                     />
                     {skjema.felter.borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker && (
                         <VedleggNotis dynamisk>
@@ -120,7 +120,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                                 skjema={skjema}
                                 felt={skjema.felter.skriftligAvtaleOmDeltBosted}
                                 spørsmålDokument={deltBosted}
-                                barnetsNavn={barnetsNavn}
+                                flettefelter={{ barnetsNavn }}
                             />
                             {skjema.felter.skriftligAvtaleOmDeltBosted.verdi === ESvar.JA && (
                                 <VedleggNotis dynamisk>

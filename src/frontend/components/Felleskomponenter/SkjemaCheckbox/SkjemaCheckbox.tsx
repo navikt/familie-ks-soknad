@@ -20,6 +20,7 @@ export const SkjemaCheckbox: React.FC<{
     /** @deprecated **/
     labelSpråkTekstId?: string;
     label?: ReactNode;
+    /** @deprecated **/
     språkVerdier?: { [key: string]: ReactNode };
 }> = ({ felt, visFeilmeldinger = false, labelSpråkTekstId, språkVerdier, label }) => {
     useFørsteRender(() => {
