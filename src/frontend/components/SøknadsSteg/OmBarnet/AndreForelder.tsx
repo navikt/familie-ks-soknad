@@ -151,6 +151,7 @@ const AndreForelder: React.FC<{
                                     skjema={skjema}
                                     felt={skjema.felter.andreForelderYrkesaktivFemÅr}
                                     spørsmålDokument={medlemAvFolktetrygdenAndreForelder}
+                                    flettefelter={{ barnetsNavn: barn.navn }}
                                 />
                             </KomponentGruppe>
                         )}

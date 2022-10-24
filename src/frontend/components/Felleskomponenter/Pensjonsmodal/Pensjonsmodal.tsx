@@ -101,8 +101,7 @@ export const PensjonModal: React.FC<Props> = ({
                         skjema={skjema}
                         felt={mottarPensjonNå}
                         spørsmålDokument={teksterForModal.faarPensjonNaa}
-                        //todo: flettefelter når Halvor sin er merget
-                        språkValues={{ ...(barn && { barn: barn.navn }) }}
+                        flettefelter={{ barnetsNavn: barn?.navn }}
                     />
                 )}
                 {pensjonsland.erSynlig && (
