@@ -3,15 +3,16 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
+import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
+import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { formaterDato } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import { kontantstøttePeriodeModalSpørsmålSpråkId } from './kontantstøttePeriodeSpråkUtils';
-import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
+import TekstBlock from '../TekstBlock';
 
 interface KontantstøttePeriodeProps {
     kontantstøttePeriode: IEøsKontantstøttePeriode;
@@ -35,6 +36,11 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
     erDød,
     personType,
 }) => {
+    const { tekster } = useApp();
+
+    const teksterForPersonType: IEøsYtelseTekstinnhold =
+        tekster().FELLES.modaler.eøsYtelse[personType];
+
     const {
         mottarEøsKontantstøtteNå,
         kontantstøtteLand,
@@ -48,52 +54,49 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
         (personType === PersonType.andreForelder && erDød);
     const [valgtLocale] = useSprakContext();
 
-    const hentSpørsmålTekstId = kontantstøttePeriodeModalSpørsmålSpråkId(
-        personType,
-        periodenErAvsluttet
-    );
-
-    const spørsmålSpråkTekst = (spørsmålId: KontantstøttePeriodeSpørsmålId) => (
-        <SpråkTekst id={hentSpørsmålTekstId(spørsmålId)} values={{ barn: barnetsNavn }} />
-    );
-
     return (
         <PeriodeOppsummering
             fjernPeriodeCallback={
                 fjernPeriodeCallback && (() => fjernPeriodeCallback(kontantstøttePeriode))
             }
-            fjernKnappSpråkId={'felles.fjernbarnetrygd.knapp'}
-            nummer={nummer}
-            tittelSpråkId={'ombarnet.trygdandreperioder.periode'}
+            fjernKnappTekst={teksterForPersonType.fjernKnapp}
+            tittel={
+                <TekstBlock
+                    block={teksterForPersonType.oppsummeringstittel}
+                    flettefelter={{ antall: nummer.toString() }}
+                    typografi={Typografi.HeadingH2}
+                />
+            }
         >
             {mottarEøsKontantstøtteNå.svar && (
                 <OppsummeringFelt
-                    tittel={spørsmålSpråkTekst(
-                        KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå
-                    )}
+                    spørsmålstekst={teksterForPersonType.faarYtelserNaa.sporsmal}
+                    flettefelter={{ barnetsNavn }}
                     søknadsvar={mottarEøsKontantstøtteNå.svar}
                 />
             )}
             <OppsummeringFelt
-                tittel={spørsmålSpråkTekst(KontantstøttePeriodeSpørsmålId.kontantstøtteLand)}
+                spørsmålstekst={
+                    periodenErAvsluttet
+                        ? teksterForPersonType.ytelseLandFortid.sporsmal
+                        : teksterForPersonType.ytelseLandNaatid.sporsmal
+                }
+                flettefelter={{ barnetsNavn }}
                 søknadsvar={landkodeTilSpråk(kontantstøtteLand.svar, valgtLocale)}
             />
             <OppsummeringFelt
-                tittel={spørsmålSpråkTekst(
-                    KontantstøttePeriodeSpørsmålId.fraDatoKontantstøttePeriode
-                )}
+                spørsmålstekst={teksterForPersonType.startdato.sporsmal}
                 søknadsvar={formaterDato(fraDatoKontantstøttePeriode.svar)}
             />
             {tilDatoKontantstøttePeriode.svar && (
                 <OppsummeringFelt
-                    tittel={spørsmålSpråkTekst(
-                        KontantstøttePeriodeSpørsmålId.tilDatoKontantstøttePeriode
-                    )}
+                    spørsmålstekst={teksterForPersonType.sluttdato.sporsmal}
                     søknadsvar={formaterDato(tilDatoKontantstøttePeriode.svar)}
                 />
             )}
             <OppsummeringFelt
-                tittel={spørsmålSpråkTekst(KontantstøttePeriodeSpørsmålId.månedligBeløp)}
+                spørsmålstekst={teksterForPersonType.beloepPerMaaned.sporsmal}
+                flettefelter={{ barnetsNavn }}
                 søknadsvar={månedligBeløp.svar}
             />
         </PeriodeOppsummering>
