@@ -3,19 +3,16 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
+import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { IPensjonsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { formaterDato } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import {
-    pensjonsperiodeModalSpørsmålSpråkId,
-    pensjonsperiodeOppsummeringOverskrift,
-} from './språkUtils';
-import { PensjonsperiodeSpørsmålId } from './spørsmål';
+import TekstBlock from '../TekstBlock';
 
 interface Props {
     pensjonsperiode: IPensjonsperiode;
@@ -41,55 +38,55 @@ export const PensjonsperiodeOppsummering: React.FC<PensjonsperiodeOppsummeringPr
     barn = undefined,
 }) => {
     const [valgtLocale] = useSprakContext();
+    const { tekster } = useApp();
+    const teksterForModal = tekster().FELLES.modaler.pensjonsperiode[personType];
+
     const { mottarPensjonNå, pensjonsland, pensjonFra, pensjonTil } = pensjonsperiode;
 
     const periodenErAvsluttet =
         mottarPensjonNå?.svar === ESvar.NEI || (personType === PersonType.andreForelder && !!erDød);
-
-    const hentPensjonsperiodeSpråkIder = pensjonsperiodeModalSpørsmålSpråkId(
-        personType,
-        periodenErAvsluttet
-    );
-
-    const spørsmålSpråkTekst = (spørsmålId: PensjonsperiodeSpørsmålId) => (
-        <SpråkTekst
-            id={hentPensjonsperiodeSpråkIder(spørsmålId)}
-            values={{
-                ...(barn && { barn: barn.navn }),
-            }}
-        />
-    );
 
     return (
         <PeriodeOppsummering
             fjernPeriodeCallback={
                 fjernPeriodeCallback && (() => fjernPeriodeCallback(pensjonsperiode))
             }
-            fjernKnappSpråkId={'felles.fjernpensjon.knapp'}
-            nummer={nummer}
-            tittelSpråkId={pensjonsperiodeOppsummeringOverskrift(gjelderUtlandet)}
+            fjernKnappTekst={teksterForModal.fjernKnapp}
+            tittel={
+                <TekstBlock
+                    block={teksterForModal.oppsummeringstittel}
+                    flettefelter={{ antall: nummer.toString(), gjelderUtland: gjelderUtlandet }}
+                    typografi={Typografi.Label}
+                />
+            }
         >
             {mottarPensjonNå.svar && (
                 <OppsummeringFelt
-                    tittel={spørsmålSpråkTekst(PensjonsperiodeSpørsmålId.mottarPensjonNå)}
+                    spørsmålstekst={teksterForModal.faarPensjonNaa.sporsmal}
                     søknadsvar={mottarPensjonNå.svar}
+                    flettefelter={{ barnetsNavn: barn?.navn }}
                 />
             )}
             {pensjonsland.svar && (
                 <OppsummeringFelt
-                    tittel={spørsmålSpråkTekst(PensjonsperiodeSpørsmålId.pensjonsland)}
+                    spørsmålstekst={
+                        periodenErAvsluttet
+                            ? teksterForModal.pensjonLandFortid.sporsmal
+                            : teksterForModal.pensjonLandNaatid.sporsmal
+                    }
                     søknadsvar={landkodeTilSpråk(pensjonsland.svar, valgtLocale)}
+                    flettefelter={{ barnetsNavn: barn?.navn }}
                 />
             )}
             {pensjonFra.svar && (
                 <OppsummeringFelt
-                    tittel={spørsmålSpråkTekst(PensjonsperiodeSpørsmålId.fraDatoPensjon)}
+                    spørsmålstekst={teksterForModal.startdato.sporsmal}
                     søknadsvar={formaterDato(pensjonFra.svar)}
                 />
             )}
             {pensjonTil.svar && (
                 <OppsummeringFelt
-                    tittel={spørsmålSpråkTekst(PensjonsperiodeSpørsmålId.tilDatoPensjon)}
+                    spørsmålstekst={teksterForModal.sluttdato.sporsmal}
                     søknadsvar={formaterDato(pensjonTil.svar)}
                 />
             )}
