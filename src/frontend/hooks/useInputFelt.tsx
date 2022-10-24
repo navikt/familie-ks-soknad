@@ -10,24 +10,27 @@ import { LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
 
+interface Props {
+    søknadsfelt: ISøknadSpørsmål<string> | null;
+    /** @deprecated **/
+    feilmeldingSpråkId?: string;
+    skalVises?: boolean;
+    customValidering?: ((felt: FeltState<string>) => FeltState<string>) | undefined;
+    nullstillVedAvhengighetEndring?: boolean;
+    /** @deprecated **/
+    feilmeldingSpråkVerdier?: Record<string, ReactNode>;
+    feilmelding?: LocaleRecordBlock; // todo: fjerne optional når vi går over til sanity
+}
+
 const useInputFelt = ({
     søknadsfelt,
-    /** @deprecated **/
     feilmeldingSpråkId,
     feilmelding,
     skalVises = true,
     customValidering = undefined,
     nullstillVedAvhengighetEndring = true,
     feilmeldingSpråkVerdier,
-}: {
-    søknadsfelt: ISøknadSpørsmål<string> | null;
-    feilmeldingSpråkId?: string;
-    feilmelding?: LocaleRecordBlock; // todo: fjerne optional når vi går over til sanity
-    skalVises?: boolean;
-    customValidering?: ((felt: FeltState<string>) => FeltState<string>) | undefined;
-    nullstillVedAvhengighetEndring?: boolean;
-    feilmeldingSpråkVerdier?: Record<string, ReactNode>;
-}) => {
+}: Props) => {
     const { plainTekst } = useApp();
     return useFelt<string>({
         feltId: søknadsfelt?.id ?? uuidv4(),

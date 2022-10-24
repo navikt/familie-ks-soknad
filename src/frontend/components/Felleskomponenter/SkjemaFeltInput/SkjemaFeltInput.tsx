@@ -13,6 +13,7 @@ interface SkjemaFeltInputProps extends InputProps {
     /** @deprecated **/
     labelSpråkTekstId?: string;
     label?: ReactNode;
+    /** @deprecated **/
     språkValues?: Record<string, ReactNode>;
     tilleggsinfo?: ReactNode;
     bredde?: 'fullbredde' | 'XXL' | 'XL' | 'L' | 'M' | 'S' | 'XS' | 'XXS';
