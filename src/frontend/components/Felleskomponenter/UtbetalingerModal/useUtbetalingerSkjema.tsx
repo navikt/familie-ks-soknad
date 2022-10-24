@@ -31,7 +31,7 @@ export const useUtbetalingerSkjema = (personType, barn, erDød) => {
         søknadsfelt: { id: UtbetalingerSpørsmålId.fårUtbetalingNå, svar: null },
         skalSkjules: andreForelderErDød,
         feilmelding: teksterForPersontype.faarUtbetalingerNaa.feilmelding,
-        flettefelter: { barnetsNavn: barn.navn },
+        flettefelter: { barnetsNavn: barn?.navn },
     });
 
     const periodenErAvsluttet = fårUtbetalingNå.verdi === ESvar.NEI || andreForelderErDød;
