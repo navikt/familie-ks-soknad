@@ -96,14 +96,14 @@ export const IdNummer: React.FC<{
                     søknadsvar={
                         idNummerVerdiFraSøknad === AlternativtSvarForInput.UKJENT
                             ? plainTekst(spørsmålDokument.checkboxLabel, {
-                                  land: getName(landAlphaCode, valgtLocale),
+                                  land: søkersLand,
                               })
                             : idNummerVerdiFraSøknad
                     }
                 >
                     <TekstBlock
                         block={spørsmålDokument.sporsmal}
-                        flettefelter={{ land: getName(landAlphaCode, valgtLocale) }}
+                        flettefelter={{ land: søkersLand }}
                     />
                 </OppsummeringFelt>
             ) : (
