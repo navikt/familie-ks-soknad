@@ -12,17 +12,18 @@ import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
 
 interface Props {
     søknadsfelt: ISøknadSpørsmål<string> | null;
+    /** @deprecated **/
     feilmeldingSpråkId?: string;
     skalVises?: boolean;
     customValidering?: ((felt: FeltState<string>) => FeltState<string>) | undefined;
     nullstillVedAvhengighetEndring?: boolean;
+    /** @deprecated **/
     feilmeldingSpråkVerdier?: Record<string, ReactNode>;
     feilmelding?: LocaleRecordBlock; // todo: fjerne optional når vi går over til sanity
 }
 
 const useInputFelt = ({
     søknadsfelt,
-    /** @deprecated **/
     feilmeldingSpråkId,
     feilmelding,
     skalVises = true,
