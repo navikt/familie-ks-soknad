@@ -4,8 +4,12 @@ import styled from 'styled-components';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { useApp } from '../../../context/AppContext';
+import { IBarnMedISøknad } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
+import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { dagensDato, gårsdagensDato } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import AlertStripe from '../AlertStripe/AlertStripe';
@@ -17,8 +21,7 @@ import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeilopps
 import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import { kontantstøttePeriodeModalSpørsmålSpråkId } from './kontantstøttePeriodeSpråkUtils';
+import TekstBlock from '../TekstBlock';
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 import {
     IUsePensjonsperiodeSkjemaParams,
@@ -27,6 +30,7 @@ import {
 
 interface Props extends ReturnType<typeof useModal>, IUsePensjonsperiodeSkjemaParams {
     onLeggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
+    barn: IBarnMedISøknad;
 }
 const StyledAlertStripe = styled(AlertStripe)`
     margin: 1rem 0 1rem 0;
@@ -40,8 +44,12 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
     personType,
     erDød = false,
 }) => {
+    const { tekster } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
-        useKontantstøttePeriodeSkjema(personType, barn, erDød);
+        useKontantstøttePeriodeSkjema(personType, erDød);
+
+    const teksterForPersonType: IEøsYtelseTekstinnhold =
+        tekster().FELLES.modaler.eøsYtelse[personType];
 
     const {
         mottarEøsKontantstøtteNå,
@@ -86,21 +94,17 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
         mottarEøsKontantstøtteNå.verdi === ESvar.NEI ||
         (personType === PersonType.andreForelder && erDød);
 
-    const hentSpørsmålTekstId = kontantstøttePeriodeModalSpørsmålSpråkId(
-        personType,
-        periodenErAvsluttet
-    );
-
-    const spørsmålSpråkTekst = (spørsmålId: KontantstøttePeriodeSpørsmålId) => (
-        <SpråkTekst id={hentSpørsmålTekstId(spørsmålId)} values={{ barn: barn.navn }} />
-    );
-
     return (
         <SkjemaModal
             erÅpen={erÅpen}
-            modalTittelSpråkId={'modal.trygdandreperioder.tittel'}
+            tittel={
+                <TekstBlock
+                    block={teksterForPersonType.tittel}
+                    typografi={Typografi.ModalHeadingH1}
+                />
+            }
             onSubmitCallback={onLeggTil}
-            submitKnappSpråkId={'modal.trygdandreperioder.tittel'}
+            submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
             toggleModal={toggleModal}
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
@@ -109,17 +113,24 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.mottarEøsKontantstøtteNå}
-                    spørsmålTekstId={hentSpørsmålTekstId(
-                        KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå
-                    )}
-                    språkValues={{ barn: barn.navn }}
+                    spørsmålDokument={teksterForPersonType.faarYtelserNaa}
+                    flettefelter={{ barnetsNavn: barn.navn }}
                 />
 
                 {kontantstøtteLand.erSynlig && (
                     <LandDropdown
                         felt={skjema.felter.kontantstøtteLand}
                         skjema={skjema}
-                        label={spørsmålSpråkTekst(KontantstøttePeriodeSpørsmålId.kontantstøtteLand)}
+                        label={
+                            <TekstBlock
+                                block={
+                                    periodenErAvsluttet
+                                        ? teksterForPersonType.ytelseLandFortid.sporsmal
+                                        : teksterForPersonType.ytelseLandNaatid.sporsmal
+                                }
+                                flettefelter={{ barnetsNavn: barn.navn }}
+                            />
+                        }
                         kunEøs={true}
                         dynamisk
                         ekskluderNorge
@@ -129,9 +140,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                     <Datovelger
                         felt={skjema.felter.fraDatoKontantstøttePeriode}
                         skjema={skjema}
-                        label={spørsmålSpråkTekst(
-                            KontantstøttePeriodeSpørsmålId.fraDatoKontantstøttePeriode
-                        )}
+                        label={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
                         calendarPosition={'fullscreen'}
                         avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
                     />
@@ -140,9 +149,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                     <Datovelger
                         felt={skjema.felter.tilDatoKontantstøttePeriode}
                         skjema={skjema}
-                        label={spørsmålSpråkTekst(
-                            KontantstøttePeriodeSpørsmålId.tilDatoKontantstøttePeriode
-                        )}
+                        label={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
                         avgrensMinDato={skjema.felter.fraDatoKontantstøttePeriode.verdi}
                         avgrensMaxDato={dagensDato()}
                         calendarPosition={'fullscreen'}
@@ -152,17 +159,15 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                     <SkjemaFeltInput
                         felt={skjema.felter.månedligBeløp}
                         visFeilmeldinger={skjema.visFeilmeldinger}
-                        labelSpråkTekstId={hentSpørsmålTekstId(
-                            KontantstøttePeriodeSpørsmålId.månedligBeløp
-                        )}
-                        språkValues={{
-                            ...(barn && {
-                                barn: barn.navn,
-                            }),
-                        }}
+                        label={
+                            <TekstBlock
+                                block={teksterForPersonType.beloepPerMaaned.sporsmal}
+                                flettefelter={{ barnetsNavn: barn.navn }}
+                            />
+                        }
                         tilleggsinfo={
                             <StyledAlertStripe variant={'info'}>
-                                <SpråkTekst id={'ombarnet.trygdbeløp.info'} />
+                                <TekstBlock block={teksterForPersonType.beloepPerMaaned.alert} />
                             </StyledAlertStripe>
                         }
                         bredde={'S'}

@@ -8,4 +8,5 @@ export interface IEøsForSøkerTekstinnhold {
     idNummer: ISanitySpørsmålDokument;
     hvorBor: ISanitySpørsmålDokument;
     utbetalinger: ISanitySpørsmålDokument;
+    faarEllerHarFaattYtelseFraAnnetLand: ISanitySpørsmålDokument;
 }

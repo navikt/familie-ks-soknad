@@ -119,4 +119,5 @@ export interface INavigasjonTekstinnhold {
 export interface IFormateringsfeilmeldingerTekstinnhold {
     datoKanIkkeVaereTilbakeITid: LocaleRecordString;
     ugyldigIDnummer: LocaleRecordString;
+    ugyldigBeloep: LocaleRecordString;
 }
