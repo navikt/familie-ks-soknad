@@ -128,7 +128,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                                         ? teksterForPersonType.ytelseLandFortid.sporsmal
                                         : teksterForPersonType.ytelseLandNaatid.sporsmal
                                 }
-                                flettefelter={{ barnetsNavn: barn?.navn }}
+                                flettefelter={{ barnetsNavn: barn.navn }}
                             />
                         }
                         kunEøs={true}
