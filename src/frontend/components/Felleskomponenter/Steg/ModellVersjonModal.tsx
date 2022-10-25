@@ -3,12 +3,12 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 
-import Modal from 'nav-frontend-modal';
 import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 
-import { Button } from '@navikt/ds-react';
+import { Button, Modal } from '@navikt/ds-react';
 
 import AlertStripe from '../AlertStripe/AlertStripe';
+import ModalContent from '../ModalContent';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
 
 const StyledNormalTekst = styled(Normaltekst)`
@@ -29,13 +29,6 @@ const StyledButton = styled(Button)`
     }
 `;
 
-const ModalInnholdContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 2rem;
-    max-width: 35rem;
-`;
-
 const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
     const { formatMessage } = useIntl();
 
@@ -43,11 +36,11 @@ const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
 
     return (
         <Modal
-            isOpen={erÅpen}
-            contentLabel={formatMessage({ id: 'felles.modal.deployfeil.tittel' })}
-            onRequestClose={refresh}
+            open={erÅpen}
+            aria-label={formatMessage({ id: 'felles.modal.deployfeil.tittel' })}
+            onClose={refresh}
         >
-            <ModalInnholdContainer>
+            <ModalContent>
                 <StyledSideTittel>
                     <SpråkTekst id={'felles.modal.deployfeil.tittel'} />
                 </StyledSideTittel>
@@ -64,7 +57,7 @@ const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
                 <StyledButton onClick={refresh}>
                     <SpråkTekst id={'felles.modal.deployfeil.knapp'} />
                 </StyledButton>
-            </ModalInnholdContainer>
+            </ModalContent>
         </Modal>
     );
 };
