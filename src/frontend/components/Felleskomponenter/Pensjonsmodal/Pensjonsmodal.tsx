@@ -2,8 +2,11 @@ import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import { IPensjonsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
+import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
 import { dagensDato, gårsdagensDato } from '../../../utils/dato';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import Datovelger from '../Datovelger/Datovelger';
@@ -13,8 +16,7 @@ import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import { pensjonsperiodeModalSpørsmålSpråkId } from './språkUtils';
+import TekstBlock from '../TekstBlock';
 import { PensjonsperiodeSpørsmålId } from './spørsmål';
 import { IUsePensjonSkjemaParams, usePensjonSkjema } from './usePensjonSkjema';
 
@@ -32,6 +34,7 @@ export const PensjonModal: React.FC<Props> = ({
     barn,
     erDød,
 }) => {
+    const { tekster } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
         usePensjonSkjema({
             gjelderUtland,
@@ -39,6 +42,9 @@ export const PensjonModal: React.FC<Props> = ({
             barn,
             erDød,
         });
+
+    const teksterForModal: IPensjonsperiodeTekstinnhold =
+        tekster().FELLES.modaler.pensjonsperiode[personType];
 
     const { mottarPensjonNå, pensjonTilDato, pensjonFraDato, pensjonsland } = skjema.felter;
 
@@ -69,24 +75,22 @@ export const PensjonModal: React.FC<Props> = ({
         toggleModal();
         nullstillSkjema();
     };
-    const modalTittel = gjelderUtland
-        ? 'felles.leggtilpensjon.utland.modal.tittel'
-        : 'felles.leggtilpensjon.norge.modal.tittel';
 
     const periodenErAvsluttet =
         mottarPensjonNå.verdi === ESvar.NEI || (personType === PersonType.andreForelder && !!erDød);
 
-    const hentSpørsmålTekstId = pensjonsperiodeModalSpørsmålSpråkId(
-        personType,
-        periodenErAvsluttet
-    );
-
     return (
         <SkjemaModal
             erÅpen={erÅpen}
-            modalTittelSpråkId={modalTittel}
+            tittel={
+                <TekstBlock
+                    block={teksterForModal.tittel}
+                    flettefelter={{ gjelderUtland }}
+                    typografi={Typografi.ModalHeadingH1}
+                />
+            }
             onSubmitCallback={onLeggTil}
-            submitKnappSpråkId={'felles.leggtilpensjon.knapp'}
+            submitKnappTekst={<TekstBlock block={teksterForModal.leggTilKnapp} />}
             toggleModal={toggleModal}
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
@@ -96,10 +100,8 @@ export const PensjonModal: React.FC<Props> = ({
                     <JaNeiSpm
                         skjema={skjema}
                         felt={mottarPensjonNå}
-                        spørsmålTekstId={hentSpørsmålTekstId(
-                            PensjonsperiodeSpørsmålId.mottarPensjonNå
-                        )}
-                        språkValues={{ ...(barn && { barn: barn.navn }) }}
+                        spørsmålDokument={teksterForModal.faarPensjonNaa}
+                        flettefelter={{ barnetsNavn: barn?.navn }}
                     />
                 )}
                 {pensjonsland.erSynlig && (
@@ -107,9 +109,13 @@ export const PensjonModal: React.FC<Props> = ({
                         felt={pensjonsland}
                         skjema={skjema}
                         label={
-                            <SpråkTekst
-                                id={hentSpørsmålTekstId(PensjonsperiodeSpørsmålId.pensjonsland)}
-                                values={{ ...(barn && { barn: barn.navn }) }}
+                            <TekstBlock
+                                block={
+                                    periodenErAvsluttet
+                                        ? teksterForModal.pensjonLandFortid.sporsmal
+                                        : teksterForModal.pensjonLandNaatid.sporsmal
+                                }
+                                flettefelter={{ barnetsNavn: barn?.navn }}
                             />
                         }
                         dynamisk
@@ -120,12 +126,7 @@ export const PensjonModal: React.FC<Props> = ({
                 {pensjonFraDato.erSynlig && (
                     <Datovelger
                         felt={pensjonFraDato}
-                        label={
-                            <SpråkTekst
-                                id={hentSpørsmålTekstId(PensjonsperiodeSpørsmålId.fraDatoPensjon)}
-                                values={{ ...(barn && { barn: barn.navn }) }}
-                            />
-                        }
+                        label={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
                         skjema={skjema}
                         avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
                         calendarPosition={'fullscreen'}
@@ -134,12 +135,7 @@ export const PensjonModal: React.FC<Props> = ({
                 {pensjonTilDato.erSynlig && (
                     <Datovelger
                         felt={pensjonTilDato}
-                        label={
-                            <SpråkTekst
-                                id={hentSpørsmålTekstId(PensjonsperiodeSpørsmålId.tilDatoPensjon)}
-                                values={{ ...(barn && { barn: barn.navn }) }}
-                            />
-                        }
+                        label={<TekstBlock block={teksterForModal.sluttdato.sporsmal} />}
                         skjema={skjema}
                         avgrensMaxDato={dagensDato()}
                         tilhørendeFraOgMedFelt={pensjonFraDato}

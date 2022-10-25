@@ -22,6 +22,7 @@ import { IUtenlandsoppholdTekstinnhold } from '../typer/sanity/modaler/utenlands
 import {
     ESanityFlettefeltverdi,
     ESanitySteg,
+    formateringsfeilmeldingerPrefix,
     frittståendeOrdPrefix,
     modalPrefix,
     navigasjonPrefix,
@@ -29,6 +30,7 @@ import {
 } from '../typer/sanity/sanity';
 import {
     IFellesTekstInnhold,
+    IFormateringsfeilmeldingerTekstinnhold,
     IFrittståendeOrdTekstinnhold,
     IModalerTekstinnhold,
     INavigasjonTekstinnhold,
@@ -156,6 +158,9 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
         navigasjon: struktrerInnholdForFelles(
             dokumenterFiltrertPåPrefix(fellesDokumenter, navigasjonPrefix)
         ) as INavigasjonTekstinnhold,
+        formateringsfeilmeldinger: struktrerInnholdForFelles(
+            dokumenterFiltrertPåPrefix(fellesDokumenter, formateringsfeilmeldingerPrefix)
+        ) as IFormateringsfeilmeldingerTekstinnhold,
     };
     return tekstInnhold as ITekstinnhold;
 };

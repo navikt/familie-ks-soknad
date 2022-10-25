@@ -23,6 +23,7 @@ interface IOppsummeringsFeltProps {
     spørsmålstekst?: LocaleRecordBlock; // todo fjern nullable når tittel er fjernet;
     flettefelter?: FlettefeltVerdier;
     søknadsvar?: ReactNode | null;
+    flettefelter?: FlettefeltVerdier;
 }
 
 const StyledElement = styled(Element)`

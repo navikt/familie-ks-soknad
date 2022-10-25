@@ -3,13 +3,15 @@ import React from 'react';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
+import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
+import TekstBlock from '../TekstBlock';
 import {
     hentFraDatoSpørsmål,
     hentLandSpørsmål,
@@ -35,14 +37,20 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
     const { oppholdsland, utenlandsoppholdÅrsak, oppholdslandFraDato, oppholdslandTilDato } =
         periode;
     const årsak = utenlandsoppholdÅrsak.svar;
-    const teksterForPersonType = tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
+    const teksterForPersonType: IUtenlandsoppholdTekstinnhold =
+        tekster().FELLES.modaler.utenlandsopphold[personType];
 
     return (
         <>
             <PeriodeOppsummering
-                nummer={nummer}
-                tittelSpråkId={'felles.leggtilutenlands.opphold'}
-                fjernKnappSpråkId={'felles.fjernutenlandsopphold.knapp'}
+                fjernKnappTekst={teksterForPersonType.fjernKnapp}
+                tittel={
+                    <TekstBlock
+                        block={teksterForPersonType.oppsummeringstittel}
+                        flettefelter={{ antall: nummer.toString() }}
+                        typografi={Typografi.Label}
+                    />
+                }
                 fjernPeriodeCallback={fjernPeriodeCallback && (() => fjernPeriodeCallback(periode))}
             >
                 <OppsummeringFelt

@@ -17,7 +17,6 @@ import { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/s
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { OppsummeringFelt } from '../Oppsummering/OppsummeringFelt';
 import { idNummerKeyPrefix, PeriodeType } from './idnummerUtils';
@@ -45,8 +44,10 @@ export const IdNummer: React.FC<{
     spørsmålDokument,
     lesevisning = false,
 }) => {
-    const { plainTekst } = useApp();
+    const { plainTekst, tekster } = useApp();
     const [valgtLocale] = useSprakContext();
+
+    const landNavn = getName(landAlphaCode, valgtLocale);
 
     // Bruker skal ha mulighet til å velge at hen ikke kjenner idnummer for: barn, andre forelder og søker (dersom idnummer for søker trigges av et utenlandsopphold).
     // Barn blir sendt med som prop når vi render Idnummer for andre forelder og barn, derfor kan vi sjekke på den propen.
@@ -73,13 +74,16 @@ export const IdNummer: React.FC<{
         feilmelding: spørsmålDokument.feilmelding,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
-            if (verdi.match(/^[0-9A-Za-z\s\-.\\/]{4,20}$/)) {
+            if (verdi.match(/^[\dA-Za-z\s\-.\\/]{4,20}$/)) {
                 return ok(felt);
             } else {
-                return feil(felt, <SpråkTekst id={'felles.idnummer-feilformat.feilmelding'} />);
+                return feil(
+                    felt,
+                    plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigIDnummer)
+                );
             }
         },
-        ...(barn && { språkVerdier: { barn: barn.navn } }),
+        flettefelter: { barnetsNavn: barn?.navn, land: landNavn },
     });
 
     useEffect(() => {
@@ -88,7 +92,6 @@ export const IdNummer: React.FC<{
         );
     }, [idNummerFelt.verdi, idNummerFelt.valideringsstatus]);
 
-    const søkersLand = getName(landAlphaCode, valgtLocale);
     return (
         <IdNummerContainer lesevisning={lesevisning}>
             {lesevisning ? (
@@ -96,14 +99,14 @@ export const IdNummer: React.FC<{
                     søknadsvar={
                         idNummerVerdiFraSøknad === AlternativtSvarForInput.UKJENT
                             ? plainTekst(spørsmålDokument.checkboxLabel, {
-                                  land: søkersLand,
+                                  land: landNavn,
                               })
                             : idNummerVerdiFraSøknad
                     }
                 >
                     <TekstBlock
                         block={spørsmålDokument.sporsmal}
-                        flettefelter={{ land: søkersLand }}
+                        flettefelter={{ land: landNavn }}
                     />
                 </OppsummeringFelt>
             ) : (
@@ -115,7 +118,7 @@ export const IdNummer: React.FC<{
                             <TekstBlock
                                 block={spørsmålDokument.sporsmal}
                                 flettefelter={{
-                                    land: søkersLand,
+                                    land: landNavn,
                                 }}
                             />
                         }
@@ -124,7 +127,7 @@ export const IdNummer: React.FC<{
                     {idNummerUkjent.erSynlig && (
                         <SkjemaCheckbox
                             label={plainTekst(spørsmålDokument.checkboxLabel, {
-                                land: søkersLand,
+                                land: landNavn,
                             })}
                             felt={idNummerUkjent}
                         />

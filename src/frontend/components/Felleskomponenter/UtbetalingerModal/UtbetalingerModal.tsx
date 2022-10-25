@@ -3,8 +3,11 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Valideringsstatus } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import { IUtbetalingsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
+import { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
 import { dagensDato, gårsdagensDato } from '../../../utils/dato';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
@@ -17,8 +20,7 @@ import { SkjemaCheckbox } from '../SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import { utbetalingsperiodeModalSpørsmålSpråkIder } from './språkUtils';
+import TekstBlock from '../TekstBlock';
 import { UtbetalingerSpørsmålId } from './spørsmål';
 import { IUseUtbetalingerSkjemaParams, useUtbetalingerSkjema } from './useUtbetalingerSkjema';
 
@@ -34,8 +36,12 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
     barn,
     erDød,
 }) => {
+    const { tekster, plainTekst } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
         useUtbetalingerSkjema(personType, barn, erDød);
+
+    const teksterForPersonType: IAndreUtbetalingerTekstinnhold =
+        tekster().FELLES.modaler.andreUtbetalinger[personType];
 
     const andreForelderErDød: boolean = personType === PersonType.andreForelder && !!erDød;
     const periodenErAvsluttet: boolean =
@@ -76,27 +82,27 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
         nullstillSkjema();
     };
 
-    const hentSpørsmålTekstId = utbetalingsperiodeModalSpørsmålSpråkIder(
-        personType,
-        periodenErAvsluttet
-    );
-
     return (
         <SkjemaModal
             erÅpen={erÅpen}
-            modalTittelSpråkId={'felles.flereytelser.knapp'}
             onSubmitCallback={onLeggTil}
-            submitKnappSpråkId={'felles.flereytelser.knapp'}
             toggleModal={toggleModal}
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
+            tittel={
+                <TekstBlock
+                    block={teksterForPersonType.tittel}
+                    typografi={Typografi.ModalHeadingH1}
+                />
+            }
+            submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
         >
             <KomponentGruppe inline>
                 <JaNeiSpm
                     skjema={skjema}
                     felt={fårUtbetalingNå}
-                    spørsmålTekstId={hentSpørsmålTekstId(UtbetalingerSpørsmålId.fårUtbetalingNå)}
-                    språkValues={{ ...(barn && { barn: barn.navn }) }}
+                    spørsmålDokument={teksterForPersonType.faarUtbetalingerNaa}
+                    flettefelter={{ barnetsNavn: barn?.navn }}
                 />
             </KomponentGruppe>
             {(fårUtbetalingNå.valideringsstatus === Valideringsstatus.OK || andreForelderErDød) && (
@@ -105,9 +111,13 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
                         felt={utbetalingLand}
                         skjema={skjema}
                         label={
-                            <SpråkTekst
-                                id={hentSpørsmålTekstId(UtbetalingerSpørsmålId.utbetalingLand)}
-                                values={{ ...(barn && { barn: barn.navn }) }}
+                            <TekstBlock
+                                block={
+                                    periodenErAvsluttet
+                                        ? teksterForPersonType.utbetalingLandFortid.sporsmal
+                                        : teksterForPersonType.utbetalingLandNaatid.sporsmal
+                                }
+                                flettefelter={{ barnetsNavn: barn?.navn }}
                             />
                         }
                         dynamisk
@@ -115,11 +125,7 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
                     <Datovelger
                         skjema={skjema}
                         felt={utbetalingFraDato}
-                        label={
-                            <SpråkTekst
-                                id={hentSpørsmålTekstId(UtbetalingerSpørsmålId.utbetalingFraDato)}
-                            />
-                        }
+                        label={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
                         avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
                         calendarPosition={'fullscreen'}
                     />
@@ -128,10 +134,12 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
                             skjema={skjema}
                             felt={utbetalingTilDato}
                             label={
-                                <SpråkTekst
-                                    id={hentSpørsmålTekstId(
-                                        UtbetalingerSpørsmålId.utbetalingTilDato
-                                    )}
+                                <TekstBlock
+                                    block={
+                                        periodenErAvsluttet
+                                            ? teksterForPersonType.sluttdatoFortid.sporsmal
+                                            : teksterForPersonType.sluttdatoFremtid.sporsmal
+                                    }
                                 />
                             }
                             avgrensMaxDato={periodenErAvsluttet ? dagensDato() : undefined}
@@ -143,9 +151,7 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
                             calendarPosition={'fullscreen'}
                         />
                         <SkjemaCheckbox
-                            labelSpråkTekstId={hentSpørsmålTekstId(
-                                UtbetalingerSpørsmålId.utbetalingTilDatoVetIkke
-                            )}
+                            label={plainTekst(teksterForPersonType.sluttdatoFremtid.checkboxLabel)}
                             felt={utbetalingTilDatoUkjent}
                         />
                     </>

@@ -6,13 +6,7 @@ import { ISODateString } from '@navikt/familie-form-elements';
 import { feil, FeltState, ok } from '@navikt/familie-skjema';
 
 import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
-import TekstBlock from '../components/Felleskomponenter/TekstBlock';
-import {
-    AlternativtSvarForInput,
-    DatoMedUkjent,
-    LocaleRecordBlock,
-    Typografi,
-} from '../typer/common';
+import { AlternativtSvarForInput, DatoMedUkjent } from '../typer/common';
 
 export const erDatoFormatGodkjent = (verdi: string) => {
     /*FamilieDatoVelger har allerede sin egen validering.
@@ -49,16 +43,13 @@ export const dagenEtterDato = (dato: ISODateString) =>
 
 export const validerDato = (
     feltState: FeltState<string>,
-    feilmelding: LocaleRecordBlock | undefined,
+    feilmelding: string | undefined,
     startdatoAvgrensning = '',
     sluttdatoAvgrensning = '',
     customStartdatoFeilmelding = ''
 ): FeltState<string> => {
     if (feltState.verdi === '') {
-        return feil(
-            feltState,
-            feilmelding ? <TekstBlock block={feilmelding} typografi={Typografi.ErrorMessage} /> : ''
-        );
+        return feil(feltState, feilmelding ?? '');
     }
     if (!erDatoFormatGodkjent(feltState.verdi)) {
         return feil(feltState, <SpråkTekst id={'felles.dato-format.feilmelding'} />);
@@ -84,13 +75,9 @@ export const validerDato = (
     ) {
         return feil(
             feltState,
-            <SpråkTekst
-                id={
-                    customStartdatoFeilmelding
-                        ? customStartdatoFeilmelding
-                        : 'felles.tilogmedfeilformat.feilmelding'
-                }
-            />
+            customStartdatoFeilmelding ?? (
+                <SpråkTekst id={'felles.tilogmedfeilformat.feilmelding'} />
+            )
         );
     }
     return ok(feltState);

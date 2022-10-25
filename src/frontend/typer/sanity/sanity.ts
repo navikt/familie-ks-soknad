@@ -40,6 +40,7 @@ export type SanityDataSet = 'production' | 'test';
 export const frittståendeOrdPrefix = 'FRITTSTAENDEORD';
 export const modalPrefix = 'MODAL';
 export const navigasjonPrefix = 'NAVIGASJON';
+export const formateringsfeilmeldingerPrefix = 'TEKSTER_FOR_DATO';
 
 export enum ESanityFlettefeltverdi {
     BARN_NAVN = 'BARN_NAVN',
