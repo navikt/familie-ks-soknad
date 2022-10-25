@@ -21,7 +21,6 @@ interface IOppsummeringsFeltProps {
     /** @deprecated **/
     tittel?: ReactNode;
     spørsmålstekst?: LocaleRecordBlock; // todo fjern nullable når tittel er fjernet;
-    flettefelter?: FlettefeltVerdier;
     søknadsvar?: ReactNode | null;
     flettefelter?: FlettefeltVerdier;
 }
