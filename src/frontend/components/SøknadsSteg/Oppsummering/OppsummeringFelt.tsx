@@ -8,7 +8,7 @@ import { BodyLong } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { LocaleRecordBlock, Typografi } from '../../../typer/common';
-import { ESivilstand } from '../../../typer/kontrakt/generelle';
+import { ESivilstand, FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import { jaNeiSvarTilSpråkId } from '../../../utils/spørsmål';
 import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
@@ -20,7 +20,8 @@ const StyledOppsummeringsFelt = styled.div`
 interface IOppsummeringsFeltProps {
     /** @deprecated **/
     tittel?: ReactNode;
-    spørsmålstekst?: LocaleRecordBlock;
+    spørsmålstekst?: LocaleRecordBlock; // todo fjern nullable når tittel er fjernet;
+    flettefelter?: FlettefeltVerdier;
     søknadsvar?: ReactNode | null;
 }
 
@@ -34,6 +35,7 @@ export const OppsummeringFelt: React.FC<IOppsummeringsFeltProps> = ({
     tittel,
     søknadsvar,
     spørsmålstekst,
+    flettefelter,
     children,
 }) => {
     let språktekstid: boolean | string = false;
@@ -46,7 +48,13 @@ export const OppsummeringFelt: React.FC<IOppsummeringsFeltProps> = ({
     return (
         <StyledOppsummeringsFelt>
             {tittel && <StyledElement>{tittel}</StyledElement>}
-            {spørsmålstekst && <TekstBlock block={spørsmålstekst} typografi={Typografi.Label} />}
+            {spørsmålstekst && (
+                <TekstBlock
+                    block={spørsmålstekst}
+                    typografi={Typografi.Label}
+                    flettefelter={flettefelter}
+                />
+            )}
             {søknadsvar ? (
                 <BodyLong>{språktekstid ? <SpråkTekst id={språktekstid} /> : søknadsvar}</BodyLong>
             ) : (

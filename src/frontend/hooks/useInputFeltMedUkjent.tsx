@@ -9,6 +9,7 @@ import { idnr } from '@navikt/fnrvalidator';
 import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
 import { useApp } from '../context/AppContext';
 import { DatoMedUkjent, LocaleRecordBlock } from '../typer/common';
+import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
 import { IdNummerKey } from '../typer/skjema';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
@@ -24,6 +25,7 @@ const useInputFeltMedUkjent = ({
     customValidering = undefined,
     språkVerdier = {},
     nullstillVedAvhengighetEndring = true,
+    flettefelter,
 }: {
     søknadsfelt: ISøknadSpørsmål<DatoMedUkjent> | { id: IdNummerKey; svar: string } | null;
     avhengighet: Felt<ESvar>;
@@ -33,8 +35,10 @@ const useInputFeltMedUkjent = ({
     erFnrInput?: boolean;
     skalVises?: boolean;
     customValidering?: ((felt: FeltState<string>) => FeltState<string>) | undefined;
-    språkVerdier?: Record<string, ReactNode>;
+    /** @deprecated **/
+    språkVerdier?: Record<string, ReactNode>; //todo: fjerne denne når vi går over til Sanity
     nullstillVedAvhengighetEndring?: boolean;
+    flettefelter?: FlettefeltVerdier;
 }) => {
     const { plainTekst } = useApp();
     const inputFelt = useFelt<string>({
@@ -55,7 +59,7 @@ const useInputFeltMedUkjent = ({
                         feilmeldingSpråkId ? (
                             <SpråkTekst id={feilmeldingSpråkId} />
                         ) : (
-                            plainTekst(feilmelding)
+                            plainTekst(feilmelding, flettefelter)
                         )
                     );
                 } else if (idnr(feltVerdi).status !== 'valid') {
@@ -73,7 +77,7 @@ const useInputFeltMedUkjent = ({
                           feilmeldingSpråkId ? (
                               <SpråkTekst id={feilmeldingSpråkId} values={språkVerdier} />
                           ) : (
-                              plainTekst(feilmelding)
+                              plainTekst(feilmelding, flettefelter)
                           )
                       );
             }
