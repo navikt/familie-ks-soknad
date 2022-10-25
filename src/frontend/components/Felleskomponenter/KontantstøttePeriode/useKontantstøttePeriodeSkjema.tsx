@@ -11,7 +11,6 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IKontantstøttePerioderFeltTyper } from '../../../typer/skjema';
 import { dagenEtterDato, dagensDato, gårsdagensDato } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
-import { mottarKontantstøtteNåFeilmelding } from './kontantstøttePeriodeSpråkUtils';
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 
 export interface IUsePensjonsperiodeSkjemaParams {
@@ -26,7 +25,6 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, erDød) =
 
     const mottarEøsKontantstøtteNå = useJaNeiSpmFelt({
         søknadsfelt: { id: KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå, svar: null },
-        feilmeldingSpråkId: mottarKontantstøtteNåFeilmelding(personType),
         feilmelding: teksterForPersonType.faarYtelserNaa.feilmelding,
         skalSkjules: erDød,
     });
