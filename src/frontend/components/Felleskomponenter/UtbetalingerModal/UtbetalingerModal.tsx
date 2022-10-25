@@ -4,7 +4,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Valideringsstatus } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
 import { IUtbetalingsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
@@ -89,12 +88,7 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
             toggleModal={toggleModal}
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
-            tittel={
-                <TekstBlock
-                    block={teksterForPersonType.tittel}
-                    typografi={Typografi.ModalHeadingH1}
-                />
-            }
+            tittel={teksterForPersonType.tittel}
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
         >
             <KomponentGruppe inline>

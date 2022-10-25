@@ -4,7 +4,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { Typografi } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -101,13 +100,8 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
     return (
         <SkjemaModal
             erÅpen={erÅpen}
-            tittel={
-                <TekstBlock
-                    block={barnehageplassTekster.tittel}
-                    flettefelter={{ barnetsNavn }}
-                    typografi={Typografi.ModalHeadingH1}
-                />
-            }
+            tittel={barnehageplassTekster.tittel}
+            flettefelter={{ barnetsNavn }}
             onSubmitCallback={onLeggTil}
             submitKnappTekst={<TekstBlock block={barnehageplassTekster.leggTilKnapp} />}
             toggleModal={toggleModal}
