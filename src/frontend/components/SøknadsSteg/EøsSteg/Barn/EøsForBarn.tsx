@@ -296,8 +296,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                                     inkluderVetIkke
                                     flettefelter={{ barnetsNavn: barnetsNavn }}
                                 />
-                                {(skjema.felter.andreForelderPågåendeSøknadHvilketLand.erSynlig ||
-                                    true) && (
+                                {skjema.felter.andreForelderPågåendeSøknadHvilketLand.erSynlig && (
                                     <LandDropdown
                                         felt={skjema.felter.andreForelderPågåendeSøknadHvilketLand}
                                         skjema={skjema}
