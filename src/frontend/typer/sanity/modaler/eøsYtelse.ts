@@ -3,7 +3,7 @@ import { ISanitySpørsmålDokument } from '../sanity';
 
 export interface IEøsYtelseTekstinnhold {
     tittel: LocaleRecordBlock;
-    oppsummeringstittel: LocaleRecordBlock;
+    oppsummeringstittelKontantstoette: LocaleRecordBlock;
     ytelseLandNaatid: ISanitySpørsmålDokument;
     ytelseLandFortid: ISanitySpørsmålDokument;
     startdato: ISanitySpørsmålDokument;

@@ -19,7 +19,7 @@ export const eøsKontantstøtteSpørsmålsdokument = (
         }
         case PersonType.søker:
         default:
-            return tekster[ESanitySteg.EØS_FOR_SØKER].faarEllerHarFaattYtelseFraAnnetLand;
+            return tekster[ESanitySteg.OM_BARNET].faarEllerHarFaattYtelseFraAnnetLand;
     }
 };
 
