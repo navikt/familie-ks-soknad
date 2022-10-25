@@ -502,8 +502,8 @@ export const useEøsForBarn = (
     const andreForelderAndreUtbetalinger = useJaNeiSpmFelt({
         søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.andreUtbetalinger],
         feilmelding: andreForelderErDød
-            ? eøsForBarnTekster.ytelseFraAnnetLandAndreForelderGjenlevende.feilmelding
-            : eøsForBarnTekster.ytelseFraAnnetLandAndreForelder.feilmelding,
+            ? eøsForBarnTekster.utbetalingerAndreForelderGjenlevende.feilmelding
+            : eøsForBarnTekster.utbetalingerAndreForelder.feilmelding,
         flettefelter: flettefelter,
         skalSkjules: skalSkjuleAndreForelderFelt(gjeldendeBarn),
     });
@@ -544,8 +544,8 @@ export const useEøsForBarn = (
     const andreForelderKontantstøtteFraEøs = useJaNeiSpmFelt({
         søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.kontantstøtteFraEøs],
         feilmelding: andreForelderErDød
-            ? eøsForBarnTekster.utbetalingerAndreForelderGjenlevende.feilmelding
-            : eøsForBarnTekster.utbetalingerAndreForelder.feilmelding,
+            ? eøsForBarnTekster.ytelseFraAnnetLandAndreForelderGjenlevende.feilmelding
+            : eøsForBarnTekster.ytelseFraAnnetLandAndreForelder.feilmelding,
         flettefelter: flettefelter,
         skalSkjules: skalSkjuleAndreForelderFelt(gjeldendeBarn),
     });
