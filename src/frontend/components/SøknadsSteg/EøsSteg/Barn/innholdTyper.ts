@@ -13,6 +13,8 @@ export interface IEøsForBarnTekstinnhold {
     utbetalingerAndreForelder: ISanitySpørsmålDokument;
     utbetalingerAndreForelderGjenlevende: ISanitySpørsmålDokument;
     idNummerAndreForelder: ISanitySpørsmålDokument;
+    ytelseFraAnnetLandAndreForelder: ISanitySpørsmålDokument;
+    ytelseFraAnnetLandAndreForelderGjenlevende: ISanitySpørsmålDokument;
 
     /* Omsorgsperson */
     arbeidUtenforNorgeOmsorgsperson: ISanitySpørsmålDokument;
@@ -20,4 +22,5 @@ export interface IEøsForBarnTekstinnhold {
     pensjonNorgeOmsorgsperson: ISanitySpørsmålDokument;
     pensjonUtlandOmsorgsperson: ISanitySpørsmålDokument;
     utbetalingerOmsorgsperson: ISanitySpørsmålDokument;
+    ytelseFraAnnetLandOmsorgsperson: ISanitySpørsmålDokument;
 }
