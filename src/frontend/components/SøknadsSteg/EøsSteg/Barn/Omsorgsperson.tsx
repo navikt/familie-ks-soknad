@@ -47,7 +47,7 @@ interface OmsorgspersonProps {
 
 const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunksjoner }) => {
     const { plainTekst, tekster } = useApp();
-    const d = tekster().EØS_FOR_BARN;
+    const eøsForBarnTekster = tekster().EØS_FOR_BARN;
     const {
         leggTilArbeidsperiodeUtlandOmsorgsperson,
         fjernArbeidsperiodeUtlandOmsorgsperson,
@@ -68,23 +68,23 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
         <SkjemaFieldset
             tittel={
                 <Heading size={'xsmall'} level={'2'} spacing>
-                    {plainTekst(d.oppgittIkkeBorFastSammenMedDeg, flettefelter)}
+                    {plainTekst(eøsForBarnTekster.oppgittIkkeBorFastSammenMedDeg, flettefelter)}
                 </Heading>
             }
         >
             <SkjemaFeltInput
                 felt={skjema.felter.omsorgspersonNavn}
                 visFeilmeldinger={skjema.visFeilmeldinger}
-                label={<TekstBlock block={d.hvaHeterOmsorgspersonen.sporsmal} />}
+                label={<TekstBlock block={eøsForBarnTekster.hvaHeterOmsorgspersonen.sporsmal} />}
             />
             {skjema.felter.omsorgspersonSlektsforhold.erSynlig && (
                 <SlektsforholdDropdown
                     felt={skjema.felter.omsorgspersonSlektsforhold}
                     skjema={skjema}
-                    placeholder={plainTekst(d.velgSlektsforhold)}
+                    placeholder={plainTekst(eøsForBarnTekster.velgSlektsforhold)}
                     label={
                         <TekstBlock
-                            block={d.slektsforholdOmsorgsperson.sporsmal}
+                            block={eøsForBarnTekster.slektsforholdOmsorgsperson.sporsmal}
                             flettefelter={flettefelter}
                         />
                     }
@@ -97,7 +97,7 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                     visFeilmeldinger={skjema.visFeilmeldinger}
                     label={
                         <TekstBlock
-                            block={d.hvilkenRelasjonOmsorgsperson.sporsmal}
+                            block={eøsForBarnTekster.hvilkenRelasjonOmsorgsperson.sporsmal}
                             flettefelter={flettefelter}
                         />
                     }
@@ -107,20 +107,20 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                 <SkjemaFeltInput
                     felt={skjema.felter.omsorgspersonIdNummer}
                     visFeilmeldinger={skjema.visFeilmeldinger}
-                    label={<TekstBlock block={d.idNummerOmsorgsperson.sporsmal} />}
+                    label={<TekstBlock block={eøsForBarnTekster.idNummerOmsorgsperson.sporsmal} />}
                     disabled={skjema.felter.omsorgspersonIdNummerVetIkke.verdi === ESvar.JA}
                 />
 
                 <SkjemaCheckbox
                     felt={skjema.felter.omsorgspersonIdNummerVetIkke}
-                    label={plainTekst(d.idNummerOmsorgsperson.checkboxLabel)}
+                    label={plainTekst(eøsForBarnTekster.idNummerOmsorgsperson.checkboxLabel)}
                 />
             </>
             <SkjemaFeltInput
                 felt={skjema.felter.omsorgspersonAdresse}
                 visFeilmeldinger={skjema.visFeilmeldinger}
-                label={<TekstBlock block={d.hvorBorOmsorgsperson.sporsmal} />}
-                description={plainTekst(d.hvorBorOmsorgsperson.beskrivelse)}
+                label={<TekstBlock block={eøsForBarnTekster.hvorBorOmsorgsperson.sporsmal} />}
+                description={plainTekst(eøsForBarnTekster.hvorBorOmsorgsperson.beskrivelse)}
             />
             <Arbeidsperiode
                 skjema={skjema}
@@ -175,7 +175,7 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
             <JaNeiSpm
                 skjema={skjema}
                 felt={skjema.felter.omsorgspersonPågåendeSøknadFraAnnetEøsLand}
-                spørsmålDokument={d.paagaaendeSoeknadYtelseOmsorgsperson}
+                spørsmålDokument={eøsForBarnTekster.paagaaendeSoeknadYtelseOmsorgsperson}
                 flettefelter={flettefelter}
                 inkluderVetIkke
             />
@@ -187,7 +187,7 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                     ekskluderNorge
                     label={
                         <TekstBlock
-                            block={d.hvilketLandSoektYtelseAndreForelder.sporsmal}
+                            block={eøsForBarnTekster.hvilketLandSoektYtelseAndreForelder.sporsmal}
                             flettefelter={flettefelter}
                         />
                     }
