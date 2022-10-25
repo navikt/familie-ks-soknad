@@ -1,5 +1,8 @@
 import React from 'react';
 
+import styled from 'styled-components';
+
+import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
@@ -28,6 +31,10 @@ import {
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 import { useBarnehageplassPeriodeSkjema } from './useBarnehageplassPeriodeSkjema';
+
+const StyledAlertStripe = styled(Alert)`
+    margin-top: 1rem;
+`;
 
 export interface IUseBarnehageplassSkjemaParams {
     barn: IBarnMedISøknad;
@@ -167,12 +174,20 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     />
                 )}
                 {antallTimer.erSynlig && (
-                    <SkjemaFeltInput
-                        felt={skjema.felter.antallTimer}
-                        visFeilmeldinger={skjema.visFeilmeldinger}
-                        label={<TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />}
-                        bredde={'S'}
-                    />
+                    <>
+                        <SkjemaFeltInput
+                            felt={skjema.felter.antallTimer}
+                            visFeilmeldinger={skjema.visFeilmeldinger}
+                            label={
+                                <TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />
+                            }
+                            bredde={'S'}
+                        />
+
+                        <StyledAlertStripe variant={'info'} inline>
+                            {plainTekst(barnehageplassTekster.antallTimer.alert)}
+                        </StyledAlertStripe>
+                    </>
                 )}
                 {startetIBarnehagen.erSynlig && (
                     <Datovelger
