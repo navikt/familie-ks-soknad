@@ -4,7 +4,7 @@ import { ITekstinnhold } from '../../../typer/sanity/tekstInnhold';
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 
 export const eøsKontantstøtteSpørsmålsdokument = (
-    personType: PersonType,
+    personType: Exclude<PersonType, PersonType.barn>,
     tekster: ITekstinnhold,
     erDød?: boolean
 ): ISanitySpørsmålDokument => {
@@ -18,20 +18,7 @@ export const eøsKontantstøtteSpørsmålsdokument = (
             return tekster[ESanitySteg.EØS_FOR_BARN].ytelseFraAnnetLandOmsorgsperson;
         }
         case PersonType.søker:
-        default:
             return tekster[ESanitySteg.OM_BARNET].faarEllerHarFaattYtelseFraAnnetLand;
-    }
-};
-
-export const mottarKontantstøtteNåFeilmelding = (personType: PersonType) => {
-    switch (personType) {
-        case PersonType.andreForelder:
-            return 'modal.barnetrygdnå-annenforelder.feilmelding';
-        case PersonType.omsorgsperson:
-            return 'modal.barnetrygdnå-omsorgsperson.feilmelding';
-        case PersonType.søker:
-        default:
-            return 'modal.barnetrygdnå.feilmelding';
     }
 };
 
