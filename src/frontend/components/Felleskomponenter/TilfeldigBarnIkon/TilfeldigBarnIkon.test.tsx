@@ -7,13 +7,17 @@ import { ISøknad } from '../../../typer/søknad';
 import * as hjelpefunksjoner from '../../../utils/hjelpefunksjoner';
 import {
     silenceConsoleErrors,
+    spyOnModal,
     spyOnUseApp,
     TestProvidereMedEkteTekster,
 } from '../../../utils/testing';
 import { TilfeldigBarnIkon } from './TilfeldigBarnIkon';
 
 describe('TilfeldigBarnIkon', () => {
-    beforeEach(silenceConsoleErrors);
+    beforeEach(() => {
+        silenceConsoleErrors();
+        spyOnModal();
+    });
 
     it('velger nytt ikon ved rerender by default', () => {
         const spy = jest.spyOn(hjelpefunksjoner, 'randomIntFraIntervall');

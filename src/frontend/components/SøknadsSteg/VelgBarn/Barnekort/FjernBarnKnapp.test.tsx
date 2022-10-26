@@ -9,6 +9,7 @@ import {
     mockEøs,
     mockHistory,
     silenceConsoleErrors,
+    spyOnModal,
     spyOnUseApp,
     TestProvidere,
 } from '../../../../utils/testing';
@@ -18,6 +19,7 @@ describe('FjernBarnKnapp', () => {
     beforeEach(() => {
         mockHistory(['/velg-barn']);
         mockEøs();
+        spyOnModal();
     });
 
     test(`Fjern-knapp dukker kun opp på manuelt registrerte barn`, () => {
