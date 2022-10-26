@@ -57,6 +57,7 @@ export interface IFellesTekstInnhold {
     modaler: IModalerTekstinnhold;
     frittståendeOrd: IFrittståendeOrdTekstinnhold;
     navigasjon: INavigasjonTekstinnhold;
+    formateringsfeilmeldinger: IFormateringsfeilmeldingerTekstinnhold;
 }
 
 export interface IModalerTekstinnhold {
@@ -107,10 +108,19 @@ export interface IFrittståendeOrdTekstinnhold {
     utenfor: LocaleRecordString;
     utlandet: LocaleRecordString;
     norge: LocaleRecordString;
+    ja: LocaleRecordString;
+    nei: LocaleRecordString;
+    jegVetIkke: LocaleRecordString;
 }
 
 export interface INavigasjonTekstinnhold {
     startKnapp: LocaleRecordString;
     fortsettKnapp: LocaleRecordString;
     startPaaNyttKnapp: LocaleRecordString;
+}
+
+export interface IFormateringsfeilmeldingerTekstinnhold {
+    datoKanIkkeVaereTilbakeITid: LocaleRecordString;
+    ugyldigIDnummer: LocaleRecordString;
+    ugyldigBeloep: LocaleRecordString;
 }

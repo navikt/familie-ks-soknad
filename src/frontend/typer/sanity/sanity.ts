@@ -40,6 +40,7 @@ export type SanityDataSet = 'production' | 'test';
 export const frittståendeOrdPrefix = 'FRITTSTAENDEORD';
 export const modalPrefix = 'MODAL';
 export const navigasjonPrefix = 'NAVIGASJON';
+export const formateringsfeilmeldingerPrefix = 'TEKSTER_FOR_DATO';
 
 export enum ESanityFlettefeltverdi {
     BARN_NAVN = 'BARN_NAVN',
@@ -49,6 +50,7 @@ export enum ESanityFlettefeltverdi {
     UTLANDET_NORGE = 'UTLANDET_NORGE',
     ANTALL = 'ANTALL',
     TOTAL_ANTALL = 'TOTAL_ANTALL',
+    LAND = 'LAND',
     /*
     Legger inn disse kommentert ut, så kan vi ta de inn en etter en når vi støtter dem
     PERSONTYPE = 'PERSONTYPE',

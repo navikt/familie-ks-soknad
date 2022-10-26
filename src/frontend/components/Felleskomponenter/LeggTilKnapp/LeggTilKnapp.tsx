@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { AddCircle } from '@navikt/ds-icons';
-import { Button } from '@navikt/ds-react';
+import { Button, ErrorMessage } from '@navikt/ds-react';
 import { NavdsGlobalColorRed500 } from '@navikt/ds-tokens/dist/tokens';
 
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
@@ -25,6 +25,7 @@ const StyledButton = styled(Button)`
 
 export const LeggTilKnapp: React.FC<Props> = ({
     onClick,
+    /** @deprecated **/
     språkTekst,
     feilmelding,
     id,
@@ -37,11 +38,11 @@ export const LeggTilKnapp: React.FC<Props> = ({
             type={'button'}
             onClick={onClick}
             $feilmelding={!!feilmelding}
+            icon={<AddCircle />}
         >
-            <AddCircle />
             {språkTekst && <SpråkTekst id={språkTekst} />}
             {children}
         </StyledButton>
-        {!!feilmelding && feilmelding}
+        {!!feilmelding && <ErrorMessage>{feilmelding}</ErrorMessage>}
     </>
 );

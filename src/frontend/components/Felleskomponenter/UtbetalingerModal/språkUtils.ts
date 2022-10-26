@@ -1,49 +1,23 @@
 import { PersonType } from '../../../typer/personType';
-import { EøsBarnSpørsmålId, eøsBarnSpørsmålSpråkId } from '../../SøknadsSteg/EøsSteg/Barn/spørsmål';
-import {
-    EøsSøkerSpørsmålId,
-    eøsSøkerSpørsmålSpråkId,
-} from '../../SøknadsSteg/EøsSteg/Søker/spørsmål';
+import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
+import { ITekstinnhold } from '../../../typer/sanity/tekstInnhold';
 import { UtbetalingerSpørsmålId } from './spørsmål';
 
-export const mottarEllerMottattUtbetalingSpråkId = (
+export const mottarEllerMottattUtbetalingApiNavn = (
     personType: PersonType,
+    tekster: ITekstinnhold,
     erDød?: boolean
-): string => {
+): ISanitySpørsmålDokument => {
     switch (personType) {
         case PersonType.andreForelder:
             return erDød
-                ? eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.andreForelderAndreUtbetalingerEnke]
-                : eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.andreForelderAndreUtbetalinger];
+                ? tekster.EØS_FOR_BARN.utbetalingerAndreForelderGjenlevende
+                : tekster.EØS_FOR_BARN.utbetalingerAndreForelder;
         case PersonType.omsorgsperson:
-            return eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.omsorgspersonAndreUtbetalinger];
+            return tekster.EØS_FOR_BARN.utbetalingerOmsorgsperson;
         case PersonType.søker:
         default:
-            return eøsSøkerSpørsmålSpråkId[EøsSøkerSpørsmålId.utbetalinger];
-    }
-};
-
-export const utbetalingerFlerePerioderSpmSpråkId = (personType: PersonType) => {
-    switch (personType) {
-        case PersonType.andreForelder:
-            return 'eøs-om-barn.andreforelder-utbetalinger-andreperioder.spm';
-        case PersonType.omsorgsperson:
-            return 'eøs-om-barn.omsorgsperson-utbetalinger-flere-perioder.spm';
-        case PersonType.søker:
-        default:
-            return 'eøs-om-deg.flere-utbetalinger.spm';
-    }
-};
-
-export const fårUtbetalingNåFeilmelding = (personType: PersonType) => {
-    switch (personType) {
-        case PersonType.andreForelder:
-            return 'eøs.andreforelderutbetalinger.feilmelding';
-        case PersonType.omsorgsperson:
-            return 'modal.omsorgsperson-utbetalinger.feilmelding';
-        case PersonType.søker:
-        default:
-            return 'eøs.utbetalinger.feilmelding';
+            return tekster.EØS_FOR_SØKER.utbetalinger;
     }
 };
 

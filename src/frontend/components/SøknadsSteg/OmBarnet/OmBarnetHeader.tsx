@@ -2,11 +2,11 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Systemtittel } from 'nav-frontend-typografi';
-
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import { Typografi } from '../../../typer/common';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { TilfeldigBarnIkon } from '../../Felleskomponenter/TilfeldigBarnIkon/TilfeldigBarnIkon';
 
 const HeaderWrapper = styled.div`
@@ -28,6 +28,7 @@ const HorisontalLinje = styled.span`
 export const OmBarnetHeader: React.FC<{ barn: IBarnMedISøknad }> = ({ barn }) => {
     const {
         søknad: { barnInkludertISøknaden },
+        tekster,
     } = useApp();
     const barnIndex = barnInkludertISøknaden.findIndex(b => b.id === barn.id);
 
@@ -35,16 +36,15 @@ export const OmBarnetHeader: React.FC<{ barn: IBarnMedISøknad }> = ({ barn }) =
         <HeaderWrapper>
             <TilfeldigBarnIkon byttVedRerender={false} />
             <HorisontalLinje />
-            <BarnCounterWrapper>
-                <Systemtittel>
-                    <SpråkTekst
-                        id={'ombarnet.undertittel'}
-                        values={{
-                            x: barnIndex + 1,
-                            antall: barnInkludertISøknaden.length,
-                        }}
-                    />
-                </Systemtittel>
+            <BarnCounterWrapper data-testid={barn.id}>
+                <TekstBlock
+                    block={tekster()[ESanitySteg.OM_BARNET].barnXAvY}
+                    flettefelter={{
+                        antall: (barnIndex + 1).toString(),
+                        totalAntall: barnInkludertISøknaden.length.toString(),
+                    }}
+                    typografi={Typografi.HeadingH2}
+                />
             </BarnCounterWrapper>
         </HeaderWrapper>
     );

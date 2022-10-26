@@ -1,22 +1,19 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
+import { useApp } from '../../../context/AppContext';
+import { IBarnMedISøknad } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
+import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
-import {
-    arbeidsperiodeModalSpørsmålSpråkId,
-    arbeidsperiodeOppsummeringOverskrift,
-} from './arbeidsperiodeSpråkUtils';
-import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
+import TekstBlock from '../TekstBlock';
 
 interface Props {
     arbeidsperiode: IArbeidsperiode;
@@ -26,9 +23,9 @@ interface Props {
 }
 
 type ArbeidperiodeOppsummeringPersonTypeProps =
-    | { personType: PersonType.søker; erDød?: boolean }
-    | { personType: PersonType.omsorgsperson; erDød?: boolean }
-    | { personType: PersonType.andreForelder; erDød: boolean };
+    | { personType: PersonType.søker; erDød?: boolean; barn?: IBarnMedISøknad | undefined }
+    | { personType: PersonType.omsorgsperson; erDød?: boolean; barn: IBarnMedISøknad | undefined }
+    | { personType: PersonType.andreForelder; erDød: boolean; barn: IBarnMedISøknad | undefined };
 
 type ArbeidsperiodeOppsummeringProps = Props & ArbeidperiodeOppsummeringPersonTypeProps;
 
@@ -39,10 +36,10 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
     gjelderUtlandet,
     personType,
     erDød = false,
+    barn,
 }) => {
+    const { tekster, plainTekst } = useApp();
     const [valgtLocale] = useSprakContext();
-    const intl = useIntl();
-    const { formatMessage } = intl;
     const {
         arbeidsperiodeAvsluttet,
         arbeidsperiodeland,
@@ -51,59 +48,66 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
         tilDatoArbeidsperiode,
     } = arbeidsperiode;
 
+    const teksterForModal: IArbeidsperiodeTekstinnhold =
+        tekster().FELLES.modaler.arbeidsperiode[personType];
+
     const periodenErAvsluttet =
         arbeidsperiodeAvsluttet?.svar === ESvar.JA ||
         (personType === PersonType.andreForelder && erDød);
-
-    const hentSpørsmålTekstId = arbeidsperiodeModalSpørsmålSpråkId(personType, periodenErAvsluttet);
-
-    const spørsmålSpråkTekst = (spørsmålId: ArbeidsperiodeSpørsmålsId) => (
-        <SpråkTekst id={hentSpørsmålTekstId(spørsmålId)} />
-    );
 
     return (
         <PeriodeOppsummering
             fjernPeriodeCallback={
                 fjernPeriodeCallback && (() => fjernPeriodeCallback(arbeidsperiode))
             }
-            fjernKnappSpråkId={'felles.fjernarbeidsperiode.knapp'}
-            nummer={nummer}
-            tittelSpråkId={arbeidsperiodeOppsummeringOverskrift(gjelderUtlandet)}
+            fjernKnappTekst={teksterForModal.fjernKnapp}
+            tittel={
+                <TekstBlock
+                    block={teksterForModal.oppsummeringstittel}
+                    flettefelter={{ antall: nummer.toString(), gjelderUtland: gjelderUtlandet }}
+                    typografi={Typografi.HeadingH2}
+                />
+            }
         >
             {arbeidsperiodeAvsluttet.svar && (
                 <OppsummeringFelt
-                    tittel={spørsmålSpråkTekst(ArbeidsperiodeSpørsmålsId.arbeidsperiodeAvsluttet)}
+                    spørsmålstekst={teksterForModal.arbeidsperiodenAvsluttet.sporsmal}
                     søknadsvar={arbeidsperiodeAvsluttet.svar}
                 />
             )}
             {arbeidsperiodeland.svar && (
                 <OppsummeringFelt
-                    tittel={spørsmålSpråkTekst(ArbeidsperiodeSpørsmålsId.arbeidsperiodeLand)}
+                    spørsmålstekst={
+                        periodenErAvsluttet
+                            ? teksterForModal.hvilketLandFortid.sporsmal
+                            : teksterForModal.hvilketLandNaatid.sporsmal
+                    }
+                    flettefelter={{ barnetsNavn: barn?.navn }}
                     søknadsvar={landkodeTilSpråk(arbeidsperiodeland.svar, valgtLocale)}
                 />
             )}
             {arbeidsgiver.svar && (
                 <OppsummeringFelt
-                    tittel={spørsmålSpråkTekst(ArbeidsperiodeSpørsmålsId.arbeidsgiver)}
+                    spørsmålstekst={teksterForModal.arbeidsgiver.sporsmal}
                     søknadsvar={arbeidsgiver.svar}
                 />
             )}
             {fraDatoArbeidsperiode.svar && (
                 <OppsummeringFelt
-                    tittel={spørsmålSpråkTekst(ArbeidsperiodeSpørsmålsId.fraDatoArbeidsperiode)}
+                    spørsmålstekst={teksterForModal.startdato.sporsmal}
                     søknadsvar={formaterDato(fraDatoArbeidsperiode.svar)}
                 />
             )}
             {tilDatoArbeidsperiode.svar && (
                 <OppsummeringFelt
-                    tittel={spørsmålSpråkTekst(ArbeidsperiodeSpørsmålsId.tilDatoArbeidsperiode)}
+                    spørsmålstekst={
+                        periodenErAvsluttet
+                            ? teksterForModal.sluttdatoFortid.sporsmal
+                            : teksterForModal.sluttdatoFremtid.sporsmal
+                    }
                     søknadsvar={formaterDatoMedUkjent(
                         tilDatoArbeidsperiode.svar,
-                        formatMessage({
-                            id: hentSpørsmålTekstId(
-                                ArbeidsperiodeSpørsmålsId.tilDatoArbeidsperiodeVetIkke
-                            ),
-                        })
+                        plainTekst(teksterForModal.sluttdatoFremtid.checkboxLabel)
                     )}
                 />
             )}

@@ -8,7 +8,9 @@ import { DeleteFilled } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
 import { NavdsSemanticColorBorder } from '@navikt/ds-tokens/dist/tokens';
 
+import { LocaleRecordBlock } from '../../../typer/common';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 
 const PeriodeContainer = styled.div<{ bottomBorder: boolean }>`
     margin: 2rem 0;
@@ -22,23 +24,24 @@ const StyledButton = styled(Button)`
     }
 `;
 
-const StyledElement = styled(Element)`
-    && {
-        margin-bottom: 1.125rem;
-    }
-`;
-
 const PeriodeOppsummering: React.FC<{
-    nummer: number;
+    /** @deprecated **/
+    nummer?: number;
     fjernPeriodeCallback?: () => void;
+    /** @deprecated **/
     fjernKnappSpråkId?: string;
-    tittelSpråkId: string;
+    fjernKnappTekst?: LocaleRecordBlock; //TODO fjerne optional når deprecated er fjernet
+    /** @deprecated **/
+    tittelSpråkId?: string;
+    tittel?: ReactNode; //TODO fjerne optional når deprecated er fjernet
     vedleggNotis?: ReactNode;
 }> = ({
     nummer,
     fjernPeriodeCallback = undefined,
     fjernKnappSpråkId,
+    fjernKnappTekst,
     tittelSpråkId,
+    tittel,
     vedleggNotis,
     children,
 }) => {
@@ -46,18 +49,22 @@ const PeriodeOppsummering: React.FC<{
 
     return (
         <PeriodeContainer bottomBorder={skalHaBottomBorder}>
-            <StyledElement>
-                <SpråkTekst id={tittelSpråkId} values={{ x: nummer }} />
-            </StyledElement>
+            {tittelSpråkId && (
+                <Element>
+                    <SpråkTekst id={tittelSpråkId} values={{ x: nummer }} />
+                </Element>
+            )}
+            {tittel}
             {children}
             {fjernPeriodeCallback !== undefined && (
                 <StyledButton
                     type={'button'}
                     variant={'tertiary'}
                     onClick={() => fjernPeriodeCallback()}
+                    icon={<DeleteFilled />}
                 >
-                    <DeleteFilled />
-                    <SpråkTekst id={fjernKnappSpråkId} />
+                    {fjernKnappTekst && <TekstBlock block={fjernKnappTekst} />}
+                    {fjernKnappSpråkId && <SpråkTekst id={fjernKnappSpråkId} />}
                 </StyledButton>
             )}
             {vedleggNotis}

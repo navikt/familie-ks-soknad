@@ -41,4 +41,5 @@ export enum Typografi {
     Label = 'Label',
     Detail = 'Detail',
     ErrorMessage = 'ErrorMessage',
+    HeadingH2 = 'HeadingH2',
 }

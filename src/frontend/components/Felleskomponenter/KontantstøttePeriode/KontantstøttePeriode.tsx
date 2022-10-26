@@ -1,24 +1,22 @@
 import React from 'react';
 
-import { Element } from 'nav-frontend-typografi';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { Typografi } from '../../../typer/common';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PeriodePersonTypeProps, PersonType } from '../../../typer/personType';
+import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { IEøsForBarnFeltTyper, IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 import { KontantstøttePeriodeModal } from './KontantstøttePeriodeModal';
 import { KontantstøttePeriodeOppsummering } from './KontantstøttePeriodeOppsummering';
-import {
-    kontantstøttePeriodeFlereSpørsmål,
-    kontantstøtteSpørsmålSpråkId,
-} from './kontantstøttePeriodeSpråkUtils';
+import { eøsKontantstøtteSpørsmålsdokument } from './kontantstøttePeriodeSpråkUtils';
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 
 interface Props {
@@ -42,20 +40,20 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
     barn,
     tilhørendeJaNeiSpmFelt,
 }) => {
+    const { tekster } = useApp();
     const { erÅpen: kontantstøtteModalErÅpen, toggleModal: toggleKontantstøtteModal } = useModal();
+
+    const teksterForPersonType: IEøsYtelseTekstinnhold =
+        tekster().FELLES.modaler.eøsYtelse[personType];
 
     return (
         <>
             <JaNeiSpm
                 skjema={skjema}
                 felt={tilhørendeJaNeiSpmFelt}
-                spørsmålTekstId={kontantstøtteSpørsmålSpråkId(personType, erDød)}
+                spørsmålDokument={eøsKontantstøtteSpørsmålsdokument(personType, tekster(), erDød)}
                 inkluderVetIkke={personType !== PersonType.søker}
-                språkValues={{
-                    ...(personType !== PersonType.søker && {
-                        barn: barn.navn,
-                    }),
-                }}
+                flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {tilhørendeJaNeiSpmFelt.verdi === ESvar.JA && (
                 <>
@@ -72,26 +70,26 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                     ))}
 
                     {registrerteEøsKontantstøttePerioder.verdi.length > 0 && (
-                        <Element>
-                            <SpråkTekst
-                                id={kontantstøttePeriodeFlereSpørsmål(personType)}
-                                values={{ barn: barn.navn }}
-                            />
-                        </Element>
+                        <TekstBlock
+                            block={teksterForPersonType.flerePerioder}
+                            typografi={Typografi.Label}
+                            flettefelter={{
+                                barnetsNavn: barn?.navn,
+                            }}
+                        />
                     )}
 
                     <LeggTilKnapp
                         onClick={toggleKontantstøtteModal}
-                        språkTekst={'ombarnet.trygdandreperioder.knapp'}
                         id={KontantstøttePeriodeSpørsmålId.kontantstøttePeriodeEøs}
                         feilmelding={
                             registrerteEøsKontantstøttePerioder.erSynlig &&
-                            registrerteEøsKontantstøttePerioder.feilmelding &&
-                            skjema.visFeilmeldinger && (
-                                <SpråkTekst id={'ombarnet.trygdandreperioder.feilmelding'} />
-                            )
+                            skjema.visFeilmeldinger &&
+                            registrerteEøsKontantstøttePerioder.feilmelding
                         }
-                    />
+                    >
+                        <TekstBlock block={teksterForPersonType.leggTilKnapp} />
+                    </LeggTilKnapp>
                     <KontantstøttePeriodeModal
                         erÅpen={kontantstøtteModalErÅpen}
                         toggleModal={toggleKontantstøtteModal}

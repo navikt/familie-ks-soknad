@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, ISkjema, ok, useSkjema } from '@navikt/familie-skjema';
@@ -18,7 +18,6 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IDinLivssituasjonFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { idNummerLand } from '../EøsSteg/idnummerUtils';
 import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
 
@@ -33,7 +32,7 @@ export const useDinLivssituasjon = (): {
     leggTilPensjonsperiode: (periode: IPensjonsperiode) => void;
     fjernPensjonsperiode: (periode: IPensjonsperiode) => void;
 } => {
-    const { søknad, settSøknad, tekster } = useApp();
+    const { søknad, settSøknad, tekster, plainTekst } = useApp();
     const { skalTriggeEøsForSøker, søkerTriggerEøs, settSøkerTriggerEøs, erEøsLand } = useEøs();
     const søker = søknad.søker;
     const teksterForSteg = tekster()[ESanitySteg.DIN_LIVSSITUASJON];
@@ -68,10 +67,9 @@ export const useDinLivssituasjon = (): {
                 ? ok(felt)
                 : feil(
                       felt,
-                      <TekstBlock
-                          block={teksterForArbeidsperiode.leggTilFeilmelding}
-                          flettefelter={{ gjelderUtland: true }}
-                      />
+                      plainTekst(teksterForArbeidsperiode.leggTilFeilmelding, {
+                          gjelderUtland: true,
+                      })
                   );
         }
     );
@@ -95,10 +93,9 @@ export const useDinLivssituasjon = (): {
                 ? ok(felt)
                 : feil(
                       felt,
-                      <TekstBlock
-                          block={teksterForPensjonsperiode.leggTilFeilmelding}
-                          flettefelter={{ gjelderUtland: true }}
-                      />
+                      plainTekst(teksterForPensjonsperiode.leggTilFeilmelding, {
+                          gjelderUtland: true,
+                      })
                   );
         }
     );

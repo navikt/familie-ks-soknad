@@ -45,7 +45,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
         },
     } = tekster();
 
-    const { flerePerioder, leggTilFeilmelding, leggTilKnapp } = utenlandsopphold[personType];
+    const { flerePerioder, leggTilKnapp } = utenlandsopphold[personType];
 
     return (
         <>
@@ -73,10 +73,8 @@ export const Utenlandsperiode: React.FC<Props> = ({
                 onClick={toggleModal}
                 feilmelding={
                     registrerteUtenlandsperioder.erSynlig &&
-                    registrerteUtenlandsperioder.feilmelding &&
-                    skjema.visFeilmeldinger && (
-                        <TekstBlock block={leggTilFeilmelding} typografi={Typografi.ErrorMessage} />
-                    )
+                    skjema.visFeilmeldinger &&
+                    registrerteUtenlandsperioder.feilmelding
                 }
             >
                 <TekstBlock block={leggTilKnapp} />

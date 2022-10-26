@@ -5,25 +5,37 @@ import { v4 as uuidv4 } from 'uuid';
 import { feil, FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
+import { useApp } from '../context/AppContext';
+import { LocaleRecordBlock } from '../typer/common';
+import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
+
+interface Props {
+    søknadsfelt: ISøknadSpørsmål<string> | null;
+    /** @deprecated **/
+    feilmeldingSpråkId?: string;
+    skalVises?: boolean;
+    customValidering?: ((felt: FeltState<string>) => FeltState<string>) | undefined;
+    nullstillVedAvhengighetEndring?: boolean;
+    /** @deprecated **/
+    feilmeldingSpråkVerdier?: Record<string, ReactNode>;
+    feilmelding?: LocaleRecordBlock; // todo: fjerne optional når vi går over til sanity
+    flettefelter?: FlettefeltVerdier;
+}
 
 const useInputFelt = ({
     søknadsfelt,
     feilmeldingSpråkId,
+    feilmelding,
     skalVises = true,
     customValidering = undefined,
     nullstillVedAvhengighetEndring = true,
     feilmeldingSpråkVerdier,
-}: {
-    søknadsfelt: ISøknadSpørsmål<string> | null;
-    feilmeldingSpråkId: string;
-    skalVises?: boolean;
-    customValidering?: ((felt: FeltState<string>) => FeltState<string>) | undefined;
-    nullstillVedAvhengighetEndring?: boolean;
-    feilmeldingSpråkVerdier?: Record<string, ReactNode>;
-}) =>
-    useFelt<string>({
+    flettefelter,
+}: Props) => {
+    const { plainTekst } = useApp();
+    return useFelt<string>({
         feltId: søknadsfelt?.id ?? uuidv4(),
         verdi: søknadsfelt ? trimWhiteSpace(søknadsfelt.svar) : '',
         valideringsfunksjon: (felt: FeltState<string>) => {
@@ -34,12 +46,17 @@ const useInputFelt = ({
                     : ok(felt)
                 : feil(
                       felt,
-                      <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
+                      feilmeldingSpråkId ? (
+                          <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
+                      ) : (
+                          plainTekst(feilmelding, flettefelter)
+                      )
                   );
         },
         avhengigheter: { skalVises },
         skalFeltetVises: avhengigheter => avhengigheter.skalVises,
         nullstillVedAvhengighetEndring,
     });
+};
 
 export default useInputFelt;

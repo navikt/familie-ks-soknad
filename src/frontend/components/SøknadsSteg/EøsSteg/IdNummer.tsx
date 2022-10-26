@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
 
 import { Alpha3Code, getName } from 'i18n-iso-countries';
-import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -9,14 +8,16 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { feil, Felt, FeltState, ISkjema, ok, useFelt } from '@navikt/familie-skjema';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
+import { useApp } from '../../../context/AppContext';
 import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../typer/common';
+import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { OppsummeringFelt } from '../Oppsummering/OppsummeringFelt';
 import { idNummerKeyPrefix, PeriodeType } from './idnummerUtils';
 
@@ -30,10 +31,8 @@ export const IdNummer: React.FC<{
     landAlphaCode: Alpha3Code | '';
     periodeType?: PeriodeType;
     idNummerVerdiFraSøknad: string | undefined;
-    feilmeldingSpråkId: string;
-    spørsmålSpråkId: string;
-    spørsmålCheckboxSpråkId: string;
     lesevisning?: boolean;
+    spørsmålDokument: ISanitySpørsmålDokument;
     barn?: IBarnMedISøknad;
 }> = ({
     skjema,
@@ -41,15 +40,14 @@ export const IdNummer: React.FC<{
     landAlphaCode,
     periodeType = undefined,
     idNummerVerdiFraSøknad,
-    feilmeldingSpråkId,
-    spørsmålSpråkId,
-    spørsmålCheckboxSpråkId,
     barn,
+    spørsmålDokument,
     lesevisning = false,
 }) => {
+    const { plainTekst, tekster } = useApp();
     const [valgtLocale] = useSprakContext();
-    const intl = useIntl();
-    const { formatMessage } = intl;
+
+    const landNavn = getName(landAlphaCode, valgtLocale);
 
     // Bruker skal ha mulighet til å velge at hen ikke kjenner idnummer for: barn, andre forelder og søker (dersom idnummer for søker trigges av et utenlandsopphold).
     // Barn blir sendt med som prop når vi render Idnummer for andre forelder og barn, derfor kan vi sjekke på den propen.
@@ -73,16 +71,19 @@ export const IdNummer: React.FC<{
                     : '',
         },
         avhengighet: idNummerUkjent,
-        feilmeldingSpråkId: feilmeldingSpråkId,
+        feilmelding: spørsmålDokument.feilmelding,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
-            if (verdi.match(/^[0-9A-Za-z\s\-.\\/]{4,20}$/)) {
+            if (verdi.match(/^[\dA-Za-z\s\-.\\/]{4,20}$/)) {
                 return ok(felt);
             } else {
-                return feil(felt, <SpråkTekst id={'felles.idnummer-feilformat.feilmelding'} />);
+                return feil(
+                    felt,
+                    plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigIDnummer)
+                );
             }
         },
-        ...(barn && { språkVerdier: { barn: barn.navn } }),
+        flettefelter: { barnetsNavn: barn?.navn, land: landNavn },
     });
 
     useEffect(() => {
@@ -95,43 +96,40 @@ export const IdNummer: React.FC<{
         <IdNummerContainer lesevisning={lesevisning}>
             {lesevisning ? (
                 <OppsummeringFelt
-                    tittel={
-                        <SpråkTekst
-                            id={spørsmålSpråkId}
-                            values={{
-                                land: getName(landAlphaCode, valgtLocale),
-                                ...(barn && { barn: barn.navn }),
-                            }}
-                        />
-                    }
                     søknadsvar={
                         idNummerVerdiFraSøknad === AlternativtSvarForInput.UKJENT
-                            ? formatMessage(
-                                  {
-                                      id: spørsmålCheckboxSpråkId,
-                                  },
-                                  { land: getName(landAlphaCode, valgtLocale) }
-                              )
+                            ? plainTekst(spørsmålDokument.checkboxLabel, {
+                                  land: landNavn,
+                              })
                             : idNummerVerdiFraSøknad
                     }
-                />
+                >
+                    <TekstBlock
+                        block={spørsmålDokument.sporsmal}
+                        flettefelter={{ land: landNavn }}
+                    />
+                </OppsummeringFelt>
             ) : (
                 <>
                     <SkjemaFeltInput
                         felt={idNummerFelt}
                         visFeilmeldinger={skjema.visFeilmeldinger}
-                        labelSpråkTekstId={spørsmålSpråkId}
-                        språkValues={{
-                            land: getName(landAlphaCode, valgtLocale),
-                            ...(barn && { barn: barn.navn }),
-                        }}
+                        label={
+                            <TekstBlock
+                                block={spørsmålDokument.sporsmal}
+                                flettefelter={{
+                                    land: landNavn,
+                                }}
+                            />
+                        }
                         disabled={idNummerUkjent.verdi === ESvar.JA}
                     />
                     {idNummerUkjent.erSynlig && (
                         <SkjemaCheckbox
-                            labelSpråkTekstId={spørsmålCheckboxSpråkId}
+                            label={plainTekst(spørsmålDokument.checkboxLabel, {
+                                land: landNavn,
+                            })}
                             felt={idNummerUkjent}
-                            språkVerdier={{ land: getName(landAlphaCode, valgtLocale) }}
                         />
                     )}
                 </>

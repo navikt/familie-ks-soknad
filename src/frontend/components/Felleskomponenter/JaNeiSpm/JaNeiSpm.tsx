@@ -8,7 +8,9 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import { AlternativtSvarForInput } from '../../../typer/common';
+import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { logSpørsmålBesvart } from '../../../utils/amplitude';
@@ -26,7 +28,7 @@ interface IJaNeiSpmProps {
     /** @deprecated **/ // todo: legacy, fjerne denne når vi går over til sanity
     språkValues?: Record<string, ReactNode> | undefined;
     spørsmålDokument?: ISanitySpørsmålDokument;
-    barnetsNavn?: string;
+    flettefelter?: FlettefeltVerdier;
 }
 
 const TilleggsinfoWrapper = styled.div`
@@ -42,9 +44,11 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
     inkluderVetIkke = false,
     språkValues,
     spørsmålDokument,
-    barnetsNavn,
+    flettefelter,
 }) => {
     const [mounted, settMounted] = useState(false);
+    const { tekster, plainTekst } = useApp();
+    const { ja, nei, jegVetIkke } = tekster().FELLES.frittståendeOrd;
 
     useEffect(() => {
         if (mounted) {
@@ -82,7 +86,7 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
                         <>
                             <TekstBlock
                                 block={spørsmålDokument.sporsmal}
-                                flettefelter={{ barnetsNavn }}
+                                flettefelter={flettefelter}
                             />
                             {tilleggsinfo && (
                                 <TilleggsinfoWrapper>{tilleggsinfo}</TilleggsinfoWrapper>
@@ -91,11 +95,9 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
                     ) : null
                 }
                 labelTekstForRadios={{
-                    ja: <SpråkTekst id={'felles.svaralternativ.ja'} />,
-                    nei: <SpråkTekst id={'felles.svaralternativ.nei'} />,
-                    vetikke: inkluderVetIkke ? (
-                        <SpråkTekst id={'felles.svaralternativ.vetikke'} />
-                    ) : undefined,
+                    ja: plainTekst(ja),
+                    nei: plainTekst(nei),
+                    vetikke: inkluderVetIkke ? plainTekst(jegVetIkke) : undefined,
                 }}
             />
         </span>

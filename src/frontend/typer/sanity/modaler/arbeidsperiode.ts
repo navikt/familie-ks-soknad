@@ -14,4 +14,5 @@ export interface IArbeidsperiodeTekstinnhold {
     fjernKnapp: LocaleRecordBlock;
     leggTilKnapp: LocaleRecordBlock;
     leggTilFeilmelding: LocaleRecordBlock;
+    oppsummeringstittel: LocaleRecordBlock;
 }
