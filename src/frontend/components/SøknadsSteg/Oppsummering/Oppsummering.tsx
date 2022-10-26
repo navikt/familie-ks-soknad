@@ -66,13 +66,10 @@ const Oppsummering: React.FC = () => {
             <OmBarnaOppsummering settFeilAnchors={settFeilAnchors} />
 
             {søknad.barnInkludertISøknaden.map((barn, index) => {
-                const enIndeksert = index + 1;
-                const nummer = (hentStegNummer(RouteEnum.OmBarna) + enIndeksert).toString();
                 return (
                     <OmBarnetOppsummering
                         key={`om-barnet-${index}`}
                         barn={barn}
-                        nummer={nummer}
                         settFeilAnchors={settFeilAnchors}
                         index={index}
                     />
