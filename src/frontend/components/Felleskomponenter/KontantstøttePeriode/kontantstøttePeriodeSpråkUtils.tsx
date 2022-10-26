@@ -1,69 +1,24 @@
 import { PersonType } from '../../../typer/personType';
-import { EøsBarnSpørsmålId, eøsBarnSpørsmålSpråkId } from '../../SøknadsSteg/EøsSteg/Barn/spørsmål';
-import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from '../../SøknadsSteg/OmBarnet/spørsmål';
+import { ESanitySteg, ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
+import { ITekstinnhold } from '../../../typer/sanity/tekstInnhold';
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 
-export const kontantstøtteLandFeilmelding = (
-    periodenErAvsluttet: boolean,
-    personType: PersonType
-): string => {
-    switch (personType) {
-        case PersonType.andreForelder: {
-            return periodenErAvsluttet
-                ? 'modal.annenforelder-barnetrygd-fortid.feilmelding'
-                : 'modal.annenforelder-barnetrygd-nåtid.feilmelding';
-        }
-        case PersonType.omsorgsperson: {
-            return periodenErAvsluttet
-                ? 'modal.omsorgsperson-barnetrygd-fortid.feilmelding'
-                : 'modal.omsorgsperson-barnetrygd-nåtid.feilmelding';
-        }
-        case PersonType.søker:
-        default: {
-            return periodenErAvsluttet
-                ? 'modal.hvilketlandbarnetrygd.feilmelding'
-                : 'ombarnet.hvilketlandfår.feilmelding';
-        }
-    }
-};
-
-export const kontantstøtteSpørsmålSpråkId = (personType: PersonType, erDød?: boolean): string => {
+export const eøsKontantstøtteSpørsmålsdokument = (
+    personType: Exclude<PersonType, PersonType.barn>,
+    tekster: ITekstinnhold,
+    erDød?: boolean
+): ISanitySpørsmålDokument => {
     switch (personType) {
         case PersonType.andreForelder: {
             return erDød
-                ? eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.andreForelderKontantstøtteGjenlevende]
-                : eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.andreForelderKontantstøtte];
+                ? tekster[ESanitySteg.EØS_FOR_BARN].ytelseFraAnnetLandAndreForelderGjenlevende
+                : tekster[ESanitySteg.EØS_FOR_BARN].ytelseFraAnnetLandAndreForelder;
         }
         case PersonType.omsorgsperson: {
-            return eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.omsorgspersonKontantstøtte];
+            return tekster[ESanitySteg.EØS_FOR_BARN].ytelseFraAnnetLandOmsorgsperson;
         }
         case PersonType.søker:
-        default:
-            return omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.mottarEllerMottokEøsKontantstøtte];
-    }
-};
-
-export const kontantstøttePeriodeFlereSpørsmål = (personType: PersonType): string => {
-    switch (personType) {
-        case PersonType.andreForelder:
-            return 'eøs-om-barn.andre-forelder-barnetrygd-flere-perioder.spm';
-        case PersonType.omsorgsperson:
-            return 'eøs-om-barn.omsorgsperson-barnetrygd-flere-perioder.spm';
-        case PersonType.søker:
-        default:
-            return 'ombarnet.trygdandreperioder.spm';
-    }
-};
-
-export const mottarKontantstøtteNåFeilmelding = (personType: PersonType) => {
-    switch (personType) {
-        case PersonType.andreForelder:
-            return 'modal.barnetrygdnå-annenforelder.feilmelding';
-        case PersonType.omsorgsperson:
-            return 'modal.barnetrygdnå-omsorgsperson.feilmelding';
-        case PersonType.søker:
-        default:
-            return 'modal.barnetrygdnå.feilmelding';
+            return tekster[ESanitySteg.OM_BARNET].faarEllerHarFaattYtelseFraAnnetLand;
     }
 };
 
