@@ -29,7 +29,7 @@ interface Props {
 }
 
 const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
-    const { søknad, tekster, plainTekst } = useApp();
+    const { søknad, tekster } = useApp();
     const { OM_DEG: omDegTekster, FORSIDE: forsideTekster } = tekster();
     const [valgtLocale] = useSprakContext();
     const { formatMessage } = useIntl();
