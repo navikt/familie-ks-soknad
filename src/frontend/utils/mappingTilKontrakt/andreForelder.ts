@@ -18,7 +18,7 @@ import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
 import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';
 import {
     sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjentSpråktekst,
+    sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel,
     språktekstIdFraSpørsmålId,
     søknadsfeltBarn,
     verdiCallbackAlleSpråk,
@@ -65,7 +65,7 @@ export const andreForelderTilISøknadsfelt = (
         navn: navn.svar
             ? søknadsfeltBarn(
                   språktekstIdFraSpørsmålId(OmBarnetSpørsmålsId.andreForelderNavn),
-                  sammeVerdiAlleSpråkEllerUkjentSpråktekst(
+                  sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel(
                       navn.svar,
                       omBarnetSpørsmålSpråkId[
                           OmBarnetSpørsmålsId.andreForelderKanIkkeGiOpplysninger
@@ -77,7 +77,7 @@ export const andreForelderTilISøknadsfelt = (
         fnr: fnr.svar
             ? søknadsfeltBarn(
                   språktekstIdFraSpørsmålId(OmBarnetSpørsmålsId.andreForelderFnr),
-                  sammeVerdiAlleSpråkEllerUkjentSpråktekst(
+                  sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel(
                       fnr.svar,
                       omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.andreForelderFnrUkjent]
                   ),
@@ -87,7 +87,7 @@ export const andreForelderTilISøknadsfelt = (
         fødselsdato: fødselsdato.svar
             ? søknadsfeltBarn(
                   språktekstIdFraSpørsmålId(OmBarnetSpørsmålsId.andreForelderFødselsdato),
-                  sammeVerdiAlleSpråkEllerUkjentSpråktekst(
+                  sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel(
                       fødselsdato.svar,
                       omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.andreForelderFødselsdatoUkjent]
                   ),
@@ -172,7 +172,7 @@ export const andreForelderTilISøknadsfelt = (
         adresse: adresse.svar
             ? søknadsfeltBarn(
                   språktekstIdFraSpørsmålId(EøsBarnSpørsmålId.andreForelderAdresse),
-                  sammeVerdiAlleSpråkEllerUkjentSpråktekst(
+                  sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel(
                       adresse.svar,
                       eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.andreForelderAdresseVetIkke]
                   ),

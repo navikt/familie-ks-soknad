@@ -48,13 +48,23 @@ export const verdiCallbackAlleSpråk = <T>(
 export const sammeVerdiAlleSpråk = <T>(verdi: T): Record<LocaleType, T> =>
     verdiCallbackAlleSpråk(() => verdi);
 
-export const sammeVerdiAlleSpråkEllerUkjentSpråktekst = <T>(
+export const sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel = <T>(
     svar: T | AlternativtSvarForInput,
     ukjentTekstid: string,
     språkVerdier: Record<string, ReactNode> = {}
 ): Record<LocaleType, T | string> =>
     svar === AlternativtSvarForInput.UKJENT
         ? hentTekster(ukjentTekstid, språkVerdier)
+        : sammeVerdiAlleSpråk(svar);
+
+export const sammeVerdiAlleSpråkEllerUkjent = <T>(
+    tilRestLocaleRecord: TilRestLocaleRecord,
+    svar: T | AlternativtSvarForInput,
+    checkboxLabel?: LocaleRecordString,
+    flettefelter?: FlettefeltVerdier
+): Record<LocaleType, T | string> =>
+    checkboxLabel && svar === AlternativtSvarForInput.UKJENT
+        ? tilRestLocaleRecord(checkboxLabel, flettefelter)
         : sammeVerdiAlleSpråk(svar);
 
 export const spørmålISøknadsFormat = (

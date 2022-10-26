@@ -6,7 +6,10 @@ import { ISøknadsfelt } from '../../typer/kontrakt/generelle';
 import { IIdNummerIKontraktFormat } from '../../typer/kontrakt/v1';
 import { IIdNummer } from '../../typer/person';
 import { hentTekster } from '../språk';
-import { sammeVerdiAlleSpråk, sammeVerdiAlleSpråkEllerUkjentSpråktekst } from './hjelpefunksjoner';
+import {
+    sammeVerdiAlleSpråk,
+    sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel,
+} from './hjelpefunksjoner';
 
 export const idNummerTilISøknadsfelt = (
     idnummerObj: IIdNummer,
@@ -25,7 +28,7 @@ export const idNummerTilISøknadsfelt = (
                 land: getName(idnummerObj.land, valgtSpråk),
                 ...(barnetsNavn && { barn: barnetsNavn }),
             }),
-            verdi: sammeVerdiAlleSpråkEllerUkjentSpråktekst(
+            verdi: sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel(
                 idnummerObj.idnummer,
                 ukjentSvarSpråkId,
                 {

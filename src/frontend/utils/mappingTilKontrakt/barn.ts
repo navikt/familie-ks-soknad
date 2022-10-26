@@ -18,7 +18,7 @@ import { tilIBarnehageplassPeriodeIKontraktFormat } from './barnehageplassperiod
 import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';
 import {
     sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjentSpråktekst,
+    sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel,
     språktekstIdFraSpørsmålId,
     spørmålISøknadsFormat,
     søknadsfeltBarn,
@@ -139,7 +139,7 @@ export const barnISøknadsFormat = (
             }),
             [barnDataKeySpørsmål.adresse]: søknadsfeltBarn(
                 språktekstIdFraSpørsmålId(EøsBarnSpørsmålId.barnetsAdresse),
-                sammeVerdiAlleSpråkEllerUkjentSpråktekst(
+                sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel(
                     adresse.svar,
                     eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.barnetsAdresseVetIkke]
                 ),
