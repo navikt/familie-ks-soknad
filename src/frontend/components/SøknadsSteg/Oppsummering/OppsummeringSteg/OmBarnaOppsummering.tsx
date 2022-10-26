@@ -18,8 +18,9 @@ interface Props {
 }
 
 const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
-    const { søknad } = useApp();
+    const { søknad, tekster } = useApp();
     const { hentRouteObjektForRouteEnum } = useRoutes();
+    const omBarnaTekster = tekster().OM_BARNA;
     const omBarnaDineHook = useOmBarnaDine();
 
     const genererListeMedBarn = (søknadDatafelt: barnDataKeySpørsmål) =>
@@ -31,7 +32,7 @@ const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
     return (
         <Oppsummeringsbolk
             steg={hentRouteObjektForRouteEnum(RouteEnum.OmBarna)}
-            tittel={'ombarna.sidetittel'}
+            tittelV2={omBarnaTekster.omBarnaTittel}
             skjemaHook={omBarnaDineHook}
             settFeilAnchors={settFeilAnchors}
         >

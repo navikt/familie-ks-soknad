@@ -39,7 +39,7 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
     return (
         <Oppsummeringsbolk
             steg={hentRouteObjektForRouteEnum(RouteEnum.OmDeg)}
-            tittel={plainTekst(omDegTekster.omDegTittel)}
+            tittelV2={omDegTekster.omDegTittel}
             skjemaHook={omDegHook}
             settFeilAnchors={settFeilAnchors}
         >
