@@ -115,7 +115,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                         label={
                             <TekstBlock
                                 block={slektsforhold.sporsmal}
-                                flettefelter={{ barnetsNavn: barn.navn }}
+                                flettefelter={{ barnetsNavn }}
                             />
                         }
                         gjelderSøker={true}
@@ -127,7 +127,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                             label={
                                 <TekstBlock
                                     block={hvilkenRelasjon.sporsmal}
-                                    flettefelter={{ barnetsNavn: barn.navn }}
+                                    flettefelter={{ barnetsNavn }}
                                 />
                             }
                         />
@@ -142,13 +142,13 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                         skjema={skjema}
                         felt={skjema.felter.borMedAndreForelder}
                         spørsmålDokument={borMedAndreForelder}
-                        flettefelter={{ barnetsNavn: barn.navn }}
+                        flettefelter={{ barnetsNavn }}
                     />
                     <JaNeiSpm
                         skjema={skjema}
                         felt={skjema.felter.borMedOmsorgsperson}
                         spørsmålDokument={borMedOmsorgsperson}
-                        flettefelter={{ barnetsNavn: barn.navn }}
+                        flettefelter={{ barnetsNavn }}
                     />
                 </KomponentGruppe>
             )}
