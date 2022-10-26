@@ -108,6 +108,9 @@ export interface IFrittståendeOrdTekstinnhold {
     utenfor: LocaleRecordString;
     utlandet: LocaleRecordString;
     norge: LocaleRecordString;
+    ja: LocaleRecordString;
+    nei: LocaleRecordString;
+    jegVetIkke: LocaleRecordString;
 }
 
 export interface INavigasjonTekstinnhold {
@@ -119,4 +122,5 @@ export interface INavigasjonTekstinnhold {
 export interface IFormateringsfeilmeldingerTekstinnhold {
     datoKanIkkeVaereTilbakeITid: LocaleRecordString;
     ugyldigIDnummer: LocaleRecordString;
+    ugyldigBeloep: LocaleRecordString;
 }
