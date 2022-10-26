@@ -1,5 +1,4 @@
 import { ESvar } from '@navikt/familie-form-elements';
-import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import {
     EøsBarnSpørsmålId,
@@ -10,8 +9,10 @@ import {
     omBarnetSpørsmålSpråkId,
 } from '../../components/SøknadsSteg/OmBarnet/spørsmål';
 import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../typer/barn';
+import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IAndreForelderIKontraktFormat } from '../../typer/kontrakt/v1';
 import { PersonType } from '../../typer/personType';
+import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { landkodeTilSpråk } from '../språk';
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
 import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
@@ -29,7 +30,8 @@ import { tilIPensjonsperiodeIKontraktFormat } from './pensjonsperioder';
 export const andreForelderTilISøknadsfelt = (
     andreForelder: IAndreForelder,
     barn: IBarnMedISøknad,
-    valgtSpråk: LocaleType
+    tilRestLocaleRecord: TilRestLocaleRecord,
+    tekster: ITekstinnhold
 ): IAndreForelderIKontraktFormat => {
     const {
         navn,
@@ -237,10 +239,9 @@ export const andreForelderTilISøknadsfelt = (
         ),
         idNummer: idNummer.map(idnummerObj =>
             idNummerTilISøknadsfelt(
+                tilRestLocaleRecord,
                 idnummerObj,
-                eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.idNummerAndreForelder],
-                eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.idNummerUkjent],
-                valgtSpråk,
+                tekster.EØS_FOR_BARN.idNummerAndreForelder,
                 barn.navn
             )
         ),

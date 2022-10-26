@@ -1,10 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
-import {
-    EøsSøkerSpørsmålId,
-    eøsSøkerSpørsmålSpråkId,
-} from '../../components/SøknadsSteg/EøsSteg/Søker/spørsmål';
 import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { IBarnMedISøknad } from '../../typer/barn';
 import { ESivilstand, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
@@ -113,10 +109,9 @@ export const dataISøknadKontraktFormatV1 = (
             ),
             idNummer: idNummer.map(idnummerObj =>
                 idNummerTilISøknadsfelt(
+                    tilRestLocaleRecord,
                     idnummerObj,
-                    eøsSøkerSpørsmålSpråkId[EøsSøkerSpørsmålId.idNummer],
-                    eøsSøkerSpørsmålSpråkId[EøsSøkerSpørsmålId.idNummerUkjent],
-                    valgtSpråk
+                    tekster.EØS_FOR_SØKER.idNummer
                 )
             ),
             spørsmål: {
@@ -163,7 +158,7 @@ export const dataISøknadKontraktFormatV1 = (
             ),
         },
         barn: barnInkludertISøknaden.map(barn =>
-            barnISøknadsFormat(barn, søker, valgtSpråk, tekster, tilRestLocaleRecord)
+            barnISøknadsFormat(barn, søker, tekster, tilRestLocaleRecord)
         ),
         spørsmål: {
             erNoenAvBarnaFosterbarn: søknadsfeltGammel(

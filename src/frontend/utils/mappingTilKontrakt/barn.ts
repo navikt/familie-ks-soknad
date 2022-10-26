@@ -1,5 +1,3 @@
-import { LocaleType } from '@navikt/familie-sprakvelger';
-
 import {
     EøsBarnSpørsmålId,
     eøsBarnSpørsmålSpråkId,
@@ -30,7 +28,6 @@ import { utenlandsperiodeTilISøknadsfelt } from './utenlandsperiode';
 export const barnISøknadsFormat = (
     barn: IBarnMedISøknad,
     søker: ISøker,
-    valgtSpråk: LocaleType,
     tekster: ITekstinnhold,
     tilRestLocaleRecord: TilRestLocaleRecord
 ): ISøknadIKontraktBarn => {
@@ -120,15 +117,14 @@ export const barnISøknadsFormat = (
         ),
         idNummer: idNummer.map(idnummerObj =>
             idNummerTilISøknadsfelt(
+                tilRestLocaleRecord,
                 idnummerObj,
-                eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.idNummer],
-                eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.idNummerUkjent],
-                valgtSpråk,
+                tekster.EØS_FOR_BARN.idNummerBarn,
                 navn
             )
         ),
         andreForelder: andreForelder
-            ? andreForelderTilISøknadsfelt(andreForelder, barn, valgtSpråk)
+            ? andreForelderTilISøknadsfelt(andreForelder, barn, tilRestLocaleRecord, tekster)
             : null,
 
         omsorgsperson: omsorgsperson ? omsorgspersonTilISøknadsfelt(omsorgsperson, barn) : null,

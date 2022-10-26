@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import createUseContext from 'constate';
-import { Alpha3Code } from 'i18n-iso-countries';
+import { Alpha3Code, getName } from 'i18n-iso-countries';
 import { useIntl } from 'react-intl';
 
 import { LocaleType, useSprakContext } from '@navikt/familie-sprakvelger';
@@ -220,7 +220,8 @@ const [AppProvider, useApp] = createUseContext(() => {
 
     const flettefeltTilTekst = (
         sanityFlettefelt: ESanityFlettefeltverdi,
-        flettefelter?: FlettefeltVerdier
+        flettefelter?: FlettefeltVerdier,
+        spesifikkLocale?: LocaleType
     ): string => {
         const frittståendeOrd = tekster()[ESanitySteg.FELLES].frittståendeOrd;
         switch (sanityFlettefelt) {
@@ -255,7 +256,7 @@ const [AppProvider, useApp] = createUseContext(() => {
                 if (!flettefelter?.land) {
                     throw Error('Flettefeltet land ikke sendt med');
                 }
-                return flettefelter.land;
+                return getName(flettefelter.land, spesifikkLocale ?? valgtLocale);
         }
     };
 
