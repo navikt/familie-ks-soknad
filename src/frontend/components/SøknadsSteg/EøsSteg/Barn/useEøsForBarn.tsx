@@ -100,7 +100,7 @@ export const useEøsForBarn = (
         valideringsfunksjon: (felt: FeltState<Slektsforhold | ''>) => {
             return felt.verdi !== ''
                 ? ok(felt)
-                : feil(felt, plainTekst(eøsForBarnTekster.slektsforhold.feilmelding, flettefelter));
+                : feil(felt, plainTekst(eøsForBarnTekster.slektsforhold.feilmelding));
         },
         skalFeltetVises: () => gjeldendeBarn.erFosterbarn.svar === ESvar.NEI,
     });
@@ -108,7 +108,6 @@ export const useEøsForBarn = (
     const søkersSlektsforholdSpesifisering = useInputFelt({
         søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.søkersSlektsforholdSpesifisering],
         feilmelding: eøsForBarnTekster.hvilkenRelasjon.feilmelding,
-        flettefelter: flettefelter,
         skalVises: søkersSlektsforhold.verdi === Slektsforhold.ANNEN_RELASJON,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
@@ -131,7 +130,6 @@ export const useEøsForBarn = (
     const borMedAndreForelder = useJaNeiSpmFelt({
         søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.borMedAndreForelder],
         feilmelding: eøsForBarnTekster.borMedAndreForelder.feilmelding,
-        flettefelter: flettefelter,
         nullstillVedAvhengighetEndring: true,
         skalSkjules:
             gjeldendeBarn.erFosterbarn.svar === ESvar.JA ||
@@ -143,7 +141,6 @@ export const useEøsForBarn = (
     const borMedOmsorgsperson = useJaNeiSpmFelt({
         søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.borMedOmsorgsperson],
         feilmelding: eøsForBarnTekster.borMedOmsorgsperson.feilmelding,
-        flettefelter: flettefelter,
         nullstillVedAvhengighetEndring: true,
         skalSkjules: !skalViseBorMedOmsorgsperson(
             borMedAndreForelder.verdi,
@@ -182,13 +179,7 @@ export const useEøsForBarn = (
         valideringsfunksjon: (felt: FeltState<Slektsforhold | ''>) => {
             return felt.verdi !== ''
                 ? ok(felt)
-                : feil(
-                      felt,
-                      plainTekst(
-                          eøsForBarnTekster.slektsforholdOmsorgsperson.feilmelding,
-                          flettefelter
-                      )
-                  );
+                : feil(felt, plainTekst(eøsForBarnTekster.slektsforholdOmsorgsperson.feilmelding));
         },
         skalFeltetVises: avhengigheter =>
             gjeldendeBarn.erFosterbarn.svar === ESvar.NEI &&
@@ -200,7 +191,6 @@ export const useEøsForBarn = (
     const omsorgpersonSlektsforholdSpesifisering = useInputFelt({
         søknadsfelt: omsorgsperson && omsorgsperson.slektsforholdSpesifisering,
         feilmelding: eøsForBarnTekster.hvilkenRelasjonOmsorgsperson.feilmelding,
-        flettefelter: flettefelter,
         skalVises: omsorgspersonSlektsforhold.verdi === Slektsforhold.ANNEN_RELASJON,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
@@ -259,7 +249,6 @@ export const useEøsForBarn = (
     const omsorgspersonArbeidUtland = useJaNeiSpmFelt({
         søknadsfelt: omsorgsperson?.arbeidUtland,
         feilmelding: eøsForBarnTekster.arbeidUtenforNorgeOmsorgsperson.feilmelding,
-        flettefelter: flettefelter,
         skalSkjules: borMedOmsorgsperson.verdi !== ESvar.JA,
     });
 
@@ -282,7 +271,6 @@ export const useEøsForBarn = (
     const omsorgspersonArbeidNorge = useJaNeiSpmFelt({
         søknadsfelt: omsorgsperson?.arbeidNorge,
         feilmelding: eøsForBarnTekster.arbeidNorgeOmsorgsperson.feilmelding,
-        flettefelter: flettefelter,
         skalSkjules: borMedOmsorgsperson.verdi !== ESvar.JA,
     });
 
@@ -305,7 +293,6 @@ export const useEøsForBarn = (
     const omsorgspersonPensjonUtland = useJaNeiSpmFelt({
         søknadsfelt: omsorgsperson?.pensjonUtland,
         feilmelding: eøsForBarnTekster.pensjonUtlandOmsorgsperson.feilmelding,
-        flettefelter: flettefelter,
         skalSkjules: borMedOmsorgsperson.verdi !== ESvar.JA,
     });
 
@@ -328,7 +315,6 @@ export const useEøsForBarn = (
     const omsorgspersonPensjonNorge = useJaNeiSpmFelt({
         søknadsfelt: omsorgsperson?.pensjonNorge,
         feilmelding: eøsForBarnTekster.pensjonNorgeOmsorgsperson.feilmelding,
-        flettefelter: flettefelter,
         skalSkjules: borMedOmsorgsperson.verdi !== ESvar.JA,
     });
 
@@ -351,7 +337,6 @@ export const useEøsForBarn = (
     const omsorgspersonAndreUtbetalinger = useJaNeiSpmFelt({
         søknadsfelt: omsorgsperson?.andreUtbetalinger,
         feilmelding: eøsForBarnTekster.utbetalingerOmsorgsperson.feilmelding,
-        flettefelter: flettefelter,
         skalSkjules: borMedOmsorgsperson.verdi !== ESvar.JA,
     });
 
@@ -374,14 +359,12 @@ export const useEøsForBarn = (
     const omsorgspersonPågåendeSøknadFraAnnetEøsLand = useJaNeiSpmFelt({
         søknadsfelt: omsorgsperson?.pågåendeSøknadFraAnnetEøsLand,
         feilmelding: eøsForBarnTekster.paagaaendeSoeknadYtelseOmsorgsperson.feilmelding,
-        flettefelter: flettefelter,
         skalSkjules: borMedOmsorgsperson.verdi !== ESvar.JA,
     });
 
     const omsorgspersonPågåendeSøknadHvilketLand = useLanddropdownFeltMedJaNeiAvhengighet({
         søknadsfelt: omsorgsperson?.pågåendeSøknadHvilketLand,
         feilmelding: eøsForBarnTekster.hvilketLandSoektYtelseOmsorgsperson.feilmelding,
-        flettefelter: flettefelter,
         avhengigSvarCondition: ESvar.JA,
         avhengighet: omsorgspersonPågåendeSøknadFraAnnetEøsLand,
     });
@@ -389,7 +372,6 @@ export const useEøsForBarn = (
     const omsorgspersonKontantstøtteFraEøs = useJaNeiSpmFelt({
         søknadsfelt: omsorgsperson?.kontantstøtteFraEøs,
         feilmelding: eøsForBarnTekster.ytelseFraAnnetLandOmsorgsperson.feilmelding,
-        flettefelter: flettefelter,
         skalSkjules: borMedOmsorgsperson.verdi !== ESvar.JA,
     });
 
@@ -444,7 +426,6 @@ export const useEøsForBarn = (
         søknadsfelt: andreForelder && andreForelder[andreForelderDataKeySpørsmål.adresse],
         avhengighet: andreForelderAdresseVetIkke,
         feilmelding: eøsForBarnTekster.hvorBorAndreForelder.feilmelding,
-        flettefelter: flettefelter,
         skalVises: !andreForelderErDød && !skalSkjuleAndreForelderFelt(gjeldendeBarn),
         customValidering: valideringAdresse,
     });
@@ -454,7 +435,6 @@ export const useEøsForBarn = (
         feilmelding: andreForelderErDød
             ? eøsForBarnTekster.arbeidNorgeAndreForelderGjenlevende.feilmelding
             : eøsForBarnTekster.arbeidNorgeAndreForelder.feilmelding,
-        flettefelter: flettefelter,
         skalSkjules: skalSkjuleAndreForelderFelt(gjeldendeBarn),
     });
 
@@ -479,7 +459,6 @@ export const useEøsForBarn = (
         feilmelding: andreForelderErDød
             ? eøsForBarnTekster.pensjonNorgeAndreForelderGjenlevende.feilmelding
             : eøsForBarnTekster.pensjonNorgeAndreForelder.feilmelding,
-        flettefelter: flettefelter,
         skalSkjules: skalSkjuleAndreForelderFelt(gjeldendeBarn),
     });
 
@@ -504,7 +483,6 @@ export const useEøsForBarn = (
         feilmelding: andreForelderErDød
             ? eøsForBarnTekster.utbetalingerAndreForelderGjenlevende.feilmelding
             : eøsForBarnTekster.utbetalingerAndreForelder.feilmelding,
-        flettefelter: flettefelter,
         skalSkjules: skalSkjuleAndreForelderFelt(gjeldendeBarn),
     });
 
@@ -528,14 +506,12 @@ export const useEøsForBarn = (
     const andreForelderPågåendeSøknadFraAnnetEøsLand = useJaNeiSpmFelt({
         søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand],
         feilmelding: eøsForBarnTekster.paagaaendeSoeknadYtelseAndreForelder.feilmelding,
-        flettefelter: flettefelter,
         skalSkjules: skalSkjuleAndreForelderFelt(gjeldendeBarn) || andreForelderErDød,
     });
 
     const andreForelderPågåendeSøknadHvilketLand = useLanddropdownFeltMedJaNeiAvhengighet({
         søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.pågåendeSøknadHvilketLand],
         feilmelding: eøsForBarnTekster.hvilketLandSoektYtelseAndreForelder.feilmelding,
-        flettefelter: flettefelter,
         avhengigSvarCondition: ESvar.JA,
         avhengighet: andreForelderPågåendeSøknadFraAnnetEøsLand,
         feilmeldingSpråkVerdier: { barn: gjeldendeBarn.navn },
