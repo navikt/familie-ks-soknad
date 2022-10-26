@@ -8,6 +8,7 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import { AlternativtSvarForInput } from '../../../typer/common';
 import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
@@ -46,6 +47,8 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
     flettefelter,
 }) => {
     const [mounted, settMounted] = useState(false);
+    const { tekster, plainTekst } = useApp();
+    const { ja, nei, jegVetIkke } = tekster().FELLES.frittståendeOrd;
 
     useEffect(() => {
         if (mounted) {
@@ -92,11 +95,9 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
                     ) : null
                 }
                 labelTekstForRadios={{
-                    ja: <SpråkTekst id={'felles.svaralternativ.ja'} />,
-                    nei: <SpråkTekst id={'felles.svaralternativ.nei'} />,
-                    vetikke: inkluderVetIkke ? (
-                        <SpråkTekst id={'felles.svaralternativ.vetikke'} />
-                    ) : undefined,
+                    ja: plainTekst(ja),
+                    nei: plainTekst(nei),
+                    vetikke: inkluderVetIkke ? plainTekst(jegVetIkke) : undefined,
                 }}
             />
         </span>

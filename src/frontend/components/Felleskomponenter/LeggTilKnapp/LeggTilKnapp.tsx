@@ -25,6 +25,7 @@ const StyledButton = styled(Button)`
 
 export const LeggTilKnapp: React.FC<Props> = ({
     onClick,
+    /** @deprecated **/
     språkTekst,
     feilmelding,
     id,
@@ -37,8 +38,8 @@ export const LeggTilKnapp: React.FC<Props> = ({
             type={'button'}
             onClick={onClick}
             $feilmelding={!!feilmelding}
+            icon={<AddCircle />}
         >
-            <AddCircle />
             {språkTekst && <SpråkTekst id={språkTekst} />}
             {children}
         </StyledButton>
