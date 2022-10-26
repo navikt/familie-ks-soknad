@@ -24,8 +24,8 @@ const useInputFeltMedUkjent = ({
     skalVises = true,
     customValidering = undefined,
     språkVerdier = {},
-    flettefelter,
     nullstillVedAvhengighetEndring = true,
+    flettefelter,
 }: {
     søknadsfelt: ISøknadSpørsmål<DatoMedUkjent> | { id: IdNummerKey; svar: string } | null;
     avhengighet: Felt<ESvar>;
@@ -36,9 +36,9 @@ const useInputFeltMedUkjent = ({
     skalVises?: boolean;
     customValidering?: ((felt: FeltState<string>) => FeltState<string>) | undefined;
     /** @deprecated **/
-    språkVerdier?: Record<string, ReactNode>;
-    flettefelter?: FlettefeltVerdier;
+    språkVerdier?: Record<string, ReactNode>; //todo: fjerne denne når vi går over til Sanity
     nullstillVedAvhengighetEndring?: boolean;
+    flettefelter?: FlettefeltVerdier;
 }) => {
     const { plainTekst } = useApp();
     const inputFelt = useFelt<string>({

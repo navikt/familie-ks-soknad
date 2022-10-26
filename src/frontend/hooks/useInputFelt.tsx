@@ -7,6 +7,7 @@ import { feil, FeltState, ok, useFelt } from '@navikt/familie-skjema';
 import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
 import { useApp } from '../context/AppContext';
 import { LocaleRecordBlock } from '../typer/common';
+import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
 
@@ -20,6 +21,7 @@ interface Props {
     /** @deprecated **/
     feilmeldingSpråkVerdier?: Record<string, ReactNode>;
     feilmelding?: LocaleRecordBlock; // todo: fjerne optional når vi går over til sanity
+    flettefelter?: FlettefeltVerdier;
 }
 
 const useInputFelt = ({
@@ -30,6 +32,7 @@ const useInputFelt = ({
     customValidering = undefined,
     nullstillVedAvhengighetEndring = true,
     feilmeldingSpråkVerdier,
+    flettefelter,
 }: Props) => {
     const { plainTekst } = useApp();
     return useFelt<string>({
@@ -46,7 +49,7 @@ const useInputFelt = ({
                       feilmeldingSpråkId ? (
                           <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
                       ) : (
-                          plainTekst(feilmelding)
+                          plainTekst(feilmelding, flettefelter)
                       )
                   );
         },

@@ -20,7 +20,7 @@ const StyledOppsummeringsFelt = styled.div`
 interface IOppsummeringsFeltProps {
     /** @deprecated **/
     tittel?: ReactNode;
-    spørsmålstekst?: LocaleRecordBlock;
+    spørsmålstekst?: LocaleRecordBlock; // todo fjern nullable når tittel er fjernet;
     søknadsvar?: ReactNode | null;
     flettefelter?: FlettefeltVerdier;
 }
