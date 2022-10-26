@@ -9,7 +9,7 @@ import { PeriodePersonTypeMedBarnProps, PersonType } from '../../typer/personTyp
 import { hentTekster, landkodeTilSpråk } from '../språk';
 import {
     sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjentSpråktekst,
+    sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel,
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
 
@@ -62,7 +62,7 @@ export const tilIAndreUtbetalingsperioderIKontraktFormat = ({
             },
             utbetalingTilDato: {
                 label: hentSpørsmålstekster(UtbetalingerSpørsmålId.utbetalingTilDato),
-                verdi: sammeVerdiAlleSpråkEllerUkjentSpråktekst(
+                verdi: sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel(
                     utbetalingTilDato.svar,
                     hentUtbetalingsperiodeSpråkId(UtbetalingerSpørsmålId.utbetalingTilDatoVetIkke)
                 ),

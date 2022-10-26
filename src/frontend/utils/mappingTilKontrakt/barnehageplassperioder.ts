@@ -5,7 +5,7 @@ import { IBarnehageplassPeriode } from '../../typer/perioder';
 import { hentTekster, landkodeTilSpråk } from '../språk';
 import {
     sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjentSpråktekst,
+    sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel,
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
 
@@ -69,7 +69,7 @@ export const tilIBarnehageplassPeriodeIKontraktFormat = ({
             },
             slutterIBarnehagen: {
                 label: hentTekster(BarnehageplassPeriodeSpørsmålId.slutterIBarnehagen),
-                verdi: sammeVerdiAlleSpråkEllerUkjentSpråktekst(
+                verdi: sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel(
                     slutterIBarnehagen.svar,
                     BarnehageplassPeriodeSpørsmålId.slutterIBarnehagenVetIkke
                 ),
