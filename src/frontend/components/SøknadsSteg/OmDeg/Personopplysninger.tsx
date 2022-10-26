@@ -23,7 +23,7 @@ export const Personopplysninger: React.FC = () => {
     const {
         [ESanitySteg.OM_DEG]: {
             personopplysningerAlert,
-            idnummer,
+            ident,
             statsborgerskap,
             sivilstatus,
             adresse,
@@ -38,7 +38,7 @@ export const Personopplysninger: React.FC = () => {
             </AlertStripe>
 
             <Informasjonsbolk>
-                <Label>{plainTekst(idnummer)}</Label>
+                <Label>{plainTekst(ident)}</Label>
                 <BodyShort>{søker.ident}</BodyShort>
             </Informasjonsbolk>
 

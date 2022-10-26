@@ -4,11 +4,13 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import { IBarnMedISøknad } from '../../typer/barn';
-import { AlternativtSvarForInput } from '../../typer/common';
+import { AlternativtSvarForInput, LocaleRecordBlock, LocaleRecordString } from '../../typer/common';
 import {
+    FlettefeltVerdier,
     ISøknadsfelt,
     Slektsforhold,
     SpørsmålMap as KontraktpørsmålMap,
+    TilRestLocaleRecord,
 } from '../../typer/kontrakt/generelle';
 import { ISøknadSpørsmål, SpørsmålId, ISøknadSpørsmålMap } from '../../typer/spørsmål';
 import { hentTekster, landkodeTilSpråk, toSlektsforholdSpråkId } from '../språk';
@@ -17,13 +19,23 @@ import { isAlpha3Code } from '../typeguards';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export const søknadsfelt = <T>(
+export const søknadsfeltGammel = <T>(
     labelTekstId: string,
     value: Record<LocaleType, T>,
     labelMessageValues: object = {}
 ): ISøknadsfelt<T> => {
     return { label: hentTekster(labelTekstId, labelMessageValues), verdi: value };
 };
+
+export const søknadsfeltHof =
+    (tilRestLocaleRecord: TilRestLocaleRecord) =>
+    <T>(
+        labelLocaleRecord: LocaleRecordString | LocaleRecordBlock,
+        svar: Record<LocaleType, T>,
+        flettefelter?: FlettefeltVerdier
+    ): ISøknadsfelt<T> => {
+        return { label: tilRestLocaleRecord(labelLocaleRecord, flettefelter), verdi: svar };
+    };
 
 export const verdiCallbackAlleSpråk = <T>(
     cb: (locale: LocaleType) => T
@@ -76,7 +88,7 @@ export const spørmålISøknadsFormat = (
 
                     return [
                         entry[0],
-                        søknadsfelt(
+                        søknadsfeltGammel(
                             språktekstIdFraSpørsmålId(entry[1].id),
                             formatertVerdi,
                             formatMessageValues
@@ -104,9 +116,9 @@ export const søknadsfeltBarn = <T>(
     labelMessageValues: object = {}
 ): ISøknadsfelt<T> =>
     barn
-        ? søknadsfelt(labelTekstId, value, {
+        ? søknadsfeltGammel(labelTekstId, value, {
               ...labelMessageValues,
               navn: barn.navn,
               barn: barn.navn,
           })
-        : søknadsfelt(labelTekstId, value);
+        : søknadsfeltGammel(labelTekstId, value);

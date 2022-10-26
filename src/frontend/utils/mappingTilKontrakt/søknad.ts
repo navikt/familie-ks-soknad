@@ -11,7 +11,7 @@ import { ESivilstand, TilRestLocaleRecord } from '../../typer/kontrakt/generelle
 import { ISøknadKontrakt } from '../../typer/kontrakt/v1';
 import { ISøker } from '../../typer/person';
 import { PersonType } from '../../typer/personType';
-import { ESanitySivilstandApiKey, ESanitySteg } from '../../typer/sanity/sanity';
+import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknadSpørsmålMap } from '../../typer/spørsmål';
 import { ISøknad } from '../../typer/søknad';
@@ -31,7 +31,8 @@ import {
     sammeVerdiAlleSpråk,
     språktekstIdFraSpørsmålId,
     spørmålISøknadsFormat,
-    søknadsfelt,
+    søknadsfeltGammel,
+    søknadsfeltHof,
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
 import { idNummerTilISøknadsfelt } from './idNummer';
@@ -80,7 +81,10 @@ export const dataISøknadKontraktFormatV1 = (
     } = søker;
     const { barnInkludertISøknaden } = søknad;
     const typetSøkerSpørsmål: ISøknadSpørsmålMap = søkerSpørsmål as unknown as ISøknadSpørsmålMap;
-    const fellesTekster = tekster[ESanitySteg.FELLES];
+    const fellesTekster = tekster.FELLES;
+    const omDegTekster = tekster.OM_DEG;
+
+    const søknadsfelt = søknadsfeltHof(tilRestLocaleRecord);
 
     return {
         kontraktVersjon: 1,
@@ -88,19 +92,16 @@ export const dataISøknadKontraktFormatV1 = (
         søker: {
             harEøsSteg:
                 triggetEøs || !!barnInkludertISøknaden.filter(barn => barn.triggetEøs).length,
-            navn: søknadsfelt('pdf.søker.navn.label', sammeVerdiAlleSpråk(navn)),
-            ident: søknadsfelt('pdf.søker.ident.label', sammeVerdiAlleSpråk(ident)),
-            sivilstand: søknadsfelt(
-                'pdf.søker.sivilstand.label',
-                sammeVerdiAlleSpråk(sivilstand.type)
-            ),
+            navn: søknadsfelt(omDegTekster.navn, sammeVerdiAlleSpråk(navn)),
+            ident: søknadsfelt(omDegTekster.ident, sammeVerdiAlleSpråk(ident)),
+            sivilstand: søknadsfelt(omDegTekster.sivilstatus, sammeVerdiAlleSpråk(sivilstand.type)),
             statsborgerskap: søknadsfelt(
-                'pdf.søker.statsborgerskap.label',
+                omDegTekster.statsborgerskap,
                 verdiCallbackAlleSpråk(locale =>
                     statsborgerskap.map(objekt => landkodeTilSpråk(objekt.landkode, locale))
                 )
             ),
-            adresse: søknadsfelt('pdf.søker.adresse.label', sammeVerdiAlleSpråk(adresse)),
+            adresse: søknadsfelt(omDegTekster.adresse, sammeVerdiAlleSpråk(adresse)),
             adressebeskyttelse: søker.adressebeskyttelse,
             utenlandsperioder: utenlandsperioder.map((periode, index) =>
                 utenlandsperiodeTilISøknadsfelt(
@@ -165,43 +166,43 @@ export const dataISøknadKontraktFormatV1 = (
             barnISøknadsFormat(barn, søker, valgtSpråk, tekster, tilRestLocaleRecord)
         ),
         spørsmål: {
-            erNoenAvBarnaFosterbarn: søknadsfelt(
+            erNoenAvBarnaFosterbarn: søknadsfeltGammel(
                 språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.erNoenAvBarnaFosterbarn),
                 sammeVerdiAlleSpråk(søknad.erNoenAvBarnaFosterbarn.svar)
             ),
-            søktAsylForBarn: søknadsfelt(
+            søktAsylForBarn: søknadsfeltGammel(
                 språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.søktAsylForBarn),
                 sammeVerdiAlleSpråk(søknad.søktAsylForBarn.svar)
             ),
-            oppholderBarnSegIInstitusjon: søknadsfelt(
+            oppholderBarnSegIInstitusjon: søknadsfeltGammel(
                 språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.oppholderBarnSegIInstitusjon),
                 sammeVerdiAlleSpråk(søknad.oppholderBarnSegIInstitusjon.svar)
             ),
-            barnOppholdtSegTolvMndSammenhengendeINorge: søknadsfelt(
+            barnOppholdtSegTolvMndSammenhengendeINorge: søknadsfeltGammel(
                 språktekstIdFraSpørsmålId(
                     OmBarnaDineSpørsmålId.barnOppholdtSegTolvMndSammenhengendeINorge
                 ),
                 sammeVerdiAlleSpråk(søknad.barnOppholdtSegTolvMndSammenhengendeINorge.svar)
             ),
-            erBarnAdoptertFraUtland: søknadsfelt(
+            erBarnAdoptertFraUtland: søknadsfeltGammel(
                 språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.erBarnAdoptertFraUtland),
                 sammeVerdiAlleSpråk(søknad.erBarnAdoptertFraUtland.svar)
             ),
-            mottarKontantstøtteForBarnFraAnnetEøsland: søknadsfelt(
+            mottarKontantstøtteForBarnFraAnnetEøsland: søknadsfeltGammel(
                 språktekstIdFraSpørsmålId(
                     OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland
                 ),
                 sammeVerdiAlleSpråk(søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar)
             ),
-            harEllerTildeltBarnehageplass: søknadsfelt(
+            harEllerTildeltBarnehageplass: søknadsfeltGammel(
                 språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.harEllerTildeltBarnehageplass),
                 sammeVerdiAlleSpråk(søknad.harEllerTildeltBarnehageplass.svar)
             ),
-            erAvdødPartnerForelder: søknadsfelt(
+            erAvdødPartnerForelder: søknadsfeltGammel(
                 språktekstIdFraSpørsmålId(søknad.erAvdødPartnerForelder.id),
                 sammeVerdiAlleSpråk(søknad.erAvdødPartnerForelder.svar)
             ),
-            lestOgForståttBekreftelse: søknadsfelt(
+            lestOgForståttBekreftelse: søknadsfeltGammel(
                 'forside.bekreftelsesboks.brødtekst',
                 søknad.lestOgForståttBekreftelse
                     ? hentTekster('forside.bekreftelsesboks.erklæring.spm')
