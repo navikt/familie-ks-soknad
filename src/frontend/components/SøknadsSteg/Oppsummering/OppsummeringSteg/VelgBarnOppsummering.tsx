@@ -1,13 +1,10 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
-
 import { useApp } from '../../../../context/AppContext';
 import { useRoutes } from '../../../../context/RoutesContext';
 import { RouteEnum } from '../../../../typer/routes';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { hentBostedSpråkId } from '../../../../utils/språk';
-import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { IVelgBarnTekstinnhold } from '../../VelgBarn/innholdTyper';
 import { VelgBarnSpørsmålId, velgBarnSpørsmålSpråkId } from '../../VelgBarn/spørsmål';
 import { useVelgBarn } from '../../VelgBarn/useVelgBarn';
@@ -20,8 +17,9 @@ interface Props {
 }
 
 const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
-    const { formatMessage } = useIntl();
     const { søknad, tekster, plainTekst } = useApp();
+    const velgBarnTekster = tekster().VELG_BARN;
+    const leggTilBarnModalTekster = tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
     const { hentRouteObjektForRouteEnum } = useRoutes();
     const velgBarnHook = useVelgBarn();
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
@@ -36,22 +34,16 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             {søknad.barnInkludertISøknaden.map((barn, index) => (
                 <StyledOppsummeringsFeltGruppe key={index}>
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={velgBarnSpørsmålSpråkId[VelgBarnSpørsmålId.barnetsNavn]}
-                            />
-                        }
+                        spørsmålstekst={leggTilBarnModalTekster.barnetsNavnSubtittel}
                         søknadsvar={
                             barn.adressebeskyttelse
-                                ? formatMessage({
-                                      id: 'hvilkebarn.barn.bosted.adressesperre',
-                                  })
+                                ? plainTekst(velgBarnTekster.registrertMedAdressesperre)
                                 : barn.navn
                         }
                     />
 
                     <OppsummeringFelt
-                        tittel={<SpråkTekst id={'hvilkebarn.barn.fødselsnummer'} />}
+                        spørsmålstekst={velgBarnTekster.foedselsnummerLabel}
                         søknadsvar={barn.ident}
                     />
 
@@ -59,7 +51,7 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         barnRegistrertManuelt => barnRegistrertManuelt.ident === barn.ident
                     ) && (
                         <OppsummeringFelt
-                            tittel={<SpråkTekst id={'hvilkebarn.barn.bosted'} />}
+                            spørsmålstekst={velgBarnTekster.registrertBostedLabel}
                             søknadsvar={plainTekst(hentBostedSpråkId(barn, teksterForSteg))}
                         />
                     )}
