@@ -7,12 +7,13 @@ import { ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { useSteg } from '../../../context/StegContext';
+import { IBarnMedISøknad } from '../../../typer/barn';
 import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
+import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import { ISteg, RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { AppLenke } from '../../Felleskomponenter/AppLenke/AppLenke';
 import { SkjemaFeiloppsummering } from '../../Felleskomponenter/SkjemaFeiloppsummering/SkjemaFeiloppsummering';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 
 interface IHookReturn {
     valideringErOk: () => boolean;
@@ -25,24 +26,22 @@ const StyledAccordionContent = styled(Accordion.Content)`
 `;
 
 interface Props {
-    /** @deprecated **/
-    tittel?: string;
-    tittelV2?: LocaleRecordBlock | LocaleRecordString; // todo fjern Nullable og endre navn til tittel
-    /** @deprecated **/
-    språkValues?: { [key: string]: string };
+    tittel: LocaleRecordBlock | LocaleRecordString;
+    flettefelter?: FlettefeltVerdier;
     steg?: ISteg;
     skjemaHook: IHookReturn;
     settFeilAnchors?: React.Dispatch<React.SetStateAction<string[]>>;
+    barn?: IBarnMedISøknad;
 }
 
 const Oppsummeringsbolk: React.FC<Props> = ({
     children,
     tittel,
-    tittelV2,
-    språkValues,
+    flettefelter,
     steg,
     skjemaHook,
     settFeilAnchors,
+    barn,
 }) => {
     const { hentStegNummer } = useSteg();
     const { søknad, plainTekst } = useApp();
@@ -70,15 +69,13 @@ const Oppsummeringsbolk: React.FC<Props> = ({
             });
     }, [visFeil]);
 
+    const stegnummer = hentStegNummer(steg?.route ?? RouteEnum.OmDeg, barn);
+
     return (
         <Accordion>
             <Accordion.Item defaultOpen={true}>
                 <Accordion.Header type="button">
-                    {steg?.route !== RouteEnum.OmBarnet &&
-                        steg?.route !== RouteEnum.EøsForBarn &&
-                        `${hentStegNummer(steg?.route ?? RouteEnum.OmDeg)}. `}
-                    <SpråkTekst id={tittel} values={språkValues} />
-                    {plainTekst && plainTekst(tittelV2)}
+                    {`${stegnummer}. ${plainTekst(tittel, flettefelter)}`}
                 </Accordion.Header>
                 <StyledAccordionContent>
                     {children}

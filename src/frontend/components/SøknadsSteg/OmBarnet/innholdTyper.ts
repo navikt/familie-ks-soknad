@@ -28,6 +28,8 @@ export interface IOmBarnetTekstinnhold {
     opplystBarnOppholdUtenforNorge: LocaleRecordBlock;
     opplystFaarHarFaattEllerSoektYtelse: LocaleRecordBlock;
     opplystAdoptert: LocaleRecordBlock;
+    opplystFosterbarn: LocaleRecordBlock;
+    opplystInstitusjon: LocaleRecordBlock;
 
     /* Andre forelder */
     navnAndreForelder: ISanitySpørsmålDokument;

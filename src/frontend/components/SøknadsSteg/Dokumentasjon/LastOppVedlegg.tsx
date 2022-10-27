@@ -103,6 +103,7 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
                 <TekstBlock
                     data-testid={'dokumentasjonsbeskrivelse'}
                     block={dokumentasjonstekster[dokumentasjonsbeskrivelse]}
+                    flettefelter={{ barnetsNavn: barnasNavn }}
                     typografi={Typografi.BodyLong}
                 />
             )}
