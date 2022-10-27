@@ -33,7 +33,7 @@ const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
     const flettefelter = { barnetsNavn: barn.navn };
     return (
         <Oppsummeringsbolk
-            tittelV2={eøsBarnTekster.eoesForBarnTittel}
+            tittel={eøsBarnTekster.eoesForBarnTittel}
             flettefelter={flettefelter}
             steg={hentStegObjektForBarnEøs(barn)}
             skjemaHook={eøsForBarnHook}
