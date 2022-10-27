@@ -7,6 +7,7 @@ import { ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { useSteg } from '../../../context/StegContext';
+import { IBarnMedISøknad } from '../../../typer/barn';
 import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
 import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import { ISteg, RouteEnum } from '../../../typer/routes';
@@ -30,6 +31,7 @@ interface Props {
     steg?: ISteg;
     skjemaHook: IHookReturn;
     settFeilAnchors?: React.Dispatch<React.SetStateAction<string[]>>;
+    barn?: IBarnMedISøknad;
 }
 
 const Oppsummeringsbolk: React.FC<Props> = ({
@@ -39,6 +41,7 @@ const Oppsummeringsbolk: React.FC<Props> = ({
     steg,
     skjemaHook,
     settFeilAnchors,
+    barn,
 }) => {
     const { hentStegNummer } = useSteg();
     const { søknad, plainTekst } = useApp();
@@ -66,14 +69,13 @@ const Oppsummeringsbolk: React.FC<Props> = ({
             });
     }, [visFeil]);
 
+    const stegnummer = hentStegNummer(steg?.route ?? RouteEnum.OmDeg, barn);
+
     return (
         <Accordion>
             <Accordion.Item defaultOpen={true}>
                 <Accordion.Header type="button">
-                    {steg?.route !== RouteEnum.OmBarnet &&
-                        steg?.route !== RouteEnum.EøsForBarn &&
-                        `${hentStegNummer(steg?.route ?? RouteEnum.OmDeg)}. `}
-                    {plainTekst(tittel, flettefelter)}
+                    {`${stegnummer}. ${plainTekst(tittel, flettefelter)}`}
                 </Accordion.Header>
                 <StyledAccordionContent>
                     {children}

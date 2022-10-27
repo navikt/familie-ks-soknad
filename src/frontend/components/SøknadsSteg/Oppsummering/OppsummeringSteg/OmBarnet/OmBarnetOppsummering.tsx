@@ -44,6 +44,7 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
             steg={hentStegObjektForBarn(barn)}
             skjemaHook={omBarnetHook}
             settFeilAnchors={settFeilAnchors}
+            barn={barn}
         >
             {barn[barnDataKeySpørsmål.erFosterbarn].svar === ESvar.JA && (
                 <OppsummeringFelt

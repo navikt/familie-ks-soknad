@@ -38,6 +38,7 @@ const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
             steg={hentStegObjektForBarnEøs(barn)}
             skjemaHook={eøsForBarnHook}
             settFeilAnchors={settFeilAnchors}
+            barn={barn}
         >
             <SamletIdNummerForBarn
                 barn={barn}
