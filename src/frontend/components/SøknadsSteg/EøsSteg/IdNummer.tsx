@@ -1,12 +1,11 @@
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
 
-import { Alpha3Code, getName } from 'i18n-iso-countries';
+import { Alpha3Code } from 'i18n-iso-countries';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, Felt, FeltState, ISkjema, ok, useFelt } from '@navikt/familie-skjema';
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
 import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
@@ -45,9 +44,6 @@ export const IdNummer: React.FC<{
     lesevisning = false,
 }) => {
     const { plainTekst, tekster } = useApp();
-    const [valgtLocale] = useSprakContext();
-
-    const landNavn = getName(landAlphaCode, valgtLocale);
 
     // Bruker skal ha mulighet til å velge at hen ikke kjenner idnummer for: barn, andre forelder og søker (dersom idnummer for søker trigges av et utenlandsopphold).
     // Barn blir sendt med som prop når vi render Idnummer for andre forelder og barn, derfor kan vi sjekke på den propen.
@@ -83,7 +79,7 @@ export const IdNummer: React.FC<{
                 );
             }
         },
-        flettefelter: { barnetsNavn: barn?.navn, land: landNavn },
+        flettefelter: { barnetsNavn: barn?.navn, land: landAlphaCode },
     });
 
     useEffect(() => {
@@ -96,19 +92,16 @@ export const IdNummer: React.FC<{
         <IdNummerContainer lesevisning={lesevisning}>
             {lesevisning ? (
                 <OppsummeringFelt
+                    spørsmålstekst={spørsmålDokument.sporsmal}
                     søknadsvar={
                         idNummerVerdiFraSøknad === AlternativtSvarForInput.UKJENT
                             ? plainTekst(spørsmålDokument.checkboxLabel, {
-                                  land: landNavn,
+                                  land: landAlphaCode,
                               })
                             : idNummerVerdiFraSøknad
                     }
-                >
-                    <TekstBlock
-                        block={spørsmålDokument.sporsmal}
-                        flettefelter={{ land: landNavn }}
-                    />
-                </OppsummeringFelt>
+                    flettefelter={{ land: landAlphaCode, barnetsNavn: barn?.navn }}
+                />
             ) : (
                 <>
                     <SkjemaFeltInput
@@ -118,7 +111,8 @@ export const IdNummer: React.FC<{
                             <TekstBlock
                                 block={spørsmålDokument.sporsmal}
                                 flettefelter={{
-                                    land: landNavn,
+                                    land: landAlphaCode,
+                                    barnetsNavn: barn?.navn,
                                 }}
                             />
                         }
@@ -127,7 +121,7 @@ export const IdNummer: React.FC<{
                     {idNummerUkjent.erSynlig && (
                         <SkjemaCheckbox
                             label={plainTekst(spørsmålDokument.checkboxLabel, {
-                                land: landNavn,
+                                land: landAlphaCode,
                             })}
                             felt={idNummerUkjent}
                         />

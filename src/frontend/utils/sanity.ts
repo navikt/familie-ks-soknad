@@ -197,7 +197,8 @@ export const plainTekstHof =
     (
         flettefeltTilTekst: (
             flettefeltVerdi: ESanityFlettefeltverdi,
-            flettefelter?: FlettefeltVerdier
+            flettefelter?: FlettefeltVerdier,
+            spesifikkLocale?: LocaleType
         ) => string,
         søknadLocale: LocaleType
     ) =>
@@ -219,7 +220,11 @@ export const plainTekstHof =
         const marks = {
             flettefelt: props => {
                 if (props.value.flettefeltVerdi) {
-                    return flettefeltTilTekst(props.value.flettefeltVerdi, flettefelter);
+                    return flettefeltTilTekst(
+                        props.value.flettefeltVerdi,
+                        flettefelter,
+                        spesifikkLocale
+                    );
                 } else {
                     throw new Error(`Fant ikke flettefeltVerdi`);
                 }

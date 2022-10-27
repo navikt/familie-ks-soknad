@@ -1,3 +1,5 @@
+import { Alpha3Code } from 'i18n-iso-countries';
+
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import { LocaleRecordBlock, LocaleRecordString } from '../common';
@@ -20,7 +22,7 @@ export type FlettefeltVerdier = {
     gjelderUtland?: boolean;
     antall?: string;
     totalAntall?: string;
-    land?: string;
+    land?: Alpha3Code | '';
 };
 
 export interface IUtenlandsperiodeIKontraktFormat {

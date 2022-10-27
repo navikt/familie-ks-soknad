@@ -1,45 +1,38 @@
-import { getName } from 'i18n-iso-countries';
-
-import { LocaleType } from '@navikt/familie-sprakvelger';
-
-import { ISøknadsfelt } from '../../typer/kontrakt/generelle';
+import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IIdNummerIKontraktFormat } from '../../typer/kontrakt/v1';
 import { IIdNummer } from '../../typer/person';
-import { hentTekster } from '../språk';
-import {
-    sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel,
-} from './hjelpefunksjoner';
+import { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
+import { sammeVerdiAlleSpråk, sammeVerdiAlleSpråkEllerUkjent } from './hjelpefunksjoner';
 
 export const idNummerTilISøknadsfelt = (
+    tilRestLocaleRecord: TilRestLocaleRecord,
     idnummerObj: IIdNummer,
-    spørsmålSpråkId: string,
-    ukjentSvarSpråkId: string,
-    valgtSpråk: LocaleType,
+    spørsmålsdokument: ISanitySpørsmålDokument,
     barnetsNavn?: string
 ): ISøknadsfelt<IIdNummerIKontraktFormat> => ({
-    label: hentTekster(spørsmålSpråkId, {
-        land: getName(idnummerObj.land, valgtSpråk),
-        ...(barnetsNavn && { barn: barnetsNavn }),
+    label: tilRestLocaleRecord(spørsmålsdokument.sporsmal, {
+        land: idnummerObj.land,
+        barnetsNavn,
     }),
     verdi: sammeVerdiAlleSpråk({
         idNummer: {
-            label: hentTekster(spørsmålSpråkId, {
-                land: getName(idnummerObj.land, valgtSpråk),
-                ...(barnetsNavn && { barn: barnetsNavn }),
+            label: tilRestLocaleRecord(spørsmålsdokument.sporsmal, {
+                land: idnummerObj.land,
+                barnetsNavn,
             }),
-            verdi: sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel(
+            verdi: sammeVerdiAlleSpråkEllerUkjent(
+                tilRestLocaleRecord,
                 idnummerObj.idnummer,
-                ukjentSvarSpråkId,
+                spørsmålsdokument.checkboxLabel,
                 {
-                    land: getName(idnummerObj.land, valgtSpråk),
+                    land: idnummerObj.land,
                 }
             ),
         },
         land: {
-            label: hentTekster(spørsmålSpråkId, {
-                land: getName(idnummerObj.land, valgtSpråk),
-                ...(barnetsNavn && { barn: barnetsNavn }),
+            label: tilRestLocaleRecord(spørsmålsdokument.sporsmal, {
+                land: idnummerObj.land,
+                barnetsNavn,
             }),
             verdi: sammeVerdiAlleSpråk(idnummerObj.land),
         },
