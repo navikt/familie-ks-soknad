@@ -186,8 +186,8 @@ export const andreForelderTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: true,
-                personType: PersonType.andreForelder,
-                erDød: forelderErDød,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.arbeidsperiode.andreForelder,
             })
         ),
         pensjonsperioderUtland: pensjonsperioderUtland.map((periode, index) =>
@@ -205,8 +205,8 @@ export const andreForelderTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: false,
-                personType: PersonType.andreForelder,
-                erDød: forelderErDød,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.arbeidsperiode.andreForelder,
             })
         ),
         pensjonsperioderNorge: pensjonsperioderNorge.map((periode, index) =>

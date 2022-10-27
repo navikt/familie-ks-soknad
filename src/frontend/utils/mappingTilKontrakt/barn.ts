@@ -127,7 +127,9 @@ export const barnISøknadsFormat = (
             ? andreForelderTilISøknadsfelt(andreForelder, barn, tilRestLocaleRecord, tekster)
             : null,
 
-        omsorgsperson: omsorgsperson ? omsorgspersonTilISøknadsfelt(omsorgsperson, barn) : null,
+        omsorgsperson: omsorgsperson
+            ? omsorgspersonTilISøknadsfelt(omsorgsperson, barn, tilRestLocaleRecord, tekster)
+            : null,
         spørsmål: {
             ...spørmålISøknadsFormat(typetBarnSpørsmål, {
                 navn: navn,
