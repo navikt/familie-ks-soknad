@@ -140,7 +140,8 @@ export const dataISøknadKontraktFormatV1 = (
                     periode,
                     periodeNummer: index + 1,
                     gjelderUtlandet: true,
-                    personType: PersonType.søker,
+                    tilRestLocaleRecord,
+                    tekster: tekster.FELLES.modaler.pensjonsperiode.søker,
                 })
             ),
             pensjonsperioderNorge: pensjonsperioderNorge.map((periode, index) =>
@@ -148,7 +149,8 @@ export const dataISøknadKontraktFormatV1 = (
                     periode,
                     periodeNummer: index + 1,
                     gjelderUtlandet: false,
-                    personType: PersonType.søker,
+                    tilRestLocaleRecord,
+                    tekster: tekster.FELLES.modaler.pensjonsperiode.søker,
                 })
             ),
             andreUtbetalingsperioder: andreUtbetalingsperioder.map((periode, index) =>

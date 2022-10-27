@@ -130,7 +130,8 @@ export const omsorgspersonTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: true,
-                personType: PersonType.omsorgsperson,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.pensjonsperiode.omsorgsperson,
                 barn: barn,
             })
         ),
@@ -144,7 +145,8 @@ export const omsorgspersonTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: false,
-                personType: PersonType.omsorgsperson,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.pensjonsperiode.omsorgsperson,
                 barn: barn,
             })
         ),

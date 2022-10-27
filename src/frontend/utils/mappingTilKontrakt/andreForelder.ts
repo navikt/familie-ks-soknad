@@ -196,8 +196,8 @@ export const andreForelderTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: true,
-                personType: PersonType.andreForelder,
-                erDød: forelderErDød,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.pensjonsperiode.andreForelder,
                 barn,
             })
         ),
@@ -216,8 +216,8 @@ export const andreForelderTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: false,
-                personType: PersonType.andreForelder,
-                erDød: forelderErDød,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.pensjonsperiode.andreForelder,
                 barn,
             })
         ),
