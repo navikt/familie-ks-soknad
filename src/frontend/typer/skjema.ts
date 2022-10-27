@@ -44,7 +44,7 @@ export interface IOmBarnaDineFeltTyper {
     hvemAvdødPartner: BarnetsId[];
 }
 
-export interface IOmBarnetUtvidetFeltTyper {
+export interface IOmBarnetFeltTyper {
     utbetaltForeldrepengerEllerEngangsstønad: ESvar | null;
     planleggerÅBoINorge12Mnd: ESvar | null;
     pågåendeSøknadFraAnnetEøsLand: ESvar | null;
@@ -204,7 +204,7 @@ export type SkjemaFeltTyper =
     | IOmDegFeltTyper
     | IVelgBarnFeltTyper
     | ILeggTilBarnTyper
-    | IOmBarnetUtvidetFeltTyper
+    | IOmBarnetFeltTyper
     | IOmBarnaDineFeltTyper
     | IDinLivssituasjonFeltTyper
     | IUtenlandsoppholdFeltTyper

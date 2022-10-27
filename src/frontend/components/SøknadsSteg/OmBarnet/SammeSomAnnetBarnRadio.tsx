@@ -10,7 +10,7 @@ import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
+import { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { OmBarnetSpørsmålsId } from './spørsmål';
 
@@ -22,7 +22,7 @@ const StyledRadioPanelGruppe = styled(RadioPanelGruppe)`
 
 const SammeSomAnnetBarnRadio: React.FC<{
     andreBarnSomErFyltUt: IBarnMedISøknad[];
-    skjema: ISkjema<IOmBarnetUtvidetFeltTyper, string>;
+    skjema: ISkjema<IOmBarnetFeltTyper, string>;
     barnetsNavn: string;
 }> = ({ andreBarnSomErFyltUt, skjema, barnetsNavn }) => {
     const felt = skjema.felter.sammeForelderSomAnnetBarn;

@@ -9,7 +9,7 @@ import { Typografi } from '../../../typer/common';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PeriodePersonTypeProps, PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
-import { IEøsForBarnFeltTyper, IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
+import { IEøsForBarnFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
@@ -20,7 +20,7 @@ import { eøsKontantstøtteSpørsmålsdokument } from './kontantstøttePeriodeSp
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 
 interface Props {
-    skjema: ISkjema<IOmBarnetUtvidetFeltTyper | IEøsForBarnFeltTyper, string>;
+    skjema: ISkjema<IOmBarnetFeltTyper | IEøsForBarnFeltTyper, string>;
     registrerteEøsKontantstøttePerioder: Felt<IEøsKontantstøttePeriode[]>;
     leggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
     fjernKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
