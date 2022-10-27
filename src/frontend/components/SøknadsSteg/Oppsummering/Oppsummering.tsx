@@ -7,10 +7,8 @@ import { BodyShort } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
-import { useSteg } from '../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
-import { RouteEnum } from '../../../typer/routes';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
@@ -28,7 +26,6 @@ const StyledBodyShort = styled(BodyShort)`
 
 const Oppsummering: React.FC = () => {
     const { søknad, tekster, plainTekst } = useApp();
-    const { hentStegNummer } = useSteg();
     const { push: pushHistory } = useHistory();
     const [feilAnchors, settFeilAnchors] = useState<string[]>([]);
     const { barnSomTriggerEøs, søkerTriggerEøs } = useEøs();
@@ -79,12 +76,9 @@ const Oppsummering: React.FC = () => {
             <>
                 {søkerHarEøsSteg && <EøsSøkerOppsummering settFeilAnchors={settFeilAnchors} />}
                 {barnSomHarEøsSteg.map((barn, index) => {
-                    const enIndeksert = index + 1;
-                    const nummer = (hentStegNummer(RouteEnum.EøsForSøker) + enIndeksert).toString();
                     return (
                         <EøsBarnOppsummering
                             key={`om-barnet-eøs-${index}`}
-                            nummer={nummer}
                             settFeilAnchors={settFeilAnchors}
                             barn={barn}
                         />
