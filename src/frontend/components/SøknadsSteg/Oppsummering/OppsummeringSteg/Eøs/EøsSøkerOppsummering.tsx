@@ -58,7 +58,7 @@ const EøsSøkerOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             )}
             <StyledOppsummeringsFeltGruppe>
                 {jaNeiSpmOppsummering({
-                    spørsmålstekst: eøsSøkerTekster.hvorBor.sporsmal,
+                    spørsmålstekst: eøsSøkerTekster.arbeidNorge.sporsmal,
                     søknadSvar: søker.arbeidINorge,
                 })}
                 {søker.arbeidsperioderNorge.map((arbeidsperiode, index) => (
