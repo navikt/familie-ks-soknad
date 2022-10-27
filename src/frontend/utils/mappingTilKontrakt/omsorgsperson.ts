@@ -102,6 +102,7 @@ export const omsorgspersonTilISøknadsfelt = (
                 gjelderUtlandet: true,
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.arbeidsperiode.omsorgsperson,
+                barn,
             })
         ),
         arbeidNorge: søknadsfeltBarn(
@@ -116,6 +117,7 @@ export const omsorgspersonTilISøknadsfelt = (
                 gjelderUtlandet: false,
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.arbeidsperiode.omsorgsperson,
+                barn,
             })
         ),
         pensjonUtland: søknadsfeltBarn(

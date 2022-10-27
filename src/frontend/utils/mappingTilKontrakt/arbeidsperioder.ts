@@ -1,5 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { IBarnMedISøknad } from '../../typer/barn';
 import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IArbeidsperiodeIKontraktFormat } from '../../typer/kontrakt/v1';
 import { IArbeidsperiode } from '../../typer/perioder';
@@ -17,6 +18,7 @@ interface ArbeidsperiodeIKontraktFormatParams {
     gjelderUtlandet: boolean;
     tilRestLocaleRecord: TilRestLocaleRecord;
     tekster: IArbeidsperiodeTekstinnhold;
+    barn?: IBarnMedISøknad;
 }
 
 export const tilIArbeidsperiodeIKontraktFormat = ({
@@ -25,6 +27,7 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
     gjelderUtlandet,
     tilRestLocaleRecord,
     tekster,
+    barn,
 }: ArbeidsperiodeIKontraktFormatParams): ISøknadsfelt<IArbeidsperiodeIKontraktFormat> => {
     const {
         arbeidsperiodeAvsluttet,
@@ -53,7 +56,8 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
                       label: tilRestLocaleRecord(
                           periodenErAvsluttet
                               ? tekster.hvilketLandFortid.sporsmal
-                              : tekster.hvilketLandNaatid.sporsmal
+                              : tekster.hvilketLandNaatid.sporsmal,
+                          { barnetsNavn: barn?.navn }
                       ),
                       verdi: verdiCallbackAlleSpråk(locale =>
                           landkodeTilSpråk(arbeidsperiodeland.svar, locale)
