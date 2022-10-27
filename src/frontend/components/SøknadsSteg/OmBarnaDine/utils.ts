@@ -61,10 +61,7 @@ export const genererOppdaterteBarn = (
             barn,
             skjema.felter.hvemErFosterbarn
         );
-        const erAdoptertFraUtland: ESvar = genererSvarForSpørsmålBarn(
-            barn,
-            skjema.felter.hvemErAdoptertFraUtland
-        );
+        const erAdoptert: ESvar = genererSvarForSpørsmålBarn(barn, skjema.felter.hvemErAdoptert);
 
         const utenlandsperioder =
             boddMindreEnn12MndINorge === ESvar.JA ? barn.utenlandsperioder : [];
@@ -163,9 +160,9 @@ export const genererOppdaterteBarn = (
                 ...barn[barnDataKeySpørsmål.erAsylsøker],
                 svar: genererSvarForSpørsmålBarn(barn, skjema.felter.hvemErSøktAsylFor),
             },
-            [barnDataKeySpørsmål.erAdoptertFraUtland]: {
-                ...barn[barnDataKeySpørsmål.erAdoptertFraUtland],
-                svar: genererSvarForSpørsmålBarn(barn, skjema.felter.hvemErAdoptertFraUtland),
+            [barnDataKeySpørsmål.erAdoptert]: {
+                ...barn[barnDataKeySpørsmål.erAdoptert],
+                svar: genererSvarForSpørsmålBarn(barn, skjema.felter.hvemErAdoptert),
             },
             [barnDataKeySpørsmål.oppholderSegIInstitusjon]: {
                 ...barn[barnDataKeySpørsmål.oppholderSegIInstitusjon],
@@ -190,7 +187,7 @@ export const genererOppdaterteBarn = (
             [barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad]: {
                 ...barn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad],
                 svar: genererSvarForOppfølgningspørsmålBarn(
-                    erAdoptertFraUtland,
+                    erAdoptert,
                     barn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad],
                     null
                 ),

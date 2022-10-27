@@ -134,8 +134,8 @@ describe('AppContext', () => {
                     id: OmBarnaDineSpørsmålId.oppholderBarnSegIInstitusjon,
                     svar: ESvar.JA,
                 },
-                erBarnAdoptertFraUtland: {
-                    id: OmBarnaDineSpørsmålId.erBarnAdoptertFraUtland,
+                erBarnAdoptert: {
+                    id: OmBarnaDineSpørsmålId.erBarnAdoptert,
                     svar: ESvar.JA,
                 },
             };

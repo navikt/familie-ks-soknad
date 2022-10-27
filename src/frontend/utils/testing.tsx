@@ -281,8 +281,8 @@ export const mekkGyldigSøknad = (): ISøknad => {
             id: OmBarnaDineSpørsmålId.oppholderBarnSegIInstitusjon,
             svar: ESvar.NEI,
         },
-        erBarnAdoptertFraUtland: {
-            id: OmBarnaDineSpørsmålId.erBarnAdoptertFraUtland,
+        erBarnAdoptert: {
+            id: OmBarnaDineSpørsmålId.erBarnAdoptert,
             svar: ESvar.NEI,
         },
         søktAsylForBarn: {
