@@ -73,7 +73,7 @@ const Oppsummeringsbolk: React.FC<Props> = ({
                     {steg?.route !== RouteEnum.OmBarnet &&
                         steg?.route !== RouteEnum.EøsForBarn &&
                         `${hentStegNummer(steg?.route ?? RouteEnum.OmDeg)}. `}
-                    {plainTekst ? plainTekst(tittel, flettefelter) : null}
+                    {plainTekst(tittel, flettefelter)}
                 </Accordion.Header>
                 <StyledAccordionContent>
                     {children}
