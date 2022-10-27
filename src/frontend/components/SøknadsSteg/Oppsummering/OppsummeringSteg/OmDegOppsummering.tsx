@@ -14,13 +14,7 @@ import { RouteEnum } from '../../../../typer/routes';
 import { genererAdresseVisning } from '../../../../utils/adresse';
 import { landkodeTilSpråk } from '../../../../utils/språk';
 import { jaNeiSvarTilSpråkId } from '../../../../utils/spørsmål';
-import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { UtenlandsperiodeOppsummering } from '../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
-import {
-    omDegPersonopplysningerSpråkId,
-    OmDegSpørsmålId,
-    omDegSpørsmålSpråkId,
-} from '../../OmDeg/spørsmål';
 import { useOmdeg } from '../../OmDeg/useOmdeg';
 import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';
@@ -35,7 +29,8 @@ interface Props {
 }
 
 const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
-    const { søknad } = useApp();
+    const { søknad, tekster } = useApp();
+    const { OM_DEG: omDegTekster, FORSIDE: forsideTekster } = tekster();
     const [valgtLocale] = useSprakContext();
     const { formatMessage } = useIntl();
     const { hentRouteObjektForRouteEnum } = useRoutes();
@@ -44,13 +39,13 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
     return (
         <Oppsummeringsbolk
             steg={hentRouteObjektForRouteEnum(RouteEnum.OmDeg)}
-            tittel={'omdeg.sidetittel'}
+            tittelV2={omDegTekster.omDegTittel}
             skjemaHook={omDegHook}
             settFeilAnchors={settFeilAnchors}
         >
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    tittel={<SpråkTekst id={'forside.bekreftelsesboks.brødtekst'} />}
+                    spørsmålstekst={forsideTekster.bekreftelsesboksBroedtekst}
                     søknadsvar={formatMessage({
                         id: søknad.lestOgForståttBekreftelse
                             ? 'forside.bekreftelsesboks.erklæring.spm'
@@ -60,11 +55,11 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             </StyledOppsummeringsFeltGruppe>
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    tittel={<SpråkTekst id={'felles.fødsels-eller-dnummer.label'} />}
+                    spørsmålstekst={omDegTekster.ident}
                     søknadsvar={søknad.søker.ident}
                 />
                 <OppsummeringFelt
-                    tittel={<SpråkTekst id={omDegPersonopplysningerSpråkId.søkerStatsborgerskap} />}
+                    spørsmålstekst={omDegTekster.statsborgerskap}
                     søknadsvar={søknad.søker.statsborgerskap
                         .map((statsborgerskap: { landkode: Alpha3Code }) =>
                             landkodeTilSpråk(statsborgerskap.landkode, valgtLocale)
@@ -72,21 +67,17 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         .join(', ')}
                 />
                 <OppsummeringFelt
-                    tittel={<SpråkTekst id={omDegPersonopplysningerSpråkId.søkerSivilstatus} />}
+                    spørsmålstekst={omDegTekster.sivilstatus}
                     søknadsvar={søknad.søker.sivilstand.type}
                 />
 
                 <OppsummeringFelt
-                    tittel={<SpråkTekst id={omDegPersonopplysningerSpråkId.søkerAdresse} />}
+                    spørsmålstekst={omDegTekster.adresse}
                     children={genererAdresseVisning(søknad.søker)}
                 />
                 {søknad.søker.borPåRegistrertAdresse.svar && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={omDegSpørsmålSpråkId[OmDegSpørsmålId.borPåRegistrertAdresse]}
-                            />
-                        }
+                        spørsmålstekst={omDegTekster.borPaaAdressen.sporsmal}
                         søknadsvar={søknad.søker.borPåRegistrertAdresse.svar}
                     />
                 )}
@@ -94,11 +85,7 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
 
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    tittel={
-                        <SpråkTekst
-                            id={omDegSpørsmålSpråkId[OmDegSpørsmålId.værtINorgeITolvMåneder]}
-                        />
-                    }
+                    spørsmålstekst={omDegTekster.oppholdtDegSammenhengende.sporsmal}
                     søknadsvar={søknad.søker.værtINorgeITolvMåneder.svar}
                 />
                 {søknad.søker.utenlandsperioder.map((periode, index) => (
@@ -111,18 +98,12 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                 ))}
                 {søknad.søker.planleggerÅBoINorgeTolvMnd.svar && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omDegSpørsmålSpråkId[OmDegSpørsmålId.planleggerÅBoINorgeTolvMnd]
-                                }
-                            />
-                        }
+                        spørsmålstekst={omDegTekster.planleggerAaBoSammenhengende.sporsmal}
                         søknadsvar={søknad.søker.planleggerÅBoINorgeTolvMnd.svar}
                     />
                 )}
                 <OppsummeringFelt
-                    tittel={<SpråkTekst id={'todo.søker.yrkesaktiv'} />}
+                    spørsmålstekst={omDegTekster.medlemAvFolketrygden.sporsmal}
                     søknadsvar={søknad.søker.yrkesaktivFemÅr.svar}
                 />
             </StyledOppsummeringsFeltGruppe>

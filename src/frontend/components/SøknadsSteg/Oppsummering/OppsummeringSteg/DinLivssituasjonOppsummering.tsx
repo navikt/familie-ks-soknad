@@ -6,11 +6,6 @@ import { PersonType } from '../../../../typer/personType';
 import { RouteEnum } from '../../../../typer/routes';
 import { ArbeidsperiodeOppsummering } from '../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
-import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
-import {
-    DinLivssituasjonSpørsmålId,
-    dinLivssituasjonSpørsmålSpråkId,
-} from '../../DinLivssituasjon/spørsmål';
 import { useDinLivssituasjon } from '../../DinLivssituasjon/useDinLivssituasjon';
 import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';
@@ -21,40 +16,25 @@ interface Props {
 }
 
 const DinLivssituasjonOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
-    const { søknad } = useApp();
+    const { søknad, tekster } = useApp();
+    const dinLivssituasjonTekster = tekster().DIN_LIVSSITUASJON;
     const { hentRouteObjektForRouteEnum } = useRoutes();
     const dinLivsituasjonHook = useDinLivssituasjon();
 
     return (
         <Oppsummeringsbolk
             steg={hentRouteObjektForRouteEnum(RouteEnum.DinLivssituasjon)}
-            tittel={'dinlivssituasjon.sidetittel'}
+            tittelV2={dinLivssituasjonTekster.dinLivssituasjonTittel}
             skjemaHook={dinLivsituasjonHook}
             settFeilAnchors={settFeilAnchors}
         >
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    tittel={
-                        <SpråkTekst
-                            id={
-                                dinLivssituasjonSpørsmålSpråkId[
-                                    DinLivssituasjonSpørsmålId.erAsylsøker
-                                ]
-                            }
-                        />
-                    }
+                    spørsmålstekst={dinLivssituasjonTekster.asylsoeker.sporsmal}
                     søknadsvar={søknad.søker.erAsylsøker.svar}
                 />
                 <OppsummeringFelt
-                    tittel={
-                        <SpråkTekst
-                            id={
-                                dinLivssituasjonSpørsmålSpråkId[
-                                    DinLivssituasjonSpørsmålId.arbeidIUtlandet
-                                ]
-                            }
-                        />
-                    }
+                    spørsmålstekst={dinLivssituasjonTekster.arbeidUtenforNorge.sporsmal}
                     søknadsvar={søknad.søker.arbeidIUtlandet.svar}
                 />
 
@@ -69,15 +49,7 @@ const DinLivssituasjonOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                 ))}
 
                 <OppsummeringFelt
-                    tittel={
-                        <SpråkTekst
-                            id={
-                                dinLivssituasjonSpørsmålSpråkId[
-                                    DinLivssituasjonSpørsmålId.mottarUtenlandspensjon
-                                ]
-                            }
-                        />
-                    }
+                    spørsmålstekst={dinLivssituasjonTekster.pensjonUtland.sporsmal}
                     søknadsvar={søknad.søker.mottarUtenlandspensjon.svar}
                 />
 

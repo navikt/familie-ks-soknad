@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Normaltekst } from 'nav-frontend-typografi';
+import { BodyShort } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
@@ -12,7 +12,6 @@ import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import DinLivssituasjonOppsummering from './OppsummeringSteg/DinLivssituasjonOppsummering';
@@ -23,12 +22,12 @@ import OmBarnetOppsummering from './OppsummeringSteg/OmBarnet/OmBarnetOppsummeri
 import OmDegOppsummering from './OppsummeringSteg/OmDegOppsummering';
 import VelgBarnOppsummering from './OppsummeringSteg/VelgBarnOppsummering';
 
-const StyledNormaltekst = styled(Normaltekst)`
+const StyledBodyShort = styled(BodyShort)`
     padding-bottom: 4rem;
 `;
 
 const Oppsummering: React.FC = () => {
-    const { søknad, tekster } = useApp();
+    const { søknad, tekster, plainTekst } = useApp();
     const { hentStegNummer } = useSteg();
     const { push: pushHistory } = useHistory();
     const [feilAnchors, settFeilAnchors] = useState<string[]>([]);
@@ -39,7 +38,7 @@ const Oppsummering: React.FC = () => {
         : søknad.barnInkludertISøknaden.filter(barn => barn.triggetEøs);
 
     const {
-        [ESanitySteg.OPPSUMMERING]: { oppsummeringTittel },
+        [ESanitySteg.OPPSUMMERING]: { oppsummeringTittel, lesNoeye },
     } = tekster();
 
     const scrollTilFeil = (elementId: string) => {
@@ -59,9 +58,7 @@ const Oppsummering: React.FC = () => {
             tittel={<TekstBlock block={oppsummeringTittel} typografi={Typografi.StegHeadingH1} />}
             gåVidereCallback={gåVidereCallback}
         >
-            <StyledNormaltekst>
-                <SpråkTekst id={'oppsummering.info'} />
-            </StyledNormaltekst>
+            <StyledBodyShort>{plainTekst(lesNoeye)}</StyledBodyShort>
 
             <OmDegOppsummering settFeilAnchors={settFeilAnchors} />
             <DinLivssituasjonOppsummering settFeilAnchors={settFeilAnchors} />

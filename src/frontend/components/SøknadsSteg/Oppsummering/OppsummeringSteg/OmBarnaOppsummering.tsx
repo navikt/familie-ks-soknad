@@ -6,8 +6,7 @@ import { useApp } from '../../../../context/AppContext';
 import { useRoutes } from '../../../../context/RoutesContext';
 import { barnDataKeySpørsmål } from '../../../../typer/barn';
 import { RouteEnum } from '../../../../typer/routes';
-import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
-import { OmBarnaDineSpørsmålId, omBarnaDineSpørsmålSpråkId } from '../../OmBarnaDine/spørsmål';
+import { OmBarnaDineSpørsmålId } from '../../OmBarnaDine/spørsmål';
 import { useOmBarnaDine } from '../../OmBarnaDine/useOmBarnaDine';
 import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';
@@ -18,8 +17,9 @@ interface Props {
 }
 
 const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
-    const { søknad } = useApp();
+    const { søknad, tekster } = useApp();
     const { hentRouteObjektForRouteEnum } = useRoutes();
+    const omBarnaTekster = tekster().OM_BARNA;
     const omBarnaDineHook = useOmBarnaDine();
 
     const genererListeMedBarn = (søknadDatafelt: barnDataKeySpørsmål) =>
@@ -31,63 +31,31 @@ const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
     return (
         <Oppsummeringsbolk
             steg={hentRouteObjektForRouteEnum(RouteEnum.OmBarna)}
-            tittel={'ombarna.sidetittel'}
+            tittelV2={omBarnaTekster.omBarnaTittel}
             skjemaHook={omBarnaDineHook}
             settFeilAnchors={settFeilAnchors}
         >
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    tittel={
-                        <SpråkTekst
-                            id={
-                                omBarnaDineSpørsmålSpråkId[
-                                    OmBarnaDineSpørsmålId.erNoenAvBarnaFosterbarn
-                                ]
-                            }
-                        />
-                    }
+                    spørsmålstekst={omBarnaTekster.fosterbarn.sporsmal}
                     søknadsvar={søknad.erNoenAvBarnaFosterbarn.svar}
                 />
                 {søknad.erNoenAvBarnaFosterbarn.svar === ESvar.JA && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnaDineSpørsmålSpråkId[
-                                        OmBarnaDineSpørsmålId.hvemErFosterbarn
-                                    ]
-                                }
-                            />
-                        }
+                        spørsmålstekst={omBarnaTekster.hvemFosterbarn.sporsmal}
                         søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.erFosterbarn)}
                     />
                 )}
             </StyledOppsummeringsFeltGruppe>
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    tittel={
-                        <SpråkTekst
-                            id={
-                                omBarnaDineSpørsmålSpråkId[
-                                    OmBarnaDineSpørsmålId.oppholderBarnSegIInstitusjon
-                                ]
-                            }
-                        />
-                    }
+                    spørsmålstekst={omBarnaTekster.institusjonKontantstoette.sporsmal}
                     søknadsvar={søknad.oppholderBarnSegIInstitusjon.svar}
                 />
 
                 {søknad.oppholderBarnSegIInstitusjon.svar === ESvar.JA && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnaDineSpørsmålSpråkId[
-                                        OmBarnaDineSpørsmålId.hvemOppholderSegIInstitusjon
-                                    ]
-                                }
-                            />
-                        }
+                        spørsmålstekst={omBarnaTekster.hvemInstitusjon.sporsmal}
                         søknadsvar={genererListeMedBarn(
                             barnDataKeySpørsmål.oppholderSegIInstitusjon
                         )}
@@ -96,81 +64,37 @@ const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             </StyledOppsummeringsFeltGruppe>
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    tittel={
-                        <SpråkTekst
-                            id={
-                                omBarnaDineSpørsmålSpråkId[
-                                    OmBarnaDineSpørsmålId.erBarnAdoptertFraUtland
-                                ]
-                            }
-                        />
-                    }
+                    spørsmålstekst={omBarnaTekster.adoptertKontantstoette.sporsmal}
                     søknadsvar={søknad.erBarnAdoptertFraUtland.svar}
                 />
                 {søknad.erBarnAdoptertFraUtland.svar === ESvar.JA && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnaDineSpørsmålSpråkId[
-                                        OmBarnaDineSpørsmålId.hvemErAdoptertFraUtland
-                                    ]
-                                }
-                            />
-                        }
+                        spørsmålstekst={omBarnaTekster.hvemAdoptertKontantstoette.sporsmal}
                         søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.erAdoptertFraUtland)}
                     />
                 )}
             </StyledOppsummeringsFeltGruppe>
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    tittel={
-                        <SpråkTekst
-                            id={omBarnaDineSpørsmålSpråkId[OmBarnaDineSpørsmålId.søktAsylForBarn]}
-                        />
-                    }
+                    spørsmålstekst={omBarnaTekster.asyl.sporsmal}
                     søknadsvar={søknad.søktAsylForBarn.svar}
                 />
                 {søknad.søktAsylForBarn.svar === ESvar.JA && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnaDineSpørsmålSpråkId[
-                                        OmBarnaDineSpørsmålId.hvemErSøktAsylFor
-                                    ]
-                                }
-                            />
-                        }
+                        spørsmålstekst={omBarnaTekster.hvemAsyl.sporsmal}
                         søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.erAsylsøker)}
                     />
                 )}
             </StyledOppsummeringsFeltGruppe>
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    tittel={
-                        <SpråkTekst
-                            id={
-                                omBarnaDineSpørsmålSpråkId[
-                                    OmBarnaDineSpørsmålId.barnOppholdtSegTolvMndSammenhengendeINorge
-                                ]
-                            }
-                        />
-                    }
+                    spørsmålstekst={omBarnaTekster.sammenhengendeOppholdINorge.sporsmal}
                     søknadsvar={søknad.barnOppholdtSegTolvMndSammenhengendeINorge.svar}
                 />
 
                 {søknad.barnOppholdtSegTolvMndSammenhengendeINorge.svar === ESvar.NEI && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnaDineSpørsmålSpråkId[
-                                        OmBarnaDineSpørsmålId.hvemTolvMndSammenhengendeINorge
-                                    ]
-                                }
-                            />
-                        }
+                        spørsmålstekst={omBarnaTekster.hvemOppholdUtenforNorge.sporsmal}
                         søknadsvar={genererListeMedBarn(
                             barnDataKeySpørsmål.boddMindreEnn12MndINorge
                         )}
@@ -179,29 +103,13 @@ const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             </StyledOppsummeringsFeltGruppe>
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    tittel={
-                        <SpråkTekst
-                            id={
-                                omBarnaDineSpørsmålSpråkId[
-                                    OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland
-                                ]
-                            }
-                        />
-                    }
+                    spørsmålstekst={omBarnaTekster.soektYtelseEuEoes.sporsmal}
                     søknadsvar={søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar}
                 />
 
                 {søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar === ESvar.JA && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnaDineSpørsmålSpråkId[
-                                        OmBarnaDineSpørsmålId.hvemKontantstøtteFraAnnetEøsland
-                                    ]
-                                }
-                            />
-                        }
+                        spørsmålstekst={omBarnaTekster.hvemSoektYtelse.sporsmal}
                         søknadsvar={genererListeMedBarn(
                             barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland
                         )}
@@ -210,29 +118,13 @@ const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             </StyledOppsummeringsFeltGruppe>
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    tittel={
-                        <SpråkTekst
-                            id={
-                                omBarnaDineSpørsmålSpråkId[
-                                    OmBarnaDineSpørsmålId.harEllerTildeltBarnehageplass
-                                ]
-                            }
-                        />
-                    }
+                    spørsmålstekst={omBarnaTekster.barnehageplass.sporsmal}
                     søknadsvar={søknad.harEllerTildeltBarnehageplass.svar}
                 />
 
                 {søknad.harEllerTildeltBarnehageplass.svar === ESvar.JA && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnaDineSpørsmålSpråkId[
-                                        OmBarnaDineSpørsmålId.hvemBarnehageplass
-                                    ]
-                                }
-                            />
-                        }
+                        spørsmålstekst={omBarnaTekster.hvemBarnehageplass.sporsmal}
                         søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.harBarnehageplass)}
                     />
                 )}
@@ -240,24 +132,22 @@ const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             {søknad.erAvdødPartnerForelder.svar && (
                 <StyledOppsummeringsFeltGruppe>
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={omBarnaDineSpørsmålSpråkId[søknad.erAvdødPartnerForelder.id]}
-                            />
+                        spørsmålstekst={
+                            søknad.erAvdødPartnerForelder.id ===
+                            OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+                                ? omBarnaTekster.folkeregistrertGjenlevende.sporsmal
+                                : omBarnaTekster.folkeregistrertEnkeEnkemann.sporsmal
                         }
                         søknadsvar={søknad.erAvdødPartnerForelder.svar}
                     />
 
                     {søknad.erAvdødPartnerForelder.svar === ESvar.JA && (
                         <OppsummeringFelt
-                            tittel={
-                                <SpråkTekst
-                                    id={
-                                        omBarnaDineSpørsmålSpråkId[
-                                            OmBarnaDineSpørsmålId.hvemAvdødPartner
-                                        ]
-                                    }
-                                />
+                            spørsmålstekst={
+                                søknad.erAvdødPartnerForelder.id ===
+                                OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+                                    ? omBarnaTekster.hvemAvBarnaAvdoedPartner.sporsmal
+                                    : omBarnaTekster.hvemAvBarnaAvdoedEktefelle.sporsmal
                             }
                             søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.andreForelderErDød)}
                         />
