@@ -22,7 +22,7 @@ import OmBarnetOppsummering from './OppsummeringSteg/OmBarnet/OmBarnetOppsummeri
 import OmDegOppsummering from './OppsummeringSteg/OmDegOppsummering';
 import VelgBarnOppsummering from './OppsummeringSteg/VelgBarnOppsummering';
 
-const StyledNormaltekst = styled(BodyShort)`
+const StyledBodyShort = styled(BodyShort)`
     padding-bottom: 4rem;
 `;
 
@@ -58,7 +58,7 @@ const Oppsummering: React.FC = () => {
             tittel={<TekstBlock block={oppsummeringTittel} typografi={Typografi.StegHeadingH1} />}
             gåVidereCallback={gåVidereCallback}
         >
-            <StyledNormaltekst>{plainTekst(lesNoeye)}</StyledNormaltekst>
+            <StyledBodyShort>{plainTekst(lesNoeye)}</StyledBodyShort>
 
             <OmDegOppsummering settFeilAnchors={settFeilAnchors} />
             <DinLivssituasjonOppsummering settFeilAnchors={settFeilAnchors} />
