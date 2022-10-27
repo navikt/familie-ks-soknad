@@ -13,7 +13,7 @@ import {
 } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
+import { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { BarnehageplassPeriode } from '../../Felleskomponenter/Barnehagemodal/BarnehageplassPeriode';
 import { LandDropdown } from '../../Felleskomponenter/Dropdowns/LandDropdown';
@@ -27,7 +27,7 @@ import { IOmBarnetTekstinnhold } from './innholdTyper';
 
 const Oppfølgningsspørsmål: React.FC<{
     barn: IBarnMedISøknad;
-    skjema: ISkjema<IOmBarnetUtvidetFeltTyper, string>;
+    skjema: ISkjema<IOmBarnetFeltTyper, string>;
     leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
     fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
     leggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
