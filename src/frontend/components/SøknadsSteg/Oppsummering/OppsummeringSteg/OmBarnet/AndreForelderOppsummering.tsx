@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { useApp } from '../../../../../context/AppContext';
 import {
     andreForelderDataKeySpørsmål,
     barnDataKeySpørsmål,
@@ -12,10 +13,11 @@ import {
 } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
 import { PersonType } from '../../../../../typer/personType';
+import { ESanitySteg } from '../../../../../typer/sanity/sanity';
 import { formaterDatoMedUkjent } from '../../../../../utils/dato';
 import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
-import SpråkTekst from '../../../../Felleskomponenter/SpråkTekst/SpråkTekst';
+import { IOmBarnetTekstinnhold } from '../../../OmBarnet/innholdTyper';
 import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from '../../../OmBarnet/spørsmål';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
@@ -24,15 +26,18 @@ const AndreForelderOppsummering: React.FC<{
     barn: IBarnMedISøknad;
     andreForelder: IAndreForelder;
 }> = ({ barn, andreForelder }) => {
+    const { tekster } = useApp();
+    const omBarnetTekster: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     const intl = useIntl();
     const { formatMessage } = intl;
 
+    const flettefelter = { barnetsNavn: barn.navn };
     return (
         <>
             <StyledOppsummeringsFeltGruppe>
                 {andreForelder[andreForelderDataKeySpørsmål.navn].svar && (
                     <OppsummeringFelt
-                        tittel={<SpråkTekst id={'ombarnet.andre-forelder'} />}
+                        spørsmålstekst={omBarnetTekster.barnetsAndreForelder}
                         søknadsvar={
                             andreForelder[andreForelderDataKeySpørsmål.navn].svar !==
                             AlternativtSvarForInput.UKJENT
@@ -47,11 +52,7 @@ const AndreForelderOppsummering: React.FC<{
                 )}
                 {andreForelder[andreForelderDataKeySpørsmål.fnr].svar && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={omBarnetSpørsmålSpråkId[OmBarnetSpørsmålsId.andreForelderFnr]}
-                            />
-                        }
+                        spørsmålstekst={omBarnetTekster.foedselsnummerDnummerAndreForelder.sporsmal}
                         søknadsvar={
                             andreForelder[andreForelderDataKeySpørsmål.fnr].svar !==
                             AlternativtSvarForInput.UKJENT
@@ -66,15 +67,7 @@ const AndreForelderOppsummering: React.FC<{
                 )}
                 {andreForelder[andreForelderDataKeySpørsmål.fødselsdato].svar && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnetSpørsmålSpråkId[
-                                        OmBarnetSpørsmålsId.andreForelderFødselsdato
-                                    ]
-                                }
-                            />
-                        }
+                        spørsmålstekst={omBarnetTekster.foedselsdatoAndreForelder.sporsmal}
                         søknadsvar={formaterDatoMedUkjent(
                             andreForelder[andreForelderDataKeySpørsmål.fødselsdato].svar,
                             formatMessage({
@@ -87,16 +80,8 @@ const AndreForelderOppsummering: React.FC<{
                 )}
                 {andreForelder[andreForelderDataKeySpørsmål.yrkesaktivFemÅr].svar && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnetSpørsmålSpråkId[
-                                        andreForelder[andreForelderDataKeySpørsmål.yrkesaktivFemÅr]
-                                            .id
-                                    ]
-                                }
-                            />
-                        }
+                        spørsmålstekst={omBarnetTekster.medlemAvFolktetrygdenAndreForelder.sporsmal}
+                        flettefelter={flettefelter}
                         søknadsvar={
                             andreForelder[andreForelderDataKeySpørsmål.yrkesaktivFemÅr].svar
                         }
@@ -104,17 +89,13 @@ const AndreForelderOppsummering: React.FC<{
                 )}
                 {andreForelder[andreForelderDataKeySpørsmål.arbeidUtlandet].svar && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnetSpørsmålSpråkId[
-                                        andreForelder[andreForelderDataKeySpørsmål.arbeidUtlandet]
-                                            .id
-                                    ]
-                                }
-                                values={{ navn: barn.navn }}
-                            />
+                        spørsmålstekst={
+                            barn.andreForelderErDød.svar === ESvar.JA
+                                ? omBarnetTekster.arbeidUtenforNorgeAndreForelderGjenlevende
+                                      .sporsmal
+                                : omBarnetTekster.arbeidUtenforNorgeAndreForelder.sporsmal
                         }
+                        flettefelter={flettefelter}
                         søknadsvar={andreForelder[andreForelderDataKeySpørsmål.arbeidUtlandet].svar}
                     />
                 )}
@@ -133,16 +114,12 @@ const AndreForelderOppsummering: React.FC<{
 
                 {andreForelder[andreForelderDataKeySpørsmål.pensjonUtland].svar && (
                     <OppsummeringFelt
-                        tittel={
-                            <SpråkTekst
-                                id={
-                                    omBarnetSpørsmålSpråkId[
-                                        andreForelder[andreForelderDataKeySpørsmål.pensjonUtland].id
-                                    ]
-                                }
-                                values={{ navn: barn.navn }}
-                            />
+                        spørsmålstekst={
+                            barn.andreForelderErDød.svar === ESvar.JA
+                                ? omBarnetTekster.pensjonUtlandAndreForelderGjenlevende.sporsmal
+                                : omBarnetTekster.pensjonUtlandAndreForelder.sporsmal
                         }
+                        flettefelter={flettefelter}
                         søknadsvar={andreForelder[andreForelderDataKeySpørsmål.pensjonUtland].svar}
                     />
                 )}

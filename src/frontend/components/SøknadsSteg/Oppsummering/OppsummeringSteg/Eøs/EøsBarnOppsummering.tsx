@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useIntl } from 'react-intl';
 
+import { useApp } from '../../../../../context/AppContext';
 import { useSteg } from '../../../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
@@ -14,28 +15,30 @@ import Oppsummeringsbolk from '../../Oppsummeringsbolk';
 import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
 import EøsAndreForelderOppsummering from './EøsAndreForelderOppsummering';
 import EøsOmsorgspersonOppsummering from './EøsOmsorgspersonOppsummering';
-import { tittelSpmEøsBarnOppsummering } from './utils';
 
 interface Props {
     settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
     barn: IBarnMedISøknad;
-    nummer: string;
 }
 
-const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn }) => {
+const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
     const { hentStegObjektForBarnEøs } = useSteg();
+    const { tekster } = useApp();
+    const eøsBarnTekster = tekster().EØS_FOR_BARN;
 
     const eøsForBarnHook = useEøsForBarn(barn.id);
 
     const { formatMessage } = useIntl();
 
+    const flettefelter = { barnetsNavn: barn.navn };
     return (
         <Oppsummeringsbolk
-            tittel={'eøs-om-barn.oppsummering.tittel'}
-            språkValues={{ nummer, barn: barn.navn }}
+            tittel={eøsBarnTekster.eoesForBarnTittel}
+            flettefelter={flettefelter}
             steg={hentStegObjektForBarnEøs(barn)}
             skjemaHook={eøsForBarnHook}
             settFeilAnchors={settFeilAnchors}
+            barn={barn}
         >
             <SamletIdNummerForBarn
                 barn={barn}
@@ -46,20 +49,16 @@ const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn }
             {barn.søkersSlektsforhold.svar && (
                 <StyledOppsummeringsFeltGruppe>
                     <OppsummeringFelt
-                        tittel={tittelSpmEøsBarnOppsummering(
-                            barn.søkersSlektsforhold.id,
-                            barn.navn
-                        )}
+                        spørsmålstekst={eøsBarnTekster.slektsforhold.sporsmal}
+                        flettefelter={flettefelter}
                         søknadsvar={formatMessage({
                             id: toSlektsforholdSpråkId(barn.søkersSlektsforhold.svar),
                         })}
                     />
                     {barn.søkersSlektsforholdSpesifisering.svar && (
                         <OppsummeringFelt
-                            tittel={tittelSpmEøsBarnOppsummering(
-                                barn.søkersSlektsforholdSpesifisering.id,
-                                barn.navn
-                            )}
+                            spørsmålstekst={eøsBarnTekster.hvilkenRelasjon.sporsmal}
+                            flettefelter={flettefelter}
                             søknadsvar={barn.søkersSlektsforholdSpesifisering.svar}
                         />
                     )}
@@ -68,13 +67,15 @@ const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn }
 
             {barn.borMedAndreForelder.svar && (
                 <OppsummeringFelt
-                    tittel={tittelSpmEøsBarnOppsummering(barn.borMedAndreForelder.id, barn.navn)}
+                    spørsmålstekst={eøsBarnTekster.borMedAndreForelder.sporsmal}
+                    flettefelter={flettefelter}
                     søknadsvar={barn.borMedAndreForelder.svar}
                 />
             )}
             {barn.borMedOmsorgsperson.svar && (
                 <OppsummeringFelt
-                    tittel={tittelSpmEøsBarnOppsummering(barn.borMedOmsorgsperson.id, barn.navn)}
+                    spørsmålstekst={eøsBarnTekster.borMedOmsorgsperson.sporsmal}
+                    flettefelter={flettefelter}
                     søknadsvar={barn.borMedOmsorgsperson.svar}
                 />
             )}
@@ -85,7 +86,8 @@ const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, nummer, barn }
 
             {barn.adresse.svar && (
                 <OppsummeringFelt
-                    tittel={tittelSpmEøsBarnOppsummering(barn.adresse.id, barn.navn)}
+                    spørsmålstekst={eøsBarnTekster.hvorBorBarnet.sporsmal}
+                    flettefelter={flettefelter}
                     søknadsvar={
                         barn.adresse.svar === AlternativtSvarForInput.UKJENT
                             ? formatMessage({
