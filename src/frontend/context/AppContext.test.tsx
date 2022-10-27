@@ -16,6 +16,7 @@ import {
     mockFeatureToggle,
     mockRoutes,
     silenceConsoleErrors,
+    spyOnModal,
     TestProvidere,
 } from '../utils/testing';
 import { useApp } from './AppContext';
@@ -84,6 +85,7 @@ describe('AppContext', () => {
         mockEøs();
         mockRoutes();
         mockFeatureToggle();
+        spyOnModal();
         silenceConsoleErrors();
         const { result } = renderHook(() => useApp(), {
             wrapper: TestProvidere,

@@ -3,16 +3,17 @@ import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
 
-import Modal from 'nav-frontend-modal';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 import { Upload } from '@navikt/ds-icons';
+import { Modal } from '@navikt/ds-react';
 import { NavdsGlobalColorBlue500, NavdsSemanticColorBorder } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../../context/AppContext';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
 import AlertStripe from '../../../Felleskomponenter/AlertStripe/AlertStripe';
+import ModalContent from '../../../Felleskomponenter/ModalContent';
 import OpplastedeFiler from './OpplastedeFiler';
 import { useFilopplaster } from './useFilopplaster';
 
@@ -75,18 +76,20 @@ const Filopplaster: React.FC<Props> = ({
     return (
         <>
             <Modal
-                isOpen={åpenModal}
-                onRequestClose={() => lukkModal()}
+                open={åpenModal}
+                onClose={() => lukkModal()}
                 closeButton={true}
-                contentLabel="Modal"
+                aria-label="Modal" //todo: fikse en bedre aria-label
             >
-                <FeilmeldingWrapper>
-                    {feilmeldinger.map((feilmelding, index) => (
-                        <AlertStripe variant={'error'} key={index} inline={false}>
-                            {feilmelding}
-                        </AlertStripe>
-                    ))}
-                </FeilmeldingWrapper>
+                <ModalContent>
+                    <FeilmeldingWrapper>
+                        {feilmeldinger.map((feilmelding, index) => (
+                            <AlertStripe variant={'error'} key={index} inline={false}>
+                                {feilmelding}
+                            </AlertStripe>
+                        ))}
+                    </FeilmeldingWrapper>
+                </ModalContent>
             </Modal>
             <FilopplastningBoks type={'button'} {...getRootProps()}>
                 <input {...getInputProps()} />

@@ -3,6 +3,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { ISøknadKontrakt } from '../../typer/kontrakt/v1';
 import {
     silenceConsoleErrors,
+    spyOnModal,
     spyOnUseApp,
     TestProvidereMedEkteTekster,
 } from '../../utils/testing';
@@ -14,9 +15,12 @@ import { testdata3 } from './test-data/testdata3';
 import { testdata4 } from './test-data/testdata4';
 import { testdata5 } from './test-data/testdata5';
 
-silenceConsoleErrors();
-
 describe('test konvertering fra ISøknad til ISøknadKontrakt', () => {
+    beforeEach(() => {
+        silenceConsoleErrors();
+        spyOnModal();
+    });
+
     it('case 1', async () => {
         //const { input: iSøknad, output: expectedISøknadKontrakt } = testdata1;
         const { input: iSøknad } = testdata1;

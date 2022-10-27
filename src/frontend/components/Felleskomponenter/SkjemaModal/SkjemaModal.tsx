@@ -6,8 +6,12 @@ import { Innholdstittel } from 'nav-frontend-typografi';
 
 import { Button, Modal } from '@navikt/ds-react';
 
+import { useApp } from '../../../context/AppContext';
+import { LocaleRecordBlock, Typografi } from '../../../typer/common';
+import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import ModalContent from '../ModalContent';
 import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 
 const StyledButton = styled(Button)`
     && {
@@ -33,8 +37,9 @@ const SkjemaModal: React.FC<{
     /** @deprecated **/
     submitKnappSpråkId?: string; //todo: fjerne når vi har gått over til sanity
     onSubmitCallback: () => void;
-    tittel?: ReactNode;
+    tittel?: LocaleRecordBlock;
     submitKnappTekst?: ReactNode;
+    flettefelter?: FlettefeltVerdier;
 }> = ({
     erÅpen,
     toggleModal,
@@ -46,8 +51,10 @@ const SkjemaModal: React.FC<{
     onSubmitCallback,
     tittel,
     submitKnappTekst,
+    flettefelter,
     children,
 }) => {
+    const { plainTekst } = useApp();
     return (
         <Modal
             open={erÅpen}
@@ -55,6 +62,7 @@ const SkjemaModal: React.FC<{
                 toggleModal();
                 onAvbrytCallback && onAvbrytCallback();
             }}
+            aria-label={plainTekst(tittel, flettefelter)}
         >
             <ModalContent>
                 {modalTittelSpråkId && (
@@ -62,7 +70,13 @@ const SkjemaModal: React.FC<{
                         <SpråkTekst id={modalTittelSpråkId} />
                     </StyledInnholdstittel>
                 )}
-                {tittel}
+                {tittel && (
+                    <TekstBlock
+                        block={tittel}
+                        flettefelter={flettefelter}
+                        typografi={Typografi.ModalHeadingH1}
+                    />
+                )}
                 <form>
                     {children}
                     <StyledButton

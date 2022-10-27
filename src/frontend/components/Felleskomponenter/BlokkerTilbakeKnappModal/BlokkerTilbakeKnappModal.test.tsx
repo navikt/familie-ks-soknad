@@ -11,6 +11,7 @@ import {
     mockEøs,
     mockHistory,
     silenceConsoleErrors,
+    spyOnModal,
     spyOnUseApp,
     TestProvidere,
 } from '../../../utils/testing';
@@ -50,6 +51,7 @@ const fraPdlSomIBarnMedISøknad: Partial<IBarnMedISøknad> = {
 describe('Ingen navigering tilbake til søknad fra kvitteringssiden', () => {
     beforeEach(() => {
         mockEøs();
+        spyOnModal();
     });
     test(`Render BlokkerTilbakeKnappModal og sjekk at den virker`, async () => {
         const { mockedHistory } = mockHistory(['dokumentasjon', 'kvittering']);

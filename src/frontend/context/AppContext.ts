@@ -4,6 +4,7 @@ import createUseContext from 'constate';
 import { Alpha3Code } from 'i18n-iso-countries';
 import { useIntl } from 'react-intl';
 
+import { Modal } from '@navikt/ds-react';
 import { LocaleType, useSprakContext } from '@navikt/familie-sprakvelger';
 import {
     byggHenterRessurs,
@@ -47,6 +48,10 @@ const [AppProvider, useApp] = createUseContext(() => {
     const [sisteModellVersjon, settSisteModellVersjon] = useState(modellVersjon);
     const modellVersjonOppdatert = sisteModellVersjon > modellVersjon;
     const { teksterRessurs } = useSanity();
+
+    useEffect(() => {
+        Modal.setAppElement && Modal.setAppElement('#root');
+    }, []);
 
     useEffect(() => {
         if (nåværendeRoute === RouteEnum.Kvittering) {

@@ -7,13 +7,19 @@ import { mockDeep } from 'jest-mock-extended';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { SkjemaFeltTyper } from '../../../typer/skjema';
-import { mockEøs, spyOnUseApp, TestProvidereMedEkteTekster } from '../../../utils/testing';
+import {
+    mockEøs,
+    spyOnModal,
+    spyOnUseApp,
+    TestProvidereMedEkteTekster,
+} from '../../../utils/testing';
 import { LandDropdown } from './LandDropdown';
 
 describe('LandDropdown', () => {
     beforeEach(() => {
         jest.useFakeTimers();
         spyOnUseApp({});
+        spyOnModal();
     });
 
     it('Rendrer alle land i alle dropdowns når eøs er skrudd av', async () => {

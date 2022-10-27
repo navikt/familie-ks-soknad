@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 import { Modal } from '@navikt/ds-react';
 
+import { device } from '../../Theme';
+
 const StyledModalContent = styled(Modal.Content)`
     && {
         padding: 2rem;
@@ -15,6 +17,10 @@ const StyledModalContent = styled(Modal.Content)`
     }
 
     width: 45rem;
+
+    @media all and ${device.tablet} {
+        width: auto;
+    }
 `;
 
 const ModalContent: React.FC = ({ children }) => {

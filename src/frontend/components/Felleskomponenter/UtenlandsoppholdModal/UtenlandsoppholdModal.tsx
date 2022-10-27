@@ -4,7 +4,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { Typografi } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -95,13 +94,8 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
     return (
         <SkjemaModal
             erÅpen={erÅpen}
-            tittel={
-                <TekstBlock
-                    block={teksterForPersonType.tittel}
-                    flettefelter={{ barnetsNavn }}
-                    typografi={Typografi.ModalHeadingH1}
-                />
-            }
+            tittel={teksterForPersonType.tittel}
+            flettefelter={{ barnetsNavn }}
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
             onSubmitCallback={onLeggTil}
             toggleModal={toggleModal}
