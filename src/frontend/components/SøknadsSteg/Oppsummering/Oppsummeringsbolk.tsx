@@ -7,6 +7,7 @@ import { ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { useSteg } from '../../../context/StegContext';
+import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
 import { ISteg, RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { AppLenke } from '../../Felleskomponenter/AppLenke/AppLenke';
@@ -24,7 +25,10 @@ const StyledAccordionContent = styled(Accordion.Content)`
 `;
 
 interface Props {
-    tittel: string;
+    /** @deprecated **/
+    tittel?: string;
+    tittelV2?: LocaleRecordBlock | LocaleRecordString; // todo fjern Nullable og endre navn til tittel
+    /** @deprecated **/
     språkValues?: { [key: string]: string };
     steg?: ISteg;
     skjemaHook: IHookReturn;
@@ -34,13 +38,14 @@ interface Props {
 const Oppsummeringsbolk: React.FC<Props> = ({
     children,
     tittel,
+    tittelV2,
     språkValues,
     steg,
     skjemaHook,
     settFeilAnchors,
 }) => {
     const { hentStegNummer } = useSteg();
-    const { søknad } = useApp();
+    const { søknad, plainTekst } = useApp();
     const { validerAlleSynligeFelter, valideringErOk, skjema } = skjemaHook;
     const [visFeil, settVisFeil] = useState(false);
 
@@ -73,6 +78,7 @@ const Oppsummeringsbolk: React.FC<Props> = ({
                         steg?.route !== RouteEnum.EøsForBarn &&
                         `${hentStegNummer(steg?.route ?? RouteEnum.OmDeg)}. `}
                     <SpråkTekst id={tittel} values={språkValues} />
+                    {plainTekst && plainTekst(tittelV2)}
                 </Accordion.Header>
                 <StyledAccordionContent>
                     {children}
