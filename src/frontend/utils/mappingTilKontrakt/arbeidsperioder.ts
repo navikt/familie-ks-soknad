@@ -12,7 +12,7 @@ import { PeriodePersonTypeProps, PersonType } from '../../typer/personType';
 import { hentTekster, landkodeTilSpråk } from '../språk';
 import {
     sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjentSpråktekst,
+    sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel,
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
 
@@ -88,7 +88,7 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
                       label: hentTekster(
                           hentSpørsmålTekstId(ArbeidsperiodeSpørsmålsId.tilDatoArbeidsperiode)
                       ),
-                      verdi: sammeVerdiAlleSpråkEllerUkjentSpråktekst(
+                      verdi: sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel(
                           tilDatoArbeidsperiode.svar,
                           hentSpørsmålTekstId(
                               ArbeidsperiodeSpørsmålsId.tilDatoArbeidsperiodeVetIkke
