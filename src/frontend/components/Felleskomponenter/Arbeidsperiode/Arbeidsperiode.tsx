@@ -12,7 +12,7 @@ import {
     IDinLivssituasjonFeltTyper,
     IEøsForBarnFeltTyper,
     IEøsForSøkerFeltTyper,
-    IOmBarnetUtvidetFeltTyper,
+    IOmBarnetFeltTyper,
 } from '../../../typer/skjema';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
@@ -26,7 +26,7 @@ import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
 interface ArbeidsperiodeProps {
     skjema: ISkjema<
         | IDinLivssituasjonFeltTyper
-        | IOmBarnetUtvidetFeltTyper
+        | IOmBarnetFeltTyper
         | IEøsForSøkerFeltTyper
         | IEøsForBarnFeltTyper,
         string
