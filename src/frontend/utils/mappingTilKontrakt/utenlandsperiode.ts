@@ -1,4 +1,3 @@
-import { tilDatoUkjentLabelSpråkId } from '../../components/Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import {
     hentFraDatoSpørsmål,
     hentLandSpørsmål,
@@ -12,10 +11,10 @@ import {
 } from '../../typer/kontrakt/generelle';
 import { IUtenlandsperiode } from '../../typer/perioder';
 import { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenlandsopphold';
-import { hentTekster, landkodeTilSpråk } from '../språk';
+import { landkodeTilSpråk } from '../språk';
 import {
     sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjentSpråktekst,
+    sammeVerdiAlleSpråkEllerUkjent,
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
 
@@ -27,7 +26,9 @@ export const utenlandsperiodeTilISøknadsfelt = (
 ): ISøknadsfelt<IUtenlandsperiodeIKontraktFormat> => {
     const { periodeBeskrivelse } = tekster;
     return {
-        label: hentTekster('felles.leggtilutenlands.opphold', { x: periodeNummer }),
+        label: tilRestLocaleRecord(tekster.oppsummeringstittel, {
+            antall: periodeNummer.toString(),
+        }),
         verdi: sammeVerdiAlleSpråk({
             utenlandsoppholdÅrsak: {
                 label: tilRestLocaleRecord(periodeBeskrivelse.sporsmal),
@@ -54,9 +55,10 @@ export const utenlandsperiodeTilISøknadsfelt = (
                     hentTilDatoSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster)
                 ),
                 verdi: utenlandperiode.oppholdslandTilDato?.svar
-                    ? sammeVerdiAlleSpråkEllerUkjentSpråktekst(
+                    ? sammeVerdiAlleSpråkEllerUkjent(
+                          tilRestLocaleRecord,
                           utenlandperiode.oppholdslandTilDato?.svar,
-                          tilDatoUkjentLabelSpråkId
+                          tekster.sluttdatoFremtid.checkboxLabel
                       )
                     : sammeVerdiAlleSpråk(undefined),
             },

@@ -6,5 +6,3 @@ export enum UtenlandsoppholdSpørsmålId {
     tilDatoUtenlandsoppholdVetIkke = 'til-dato-utenlandsopphold-vet-ikke',
     utenlandsopphold = 'utenlandsopphold',
 }
-
-export const tilDatoUkjentLabelSpråkId = 'felles.vetikkenåravsluttes.spm';

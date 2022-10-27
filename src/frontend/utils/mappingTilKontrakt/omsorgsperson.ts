@@ -13,7 +13,7 @@ import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
 import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';
 import {
     sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjentSpråktekst,
+    sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel,
     språktekstIdFraSpørsmålId,
     søknadsfeltBarn,
     verdiCallbackAlleSpråk,
@@ -76,7 +76,7 @@ export const omsorgspersonTilISøknadsfelt = (
         ),
         idNummer: søknadsfeltBarn(
             språktekstIdFraSpørsmålId(EøsBarnSpørsmålId.omsorgspersonIdNummer),
-            sammeVerdiAlleSpråkEllerUkjentSpråktekst(
+            sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel(
                 idNummer.svar,
                 eøsBarnSpørsmålSpråkId[EøsBarnSpørsmålId.omsorgspersonIdNummerVetIkke]
             ),
