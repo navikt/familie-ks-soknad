@@ -16,11 +16,10 @@ const StyledModalContent = styled(Modal.Content)`
         padding: 2rem 0;
     }
 
-    max-width: 45rem;
-    min-width: 45rem;
+    width: 45rem;
 
     @media all and ${device.tablet} {
-        min-width: auto;
+        width: auto;
     }
 `;
 
