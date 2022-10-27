@@ -101,7 +101,7 @@ export const IdNummer: React.FC<{
                             : idNummerVerdiFraSøknad
                     }
                     flettefelter={{ land: landAlphaCode, barnetsNavn: barn?.navn }}
-                ></OppsummeringFelt>
+                />
             ) : (
                 <>
                     <SkjemaFeltInput
