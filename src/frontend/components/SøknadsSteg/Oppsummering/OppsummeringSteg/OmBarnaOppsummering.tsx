@@ -65,12 +65,12 @@ const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
                     spørsmålstekst={omBarnaTekster.adoptertKontantstoette.sporsmal}
-                    søknadsvar={søknad.erBarnAdoptertFraUtland.svar}
+                    søknadsvar={søknad.erBarnAdoptert.svar}
                 />
-                {søknad.erBarnAdoptertFraUtland.svar === ESvar.JA && (
+                {søknad.erBarnAdoptert.svar === ESvar.JA && (
                     <OppsummeringFelt
                         spørsmålstekst={omBarnaTekster.hvemAdoptertKontantstoette.sporsmal}
-                        søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.erAdoptertFraUtland)}
+                        søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.erAdoptert)}
                     />
                 )}
             </StyledOppsummeringsFeltGruppe>

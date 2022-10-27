@@ -64,7 +64,7 @@ const Oppfølgningsspørsmål: React.FC<{
 
     return (
         <>
-            {barn[barnDataKeySpørsmål.erAdoptertFraUtland].svar === ESvar.JA && (
+            {barn[barnDataKeySpørsmål.erAdoptert].svar === ESvar.JA && (
                 <SkjemaFieldset
                     tittel={
                         <TekstBlock

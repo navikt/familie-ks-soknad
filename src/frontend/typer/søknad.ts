@@ -25,7 +25,7 @@ export interface ISøknad {
     barnRegistrertManuelt: IBarn[];
     erNoenAvBarnaFosterbarn: ISøknadSpørsmål<ESvar | null>;
     oppholderBarnSegIInstitusjon: ISøknadSpørsmål<ESvar | null>;
-    erBarnAdoptertFraUtland: ISøknadSpørsmål<ESvar | null>;
+    erBarnAdoptert: ISøknadSpørsmål<ESvar | null>;
     søktAsylForBarn: ISøknadSpørsmål<ESvar | null>;
     erAvdødPartnerForelder: ISøknadSpørsmål<ESvar | null>;
     barnOppholdtSegTolvMndSammenhengendeINorge: ISøknadSpørsmål<ESvar | null>;
@@ -116,8 +116,8 @@ export const initialStateSøknad: ISøknad = {
         id: OmBarnaDineSpørsmålId.oppholderBarnSegIInstitusjon,
         svar: null,
     },
-    erBarnAdoptertFraUtland: {
-        id: OmBarnaDineSpørsmålId.erBarnAdoptertFraUtland,
+    erBarnAdoptert: {
+        id: OmBarnaDineSpørsmålId.erBarnAdoptert,
         svar: null,
     },
     søktAsylForBarn: {

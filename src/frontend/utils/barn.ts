@@ -146,8 +146,8 @@ export const genererInitialBarnMedISøknad = (barn: IBarn): IBarnMedISøknad => 
             id: OmBarnaDineSpørsmålId.hvemErFosterbarn,
             svar: null,
         },
-        [barnDataKeySpørsmål.erAdoptertFraUtland]: {
-            id: OmBarnaDineSpørsmålId.hvemErAdoptertFraUtland,
+        [barnDataKeySpørsmål.erAdoptert]: {
+            id: OmBarnaDineSpørsmålId.hvemErAdoptert,
             svar: null,
         },
         [barnDataKeySpørsmål.erAsylsøker]: {

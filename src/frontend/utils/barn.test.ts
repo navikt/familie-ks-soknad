@@ -45,7 +45,7 @@ describe('genererOppdaterteBarn', () => {
         felter: {
             hvemErFosterbarn: { verdi: ['random-id'] },
             hvemErSøktAsylFor: { verdi: ['random-id'] },
-            hvemErAdoptertFraUtland: { verdi: [] },
+            hvemErAdoptert: { verdi: [] },
             hvemOppholderSegIInstitusjon: { verdi: [] },
             hvemTolvMndSammenhengendeINorge: { verdi: [] },
             hvemKontantstøtteFraAnnetEøsland: { verdi: ['random-id'] },
@@ -55,7 +55,7 @@ describe('genererOppdaterteBarn', () => {
             oppholderBarnSegIInstitusjon: {
                 verdi: ESvar.NEI,
             },
-            erBarnAdoptertFraUtland: {
+            erBarnAdoptert: {
                 verdi: ESvar.NEI,
             },
             søktAsylForBarn: {
@@ -76,7 +76,7 @@ describe('genererOppdaterteBarn', () => {
                 id: 'random-id',
                 erFosterbarn: objectContaining({ svar: 'JA' }),
                 erAsylsøker: objectContaining({ svar: 'JA' }),
-                erAdoptertFraUtland: objectContaining({ svar: 'NEI' }),
+                erAdoptert: objectContaining({ svar: 'NEI' }),
                 oppholderSegIInstitusjon: objectContaining({ svar: 'NEI' }),
                 boddMindreEnn12MndINorge: objectContaining({ svar: 'NEI' }),
                 kontantstøtteFraAnnetEøsland: objectContaining({ svar: 'JA' }),

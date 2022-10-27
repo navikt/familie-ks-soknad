@@ -102,7 +102,7 @@ export const useOmBarnet = (
     const utbetaltForeldrepengerEllerEngangsstønad = useJaNeiSpmFelt({
         søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad],
         feilmelding: teksterForSteg.utbetaltForeldrepengerEllerEngangsstoenad.feilmelding,
-        skalSkjules: !skalFeltetVises(barnDataKeySpørsmål.erAdoptertFraUtland),
+        skalSkjules: !skalFeltetVises(barnDataKeySpørsmål.erAdoptert),
     });
 
     /*---UTENLANDSOPPHOLD---*/
