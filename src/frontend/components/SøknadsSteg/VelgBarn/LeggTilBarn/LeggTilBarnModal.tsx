@@ -54,7 +54,7 @@ const LeggTilBarnModal: React.FC<{
 
     return (
         <SkjemaModal
-            tittel={<TekstBlock block={tittel} typografi={Typografi.ModalHeadingH1} />}
+            tittel={tittel}
             submitKnappTekst={<TekstBlock block={leggTilKnapp} />}
             erÅpen={erÅpen}
             toggleModal={toggleModal}

@@ -4,7 +4,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { Typografi } from '../../../typer/common';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
@@ -100,13 +99,8 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
     return (
         <SkjemaModal
             erÅpen={erÅpen}
-            tittel={
-                <TekstBlock
-                    block={teksterForModal.tittel}
-                    flettefelter={{ gjelderUtland: gjelderUtlandet }}
-                    typografi={Typografi.ModalHeadingH1}
-                />
-            }
+            tittel={teksterForModal.tittel}
+            flettefelter={{ gjelderUtland: gjelderUtlandet }}
             onSubmitCallback={onLeggTil}
             submitKnappTekst={<TekstBlock block={teksterForModal.leggTilKnapp} />}
             toggleModal={toggleModal}

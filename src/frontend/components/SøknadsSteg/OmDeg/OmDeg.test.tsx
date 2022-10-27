@@ -8,6 +8,7 @@ import {
     mockEøs,
     mockHistory,
     silenceConsoleErrors,
+    spyOnModal,
     spyOnUseApp,
     TestProvidere,
 } from '../../../utils/testing';
@@ -25,6 +26,7 @@ describe('OmDeg', () => {
         silenceConsoleErrors();
         mockEøs();
         mockHistory(['/om-deg']);
+        spyOnModal();
     });
 
     test('Skal rendre 2 alertstriper i OmDeg', async () => {
