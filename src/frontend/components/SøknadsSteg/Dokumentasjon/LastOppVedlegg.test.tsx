@@ -4,7 +4,13 @@ import { render } from '@testing-library/react';
 
 import { IDokumentasjon } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
-import { mockEøs, silenceConsoleErrors, spyOnUseApp, TestProvidere } from '../../../utils/testing';
+import {
+    mockEøs,
+    silenceConsoleErrors,
+    spyOnModal,
+    spyOnUseApp,
+    TestProvidere,
+} from '../../../utils/testing';
 import LastOppVedlegg from './LastOppVedlegg';
 
 const hentAnnenDokumentasjon = (): IDokumentasjon => {
@@ -26,6 +32,7 @@ describe('LastOppVedlegg', () => {
         silenceConsoleErrors();
         jest.resetModules();
         mockEøs();
+        spyOnModal();
     });
 
     it('Viser ikke info-tekst og checkbox knapp for ANNEN_DOKUMENTASJON', () => {

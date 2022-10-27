@@ -5,8 +5,6 @@ import * as Sentry from '@sentry/react';
 import { registerLocale } from 'i18n-iso-countries';
 import ReactDOM from 'react-dom';
 
-import Modal from 'nav-frontend-modal';
-
 import { HttpProvider } from '@navikt/familie-http';
 import { LocaleType, SprakProvider } from '@navikt/familie-sprakvelger';
 
@@ -83,6 +81,4 @@ polyfillLocaledata().then(() => {
         </React.StrictMode>,
         document.getElementById('root')
     );
-
-    Modal.setAppElement('#root');
 });

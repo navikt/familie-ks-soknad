@@ -6,7 +6,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { Typografi } from '../../../typer/common';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
@@ -97,12 +96,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
     return (
         <SkjemaModal
             erÅpen={erÅpen}
-            tittel={
-                <TekstBlock
-                    block={teksterForPersonType.tittel}
-                    typografi={Typografi.ModalHeadingH1}
-                />
-            }
+            tittel={teksterForPersonType.tittel}
             onSubmitCallback={onLeggTil}
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
             toggleModal={toggleModal}

@@ -3,7 +3,6 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
 import { IPensjonsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
@@ -82,13 +81,8 @@ export const PensjonModal: React.FC<Props> = ({
     return (
         <SkjemaModal
             erÅpen={erÅpen}
-            tittel={
-                <TekstBlock
-                    block={teksterForModal.tittel}
-                    flettefelter={{ gjelderUtland }}
-                    typografi={Typografi.ModalHeadingH1}
-                />
-            }
+            tittel={teksterForModal.tittel}
+            flettefelter={{ gjelderUtland }}
             onSubmitCallback={onLeggTil}
             submitKnappTekst={<TekstBlock block={teksterForModal.leggTilKnapp} />}
             toggleModal={toggleModal}

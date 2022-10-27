@@ -19,6 +19,7 @@ import {
     mockHistory,
     mockRoutes,
     silenceConsoleErrors,
+    spyOnModal,
     spyOnUseApp,
     TestProvidere,
 } from '../../../utils/testing';
@@ -78,6 +79,7 @@ describe('VelgBarn', () => {
         mockRoutes();
         mockFeatureToggle();
         silenceConsoleErrors();
+        spyOnModal();
     });
 
     test('Kan fjerne manuelt registrerte barn', () => {
