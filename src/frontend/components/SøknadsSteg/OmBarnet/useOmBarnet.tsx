@@ -28,7 +28,7 @@ import {
 } from '../../../typer/perioder';
 import { IIdNummer } from '../../../typer/person';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
+import { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import {
     filtrerteRelevanteIdNummerForBarn,
     genererInitiellAndreForelder,
@@ -48,7 +48,7 @@ import { OmBarnetSpørsmålsId } from './spørsmål';
 export const useOmBarnet = (
     barnetsUuid: BarnetsId
 ): {
-    skjema: ISkjema<IOmBarnetUtvidetFeltTyper, string>;
+    skjema: ISkjema<IOmBarnetFeltTyper, string>;
     barn: IBarnMedISøknad | undefined;
     validerFelterOgVisFeilmelding: () => boolean;
     valideringErOk: () => boolean;
@@ -102,7 +102,7 @@ export const useOmBarnet = (
     const utbetaltForeldrepengerEllerEngangsstønad = useJaNeiSpmFelt({
         søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad],
         feilmelding: teksterForSteg.utbetaltForeldrepengerEllerEngangsstoenad.feilmelding,
-        skalSkjules: !skalFeltetVises(barnDataKeySpørsmål.erAdoptertFraUtland),
+        skalSkjules: !skalFeltetVises(barnDataKeySpørsmål.erAdoptert),
     });
 
     /*---UTENLANDSOPPHOLD---*/
@@ -435,7 +435,7 @@ export const useOmBarnet = (
     });
 
     const { kanSendeSkjema, skjema, valideringErOk, validerAlleSynligeFelter } = useSkjema<
-        IOmBarnetUtvidetFeltTyper,
+        IOmBarnetFeltTyper,
         string
     >({
         felter: {

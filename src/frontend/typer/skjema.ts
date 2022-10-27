@@ -28,7 +28,7 @@ export interface IDinLivssituasjonFeltTyper {
 export interface IOmBarnaDineFeltTyper {
     erNoenAvBarnaFosterbarn: ESvar | null;
     oppholderBarnSegIInstitusjon: ESvar | null;
-    erBarnAdoptertFraUtland: ESvar | null;
+    erBarnAdoptert: ESvar | null;
     søktAsylForBarn: ESvar | null;
     barnOppholdtSegTolvMndSammenhengendeINorge: ESvar | null;
     mottarKontantstøtteForBarnFraAnnetEøsland: ESvar | null;
@@ -36,7 +36,7 @@ export interface IOmBarnaDineFeltTyper {
     erAvdødPartnerForelder: ESvar | null;
     hvemErFosterbarn: BarnetsId[];
     hvemOppholderSegIInstitusjon: BarnetsId[];
-    hvemErAdoptertFraUtland: BarnetsId[];
+    hvemErAdoptert: BarnetsId[];
     hvemKontantstøtteFraAnnetEøsland: BarnetsId[];
     hvemTolvMndSammenhengendeINorge: BarnetsId[];
     hvemErSøktAsylFor: BarnetsId[];
@@ -44,7 +44,7 @@ export interface IOmBarnaDineFeltTyper {
     hvemAvdødPartner: BarnetsId[];
 }
 
-export interface IOmBarnetUtvidetFeltTyper {
+export interface IOmBarnetFeltTyper {
     utbetaltForeldrepengerEllerEngangsstønad: ESvar | null;
     planleggerÅBoINorge12Mnd: ESvar | null;
     pågåendeSøknadFraAnnetEøsLand: ESvar | null;
@@ -204,7 +204,7 @@ export type SkjemaFeltTyper =
     | IOmDegFeltTyper
     | IVelgBarnFeltTyper
     | ILeggTilBarnTyper
-    | IOmBarnetUtvidetFeltTyper
+    | IOmBarnetFeltTyper
     | IOmBarnaDineFeltTyper
     | IDinLivssituasjonFeltTyper
     | IUtenlandsoppholdFeltTyper

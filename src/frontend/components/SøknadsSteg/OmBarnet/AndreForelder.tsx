@@ -10,7 +10,7 @@ import { AlternativtSvarForInput } from '../../../typer/common';
 import { IArbeidsperiode, IPensjonsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IOmBarnetUtvidetFeltTyper } from '../../../typer/skjema';
+import { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import { dagensDato } from '../../../utils/dato';
 import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
 import Datovelger from '../../Felleskomponenter/Datovelger/Datovelger';
@@ -26,7 +26,7 @@ import SammeSomAnnetBarnRadio from './SammeSomAnnetBarnRadio';
 
 const AndreForelder: React.FC<{
     barn: IBarnMedISøknad;
-    skjema: ISkjema<IOmBarnetUtvidetFeltTyper, string>;
+    skjema: ISkjema<IOmBarnetFeltTyper, string>;
     andreBarnSomErFyltUt: IBarnMedISøknad[];
     leggTilArbeidsperiode: (periode: IArbeidsperiode) => void;
     fjernArbeidsperiode: (periode: IArbeidsperiode) => void;

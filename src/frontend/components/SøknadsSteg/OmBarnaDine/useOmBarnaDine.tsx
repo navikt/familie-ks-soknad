@@ -52,15 +52,15 @@ export const useOmBarnaDine = (): {
         oppholderBarnSegIInstitusjon
     );
 
-    const erBarnAdoptertFraUtland = useJaNeiSpmFelt({
-        søknadsfelt: søknad.erBarnAdoptertFraUtland,
+    const erBarnAdoptert = useJaNeiSpmFelt({
+        søknadsfelt: søknad.erBarnAdoptert,
         feilmelding: teksterForSteg.adoptertKontantstoette.feilmelding,
     });
 
-    const hvemErAdoptertFraUtland = useBarnCheckboxFelt(
-        barnDataKeySpørsmål.erAdoptertFraUtland,
+    const hvemErAdoptert = useBarnCheckboxFelt(
+        barnDataKeySpørsmål.erAdoptert,
         <TekstBlock block={teksterForSteg.hvemAdoptertKontantstoette.feilmelding} />,
-        erBarnAdoptertFraUtland
+        erBarnAdoptert
     );
 
     const søktAsylForBarn = useJaNeiSpmFelt({
@@ -185,9 +185,9 @@ export const useOmBarnaDine = (): {
                 ...søknad.oppholderBarnSegIInstitusjon,
                 svar: oppholderBarnSegIInstitusjon.verdi,
             },
-            erBarnAdoptertFraUtland: {
-                ...søknad.erBarnAdoptertFraUtland,
-                svar: erBarnAdoptertFraUtland.verdi,
+            erBarnAdoptert: {
+                ...søknad.erBarnAdoptert,
+                svar: erBarnAdoptert.verdi,
             },
             søktAsylForBarn: {
                 ...søknad.søktAsylForBarn,
@@ -220,7 +220,7 @@ export const useOmBarnaDine = (): {
                     case Dokumentasjonsbehov.ADOPSJON_DATO:
                         return {
                             ...dok,
-                            gjelderForBarnId: hvemErAdoptertFraUtland.verdi,
+                            gjelderForBarnId: hvemErAdoptert.verdi,
                         };
                     case Dokumentasjonsbehov.BEKREFTELSE_FRA_BARNEVERN:
                         return {
@@ -246,14 +246,14 @@ export const useOmBarnaDine = (): {
         felter: {
             erNoenAvBarnaFosterbarn,
             oppholderBarnSegIInstitusjon,
-            erBarnAdoptertFraUtland,
+            erBarnAdoptert: erBarnAdoptert,
             søktAsylForBarn,
             barnOppholdtSegTolvMndSammenhengendeINorge,
             mottarKontantstøtteForBarnFraAnnetEøsland,
             harEllerTildeltBarnehageplass,
             erAvdødPartnerForelder,
             hvemErFosterbarn,
-            hvemErAdoptertFraUtland,
+            hvemErAdoptert,
             hvemOppholderSegIInstitusjon,
             hvemKontantstøtteFraAnnetEøsland,
             hvemTolvMndSammenhengendeINorge,

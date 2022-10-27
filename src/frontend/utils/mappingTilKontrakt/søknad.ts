@@ -179,9 +179,9 @@ export const dataISøknadKontraktFormatV1 = (
                 ),
                 sammeVerdiAlleSpråk(søknad.barnOppholdtSegTolvMndSammenhengendeINorge.svar)
             ),
-            erBarnAdoptertFraUtland: søknadsfeltGammel(
-                språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.erBarnAdoptertFraUtland),
-                sammeVerdiAlleSpråk(søknad.erBarnAdoptertFraUtland.svar)
+            erBarnAdoptert: søknadsfeltGammel(
+                språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.erBarnAdoptert),
+                sammeVerdiAlleSpråk(søknad.erBarnAdoptert.svar)
             ),
             mottarKontantstøtteForBarnFraAnnetEøsland: søknadsfeltGammel(
                 språktekstIdFraSpørsmålId(

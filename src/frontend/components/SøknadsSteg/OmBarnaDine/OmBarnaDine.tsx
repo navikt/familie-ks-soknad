@@ -121,17 +121,17 @@ const OmBarnaDine: React.FC = () => {
 
                 <JaNeiSpm
                     skjema={skjema}
-                    felt={skjema.felter.erBarnAdoptertFraUtland}
+                    felt={skjema.felter.erBarnAdoptert}
                     spørsmålDokument={adoptertKontantstoette}
                 />
                 <HvilkeBarnCheckboxGruppe
                     legend={<TekstBlock block={hvemAdoptertKontantstoette.sporsmal} />}
-                    skjemafelt={skjema.felter.hvemErAdoptertFraUtland}
-                    søknadsdatafelt={barnDataKeySpørsmål.erAdoptertFraUtland}
-                    nullstillValgteBarn={skjema.felter.erBarnAdoptertFraUtland.verdi === ESvar.NEI}
+                    skjemafelt={skjema.felter.hvemErAdoptert}
+                    søknadsdatafelt={barnDataKeySpørsmål.erAdoptert}
+                    nullstillValgteBarn={skjema.felter.erBarnAdoptert.verdi === ESvar.NEI}
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
-                {skjema.felter.erBarnAdoptertFraUtland.verdi === ESvar.JA && (
+                {skjema.felter.erBarnAdoptert.verdi === ESvar.JA && (
                     <VedleggNotisWrapper>
                         <VedleggNotis dynamisk>
                             <BodyShort>

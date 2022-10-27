@@ -124,8 +124,8 @@ export const testdata3: TilKontraktTestData = {
                     id: 'hvem-er-fosterbarn',
                     svar: 'NEI',
                 },
-                erAdoptertFraUtland: {
-                    id: 'hvem-er-adoptert-fra-utland',
+                erAdoptert: {
+                    id: 'hvem-er-adoptert',
                     svar: 'NEI',
                 },
                 erAsylsøker: {
@@ -258,8 +258,8 @@ export const testdata3: TilKontraktTestData = {
                     id: 'hvem-er-fosterbarn',
                     svar: 'JA',
                 },
-                erAdoptertFraUtland: {
-                    id: 'hvem-er-adoptert-fra-utland',
+                erAdoptert: {
+                    id: 'hvem-er-adoptert',
                     svar: 'JA',
                 },
                 erAsylsøker: {
@@ -546,8 +546,8 @@ export const testdata3: TilKontraktTestData = {
             id: 'oppholder-barn-seg-i-institusjon',
             svar: 'JA',
         },
-        erBarnAdoptertFraUtland: {
-            id: 'er-barn-adoptert-fra-utland',
+        erBarnAdoptert: {
+            id: 'er-barn-adoptert',
             svar: 'JA',
         },
         søktAsylForBarn: {
@@ -1359,7 +1359,7 @@ export const testdata3: TilKontraktTestData = {
                         },
                         verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
                     },
-                    erAdoptertFraUtland: {
+                    erAdoptert: {
                         label: {
                             en: 'Which of the children are adopted from abroad?',
                             nb: 'Hvem av barna er adoptert fra utlandet?',
@@ -1932,7 +1932,7 @@ export const testdata3: TilKontraktTestData = {
                         },
                         verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
                     },
-                    erAdoptertFraUtland: {
+                    erAdoptert: {
                         label: {
                             en: 'Which of the children are adopted from abroad?',
                             nb: 'Hvem av barna er adoptert fra utlandet?',
@@ -2092,7 +2092,7 @@ export const testdata3: TilKontraktTestData = {
                 },
                 verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
             },
-            erBarnAdoptertFraUtland: {
+            erBarnAdoptert: {
                 label: {
                     en: 'Are any of the children adopted from abroad?',
                     nb: 'Er noen av barna adoptert fra utlandet?',
