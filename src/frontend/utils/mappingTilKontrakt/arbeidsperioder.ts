@@ -1,18 +1,14 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import {
-    arbeidsperiodeModalSpørsmålSpråkId,
-    arbeidsperiodeOppsummeringOverskrift,
-} from '../../components/Felleskomponenter/Arbeidsperiode/arbeidsperiodeSpråkUtils';
-import { ArbeidsperiodeSpørsmålsId } from '../../components/Felleskomponenter/Arbeidsperiode/spørsmål';
-import { ISøknadsfelt } from '../../typer/kontrakt/generelle';
+import { IBarnMedISøknad } from '../../typer/barn';
+import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IArbeidsperiodeIKontraktFormat } from '../../typer/kontrakt/v1';
 import { IArbeidsperiode } from '../../typer/perioder';
-import { PeriodePersonTypeProps, PersonType } from '../../typer/personType';
-import { hentTekster, landkodeTilSpråk } from '../språk';
+import { IArbeidsperiodeTekstinnhold } from '../../typer/sanity/modaler/arbeidsperiode';
+import { landkodeTilSpråk } from '../språk';
 import {
     sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel,
+    sammeVerdiAlleSpråkEllerUkjent,
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
 
@@ -20,16 +16,19 @@ interface ArbeidsperiodeIKontraktFormatParams {
     periode: IArbeidsperiode;
     periodeNummer: number;
     gjelderUtlandet: boolean;
+    tilRestLocaleRecord: TilRestLocaleRecord;
+    tekster: IArbeidsperiodeTekstinnhold;
+    barn?: IBarnMedISøknad;
 }
 
 export const tilIArbeidsperiodeIKontraktFormat = ({
     periode,
     periodeNummer,
     gjelderUtlandet,
-    personType,
-    erDød,
-}: ArbeidsperiodeIKontraktFormatParams &
-    PeriodePersonTypeProps): ISøknadsfelt<IArbeidsperiodeIKontraktFormat> => {
+    tilRestLocaleRecord,
+    tekster,
+    barn,
+}: ArbeidsperiodeIKontraktFormatParams): ISøknadsfelt<IArbeidsperiodeIKontraktFormat> => {
     const {
         arbeidsperiodeAvsluttet,
         arbeidsperiodeland,
@@ -38,29 +37,27 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
         tilDatoArbeidsperiode,
     } = periode;
 
-    const periodenErAvsluttet: boolean =
-        arbeidsperiodeAvsluttet?.svar === ESvar.JA ||
-        (personType === PersonType.andreForelder && erDød);
-
-    const hentSpørsmålTekstId = arbeidsperiodeModalSpørsmålSpråkId(personType, periodenErAvsluttet);
+    const periodenErAvsluttet: boolean = arbeidsperiodeAvsluttet?.svar !== ESvar.JA;
 
     return {
-        label: hentTekster(arbeidsperiodeOppsummeringOverskrift(gjelderUtlandet), {
-            x: periodeNummer,
+        label: tilRestLocaleRecord(tekster.oppsummeringstittel, {
+            antall: periodeNummer.toString(),
+            gjelderUtland: gjelderUtlandet,
         }),
         verdi: sammeVerdiAlleSpråk({
             arbeidsperiodeAvsluttet: arbeidsperiodeAvsluttet.svar
                 ? {
-                      label: hentTekster(
-                          hentSpørsmålTekstId(ArbeidsperiodeSpørsmålsId.arbeidsperiodeAvsluttet)
-                      ),
+                      label: tilRestLocaleRecord(tekster.arbeidsperiodenAvsluttet.sporsmal),
                       verdi: sammeVerdiAlleSpråk(arbeidsperiodeAvsluttet.svar),
                   }
                 : null,
             arbeidsperiodeland: arbeidsperiodeland.svar
                 ? {
-                      label: hentTekster(
-                          hentSpørsmålTekstId(ArbeidsperiodeSpørsmålsId.arbeidsperiodeLand)
+                      label: tilRestLocaleRecord(
+                          periodenErAvsluttet
+                              ? tekster.hvilketLandFortid.sporsmal
+                              : tekster.hvilketLandNaatid.sporsmal,
+                          { barnetsNavn: barn?.navn }
                       ),
                       verdi: verdiCallbackAlleSpråk(locale =>
                           landkodeTilSpråk(arbeidsperiodeland.svar, locale)
@@ -69,30 +66,27 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
                 : null,
             arbeidsgiver: arbeidsgiver.svar
                 ? {
-                      label: hentTekster(
-                          hentSpørsmålTekstId(ArbeidsperiodeSpørsmålsId.arbeidsgiver)
-                      ),
+                      label: tilRestLocaleRecord(tekster.arbeidsgiver.sporsmal),
                       verdi: sammeVerdiAlleSpråk(arbeidsgiver.svar),
                   }
                 : null,
             fraDatoArbeidsperiode: fraDatoArbeidsperiode.svar
                 ? {
-                      label: hentTekster(
-                          hentSpørsmålTekstId(ArbeidsperiodeSpørsmålsId.fraDatoArbeidsperiode)
-                      ),
+                      label: tilRestLocaleRecord(tekster.startdato.sporsmal),
                       verdi: sammeVerdiAlleSpråk(fraDatoArbeidsperiode.svar),
                   }
                 : null,
             tilDatoArbeidsperiode: tilDatoArbeidsperiode.svar
                 ? {
-                      label: hentTekster(
-                          hentSpørsmålTekstId(ArbeidsperiodeSpørsmålsId.tilDatoArbeidsperiode)
+                      label: tilRestLocaleRecord(
+                          periodenErAvsluttet
+                              ? tekster.sluttdatoFortid.sporsmal
+                              : tekster.sluttdatoFremtid.sporsmal
                       ),
-                      verdi: sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel(
+                      verdi: sammeVerdiAlleSpråkEllerUkjent(
+                          tilRestLocaleRecord,
                           tilDatoArbeidsperiode.svar,
-                          hentSpørsmålTekstId(
-                              ArbeidsperiodeSpørsmålsId.tilDatoArbeidsperiodeVetIkke
-                          )
+                          tekster.sluttdatoFremtid.checkboxLabel
                       ),
                   }
                 : null,
