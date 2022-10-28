@@ -157,7 +157,8 @@ export const dataISøknadKontraktFormatV1 = (
                 tilIAndreUtbetalingsperioderIKontraktFormat({
                     periode,
                     periodeNummer: index + 1,
-                    personType: PersonType.søker,
+                    tilRestLocaleRecord,
+                    tekster: tekster.FELLES.modaler.andreUtbetalinger.søker,
                 })
             ),
         },
