@@ -23,6 +23,8 @@ export type FlettefeltVerdier = {
     antall?: string;
     totalAntall?: string;
     land?: Alpha3Code | '';
+    dato?: string;
+    klokkeslett?: string;
 };
 
 export interface IUtenlandsperiodeIKontraktFormat {
