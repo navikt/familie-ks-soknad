@@ -14,7 +14,6 @@ import { ISøknad } from '../../typer/søknad';
 import { erDokumentasjonRelevant } from '../dokumentasjon';
 import {
     sivilstandTilSanitySivilstandApiKey,
-    hentTekster,
     hentUformaterteTekster,
     landkodeTilSpråk,
 } from '../språk';
@@ -25,9 +24,7 @@ import { barnISøknadsFormat } from './barn';
 import { dokumentasjonISøknadFormat } from './dokumentasjon';
 import {
     sammeVerdiAlleSpråk,
-    språktekstIdFraSpørsmålId,
     spørmålISøknadsFormat,
-    søknadsfeltGammel,
     søknadsfeltHof,
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
@@ -166,46 +163,45 @@ export const dataISøknadKontraktFormatV1 = (
             barnISøknadsFormat(barn, søker, tekster, tilRestLocaleRecord)
         ),
         spørsmål: {
-            erNoenAvBarnaFosterbarn: søknadsfeltGammel(
-                språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.erNoenAvBarnaFosterbarn),
+            erNoenAvBarnaFosterbarn: søknadsfelt(
+                tekster.OM_BARNA.fosterbarn.sporsmal,
                 sammeVerdiAlleSpråk(søknad.erNoenAvBarnaFosterbarn.svar)
             ),
-            søktAsylForBarn: søknadsfeltGammel(
-                språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.søktAsylForBarn),
+            søktAsylForBarn: søknadsfelt(
+                tekster.OM_BARNA.asyl.sporsmal,
                 sammeVerdiAlleSpråk(søknad.søktAsylForBarn.svar)
             ),
-            oppholderBarnSegIInstitusjon: søknadsfeltGammel(
-                språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.oppholderBarnSegIInstitusjon),
+            oppholderBarnSegIInstitusjon: søknadsfelt(
+                tekster.OM_BARNA.institusjonKontantstoette.sporsmal,
                 sammeVerdiAlleSpråk(søknad.oppholderBarnSegIInstitusjon.svar)
             ),
-            barnOppholdtSegTolvMndSammenhengendeINorge: søknadsfeltGammel(
-                språktekstIdFraSpørsmålId(
-                    OmBarnaDineSpørsmålId.barnOppholdtSegTolvMndSammenhengendeINorge
-                ),
+            barnOppholdtSegTolvMndSammenhengendeINorge: søknadsfelt(
+                tekster.OM_BARNA.sammenhengendeOppholdINorge.sporsmal,
                 sammeVerdiAlleSpråk(søknad.barnOppholdtSegTolvMndSammenhengendeINorge.svar)
             ),
-            erBarnAdoptert: søknadsfeltGammel(
-                språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.erBarnAdoptert),
+            erBarnAdoptert: søknadsfelt(
+                tekster.OM_BARNA.adoptertKontantstoette.sporsmal,
                 sammeVerdiAlleSpråk(søknad.erBarnAdoptert.svar)
             ),
-            mottarKontantstøtteForBarnFraAnnetEøsland: søknadsfeltGammel(
-                språktekstIdFraSpørsmålId(
-                    OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland
-                ),
+            mottarKontantstøtteForBarnFraAnnetEøsland: søknadsfelt(
+                tekster.OM_BARNA.soektYtelseEuEoes.sporsmal,
                 sammeVerdiAlleSpråk(søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar)
             ),
-            harEllerTildeltBarnehageplass: søknadsfeltGammel(
-                språktekstIdFraSpørsmålId(OmBarnaDineSpørsmålId.harEllerTildeltBarnehageplass),
+            harEllerTildeltBarnehageplass: søknadsfelt(
+                tekster.OM_BARNA.barnehageplass.sporsmal,
                 sammeVerdiAlleSpråk(søknad.harEllerTildeltBarnehageplass.svar)
             ),
-            erAvdødPartnerForelder: søknadsfeltGammel(
-                språktekstIdFraSpørsmålId(søknad.erAvdødPartnerForelder.id),
+            erAvdødPartnerForelder: søknadsfelt(
+                søknad.erAvdødPartnerForelder.id ===
+                    OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+                    ? tekster.OM_BARNA.folkeregistrertGjenlevende.sporsmal
+                    : tekster.OM_BARNA.folkeregistrertEnkeEnkemann.sporsmal,
                 sammeVerdiAlleSpråk(søknad.erAvdødPartnerForelder.svar)
             ),
-            lestOgForståttBekreftelse: søknadsfeltGammel(
-                'forside.bekreftelsesboks.brødtekst',
+            lestOgForståttBekreftelse: søknadsfelt(
+                tekster.FORSIDE.bekreftelsesboksBroedtekst,
                 søknad.lestOgForståttBekreftelse
-                    ? hentTekster('forside.bekreftelsesboks.erklæring.spm')
+                    ? tilRestLocaleRecord(tekster.FORSIDE.bekreftelsesboksErklaering)
                     : sammeVerdiAlleSpråk(ESvar.NEI)
             ),
         },
