@@ -192,9 +192,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                     {skjema.felter.oppholdslandTilDatoUkjent.erSynlig && (
                         <SkjemaCheckbox
                             felt={skjema.felter.oppholdslandTilDatoUkjent}
-                            labelSpråkTekstId={plainTekst(
-                                teksterForPersonType.sluttdatoFremtid.checkboxLabel
-                            )}
+                            label={plainTekst(teksterForPersonType.sluttdatoFremtid.checkboxLabel)}
                         />
                     )}
                 </>

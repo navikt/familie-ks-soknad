@@ -3,10 +3,11 @@ import {
     eøsBarnSpørsmålSpråkId,
 } from '../../components/SøknadsSteg/EøsSteg/Barn/spørsmål';
 import { IBarnMedISøknad } from '../../typer/barn';
-import { Slektsforhold } from '../../typer/kontrakt/generelle';
+import { Slektsforhold, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IOmsorgspersonIKontraktFormat } from '../../typer/kontrakt/v1';
 import { IOmsorgsperson } from '../../typer/omsorgsperson';
 import { PersonType } from '../../typer/personType';
+import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { hentTekster, landkodeTilSpråk, toSlektsforholdSpråkId } from '../språk';
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
 import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
@@ -22,7 +23,9 @@ import { tilIPensjonsperiodeIKontraktFormat } from './pensjonsperioder';
 
 export const omsorgspersonTilISøknadsfelt = (
     omsorgsperson: IOmsorgsperson,
-    barn: IBarnMedISøknad
+    barn: IBarnMedISøknad,
+    tilRestLocaleRecord: TilRestLocaleRecord,
+    tekster: ITekstinnhold
 ): IOmsorgspersonIKontraktFormat => {
     const {
         navn,
@@ -97,7 +100,9 @@ export const omsorgspersonTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: true,
-                personType: PersonType.omsorgsperson,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.arbeidsperiode.omsorgsperson,
+                barn,
             })
         ),
         arbeidNorge: søknadsfeltBarn(
@@ -110,7 +115,9 @@ export const omsorgspersonTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: false,
-                personType: PersonType.omsorgsperson,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.arbeidsperiode.omsorgsperson,
+                barn,
             })
         ),
         pensjonUtland: søknadsfeltBarn(
@@ -123,7 +130,8 @@ export const omsorgspersonTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: true,
-                personType: PersonType.omsorgsperson,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.pensjonsperiode.omsorgsperson,
                 barn: barn,
             })
         ),
@@ -137,7 +145,8 @@ export const omsorgspersonTilISøknadsfelt = (
                 periode,
                 periodeNummer: index + 1,
                 gjelderUtlandet: false,
-                personType: PersonType.omsorgsperson,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.pensjonsperiode.omsorgsperson,
                 barn: barn,
             })
         ),

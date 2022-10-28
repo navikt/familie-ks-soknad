@@ -258,14 +258,22 @@ const [AppProvider, useApp] = createUseContext(() => {
                 }
                 return flettefelter.barnetsNavn;
             case ESanityFlettefeltverdi.YTELSE:
-                return plainTekst(frittståendeOrd.kontantstoette);
+                return plainTekst(
+                    frittståendeOrd.kontantstoette,
+                    undefined,
+                    spesifikkLocale ?? valgtLocale
+                );
             case ESanityFlettefeltverdi.I_UTENFOR:
                 return plainTekst(
-                    flettefelter?.gjelderUtland ? frittståendeOrd.utenfor : frittståendeOrd.i
+                    flettefelter?.gjelderUtland ? frittståendeOrd.utenfor : frittståendeOrd.i,
+                    undefined,
+                    spesifikkLocale ?? valgtLocale
                 );
             case ESanityFlettefeltverdi.UTLANDET_NORGE:
                 return plainTekst(
-                    flettefelter?.gjelderUtland ? frittståendeOrd.utlandet : frittståendeOrd.norge
+                    flettefelter?.gjelderUtland ? frittståendeOrd.utlandet : frittståendeOrd.norge,
+                    undefined,
+                    spesifikkLocale ?? valgtLocale
                 );
             case ESanityFlettefeltverdi.LAND:
                 if (!flettefelter?.land) {
