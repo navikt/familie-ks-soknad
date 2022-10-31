@@ -26,21 +26,36 @@ export interface ISøknadKontrakt {
 
 export interface ISøknadKontraktSøker {
     harEøsSteg: boolean;
+
+    // Om deg
     ident: ISøknadsfelt<string>;
     navn: ISøknadsfelt<string>;
     statsborgerskap: ISøknadsfelt<string[]>;
     adresse: ISøknadsfelt<IAdresse | null>;
     adressebeskyttelse: boolean;
     sivilstand: ISøknadsfelt<ESivilstand>;
-    spørsmål: SpørsmålMap;
+    borPåRegistrertAdresse: ISøknadsfelt<ESvar> | null;
+    værtINorgeITolvMåneder: ISøknadsfelt<ESvar>;
     utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
-    // eøs
+    planleggerÅBoINorgeTolvMnd: ISøknadsfelt<ESvar> | null;
+    yrkesaktivFemÅr: ISøknadsfelt<ESvar>;
+
+    // Din livssituasjon
+    erAsylsøker: ISøknadsfelt<ESvar>;
+    arbeidIUtlandet: ISøknadsfelt<ESvar>;
+    mottarUtenlandspensjon: ISøknadsfelt<ESvar>;
     arbeidsperioderUtland: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
     pensjonsperioderUtland: ISøknadsfelt<IPensjonsperiodeIKontraktFormat>[];
+
+    // EØS
+    arbeidINorge: ISøknadsfelt<ESvar> | null;
     arbeidsperioderNorge: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
+    pensjonNorge: ISøknadsfelt<ESvar> | null;
     pensjonsperioderNorge: ISøknadsfelt<IPensjonsperiodeIKontraktFormat>[];
     andreUtbetalingsperioder: ISøknadsfelt<IUtbetalingsperiodeIKontraktFormat>[];
     idNummer: ISøknadsfelt<IIdNummerIKontraktFormat>[];
+    andreUtbetalinger: ISøknadsfelt<ESvar> | null;
+    adresseISøkeperiode: ISøknadsfelt<string> | null;
 }
 
 export interface ISøknadIKontraktBarn {

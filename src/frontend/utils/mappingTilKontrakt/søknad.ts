@@ -6,31 +6,16 @@ import { IBarnMedISøknad } from '../../typer/barn';
 import { ESivilstand, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { ISøknadKontrakt } from '../../typer/kontrakt/v1';
 import { ISøker } from '../../typer/person';
-import { PersonType } from '../../typer/personType';
 import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
-import { ISøknadSpørsmålMap } from '../../typer/spørsmål';
 import { ISøknad } from '../../typer/søknad';
 import { erDokumentasjonRelevant } from '../dokumentasjon';
-import {
-    sivilstandTilSanitySivilstandApiKey,
-    hentUformaterteTekster,
-    landkodeTilSpråk,
-} from '../språk';
+import { sivilstandTilSanitySivilstandApiKey, hentUformaterteTekster } from '../språk';
 import { jaNeiSvarTilSpråkId } from '../spørsmål';
-import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
-import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
 import { barnISøknadsFormat } from './barn';
 import { dokumentasjonISøknadFormat } from './dokumentasjon';
-import {
-    sammeVerdiAlleSpråk,
-    spørmålISøknadsFormat,
-    søknadsfeltHof,
-    verdiCallbackAlleSpråk,
-} from './hjelpefunksjoner';
-import { idNummerTilISøknadsfelt } from './idNummer';
-import { tilIPensjonsperiodeIKontraktFormat } from './pensjonsperioder';
-import { utenlandsperiodeTilISøknadsfelt } from './utenlandsperiode';
+import { sammeVerdiAlleSpråk, søknadsfeltHof } from './hjelpefunksjoner';
+import { søkerIKontraktFormat } from './søker';
 
 const antallEøsSteg = (søker: ISøker, barnInkludertISøknaden: IBarnMedISøknad[]) => {
     const barnSomTriggerEøs = barnInkludertISøknaden.filter(barn => barn.triggetEøs);
@@ -51,114 +36,15 @@ export const dataISøknadKontraktFormatV1 = (
 ): ISøknadKontrakt => {
     const { søker } = søknad;
     // Raskeste måte å få tak i alle spørsmål minus de andre feltene på søker
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    const {
-        navn,
-        ident,
-        sivilstand,
-        statsborgerskap,
-        adresse,
-        barn,
-        adressebeskyttelse,
-        utenlandsperioder,
-        // Nye felter under utvikling av EØS full
-        andreUtbetalingsperioder,
-        arbeidsperioderNorge,
-        arbeidsperioderUtland,
-        pensjonsperioderNorge,
-        pensjonsperioderUtland,
-        triggetEøs,
-        idNummer,
-        // resterende felter, hvor alle må være av type ISøknadSpørsmål
-        ...søkerSpørsmål
-    } = søker;
     const { barnInkludertISøknaden } = søknad;
-    const typetSøkerSpørsmål: ISøknadSpørsmålMap = søkerSpørsmål as unknown as ISøknadSpørsmålMap;
     const fellesTekster = tekster.FELLES;
-    const omDegTekster = tekster.OM_DEG;
 
     const søknadsfelt = søknadsfeltHof(tilRestLocaleRecord);
 
     return {
         kontraktVersjon: 1,
         antallEøsSteg: antallEøsSteg(søker, barnInkludertISøknaden),
-        søker: {
-            harEøsSteg:
-                triggetEøs || !!barnInkludertISøknaden.filter(barn => barn.triggetEøs).length,
-            navn: søknadsfelt(omDegTekster.navn, sammeVerdiAlleSpråk(navn)),
-            ident: søknadsfelt(omDegTekster.ident, sammeVerdiAlleSpråk(ident)),
-            sivilstand: søknadsfelt(omDegTekster.sivilstatus, sammeVerdiAlleSpråk(sivilstand.type)),
-            statsborgerskap: søknadsfelt(
-                omDegTekster.statsborgerskap,
-                verdiCallbackAlleSpråk(locale =>
-                    statsborgerskap.map(objekt => landkodeTilSpråk(objekt.landkode, locale))
-                )
-            ),
-            adresse: søknadsfelt(omDegTekster.adresse, sammeVerdiAlleSpråk(adresse)),
-            adressebeskyttelse: søker.adressebeskyttelse,
-            utenlandsperioder: utenlandsperioder.map((periode, index) =>
-                utenlandsperiodeTilISøknadsfelt(
-                    periode,
-                    index + 1,
-                    fellesTekster.modaler.utenlandsopphold[PersonType.søker],
-                    tilRestLocaleRecord
-                )
-            ),
-            idNummer: idNummer.map(idnummerObj =>
-                idNummerTilISøknadsfelt(
-                    tilRestLocaleRecord,
-                    idnummerObj,
-                    tekster.EØS_FOR_SØKER.idNummer
-                )
-            ),
-            spørsmål: {
-                ...spørmålISøknadsFormat(typetSøkerSpørsmål),
-            },
-            arbeidsperioderUtland: arbeidsperioderUtland.map((periode, index) =>
-                tilIArbeidsperiodeIKontraktFormat({
-                    periode,
-                    periodeNummer: index + 1,
-                    gjelderUtlandet: true,
-                    tilRestLocaleRecord,
-                    tekster: tekster.FELLES.modaler.arbeidsperiode.søker,
-                })
-            ),
-            arbeidsperioderNorge: arbeidsperioderNorge.map((periode, index) =>
-                tilIArbeidsperiodeIKontraktFormat({
-                    periode,
-                    periodeNummer: index + 1,
-                    gjelderUtlandet: false,
-                    tilRestLocaleRecord,
-                    tekster: tekster.FELLES.modaler.arbeidsperiode.søker,
-                })
-            ),
-            pensjonsperioderUtland: pensjonsperioderUtland.map((periode, index) =>
-                tilIPensjonsperiodeIKontraktFormat({
-                    periode,
-                    periodeNummer: index + 1,
-                    gjelderUtlandet: true,
-                    tilRestLocaleRecord,
-                    tekster: tekster.FELLES.modaler.pensjonsperiode.søker,
-                })
-            ),
-            pensjonsperioderNorge: pensjonsperioderNorge.map((periode, index) =>
-                tilIPensjonsperiodeIKontraktFormat({
-                    periode,
-                    periodeNummer: index + 1,
-                    gjelderUtlandet: false,
-                    tilRestLocaleRecord,
-                    tekster: tekster.FELLES.modaler.pensjonsperiode.søker,
-                })
-            ),
-            andreUtbetalingsperioder: andreUtbetalingsperioder.map((periode, index) =>
-                tilIAndreUtbetalingsperioderIKontraktFormat({
-                    periode,
-                    periodeNummer: index + 1,
-                    tilRestLocaleRecord,
-                    tekster: tekster.FELLES.modaler.andreUtbetalinger.søker,
-                })
-            ),
-        },
+        søker: søkerIKontraktFormat(søknad, tekster, tilRestLocaleRecord),
         barn: barnInkludertISøknaden.map(barn =>
             barnISøknadsFormat(barn, søker, tekster, tilRestLocaleRecord)
         ),
