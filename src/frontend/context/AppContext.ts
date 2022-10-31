@@ -230,6 +230,16 @@ const [AppProvider, useApp] = createUseContext(() => {
     ): string => {
         const frittståendeOrd = tekster()[ESanitySteg.FELLES].frittståendeOrd;
         switch (sanityFlettefelt) {
+            case ESanityFlettefeltverdi.DATO:
+                if (!flettefelter?.dato) {
+                    throw Error('Flettefeltet dato ikke sendt med');
+                }
+                return flettefelter.dato;
+            case ESanityFlettefeltverdi.KLOKKESLETT:
+                if (!flettefelter?.klokkeslett) {
+                    throw Error('Flettefeltet klokkeslett ikke sendt med');
+                }
+                return flettefelter.klokkeslett;
             case ESanityFlettefeltverdi.ANTALL:
                 if (!flettefelter?.antall) {
                     throw Error('Flettefeltet antall ikke sendt med');
