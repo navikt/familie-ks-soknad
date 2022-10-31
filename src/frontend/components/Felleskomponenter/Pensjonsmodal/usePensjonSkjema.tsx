@@ -14,7 +14,7 @@ import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pens
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IPensjonsperiodeFeltTyper } from '../../../typer/skjema';
 import { dagenEtterDato, dagensDato, gårsdagensDato } from '../../../utils/dato';
-import { mottarPensjonNåFeilmeldingSpråkId } from './språkUtils';
+import { mottarPensjonNåFeilmelding } from './språkUtils';
 import { PensjonsperiodeSpørsmålId } from './spørsmål';
 
 export interface IUsePensjonSkjemaParams {
@@ -39,8 +39,8 @@ export const usePensjonSkjema = ({
 
     const mottarPensjonNå = useJaNeiSpmFelt({
         søknadsfelt: { id: PensjonsperiodeSpørsmålId.mottarPensjonNå, svar: null },
-        feilmeldingSpråkId: mottarPensjonNåFeilmeldingSpråkId(personType),
-        feilmeldingSpråkVerdier: barn ? { barn: barn.navn } : undefined,
+        feilmelding: mottarPensjonNåFeilmelding({ personType, gjelderUtland, tekster: tekster() }),
+        flettefelter: { barnetsNavn: barn?.navn },
         skalSkjules: erAndreForelderDød,
     });
 

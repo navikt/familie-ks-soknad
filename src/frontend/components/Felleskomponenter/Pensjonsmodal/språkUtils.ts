@@ -1,16 +1,41 @@
+import { LocaleRecordBlock } from '../../../typer/common';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg, ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { ITekstinnhold } from '../../../typer/sanity/tekstInnhold';
 
-export const mottarPensjonNåFeilmeldingSpråkId = (personType: PersonType): string => {
+export const mottarPensjonNåFeilmelding = ({
+    personType,
+    gjelderUtland,
+    tekster,
+}: {
+    personType: PersonType;
+    gjelderUtland: boolean;
+    tekster: ITekstinnhold;
+}): LocaleRecordBlock => {
+    const eøsForBarnTekstinnhold = tekster.EØS_FOR_BARN;
+    const eøsForSøkerTekstinnhold = tekster.EØS_FOR_SØKER;
+
     switch (personType) {
         case PersonType.andreForelder:
-            return 'ombarnet.andre-forelder.pensjonnå.feilmelding';
+            if (gjelderUtland) {
+                throw Error('pensjonUtlandAndreForelder ikke implementert');
+            } else {
+                return eøsForBarnTekstinnhold.pensjonNorgeAndreForelder.feilmelding;
+            }
         case PersonType.omsorgsperson:
-            return 'modal.omsorgsperson.pensjonnå.feilmelding';
+            if (gjelderUtland) {
+                return eøsForBarnTekstinnhold.pensjonUtlandOmsorgsperson.feilmelding;
+            } else {
+                return eøsForBarnTekstinnhold.pensjonNorgeOmsorgsperson.feilmelding;
+            }
         case PersonType.søker:
-        default:
-            return 'modal.fårdupensjonnå.feilmelding';
+            if (gjelderUtland) {
+                throw Error('pensjonUtland ikke implementert for søker');
+            } else {
+                return eøsForSøkerTekstinnhold.pensjonNorge.feilmelding;
+            }
+        case PersonType.barn:
+            throw Error('Prøver å hente pensjon for barn');
     }
 };
 
