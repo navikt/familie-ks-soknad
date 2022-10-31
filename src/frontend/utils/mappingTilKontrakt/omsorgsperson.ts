@@ -159,7 +159,8 @@ export const omsorgspersonTilISøknadsfelt = (
             tilIAndreUtbetalingsperioderIKontraktFormat({
                 periode,
                 periodeNummer: index + 1,
-                personType: PersonType.omsorgsperson,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.andreUtbetalinger.omsorgsperson,
                 barn,
             })
         ),

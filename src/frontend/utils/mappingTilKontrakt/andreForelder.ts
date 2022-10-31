@@ -225,8 +225,8 @@ export const andreForelderTilISøknadsfelt = (
             tilIAndreUtbetalingsperioderIKontraktFormat({
                 periode,
                 periodeNummer: index + 1,
-                personType: PersonType.andreForelder,
-                erDød: forelderErDød,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.andreUtbetalinger.andreForelder,
                 barn,
             })
         ),
