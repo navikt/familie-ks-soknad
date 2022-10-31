@@ -6,13 +6,9 @@ import { AddCircle } from '@navikt/ds-icons';
 import { Button, ErrorMessage } from '@navikt/ds-react';
 import { NavdsGlobalColorRed500 } from '@navikt/ds-tokens/dist/tokens';
 
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
-
 interface Props {
     onClick: () => void | Promise<void>;
-    /** @deprecated **/
-    språkTekst?: string; //todo: legacy - fjerne når vi er ferdig med sanity
-    feilmelding?: ReactNode;
+    feilmelding: ReactNode;
     id?: string;
 }
 
@@ -23,14 +19,7 @@ const StyledButton = styled(Button)`
     }
 `;
 
-export const LeggTilKnapp: React.FC<Props> = ({
-    onClick,
-    /** @deprecated **/
-    språkTekst,
-    feilmelding,
-    id,
-    children,
-}) => (
+export const LeggTilKnapp: React.FC<Props> = ({ onClick, feilmelding, id, children }) => (
     <>
         <StyledButton
             id={id}
@@ -40,7 +29,6 @@ export const LeggTilKnapp: React.FC<Props> = ({
             $feilmelding={!!feilmelding}
             icon={<AddCircle />}
         >
-            {språkTekst && <SpråkTekst id={språkTekst} />}
             {children}
         </StyledButton>
         {!!feilmelding && <ErrorMessage>{feilmelding}</ErrorMessage>}
