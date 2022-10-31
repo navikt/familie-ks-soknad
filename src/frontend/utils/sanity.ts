@@ -42,7 +42,7 @@ import {
 const strukturerInnholdForSteg = (
     dokumenter: SanityDokument[],
     steg: ESanitySteg
-): { [key: string]: SanityDokument } =>
+): Record<string, SanityDokument> =>
     dokumenter
         .filter(dok => dok.steg === steg)
         .reduce((acc, dok) => {
