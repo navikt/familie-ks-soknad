@@ -5,14 +5,12 @@ import { ISøknadIKontraktBarn } from '../../typer/kontrakt/v1';
 import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknad } from '../../typer/søknad';
-import { hentTekster } from '../språk';
 import { andreForelderTilISøknadsfelt } from './andreForelder';
 import { tilIBarnehageplassPeriodeIKontraktFormat } from './barnehageplassperioder';
 import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';
 import {
     nullableSøknadsfeltForESvarHof,
     sammeVerdiAlleSpråk,
-    søknadsfeltBarn,
     søknadsfeltForESvarHof,
     søknadsfeltHof,
 } from './hjelpefunksjoner';
@@ -64,6 +62,8 @@ export const barnISøknadsFormat = (
     const eøsTekster = tekster.EØS_FOR_BARN;
     const omBarnaTekster = tekster.OM_BARNA;
     const omBarnetTekster = tekster.OM_BARNET;
+    const leggTilBarnModalTekster = tekster.FELLES.modaler.leggTilBarn;
+    const velgBarnTekster = tekster.VELG_BARN;
 
     const søknadsfelt = søknadsfeltHof(tilRestLocaleRecord);
     const søknadsfeltForESvar = søknadsfeltForESvarHof(tilRestLocaleRecord);
@@ -98,23 +98,13 @@ export const barnISøknadsFormat = (
 
     return {
         harEøsSteg: triggetEøs || søknad.søker.triggetEøs,
-        navn: søknadsfelt(
-            tekster.FELLES.modaler.leggTilBarn.barnetsNavnSubtittel,
-            sammeVerdiAlleSpråk(navn)
+        navn: søknadsfelt(leggTilBarnModalTekster.barnetsNavnSubtittel, sammeVerdiAlleSpråk(navn)),
+        ident: søknadsfelt(velgBarnTekster.foedselsnummerLabel, sammeVerdiAlleSpråk(ident)),
+        registrertBostedType: søknadsfelt(
+            velgBarnTekster.registrertBostedLabel,
+            sammeVerdiAlleSpråk(registertBostedVerdi())
         ),
-        ident: søknadsfeltBarn(
-            'pdf.barn.ident.label',
-            ident ? sammeVerdiAlleSpråk(ident) : hentTekster('pdf.barn.ikke-oppgitt'),
-            barn
-        ),
-        registrertBostedType: søknadsfeltBarn(
-            'hvilkebarn.barn.bosted',
-            sammeVerdiAlleSpråk(registertBostedVerdi()),
-            barn
-        ),
-        alder: alder
-            ? søknadsfeltBarn('pdf.barn.alder.label', hentTekster('felles.år', { alder }), barn)
-            : null,
+        alder: alder ? søknadsfelt(velgBarnTekster.alderLabel, sammeVerdiAlleSpråk(alder)) : null,
         utenlandsperioder: utenlandsperioder.map((periode, index) =>
             utenlandsperiodeTilISøknadsfelt(
                 periode,
