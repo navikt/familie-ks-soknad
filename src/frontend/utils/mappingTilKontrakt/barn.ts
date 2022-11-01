@@ -123,7 +123,12 @@ export const barnISøknadsFormat = (
             })
         ),
         barnehageplassPerioder: barnehageplassPerioder.map((periode, index) =>
-            tilIBarnehageplassPeriodeIKontraktFormat({ periode, periodeNummer: index + 1 })
+            tilIBarnehageplassPeriodeIKontraktFormat({
+                periode,
+                periodeNummer: index + 1,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.barnehageplass,
+            })
         ),
         idNummer: idNummer.map(idnummerObj =>
             idNummerTilISøknadsfelt(
