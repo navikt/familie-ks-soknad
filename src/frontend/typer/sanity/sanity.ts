@@ -51,11 +51,8 @@ export enum ESanityFlettefeltverdi {
     ANTALL = 'ANTALL',
     TOTAL_ANTALL = 'TOTAL_ANTALL',
     LAND = 'LAND',
-    /*
-    Legger inn disse kommentert ut, så kan vi ta de inn en etter en når vi støtter dem
-    PERSONTYPE = 'PERSONTYPE',
     DATO = 'DATO',
-    KLOKKESLETT = 'KLOKKESLETT',*/
+    KLOKKESLETT = 'KLOKKESLETT',
 }
 
 export enum ESanitySivilstandApiKey {

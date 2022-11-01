@@ -514,7 +514,7 @@ export const useEøsForBarn = (
         feilmelding: eøsForBarnTekster.hvilketLandSoektYtelseAndreForelder.feilmelding,
         avhengigSvarCondition: ESvar.JA,
         avhengighet: andreForelderPågåendeSøknadFraAnnetEøsLand,
-        feilmeldingSpråkVerdier: { barn: gjeldendeBarn.navn },
+        flettefelter: { barnetsNavn: gjeldendeBarn.navn },
     });
 
     const andreForelderKontantstøtteFraEøs = useJaNeiSpmFelt({

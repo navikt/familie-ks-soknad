@@ -10,17 +10,12 @@ import { useApp } from '../../../context/AppContext';
 import { useSteg } from '../../../context/StegContext';
 import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { setUserProperty, UserProperty } from '../../../utils/amplitude';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import BlokkerTilbakeKnappModal from '../../Felleskomponenter/BlokkerTilbakeKnappModal/BlokkerTilbakeKnappModal';
-import EksternLenke from '../../Felleskomponenter/EksternLenke/EksternLenke';
-import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
-import SpråkTekst from '../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import { KontonummerInfo } from './KontonummerInfo';
 
 const Kvittering: React.FC = () => {
     const {
@@ -43,9 +38,7 @@ const Kvittering: React.FC = () => {
     const dato = innsendtDato.format('DD.MM.YY');
     const [varEøsSøknad] = useState(erEøs);
 
-    const {
-        [ESanitySteg.KVITTERING]: { kvitteringTittel },
-    } = tekster();
+    const kvitteringTekster = tekster().KVITTERING;
 
     useEffect(() => {
         if (sisteUtfylteStegIndex === hentStegNummer(RouteEnum.Dokumentasjon)) {
@@ -59,55 +52,35 @@ const Kvittering: React.FC = () => {
     }, []);
 
     return (
-        <Steg tittel={<TekstBlock block={kvitteringTittel} typografi={Typografi.StegHeadingH1} />}>
+        <Steg
+            tittel={
+                <TekstBlock
+                    block={kvitteringTekster.kvitteringTittel}
+                    typografi={Typografi.StegHeadingH1}
+                />
+            }
+        >
             <KomponentGruppe>
                 <AlertStripe variant="success">
-                    <SpråkTekst
-                        id={'kvittering.mottatt'}
-                        values={{
-                            tidspunkt: klokkeslett,
-                            dato: dato,
-                        }}
+                    <TekstBlock
+                        block={kvitteringTekster.soeknadMottatt}
+                        flettefelter={{ dato, klokkeslett }}
                     />
                 </AlertStripe>
             </KomponentGruppe>
             <KomponentGruppe>
                 <Normaltekst>
-                    <SpråkTekst
-                        id={'kvittering.info'}
-                        values={{
-                            lenkeDineSaker: (
-                                <EksternLenke
-                                    lenkeSpråkId={'kvittering.dinesaker.lenke'}
-                                    lenkeTekstSpråkId={'kvittering.dinesaker.lenketekst'}
-                                />
-                            ),
-                            lenkeFinnSaksbehandlingstid: (
-                                <EksternLenke
-                                    lenkeTekstSpråkId={'kvittering.saksbehandlingstid.lenketekst'}
-                                    lenkeSpråkId={'kvittering.saksbehandlingstid.lenke'}
-                                />
-                            ),
-                        }}
-                    />
+                    <TekstBlock block={kvitteringTekster.infoTilSoker} />
                 </Normaltekst>
             </KomponentGruppe>
 
             {varEøsSøknad && (
                 <KomponentGruppe>
-                    <KontonummerInfo />
+                    <TekstBlock block={kvitteringTekster.kontonummerEOES} />
                 </KomponentGruppe>
             )}
 
-            <Informasjonsbolk tittelId={'kvittering.ikke-lastet-opp'}>
-                <Normaltekst>
-                    <SpråkTekst id={'kvittering.ettersend-dokumentasjon.info'} />
-                </Normaltekst>
-            </Informasjonsbolk>
-            <EksternLenke
-                lenkeTekstSpråkId={'kvittering.ettersend-dokumentasjon.lenketekst'}
-                lenkeSpråkId={'kvittering.ettersend-dokumentasjon.lenke'}
-            />
+            <TekstBlock block={kvitteringTekster.fikkDuIkkeLastetOppDokumentasjonen} />
             <BlokkerTilbakeKnappModal />
         </Steg>
     );

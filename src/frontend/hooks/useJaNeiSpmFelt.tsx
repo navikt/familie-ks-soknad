@@ -1,11 +1,10 @@
-import React, { ReactNode, useState } from 'react';
+import { useState } from 'react';
 
 import { v4 as uuidv4 } from 'uuid';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, Felt, FeltState, ok, useFelt, Valideringsstatus } from '@navikt/familie-skjema';
 
-import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
 import { useApp } from '../context/AppContext';
 import { LocaleRecordBlock } from '../typer/common';
 import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
@@ -43,23 +42,17 @@ export const erRelevanteAvhengigheterValidert = (avhengigheter: { [key: string]:
 
 const useJaNeiSpmFelt = ({
     søknadsfelt,
-    feilmeldingSpråkId,
     feilmelding,
     avhengigheter,
     nullstillVedAvhengighetEndring = false,
     skalSkjules = false,
-    feilmeldingSpråkVerdier,
     flettefelter,
 }: {
     søknadsfelt?: ISøknadSpørsmål<ESvar | null>;
-    /** @deprecated **/
-    feilmeldingSpråkId?: string;
-    feilmelding?: LocaleRecordBlock; // todo: fjern optional når vi fjerner deprecated felt
+    feilmelding: LocaleRecordBlock;
     avhengigheter?: Record<string, FeltGruppe | undefined>;
     nullstillVedAvhengighetEndring?: boolean;
     skalSkjules?: boolean;
-    /** @deprecated **/
-    feilmeldingSpråkVerdier?: Record<string, ReactNode>;
     flettefelter?: FlettefeltVerdier;
 }) => {
     const [harBlittVist, settHarBlittVist] = useState<boolean>(!avhengigheter);
@@ -72,14 +65,7 @@ const useJaNeiSpmFelt = ({
         valideringsfunksjon: (felt: FeltState<ESvar | null>) => {
             return felt.verdi !== null
                 ? ok(felt)
-                : feil(
-                      felt,
-                      feilmelding ? (
-                          plainTekst(feilmelding, { ...flettefelter })
-                      ) : (
-                          <SpråkTekst id={feilmeldingSpråkId} values={feilmeldingSpråkVerdier} />
-                      )
-                  );
+                : feil(felt, plainTekst(feilmelding, { ...flettefelter }));
         },
         skalFeltetVises: (avhengigheter: { [key: string]: FeltGruppe }) => {
             if (avhengigheter && avhengigheter.skalSkjules) return false;

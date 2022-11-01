@@ -6,6 +6,7 @@ import { ESvar, ISODateString } from '@navikt/familie-form-elements';
 import { Felt, Valideringsstatus } from '@navikt/familie-skjema';
 
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
+import { LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import useJaNeiSpmFelt, { erRelevanteAvhengigheterValidert } from './useJaNeiSpmFelt';
 
@@ -137,7 +138,7 @@ describe('useJaNeiSpmFelt', () => {
         const { result } = renderHook(() =>
             useJaNeiSpmFelt({
                 søknadsfelt: værtINorgeITolvMåneder,
-                feilmeldingSpråkId: 'test',
+                feilmelding: {} as LocaleRecordBlock,
                 avhengigheter: {
                     borPåRegistrertAdresse: { hovedSpørsmål: borPåRegistrertAdresseFeltMock },
                 },
