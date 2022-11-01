@@ -86,7 +86,7 @@ export const useEøsForSøker = (): {
 
     const pensjonNorgeFelt = useJaNeiSpmFelt({
         søknadsfelt: søker.pensjonNorge,
-        feilmeldingSpråkId: 'eøs-om-deg.pensjoninorge.feilmelding',
+        feilmelding: pensjonNorge.feilmelding,
     });
     const {
         fjernPeriode: fjernPensjonsperiode,
