@@ -1,7 +1,4 @@
-import { ESvar } from '@navikt/familie-form-elements';
-
-import { LocaleRecordBlock } from '../../typer/common';
-import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
+import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { ISøknadKontraktSøker } from '../../typer/kontrakt/v1';
 import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
@@ -9,7 +6,13 @@ import { ISøknad } from '../../typer/søknad';
 import { landkodeTilSpråk } from '../språk';
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
 import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
-import { sammeVerdiAlleSpråk, søknadsfeltHof, verdiCallbackAlleSpråk } from './hjelpefunksjoner';
+import {
+    nullableSøknadsfeltForESvarHof,
+    sammeVerdiAlleSpråk,
+    søknadsfeltForESvarHof,
+    søknadsfeltHof,
+    verdiCallbackAlleSpråk,
+} from './hjelpefunksjoner';
 import { idNummerTilISøknadsfelt } from './idNummer';
 import { tilIPensjonsperiodeIKontraktFormat } from './pensjonsperioder';
 import { utenlandsperiodeTilISøknadsfelt } from './utenlandsperiode';
@@ -54,20 +57,8 @@ export const søkerIKontraktFormat = (
     const eøsTekster = tekster.EØS_FOR_SØKER;
 
     const søknadsfelt = søknadsfeltHof(tilRestLocaleRecord);
-
-    const søknadsfeltForESvar = (
-        spørsmål: LocaleRecordBlock,
-        svar: ESvar | null
-    ): ISøknadsfelt<ESvar> => {
-        if (!svar) {
-            throw Error(`Svar for ${spørsmål.nb} kan ikke være null`);
-        }
-        return søknadsfelt(spørsmål, sammeVerdiAlleSpråk(svar));
-    };
-
-    const nullableSøknadsfeltForESvar = (spørsmål: LocaleRecordBlock, svar: ESvar | null) => {
-        return svar ? søknadsfelt(spørsmål, sammeVerdiAlleSpråk(svar)) : null;
-    };
+    const søknadsfeltForESvar = søknadsfeltForESvarHof(tilRestLocaleRecord);
+    const nullableSøknadsfeltForESvar = nullableSøknadsfeltForESvarHof(tilRestLocaleRecord);
 
     return {
         harEøsSteg: triggetEøs || !!barnInkludertISøknaden.filter(barn => barn.triggetEøs).length,

@@ -8,14 +8,11 @@ import { AlternativtSvarForInput, LocaleRecordBlock, LocaleRecordString } from '
 import {
     FlettefeltVerdier,
     ISøknadsfelt,
-    Slektsforhold,
-    SpørsmålMap as KontraktpørsmålMap,
     TilRestLocaleRecord,
 } from '../../typer/kontrakt/generelle';
-import { ISøknadSpørsmål, SpørsmålId, ISøknadSpørsmålMap } from '../../typer/spørsmål';
-import { hentTekster, landkodeTilSpråk, toSlektsforholdSpråkId } from '../språk';
+import { SpørsmålId } from '../../typer/spørsmål';
+import { hentTekster } from '../språk';
 import { språkIndexListe } from '../spørsmål';
-import { isAlpha3Code } from '../typeguards';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -35,6 +32,27 @@ export const søknadsfeltHof =
         flettefelter?: FlettefeltVerdier
     ): ISøknadsfelt<T> => {
         return { label: tilRestLocaleRecord(labelLocaleRecord, flettefelter), verdi: svar };
+    };
+
+export const søknadsfeltForESvarHof =
+    (tilRestLocaleRecord: TilRestLocaleRecord) =>
+    (
+        spørsmål: LocaleRecordBlock,
+        svar: ESvar | null,
+        flettefelter?: FlettefeltVerdier
+    ): ISøknadsfelt<ESvar> => {
+        const søknadsfelt = søknadsfeltHof(tilRestLocaleRecord);
+        if (!svar) {
+            throw Error(`Svar for ${spørsmål.nb} kan ikke være null`);
+        }
+        return søknadsfelt(spørsmål, sammeVerdiAlleSpråk(svar), flettefelter);
+    };
+
+export const nullableSøknadsfeltForESvarHof =
+    (tilRestLocaleRecord: TilRestLocaleRecord) =>
+    (spørsmål: LocaleRecordBlock, svar: ESvar | null, flettefelter?: FlettefeltVerdier) => {
+        const søknadsfelt = søknadsfeltHof(tilRestLocaleRecord);
+        return svar ? søknadsfelt(spørsmål, sammeVerdiAlleSpråk(svar), flettefelter) : null;
     };
 
 export const verdiCallbackAlleSpråk = <T>(
@@ -66,49 +84,6 @@ export const sammeVerdiAlleSpråkEllerUkjent = <T>(
     checkboxLabel && svar === AlternativtSvarForInput.UKJENT
         ? tilRestLocaleRecord(checkboxLabel, flettefelter)
         : sammeVerdiAlleSpråk(svar);
-
-export const spørmålISøknadsFormat = (
-    spørsmålMap: ISøknadSpørsmålMap,
-    formatMessageValues: object = {}
-): KontraktpørsmålMap => {
-    return Object.fromEntries(
-        Object.entries(spørsmålMap)
-            .map(
-                (
-                    entry: [string, ISøknadSpørsmål<any>]
-                ): [
-                    string,
-                    { label: Record<LocaleType, string>; verdi: Record<LocaleType, any> }
-                ] => {
-                    const verdi = entry[1].svar;
-                    let formatertVerdi: Record<LocaleType, string>;
-
-                    if (isAlpha3Code(verdi)) {
-                        formatertVerdi = verdiCallbackAlleSpråk(locale =>
-                            landkodeTilSpråk(verdi, locale)
-                        );
-                    } else if (verdi in ESvar) {
-                        // Slår opp språktekst i språkteksterUtenomSpørsmål i dokgen
-                        formatertVerdi = sammeVerdiAlleSpråk(verdi);
-                    } else if (verdi in Slektsforhold) {
-                        formatertVerdi = hentTekster(toSlektsforholdSpråkId(verdi));
-                    } else {
-                        formatertVerdi = sammeVerdiAlleSpråk(verdi);
-                    }
-
-                    return [
-                        entry[0],
-                        søknadsfeltGammel(
-                            språktekstIdFraSpørsmålId(entry[1].id),
-                            formatertVerdi,
-                            formatMessageValues
-                        ),
-                    ];
-                }
-            )
-            .filter(entry => entry[1].verdi[LocaleType.nb])
-    );
-};
 
 export const språktekstIdFraSpørsmålId = (spørsmålId: SpørsmålId): string => {
     for (const språkIndex of språkIndexListe) {
