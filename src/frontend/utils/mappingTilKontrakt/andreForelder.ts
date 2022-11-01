@@ -1,5 +1,3 @@
-import { ESvar } from '@navikt/familie-form-elements';
-
 import {
     EøsBarnSpørsmålId,
     eøsBarnSpørsmålSpråkId,
@@ -8,10 +6,9 @@ import {
     OmBarnetSpørsmålsId,
     omBarnetSpørsmålSpråkId,
 } from '../../components/SøknadsSteg/OmBarnet/spørsmål';
-import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../typer/barn';
+import { IAndreForelder, IBarnMedISøknad } from '../../typer/barn';
 import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IAndreForelderIKontraktFormat } from '../../typer/kontrakt/v1';
-import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { landkodeTilSpråk } from '../språk';
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
@@ -57,7 +54,7 @@ export const andreForelderTilISøknadsfelt = (
         adresse,
         kanIkkeGiOpplysninger,
     } = andreForelder;
-    const forelderErDød = barn[barnDataKeySpørsmål.andreForelderErDød].svar === ESvar.JA;
+
     return {
         kanIkkeGiOpplysninger: søknadsfeltBarn(
             språktekstIdFraSpørsmålId(kanIkkeGiOpplysninger.id),
@@ -234,9 +231,9 @@ export const andreForelderTilISøknadsfelt = (
             tilIEøsKontantstøttePeriodeIKontraktFormat({
                 periode,
                 periodeNummer: index + 1,
-                personType: PersonType.andreForelder,
-                erDød: forelderErDød,
                 barn,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.eøsYtelse.andreForelder,
             })
         ),
         idNummer: idNummer.map(idnummerObj =>

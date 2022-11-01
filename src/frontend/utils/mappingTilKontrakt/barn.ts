@@ -118,7 +118,8 @@ export const barnISøknadsFormat = (
                 periode,
                 periodeNummer: index + 1,
                 barn,
-                personType: PersonType.søker,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.eøsYtelse.søker,
             })
         ),
         barnehageplassPerioder: barnehageplassPerioder.map((periode, index) =>

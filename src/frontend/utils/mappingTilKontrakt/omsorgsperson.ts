@@ -6,7 +6,6 @@ import { IBarnMedISøknad } from '../../typer/barn';
 import { Slektsforhold, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IOmsorgspersonIKontraktFormat } from '../../typer/kontrakt/v1';
 import { IOmsorgsperson } from '../../typer/omsorgsperson';
-import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { hentTekster, landkodeTilSpråk, toSlektsforholdSpråkId } from '../språk';
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
@@ -189,7 +188,8 @@ export const omsorgspersonTilISøknadsfelt = (
             tilIEøsKontantstøttePeriodeIKontraktFormat({
                 periode,
                 periodeNummer: index + 1,
-                personType: PersonType.omsorgsperson,
+                tilRestLocaleRecord,
+                tekster: tekster.FELLES.modaler.eøsYtelse.omsorgsperson,
                 barn: barn,
             })
         ),
