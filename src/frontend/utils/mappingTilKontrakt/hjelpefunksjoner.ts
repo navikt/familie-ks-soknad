@@ -27,10 +27,13 @@ export const søknadsfeltGammel = <T>(
 export const søknadsfeltHof =
     (tilRestLocaleRecord: TilRestLocaleRecord) =>
     <T>(
-        labelLocaleRecord: LocaleRecordString | LocaleRecordBlock,
+        labelLocaleRecord: LocaleRecordString | LocaleRecordBlock | undefined,
         svar: Record<LocaleType, T>,
         flettefelter?: FlettefeltVerdier
     ): ISøknadsfelt<T> => {
+        if (!labelLocaleRecord) {
+            throw Error('Mangler tekst fra Sanity som burde vært implementert');
+        }
         return { label: tilRestLocaleRecord(labelLocaleRecord, flettefelter), verdi: svar };
     };
 
