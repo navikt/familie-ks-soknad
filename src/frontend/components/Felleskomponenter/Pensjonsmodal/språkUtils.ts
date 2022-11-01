@@ -14,11 +14,13 @@ export const mottarPensjonNåFeilmelding = ({
 }): LocaleRecordBlock => {
     const eøsForBarnTekstinnhold = tekster.EØS_FOR_BARN;
     const eøsForSøkerTekstinnhold = tekster.EØS_FOR_SØKER;
+    const dinLivssituasjonTekstinnhold = tekster.DIN_LIVSSITUASJON;
+    const omBarnetTekstinnhold = tekster.OM_BARNET;
 
     switch (personType) {
         case PersonType.andreForelder:
             if (gjelderUtland) {
-                throw Error('pensjonUtlandAndreForelder ikke implementert');
+                return omBarnetTekstinnhold.pensjonUtlandAndreForelder.feilmelding;
             } else {
                 return eøsForBarnTekstinnhold.pensjonNorgeAndreForelder.feilmelding;
             }
@@ -30,7 +32,7 @@ export const mottarPensjonNåFeilmelding = ({
             }
         case PersonType.søker:
             if (gjelderUtland) {
-                throw Error('pensjonUtland ikke implementert for søker');
+                return dinLivssituasjonTekstinnhold.pensjonUtland.feilmelding;
             } else {
                 return eøsForSøkerTekstinnhold.pensjonNorge.feilmelding;
             }
