@@ -15,6 +15,7 @@ import { IArbeidsperiodeTekstinnhold } from './modaler/arbeidsperiode';
 import { IBarnehageplassTekstinnhold } from './modaler/barnehageplass';
 import { IEøsYtelseTekstinnhold } from './modaler/eøsYtelse';
 import { ILeggTilBarnTekstinnhold } from './modaler/leggTilBarn';
+import { IMistetInformasjonenDinModal } from './modaler/mistetInformasjonenDin';
 import { IPensjonsperiodeTekstinnhold } from './modaler/pensjonsperiode';
 import { IStartPåNyttModal } from './modaler/startPåNytt';
 import { IUtenlandsoppholdTekstinnhold } from './modaler/utenlandsopphold';
@@ -36,6 +37,7 @@ export enum SanityModalPrefix {
     BARNEHAGEPLASS = 'MODAL_BARNEHAGEPLASS',
     UTENLANDSOPPHOLD = 'MODAL_UTENLANDSOPPHOLD',
     START_PAA_NYTT = 'MODAL_START_PAA_NYTT',
+    MISTET_INFORMASJONEN_DIN = 'MODAL_MISTET_INFORMASJONEN_DIN',
 }
 
 export interface ITekstinnhold {
@@ -88,6 +90,7 @@ export interface IModalerTekstinnhold {
     };
     leggTilBarn: ILeggTilBarnTekstinnhold;
     startPåNytt: IStartPåNyttModal;
+    mistetInformasjonenDin: IMistetInformasjonenDinModal;
 }
 
 export interface IFrittståendeOrdTekstinnhold {
