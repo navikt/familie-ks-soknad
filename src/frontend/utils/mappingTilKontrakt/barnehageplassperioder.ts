@@ -17,14 +17,14 @@ interface BarnehageplassperiodeIKontraktFormatParams {
     periode: IBarnehageplassPeriode;
     periodeNummer: number;
     tilRestLocaleRecord: TilRestLocaleRecord;
-    tekster: IBarnehageplassTekstinnhold;
+    barnehageplassTekster: IBarnehageplassTekstinnhold;
 }
 
 export const tilIBarnehageplassPeriodeIKontraktFormat = ({
     periode,
     periodeNummer,
     tilRestLocaleRecord,
-    tekster,
+    barnehageplassTekster,
 }: BarnehageplassperiodeIKontraktFormatParams): ISøknadsfelt<IBarnehageplassPeriodeIKontraktFormat> => {
     const {
         barnehageplassPeriodeBeskrivelse,
@@ -37,21 +37,21 @@ export const tilIBarnehageplassPeriodeIKontraktFormat = ({
     } = periode;
 
     return {
-        label: tilRestLocaleRecord(tekster.oppsummeringstittel, {
+        label: tilRestLocaleRecord(barnehageplassTekster.oppsummeringstittel, {
             antall: periodeNummer.toString(),
         }),
         verdi: sammeVerdiAlleSpråk({
             barnehageplassPeriodeBeskrivelse: {
-                label: tilRestLocaleRecord(tekster.periodebeskrivelse.sporsmal),
+                label: tilRestLocaleRecord(barnehageplassTekster.periodebeskrivelse.sporsmal),
                 verdi: sammeVerdiAlleSpråk(barnehageplassPeriodeBeskrivelse.svar),
             },
             barnehageplassUtlandet: {
-                label: tilRestLocaleRecord(tekster.utland.sporsmal),
+                label: tilRestLocaleRecord(barnehageplassTekster.utland.sporsmal),
                 verdi: sammeVerdiAlleSpråk(barnehageplassUtlandet.svar),
             },
             barnehageplassLand: barnehageplassLand.svar
                 ? {
-                      label: tilRestLocaleRecord(tekster.hvilketLand.sporsmal),
+                      label: tilRestLocaleRecord(barnehageplassTekster.hvilketLand.sporsmal),
                       verdi: verdiCallbackAlleSpråk(
                           locale =>
                               barnehageplassLand &&
@@ -61,28 +61,34 @@ export const tilIBarnehageplassPeriodeIKontraktFormat = ({
                 : null,
             offentligStøtte: offentligStøtte.svar
                 ? {
-                      label: tilRestLocaleRecord(tekster.offentligStoette.sporsmal),
+                      label: tilRestLocaleRecord(barnehageplassTekster.offentligStoette.sporsmal),
                       verdi: sammeVerdiAlleSpråk(offentligStøtte.svar),
                   }
                 : null,
             antallTimer: {
-                label: tilRestLocaleRecord(tekster.antallTimer.sporsmal),
+                label: tilRestLocaleRecord(barnehageplassTekster.antallTimer.sporsmal),
                 verdi: sammeVerdiAlleSpråk(antallTimer.svar),
             },
             startetIBarnehagen: {
                 label: tilRestLocaleRecord(
-                    hentFraDatoSpørsmål(barnehageplassPeriodeBeskrivelse.svar, tekster)
+                    hentFraDatoSpørsmål(
+                        barnehageplassPeriodeBeskrivelse.svar,
+                        barnehageplassTekster
+                    )
                 ),
                 verdi: sammeVerdiAlleSpråk(startetIBarnehagen.svar),
             },
             slutterIBarnehagen: {
                 label: tilRestLocaleRecord(
-                    hentTilDatoSpørsmål(barnehageplassPeriodeBeskrivelse.svar, tekster)
+                    hentTilDatoSpørsmål(
+                        barnehageplassPeriodeBeskrivelse.svar,
+                        barnehageplassTekster
+                    )
                 ),
                 verdi: sammeVerdiAlleSpråkEllerUkjent(
                     tilRestLocaleRecord,
                     slutterIBarnehagen.svar,
-                    tekster.sluttdatoFremtid.checkboxLabel
+                    barnehageplassTekster.sluttdatoFremtid.checkboxLabel
                 ),
             },
         }),

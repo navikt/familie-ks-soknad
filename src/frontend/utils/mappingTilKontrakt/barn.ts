@@ -127,7 +127,7 @@ export const barnISøknadsFormat = (
                 periode,
                 periodeNummer: index + 1,
                 tilRestLocaleRecord,
-                tekster: tekster.FELLES.modaler.barnehageplass,
+                barnehageplassTekster: tekster.FELLES.modaler.barnehageplass,
             })
         ),
         idNummer: idNummer.map(idnummerObj =>
