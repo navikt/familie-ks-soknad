@@ -1,26 +1,17 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
 import styled from 'styled-components';
-
-import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 
 import { Button, Modal } from '@navikt/ds-react';
 
+import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
 import AlertStripe from '../AlertStripe/AlertStripe';
 import ModalContent from '../ModalContent';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 
-const StyledNormalTekst = styled(Normaltekst)`
-    && {
-        margin: 2.5rem 0;
-    }
-`;
-
-export const StyledSideTittel = styled(Sidetittel)`
-    && {
-        margin: 1rem auto;
-    }
+const HovedinnholdContainer = styled.div`
+    margin: 2.5rem 0;
 `;
 
 const StyledButton = styled(Button)`
@@ -30,32 +21,42 @@ const StyledButton = styled(Button)`
 `;
 
 const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
-    const { formatMessage } = useIntl();
+    const { tekster, plainTekst } = useApp();
+
+    const mistetInformasjonenDinTekster = tekster().FELLES.modaler.mistetInformasjonenDin;
 
     const refresh = () => window.location.reload();
 
     return (
         <Modal
             open={erÅpen}
-            aria-label={formatMessage({ id: 'felles.modal.deployfeil.tittel' })}
+            aria-label={plainTekst(mistetInformasjonenDinTekster.tittel)}
             onClose={refresh}
         >
             <ModalContent>
-                <StyledSideTittel>
-                    <SpråkTekst id={'felles.modal.deployfeil.tittel'} />
-                </StyledSideTittel>
+                <TekstBlock
+                    block={mistetInformasjonenDinTekster.tittel}
+                    typografi={Typografi.ModalHeadingH1}
+                />
 
                 <AlertStripe
                     inline={false}
                     variant={'error'}
-                    children={<SpråkTekst id={'felles.modal.deployfeil.error'} />}
+                    children={plainTekst(mistetInformasjonenDinTekster.tittel)}
                 />
-                <StyledNormalTekst>
-                    <SpråkTekst id={'felles.modal.deployfeil.info'} />
-                </StyledNormalTekst>
+
+                <HovedinnholdContainer>
+                    <TekstBlock
+                        block={mistetInformasjonenDinTekster.info}
+                        typografi={Typografi.BodyLong}
+                    />
+                </HovedinnholdContainer>
 
                 <StyledButton onClick={refresh}>
-                    <SpråkTekst id={'felles.modal.deployfeil.knapp'} />
+                    <TekstBlock
+                        block={mistetInformasjonenDinTekster.knapp}
+                        typografi={Typografi.BodyShort}
+                    />
                 </StyledButton>
             </ModalContent>
         </Modal>

@@ -16,6 +16,7 @@ import { IArbeidsperiodeTekstinnhold } from '../typer/sanity/modaler/arbeidsperi
 import { IBarnehageplassTekstinnhold } from '../typer/sanity/modaler/barnehageplass';
 import { IEøsYtelseTekstinnhold } from '../typer/sanity/modaler/eøsYtelse';
 import { ILeggTilBarnTekstinnhold } from '../typer/sanity/modaler/leggTilBarn';
+import { IMistetInformasjonenDinModal } from '../typer/sanity/modaler/mistetInformasjonenDin';
 import { IPensjonsperiodeTekstinnhold } from '../typer/sanity/modaler/pensjonsperiode';
 import { IStartPåNyttModal } from '../typer/sanity/modaler/startPåNytt';
 import { IUtenlandsoppholdTekstinnhold } from '../typer/sanity/modaler/utenlandsopphold';
@@ -130,6 +131,9 @@ const strukturertInnholdForModaler = (dokumenter: SanityDokument[]): IModalerTek
         startPåNytt: strukturerInnholdForModal(
             SanityModalPrefix.START_PAA_NYTT
         ) as IStartPåNyttModal,
+        mistetInformasjonenDin: strukturerInnholdForModal(
+            SanityModalPrefix.MISTET_INFORMASJONEN_DIN
+        ) as IMistetInformasjonenDinModal,
     };
 };
 
