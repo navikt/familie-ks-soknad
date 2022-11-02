@@ -226,7 +226,7 @@ export const andreForelderTilISøknadsfelt = (
                 periodeNummer: index + 1,
                 barn,
                 tilRestLocaleRecord,
-                tekster: tekster.FELLES.modaler.eøsYtelse.andreForelder,
+                eøsYtelseTekster: tekster.FELLES.modaler.eøsYtelse.andreForelder,
             })
         ),
         idNummer: idNummer.map(idnummerObj =>

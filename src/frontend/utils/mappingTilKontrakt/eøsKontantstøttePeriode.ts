@@ -13,14 +13,14 @@ interface PensjonperiodeIKontraktFormatParams {
     periodeNummer: number;
     barn: IBarnMedISøknad;
     tilRestLocaleRecord: TilRestLocaleRecord;
-    tekster: IEøsYtelseTekstinnhold;
+    eøsYtelseTekster: IEøsYtelseTekstinnhold;
 }
 
 export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
     periode,
     periodeNummer,
     tilRestLocaleRecord,
-    tekster,
+    eøsYtelseTekster,
     barn,
 }: PensjonperiodeIKontraktFormatParams): ISøknadsfelt<IEøsKontantstøttePeriodeIKontraktFormat> => {
     const {
@@ -35,21 +35,24 @@ export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
     const flettefelter = { barnetsNavn: barn.navn };
 
     return {
-        label: tilRestLocaleRecord(tekster.oppsummeringstittelKontantstoette, {
+        label: tilRestLocaleRecord(eøsYtelseTekster.oppsummeringstittelKontantstoette, {
             antall: periodeNummer.toString(),
         }),
         verdi: sammeVerdiAlleSpråk({
             mottarEøsKontantstøtteNå: mottarEøsKontantstøtteNå.svar
                 ? {
-                      label: tilRestLocaleRecord(tekster.faarYtelserNaa.sporsmal, flettefelter),
+                      label: tilRestLocaleRecord(
+                          eøsYtelseTekster.faarYtelserNaa.sporsmal,
+                          flettefelter
+                      ),
                       verdi: sammeVerdiAlleSpråk(mottarEøsKontantstøtteNå.svar),
                   }
                 : null,
             kontantstøtteLand: {
                 label: tilRestLocaleRecord(
                     periodenErAvsluttet
-                        ? tekster.ytelseLandFortid.sporsmal
-                        : tekster.ytelseLandNaatid.sporsmal,
+                        ? eøsYtelseTekster.ytelseLandFortid.sporsmal
+                        : eøsYtelseTekster.ytelseLandNaatid.sporsmal,
                     flettefelter
                 ),
                 verdi: verdiCallbackAlleSpråk(
@@ -57,17 +60,17 @@ export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
                 ),
             },
             fraDatoKontantstøttePeriode: {
-                label: tilRestLocaleRecord(tekster.startdato.sporsmal),
+                label: tilRestLocaleRecord(eøsYtelseTekster.startdato.sporsmal),
                 verdi: sammeVerdiAlleSpråk(fraDatoKontantstøttePeriode?.svar),
             },
             tilDatoKontantstøttePeriode: tilDatoKontantstøttePeriode.svar
                 ? {
-                      label: tilRestLocaleRecord(tekster.sluttdato.sporsmal),
+                      label: tilRestLocaleRecord(eøsYtelseTekster.sluttdato.sporsmal),
                       verdi: sammeVerdiAlleSpråk(tilDatoKontantstøttePeriode?.svar ?? null),
                   }
                 : null,
             månedligBeløp: {
-                label: tilRestLocaleRecord(tekster.beloepPerMaaned.sporsmal, flettefelter),
+                label: tilRestLocaleRecord(eøsYtelseTekster.beloepPerMaaned.sporsmal, flettefelter),
                 verdi: sammeVerdiAlleSpråk(månedligBeløp.svar),
             },
         }),
