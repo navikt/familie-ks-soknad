@@ -1,29 +1,28 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { kontantstøttePeriodeModalSpørsmålSpråkId } from '../../components/Felleskomponenter/KontantstøttePeriode/kontantstøttePeriodeSpråkUtils';
-import { KontantstøttePeriodeSpørsmålId } from '../../components/Felleskomponenter/KontantstøttePeriode/spørsmål';
 import { IBarnMedISøknad } from '../../typer/barn';
-import { ISøknadsfelt } from '../../typer/kontrakt/generelle';
+import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IEøsKontantstøttePeriodeIKontraktFormat } from '../../typer/kontrakt/v1';
 import { IEøsKontantstøttePeriode } from '../../typer/perioder';
-import { PeriodePersonTypeProps, PersonType } from '../../typer/personType';
-import { hentTekster, landkodeTilSpråk } from '../språk';
+import { IEøsYtelseTekstinnhold } from '../../typer/sanity/modaler/eøsYtelse';
+import { landkodeTilSpråk } from '../språk';
 import { sammeVerdiAlleSpråk, verdiCallbackAlleSpråk } from './hjelpefunksjoner';
 
 interface PensjonperiodeIKontraktFormatParams {
     periode: IEøsKontantstøttePeriode;
     periodeNummer: number;
     barn: IBarnMedISøknad;
+    tilRestLocaleRecord: TilRestLocaleRecord;
+    eøsYtelseTekster: IEøsYtelseTekstinnhold;
 }
 
 export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
     periode,
     periodeNummer,
+    tilRestLocaleRecord,
+    eøsYtelseTekster,
     barn,
-    personType,
-    erDød,
-}: PensjonperiodeIKontraktFormatParams &
-    PeriodePersonTypeProps): ISøknadsfelt<IEøsKontantstøttePeriodeIKontraktFormat> => {
+}: PensjonperiodeIKontraktFormatParams): ISøknadsfelt<IEøsKontantstøttePeriodeIKontraktFormat> => {
     const {
         mottarEøsKontantstøtteNå,
         kontantstøtteLand,
@@ -31,55 +30,47 @@ export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
         tilDatoKontantstøttePeriode,
         månedligBeløp,
     } = periode;
-    const periodenErAvsluttet =
-        mottarEøsKontantstøtteNå.svar === ESvar.NEI ||
-        (personType === PersonType.andreForelder && erDød);
+    const periodenErAvsluttet = mottarEøsKontantstøtteNå.svar !== ESvar.JA;
 
-    const hentSpørsmålTekstId = (spørsmålId: KontantstøttePeriodeSpørsmålId) => {
-        const kontantstøttePeriodeSpørsmålSpråkIder = kontantstøttePeriodeModalSpørsmålSpråkId(
-            personType,
-            periodenErAvsluttet
-        );
-        return hentTekster(kontantstøttePeriodeSpørsmålSpråkIder(spørsmålId), {
-            ...(barn && { barn: barn.navn }),
-        });
-    };
+    const flettefelter = { barnetsNavn: barn.navn };
 
     return {
-        label: hentTekster('ombarnet.trygdandreperioder.periode', {
-            x: periodeNummer,
+        label: tilRestLocaleRecord(eøsYtelseTekster.oppsummeringstittelKontantstoette, {
+            antall: periodeNummer.toString(),
         }),
         verdi: sammeVerdiAlleSpråk({
             mottarEøsKontantstøtteNå: mottarEøsKontantstøtteNå.svar
                 ? {
-                      label: hentSpørsmålTekstId(
-                          KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå
+                      label: tilRestLocaleRecord(
+                          eøsYtelseTekster.faarYtelserNaa.sporsmal,
+                          flettefelter
                       ),
                       verdi: sammeVerdiAlleSpråk(mottarEøsKontantstøtteNå.svar),
                   }
                 : null,
             kontantstøtteLand: {
-                label: hentSpørsmålTekstId(KontantstøttePeriodeSpørsmålId.kontantstøtteLand),
+                label: tilRestLocaleRecord(
+                    periodenErAvsluttet
+                        ? eøsYtelseTekster.ytelseLandFortid.sporsmal
+                        : eøsYtelseTekster.ytelseLandNaatid.sporsmal,
+                    flettefelter
+                ),
                 verdi: verdiCallbackAlleSpråk(
                     locale => kontantstøtteLand && landkodeTilSpråk(kontantstøtteLand.svar, locale)
                 ),
             },
             fraDatoKontantstøttePeriode: {
-                label: hentSpørsmålTekstId(
-                    KontantstøttePeriodeSpørsmålId.fraDatoKontantstøttePeriode
-                ),
+                label: tilRestLocaleRecord(eøsYtelseTekster.startdato.sporsmal),
                 verdi: sammeVerdiAlleSpråk(fraDatoKontantstøttePeriode?.svar),
             },
             tilDatoKontantstøttePeriode: tilDatoKontantstøttePeriode.svar
                 ? {
-                      label: hentSpørsmålTekstId(
-                          KontantstøttePeriodeSpørsmålId.tilDatoKontantstøttePeriode
-                      ),
+                      label: tilRestLocaleRecord(eøsYtelseTekster.sluttdato.sporsmal),
                       verdi: sammeVerdiAlleSpråk(tilDatoKontantstøttePeriode?.svar ?? null),
                   }
                 : null,
             månedligBeløp: {
-                label: hentSpørsmålTekstId(KontantstøttePeriodeSpørsmålId.månedligBeløp),
+                label: tilRestLocaleRecord(eøsYtelseTekster.beloepPerMaaned.sporsmal, flettefelter),
                 verdi: sammeVerdiAlleSpråk(månedligBeløp.svar),
             },
         }),

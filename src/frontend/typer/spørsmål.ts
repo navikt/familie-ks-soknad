@@ -31,6 +31,3 @@ export interface ISøknadSpørsmål<T> {
     id: SpørsmålId;
     svar: T;
 }
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export type ISøknadSpørsmålMap = Record<string, ISøknadSpørsmål<any>>;

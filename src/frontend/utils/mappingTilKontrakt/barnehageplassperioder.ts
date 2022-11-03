@@ -1,22 +1,30 @@
-import { BarnehageplassPeriodeSpørsmålId } from '../../components/Felleskomponenter/Barnehagemodal/spørsmål';
-import { ISøknadsfelt } from '../../typer/kontrakt/generelle';
+import {
+    hentFraDatoSpørsmål,
+    hentTilDatoSpørsmål,
+} from '../../components/Felleskomponenter/Barnehagemodal/barnehageplassSpråkUtils';
+import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IBarnehageplassPeriodeIKontraktFormat } from '../../typer/kontrakt/v1';
 import { IBarnehageplassPeriode } from '../../typer/perioder';
-import { hentTekster, landkodeTilSpråk } from '../språk';
+import { IBarnehageplassTekstinnhold } from '../../typer/sanity/modaler/barnehageplass';
+import { landkodeTilSpråk } from '../språk';
 import {
     sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel,
+    sammeVerdiAlleSpråkEllerUkjent,
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
 
 interface BarnehageplassperiodeIKontraktFormatParams {
     periode: IBarnehageplassPeriode;
     periodeNummer: number;
+    tilRestLocaleRecord: TilRestLocaleRecord;
+    barnehageplassTekster: IBarnehageplassTekstinnhold;
 }
 
 export const tilIBarnehageplassPeriodeIKontraktFormat = ({
     periode,
     periodeNummer,
+    tilRestLocaleRecord,
+    barnehageplassTekster,
 }: BarnehageplassperiodeIKontraktFormatParams): ISøknadsfelt<IBarnehageplassPeriodeIKontraktFormat> => {
     const {
         barnehageplassPeriodeBeskrivelse,
@@ -29,23 +37,21 @@ export const tilIBarnehageplassPeriodeIKontraktFormat = ({
     } = periode;
 
     return {
-        label: hentTekster('todo.ombarnet.barnehageplass.periode', {
-            x: periodeNummer,
+        label: tilRestLocaleRecord(barnehageplassTekster.oppsummeringstittel, {
+            antall: periodeNummer.toString(),
         }),
         verdi: sammeVerdiAlleSpråk({
             barnehageplassPeriodeBeskrivelse: {
-                label: hentTekster(
-                    BarnehageplassPeriodeSpørsmålId.barnehageplassPeriodeBeskrivelse
-                ),
+                label: tilRestLocaleRecord(barnehageplassTekster.periodebeskrivelse.sporsmal),
                 verdi: sammeVerdiAlleSpråk(barnehageplassPeriodeBeskrivelse.svar),
             },
             barnehageplassUtlandet: {
-                label: hentTekster(BarnehageplassPeriodeSpørsmålId.barnehageplassUtlandet),
+                label: tilRestLocaleRecord(barnehageplassTekster.utland.sporsmal),
                 verdi: sammeVerdiAlleSpråk(barnehageplassUtlandet.svar),
             },
             barnehageplassLand: barnehageplassLand.svar
                 ? {
-                      label: hentTekster(BarnehageplassPeriodeSpørsmålId.barnehageplassLand),
+                      label: tilRestLocaleRecord(barnehageplassTekster.hvilketLand.sporsmal),
                       verdi: verdiCallbackAlleSpråk(
                           locale =>
                               barnehageplassLand &&
@@ -55,23 +61,34 @@ export const tilIBarnehageplassPeriodeIKontraktFormat = ({
                 : null,
             offentligStøtte: offentligStøtte.svar
                 ? {
-                      label: hentTekster(BarnehageplassPeriodeSpørsmålId.offentligStøtte),
+                      label: tilRestLocaleRecord(barnehageplassTekster.offentligStoette.sporsmal),
                       verdi: sammeVerdiAlleSpråk(offentligStøtte.svar),
                   }
                 : null,
             antallTimer: {
-                label: hentTekster(BarnehageplassPeriodeSpørsmålId.antallTimer),
+                label: tilRestLocaleRecord(barnehageplassTekster.antallTimer.sporsmal),
                 verdi: sammeVerdiAlleSpråk(antallTimer.svar),
             },
             startetIBarnehagen: {
-                label: hentTekster(BarnehageplassPeriodeSpørsmålId.startetIBarnehagen),
+                label: tilRestLocaleRecord(
+                    hentFraDatoSpørsmål(
+                        barnehageplassPeriodeBeskrivelse.svar,
+                        barnehageplassTekster
+                    )
+                ),
                 verdi: sammeVerdiAlleSpråk(startetIBarnehagen.svar),
             },
             slutterIBarnehagen: {
-                label: hentTekster(BarnehageplassPeriodeSpørsmålId.slutterIBarnehagen),
-                verdi: sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel(
+                label: tilRestLocaleRecord(
+                    hentTilDatoSpørsmål(
+                        barnehageplassPeriodeBeskrivelse.svar,
+                        barnehageplassTekster
+                    )
+                ),
+                verdi: sammeVerdiAlleSpråkEllerUkjent(
+                    tilRestLocaleRecord,
                     slutterIBarnehagen.svar,
-                    BarnehageplassPeriodeSpørsmålId.slutterIBarnehagenVetIkke
+                    barnehageplassTekster.sluttdatoFremtid.checkboxLabel
                 ),
             },
         }),

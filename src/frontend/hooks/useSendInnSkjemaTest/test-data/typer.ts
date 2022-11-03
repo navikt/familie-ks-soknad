@@ -1,4 +1,6 @@
+import { ISøknad } from '../../../typer/søknad';
+
 export interface TilKontraktTestData {
-    input: unknown;
+    input: ISøknad;
     output: unknown;
 }
