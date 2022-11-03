@@ -1,3 +1,4 @@
+import { ISøknad } from '../../../typer/søknad';
 import { TilKontraktTestData } from './typer';
 
 export const testdata2: TilKontraktTestData = {
@@ -566,7 +567,7 @@ export const testdata2: TilKontraktTestData = {
             id: 'er-folkeregistrert-avdød-ektefelle-forelder',
             svar: null,
         },
-    },
+    } as unknown as ISøknad,
     output: {
         kontraktVersjon: 1,
         antallEøsSteg: 3,
