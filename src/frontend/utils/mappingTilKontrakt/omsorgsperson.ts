@@ -7,15 +7,15 @@ import { Slektsforhold, TilRestLocaleRecord } from '../../typer/kontrakt/generel
 import { IOmsorgspersonIKontraktFormat } from '../../typer/kontrakt/v1';
 import { IOmsorgsperson } from '../../typer/omsorgsperson';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
-import { hentTekster, landkodeTilSpråk, toSlektsforholdSpråkId } from '../språk';
+import { hentSlektsforhold, landkodeTilSpråk } from '../språk';
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
 import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
 import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';
 import {
     sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjentSpråktekstGammel,
-    språktekstIdFraSpørsmålId,
-    søknadsfeltBarn,
+    sammeVerdiAlleSpråkEllerUkjent,
+    søknadsfeltForESvarHof,
+    søknadsfeltHof,
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
 import { tilIPensjonsperiodeIKontraktFormat } from './pensjonsperioder';
@@ -48,6 +48,9 @@ export const omsorgspersonTilISøknadsfelt = (
         andreUtbetalingsperioder,
     } = omsorgsperson;
 
+    const søknadsfelt = søknadsfeltHof(tilRestLocaleRecord);
+    const eøsTekster = tekster.EØS_FOR_BARN;
+
     if (
         !arbeidUtland.svar ||
         !arbeidNorge.svar ||
@@ -66,10 +69,10 @@ export const omsorgspersonTilISøknadsfelt = (
             sammeVerdiAlleSpråk(navn.svar),
             barn
         ),
-        slektsforhold: søknadsfeltBarn(
-            språktekstIdFraSpørsmålId(EøsBarnSpørsmålId.omsorgspersonSlektsforhold),
-            hentTekster(toSlektsforholdSpråkId(slektsforhold.svar as Slektsforhold)),
-            barn
+        slektsforhold: søknadsfelt(
+            eøsTekster.slektsforholdOmsorgsperson.sporsmal,
+            tilRestLocaleRecord(hentSlektsforhold(slektsforhold.svar as Slektsforhold, eøsTekster)),
+            flettefelter
         ),
         slektsforholdSpesifisering: søknadsfeltBarn(
             språktekstIdFraSpørsmålId(EøsBarnSpørsmålId.omsorgspersonSlektsforholdSpesifisering),

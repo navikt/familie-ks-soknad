@@ -70,7 +70,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
 
     const {
         eoesForBarnTittel,
-        velgSlektsforhold,
+        valgalternativSlektsforholdPlaceholder,
         hvilkenRelasjon,
         borMedAndreForelder,
         borMedOmsorgsperson,
@@ -111,7 +111,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     <SlektsforholdDropdown
                         felt={skjema.felter.søkersSlektsforhold}
                         skjema={skjema}
-                        placeholder={plainTekst(velgSlektsforhold)}
+                        placeholder={plainTekst(valgalternativSlektsforholdPlaceholder)}
                         label={
                             <TekstBlock
                                 block={slektsforhold.sporsmal}

@@ -5,7 +5,6 @@ export interface IEøsForBarnTekstinnhold {
     eoesForBarnTittel: LocaleRecordBlock;
     idNummerBarn: ISanitySpørsmålDokument;
     slektsforhold: ISanitySpørsmålDokument;
-    velgSlektsforhold: LocaleRecordString;
     hvilkenRelasjon: ISanitySpørsmålDokument;
     borMedAndreForelder: ISanitySpørsmålDokument;
     borMedOmsorgsperson: ISanitySpørsmålDokument;
@@ -41,4 +40,12 @@ export interface IEøsForBarnTekstinnhold {
     ytelseFraAnnetLandOmsorgsperson: ISanitySpørsmålDokument;
     hvilketLandSoektYtelseOmsorgsperson: ISanitySpørsmålDokument;
     paagaaendeSoeknadYtelseOmsorgsperson: ISanitySpørsmålDokument;
+
+    /* Slektsforhold valgalternativ */
+    valgalternativSlektsforholdPlaceholder: LocaleRecordString;
+    valgalternativAnnenRelasjon: LocaleRecordString;
+    valgalternativAnnenFamilierelasjon: LocaleRecordString;
+    valgalternativForelder: LocaleRecordString;
+    valgalternativOnkelTante: LocaleRecordString;
+    valgalternativBesteforelder: LocaleRecordString;
 }

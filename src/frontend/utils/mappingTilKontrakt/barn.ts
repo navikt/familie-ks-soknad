@@ -1,11 +1,15 @@
 import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { IBarnMedISøknad } from '../../typer/barn';
-import { ERegistrertBostedType, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
+import {
+    ERegistrertBostedType,
+    Slektsforhold,
+    TilRestLocaleRecord,
+} from '../../typer/kontrakt/generelle';
 import { ISøknadIKontraktBarn } from '../../typer/kontrakt/v1';
 import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknad } from '../../typer/søknad';
-import { landkodeTilSpråk } from '../språk';
+import { hentSlektsforhold, landkodeTilSpråk } from '../språk';
 import { andreForelderTilISøknadsfelt } from './andreForelder';
 import { tilIBarnehageplassPeriodeIKontraktFormat } from './barnehageplassperioder';
 import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';
@@ -219,7 +223,9 @@ export const barnISøknadsFormat = (
         søkersSlektsforhold: søkersSlektsforhold.svar
             ? søknadsfelt(
                   eøsTekster.slektsforhold.sporsmal,
-                  sammeVerdiAlleSpråk(søkersSlektsforhold.svar),
+                  tilRestLocaleRecord(
+                      hentSlektsforhold(søkersSlektsforhold.svar as Slektsforhold, eøsTekster)
+                  ),
                   flettefelter
               )
             : null,

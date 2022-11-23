@@ -90,7 +90,7 @@ export interface ISøknadIKontraktBarn {
     utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
 
     // EØS
-    [barnDataKeySpørsmål.søkersSlektsforhold]: ISøknadsfelt<Slektsforhold> | null;
+    [barnDataKeySpørsmål.søkersSlektsforhold]: ISøknadsfelt<string> | null;
     [barnDataKeySpørsmål.søkersSlektsforholdSpesifisering]: ISøknadsfelt<string> | null;
     [barnDataKeySpørsmål.borMedAndreForelder]: ISøknadsfelt<ESvar> | null;
     [barnDataKeySpørsmål.borMedOmsorgsperson]: ISøknadsfelt<ESvar> | null;

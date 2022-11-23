@@ -81,7 +81,9 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                 <SlektsforholdDropdown
                     felt={skjema.felter.omsorgspersonSlektsforhold}
                     skjema={skjema}
-                    placeholder={plainTekst(eøsForBarnTekster.velgSlektsforhold)}
+                    placeholder={plainTekst(
+                        eøsForBarnTekster.valgalternativSlektsforholdPlaceholder
+                    )}
                     label={
                         <TekstBlock
                             block={eøsForBarnTekster.slektsforholdOmsorgsperson.sporsmal}

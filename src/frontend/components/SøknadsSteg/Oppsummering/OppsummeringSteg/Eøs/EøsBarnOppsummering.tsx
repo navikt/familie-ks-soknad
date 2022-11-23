@@ -6,7 +6,7 @@ import { useApp } from '../../../../../context/AppContext';
 import { useSteg } from '../../../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
-import { toSlektsforholdSpråkId } from '../../../../../utils/språk';
+import { hentSlektsforhold } from '../../../../../utils/språk';
 import SamletIdNummerForBarn from '../../../EøsSteg/Barn/SamletIdNummerForBarn';
 import { EøsBarnSpørsmålId, eøsBarnSpørsmålSpråkId } from '../../../EøsSteg/Barn/spørsmål';
 import { useEøsForBarn } from '../../../EøsSteg/Barn/useEøsForBarn';
@@ -23,7 +23,7 @@ interface Props {
 
 const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
     const { hentStegObjektForBarnEøs } = useSteg();
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const eøsBarnTekster = tekster().EØS_FOR_BARN;
 
     const eøsForBarnHook = useEøsForBarn(barn.id);
@@ -51,9 +51,9 @@ const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
                     <OppsummeringFelt
                         spørsmålstekst={eøsBarnTekster.slektsforhold.sporsmal}
                         flettefelter={flettefelter}
-                        søknadsvar={formatMessage({
-                            id: toSlektsforholdSpråkId(barn.søkersSlektsforhold.svar),
-                        })}
+                        søknadsvar={plainTekst(
+                            hentSlektsforhold(barn.søkersSlektsforhold.svar, eøsBarnTekster)
+                        )}
                     />
                     {barn.søkersSlektsforholdSpesifisering.svar && (
                         <OppsummeringFelt
