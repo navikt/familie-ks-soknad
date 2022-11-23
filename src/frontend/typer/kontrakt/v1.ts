@@ -9,7 +9,6 @@ import {
     IAdresse,
     ISøknadsfelt,
     IUtenlandsperiodeIKontraktFormat,
-    Slektsforhold,
     SpørsmålMap,
 } from './generelle';
 
