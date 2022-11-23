@@ -1,6 +1,5 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { EøsBarnSpørsmålId } from '../../components/SøknadsSteg/EøsSteg/Barn/spørsmål';
 import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../typer/barn';
 import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IAndreForelderIKontraktFormat } from '../../typer/kontrakt/v1';
@@ -13,8 +12,6 @@ import {
     nullableSøknadsfeltForESvarHof,
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjent,
-    språktekstIdFraSpørsmålId,
-    søknadsfeltBarn,
     søknadsfeltHof,
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
@@ -142,14 +139,12 @@ export const andreForelderTilISøknadsfelt = (
             flettefelter
         ),
         pågåendeSøknadHvilketLand: pågåendeSøknadHvilketLand.svar
-            ? søknadsfeltBarn(
-                  språktekstIdFraSpørsmålId(
-                      EøsBarnSpørsmålId.andreForelderPågåendeSøknadHvilketLand
-                  ),
+            ? søknadsfelt(
+                  eøsTekster.hvilketLandSoektYtelseAndreForelder.sporsmal,
                   verdiCallbackAlleSpråk(locale =>
                       landkodeTilSpråk(pågåendeSøknadHvilketLand.svar, locale)
                   ),
-                  barn
+                  flettefelter
               )
             : null,
         kontantstøtteFraEøs: nullableSøknadsfeltForESvar(
