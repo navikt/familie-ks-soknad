@@ -1,15 +1,10 @@
-import { ReactElement } from 'react';
-
 import { Alpha3Code, alpha3ToAlpha2, getName } from 'i18n-iso-countries';
-import reactElementToJSXString from 'react-element-to-jsx-string';
-import { createIntl, createIntlCache } from 'react-intl';
 
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import * as engelsk from '../assets/lang/en.json' assert { type: 'json' };
 import * as bokmål from '../assets/lang/nb.json' assert { type: 'json' };
 import * as nynorsk from '../assets/lang/nn.json' assert { type: 'json' };
-import { innebygdeFormatterere } from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
 import { IEøsForBarnTekstinnhold } from '../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
 import { IVelgBarnTekstinnhold } from '../components/SøknadsSteg/VelgBarn/innholdTyper';
 import { AlternativtSvarForInput } from '../typer/common';
@@ -50,31 +45,6 @@ const texts: Record<LocaleType, Record<string, string>> = {
     [LocaleType.nb]: stripSpråkfil(bokmål),
     [LocaleType.nn]: stripSpråkfil(nynorsk),
     [LocaleType.en]: stripSpråkfil(engelsk),
-};
-
-const cache = createIntlCache();
-
-export const hentTekster = (
-    tekstId: string,
-    formatValues: object = {}
-): Record<LocaleType, string> => {
-    const map = {};
-
-    for (const locale in LocaleType) {
-        const { formatMessage } = createIntl({ locale, messages: texts[locale] }, cache);
-        const message = tekstId
-            ? formatMessage(
-                  { id: tekstId },
-                  // Fjerner bokmål-tagen, skapte problemer og trenger ikke være med til pdf-gen
-                  { ...formatValues, ...innebygdeFormatterere, bokmål: msg => msg }
-              )
-            : '';
-
-        map[locale] = message && reactElementToJSXString(message as ReactElement);
-    }
-
-    // Typescript er ikke smart nok til å se at alle locales er satt
-    return map as Record<LocaleType, string>;
 };
 
 export const hentUformaterteTekster = (tekstId: string): Record<LocaleType, string> => {
