@@ -46,13 +46,6 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
             settFeilAnchors={settFeilAnchors}
             barn={barn}
         >
-            {barn[barnDataKeySpørsmål.erFosterbarn].svar === ESvar.JA && (
-                <OppsummeringFelt
-                    spørsmålstekst={omBarnetTekster.opplystFosterbarn}
-                    flettefelter={flettefelter}
-                />
-            )}
-
             {barn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad].svar && (
                 <StyledOppsummeringsFeltGruppe>
                     <OppsummeringFelt
