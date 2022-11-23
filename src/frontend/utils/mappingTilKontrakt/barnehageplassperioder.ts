@@ -1,4 +1,5 @@
 import {
+    hentBarnehageplassBeskrivelse,
     hentFraDatoSpørsmål,
     hentTilDatoSpørsmål,
 } from '../../components/Felleskomponenter/Barnehagemodal/barnehageplassSpråkUtils';
@@ -43,7 +44,12 @@ export const tilIBarnehageplassPeriodeIKontraktFormat = ({
         verdi: sammeVerdiAlleSpråk({
             barnehageplassPeriodeBeskrivelse: {
                 label: tilRestLocaleRecord(barnehageplassTekster.periodebeskrivelse.sporsmal),
-                verdi: sammeVerdiAlleSpråk(barnehageplassPeriodeBeskrivelse.svar),
+                verdi: tilRestLocaleRecord(
+                    hentBarnehageplassBeskrivelse(
+                        barnehageplassPeriodeBeskrivelse.svar,
+                        barnehageplassTekster
+                    )
+                ),
             },
             barnehageplassUtlandet: {
                 label: tilRestLocaleRecord(barnehageplassTekster.utland.sporsmal),
