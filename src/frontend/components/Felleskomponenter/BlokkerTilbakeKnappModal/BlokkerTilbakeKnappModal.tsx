@@ -12,19 +12,12 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import ModalContent from '../ModalContent';
 import TekstBlock from '../TekstBlock';
 
-const TekstBlockPaddingUnder = styled(TekstBlock)`
-    padding-bottom: 1rem;
-`;
-
 const Flex = styled.div`
     padding-top: 1rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 1rem;
-`;
-const TekstBlockMarginHøyre = styled(TekstBlock)`
-    margin-right: 1rem;
 `;
 
 const BlokkerTilbakeKnappModal = () => {
@@ -51,7 +44,7 @@ const BlokkerTilbakeKnappModal = () => {
                 aria-label={formatMessage({ id: 'felles.blokkerTilbakeKnapp.modal.tittel' })}
             >
                 <ModalContent>
-                    <TekstBlockPaddingUnder
+                    <TekstBlock
                         block={barnehageplassTekster.tittel}
                         typografi={Typografi.ModalHeadingH1}
                     />
@@ -62,7 +55,7 @@ const BlokkerTilbakeKnappModal = () => {
                     />
 
                     <Flex>
-                        <TekstBlockMarginHøyre
+                        <TekstBlock
                             block={barnehageplassTekster.tilDittNav}
                             typografi={Typografi.BodyShort}
                         />
