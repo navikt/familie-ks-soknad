@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Alpha3Code } from 'i18n-iso-countries';
-import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 
 import { ESvar } from '@navikt/familie-form-elements';
@@ -29,10 +28,9 @@ interface Props {
 }
 
 const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
-    const { søknad, tekster } = useApp();
+    const { søknad, tekster, plainTekst } = useApp();
     const { OM_DEG: omDegTekster, FORSIDE: forsideTekster } = tekster();
     const [valgtLocale] = useSprakContext();
-    const { formatMessage } = useIntl();
     const { hentRouteObjektForRouteEnum } = useRoutes();
     const omDegHook = useOmdeg();
 
@@ -46,11 +44,11 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
                     spørsmålstekst={forsideTekster.bekreftelsesboksBroedtekst}
-                    søknadsvar={formatMessage({
-                        id: søknad.lestOgForståttBekreftelse
-                            ? 'forside.bekreftelsesboks.erklæring.spm'
-                            : jaNeiSvarTilSpråkId(ESvar.NEI),
-                    })}
+                    søknadsvar={plainTekst(
+                        søknad.lestOgForståttBekreftelse
+                            ? tekster().FORSIDE.bekreftelsesboksErklaering
+                            : jaNeiSvarTilSpråkId(ESvar.NEI, tekster().FELLES.frittståendeOrd)
+                    )}
                 />
             </StyledOppsummeringsFeltGruppe>
             <StyledOppsummeringsFeltGruppe>

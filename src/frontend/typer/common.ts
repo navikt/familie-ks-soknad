@@ -16,9 +16,13 @@ export type BarnetsId = string;
 export type TomString = '';
 export const tomString: TomString = '';
 
-export type LocaleRecordString = Record<LocaleType, string> & { [key: string]: unknown };
+export type LocaleRecordString = Record<LocaleType, string> & {
+    api_navn: string;
+    [key: string]: unknown;
+};
 
 export type LocaleRecordBlock = Record<LocaleType, PortableTextBlock[]> & {
+    api_navn: string;
     [key: string]: unknown;
 };
 

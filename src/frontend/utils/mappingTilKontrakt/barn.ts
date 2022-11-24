@@ -1,5 +1,6 @@
 import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { IBarnMedISøknad } from '../../typer/barn';
+import { LocaleRecordBlock, LocaleRecordString } from '../../typer/common';
 import {
     ERegistrertBostedType,
     Slektsforhold,
@@ -246,5 +247,25 @@ export const barnISøknadsFormat = (
             borMedOmsorgsperson.svar,
             flettefelter
         ),
+        teksterTilPdf: {
+            ...[
+                tekster.OM_BARNET.opplystAdoptert,
+                tekster.OM_BARNET.opplystInstitusjon,
+                tekster.OM_BARNET.opplystBarnOppholdUtenforNorge,
+                tekster.OM_BARNET.opplystFaarHarFaattEllerSoektYtelse,
+                tekster.OM_BARNET.barnetsAndreForelder,
+                tekster.OM_BARNET.omBarnetTittel,
+                tekster.OM_BARNET.bosted,
+                tekster.EØS_FOR_BARN.eoesForBarnTittel,
+            ].reduce(
+                (map, sanityDok: LocaleRecordBlock | LocaleRecordString) => ({
+                    ...map,
+                    [sanityDok.api_navn]: tilRestLocaleRecord(sanityDok, {
+                        barnetsNavn: barn.navn,
+                    }),
+                }),
+                {}
+            ),
+        },
     };
 };

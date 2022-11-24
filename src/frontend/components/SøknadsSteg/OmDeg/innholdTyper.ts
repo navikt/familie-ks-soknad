@@ -15,4 +15,5 @@ export interface IOmDegTekstinnhold {
     planleggerAaBoSammenhengende: ISanitySpørsmålDokument;
     ikkeRegistrertAdresse: LocaleRecordString;
     ukjentAdresse: LocaleRecordString;
+    soekerAdressesperre: LocaleRecordString;
 }
