@@ -13,6 +13,7 @@ import { LocaleRecordString } from '../common';
 import { IAndreUtbetalingerTekstinnhold } from './modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from './modaler/arbeidsperiode';
 import { IBarnehageplassTekstinnhold } from './modaler/barnehageplass';
+import { IBlokkerTilbakeKnappModal } from './modaler/blokkerTilbakeKnapp';
 import { IEøsYtelseTekstinnhold } from './modaler/eøsYtelse';
 import { ILeggTilBarnTekstinnhold } from './modaler/leggTilBarn';
 import { IMistetInformasjonenDinModal } from './modaler/mistetInformasjonenDin';
@@ -38,6 +39,7 @@ export enum SanityModalPrefix {
     UTENLANDSOPPHOLD = 'MODAL_UTENLANDSOPPHOLD',
     START_PAA_NYTT = 'MODAL_START_PAA_NYTT',
     MISTET_INFORMASJONEN_DIN = 'MODAL_MISTET_INFORMASJONEN_DIN',
+    BLOKKER_TILBAKE_KNAPP = 'MODAL_BLOKKER_TILBAKE_KNAPP',
 }
 
 export interface ITekstinnhold {
@@ -91,6 +93,7 @@ export interface IModalerTekstinnhold {
     leggTilBarn: ILeggTilBarnTekstinnhold;
     startPåNytt: IStartPåNyttModal;
     mistetInformasjonenDin: IMistetInformasjonenDinModal;
+    blokkerTilbakeKnapp: IBlokkerTilbakeKnappModal;
 }
 
 export interface IFrittståendeOrdTekstinnhold {

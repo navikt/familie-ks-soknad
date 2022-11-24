@@ -4,15 +4,15 @@ import { useIntl } from 'react-intl';
 import { Prompt } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Lenke from 'nav-frontend-lenker';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-
 import { Button, Modal } from '@navikt/ds-react';
 
+import { useApp } from '../../../context/AppContext';
+import { Typografi } from '../../../typer/common';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import ModalContent from '../ModalContent';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 
-const StyledUndertittel = styled(Undertittel)`
+const TekstBlockPaddingUnder = styled(TekstBlock)`
     padding-bottom: 1rem;
 `;
 
@@ -23,13 +23,16 @@ const Flex = styled.div`
     align-items: center;
     gap: 1rem;
 `;
-const StyledLenke = styled(Lenke)`
+const TekstBlockMarginHøyre = styled(TekstBlock)`
     margin-right: 1rem;
 `;
 
 const BlokkerTilbakeKnappModal = () => {
     const [show, setShow] = useState(false);
     const { formatMessage } = useIntl();
+
+    const { tekster } = useApp();
+    const barnehageplassTekster = tekster()[ESanitySteg.FELLES].modaler.blokkerTilbakeKnapp;
 
     const håndterNavigasjon = () => {
         setShow(true);
@@ -48,18 +51,26 @@ const BlokkerTilbakeKnappModal = () => {
                 aria-label={formatMessage({ id: 'felles.blokkerTilbakeKnapp.modal.tittel' })}
             >
                 <ModalContent>
-                    <StyledUndertittel>
-                        <SpråkTekst id={'felles.blokkerTilbakeKnapp.modal.tittel'} />
-                    </StyledUndertittel>
-                    <Normaltekst>
-                        <SpråkTekst id={'felles.blokkerTilbakeKnapp.modal.tekst'} />
-                    </Normaltekst>
+                    <TekstBlockPaddingUnder
+                        block={barnehageplassTekster.tittel}
+                        typografi={Typografi.ModalHeadingH1}
+                    />
+
+                    <TekstBlock
+                        block={barnehageplassTekster.tekst}
+                        typografi={Typografi.BodyLong}
+                    />
+
                     <Flex>
-                        <StyledLenke href={'https://www.nav.no/person/dittnav/'}>
-                            <SpråkTekst id={'felles.blokkerTilbakeKnapp.modal.tilDittNavKnapp'} />
-                        </StyledLenke>
+                        <TekstBlockMarginHøyre
+                            block={barnehageplassTekster.tilDittNav}
+                            typografi={Typografi.BodyShort}
+                        />
                         <Button onClick={håndterAvbryt}>
-                            <SpråkTekst id={'felles.blokkerTilbakeKnapp.modal.avbrytKnapp'} />
+                            <TekstBlock
+                                block={barnehageplassTekster.avbryt}
+                                typografi={Typografi.BodyShort}
+                            />
                         </Button>
                     </Flex>
                 </ModalContent>

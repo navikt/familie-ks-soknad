@@ -14,6 +14,7 @@ import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
 import { IAndreUtbetalingerTekstinnhold } from '../typer/sanity/modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from '../typer/sanity/modaler/arbeidsperiode';
 import { IBarnehageplassTekstinnhold } from '../typer/sanity/modaler/barnehageplass';
+import { IBlokkerTilbakeKnappModal } from '../typer/sanity/modaler/blokkerTilbakeKnapp';
 import { IEøsYtelseTekstinnhold } from '../typer/sanity/modaler/eøsYtelse';
 import { ILeggTilBarnTekstinnhold } from '../typer/sanity/modaler/leggTilBarn';
 import { IMistetInformasjonenDinModal } from '../typer/sanity/modaler/mistetInformasjonenDin';
@@ -134,6 +135,9 @@ const strukturertInnholdForModaler = (dokumenter: SanityDokument[]): IModalerTek
         mistetInformasjonenDin: strukturerInnholdForModal(
             SanityModalPrefix.MISTET_INFORMASJONEN_DIN
         ) as IMistetInformasjonenDinModal,
+        blokkerTilbakeKnapp: strukturerInnholdForModal(
+            SanityModalPrefix.BLOKKER_TILBAKE_KNAPP
+        ) as IBlokkerTilbakeKnappModal,
     };
 };
 
