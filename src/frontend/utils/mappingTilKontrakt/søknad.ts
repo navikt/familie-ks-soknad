@@ -3,6 +3,7 @@ import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { IBarnMedISøknad } from '../../typer/barn';
+import { LocaleRecordBlock, LocaleRecordString } from '../../typer/common';
 import { ESivilstand, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { ISøknadKontrakt } from '../../typer/kontrakt/v1';
 import { ISøker } from '../../typer/person';
@@ -10,7 +11,7 @@ import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknad } from '../../typer/søknad';
 import { erDokumentasjonRelevant } from '../dokumentasjon';
-import { sivilstandTilSanitySivilstandApiKey, hentUformaterteTekster } from '../språk';
+import { sivilstandTilSanitySivilstandApiKey } from '../språk';
 import { jaNeiSvarTilSpråkId } from '../spørsmål';
 import { barnISøknadsFormat } from './barn';
 import { dokumentasjonISøknadFormat } from './dokumentasjon';
@@ -94,46 +95,39 @@ export const dataISøknadKontraktFormatV1 = (
         dokumentasjon: søknad.dokumentasjon
             .filter(dok => erDokumentasjonRelevant(dok))
             .map(dok => dokumentasjonISøknadFormat(dok, tekster, tilRestLocaleRecord)),
-        teksterUtenomSpørsmål: {
+        teksterTilPdf: {
             ...Object.values(ESivilstand).reduce(
                 (map, sivilstand) => ({
                     ...map,
-                    [ESanitySivilstandApiKey[ESivilstand[sivilstand]]]:
+                    [ESanitySivilstandApiKey[ESivilstand[sivilstand]]]: tilRestLocaleRecord(
                         fellesTekster.frittståendeOrd[
                             sivilstandTilSanitySivilstandApiKey(sivilstand)
-                        ],
+                        ]
+                    ),
                 }),
                 {}
             ),
             ...[
-                'hvilkebarn.barn.bosted.adressesperre',
-                'ombarnet.fosterbarn',
-                'ombarnet.institusjon',
-                'ombarnet.opplystatbarnutlandopphold.info',
-                'ombarnet.barnetrygd-eøs',
-                'omdeg.annensamboer.spm',
-                'omdeg.personopplysninger.adressesperre.alert',
-                'omdeg.personopplysninger.ikke-registrert.alert',
-                'pdf.andreforelder.seksjonstittel',
-                'pdf.hvilkebarn.seksjonstittel',
-                'pdf.hvilkebarn.registrert-på-adresse',
-                'pdf.hvilkebarn.ikke-registrert-på-adresse',
-                'pdf.ombarnet.seksjonstittel',
-                'pdf.omdeg.seksjonstittel',
-                'pdf.bosted.seksjonstittel',
-                'pdf.ombarna.seksjonstittel',
-                'pdf.søker-for-tidsrom.seksjonstittel',
-                'pdf.søker.seksjonstittel',
-                'pdf.vedlegg.seksjonstittel',
-                'pdf.vedlegg.lastet-opp-antall',
-                'pdf.vedlegg.nummerering',
-                'dokumentasjon.har-sendt-inn.spm',
-                'dinlivssituasjon.sidetittel',
-                'eøs-om-deg.sidetittel',
-                'eøs-om-barn.sidetittel',
-                ...Object.values(ESvar).map(jaNeiSvarTilSpråkId),
+                tekster.OM_DEG.soekerAdressesperre,
+                tekster.OM_DEG.ikkeRegistrertAdresse,
+                tekster.OM_DEG.omDegTittel,
+                tekster.DIN_LIVSSITUASJON.dinLivssituasjonTittel,
+                tekster.VELG_BARN.registrertMedAdressesperre,
+                tekster.VELG_BARN.velgBarnTittel,
+                tekster.VELG_BARN.registrertPaaAdressenDin,
+                tekster.VELG_BARN.ikkeRegistrertPaaAdressenDin,
+                tekster.EØS_FOR_SØKER.eoesForSoekerTittel,
+                tekster.FELLES.frittståendeOrd.vedlegg,
+                tekster.FELLES.frittståendeOrd.av,
+                tekster.DOKUMENTASJON.sendtInnTidligere,
+                ...Object.values(ESvar).map(svar =>
+                    jaNeiSvarTilSpråkId(svar, tekster.FELLES.frittståendeOrd)
+                ),
             ].reduce(
-                (map, tekstId) => ({ ...map, [tekstId]: hentUformaterteTekster(tekstId) }),
+                (map, sanityDok: LocaleRecordBlock | LocaleRecordString) => ({
+                    ...map,
+                    [sanityDok.api_navn]: tilRestLocaleRecord(sanityDok, {}),
+                }),
                 {}
             ),
         },
