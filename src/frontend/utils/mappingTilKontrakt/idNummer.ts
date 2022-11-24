@@ -2,7 +2,12 @@ import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generel
 import { IIdNummerIKontraktFormat } from '../../typer/kontrakt/v1';
 import { IIdNummer } from '../../typer/person';
 import { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
-import { sammeVerdiAlleSpråk, sammeVerdiAlleSpråkEllerUkjent } from './hjelpefunksjoner';
+import { landkodeTilSpråk } from '../språk';
+import {
+    sammeVerdiAlleSpråk,
+    sammeVerdiAlleSpråkEllerUkjent,
+    verdiCallbackAlleSpråk,
+} from './hjelpefunksjoner';
 
 export const idNummerTilISøknadsfelt = (
     tilRestLocaleRecord: TilRestLocaleRecord,
@@ -34,7 +39,7 @@ export const idNummerTilISøknadsfelt = (
                 land: idnummerObj.land,
                 barnetsNavn,
             }),
-            verdi: sammeVerdiAlleSpråk(idnummerObj.land),
+            verdi: verdiCallbackAlleSpråk(locale => landkodeTilSpråk(idnummerObj.land, locale)),
         },
     }),
 });

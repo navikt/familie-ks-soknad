@@ -9,7 +9,7 @@ import { IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
 import { IOmsorgsperson } from '../../../../../typer/omsorgsperson';
 import { PersonType } from '../../../../../typer/personType';
-import { landkodeTilSpråk, toSlektsforholdSpråkId } from '../../../../../utils/språk';
+import { hentSlektsforhold, landkodeTilSpråk } from '../../../../../utils/språk';
 import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
 import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
@@ -22,7 +22,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
     omsorgsperson: IOmsorgsperson;
     barn: IBarnMedISøknad;
 }> = ({ omsorgsperson, barn }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const eøsBarnTekster = tekster().EØS_FOR_BARN;
 
     const { formatMessage } = useIntl();
@@ -42,9 +42,9 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                 <OppsummeringFelt
                     spørsmålstekst={eøsBarnTekster.slektsforhold.sporsmal}
                     flettefelter={flettefelter}
-                    søknadsvar={formatMessage({
-                        id: toSlektsforholdSpråkId(omsorgsperson.slektsforhold.svar),
-                    })}
+                    søknadsvar={plainTekst(
+                        hentSlektsforhold(omsorgsperson.slektsforhold.svar, eøsBarnTekster)
+                    )}
                 />
             )}
 

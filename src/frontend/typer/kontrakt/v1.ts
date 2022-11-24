@@ -1,5 +1,3 @@
-import { Alpha3Code } from 'i18n-iso-countries';
-
 import { ESvar, ISODateString } from '@navikt/familie-form-elements';
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
@@ -11,7 +9,6 @@ import {
     IAdresse,
     ISøknadsfelt,
     IUtenlandsperiodeIKontraktFormat,
-    Slektsforhold,
     SpørsmålMap,
 } from './generelle';
 
@@ -81,7 +78,7 @@ export interface ISøknadIKontraktBarn {
     [barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad]: ISøknadsfelt<ESvar> | null;
     [barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte]: ISøknadsfelt<ESvar> | null;
     [barnDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand]: ISøknadsfelt<ESvar> | null;
-    [barnDataKeySpørsmål.pågåendeSøknadHvilketLand]: ISøknadsfelt<Alpha3Code> | null;
+    [barnDataKeySpørsmål.pågåendeSøknadHvilketLand]: ISøknadsfelt<string> | null;
     [barnDataKeySpørsmål.planleggerÅBoINorge12Mnd]: ISøknadsfelt<ESvar> | null;
     eøsKontantstøttePerioder: ISøknadsfelt<IEøsKontantstøttePeriodeIKontraktFormat>[];
     barnehageplassPerioder: ISøknadsfelt<IBarnehageplassPeriodeIKontraktFormat>[];
@@ -92,7 +89,7 @@ export interface ISøknadIKontraktBarn {
     utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
 
     // EØS
-    [barnDataKeySpørsmål.søkersSlektsforhold]: ISøknadsfelt<Slektsforhold> | null;
+    [barnDataKeySpørsmål.søkersSlektsforhold]: ISøknadsfelt<string> | null;
     [barnDataKeySpørsmål.søkersSlektsforholdSpesifisering]: ISøknadsfelt<string> | null;
     [barnDataKeySpørsmål.borMedAndreForelder]: ISøknadsfelt<ESvar> | null;
     [barnDataKeySpørsmål.borMedOmsorgsperson]: ISøknadsfelt<ESvar> | null;
@@ -159,7 +156,7 @@ export interface IArbeidsperiodeIKontraktFormat {
 }
 
 export interface IIdNummerIKontraktFormat {
-    land: ISøknadsfelt<Alpha3Code>;
+    land: ISøknadsfelt<string>;
     idNummer: ISøknadsfelt<string>;
 }
 

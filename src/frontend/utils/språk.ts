@@ -10,24 +10,28 @@ import * as engelsk from '../assets/lang/en.json' assert { type: 'json' };
 import * as bokmål from '../assets/lang/nb.json' assert { type: 'json' };
 import * as nynorsk from '../assets/lang/nn.json' assert { type: 'json' };
 import { innebygdeFormatterere } from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
+import { IEøsForBarnTekstinnhold } from '../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
 import { IVelgBarnTekstinnhold } from '../components/SøknadsSteg/VelgBarn/innholdTyper';
 import { AlternativtSvarForInput } from '../typer/common';
 import { ESivilstand, Slektsforhold } from '../typer/kontrakt/generelle';
 import { IBarn } from '../typer/person';
 import { ESanitySivilstandApiKey } from '../typer/sanity/sanity';
 
-export const toSlektsforholdSpråkId = (slektsforhold: Slektsforhold): string => {
+export const hentSlektsforhold = (
+    slektsforhold: Slektsforhold,
+    tekster: IEøsForBarnTekstinnhold
+) => {
     switch (slektsforhold) {
         case Slektsforhold.FORELDER:
-            return 'felles.velgslektsforhold.forelder';
+            return tekster.valgalternativForelder;
         case Slektsforhold.BESTEFORELDER:
-            return 'felles.velgslektsforhold.besteforelder';
+            return tekster.valgalternativBesteforelder;
         case Slektsforhold.ONKEL_ELLER_TANTE:
-            return 'felles.velgslektsforhold.onkeltante';
+            return tekster.valgalternativOnkelTante;
         case Slektsforhold.ANNEN_FAMILIERELASJON:
-            return 'felles.velgslektsforhold.annenfamilie';
+            return tekster.valgalternativAnnenFamilierelasjon;
         case Slektsforhold.ANNEN_RELASJON:
-            return 'felles.velgslektsforhold.annenrelasjon';
+            return tekster.valgalternativAnnenRelasjon;
     }
 };
 
