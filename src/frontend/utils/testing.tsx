@@ -12,9 +12,6 @@ import { Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import norskeTekster from '../assets/lang/nb.json' assert { type: 'json' };
 import { DinLivssituasjonSpørsmålId } from '../components/SøknadsSteg/DinLivssituasjon/spørsmål';
-import { EøsBarnSpørsmålId } from '../components/SøknadsSteg/EøsSteg/Barn/spørsmål';
-import { OmBarnaDineSpørsmålId } from '../components/SøknadsSteg/OmBarnaDine/spørsmål';
-import { OmBarnetSpørsmålsId } from '../components/SøknadsSteg/OmBarnet/spørsmål';
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
 import * as appContext from '../context/AppContext';
 import { AppProvider } from '../context/AppContext';
@@ -30,14 +27,11 @@ import * as routesContext from '../context/RoutesContext';
 import { getRoutes, RoutesProvider } from '../context/RoutesContext';
 import { SanityProvider } from '../context/SanityContext';
 import { StegProvider } from '../context/StegContext';
-import { andreForelderDataKeySpørsmål, barnDataKeySpørsmål } from '../typer/barn';
-import { AlternativtSvarForInput } from '../typer/common';
 import { ESivilstand } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { ISøker, ISøkerRespons } from '../typer/person';
 import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
-import { initialStateSøknad, ISøknad } from '../typer/søknad';
-import { genererInitialBarnMedISøknad } from './barn';
+import { initialStateSøknad } from '../typer/søknad';
 
 jest.mock('../context/pdl');
 
@@ -265,136 +259,5 @@ export const mekkGyldigSøker = (): ISøker => {
             id: DinLivssituasjonSpørsmålId.mottarUtenlandspensjon,
             svar: ESvar.NEI,
         },
-    };
-};
-
-export const mekkGyldigSøknad = (): ISøknad => {
-    return {
-        ...initialStateSøknad,
-        lestOgForståttBekreftelse: true,
-        søker: mekkGyldigSøker(),
-        erNoenAvBarnaFosterbarn: {
-            id: OmBarnaDineSpørsmålId.erNoenAvBarnaFosterbarn,
-            svar: ESvar.NEI,
-        },
-        oppholderBarnSegIInstitusjon: {
-            id: OmBarnaDineSpørsmålId.oppholderBarnSegIInstitusjon,
-            svar: ESvar.NEI,
-        },
-        erBarnAdoptert: {
-            id: OmBarnaDineSpørsmålId.erBarnAdoptert,
-            svar: ESvar.NEI,
-        },
-        søktAsylForBarn: {
-            id: OmBarnaDineSpørsmålId.søktAsylForBarn,
-            svar: ESvar.NEI,
-        },
-        mottarKontantstøtteForBarnFraAnnetEøsland: {
-            id: OmBarnaDineSpørsmålId.mottarKontantstøtteForBarnFraAnnetEøsland,
-            svar: ESvar.NEI,
-        },
-        barnOppholdtSegTolvMndSammenhengendeINorge: {
-            id: OmBarnaDineSpørsmålId.barnOppholdtSegTolvMndSammenhengendeINorge,
-            svar: ESvar.JA,
-        },
-        harEllerTildeltBarnehageplass: {
-            id: OmBarnaDineSpørsmålId.harEllerTildeltBarnehageplass,
-            svar: ESvar.NEI,
-        },
-        barnInkludertISøknaden: [
-            {
-                ...genererInitialBarnMedISøknad({
-                    id: 'random-id',
-                    ident: '1234',
-                    navn: 'Datter Dattersdottir',
-                    adressebeskyttelse: false,
-                    alder: null,
-                    borMedSøker: true,
-                }),
-                andreForelder: {
-                    kanIkkeGiOpplysninger: {
-                        id: OmBarnetSpørsmålsId.andreForelderKanIkkeGiOpplysninger,
-                        svar: ESvar.NEI,
-                    },
-                    adresse: {
-                        id: EøsBarnSpørsmålId.andreForelderAdresse,
-                        svar: 'Heisannveien 15',
-                    },
-                    andreUtbetalingsperioder: [],
-                    arbeidsperioderNorge: [],
-                    pensjonsperioderUtland: [],
-                    arbeidsperioderUtland: [],
-                    pensjonsperioderNorge: [],
-                    idNummer: [],
-                    eøsKontantstøttePerioder: [],
-                    [andreForelderDataKeySpørsmål.kontantstøtteFraEøs]: {
-                        id: EøsBarnSpørsmålId.andreForelderKontantstøtte,
-                        svar: ESvar.JA,
-                    },
-                    [andreForelderDataKeySpørsmål.navn]: {
-                        id: OmBarnetSpørsmålsId.andreForelderNavn,
-                        svar: 'Andre forelder navn',
-                    },
-                    [andreForelderDataKeySpørsmål.fnr]: {
-                        id: OmBarnetSpørsmålsId.andreForelderFnr,
-                        svar: AlternativtSvarForInput.UKJENT,
-                    },
-                    [andreForelderDataKeySpørsmål.fødselsdato]: {
-                        id: OmBarnetSpørsmålsId.andreForelderFødselsdato,
-                        svar: AlternativtSvarForInput.UKJENT,
-                    },
-                    [andreForelderDataKeySpørsmål.yrkesaktivFemÅr]: {
-                        id: OmBarnetSpørsmålsId.andreForelderYrkesaktivFemÅr,
-                        svar: ESvar.JA,
-                    },
-                    [andreForelderDataKeySpørsmål.arbeidUtlandet]: {
-                        id: OmBarnetSpørsmålsId.andreForelderArbeidUtlandet,
-                        svar: ESvar.NEI,
-                    },
-                    [andreForelderDataKeySpørsmål.pensjonUtland]: {
-                        id: OmBarnetSpørsmålsId.andreForelderPensjonUtland,
-                        svar: ESvar.NEI,
-                    },
-                    [andreForelderDataKeySpørsmål.pensjonNorge]: {
-                        id: EøsBarnSpørsmålId.andreForelderPensjonNorge,
-                        svar: ESvar.NEI,
-                    },
-                    [andreForelderDataKeySpørsmål.arbeidNorge]: {
-                        id: EøsBarnSpørsmålId.andreForelderArbeidNorge,
-                        svar: ESvar.NEI,
-                    },
-                    [andreForelderDataKeySpørsmål.andreUtbetalinger]: {
-                        id: EøsBarnSpørsmålId.andreForelderAndreUtbetalinger,
-                        svar: ESvar.NEI,
-                    },
-                    [andreForelderDataKeySpørsmål.skriftligAvtaleOmDeltBosted]: {
-                        id: OmBarnetSpørsmålsId.skriftligAvtaleOmDeltBosted,
-                        svar: ESvar.NEI,
-                    },
-                    [andreForelderDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand]: {
-                        id: EøsBarnSpørsmålId.andreForelderPågåendeSøknadFraAnnetEøsLand,
-                        svar: ESvar.NEI,
-                    },
-                    [andreForelderDataKeySpørsmål.pågåendeSøknadHvilketLand]: {
-                        id: EøsBarnSpørsmålId.andreForelderPågåendeSøknadHvilketLand,
-                        svar: '',
-                    },
-                },
-                omsorgsperson: null,
-                [barnDataKeySpørsmål.borFastMedSøker]: {
-                    id: OmBarnetSpørsmålsId.borFastMedSøker,
-                    svar: ESvar.JA,
-                },
-                [barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte]: {
-                    id: OmBarnetSpørsmålsId.mottarEllerMottokEøsKontantstøtte,
-                    svar: ESvar.NEI,
-                },
-                eøsKontantstøttePerioder: [],
-                [barnDataKeySpørsmål.adresse]: {
-                    id: EøsBarnSpørsmålId.barnetsAdresse,
-                    svar: '',
-                },
-            },
-        ],
     };
 };
