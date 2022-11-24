@@ -117,6 +117,8 @@ export interface IFrittståendeOrdTekstinnhold {
     ja: LocaleRecordString;
     nei: LocaleRecordString;
     jegVetIkke: LocaleRecordString;
+    av: LocaleRecordString;
+    vedlegg: LocaleRecordString;
 }
 
 export interface INavigasjonTekstinnhold {

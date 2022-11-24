@@ -19,7 +19,7 @@ export interface ISøknadKontrakt {
     barn: ISøknadIKontraktBarn[];
     spørsmål: SpørsmålMap;
     dokumentasjon: ISøknadKontraktDokumentasjon[];
-    teksterUtenomSpørsmål: Record<string, Record<LocaleType, string>>;
+    teksterTilPdf: Record<string, Record<LocaleType, string>>;
     originalSpråk: LocaleType;
 }
 
@@ -63,6 +63,7 @@ export interface ISøknadIKontraktBarn {
     navn: ISøknadsfelt<string>;
     registrertBostedType: ISøknadsfelt<ERegistrertBostedType>;
     alder: ISøknadsfelt<string> | null;
+    teksterTilPdf: Record<string, Record<LocaleType, string>>;
 
     // Om barna
     [barnDataKeySpørsmål.erFosterbarn]: ISøknadsfelt<ESvar>;
