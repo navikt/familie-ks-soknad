@@ -136,7 +136,7 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
         <>
             <ScrollHandler />
             <header>
-                <Banner språkTekstId={'felles.banner'} />
+                <Banner />
                 {nyesteNåværendeRoute !== RouteEnum.Kvittering && (
                     <StegindikatorContainer>
                         <Stegindikator

@@ -9,7 +9,7 @@ import { IOmBarnetTekstinnhold } from '../../components/SøknadsSteg/OmBarnet/in
 import { IOmDegTekstinnhold } from '../../components/SøknadsSteg/OmDeg/innholdTyper';
 import { IOppsummeringTekstinnhold } from '../../components/SøknadsSteg/Oppsummering/innholdTyper';
 import { IVelgBarnTekstinnhold } from '../../components/SøknadsSteg/VelgBarn/innholdTyper';
-import { LocaleRecordString } from '../common';
+import { LocaleRecordBlock, LocaleRecordString } from '../common';
 import { IAndreUtbetalingerTekstinnhold } from './modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from './modaler/arbeidsperiode';
 import { IBarnehageplassTekstinnhold } from './modaler/barnehageplass';
@@ -62,6 +62,7 @@ export interface IFellesTekstInnhold {
     frittståendeOrd: IFrittståendeOrdTekstinnhold;
     navigasjon: INavigasjonTekstinnhold;
     formateringsfeilmeldinger: IFormateringsfeilmeldingerTekstinnhold;
+    banner: LocaleRecordBlock;
 }
 
 export interface IModalerTekstinnhold {

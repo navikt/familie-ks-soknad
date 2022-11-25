@@ -2,14 +2,13 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Innholdstittel } from 'nav-frontend-typografi';
-
+import { Heading } from '@navikt/ds-react';
 import {
-    NavdsGlobalColorPurple400,
     NavdsGlobalColorPurple200,
+    NavdsGlobalColorPurple400,
 } from '@navikt/ds-tokens/dist/tokens';
 
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import { useApp } from '../../../context/AppContext';
 
 const Section = styled.section`
     box-sizing: border-box;
@@ -21,12 +20,13 @@ const Section = styled.section`
     margin-bottom: 1rem;
 `;
 
-const Banner: React.FC<{ språkTekstId: string }> = ({ språkTekstId }) => {
+const Banner: React.FC = () => {
+    const { tekster, plainTekst } = useApp();
     return (
         <Section>
-            <Innholdstittel>
-                <SpråkTekst id={språkTekstId} />
-            </Innholdstittel>
+            <Heading size={'large'} level={'1'}>
+                {plainTekst(tekster().FELLES.banner)}
+            </Heading>
         </Section>
     );
 };
