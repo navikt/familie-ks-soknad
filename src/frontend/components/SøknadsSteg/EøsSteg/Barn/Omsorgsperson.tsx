@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Heading } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../../typer/barn';
+import { Typografi } from '../../../../typer/common';
 import {
     IArbeidsperiode,
     IEøsKontantstøttePeriode,
@@ -67,9 +67,11 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
     return (
         <SkjemaFieldset
             tittel={
-                <Heading size={'xsmall'} level={'2'} spacing>
-                    {plainTekst(eøsForBarnTekster.oppgittIkkeBorFastSammenMedDeg, flettefelter)}
-                </Heading>
+                <TekstBlock
+                    block={eøsForBarnTekster.oppgittIkkeBorFastSammenMedDeg}
+                    flettefelter={flettefelter}
+                    typografi={Typografi.HeadingH2}
+                />
             }
         >
             <SkjemaFeltInput

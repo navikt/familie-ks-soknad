@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Heading } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../../context/AppContext';
@@ -197,9 +196,11 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
             {!skalSkjuleAndreForelderFelt(barn) && (
                 <SkjemaFieldset
                     tittel={
-                        <Heading level={'2'} size={'xsmall'} spacing>
-                            {plainTekst(subtittelAndreForelder, { barnetsNavn: barnetsNavn })}
-                        </Heading>
+                        <TekstBlock
+                            block={subtittelAndreForelder}
+                            flettefelter={{ barnetsNavn }}
+                            typografi={Typografi.HeadingH2}
+                        />
                     }
                 >
                     {!barnMedSammeForelder ? (
