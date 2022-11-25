@@ -2,11 +2,7 @@ import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
-import { Normaltekst } from 'nav-frontend-typografi';
-
 import { FileContent } from '@navikt/ds-icons';
-
-import SpråkTekst from './SpråkTekst/SpråkTekst';
 
 const NotisWrapper = styled.div`
     display: flex;
@@ -33,26 +29,13 @@ const NotisInnhold = styled.div`
 `;
 
 export const VedleggNotis: React.FC<{
-    /**
-     * @deprecated skal bruke tekster fra sanity
-     */
-    språkTekstId?: string;
     children?: ReactNode;
     dynamisk?: boolean;
-    språkValues?: Record<string, ReactNode>;
-}> = ({ språkTekstId, dynamisk = false, språkValues = {}, children }) => {
+}> = ({ dynamisk = false, children }) => {
     return (
         <NotisWrapper aria-live={dynamisk ? 'polite' : 'off'}>
             <StyledFileContent role={'img'} focusable={false} aria-label={'vedleggsikon'} />
-            <NotisInnhold>
-                {children ? (
-                    children
-                ) : språkTekstId ? (
-                    <Normaltekst>
-                        <SpråkTekst id={språkTekstId} values={språkValues} />
-                    </Normaltekst>
-                ) : null}
-            </NotisInnhold>
+            <NotisInnhold>{children ? children : null}</NotisInnhold>
         </NotisWrapper>
     );
 };
