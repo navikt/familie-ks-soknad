@@ -8,7 +8,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt } from '@navikt/familie-skjema';
 
 import useFørsteRender from '../../../hooks/useFørsteRender';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
 
 const StyledCheckbox = styled(Checkbox)`
     margin-top: 1rem;
@@ -17,12 +16,8 @@ const StyledCheckbox = styled(Checkbox)`
 export const SkjemaCheckbox: React.FC<{
     felt: Felt<ESvar>;
     visFeilmeldinger?: boolean;
-    /** @deprecated **/
-    labelSpråkTekstId?: string;
-    label?: ReactNode;
-    /** @deprecated **/
-    språkVerdier?: { [key: string]: ReactNode };
-}> = ({ felt, visFeilmeldinger = false, labelSpråkTekstId, språkVerdier, label }) => {
+    label: ReactNode;
+}> = ({ felt, visFeilmeldinger = false, label }) => {
     useFørsteRender(() => {
         felt.validerOgSettFelt(felt.verdi);
     });
@@ -36,13 +31,7 @@ export const SkjemaCheckbox: React.FC<{
         <StyledCheckbox
             checked={felt.verdi === ESvar.JA}
             {...felt.hentNavInputProps(visFeilmeldinger)}
-            label={
-                labelSpråkTekstId ? (
-                    <SpråkTekst id={labelSpråkTekstId} values={språkVerdier} />
-                ) : (
-                    label
-                )
-            }
+            label={label}
             onChange={onChange}
         />
     ) : null;

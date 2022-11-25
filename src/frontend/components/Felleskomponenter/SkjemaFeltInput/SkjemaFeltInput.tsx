@@ -4,17 +4,11 @@ import { Input, InputProps } from 'nav-frontend-skjema';
 
 import { Felt } from '@navikt/familie-skjema';
 
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
-
 interface SkjemaFeltInputProps extends InputProps {
     // eslint-disable-next-line
     felt: Felt<any>;
     visFeilmeldinger: boolean;
-    /** @deprecated **/
-    labelSpråkTekstId?: string;
-    label?: ReactNode;
-    /** @deprecated **/
-    språkValues?: Record<string, ReactNode>;
+    label: ReactNode;
     tilleggsinfo?: ReactNode;
     bredde?: 'fullbredde' | 'XXL' | 'XL' | 'L' | 'M' | 'S' | 'XS' | 'XXS';
 }
@@ -23,28 +17,14 @@ interface SkjemaFeltInputProps extends InputProps {
  * Henter input props fra felt, og fra props. Props overstyrer felt.
  */
 export const SkjemaFeltInput: React.FC<SkjemaFeltInputProps> = props => {
-    const {
-        felt,
-        labelSpråkTekstId,
-        label,
-        visFeilmeldinger,
-        språkValues,
-        tilleggsinfo,
-        bredde,
-        ...øvrigePropsStøttetAvNavInput
-    } = props;
+    const { felt, label, visFeilmeldinger, tilleggsinfo, bredde, ...øvrigePropsStøttetAvNavInput } =
+        props;
     const navInputPropsFraFeltHook = felt.hentNavInputProps(visFeilmeldinger);
 
     return felt.erSynlig ? (
         <div>
             <Input
-                label={
-                    labelSpråkTekstId ? (
-                        <SpråkTekst id={labelSpråkTekstId} values={språkValues} />
-                    ) : (
-                        label
-                    )
-                }
+                label={label}
                 description={tilleggsinfo}
                 {...navInputPropsFraFeltHook}
                 {...øvrigePropsStøttetAvNavInput}
