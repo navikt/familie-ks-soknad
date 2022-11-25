@@ -8,6 +8,7 @@ import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../typer/barn'
 import { BarnetsId, Typografi } from '../../../../typer/common';
 import { PersonType } from '../../../../typer/personType';
 import { skalSkjuleAndreForelderFelt } from '../../../../utils/barn';
+import { uppercaseFørsteBokstav } from '../../../../utils/visning';
 import { Arbeidsperiode } from '../../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
 import { LandDropdown } from '../../../Felleskomponenter/Dropdowns/LandDropdown';
 import SlektsforholdDropdown from '../../../Felleskomponenter/Dropdowns/SlektsforholdDropdown';
@@ -87,11 +88,9 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
     return (
         <Steg
             tittel={
-                <TekstBlock
-                    block={eoesForBarnTittel}
-                    flettefelter={{ barnetsNavn }}
-                    typografi={Typografi.StegHeadingH1}
-                />
+                <Heading level={'1'} size={'xsmall'}>
+                    {uppercaseFørsteBokstav(plainTekst(eoesForBarnTittel, { barnetsNavn }))}
+                </Heading>
             }
             skjema={{
                 validerFelterOgVisFeilmelding,
@@ -197,9 +196,11 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
             {!skalSkjuleAndreForelderFelt(barn) && (
                 <SkjemaFieldset
                     tittel={
-                        <Heading level={'2'} size={'xsmall'} spacing>
-                            {plainTekst(subtittelAndreForelder, { barnetsNavn: barnetsNavn })}
-                        </Heading>
+                        <TekstBlock
+                            block={subtittelAndreForelder}
+                            flettefelter={{ barnetsNavn }}
+                            typografi={Typografi.HeadingH2}
+                        />
                     }
                 >
                     {!barnMedSammeForelder ? (

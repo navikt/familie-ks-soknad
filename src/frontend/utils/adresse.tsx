@@ -8,7 +8,7 @@ import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst
 import { IAdresse } from '../typer/kontrakt/generelle';
 import { ISøker } from '../typer/person';
 import { trimWhiteSpace } from './hjelpefunksjoner';
-import { uppercaseFørsteBokstav } from './visning';
+import { uppercaseKunFørsteBokstav } from './visning';
 
 export const erNorskPostnummer = (verdi: string) =>
     !!(verdi?.length === 4 && Number.parseInt(verdi));
@@ -19,7 +19,7 @@ export const hentAdressefelterSortert = (adresse: IAdresse): string[] => {
             adresse.bruksenhetsnummer ?? ''
         }`,
         `${adresse.postnummer ?? ''} ${
-            adresse.poststed ? uppercaseFørsteBokstav(adresse.poststed) : ''
+            adresse.poststed ? uppercaseKunFørsteBokstav(adresse.poststed) : ''
         }`,
     ]
         .map(linje => linje.replace(/\s{2+}/, ' ').trim())

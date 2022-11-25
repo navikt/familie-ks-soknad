@@ -9,10 +9,10 @@ export interface IEøsForBarnTekstinnhold {
     borMedAndreForelder: ISanitySpørsmålDokument;
     borMedOmsorgsperson: ISanitySpørsmålDokument;
     hvorBorBarnet: ISanitySpørsmålDokument;
-    oppgittIkkeBorFastSammenMedDeg: LocaleRecordString;
+    oppgittIkkeBorFastSammenMedDeg: LocaleRecordBlock;
 
     /* Andre forelder */
-    subtittelAndreForelder: LocaleRecordString;
+    subtittelAndreForelder: LocaleRecordBlock;
     arbeidNorgeAndreForelder: ISanitySpørsmålDokument;
     arbeidNorgeAndreForelderGjenlevende: ISanitySpørsmålDokument;
     pensjonNorgeAndreForelder: ISanitySpørsmålDokument;
