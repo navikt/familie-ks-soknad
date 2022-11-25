@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 import { Alpha3Code } from 'i18n-iso-countries';
 
@@ -32,9 +32,6 @@ import { skalSkjuleAndreForelderFelt, skalViseBorMedOmsorgsperson } from '../../
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
 import { formaterVerdiForCheckbox } from '../../../../utils/input';
 import { svarForSpørsmålMedUkjent } from '../../../../utils/spørsmål';
-import { arbeidsperiodeFeilmelding } from '../../../Felleskomponenter/Arbeidsperiode/arbeidsperiodeSpråkUtils';
-import { pensjonsperiodeFeilmelding } from '../../../Felleskomponenter/Pensjonsmodal/språkUtils';
-import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { idNummerKeyPrefix } from '../idnummerUtils';
 import { EøsBarnSpørsmålId } from './spørsmål';
 
@@ -115,12 +112,7 @@ export const useEøsForBarn = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      <SpråkTekst
-                          id={'felles.relasjon.format.feilmelding'}
-                          values={{
-                              barn: gjeldendeBarn.navn,
-                          }}
-                      />
+                      plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigRelasjon)
                   );
         },
         nullstillVedAvhengighetEndring: false,
@@ -162,12 +154,7 @@ export const useEøsForBarn = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      <SpråkTekst
-                          id={'felles.relasjon.format.feilmelding'}
-                          values={{
-                              barn: gjeldendeBarn.navn,
-                          }}
-                      />
+                      plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigRelasjon)
                   );
         },
         nullstillVedAvhengighetEndring: false,
@@ -198,12 +185,7 @@ export const useEøsForBarn = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      <SpråkTekst
-                          id={'felles.relasjon.format.feilmelding'}
-                          values={{
-                              barn: gjeldendeBarn.navn,
-                          }}
-                      />
+                      plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigRelasjon)
                   );
         },
         nullstillVedAvhengighetEndring: false,
@@ -227,12 +209,7 @@ export const useEøsForBarn = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      <SpråkTekst
-                          id={'felles.idnummer-feilformat.feilmelding'}
-                          values={{
-                              barn: gjeldendeBarn.navn,
-                          }}
-                      />
+                      plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigIDnummer)
                   );
         },
         nullstillVedAvhengighetEndring: false,
@@ -264,7 +241,13 @@ export const useEøsForBarn = (
             return avhengigheter?.omsorgspersonArbeidUtland.verdi === ESvar.NEI ||
                 (avhengigheter?.omsorgspersonArbeidUtland.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={arbeidsperiodeFeilmelding(true)} />);
+                : feil(
+                      felt,
+                      plainTekst(
+                          tekster().FELLES.modaler.arbeidsperiode.omsorgsperson.leggTilFeilmelding,
+                          { gjelderUtland: true }
+                      )
+                  );
         }
     );
 
@@ -286,7 +269,13 @@ export const useEøsForBarn = (
             return avhengigheter?.omsorgspersonArbeidNorge.verdi === ESvar.NEI ||
                 (avhengigheter?.omsorgspersonArbeidNorge.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={arbeidsperiodeFeilmelding(false)} />);
+                : feil(
+                      felt,
+                      plainTekst(
+                          tekster().FELLES.modaler.arbeidsperiode.omsorgsperson.leggTilFeilmelding,
+                          { gjelderUtland: false }
+                      )
+                  );
         }
     );
 
@@ -308,7 +297,13 @@ export const useEøsForBarn = (
             return avhengigheter?.omsorgspersonPensjonUtland.verdi === ESvar.NEI ||
                 (avhengigheter?.omsorgspersonPensjonUtland.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={pensjonsperiodeFeilmelding(false)} />);
+                : feil(
+                      felt,
+                      plainTekst(
+                          tekster().FELLES.modaler.pensjonsperiode.omsorgsperson.leggTilFeilmelding,
+                          { gjelderUtland: true }
+                      )
+                  );
         }
     );
 
@@ -330,7 +325,13 @@ export const useEøsForBarn = (
             return avhengigheter?.omsorgspersonPensjonNorge.verdi === ESvar.NEI ||
                 (avhengigheter?.omsorgspersonPensjonNorge.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={pensjonsperiodeFeilmelding(false)} />);
+                : feil(
+                      felt,
+                      plainTekst(
+                          tekster().FELLES.modaler.pensjonsperiode.omsorgsperson.leggTilFeilmelding,
+                          { gjelderUtland: false }
+                      )
+                  );
         }
     );
 
@@ -353,7 +354,13 @@ export const useEøsForBarn = (
                 (avhengigheter?.omsorgspersonAndreUtbetalinger.verdi === ESvar.JA &&
                     felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={'felles.flereytelser.feilmelding'} />);
+                : feil(
+                      felt,
+                      plainTekst(
+                          tekster().FELLES.modaler.andreUtbetalinger.omsorgsperson
+                              .leggTilFeilmelding
+                      )
+                  );
         }
     );
     const omsorgspersonPågåendeSøknadFraAnnetEøsLand = useJaNeiSpmFelt({
@@ -388,7 +395,12 @@ export const useEøsForBarn = (
                 (avhengigheter?.omsorgspersonKontantstøtteFraEøs.verdi === ESvar.JA &&
                     felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={'ombarnet.trygdandreperioder.feilmelding'} />);
+                : feil(
+                      felt,
+                      plainTekst(
+                          tekster().FELLES.modaler.eøsYtelse.omsorgsperson.leggTilFeilmelding
+                      )
+                  );
         }
     );
 
@@ -450,7 +462,13 @@ export const useEøsForBarn = (
             return avhengigheter?.andreForelderArbeidNorge.verdi === ESvar.NEI ||
                 (avhengigheter?.andreForelderArbeidNorge.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={arbeidsperiodeFeilmelding(false)} />);
+                : feil(
+                      felt,
+                      plainTekst(
+                          tekster().FELLES.modaler.arbeidsperiode.andreForelder.leggTilFeilmelding,
+                          { gjelderUtland: false }
+                      )
+                  );
         }
     );
 
@@ -474,7 +492,13 @@ export const useEøsForBarn = (
             return avhengigheter?.andreForelderPensjonNorge.verdi === ESvar.NEI ||
                 (avhengigheter?.andreForelderPensjonNorge.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={pensjonsperiodeFeilmelding(false)} />);
+                : feil(
+                      felt,
+                      plainTekst(
+                          tekster().FELLES.modaler.pensjonsperiode.andreForelder.leggTilFeilmelding,
+                          { gjelderUtland: false }
+                      )
+                  );
         }
     );
 
@@ -499,7 +523,13 @@ export const useEøsForBarn = (
                 (avhengigheter?.andreForelderAndreUtbetalinger.verdi === ESvar.JA &&
                     felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={'felles.flereytelser.feilmelding'} />);
+                : feil(
+                      felt,
+                      plainTekst(
+                          tekster().FELLES.modaler.andreUtbetalinger.andreForelder
+                              .leggTilFeilmelding
+                      )
+                  );
         }
     );
 
@@ -539,7 +569,12 @@ export const useEøsForBarn = (
                 (avhengigheter?.andreForelderKontantstøtteFraEøs.verdi === ESvar.JA &&
                     felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={'ombarnet.trygdandreperioder.feilmelding'} />);
+                : feil(
+                      felt,
+                      plainTekst(
+                          tekster().FELLES.modaler.eøsYtelse.andreForelder.leggTilFeilmelding
+                      )
+                  );
         }
     );
 
