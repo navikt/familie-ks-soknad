@@ -1,8 +1,10 @@
 import React from 'react';
 
+import { Heading } from '@navikt/ds-react';
+
 import { useApp } from '../../../../context/AppContext';
-import { Typografi } from '../../../../typer/common';
 import { PersonType } from '../../../../typer/personType';
+import { uppercaseFørsteBokstav } from '../../../../utils/visning';
 import { Arbeidsperiode } from '../../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
 import KomponentGruppe from '../../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import { Pensjonsperiode } from '../../../Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
@@ -33,7 +35,11 @@ const EøsForSøker: React.FC = () => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={eoesForSoekerTittel} typografi={Typografi.StegHeadingH1} />}
+            tittel={
+                <Heading level={'1'} size={'xsmall'}>
+                    {uppercaseFørsteBokstav(plainTekst(eoesForSoekerTittel))}
+                </Heading>
+            }
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

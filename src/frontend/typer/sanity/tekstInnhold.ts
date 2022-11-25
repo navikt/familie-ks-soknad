@@ -132,4 +132,5 @@ export interface IFormateringsfeilmeldingerTekstinnhold {
     ugyldigIDnummer: LocaleRecordString;
     ugyldigBeloep: LocaleRecordString;
     ugyldigFoedselsnummer: LocaleRecordString;
+    ugyldigRelasjon: LocaleRecordString;
 }

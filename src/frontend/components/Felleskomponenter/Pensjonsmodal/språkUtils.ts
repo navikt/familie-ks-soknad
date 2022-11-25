@@ -41,11 +41,6 @@ export const mottarPensjonNåFeilmelding = ({
     }
 };
 
-export const pensjonsperiodeFeilmelding = (gjelderUtlandet: boolean): string =>
-    gjelderUtlandet
-        ? 'felles.modal.leggtilpensjonutland.feilmelding'
-        : 'felles.modal.leggtilpensjonnorge.feilmelding';
-
 export const pensjonSpørsmålDokument = (
     gjelderUtlandet: boolean,
     personType: PersonType,

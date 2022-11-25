@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 import { Alpha3Code } from 'i18n-iso-countries';
 
@@ -17,8 +17,6 @@ import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { IEøsForSøkerFeltTyper } from '../../../../typer/skjema';
 import { valideringAdresse } from '../../../../utils/adresse';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
-import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
-import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { idNummerKeyPrefix } from '../idnummerUtils';
 import { EøsSøkerSpørsmålId } from './spørsmål';
 
@@ -37,7 +35,7 @@ export const useEøsForSøker = (): {
     settIdNummerFelter: Dispatch<SetStateAction<Felt<string>[]>>;
     idNummerFelter: Felt<string>[];
 } => {
-    const { søknad, settSøknad, tekster } = useApp();
+    const { søknad, settSøknad, tekster, plainTekst } = useApp();
     const { arbeidNorge, hvorBor, pensjonNorge, utbetalinger } = tekster().EØS_FOR_SØKER;
 
     const teksterForArbeidsperiode: IArbeidsperiodeTekstinnhold =
@@ -76,10 +74,9 @@ export const useEøsForSøker = (): {
                 ? ok(felt)
                 : feil(
                       felt,
-                      <TekstBlock
-                          block={teksterForArbeidsperiode.leggTilFeilmelding}
-                          flettefelter={{ gjelderUtland: false }}
-                      />
+                      plainTekst(teksterForArbeidsperiode.leggTilFeilmelding, {
+                          gjelderUtland: false,
+                      })
                   );
         }
     );
@@ -101,7 +98,7 @@ export const useEøsForSøker = (): {
             return avhengigheter?.pensjonNorgeFelt.verdi === ESvar.NEI ||
                 (avhengigheter?.pensjonNorgeFelt.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <TekstBlock block={pensjonNorge.feilmelding} />);
+                : feil(felt, plainTekst(pensjonNorge.feilmelding));
         }
     );
 
@@ -121,7 +118,12 @@ export const useEøsForSøker = (): {
             return avhengigheter?.andreUtbetalinger.verdi === ESvar.NEI ||
                 (avhengigheter?.andreUtbetalinger.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(felt, <SpråkTekst id={'felles.flereytelser.feilmelding'} />);
+                : feil(
+                      felt,
+                      plainTekst(
+                          tekster().FELLES.modaler.andreUtbetalinger.søker.leggTilFeilmelding
+                      )
+                  );
         }
     );
 
