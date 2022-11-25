@@ -22,6 +22,7 @@ import { IPensjonsperiodeTekstinnhold } from '../typer/sanity/modaler/pensjonspe
 import { IStartPåNyttModal } from '../typer/sanity/modaler/startPåNytt';
 import { IUtenlandsoppholdTekstinnhold } from '../typer/sanity/modaler/utenlandsopphold';
 import {
+    bannerPrefix,
     ESanityFlettefeltverdi,
     ESanitySteg,
     formateringsfeilmeldingerPrefix,
@@ -169,6 +170,9 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
         formateringsfeilmeldinger: struktrerInnholdForFelles(
             dokumenterFiltrertPåPrefix(fellesDokumenter, formateringsfeilmeldingerPrefix)
         ) as IFormateringsfeilmeldingerTekstinnhold,
+        banner: {
+            ...fellesDokumenter.find(dok => dok._type.includes(bannerPrefix)),
+        } as LocaleRecordBlock,
     };
     return tekstInnhold as ITekstinnhold;
 };
