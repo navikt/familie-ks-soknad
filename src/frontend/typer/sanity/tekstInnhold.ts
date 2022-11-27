@@ -134,4 +134,5 @@ export interface IFormateringsfeilmeldingerTekstinnhold {
     ugyldigBeloep: LocaleRecordString;
     ugyldigFoedselsnummer: LocaleRecordString;
     ugyldigRelasjon: LocaleRecordString;
+    forLangAdresse: LocaleRecordString;
 }

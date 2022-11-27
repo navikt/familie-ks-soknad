@@ -46,9 +46,7 @@ export const genererAdresseVisning = (søker: ISøker) => {
     );
 };
 
-export const valideringAdresse = (felt: FeltState<string>) => {
+export const valideringAdresse = (felt: FeltState<string>, feilmelding: string) => {
     const verdi = trimWhiteSpace(felt.verdi);
-    return verdi.length < 100
-        ? ok(felt)
-        : feil(felt, <SpråkTekst id={'felles.fulladresse.format.feilmelding'} />);
+    return verdi.length < 100 ? ok(felt) : feil(felt, feilmelding);
 };
