@@ -71,7 +71,7 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
 
                 <OppsummeringFelt
                     spørsmålstekst={omDegTekster.adresse}
-                    children={genererAdresseVisning(søknad.søker)}
+                    children={genererAdresseVisning(søknad.søker, omDegTekster, plainTekst)}
                 />
                 {søknad.søker.borPåRegistrertAdresse.svar && (
                     <OppsummeringFelt

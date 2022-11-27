@@ -64,7 +64,7 @@ export const Personopplysninger: React.FC = () => {
 
             <Informasjonsbolk>
                 <Label>{plainTekst(adresse)}</Label>
-                {genererAdresseVisning(søker)}
+                {genererAdresseVisning(søker, tekster().OM_DEG, plainTekst)}
             </Informasjonsbolk>
         </>
     );
