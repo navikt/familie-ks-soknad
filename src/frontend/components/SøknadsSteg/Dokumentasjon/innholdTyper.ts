@@ -1,4 +1,4 @@
-import { LocaleRecordBlock } from '../../../typer/common';
+import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
 import { BeskrivelseSanityApiNavn, TittelSanityApiNavn } from '../../../typer/dokumentasjon';
 
 export type IDokumentasjonnTekstinnhold = {
@@ -10,6 +10,17 @@ export type IDokumentasjonnTekstinnhold = {
     nudgeDokumentasjon: LocaleRecordBlock;
     forLangTidDokumentasjon: LocaleRecordBlock;
     dokumentasjonInfo: LocaleRecordBlock;
+    slikTarDuEtGodtBilde: LocaleRecordBlock;
+    etterDuHarTattBildet: LocaleRecordBlock;
+    braOgDaarligeTittel: LocaleRecordBlock;
+    merHjelpLenke: LocaleRecordBlock;
+    bra: LocaleRecordBlock;
+    daarlig: LocaleRecordBlock;
+    ikkeTattOvenfra: LocaleRecordBlock;
+    ikkeRiktigRetning: LocaleRecordBlock;
+    fyllerHeleBildet: LocaleRecordBlock;
+    skyggePaaDokumentet: LocaleRecordBlock;
+    slikTarDuEtGodtBildeExpand: LocaleRecordString;
 } & {
     [TittelSanityApiNavn.avtaleOmDeltBostedTittel]: LocaleRecordBlock;
     [TittelSanityApiNavn.annenDokumentasjon]: LocaleRecordBlock;
