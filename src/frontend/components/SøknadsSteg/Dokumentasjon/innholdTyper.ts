@@ -1,7 +1,7 @@
 import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
 import { BeskrivelseSanityApiNavn, TittelSanityApiNavn } from '../../../typer/dokumentasjon';
 
-export type IDokumentasjonnTekstinnhold = {
+export type IDokumentasjonTekstinnhold = {
     dokumentasjonTittel: LocaleRecordBlock;
     sendtInnTidligere: LocaleRecordBlock;
     vedleggXavY: LocaleRecordBlock;
@@ -21,6 +21,12 @@ export type IDokumentasjonnTekstinnhold = {
     fyllerHeleBildet: LocaleRecordBlock;
     skyggePaaDokumentet: LocaleRecordBlock;
     slikTarDuEtGodtBildeExpand: LocaleRecordString;
+    feilFiltype: LocaleRecordString;
+    fil: LocaleRecordString;
+    bildetForLite: LocaleRecordString;
+    forStor: LocaleRecordString;
+    sendSoeknad: LocaleRecordString;
+    noeGikkFeil: LocaleRecordString;
 } & {
     [TittelSanityApiNavn.avtaleOmDeltBostedTittel]: LocaleRecordBlock;
     [TittelSanityApiNavn.annenDokumentasjon]: LocaleRecordBlock;

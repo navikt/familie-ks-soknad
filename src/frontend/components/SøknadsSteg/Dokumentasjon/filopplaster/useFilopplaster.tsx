@@ -1,13 +1,13 @@
-import React, { ReactNode, useCallback, useState } from 'react';
+import { ReactNode, useCallback, useState } from 'react';
 
 import axios from 'axios';
 
+import { useApp } from '../../../../context/AppContext';
 import { useLastRessurserContext } from '../../../../context/LastRessurserContext';
 import Miljø from '../../../../Miljø';
+import { LocaleRecordString } from '../../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
-import { formaterFilstørrelse } from '../../../../utils/dokumentasjon';
-import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 import { konverter } from './konverteringService';
 
 interface OpplastetVedlegg {
@@ -26,8 +26,11 @@ export const useFilopplaster = (
     ) => void
 ) => {
     const { wrapMedSystemetLaster } = useLastRessurserContext();
+    const { tekster, plainTekst } = useApp();
     const [feilmeldinger, settFeilmeldinger] = useState<ReactNode[]>([]);
     const [åpenModal, settÅpenModal] = useState<boolean>(false);
+
+    const dokumentasjonTekster = tekster().DOKUMENTASJON;
 
     const datoTilStreng = (date: Date): string => {
         return date.toISOString();
@@ -39,16 +42,16 @@ export const useFilopplaster = (
             const feilmeldingsliste: ReactNode[] = [];
             const nyeVedlegg: IVedlegg[] = [];
 
-            const håndterFeilType = (fil: File) => {
+            const pushFeilmelding = (feilmelding: LocaleRecordString, fil: File) => {
                 feilmeldingsliste.push(
-                    <SpråkTekst
-                        id={'dokumentasjon.last-opp-dokumentasjon.feilmeldingtype'}
-                        values={{ filnavn: fil.name }}
-                    />
+                    `${plainTekst(feilmelding)} ${plainTekst(dokumentasjonTekster.fil)} ${fil.name}`
                 );
                 settFeilmeldinger(feilmeldingsliste);
                 settÅpenModal(true);
             };
+
+            const håndterFeilType = (fil: File) =>
+                pushFeilmelding(dokumentasjonTekster.feilFiltype, fil);
 
             await Promise.all(
                 filer.map((fil: File) =>
@@ -68,16 +71,7 @@ export const useFilopplaster = (
                         }
 
                         if (maxFilstørrelse && fil.size > maxFilstørrelse) {
-                            const maks = formaterFilstørrelse(maxFilstørrelse);
-                            feilmeldingsliste.push(
-                                <SpråkTekst
-                                    id={'dokumentasjon.last-opp-dokumentasjon.feilmeldingstor'}
-                                    values={{ maks, filnavn: fil.name }}
-                                />
-                            );
-
-                            settFeilmeldinger(feilmeldingsliste);
-                            settÅpenModal(true);
+                            pushFeilmelding(dokumentasjonTekster.forStor, fil);
                             return;
                         }
 
@@ -102,17 +96,7 @@ export const useFilopplaster = (
                                 });
                             })
                             .catch(_error => {
-                                feilmeldingsliste.push(
-                                    <SpråkTekst
-                                        id={
-                                            'dokumentasjon.last-opp-dokumentasjon.feilmeldinggenerisk'
-                                        }
-                                        values={{ filnavn: fil.name }}
-                                    />
-                                );
-
-                                settFeilmeldinger(feilmeldingsliste);
-                                settÅpenModal(true);
+                                pushFeilmelding(dokumentasjonTekster.noeGikkFeil, fil);
                             });
                     })
                 )
