@@ -126,6 +126,7 @@ export interface INavigasjonTekstinnhold {
     startKnapp: LocaleRecordString;
     fortsettKnapp: LocaleRecordString;
     startPaaNyttKnapp: LocaleRecordString;
+    duMaaRetteOppFoelgende: LocaleRecordString;
 }
 
 export interface IFormateringsfeilmeldingerTekstinnhold {
