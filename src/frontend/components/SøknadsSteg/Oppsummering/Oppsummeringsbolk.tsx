@@ -44,7 +44,7 @@ const Oppsummeringsbolk: React.FC<Props> = ({
     barn,
 }) => {
     const { hentStegNummer } = useSteg();
-    const { søknad, plainTekst } = useApp();
+    const { søknad, plainTekst, tekster } = useApp();
     const { validerAlleSynligeFelter, valideringErOk, skjema } = skjemaHook;
     const [visFeil, settVisFeil] = useState(false);
 
@@ -87,7 +87,9 @@ const Oppsummeringsbolk: React.FC<Props> = ({
                         />
                     )}
                     {steg && !visFeil && (
-                        <AppLenke steg={steg} språkTekstId={'oppsummering.endresvar.lenketekst'} />
+                        <AppLenke steg={steg}>
+                            {plainTekst(tekster().OPPSUMMERING.endreSvarLenkeTekst)}
+                        </AppLenke>
                     )}
                 </StyledAccordionContent>
             </Accordion.Item>
