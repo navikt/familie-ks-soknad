@@ -39,21 +39,6 @@ describe('OmDeg', () => {
         expect(container.getElementsByClassName('navds-alert')).toHaveLength(2);
     });
 
-    test('Viser adressesperre-melding', async () => {
-        spyOnUseApp({
-            søker: mockDeep<ISøker>({
-                adresse: undefined,
-                adressebeskyttelse: true,
-                statsborgerskap: [{ landkode: 'NOR' }],
-            }),
-        });
-        const { findByText } = render(<TestKomponent />);
-
-        expect(
-            await findByText(/omdeg.personopplysninger.adressesperre.alert/)
-        ).toBeInTheDocument();
-    });
-
     test('Kan gå videre i søknad ved adresse som er ukjent, får ikke spm om bosted, men opphold i norge', async () => {
         spyOnUseApp({
             søker: mockDeep<ISøker>({

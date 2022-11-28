@@ -45,46 +45,4 @@ describe('Personopplysninger', () => {
         expect(getByText(/Testgata/)).toBeInTheDocument();
         expect(getByText(/Oslo/)).toBeInTheDocument();
     });
-
-    test('Kan rendre med tom adresse', () => {
-        const søker: Partial<ISøker> = {
-            adresse: undefined,
-            navn: 'Test Testdottir',
-            statsborgerskap: [{ landkode: 'NOR' }],
-            ident: '12345678901',
-            barn: [],
-            sivilstand: { type: mockedSivilstand },
-        };
-
-        spyOnUseApp({ søker });
-
-        const { queryByText } = render(
-            <TestProvidere>
-                <Personopplysninger />
-            </TestProvidere>
-        );
-        expect(queryByText('12345678901')).toBeInTheDocument();
-        expect(queryByText('omdeg.personopplysninger.ikke-registrert.alert')).toBeInTheDocument();
-    });
-
-    test('Viser riktig info og stopper søknad ved adressebeskyttelse', () => {
-        const søker: Partial<ISøker> = {
-            adresse: undefined,
-            navn: 'Test Testdottir',
-            statsborgerskap: [{ landkode: 'NOR' }],
-            ident: '12345678901',
-            barn: [],
-            sivilstand: { type: mockedSivilstand },
-            adressebeskyttelse: true,
-        };
-
-        spyOnUseApp({ søker });
-
-        const { getByText } = render(
-            <TestProvidere>
-                <Personopplysninger />
-            </TestProvidere>
-        );
-        expect(getByText(/omdeg\.personopplysninger\.adressesperre\.alert/)).toBeInTheDocument();
-    });
 });
