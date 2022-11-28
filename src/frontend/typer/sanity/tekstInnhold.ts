@@ -127,6 +127,10 @@ export interface INavigasjonTekstinnhold {
     fortsettKnapp: LocaleRecordString;
     startPaaNyttKnapp: LocaleRecordString;
     duMaaRetteOppFoelgende: LocaleRecordString;
+    avbrytSoeknad: LocaleRecordString;
+    tilbakeKnapp: LocaleRecordString;
+    gaaVidereKnapp: LocaleRecordString;
+    sendSoeknadKnapp: LocaleRecordString;
 }
 
 export interface IFormateringsfeilmeldingerTekstinnhold {
