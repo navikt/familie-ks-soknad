@@ -140,4 +140,8 @@ export interface IFormateringsfeilmeldingerTekstinnhold {
     ugyldigFoedselsnummer: LocaleRecordString;
     ugyldigRelasjon: LocaleRecordString;
     forLangAdresse: LocaleRecordString;
+    ugyldigDato: LocaleRecordString;
+    datoKanIkkeVaereFremITid: LocaleRecordString;
+    datoKanIkkeVaereDagensDatoEllerFremITid: LocaleRecordString;
+    periodeAvsluttesForTidlig: LocaleRecordString;
 }
