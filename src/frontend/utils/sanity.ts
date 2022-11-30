@@ -27,6 +27,7 @@ import {
     ESanitySteg,
     formateringsfeilmeldingerPrefix,
     frittståendeOrdPrefix,
+    kanIkkeBrukeSoeknadPrefix,
     modalPrefix,
     navigasjonPrefix,
     SanityDokument,
@@ -36,6 +37,7 @@ import {
     IFellesTekstInnhold,
     IFormateringsfeilmeldingerTekstinnhold,
     IFrittståendeOrdTekstinnhold,
+    IKanIkkeBrukeSoeknadTekstinnhold,
     IModalerTekstinnhold,
     INavigasjonTekstinnhold,
     ITekstinnhold,
@@ -178,6 +180,9 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
         vedlikeholdsarbeid: struktrerInnholdForFelles(
             dokumenterFiltrertPåPrefix(fellesDokumenter, vedlikeholdsarbeidPrefix)
         ) as IVedlikeholdsarbeidTekstinnhold,
+        kanIkkeBrukeSoeknad: struktrerInnholdForFelles(
+            dokumenterFiltrertPåPrefix(fellesDokumenter, kanIkkeBrukeSoeknadPrefix)
+        ) as IKanIkkeBrukeSoeknadTekstinnhold,
     };
     return tekstInnhold as ITekstinnhold;
 };

@@ -1,13 +1,16 @@
 import React from 'react';
 
+import { useApp } from '../../../context/AppContext';
 import AlertStripe from '../AlertStripe/AlertStripe';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 
 export const Feilside: React.FC = () => {
+    const { tekster } = useApp();
+    const { enFeilHarOppstaatt } = tekster().FELLES.kanIkkeBrukeSoeknad;
     return (
         <div>
             <AlertStripe variant="error" aria-live={'polite'}>
-                <SpråkTekst id={'felles.crashmelding'} />
+                <TekstBlock block={enFeilHarOppstaatt} />
             </AlertStripe>
         </div>
     );

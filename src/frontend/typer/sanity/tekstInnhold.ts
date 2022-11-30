@@ -64,6 +64,7 @@ export interface IFellesTekstInnhold {
     formateringsfeilmeldinger: IFormateringsfeilmeldingerTekstinnhold;
     banner: LocaleRecordBlock;
     vedlikeholdsarbeid: IVedlikeholdsarbeidTekstinnhold;
+    kanIkkeBrukeSoeknad: IKanIkkeBrukeSoeknadTekstinnhold;
 }
 
 export interface IModalerTekstinnhold {
@@ -151,4 +152,9 @@ export interface IVedlikeholdsarbeidTekstinnhold {
     vedlikeholdTittel: LocaleRecordBlock;
     vedlikeholdBroedtekst: LocaleRecordBlock;
     vedlikeholdVeileder: LocaleRecordBlock;
+}
+
+export interface IKanIkkeBrukeSoeknadTekstinnhold {
+    enFeilHarOppstaatt: LocaleRecordBlock;
+    brukPDFKontantstoette: LocaleRecordBlock;
 }
