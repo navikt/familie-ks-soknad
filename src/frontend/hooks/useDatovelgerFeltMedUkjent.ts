@@ -30,7 +30,7 @@ const useDatovelgerFeltMedUkjent = ({
     customStartdatoFeilmelding?: string;
     avhengigheter?: Avhengigheter;
 }) => {
-    const { plainTekst } = useApp();
+    const { plainTekst, tekster } = useApp();
     const datoFelt = useFelt<ISODateString>({
         feltId: feltId,
         verdi: initiellVerdi,
@@ -45,12 +45,13 @@ const useDatovelgerFeltMedUkjent = ({
 
             const startdatoAvgrensning = avhengigheter && avhengigheter.startdatoAvgrensning;
             const sluttdatoAvgrensning = avhengigheter && avhengigheter.sluttdatoAvgrensning;
-            const feilmelding =
-                avhengigheter && plainTekst(avhengigheter.feilmelding as LocaleRecordBlock);
+            const feilmelding = avhengigheter && (avhengigheter.feilmelding as LocaleRecordBlock);
             const customStartdatoFeilmelding =
                 avhengigheter && avhengigheter.customStartdatoFeilmelding;
 
             return validerDato(
+                tekster().FELLES.formateringsfeilmeldinger,
+                plainTekst,
                 felt,
                 feilmelding,
                 startdatoAvgrensning,

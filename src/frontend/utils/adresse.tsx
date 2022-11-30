@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { Normaltekst } from 'nav-frontend-typografi';
-
+import { BodyShort } from '@navikt/ds-react';
 import { feil, FeltState, ok } from '@navikt/familie-skjema';
 
-import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
-import { IAdresse } from '../typer/kontrakt/generelle';
+import { IOmDegTekstinnhold } from '../components/SøknadsSteg/OmDeg/innholdTyper';
+import { IAdresse, PlainTekst } from '../typer/kontrakt/generelle';
 import { ISøker } from '../typer/person';
 import { trimWhiteSpace } from './hjelpefunksjoner';
 import { uppercaseKunFørsteBokstav } from './visning';
@@ -26,29 +25,29 @@ export const hentAdressefelterSortert = (adresse: IAdresse): string[] => {
         .filter(value => value);
 };
 
-export const genererAdresseVisning = (søker: ISøker) => {
+export const genererAdresseVisning = (
+    søker: ISøker,
+    tekster: IOmDegTekstinnhold,
+    plainTekst: PlainTekst
+) => {
     if (søker.adresse) {
         return hentAdressefelterSortert(søker.adresse).map((adresseFelt, index) => (
-            <Normaltekst key={index}>{adresseFelt}</Normaltekst>
+            <BodyShort key={index}>{adresseFelt}</BodyShort>
         ));
     }
 
     return (
-        <Normaltekst>
-            <SpråkTekst
-                id={
-                    søker.adressebeskyttelse
-                        ? 'omdeg.personopplysninger.adressesperre.alert'
-                        : 'omdeg.personopplysninger.ikke-registrert.alert'
-                }
-            />
-        </Normaltekst>
+        <BodyShort>
+            {plainTekst(
+                søker.adressebeskyttelse
+                    ? tekster.soekerAdressesperre
+                    : tekster.ikkeRegistrertAdresse
+            )}
+        </BodyShort>
     );
 };
 
-export const valideringAdresse = (felt: FeltState<string>) => {
+export const valideringAdresse = (felt: FeltState<string>, feilmelding: string) => {
     const verdi = trimWhiteSpace(felt.verdi);
-    return verdi.length < 100
-        ? ok(felt)
-        : feil(felt, <SpråkTekst id={'felles.fulladresse.format.feilmelding'} />);
+    return verdi.length < 100 ? ok(felt) : feil(felt, feilmelding);
 };

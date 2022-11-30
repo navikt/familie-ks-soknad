@@ -23,7 +23,7 @@ const useDatovelgerFeltMedJaNeiAvhengighet = ({
     sluttdatoAvgrensning?: ISODateString;
     startdatoAvgrensning?: ISODateString;
 }) => {
-    const { plainTekst } = useApp();
+    const { plainTekst, tekster } = useApp();
     const skalFeltetVises = jaNeiSpmVerdi => jaNeiSpmVerdi === avhengigSvarCondition;
 
     const dato = useFelt<ISODateString>({
@@ -34,8 +34,10 @@ const useDatovelgerFeltMedJaNeiAvhengighet = ({
             const sluttdatoAvgrensning = avhengigheter && avhengigheter.sluttdatoAvgrensning;
 
             return validerDato(
+                tekster().FELLES.formateringsfeilmeldinger,
+                plainTekst,
                 felt,
-                plainTekst(feilmelding),
+                feilmelding,
                 startdatoAvgrensning,
                 sluttdatoAvgrensning
             );

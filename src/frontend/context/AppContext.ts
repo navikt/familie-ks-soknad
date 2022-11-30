@@ -14,7 +14,7 @@ import {
 } from '@navikt/familie-typer';
 
 import Miljø, { basePath } from '../Miljø';
-import { FlettefeltVerdier, TilRestLocaleRecord } from '../typer/kontrakt/generelle';
+import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { IMellomlagretKontantstøtte } from '../typer/mellomlager';
 import { ISøkerRespons } from '../typer/person';
@@ -283,7 +283,7 @@ const [AppProvider, useApp] = createUseContext(() => {
         }
     };
 
-    const plainTekst = plainTekstHof(flettefeltTilTekst, valgtLocale);
+    const plainTekst: PlainTekst = plainTekstHof(flettefeltTilTekst, valgtLocale);
 
     const tilRestLocaleRecord: TilRestLocaleRecord = (
         sanityTekst,

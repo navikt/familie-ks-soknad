@@ -8,9 +8,9 @@ import { Attachment, DeleteFilled } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
 import { NavdsSemanticColorDivider } from '@navikt/ds-tokens/dist/tokens';
 
+import { useApp } from '../../../../context/AppContext';
 import { IVedlegg } from '../../../../typer/dokumentasjon';
 import { formaterFilstørrelse } from '../../../../utils/dokumentasjon';
-import SpråkTekst from '../../../Felleskomponenter/SpråkTekst/SpråkTekst';
 
 interface Props {
     filliste: IVedlegg[];
@@ -42,6 +42,7 @@ const StyledAttachment = styled(Attachment)`
 `;
 
 const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
+    const { tekster, plainTekst } = useApp();
     return (
         <FilListe>
             {filliste.map((fil: IVedlegg, index: number) => {
@@ -64,7 +65,7 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
                             icon={<DeleteFilled focusable={false} />}
                             iconPosition={'right'}
                         >
-                            <SpråkTekst id={'felles.slett'} />
+                            {plainTekst(tekster().DOKUMENTASJON.slett)}
                         </Button>
                     </FilRad>
                 );

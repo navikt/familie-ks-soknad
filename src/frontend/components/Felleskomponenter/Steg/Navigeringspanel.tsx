@@ -9,7 +9,6 @@ import { useApp } from '../../../context/AppContext';
 import { useSteg } from '../../../context/StegContext';
 import { device } from '../../../Theme';
 import { RouteEnum } from '../../../typer/routes';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
 
 const Container = styled.nav`
     padding: 2rem;
@@ -55,7 +54,10 @@ const Navigeringspanel: React.FC<{
 }> = ({ onAvbrytCallback, onTilbakeCallback, valideringErOk }) => {
     const { hentNesteSteg } = useSteg();
     const nesteSteg = hentNesteSteg();
-    const { innsendingStatus } = useApp();
+    const { innsendingStatus, tekster, plainTekst } = useApp();
+
+    const { avbrytSoeknad, tilbakeKnapp, gaaVidereKnapp, sendSoeknadKnapp } =
+        tekster().FELLES.navigasjon;
 
     const hentKnappetype = (): Knappetype => {
         if (valideringErOk) {
@@ -74,7 +76,7 @@ const Navigeringspanel: React.FC<{
                 placeself={'end'}
                 gridarea={'tilbake'}
             >
-                <SpråkTekst id={'felles.navigasjon.tilbake'} />
+                {plainTekst(tilbakeKnapp)}
             </StyledButton>
             <StyledButton
                 type={'submit'}
@@ -84,13 +86,9 @@ const Navigeringspanel: React.FC<{
                 loading={innsendingStatus.status === RessursStatus.HENTER}
                 data-testid={'gå-videre-knapp'}
             >
-                <SpråkTekst
-                    id={
-                        nesteSteg.route === RouteEnum.Kvittering
-                            ? 'dokumentasjon.send-søknad.knapp'
-                            : 'felles.navigasjon.gå-videre'
-                    }
-                />
+                {plainTekst(
+                    nesteSteg.route === RouteEnum.Kvittering ? sendSoeknadKnapp : gaaVidereKnapp
+                )}
             </StyledButton>
 
             <StyledButton
@@ -101,7 +99,7 @@ const Navigeringspanel: React.FC<{
                 placeself={'center'}
                 margintop={'0'}
             >
-                <SpråkTekst id={'felles.navigasjon.avbryt'} />
+                {plainTekst(avbrytSoeknad)}
             </StyledButton>
         </Container>
     );

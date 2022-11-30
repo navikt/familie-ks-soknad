@@ -1,5 +1,5 @@
 import { IDinLivssituasjonTekstinnhold } from '../../components/SøknadsSteg/DinLivssituasjon/innholdTyper';
-import { IDokumentasjonnTekstinnhold } from '../../components/SøknadsSteg/Dokumentasjon/innholdTyper';
+import { IDokumentasjonTekstinnhold } from '../../components/SøknadsSteg/Dokumentasjon/innholdTyper';
 import { IEøsForBarnTekstinnhold } from '../../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
 import { IEøsForSøkerTekstinnhold } from '../../components/SøknadsSteg/EøsSteg/Søker/innholdTyper';
 import { IForsideTekstinnhold } from '../../components/SøknadsSteg/Forside/innholdTyper';
@@ -52,7 +52,7 @@ export interface ITekstinnhold {
     [ESanitySteg.EØS_FOR_SØKER]: IEøsForSøkerTekstinnhold;
     [ESanitySteg.EØS_FOR_BARN]: IEøsForBarnTekstinnhold;
     [ESanitySteg.OPPSUMMERING]: IOppsummeringTekstinnhold;
-    [ESanitySteg.DOKUMENTASJON]: IDokumentasjonnTekstinnhold;
+    [ESanitySteg.DOKUMENTASJON]: IDokumentasjonTekstinnhold;
     [ESanitySteg.KVITTERING]: IKvitteringTekstinnhold;
     [ESanitySteg.FELLES]: IFellesTekstInnhold;
 }
@@ -126,6 +126,11 @@ export interface INavigasjonTekstinnhold {
     startKnapp: LocaleRecordString;
     fortsettKnapp: LocaleRecordString;
     startPaaNyttKnapp: LocaleRecordString;
+    duMaaRetteOppFoelgende: LocaleRecordString;
+    avbrytSoeknad: LocaleRecordString;
+    tilbakeKnapp: LocaleRecordString;
+    gaaVidereKnapp: LocaleRecordString;
+    sendSoeknadKnapp: LocaleRecordString;
 }
 
 export interface IFormateringsfeilmeldingerTekstinnhold {
@@ -134,4 +139,9 @@ export interface IFormateringsfeilmeldingerTekstinnhold {
     ugyldigBeloep: LocaleRecordString;
     ugyldigFoedselsnummer: LocaleRecordString;
     ugyldigRelasjon: LocaleRecordString;
+    forLangAdresse: LocaleRecordString;
+    ugyldigDato: LocaleRecordString;
+    datoKanIkkeVaereFremITid: LocaleRecordString;
+    datoKanIkkeVaereDagensDatoEllerFremITid: LocaleRecordString;
+    periodeAvsluttesForTidlig: LocaleRecordString;
 }

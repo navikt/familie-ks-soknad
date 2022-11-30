@@ -1,13 +1,10 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 
-import Lenke from 'nav-frontend-lenker';
-import { Undertittel } from 'nav-frontend-typografi';
-
+import { useApp } from '../../../context/AppContext';
 import ExpandableInfo from '../expandableContent/ExpandableInfo';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
+import TekstBlock from '../TekstBlock';
 import PictureScanningExample from './PictureScanningExample';
 import ScanningIcon from './ScanningIcon';
 
@@ -22,10 +19,6 @@ const Container = styled.div`
             margin-bottom: 0.5rem;
         }
     }
-`;
-
-const StyledUndertittel = styled(Undertittel)`
-    padding-bottom: 1rem;
 `;
 
 const EksempelBilderWrapper = styled.div`
@@ -50,81 +43,52 @@ const BildeContainer = styled.div`
 `;
 
 const PictureScanningGuide = () => {
-    const { formatMessage } = useIntl();
+    const { tekster, plainTekst } = useApp();
+    const dokumentasjonTekster = tekster().DOKUMENTASJON;
     const svgIconHeight = 100;
     return (
-        <ExpandableInfo title={formatMessage({ id: 'psg.expandable.tittel' })}>
+        <ExpandableInfo title={plainTekst(dokumentasjonTekster.slikTarDuEtGodtBildeExpand)}>
             <Container>
-                <StyledUndertittel>
-                    <SpråkTekst id="psg.section1.tittel" />
-                </StyledUndertittel>
-                <ul>
-                    <li>
-                        <SpråkTekst id="psg.section1.liste.1" />
-                    </li>
-                    <li>
-                        <SpråkTekst id="psg.section1.liste.2" />
-                    </li>
-                    <li>
-                        <SpråkTekst id="psg.section1.liste.3" />
-                    </li>
-                </ul>
+                <TekstBlock block={dokumentasjonTekster.slikTarDuEtGodtBilde} />
+                <TekstBlock block={dokumentasjonTekster.etterDuHarTattBildet} />
 
-                <StyledUndertittel tag="h3">
-                    <SpråkTekst id="psg.section2.tittel" />
-                </StyledUndertittel>
-                <ul>
-                    <li>
-                        <SpråkTekst id="psg.section2.liste.1" />
-                    </li>
-                    <li>
-                        <SpråkTekst id="psg.section2.liste.2" />
-                    </li>
-                    <li>
-                        <SpråkTekst id="psg.section2.liste.3" />
-                    </li>
-                </ul>
                 <div>
-                    <StyledUndertittel tag="h3">
-                        <SpråkTekst id="psg.icon.heading" />
-                    </StyledUndertittel>
+                    <TekstBlock block={dokumentasjonTekster.braOgDaarligeTittel} />
                     <EksempelBilderWrapper>
                         <BildeContainer>
                             <PictureScanningExample
                                 image={<ScanningIcon status="good" height={svgIconHeight} />}
                                 status="suksess"
-                                statusText={formatMessage({ id: 'psg.good' })}
-                                description={formatMessage({ id: 'psg.icon.label.good' })}
+                                statusText={plainTekst(dokumentasjonTekster.bra)}
+                                description={plainTekst(dokumentasjonTekster.fyllerHeleBildet)}
                             />
                         </BildeContainer>
                         <BildeContainer>
                             <PictureScanningExample
                                 image={<ScanningIcon status="keystone" height={svgIconHeight} />}
                                 status="feil"
-                                statusText={formatMessage({ id: 'psg.bad' })}
-                                description={formatMessage({ id: 'psg.icon.label.keystone' })}
+                                statusText={plainTekst(dokumentasjonTekster.daarlig)}
+                                description={plainTekst(dokumentasjonTekster.ikkeTattOvenfra)}
                             />
                         </BildeContainer>
                         <BildeContainer>
                             <PictureScanningExample
                                 image={<ScanningIcon status="horizontal" height={svgIconHeight} />}
                                 status="feil"
-                                statusText={formatMessage({ id: 'psg.bad' })}
-                                description={formatMessage({ id: 'psg.icon.label.horizontal' })}
+                                statusText={plainTekst(dokumentasjonTekster.daarlig)}
+                                description={plainTekst(dokumentasjonTekster.ikkeRiktigRetning)}
                             />
                         </BildeContainer>
                         <BildeContainer>
                             <PictureScanningExample
                                 image={<ScanningIcon status="shadow" height={svgIconHeight} />}
                                 status="feil"
-                                statusText={formatMessage({ id: 'psg.bad' })}
-                                description={formatMessage({ id: 'psg.icon.label.shadow' })}
+                                statusText={plainTekst(dokumentasjonTekster.daarlig)}
+                                description={plainTekst(dokumentasjonTekster.skyggePaaDokumentet)}
                             />
                         </BildeContainer>
                     </EksempelBilderWrapper>
-                    <Lenke target="_blank" href={formatMessage({ id: 'psg.lenkepanel.url' })}>
-                        <SpråkTekst id="psg.lenkepanel.text" />
-                    </Lenke>
+                    <TekstBlock block={dokumentasjonTekster.merHjelpLenke} />
                 </div>
             </Container>
         </ExpandableInfo>
