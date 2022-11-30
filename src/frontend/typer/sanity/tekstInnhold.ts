@@ -65,6 +65,7 @@ export interface IFellesTekstInnhold {
     banner: LocaleRecordBlock;
     vedlikeholdsarbeid: IVedlikeholdsarbeidTekstinnhold;
     kanIkkeBrukeSoeknad: IKanIkkeBrukeSoeknadTekstinnhold;
+    teksterForDatofelt: ITeksterForDatofeltTekstInnhold;
 }
 
 export interface IModalerTekstinnhold {
@@ -146,6 +147,7 @@ export interface IFormateringsfeilmeldingerTekstinnhold {
     datoKanIkkeVaereFremITid: LocaleRecordString;
     datoKanIkkeVaereDagensDatoEllerFremITid: LocaleRecordString;
     periodeAvsluttesForTidlig: LocaleRecordString;
+    formatHjelpetekst: LocaleRecordString;
 }
 
 export interface IVedlikeholdsarbeidTekstinnhold {
@@ -157,4 +159,9 @@ export interface IVedlikeholdsarbeidTekstinnhold {
 export interface IKanIkkeBrukeSoeknadTekstinnhold {
     enFeilHarOppstaatt: LocaleRecordBlock;
     brukPDFKontantstoette: LocaleRecordBlock;
+}
+
+export interface ITeksterForDatofeltTekstInnhold {
+    formatHjelpetekst: LocaleRecordString;
+    formatPlaceholder: LocaleRecordString;
 }

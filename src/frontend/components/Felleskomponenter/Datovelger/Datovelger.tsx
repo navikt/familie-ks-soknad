@@ -1,12 +1,12 @@
 import React, { ReactNode, useEffect } from 'react';
 
 import dayjs from 'dayjs';
-import { useIntl } from 'react-intl';
 import { css } from 'styled-components';
 import styled from 'styled-components';
 
-import { Feilmelding, Normaltekst } from 'nav-frontend-typografi';
+import { Feilmelding } from 'nav-frontend-typografi';
 
+import { BodyShort } from '@navikt/ds-react';
 import { NavdsGlobalColorRed500 } from '@navikt/ds-tokens/dist/tokens';
 import {
     DatepickerLimitations,
@@ -16,9 +16,9 @@ import {
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
+import { useApp } from '../../../context/AppContext';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { dagensDato } from '../../../utils/dato';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
 
 interface DatoVelgerProps {
     felt: Felt<ISODateString>;
@@ -61,8 +61,9 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     dynamisk = false,
     calendarPosition = '',
 }) => {
-    const { formatMessage } = useIntl();
     const [valgtLocale] = useSprakContext();
+    const { tekster, plainTekst } = useApp();
+    const { formatHjelpetekst, formatPlaceholder } = tekster().FELLES.teksterForDatofelt;
 
     const hentBegrensninger = () => {
         const limitations: DatepickerLimitations = {};
@@ -89,14 +90,10 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     return felt.erSynlig ? (
         <div aria-live={dynamisk ? 'polite' : 'off'}>
             <StyledFamilieDatovelger
-                description={
-                    <Normaltekst>
-                        <SpråkTekst id={'felles.velg-dato.hjelpetekst'} />
-                    </Normaltekst>
-                }
+                description={<BodyShort>{plainTekst(formatHjelpetekst)}</BodyShort>}
                 allowInvalidDateSelection={false}
                 limitations={hentBegrensninger()}
-                placeholder={formatMessage({ id: 'felles.velg-dato.placeholder' })}
+                placeholder={plainTekst(formatPlaceholder)}
                 valgtDato={disabled ? '' : felt.verdi}
                 label={label}
                 {...felt.hentNavBaseSkjemaProps(skjema.visFeilmeldinger)}

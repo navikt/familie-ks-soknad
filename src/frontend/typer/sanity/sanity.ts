@@ -44,6 +44,7 @@ export const formateringsfeilmeldingerPrefix = 'FORMATERINGSFEILMELDINGER';
 export const bannerPrefix = 'BANNER';
 export const vedlikeholdsarbeidPrefix = 'VEDLIKEHOLDSARBEID';
 export const kanIkkeBrukeSoeknadPrefix = 'KAN_IKKE_BRUKE_SOKNAD';
+export const teksterForDatofeltPrefix = 'TEKSTER_FOR_DATO';
 
 export enum ESanityFlettefeltverdi {
     BARN_NAVN = 'BARN_NAVN',
