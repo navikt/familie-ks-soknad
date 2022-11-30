@@ -63,6 +63,7 @@ export interface IFellesTekstInnhold {
     navigasjon: INavigasjonTekstinnhold;
     formateringsfeilmeldinger: IFormateringsfeilmeldingerTekstinnhold;
     banner: LocaleRecordBlock;
+    vedlikeholdsarbeid: IVedlikeholdsarbeidTekstinnhold;
 }
 
 export interface IModalerTekstinnhold {
@@ -144,4 +145,10 @@ export interface IFormateringsfeilmeldingerTekstinnhold {
     datoKanIkkeVaereFremITid: LocaleRecordString;
     datoKanIkkeVaereDagensDatoEllerFremITid: LocaleRecordString;
     periodeAvsluttesForTidlig: LocaleRecordString;
+}
+
+export interface IVedlikeholdsarbeidTekstinnhold {
+    vedlikeholdTittel: LocaleRecordBlock;
+    vedlikeholdBroedtekst: LocaleRecordBlock;
+    vedlikeholdVeileder: LocaleRecordBlock;
 }

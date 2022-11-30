@@ -42,6 +42,7 @@ export const modalPrefix = 'MODAL';
 export const navigasjonPrefix = 'NAVIGASJON';
 export const formateringsfeilmeldingerPrefix = 'FORMATERINGSFEILMELDINGER';
 export const bannerPrefix = 'BANNER';
+export const vedlikeholdsarbeidPrefix = 'VEDLIKEHOLDSARBEID';
 
 export enum ESanityFlettefeltverdi {
     BARN_NAVN = 'BARN_NAVN',

@@ -30,6 +30,7 @@ import {
     modalPrefix,
     navigasjonPrefix,
     SanityDokument,
+    vedlikeholdsarbeidPrefix,
 } from '../typer/sanity/sanity';
 import {
     IFellesTekstInnhold,
@@ -38,6 +39,7 @@ import {
     IModalerTekstinnhold,
     INavigasjonTekstinnhold,
     ITekstinnhold,
+    IVedlikeholdsarbeidTekstinnhold,
     SanityModalPrefix,
     SanityPersonType,
 } from '../typer/sanity/tekstInnhold';
@@ -173,6 +175,9 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
         banner: {
             ...fellesDokumenter.find(dok => dok._type.includes(bannerPrefix)),
         } as LocaleRecordBlock,
+        vedlikeholdsarbeid: struktrerInnholdForFelles(
+            dokumenterFiltrertPåPrefix(fellesDokumenter, vedlikeholdsarbeidPrefix)
+        ) as IVedlikeholdsarbeidTekstinnhold,
     };
     return tekstInnhold as ITekstinnhold;
 };
