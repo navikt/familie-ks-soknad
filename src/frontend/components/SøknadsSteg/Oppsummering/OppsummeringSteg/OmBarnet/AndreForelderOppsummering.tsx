@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
-
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../../../context/AppContext';
@@ -18,7 +16,6 @@ import { formaterDatoMedUkjent } from '../../../../../utils/dato';
 import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
 import { IOmBarnetTekstinnhold } from '../../../OmBarnet/innholdTyper';
-import { OmBarnetSpørsmålsId, omBarnetSpørsmålSpråkId } from '../../../OmBarnet/spørsmål';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
 
@@ -26,10 +23,8 @@ const AndreForelderOppsummering: React.FC<{
     barn: IBarnMedISøknad;
     andreForelder: IAndreForelder;
 }> = ({ barn, andreForelder }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const omBarnetTekster: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
-    const intl = useIntl();
-    const { formatMessage } = intl;
 
     const flettefelter = { barnetsNavn: barn.navn };
     return (
@@ -42,11 +37,7 @@ const AndreForelderOppsummering: React.FC<{
                             andreForelder[andreForelderDataKeySpørsmål.navn].svar !==
                             AlternativtSvarForInput.UKJENT
                                 ? andreForelder[andreForelderDataKeySpørsmål.navn].svar
-                                : formatMessage({
-                                      id: omBarnetSpørsmålSpråkId[
-                                          OmBarnetSpørsmålsId.andreForelderKanIkkeGiOpplysninger
-                                      ],
-                                  })
+                                : plainTekst(omBarnetTekster.navnAndreForelder.checkboxLabel)
                         }
                     />
                 )}
@@ -57,11 +48,10 @@ const AndreForelderOppsummering: React.FC<{
                             andreForelder[andreForelderDataKeySpørsmål.fnr].svar !==
                             AlternativtSvarForInput.UKJENT
                                 ? andreForelder[andreForelderDataKeySpørsmål.fnr].svar
-                                : formatMessage({
-                                      id: omBarnetSpørsmålSpråkId[
-                                          OmBarnetSpørsmålsId.andreForelderFnrUkjent
-                                      ],
-                                  })
+                                : plainTekst(
+                                      omBarnetTekster.foedselsnummerDnummerAndreForelder
+                                          .checkboxLabel
+                                  )
                         }
                     />
                 )}
@@ -70,11 +60,7 @@ const AndreForelderOppsummering: React.FC<{
                         spørsmålstekst={omBarnetTekster.foedselsdatoAndreForelder.sporsmal}
                         søknadsvar={formaterDatoMedUkjent(
                             andreForelder[andreForelderDataKeySpørsmål.fødselsdato].svar,
-                            formatMessage({
-                                id: omBarnetSpørsmålSpråkId[
-                                    OmBarnetSpørsmålsId.andreForelderFødselsdatoUkjent
-                                ],
-                            })
+                            plainTekst(omBarnetTekster.foedselsdatoAndreForelder.checkboxLabel)
                         )}
                     />
                 )}
