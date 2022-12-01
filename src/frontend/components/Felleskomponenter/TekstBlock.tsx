@@ -118,7 +118,7 @@ const TekstBlock: React.FC<{
                                 target={props.value.blank ? '_blank' : '_self'}
                                 rel={'noopener noreferrer'}
                                 href={encodeURI(props.value.href)}
-                                style={{ display: 'inline-block' }}
+                                style={{ display: 'block' }}
                             >
                                 {props.text}
                             </a>

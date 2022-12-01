@@ -27,17 +27,23 @@ import {
     ESanitySteg,
     formateringsfeilmeldingerPrefix,
     frittståendeOrdPrefix,
+    hjelpeteksterForInputPrefix,
+    kanIkkeBrukeSoeknadPrefix,
     modalPrefix,
     navigasjonPrefix,
     SanityDokument,
+    vedlikeholdsarbeidPrefix,
 } from '../typer/sanity/sanity';
 import {
     IFellesTekstInnhold,
     IFormateringsfeilmeldingerTekstinnhold,
     IFrittståendeOrdTekstinnhold,
+    IHjelpeteksterForInputTekstInnhold,
+    IKanIkkeBrukeSoeknadTekstinnhold,
     IModalerTekstinnhold,
     INavigasjonTekstinnhold,
     ITekstinnhold,
+    IVedlikeholdsarbeidTekstinnhold,
     SanityModalPrefix,
     SanityPersonType,
 } from '../typer/sanity/tekstInnhold';
@@ -173,6 +179,15 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
         banner: {
             ...fellesDokumenter.find(dok => dok._type.includes(bannerPrefix)),
         } as LocaleRecordBlock,
+        vedlikeholdsarbeid: struktrerInnholdForFelles(
+            dokumenterFiltrertPåPrefix(fellesDokumenter, vedlikeholdsarbeidPrefix)
+        ) as IVedlikeholdsarbeidTekstinnhold,
+        kanIkkeBrukeSoeknad: struktrerInnholdForFelles(
+            dokumenterFiltrertPåPrefix(fellesDokumenter, kanIkkeBrukeSoeknadPrefix)
+        ) as IKanIkkeBrukeSoeknadTekstinnhold,
+        hjelpeteksterForInput: struktrerInnholdForFelles(
+            dokumenterFiltrertPåPrefix(fellesDokumenter, hjelpeteksterForInputPrefix)
+        ) as IHjelpeteksterForInputTekstInnhold,
     };
     return tekstInnhold as ITekstinnhold;
 };
