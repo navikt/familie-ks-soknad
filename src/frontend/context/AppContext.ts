@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 import createUseContext from 'constate';
 import { Alpha3Code, getName } from 'i18n-iso-countries';
-import { useIntl } from 'react-intl';
 
 import { Modal } from '@navikt/ds-react';
 import { LocaleType, useSprakContext } from '@navikt/familie-sprakvelger';
@@ -33,7 +32,6 @@ import { useSanity } from './SanityContext';
 
 const [AppProvider, useApp] = createUseContext(() => {
     const [valgtLocale] = useSprakContext();
-    const intl = useIntl();
     const { axiosRequest, lasterRessurser } = useLastRessurserContext();
     const { innloggetStatus } = useInnloggetContext();
     const [sluttbruker, settSluttbruker] = useState(byggTomRessurs<ISøkerRespons>());
@@ -81,7 +79,10 @@ const [AppProvider, useApp] = createUseContext(() => {
     }, [søknad.søker.triggetEøs]);
 
     useEffect(() => {
-        if (innloggetStatus === InnloggetStatus.AUTENTISERT) {
+        if (
+            innloggetStatus === InnloggetStatus.AUTENTISERT &&
+            teksterRessurs.status === RessursStatus.SUKSESS
+        ) {
             settSluttbruker(byggHenterRessurs());
 
             hentSluttbrukerFraPdl(axiosRequest).then(ressurs => {
@@ -95,7 +96,11 @@ const [AppProvider, useApp] = createUseContext(() => {
                             ...søknad.søker,
                             navn: ressurs.data.navn,
                             statsborgerskap: ressurs.data.statsborgerskap,
-                            barn: mapBarnResponsTilBarn(ressurs.data.barn, intl),
+                            barn: mapBarnResponsTilBarn(
+                                ressurs.data.barn,
+                                tekster().FELLES.frittståendeOrd,
+                                plainTekst
+                            ),
                             ident: ressurs.data.ident,
                             adresse: ressurs.data.adresse,
                             sivilstand: ressurs.data.sivilstand,
@@ -104,7 +109,7 @@ const [AppProvider, useApp] = createUseContext(() => {
                     });
             });
         }
-    }, [innloggetStatus]);
+    }, [innloggetStatus, teksterRessurs]);
 
     const mellomlagre = () => {
         const kontantstøtte: IMellomlagretKontantstøtte = {

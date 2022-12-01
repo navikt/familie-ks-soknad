@@ -1,5 +1,4 @@
 import { Alpha3Code } from 'i18n-iso-countries';
-import { IntlShape } from 'react-intl';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
@@ -9,8 +8,10 @@ import { OmBarnaDineSpørsmålId } from '../components/SøknadsSteg/OmBarnaDine/
 import { OmBarnetSpørsmålsId } from '../components/SøknadsSteg/OmBarnet/spørsmål';
 import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../typer/barn';
 import { tomString } from '../typer/common';
+import { PlainTekst } from '../typer/kontrakt/generelle';
 import { IEøsKontantstøttePeriode, IUtenlandsperiode } from '../typer/perioder';
 import { IBarn, IBarnRespons, IIdNummer } from '../typer/person';
+import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
 import { ISøknad } from '../typer/søknad';
 import { formaterFnr } from './visning';
 
@@ -229,10 +230,14 @@ export const hentUid = () => {
     });
 };
 
-export const mapBarnResponsTilBarn = (barn: IBarnRespons[], intl): IBarn[] => {
+export const mapBarnResponsTilBarn = (
+    barn: IBarnRespons[],
+    tekster: IFrittståendeOrdTekstinnhold,
+    plainTekst: PlainTekst
+): IBarn[] => {
     return barn.map(barnRespons => ({
         id: hentUid(),
-        navn: barnetsNavnValue(barnRespons, intl),
+        navn: barnetsNavnValue(barnRespons, tekster, plainTekst),
         ident: barnRespons.ident,
         alder: barnRespons.fødselsdato ? hentAlder(barnRespons.fødselsdato) : null,
         borMedSøker: barnRespons.borMedSøker,
@@ -240,13 +245,14 @@ export const mapBarnResponsTilBarn = (barn: IBarnRespons[], intl): IBarn[] => {
     }));
 };
 
-export const barnetsNavnValue = (barn: IBarnRespons, intl: IntlShape): string => {
+export const barnetsNavnValue = (
+    barn: IBarnRespons,
+    tekster: IFrittståendeOrdTekstinnhold,
+    plainTekst: PlainTekst
+): string => {
     return barn.navn
         ? barn.navn
-        : intl.formatMessage(
-              { id: 'felles.anonym.barn.fnr' },
-              { fødselsnummer: formaterFnr(barn.ident) }
-          );
+        : `${plainTekst(tekster.barn).toUpperCase()} ${formaterFnr(barn.ident)}`;
 };
 
 export const skalSkjuleAndreForelderFelt = (barn: IBarnMedISøknad) => {

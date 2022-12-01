@@ -124,6 +124,7 @@ export interface IFrittståendeOrdTekstinnhold {
     jegVetIkke: LocaleRecordString;
     av: LocaleRecordString;
     vedlegg: LocaleRecordString;
+    barn: LocaleRecordString;
 }
 
 export interface INavigasjonTekstinnhold {
@@ -162,8 +163,9 @@ export interface IKanIkkeBrukeSoeknadTekstinnhold {
 }
 
 export interface IHjelpeteksterForInputTekstInnhold {
-    datoformatHjelpetekst: LocaleRecordString;
-    datoformatPlaceholder: LocaleRecordString;
+    datoformatHjelpetekst: LocaleRecordBlock;
+    datoformatPlaceholder: LocaleRecordBlock;
+    velgLandPlaceholder: LocaleRecordBlock;
 }
 
 export interface IAlternativeTeksterTekstinnhold {

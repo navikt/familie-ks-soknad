@@ -31,56 +31,6 @@ export enum EøsBarnSpørsmålId {
     omsorgspersonKontantstøtte = 'omsorgsperson-kontantstøtte-fra-annet-eøs-land',
     idNummer = 'id-nummer',
     idNummerAndreForelder = 'id-nummer-andre-forelder',
-    idNummerUkjent = 'id-nummer-ukjent',
     barnetsAdresse = 'barnets-adresse',
     barnetsAdresseVetIkke = 'barnets-adresse-vet-ikke',
 }
-
-export const eøsBarnSpørsmålSpråkId: Record<EøsBarnSpørsmålId, string> = {
-    [EøsBarnSpørsmålId.andreForelderPensjonNorge]: 'eøs-om-barn.andreforelderpensjon.spm',
-    [EøsBarnSpørsmålId.andreForelderPensjonNorgeEnke]: 'enkeenkemann.andreforelderpensjon.spm',
-    [EøsBarnSpørsmålId.andreForelderArbeidNorge]:
-        'eøs-om-barn.annenforelderarbeidsperiodenorge.spm',
-    [EøsBarnSpørsmålId.andreForelderArbeidNorgeEnke]: 'enkeenkemann.annenforelderarbeidnorge.spm',
-    [EøsBarnSpørsmålId.andreForelderAndreUtbetalingerEnke]: 'enkeenkemann.annenforelderytelser.spm',
-    [EøsBarnSpørsmålId.andreForelderAndreUtbetalinger]: 'eøs-om-barn.andreforelderutbetalinger.spm',
-    [EøsBarnSpørsmålId.andreForelderKontantstøtteGjenlevende]:
-        'eøs-om-barn.andre-forelder-barnetrygd-gjenlevende.spm',
-    [EøsBarnSpørsmålId.andreForelderPågåendeSøknadFraAnnetEøsLand]:
-        'eøs-om-barn.andre-forelder-barnetrygd-søknad.spm',
-    [EøsBarnSpørsmålId.andreForelderPågåendeSøknadHvilketLand]:
-        'eøs-om-barn.andre-forelder-barnetrygd-hvilketland.spm',
-    [EøsBarnSpørsmålId.andreForelderKontantstøtte]: 'eøs-om-barn.andre-forelder-barnetrygd.spm',
-    [EøsBarnSpørsmålId.søkersSlektsforhold]: 'eøs-om-barn.dittslektsforhold.spm',
-    [EøsBarnSpørsmålId.søkersSlektsforholdSpesifisering]: 'eøs-om-barn.dinrelasjon.spm',
-    [EøsBarnSpørsmålId.borMedAndreForelder]: 'eøs-om-barn.borbarnmedandreforelder.spm',
-    [EøsBarnSpørsmålId.borMedOmsorgsperson]: 'eøs-om-barn.bormedannenomsorgsperson.spm',
-    [EøsBarnSpørsmålId.omsorgspersonNavn]: 'eøs-om-barn.annenomsorgspersonnavn.spm',
-    [EøsBarnSpørsmålId.omsorgspersonSlektsforhold]:
-        'eøs-om-barn.annenomsorgspersonslektsforhold.spm',
-    [EøsBarnSpørsmålId.omsorgspersonSlektsforholdSpesifisering]:
-        'eøs-om-barn.annenomsorgspersonrelasjon.spm',
-    [EøsBarnSpørsmålId.omsorgspersonIdNummer]: 'eøs-om-barn.annenomsorgspersonidnummer.spm',
-    [EøsBarnSpørsmålId.omsorgspersonIdNummerVetIkke]: 'felles.kjennerikkeidnummer.sjekkboks',
-    [EøsBarnSpørsmålId.omsorgspersonAdresse]: 'eøs-om-barn.annenomsorgspersonoppholdssted.spm',
-    [EøsBarnSpørsmålId.omsorgspersonArbeidUtland]: 'eøs-om-barn.omsorgsperson-arbeid-utland.spm',
-    [EøsBarnSpørsmålId.omsorgspersonArbeidNorge]:
-        'eøs-om-barn.omsorgspersonarbeidsperiodenorge.spm',
-    [EøsBarnSpørsmålId.omsorgspersonPensjonUtland]: 'eøs-om-barn.omsorgsperson-pensjon-utland.spm',
-    [EøsBarnSpørsmålId.omsorgspersonPensjonNorge]: 'eøs-om-barn.omsorgsperson-pensjon-norge.spm',
-    [EøsBarnSpørsmålId.omsorgspersonAndreUtbetalinger]:
-        'eøs-om-barn.omsorgsperson-utbetalinger.spm',
-    [EøsBarnSpørsmålId.omsorgspersonPågåendeSøknadFraAnnetEøsLand]:
-        'eøs-om-barn.omsorgsperson-barnetrygd-søknad.spm',
-    [EøsBarnSpørsmålId.omsorgspersonPågåendeSøknadHvilketLand]:
-        'eøs-om-barn.omsorgsperson-barnetrygd-hvilketland.spm',
-    [EøsBarnSpørsmålId.omsorgspersonKontantstøtte]: 'eøs-om-barn.omsorgsperson-barnetrygd.spm',
-    [EøsBarnSpørsmålId.idNummer]: 'eøs-om-barn.barnidnummer.spm',
-    [EøsBarnSpørsmålId.idNummerAndreForelder]: 'eøs-om-barn.andreforelderidnummer.spm',
-    [EøsBarnSpørsmålId.idNummerUkjent]: 'felles.kjennerikkeidnummer.sjekkboks',
-    [EøsBarnSpørsmålId.andreForelderAdresse]: 'eøs-om-barn.andreforelderoppholdssted.spm',
-    [EøsBarnSpørsmålId.andreForelderAdresseVetIkke]:
-        'eøs-om-barn.andreforelderoppholdssted.sjekkboks',
-    [EøsBarnSpørsmålId.barnetsAdresse]: 'eøs.hvorborbarn.spm',
-    [EøsBarnSpørsmålId.barnetsAdresseVetIkke]: 'eøs.kjennerikkeadresse.sjekkboks',
-};
