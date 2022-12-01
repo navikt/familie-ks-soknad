@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
+import { useApp } from '../context/AppContext';
 
 const Barn1: React.FC = () => {
-    const { formatMessage } = useIntl();
+    const { tekster, plainTekst } = useApp();
     return (
         <svg
             width="63px"
@@ -11,7 +11,7 @@ const Barn1: React.FC = () => {
             version="1.1"
             viewBox="0 0 63 90"
             xmlns="http://www.w3.org/2000/svg"
-            aria-label={formatMessage({ id: 'felles.barneillustrasjon.tittel' })}
+            aria-label={plainTekst(tekster().FELLES.alternativeTekster.barneillustrajonAltTekst)}
         >
             <defs>
                 <path
