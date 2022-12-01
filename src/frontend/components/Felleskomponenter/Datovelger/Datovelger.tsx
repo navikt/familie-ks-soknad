@@ -63,7 +63,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
 }) => {
     const [valgtLocale] = useSprakContext();
     const { tekster, plainTekst } = useApp();
-    const { formatHjelpetekst, formatPlaceholder } = tekster().FELLES.teksterForDatofelt;
+    const { datoformatHjelpetekst, datoformatPlaceholder } = tekster().FELLES.hjelpeteksterForInput;
 
     const hentBegrensninger = () => {
         const limitations: DatepickerLimitations = {};
@@ -90,10 +90,10 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     return felt.erSynlig ? (
         <div aria-live={dynamisk ? 'polite' : 'off'}>
             <StyledFamilieDatovelger
-                description={<BodyShort>{plainTekst(formatHjelpetekst)}</BodyShort>}
+                description={<BodyShort>{plainTekst(datoformatHjelpetekst)}</BodyShort>}
                 allowInvalidDateSelection={false}
                 limitations={hentBegrensninger()}
-                placeholder={plainTekst(formatPlaceholder)}
+                placeholder={plainTekst(datoformatPlaceholder)}
                 valgtDato={disabled ? '' : felt.verdi}
                 label={label}
                 {...felt.hentNavBaseSkjemaProps(skjema.visFeilmeldinger)}
