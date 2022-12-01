@@ -6,7 +6,7 @@ import { Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import useFørsteRender from '../hooks/useFørsteRender';
 import { basePath } from '../Miljø';
-import { EAllFeatureToggles } from '../typer/feature-toggles';
+import { EAllFeatureToggles, EFeatureToggle } from '../typer/feature-toggles';
 import { useLastRessurserContext } from './LastRessurserContext';
 
 const [FeatureTogglesProvider, useFeatureToggles] = createUseContext(() => {
@@ -15,7 +15,7 @@ const [FeatureTogglesProvider, useFeatureToggles] = createUseContext(() => {
      * Husk å legge til nye toggles i funksjon konfigurerAllFeatureTogglesEndpoint (feature-toggles.ts)
      */
     const [toggles, setToggles] = useState<EAllFeatureToggles>({
-        //[EFeatureToggle.EXAMPLE]: false,
+        [EFeatureToggle.DISABLE_SEND_INN_KNAPP]: false,
     });
 
     useFørsteRender(async () => {
