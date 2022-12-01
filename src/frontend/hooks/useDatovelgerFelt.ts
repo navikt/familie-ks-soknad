@@ -23,17 +23,23 @@ const useDatovelgerFelt = ({
     avhengigheter?: Avhengigheter;
     nullstillVedAvhengighetEndring?: boolean;
 }) => {
-    const { plainTekst } = useApp();
+    const { plainTekst, tekster } = useApp();
     return useFelt<ISODateString>({
         feltId: søknadsfelt.id,
         verdi: søknadsfelt.svar,
         valideringsfunksjon: (felt, avhengigheter) => {
             const startdatoAvgrensning = avhengigheter && avhengigheter.startdatoAvgrensning;
             const sluttdatoAvgrensning = avhengigheter && avhengigheter.sluttdatoAvgrensning;
-            const feilmelding =
-                avhengigheter && plainTekst(avhengigheter.feilmelding as LocaleRecordBlock);
+            const feilmelding = avhengigheter && (avhengigheter.feilmelding as LocaleRecordBlock);
 
-            return validerDato(felt, feilmelding, startdatoAvgrensning, sluttdatoAvgrensning);
+            return validerDato(
+                tekster().FELLES.formateringsfeilmeldinger,
+                plainTekst,
+                felt,
+                feilmelding,
+                startdatoAvgrensning,
+                sluttdatoAvgrensning
+            );
         },
         skalFeltetVises: avhengigheter => avhengigheter?.skalFeltetVises,
         avhengigheter: {

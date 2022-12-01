@@ -17,6 +17,12 @@ export type TilRestLocaleRecord = (
     flettefelter?: FlettefeltVerdier
 ) => Record<LocaleType, string>;
 
+export type PlainTekst = (
+    localeRecord: LocaleRecordBlock | LocaleRecordString | undefined,
+    flettefelter?: FlettefeltVerdier,
+    spesifikkLocale?: LocaleType
+) => string;
+
 export type FlettefeltVerdier = {
     barnetsNavn?: string;
     gjelderUtland?: boolean;

@@ -1,12 +1,11 @@
-import React from 'react';
-
 import dayjs from 'dayjs';
 
 import { ISODateString } from '@navikt/familie-form-elements';
 import { feil, FeltState, ok } from '@navikt/familie-skjema';
 
-import SpråkTekst from '../components/Felleskomponenter/SpråkTekst/SpråkTekst';
-import { AlternativtSvarForInput, DatoMedUkjent } from '../typer/common';
+import { AlternativtSvarForInput, DatoMedUkjent, LocaleRecordBlock } from '../typer/common';
+import { PlainTekst } from '../typer/kontrakt/generelle';
+import { IFormateringsfeilmeldingerTekstinnhold } from '../typer/sanity/tekstInnhold';
 
 export const erDatoFormatGodkjent = (verdi: string) => {
     /*FamilieDatoVelger har allerede sin egen validering.
@@ -42,17 +41,19 @@ export const dagenEtterDato = (dato: ISODateString) =>
     dayjs(dato).add(1, 'day').format('YYYY-MM-DD');
 
 export const validerDato = (
+    tekster: IFormateringsfeilmeldingerTekstinnhold,
+    plainTekst: PlainTekst,
     feltState: FeltState<string>,
-    feilmelding: string | undefined,
+    feilmelding: LocaleRecordBlock | undefined,
     startdatoAvgrensning = '',
     sluttdatoAvgrensning = '',
     customStartdatoFeilmelding = ''
 ): FeltState<string> => {
     if (feltState.verdi === '') {
-        return feil(feltState, feilmelding ?? '');
+        return feil(feltState, plainTekst(feilmelding) ?? '');
     }
     if (!erDatoFormatGodkjent(feltState.verdi)) {
-        return feil(feltState, <SpråkTekst id={'felles.dato-format.feilmelding'} />);
+        return feil(feltState, plainTekst(tekster.ugyldigDato));
     }
     if (
         !!sluttdatoAvgrensning &&
@@ -60,13 +61,11 @@ export const validerDato = (
     ) {
         return feil(
             feltState,
-            <SpråkTekst
-                id={
-                    sluttdatoAvgrensning === dagensDato()
-                        ? 'felles.dato-frem-i-tid.feilmelding'
-                        : 'felles.dato-frem-i-tid-eller-i-idag.feilmelding'
-                }
-            />
+            plainTekst(
+                sluttdatoAvgrensning === dagensDato()
+                    ? tekster.datoKanIkkeVaereFremITid
+                    : tekster.datoKanIkkeVaereDagensDatoEllerFremITid
+            )
         );
     }
     if (
@@ -75,9 +74,7 @@ export const validerDato = (
     ) {
         return feil(
             feltState,
-            customStartdatoFeilmelding ?? (
-                <SpråkTekst id={'felles.tilogmedfeilformat.feilmelding'} />
-            )
+            customStartdatoFeilmelding ?? plainTekst(tekster.periodeAvsluttesForTidlig)
         );
     }
     return ok(feltState);

@@ -3,13 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Feiloppsummering, FeiloppsummeringFeil } from 'nav-frontend-skjema';
-import { Element } from 'nav-frontend-typografi';
 
 import { ISkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
+import { useApp } from '../../../context/AppContext';
 import { ISteg } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
-import SpråkTekst from '../SpråkTekst/SpråkTekst';
 import { lagRouteFeilRenderer } from './lagRouteFeilRenderer';
 
 interface Props {
@@ -23,16 +22,13 @@ const Container = styled.div`
 `;
 
 export const SkjemaFeiloppsummering: React.FC<Props> = ({ skjema, routeForFeilmeldinger, id }) => {
+    const { tekster, plainTekst } = useApp();
     return (
         <Container>
             <Feiloppsummering
                 role={'alert'}
                 id={id}
-                tittel={
-                    <Element>
-                        <SpråkTekst id={'felles.feiloppsummering.tittel'} />
-                    </Element>
-                }
+                tittel={plainTekst(tekster().FELLES.navigasjon.duMaaRetteOppFoelgende)}
                 customFeilRender={
                     routeForFeilmeldinger ? lagRouteFeilRenderer(routeForFeilmeldinger) : undefined
                 }

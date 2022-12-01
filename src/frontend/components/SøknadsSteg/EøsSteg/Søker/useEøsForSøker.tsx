@@ -13,7 +13,6 @@ import { AlternativtSvarForInput } from '../../../../typer/common';
 import { IArbeidsperiode, IPensjonsperiode, IUtbetalingsperiode } from '../../../../typer/perioder';
 import { ISøker } from '../../../../typer/person';
 import { IArbeidsperiodeTekstinnhold } from '../../../../typer/sanity/modaler/arbeidsperiode';
-import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { IEøsForSøkerFeltTyper } from '../../../../typer/skjema';
 import { valideringAdresse } from '../../../../utils/adresse';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
@@ -37,9 +36,10 @@ export const useEøsForSøker = (): {
 } => {
     const { søknad, settSøknad, tekster, plainTekst } = useApp();
     const { arbeidNorge, hvorBor, pensjonNorge, utbetalinger } = tekster().EØS_FOR_SØKER;
+    const forLangAdresseTekst = tekster().FELLES.formateringsfeilmeldinger.forLangAdresse;
 
     const teksterForArbeidsperiode: IArbeidsperiodeTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode.søker;
+        tekster().FELLES.modaler.arbeidsperiode.søker;
 
     const [idNummerFelter, settIdNummerFelter] = useState<Felt<string>[]>([]);
 
@@ -52,7 +52,7 @@ export const useEøsForSøker = (): {
         },
         feilmelding: hvorBor.feilmelding,
         skalVises: søker.triggetEøs,
-        customValidering: valideringAdresse,
+        customValidering: felt => valideringAdresse(felt, plainTekst(forLangAdresseTekst)),
     });
 
     const arbeidINorge = useJaNeiSpmFelt({
