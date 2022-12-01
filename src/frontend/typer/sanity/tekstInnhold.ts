@@ -63,6 +63,9 @@ export interface IFellesTekstInnhold {
     navigasjon: INavigasjonTekstinnhold;
     formateringsfeilmeldinger: IFormateringsfeilmeldingerTekstinnhold;
     banner: LocaleRecordBlock;
+    vedlikeholdsarbeid: IVedlikeholdsarbeidTekstinnhold;
+    kanIkkeBrukeSoeknad: IKanIkkeBrukeSoeknadTekstinnhold;
+    hjelpeteksterForInput: IHjelpeteksterForInputTekstInnhold;
 }
 
 export interface IModalerTekstinnhold {
@@ -144,4 +147,20 @@ export interface IFormateringsfeilmeldingerTekstinnhold {
     datoKanIkkeVaereFremITid: LocaleRecordString;
     datoKanIkkeVaereDagensDatoEllerFremITid: LocaleRecordString;
     periodeAvsluttesForTidlig: LocaleRecordString;
+}
+
+export interface IVedlikeholdsarbeidTekstinnhold {
+    vedlikeholdTittel: LocaleRecordBlock;
+    vedlikeholdBroedtekst: LocaleRecordBlock;
+    vedlikeholdVeileder: LocaleRecordBlock;
+}
+
+export interface IKanIkkeBrukeSoeknadTekstinnhold {
+    enFeilHarOppstaatt: LocaleRecordBlock;
+    brukPDFKontantstoette: LocaleRecordBlock;
+}
+
+export interface IHjelpeteksterForInputTekstInnhold {
+    datoformatHjelpetekst: LocaleRecordString;
+    datoformatPlaceholder: LocaleRecordString;
 }

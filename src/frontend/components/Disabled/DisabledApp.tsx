@@ -1,30 +1,30 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
 import styled from 'styled-components';
-
-import Lenke from 'nav-frontend-lenker';
-import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 
 import { LocaleType, Sprakvelger } from '@navikt/familie-sprakvelger';
 
 import VeilederSnakkeboble from '../../assets/VeilederSnakkeboble';
+import { useApp } from '../../context/AppContext';
+import { Typografi } from '../../typer/common';
 import { DekoratørenSpråkHandler } from '../Felleskomponenter/Dekoratøren/DekoratørenSpråkHandler';
 import InnholdContainer from '../Felleskomponenter/InnholdContainer/InnholdContainer';
-import SpråkTekst from '../Felleskomponenter/SpråkTekst/SpråkTekst';
+import TekstBlock from '../Felleskomponenter/TekstBlock';
 
 const StyledSpråkvelger = styled(Sprakvelger)`
     margin: auto auto 2rem auto;
 `;
 
-const StyledSidetittel = styled(Sidetittel)`
+const TittelContainer = styled.div`
     && {
         margin: 4rem 0 2.3rem 0;
     }
 `;
 
 export const DisabledApp: React.FC = () => {
-    const { formatMessage } = useIntl();
+    const { tekster } = useApp();
+    const { vedlikeholdTittel, vedlikeholdBroedtekst, vedlikeholdVeileder } =
+        tekster().FELLES.vedlikeholdsarbeid;
     return (
         <main>
             <DekoratørenSpråkHandler />
@@ -33,19 +33,14 @@ export const DisabledApp: React.FC = () => {
                     // TODO: Dekoratøren språk-handling fra PR: #265
                 }
                 <VeilederSnakkeboble
-                    tekst={<SpråkTekst id={'vedlikehold.veilederhilsen'} />}
+                    tekst={<TekstBlock block={vedlikeholdVeileder} />}
                     posisjon={'høyre'}
                 />
-                <StyledSidetittel>
-                    <SpråkTekst id={'vedlikehold.sidetittel'} />
-                </StyledSidetittel>
+                <TittelContainer>
+                    <TekstBlock block={vedlikeholdTittel} typografi={Typografi.ForsideHeadingH1} />
+                </TittelContainer>
                 <StyledSpråkvelger støttedeSprak={[LocaleType.nb, LocaleType.nn, LocaleType.en]} />
-                <Normaltekst>
-                    <SpråkTekst id={'vedlikehold.brødtekst'} />
-                </Normaltekst>
-                <Lenke href={formatMessage({ id: 'felles.bruk-pdfskjema.lenke' })}>
-                    <SpråkTekst id={'felles.bruk-pdfskjema.lenketekst'} />
-                </Lenke>
+                <TekstBlock block={vedlikeholdBroedtekst} />
             </InnholdContainer>
         </main>
     );
