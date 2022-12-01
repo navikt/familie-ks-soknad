@@ -1,0 +1,49 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: familie-ks-soknad
+  namespace: teamfamilie
+  labels:
+    team: teamfamilie
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "25M"
+spec:
+  image: {{ image }}
+  team: teamfamilie
+  replicas:
+    min: 2
+    max: 3
+    cpuThresholdPercentage: 50
+  port: 9000
+  liveness:
+    path: /isAlive
+    initialDelay: 5
+  readiness:
+    path: /isReady
+    initialDelay: 5
+  prometheus:
+    enabled: true
+    path: /metrics
+  ingresses:
+    - "https://www.nav.no/familie/kontantstotte/soknad"
+  accessPolicy:
+    outbound:
+      rules:
+        - application: familie-baks-soknad-api
+      external:
+        - host: "www.nav.no"
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 1024Mi
+    requests:
+      memory: 512Mi
+  envFrom:
+    - configmap: loginservice-idporten
+  env:
+    - name: BASE_PATH
+      value: {{base_path}}
+    - name: ENV
+      value: prod
+  secureLogs:
+    enabled: true
