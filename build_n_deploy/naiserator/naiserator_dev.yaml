@@ -26,7 +26,7 @@ spec:
   accessPolicy:
     outbound:
       rules:
-        - application: familie-ba-soknad-api
+        - application: familie-baks-soknad-api
       external:
         - host: "www-q1.nav.no"
   resources:
