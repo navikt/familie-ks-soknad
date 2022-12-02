@@ -3,7 +3,11 @@ import { ParamsDictionary } from 'express-serve-static-core';
 
 import { byggFeiletRessurs, byggSuksessRessurs, Ressurs } from '@navikt/familie-typer';
 
-import { EAllFeatureToggles } from '../../frontend/typer/feature-toggles';
+import {
+    EAllFeatureToggles,
+    EFeatureToggle,
+    ToggleKeys,
+} from '../../frontend/typer/feature-toggles';
 import { basePath } from '../environment';
 import { isEnabled } from '../utils/unleash';
 
@@ -30,7 +34,7 @@ const fetchAllFeatureTogglesHandler: RequestHandler<
 > = (_, res) => {
     res.send(
         byggSuksessRessurs({
-            // [EFeatureToggle.EXAMPLE]: isEnabled(ToggleKeys.EXAMPLE),
+            [EFeatureToggle.DISABLE_SEND_INN_KNAPP]: isEnabled(ToggleKeys.DISABLE_SEND_INN_KNAPP),
         })
     );
 };
