@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import { useIntl } from 'react-intl';
 import { Prompt } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -22,10 +21,9 @@ const Flex = styled.div`
 
 const BlokkerTilbakeKnappModal = () => {
     const [show, setShow] = useState(false);
-    const { formatMessage } = useIntl();
 
     const { tekster } = useApp();
-    const barnehageplassTekster = tekster()[ESanitySteg.FELLES].modaler.blokkerTilbakeKnapp;
+    const blokkerTilbakeknappTekster = tekster()[ESanitySteg.FELLES].modaler.blokkerTilbakeKnapp;
 
     const håndterNavigasjon = () => {
         setShow(true);
@@ -38,30 +36,26 @@ const BlokkerTilbakeKnappModal = () => {
     return (
         <>
             <Prompt message={håndterNavigasjon} />
-            <Modal
-                onClose={() => setShow(false)}
-                open={show}
-                aria-label={formatMessage({ id: 'felles.blokkerTilbakeKnapp.modal.tittel' })}
-            >
+            <Modal onClose={() => setShow(show)} open={true}>
                 <ModalContent>
                     <TekstBlock
-                        block={barnehageplassTekster.tittel}
+                        block={blokkerTilbakeknappTekster.tittel}
                         typografi={Typografi.ModalHeadingH1}
                     />
 
                     <TekstBlock
-                        block={barnehageplassTekster.tekst}
+                        block={blokkerTilbakeknappTekster.tekst}
                         typografi={Typografi.BodyLong}
                     />
 
                     <Flex>
                         <TekstBlock
-                            block={barnehageplassTekster.tilDittNav}
+                            block={blokkerTilbakeknappTekster.tilDittNav}
                             typografi={Typografi.BodyShort}
                         />
                         <Button onClick={håndterAvbryt}>
                             <TekstBlock
-                                block={barnehageplassTekster.avbryt}
+                                block={blokkerTilbakeknappTekster.avbryt}
                                 typografi={Typografi.BodyShort}
                             />
                         </Button>

@@ -9,6 +9,7 @@ import {
     silenceConsoleErrors,
     spyOnModal,
     spyOnUseApp,
+    TestProvidere,
     TestProvidereMedEkteTekster,
 } from '../../../utils/testing';
 import { TilfeldigBarnIkon } from './TilfeldigBarnIkon';
@@ -17,30 +18,31 @@ describe('TilfeldigBarnIkon', () => {
     beforeEach(() => {
         silenceConsoleErrors();
         spyOnModal();
+        spyOnUseApp({});
     });
 
     it('velger nytt ikon ved rerender by default', () => {
         const spy = jest.spyOn(hjelpefunksjoner, 'randomIntFraIntervall');
         const { rerender } = render(
-            <TestProvidereMedEkteTekster>
+            <TestProvidere>
                 <TilfeldigBarnIkon />
-            </TestProvidereMedEkteTekster>
+            </TestProvidere>
         );
 
         // 2 ved første render, 1 for initiell useState, som ignoreres videre
         expect(spy.mock.calls.length).toEqual(2);
 
         rerender(
-            <TestProvidereMedEkteTekster>
+            <TestProvidere>
                 <TilfeldigBarnIkon />
-            </TestProvidereMedEkteTekster>
+            </TestProvidere>
         );
         expect(spy.mock.calls.length).toEqual(3);
 
         rerender(
-            <TestProvidereMedEkteTekster>
+            <TestProvidere>
                 <TilfeldigBarnIkon />
-            </TestProvidereMedEkteTekster>
+            </TestProvidere>
         );
         expect(spy.mock.calls.length).toEqual(4);
     });

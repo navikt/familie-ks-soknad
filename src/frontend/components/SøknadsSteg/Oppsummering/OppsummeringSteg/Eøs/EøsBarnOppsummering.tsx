@@ -1,14 +1,11 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
-
 import { useApp } from '../../../../../context/AppContext';
 import { useSteg } from '../../../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
 import { hentSlektsforhold } from '../../../../../utils/språk';
 import SamletIdNummerForBarn from '../../../EøsSteg/Barn/SamletIdNummerForBarn';
-import { EøsBarnSpørsmålId, eøsBarnSpørsmålSpråkId } from '../../../EøsSteg/Barn/spørsmål';
 import { useEøsForBarn } from '../../../EøsSteg/Barn/useEøsForBarn';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 import Oppsummeringsbolk from '../../Oppsummeringsbolk';
@@ -27,8 +24,6 @@ const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
     const eøsBarnTekster = tekster().EØS_FOR_BARN;
 
     const eøsForBarnHook = useEøsForBarn(barn.id);
-
-    const { formatMessage } = useIntl();
 
     const flettefelter = { barnetsNavn: barn.navn };
     return (
@@ -90,11 +85,7 @@ const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
                     flettefelter={flettefelter}
                     søknadsvar={
                         barn.adresse.svar === AlternativtSvarForInput.UKJENT
-                            ? formatMessage({
-                                  id: eøsBarnSpørsmålSpråkId[
-                                      EøsBarnSpørsmålId.barnetsAdresseVetIkke
-                                  ],
-                              })
+                            ? plainTekst(eøsBarnTekster.hvorBorBarnet.checkboxLabel)
                             : barn.adresse.svar
                     }
                 />

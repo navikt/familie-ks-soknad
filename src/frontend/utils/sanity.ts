@@ -22,6 +22,7 @@ import { IPensjonsperiodeTekstinnhold } from '../typer/sanity/modaler/pensjonspe
 import { IStartPåNyttModal } from '../typer/sanity/modaler/startPåNytt';
 import { IUtenlandsoppholdTekstinnhold } from '../typer/sanity/modaler/utenlandsopphold';
 import {
+    alternativeTeksterPrefix,
     bannerPrefix,
     ESanityFlettefeltverdi,
     ESanitySteg,
@@ -35,6 +36,7 @@ import {
     vedlikeholdsarbeidPrefix,
 } from '../typer/sanity/sanity';
 import {
+    IAlternativeTeksterTekstinnhold,
     IFellesTekstInnhold,
     IFormateringsfeilmeldingerTekstinnhold,
     IFrittståendeOrdTekstinnhold,
@@ -188,6 +190,9 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
         hjelpeteksterForInput: struktrerInnholdForFelles(
             dokumenterFiltrertPåPrefix(fellesDokumenter, hjelpeteksterForInputPrefix)
         ) as IHjelpeteksterForInputTekstInnhold,
+        alternativeTekster: struktrerInnholdForFelles(
+            dokumenterFiltrertPåPrefix(fellesDokumenter, alternativeTeksterPrefix)
+        ) as IAlternativeTeksterTekstinnhold,
     };
     return tekstInnhold as ITekstinnhold;
 };

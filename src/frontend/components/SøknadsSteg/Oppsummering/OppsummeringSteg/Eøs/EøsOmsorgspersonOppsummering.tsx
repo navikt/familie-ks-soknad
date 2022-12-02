@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
-
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../../../context/AppContext';
@@ -14,7 +12,6 @@ import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeid
 import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
 import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
-import { EøsBarnSpørsmålId, eøsBarnSpørsmålSpråkId } from '../../../EøsSteg/Barn/spørsmål';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
 
@@ -25,7 +22,6 @@ const EøsOmsorgspersonOppsummering: React.FC<{
     const { tekster, plainTekst } = useApp();
     const eøsBarnTekster = tekster().EØS_FOR_BARN;
 
-    const { formatMessage } = useIntl();
     const [valgtLocale] = useSprakContext();
 
     const flettefelter = { barnetsNavn: barn.navn };
@@ -61,11 +57,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                     spørsmålstekst={eøsBarnTekster.idNummerOmsorgsperson.sporsmal}
                     søknadsvar={
                         omsorgsperson.idNummer.svar === AlternativtSvarForInput.UKJENT
-                            ? formatMessage({
-                                  id: eøsBarnSpørsmålSpråkId[
-                                      EøsBarnSpørsmålId.omsorgspersonIdNummerVetIkke
-                                  ],
-                              })
+                            ? plainTekst(eøsBarnTekster.idNummerOmsorgsperson.checkboxLabel)
                             : omsorgsperson.idNummer.svar
                     }
                 />
