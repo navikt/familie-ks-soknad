@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react';
 
 import { Alpha3Code, getAlpha3Codes, getName } from 'i18n-iso-countries';
-import { useIntl } from 'react-intl';
 
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
+import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import StyledDropdown from './StyledDropdown';
@@ -20,7 +20,7 @@ interface LandDropdownProps {
 }
 
 export const LandDropdown: React.FC<LandDropdownProps> = props => {
-    const intl = useIntl();
+    const { tekster, plainTekst } = useApp();
     const [valgtLocale] = useSprakContext();
     const { erEøsLand } = useEøs();
     const kunEøs = props.kunEøs ?? false;
@@ -32,7 +32,7 @@ export const LandDropdown: React.FC<LandDropdownProps> = props => {
 
     return (
         <StyledDropdown<Alpha3Code | ''>
-            placeholder={intl.formatMessage({ id: 'felles.velg-land.placeholder' })}
+            placeholder={plainTekst(tekster().FELLES.hjelpeteksterForInput.velgLandPlaceholder)}
             {...props}
         >
             {landkoderSortertPåNavn.map(
