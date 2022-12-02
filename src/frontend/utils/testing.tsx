@@ -27,6 +27,7 @@ import * as routesContext from '../context/RoutesContext';
 import { getRoutes, RoutesProvider } from '../context/RoutesContext';
 import { SanityProvider } from '../context/SanityContext';
 import { StegProvider } from '../context/StegContext';
+import { EFeatureToggle } from '../typer/feature-toggles';
 import { ESivilstand } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { ISøker, ISøkerRespons } from '../typer/person';
@@ -154,7 +155,7 @@ export const mockFeatureToggle = () => {
         .spyOn(featureToggleContext, 'useFeatureToggles')
         .mockImplementation(
             jest.fn().mockReturnValue({
-                // toggles: { [EFeatureToggle.EXAMPLE]: false },
+                toggles: { [EFeatureToggle.DISABLE_SEND_INN_KNAPP]: false },
             })
         );
     return { useFeatureToggle };
