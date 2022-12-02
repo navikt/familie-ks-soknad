@@ -1,12 +1,12 @@
 export default function () {
     if (process.env.ENV === 'prod') {
         return {
-            apiUrl: 'http://familie-ba-soknad-api',
+            apiUrl: 'http://familie-baks-soknad-api',
             port: 9000,
         };
     } else if (process.env.ENV === 'dev') {
         return {
-            apiUrl: 'http://familie-ba-soknad-api',
+            apiUrl: 'http://familie-baks-soknad-api',
             port: 9000,
         };
     } else {
