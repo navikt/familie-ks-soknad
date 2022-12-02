@@ -10,7 +10,6 @@ import {
     spyOnModal,
     spyOnUseApp,
     TestProvidere,
-    TestProvidereMedEkteTekster,
 } from '../../../utils/testing';
 import { TilfeldigBarnIkon } from './TilfeldigBarnIkon';
 
@@ -52,16 +51,16 @@ describe('TilfeldigBarnIkon', () => {
         spyOnUseApp(mockDeep<ISøknad>({ barnInkludertISøknaden: [{ id: '1' }, { id: '2' }] }));
 
         const { rerender } = render(
-            <TestProvidereMedEkteTekster>
+            <TestProvidere>
                 <TilfeldigBarnIkon byttVedRerender={false} />
-            </TestProvidereMedEkteTekster>
+            </TestProvidere>
         );
         expect(spy.mock.calls.length).toEqual(1);
 
         rerender(
-            <TestProvidereMedEkteTekster>
+            <TestProvidere>
                 <TilfeldigBarnIkon byttVedRerender={false} />
-            </TestProvidereMedEkteTekster>
+            </TestProvidere>
         );
         expect(spy.mock.calls.length).toEqual(1);
     });

@@ -7,12 +7,7 @@ import { mockDeep } from 'jest-mock-extended';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { SkjemaFeltTyper } from '../../../typer/skjema';
-import {
-    mockEøs,
-    spyOnModal,
-    spyOnUseApp,
-    TestProvidereMedEkteTekster,
-} from '../../../utils/testing';
+import { mockEøs, spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
 import { LandDropdown } from './LandDropdown';
 
 describe('LandDropdown', () => {
@@ -31,9 +26,9 @@ describe('LandDropdown', () => {
         const skjema = mockDeep<ISkjema<SkjemaFeltTyper, string>>();
 
         const { findAllByRole, unmount } = render(
-            <TestProvidereMedEkteTekster>
+            <TestProvidere>
                 <LandDropdown felt={felt} skjema={skjema} />
-            </TestProvidereMedEkteTekster>
+            </TestProvidere>
         );
 
         let options = await findAllByRole('option');
@@ -44,9 +39,9 @@ describe('LandDropdown', () => {
         unmount();
 
         render(
-            <TestProvidereMedEkteTekster>
+            <TestProvidere>
                 <LandDropdown felt={felt} skjema={skjema} />
-            </TestProvidereMedEkteTekster>
+            </TestProvidere>
         );
 
         options = await findAllByRole('option');
@@ -65,9 +60,9 @@ describe('LandDropdown', () => {
         const skjema = mockDeep<ISkjema<SkjemaFeltTyper, string>>();
 
         const { findAllByRole } = render(
-            <TestProvidereMedEkteTekster>
+            <TestProvidere>
                 <LandDropdown felt={felt} skjema={skjema} kunEøs />
-            </TestProvidereMedEkteTekster>
+            </TestProvidere>
         );
 
         const options = await findAllByRole('option');
