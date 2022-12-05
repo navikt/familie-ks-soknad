@@ -27,7 +27,7 @@ describe('OmBarnetHeader', () => {
         spyOnUseApp(søknadsMock);
 
         const { queryByTestId, rerender } = render(
-            <TestProvidere tekster={{ 'ombarnet.undertittel': 'barn {x} av {antall}' }}>
+            <TestProvidere>
                 <OmBarnetHeader barn={barn[0]} />
             </TestProvidere>
         );
@@ -35,7 +35,7 @@ describe('OmBarnetHeader', () => {
         expect(queryByTestId('testbarn-1')).toBeInTheDocument();
 
         rerender(
-            <TestProvidere tekster={{ 'ombarnet.undertittel': 'barn {x} av {antall}' }}>
+            <TestProvidere>
                 <OmBarnetHeader barn={barn[1]} />
             </TestProvidere>
         );

@@ -1,10 +1,5 @@
 import { Alpha3Code, alpha3ToAlpha2, getName } from 'i18n-iso-countries';
 
-import { LocaleType } from '@navikt/familie-sprakvelger';
-
-import * as engelsk from '../assets/lang/en.json' assert { type: 'json' };
-import * as bokmål from '../assets/lang/nb.json' assert { type: 'json' };
-import * as nynorsk from '../assets/lang/nn.json' assert { type: 'json' };
 import { IEøsForBarnTekstinnhold } from '../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
 import { IVelgBarnTekstinnhold } from '../components/SøknadsSteg/VelgBarn/innholdTyper';
 import { AlternativtSvarForInput } from '../typer/common';
@@ -32,29 +27,6 @@ export const hentSlektsforhold = (
 
 export const landkodeTilSpråk = (landkode: Alpha3Code | '', locale: string): string => {
     return landkode ? getName(alpha3ToAlpha2(landkode), locale) : AlternativtSvarForInput.UKJENT;
-};
-
-const stripSpråkfil = (språkfilInnhold: Record<string, string>): Record<string, string> => {
-    const språkEntries = Object.entries(språkfilInnhold);
-    // Vi får med en default import her som vi må fjerne før vi kan mappe over entryene
-    språkEntries.pop();
-    return Object.fromEntries(språkEntries.map(([key, value]) => [key, value.trim()]));
-};
-
-const texts: Record<LocaleType, Record<string, string>> = {
-    [LocaleType.nb]: stripSpråkfil(bokmål),
-    [LocaleType.nn]: stripSpråkfil(nynorsk),
-    [LocaleType.en]: stripSpråkfil(engelsk),
-};
-
-export const hentUformaterteTekster = (tekstId: string): Record<LocaleType, string> => {
-    const map = {};
-
-    for (const locale in LocaleType) {
-        map[locale] = texts[locale][tekstId];
-    }
-
-    return map as Record<LocaleType, string>;
 };
 
 export const sivilstandTilSanitySivilstandApiKey = (

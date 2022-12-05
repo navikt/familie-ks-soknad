@@ -1,20 +1,8 @@
 import { RequestHandler, Request, Response } from 'express';
 
-import { LocaleType } from '@navikt/familie-sprakvelger';
 import { byggFeiletRessurs } from '@navikt/familie-typer';
 
-import engelsk from '../../frontend/assets/lang/en.json' assert { type: 'json' };
-import bokmål from '../../frontend/assets/lang/nb.json' assert { type: 'json' };
-import nynorsk from '../../frontend/assets/lang/nn.json' assert { type: 'json' };
 import { ISøknadKontrakt } from '../../frontend/typer/kontrakt/v1';
-
-export const hentSpråkteksterAlleSpråk = (språknøkkel: string): Record<LocaleType, string> => {
-    return {
-        nb: bokmål[språknøkkel],
-        nn: nynorsk[språknøkkel],
-        en: engelsk[språknøkkel],
-    };
-};
 
 export const erklaeringInterceptor: RequestHandler = (
     request: Request,
@@ -22,19 +10,13 @@ export const erklaeringInterceptor: RequestHandler = (
     next
 ) => {
     const søknad: ISøknadKontrakt = request.body;
-    const spmKey = 'lestOgForståttBekreftelse';
-    const aksepterteSvarSpråkNøkkel = 'forside.bekreftelsesboks.erklæring.spm';
-    const aksepterteSvar = Object.values(hentSpråkteksterAlleSpråk(aksepterteSvarSpråkNøkkel));
+    const lestOgForståttErklæringKey = 'lestOgForståttBekreftelse';
 
-    if (
-        !('spørsmål' in søknad && spmKey in søknad.spørsmål && 'verdi' in søknad.spørsmål[spmKey])
-    ) {
+    if (!(lestOgForståttErklæringKey in søknad)) {
         return response.status(400).send(byggFeiletRessurs('Ugyldig søknadformat'));
     }
 
-    const svar = søknad.spørsmål[spmKey];
-
-    if (aksepterteSvar.includes(svar.verdi[søknad.originalSpråk])) {
+    if (søknad.lestOgForståttBekreftelse) {
         next();
     } else {
         return response
