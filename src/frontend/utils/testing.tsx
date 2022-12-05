@@ -10,7 +10,6 @@ import { HttpProvider } from '@navikt/familie-http';
 import { LocaleType, SprakProvider } from '@navikt/familie-sprakvelger';
 import { Ressurs, RessursStatus } from '@navikt/familie-typer';
 
-import norskeTekster from '../assets/lang/nb.json' assert { type: 'json' };
 import { DinLivssituasjonSpørsmålId } from '../components/SøknadsSteg/DinLivssituasjon/spørsmål';
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
 import * as appContext from '../context/AppContext';
@@ -190,7 +189,7 @@ export const wrapMedProvidere = (
     );
 };
 
-const wrapMedDefaultProvidere = (children: ReactNode, språkTekster: Record<string, string>) =>
+const wrapMedDefaultProvidere = (children: ReactNode) =>
     wrapMedProvidere(
         [
             SprakProvider,
@@ -205,18 +204,10 @@ const wrapMedDefaultProvidere = (children: ReactNode, språkTekster: Record<stri
             StegProvider,
             AppNavigationProvider,
         ],
-        children,
-        språkTekster
+        children
     );
 
-export const TestProvidere: React.FC<{ tekster?: Record<string, string> }> = ({
-    tekster,
-    children,
-}) => wrapMedDefaultProvidere(children, tekster ?? {});
-
-export const TestProvidereMedEkteTekster: React.FC = ({ children }) => (
-    <TestProvidere tekster={norskeTekster}>{children}</TestProvidere>
-);
+export const TestProvidere: React.FC = ({ children }) => wrapMedDefaultProvidere(children);
 
 export const mockHistory = (
     newHistory: string[]
