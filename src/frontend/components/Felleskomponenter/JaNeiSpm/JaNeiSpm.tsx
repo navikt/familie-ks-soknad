@@ -51,7 +51,7 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
     }, [felt.verdi]);
 
     return felt.erSynlig ? (
-        <span id={felt.id} data-testid={felt.id}>
+        <div id={felt.id} data-testid={felt.id}>
             <JaNeiSpørsmål
                 {...felt.hentNavInputProps(skjema.visFeilmeldinger)}
                 initiellVerdi={felt.verdi}
@@ -70,7 +70,7 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
                     vetikke: inkluderVetIkke ? plainTekst(jegVetIkke) : undefined,
                 }}
             />
-        </span>
+        </div>
     ) : null;
 };
 

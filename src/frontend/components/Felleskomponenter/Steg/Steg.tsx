@@ -45,6 +45,10 @@ const ChildrenContainer = styled.div`
 const TittelContainer = styled.div`
     && {
         margin: 4rem auto 3rem auto;
+
+        :focus-visible {
+            outline: none;
+        }
     }
 `;
 
@@ -86,6 +90,7 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        document.getElementById('stegHovedtittel')?.focus();
         settNåværendeRoute(nyesteNåværendeRoute);
         if (skjema && erStegUtfyltFrafør(nåværendeStegIndex)) {
             Object.values(skjema.skjema.felter).forEach(felt => {
@@ -149,7 +154,9 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
                 )}
             </header>
             <InnholdContainer>
-                <TittelContainer>{tittel}</TittelContainer>
+                <TittelContainer id={'stegHovedtittel'} tabIndex={-1}>
+                    {tittel}
+                </TittelContainer>
                 <Form onSubmit={event => håndterGåVidere(event)} autoComplete="off">
                     <ChildrenContainer>{children}</ChildrenContainer>
                     {skjema && visFeiloppsummering(skjema.skjema) && (
