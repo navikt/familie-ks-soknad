@@ -14,6 +14,7 @@ import {
 
 export interface ISøknadKontrakt {
     kontraktVersjon: number;
+    lestOgForståttBekreftelse: boolean;
     antallEøsSteg: number;
     søker: ISøknadKontraktSøker;
     barn: ISøknadIKontraktBarn[];

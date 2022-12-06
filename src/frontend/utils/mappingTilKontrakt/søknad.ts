@@ -49,6 +49,7 @@ export const dataISøknadKontraktFormatV1 = (
         barn: barnInkludertISøknaden.map(barn =>
             barnISøknadsFormat(barn, søknad, tekster, tilRestLocaleRecord)
         ),
+        lestOgForståttBekreftelse: søknad.lestOgForståttBekreftelse,
         spørsmål: {
             erNoenAvBarnaFosterbarn: søknadsfelt(
                 tekster.OM_BARNA.fosterbarn.sporsmal,
@@ -108,6 +109,8 @@ export const dataISøknadKontraktFormatV1 = (
                 {}
             ),
             ...[
+                tekster.FORSIDE.bekreftelsesboksBroedtekst,
+                tekster.FORSIDE.bekreftelsesboksErklaering,
                 tekster.OM_DEG.soekerAdressesperre,
                 tekster.OM_DEG.ikkeRegistrertAdresse,
                 tekster.OM_DEG.omDegTittel,

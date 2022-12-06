@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom';
 import MockAdapter from 'axios-mock-adapter';
-import IntlPolyfill from 'intl';
 
 import { RessursStatus } from '@navikt/familie-typer';
 
@@ -11,7 +10,6 @@ window.scrollTo = () => {
 };
 
 process.env.BASE_PATH = '/';
-global.Intl = IntlPolyfill;
 
 const axiosMock = new MockAdapter(preferredAxios);
 
