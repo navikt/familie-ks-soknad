@@ -24,9 +24,8 @@ const Container = styled.div`
 export const SkjemaFeiloppsummering: React.FC<Props> = ({ skjema, routeForFeilmeldinger, id }) => {
     const { tekster, plainTekst } = useApp();
     return (
-        <Container>
+        <Container role={'alert'}>
             <Feiloppsummering
-                role={'alert'}
                 id={id}
                 tittel={plainTekst(tekster().FELLES.navigasjon.duMaaRetteOppFoelgende)}
                 customFeilRender={

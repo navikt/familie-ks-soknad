@@ -64,54 +64,52 @@ const OmDeg: React.FC = () => {
                     </AlertStripe>
                 )}
             </KomponentGruppe>
-            {skjema.felter.værtINorgeITolvMåneder.erSynlig && (
-                <KomponentGruppe dynamisk>
-                    <>
-                        <JaNeiSpm
+            <KomponentGruppe>
+                <>
+                    <JaNeiSpm
+                        skjema={skjema}
+                        felt={skjema.felter.værtINorgeITolvMåneder}
+                        spørsmålDokument={oppholdtDegSammenhengende}
+                        tilleggsinfo={
+                            <AlertStripe variant={'info'}>
+                                <TekstBlock
+                                    block={oppholdtDegSammenhengende.alert}
+                                    typografi={Typografi.BodyShort}
+                                />
+                            </AlertStripe>
+                        }
+                    />
+                    {skjema.felter.værtINorgeITolvMåneder.verdi === ESvar.NEI && (
+                        <Utenlandsperiode
+                            personType={PersonType.søker}
                             skjema={skjema}
-                            felt={skjema.felter.værtINorgeITolvMåneder}
-                            spørsmålDokument={oppholdtDegSammenhengende}
-                            tilleggsinfo={
-                                <AlertStripe variant={'info'}>
-                                    <TekstBlock
-                                        block={oppholdtDegSammenhengende.alert}
-                                        typografi={Typografi.BodyShort}
-                                    />
-                                </AlertStripe>
+                            leggTilUtenlandsperiode={leggTilUtenlandsperiode}
+                            fjernUtenlandsperiode={fjernUtenlandsperiode}
+                            registrerteUtenlandsperioder={
+                                skjema.felter.registrerteUtenlandsperioder
                             }
                         />
-                        {skjema.felter.værtINorgeITolvMåneder.verdi === ESvar.NEI && (
-                            <Utenlandsperiode
-                                personType={PersonType.søker}
-                                skjema={skjema}
-                                leggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                                fjernUtenlandsperiode={fjernUtenlandsperiode}
-                                registrerteUtenlandsperioder={
-                                    skjema.felter.registrerteUtenlandsperioder
-                                }
-                            />
-                        )}
-                    </>
-                    {skjema.felter.planleggerÅBoINorgeTolvMnd.erSynlig && (
-                        <KomponentGruppe inline dynamisk>
-                            <JaNeiSpm
-                                skjema={skjema}
-                                felt={skjema.felter.planleggerÅBoINorgeTolvMnd}
-                                spørsmålDokument={planleggerAaBoSammenhengende}
-                            />
-                            {skjema.felter.planleggerÅBoINorgeTolvMnd.erSynlig &&
-                                skjema.felter.planleggerÅBoINorgeTolvMnd.verdi === ESvar.NEI && (
-                                    <AlertStripe variant={'warning'} dynamisk>
-                                        <TekstBlock
-                                            block={planleggerAaBoSammenhengende.alert}
-                                            typografi={Typografi.BodyLong}
-                                        />
-                                    </AlertStripe>
-                                )}
-                        </KomponentGruppe>
                     )}
-                </KomponentGruppe>
-            )}
+                </>
+                {skjema.felter.planleggerÅBoINorgeTolvMnd.erSynlig && (
+                    <KomponentGruppe inline dynamisk>
+                        <JaNeiSpm
+                            skjema={skjema}
+                            felt={skjema.felter.planleggerÅBoINorgeTolvMnd}
+                            spørsmålDokument={planleggerAaBoSammenhengende}
+                        />
+                        {skjema.felter.planleggerÅBoINorgeTolvMnd.erSynlig &&
+                            skjema.felter.planleggerÅBoINorgeTolvMnd.verdi === ESvar.NEI && (
+                                <AlertStripe variant={'warning'} dynamisk>
+                                    <TekstBlock
+                                        block={planleggerAaBoSammenhengende.alert}
+                                        typografi={Typografi.BodyLong}
+                                    />
+                                </AlertStripe>
+                            )}
+                    </KomponentGruppe>
+                )}
+            </KomponentGruppe>
             <KomponentGruppe>
                 <JaNeiSpm
                     skjema={skjema}

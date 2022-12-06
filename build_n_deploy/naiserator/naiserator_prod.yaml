@@ -12,23 +12,26 @@ spec:
   team: teamfamilie
   replicas:
     min: 2
-    max: 2
+    max: 3
     cpuThresholdPercentage: 50
   port: 9000
   liveness:
-    path: /internal/isAlive
+    path: /isAlive
     initialDelay: 5
   readiness:
-    path: /internal/isReady
+    path: /isReady
     initialDelay: 5
+  prometheus:
+    enabled: true
+    path: /metrics
   ingresses:
-    - "https://familie-ks-soknad.dev.nav.no/familie/kontantstotte/soknad"
+    - "https://www.nav.no/familie/kontantstotte/soknad"
   accessPolicy:
     outbound:
       rules:
         - application: familie-baks-soknad-api
       external:
-        - host: "www-q1.nav.no"
+        - host: "www.nav.no"
   resources:
     limits:
       cpu: 2000m
@@ -41,6 +44,6 @@ spec:
     - name: BASE_PATH
       value: {{base_path}}
     - name: ENV
-      value: dev
+      value: prod
   secureLogs:
     enabled: true

@@ -17,13 +17,21 @@ interface SkjemaFeltInputProps extends InputProps {
  * Henter input props fra felt, og fra props. Props overstyrer felt.
  */
 export const SkjemaFeltInput: React.FC<SkjemaFeltInputProps> = props => {
-    const { felt, label, visFeilmeldinger, tilleggsinfo, bredde, ...øvrigePropsStøttetAvNavInput } =
-        props;
+    const {
+        felt,
+        label,
+        visFeilmeldinger,
+        tilleggsinfo,
+        bredde,
+        autoComplete = 'off',
+        ...øvrigePropsStøttetAvNavInput
+    } = props;
     const navInputPropsFraFeltHook = felt.hentNavInputProps(visFeilmeldinger);
 
     return felt.erSynlig ? (
         <div>
             <Input
+                autoComplete={autoComplete}
                 label={label}
                 description={tilleggsinfo}
                 {...navInputPropsFraFeltHook}

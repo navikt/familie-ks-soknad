@@ -28,7 +28,9 @@ function App() {
                                     <Router basename={routerBasePath}>
                                         <StegProvider>
                                             <GlobalStyle />
-                                            {process.env.NODE_ENV !== 'production' && (
+                                            {
+                                                // todo: Kommentere denne inn når vi går live
+                                                //process.env.NODE_ENV !== 'production' && (
                                                 <AlertStripe variant="warning">
                                                     {`Denne siden er under utvikling. `}
                                                     <a href="https://www.nav.no/kontantstotte">
@@ -36,7 +38,8 @@ function App() {
                                                         kontantstøtte
                                                     </a>
                                                 </AlertStripe>
-                                            )}
+                                                //)
+                                            }
                                             <AppNavigationProvider>
                                                 <AppContainer />
                                             </AppNavigationProvider>
