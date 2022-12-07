@@ -36,7 +36,7 @@ const BlokkerTilbakeKnappModal = () => {
     return (
         <>
             <Prompt message={håndterNavigasjon} />
-            <Modal onClose={() => setShow(show)} open={true}>
+            <Modal onClose={() => setShow(false)} open={show}>
                 <ModalContent>
                     <TekstBlock
                         block={blokkerTilbakeknappTekster.tittel}

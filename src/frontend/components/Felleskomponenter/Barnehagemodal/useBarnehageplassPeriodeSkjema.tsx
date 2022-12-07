@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, FeltState, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
@@ -9,9 +9,9 @@ import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjen
 import useInputFelt from '../../../hooks/useInputFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
-import { Typografi } from '../../../typer/common';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
+import { IFormateringsfeilmeldingerTekstinnhold } from '../../../typer/sanity/tekstInnhold';
 import { IBarnehageplassPerioderFeltTyper } from '../../../typer/skjema';
 import {
     dagenEtterDato,
@@ -21,14 +21,15 @@ import {
     morgendagensDato,
 } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
-import TekstBlock from '../TekstBlock';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 
 export const useBarnehageplassPeriodeSkjema = () => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
+    const formateringsfeilmeldinger: IFormateringsfeilmeldingerTekstinnhold =
+        tekster()[ESanitySteg.FELLES].formateringsfeilmeldinger;
 
     const barnehageplassPeriodeBeskrivelse = useFelt<EBarnehageplassPeriodeBeskrivelse | ''>({
         feltId: BarnehageplassPeriodeSpørsmålId.barnehageplassPeriodeBeskrivelse,
@@ -36,13 +37,7 @@ export const useBarnehageplassPeriodeSkjema = () => {
         valideringsfunksjon: (felt: FeltState<EBarnehageplassPeriodeBeskrivelse | ''>) =>
             felt.verdi !== ''
                 ? ok(felt)
-                : feil(
-                      felt,
-                      <TekstBlock
-                          block={barnehageplassTekster.periodebeskrivelse.feilmelding}
-                          typografi={Typografi.ErrorMessage}
-                      />
-                  ),
+                : feil(felt, plainTekst(barnehageplassTekster.periodebeskrivelse.feilmelding)),
     });
 
     useEffect(() => {
@@ -76,16 +71,10 @@ export const useBarnehageplassPeriodeSkjema = () => {
         skalVises: !!barnehageplassPeriodeBeskrivelse.verdi,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
-            if (verdi.match(/^[\d\s.\\/,.]{1,7}$/)) {
+            if (verdi.match(/^[\d\s.\\/,]{1,7}$/)) {
                 return ok(felt);
             } else {
-                return feil(
-                    felt,
-                    <TekstBlock
-                        block={barnehageplassTekster.ugyldigTimer}
-                        typografi={Typografi.ErrorMessage}
-                    />
-                );
+                return feil(felt, plainTekst(barnehageplassTekster.ugyldigTimer));
             }
         },
     });
@@ -149,7 +138,7 @@ export const useBarnehageplassPeriodeSkjema = () => {
                 : undefined,
         customStartdatoFeilmelding: erSammeDatoSomDagensDato(startetIBarnehagen.verdi)
             ? undefined
-            : 'todo.ombarnet.barnehageplass.periode',
+            : plainTekst(formateringsfeilmeldinger.periodeAvsluttesForTidlig),
     });
 
     const skjema = useSkjema<IBarnehageplassPerioderFeltTyper, 'string'>({
