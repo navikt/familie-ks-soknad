@@ -8,7 +8,6 @@ import {
     mekkGyldigSøker,
     mockEøs,
     mockHistory,
-    silenceConsoleErrors,
     spyOnModal,
     spyOnUseApp,
     TestProvidere,
@@ -23,8 +22,6 @@ describe('FjernBarnKnapp', () => {
     });
 
     test(`Fjern-knapp dukker kun opp på manuelt registrerte barn`, () => {
-        silenceConsoleErrors();
-
         const registrertBarn: IBarn = {
             id: 'random-id-manuell',
             ident: '12345',
@@ -63,8 +60,6 @@ describe('FjernBarnKnapp', () => {
     });
 
     test('Kan fjerne barn', () => {
-        silenceConsoleErrors();
-
         const registrertBarn: IBarn = {
             id: 'random-id',
             ident: '12345',
