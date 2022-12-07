@@ -7,7 +7,6 @@ import { ISøker } from '../../../typer/person';
 import {
     mockEøs,
     mockHistory,
-    silenceConsoleErrors,
     spyOnModal,
     spyOnUseApp,
     TestProvidere,
@@ -23,7 +22,6 @@ const TestKomponent = () => (
 
 describe('OmDeg', () => {
     beforeEach(() => {
-        silenceConsoleErrors();
         mockEøs();
         mockHistory(['/om-deg']);
         spyOnModal();

@@ -1,9 +1,6 @@
 import { ESivilstand } from '../../typer/kontrakt/generelle';
 import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
 import { sivilstandTilSanitySivilstandApiKey } from '../../utils/språk';
-import { silenceConsoleErrors } from '../../utils/testing';
-
-silenceConsoleErrors();
 
 describe('useSendInnSkjema', () => {
     beforeEach(() => {

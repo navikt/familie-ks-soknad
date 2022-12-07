@@ -5,17 +5,11 @@ import { mockDeep } from 'jest-mock-extended';
 
 import { ISøknad } from '../../../typer/søknad';
 import * as hjelpefunksjoner from '../../../utils/hjelpefunksjoner';
-import {
-    silenceConsoleErrors,
-    spyOnModal,
-    spyOnUseApp,
-    TestProvidere,
-} from '../../../utils/testing';
+import { spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
 import { TilfeldigBarnIkon } from './TilfeldigBarnIkon';
 
 describe('TilfeldigBarnIkon', () => {
     beforeEach(() => {
-        silenceConsoleErrors();
         spyOnModal();
         spyOnUseApp({});
     });
