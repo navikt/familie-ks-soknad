@@ -4,13 +4,7 @@ import { render } from '@testing-library/react';
 
 import { IDokumentasjon } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
-import {
-    mockEøs,
-    silenceConsoleErrors,
-    spyOnModal,
-    spyOnUseApp,
-    TestProvidere,
-} from '../../../utils/testing';
+import { mockEøs, spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
 import LastOppVedlegg from './LastOppVedlegg';
 
 const hentAnnenDokumentasjon = (): IDokumentasjon => {
@@ -29,7 +23,6 @@ const hentAnnenDokumentasjon = (): IDokumentasjon => {
 
 describe('LastOppVedlegg', () => {
     beforeEach(() => {
-        silenceConsoleErrors();
         jest.resetModules();
         mockEøs();
         spyOnModal();

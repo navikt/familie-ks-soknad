@@ -160,17 +160,6 @@ export const mockFeatureToggle = () => {
     return { useFeatureToggle };
 };
 
-/**
- * Åpen for norsk oversettelse av funksjonsnavn
- * Denne fjerner alle console errors fra jest-output. Ikke bruk før du veit at det kun er
- * oversettelsesfeil igjen. Mulig vi heller burde mocke noe i intl.
- */
-export const silenceConsoleErrors = () => {
-    return jest.spyOn(global.console, 'error').mockImplementation(() => {
-        // Shut up about the missing translations;
-    });
-};
-
 export const wrapMedProvidere = (
     // eslint-disable-next-line
     providerComponents: React.FC<any>[],

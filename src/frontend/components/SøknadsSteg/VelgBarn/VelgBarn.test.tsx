@@ -18,7 +18,6 @@ import {
     mockFeatureToggle,
     mockHistory,
     mockRoutes,
-    silenceConsoleErrors,
     spyOnModal,
     spyOnUseApp,
     TestProvidere,
@@ -78,7 +77,6 @@ describe('VelgBarn', () => {
         mockEøs();
         mockRoutes();
         mockFeatureToggle();
-        silenceConsoleErrors();
         spyOnModal();
     });
 
