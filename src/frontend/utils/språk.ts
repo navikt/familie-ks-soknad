@@ -1,11 +1,16 @@
+import { ReactNode } from 'react';
+
 import { Alpha3Code, alpha3ToAlpha2, getName } from 'i18n-iso-countries';
+
+import { ESvar } from '@navikt/familie-form-elements';
 
 import { IEøsForBarnTekstinnhold } from '../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
 import { IVelgBarnTekstinnhold } from '../components/SøknadsSteg/VelgBarn/innholdTyper';
 import { AlternativtSvarForInput } from '../typer/common';
-import { ESivilstand, Slektsforhold } from '../typer/kontrakt/generelle';
+import { ESivilstand, PlainTekst, Slektsforhold } from '../typer/kontrakt/generelle';
 import { IBarn } from '../typer/person';
 import { ESanitySivilstandApiKey } from '../typer/sanity/sanity';
+import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
 
 export const hentSlektsforhold = (
     slektsforhold: Slektsforhold,
@@ -63,5 +68,25 @@ export const hentBostedSpråkId = (barn: IBarn, teksterForSteg: IVelgBarnTekstin
         return teksterForSteg.registrertPaaAdressenDin;
     } else {
         return teksterForSteg.ikkeRegistrertPaaAdressenDin;
+    }
+};
+
+export const formaterSøknadsvar = (
+    søknadsvar: ReactNode,
+    plainTekst: PlainTekst,
+    tekster: IFrittståendeOrdTekstinnhold
+) => {
+    switch (søknadsvar) {
+        case ESvar.JA: {
+            return plainTekst(tekster.ja);
+        }
+        case ESvar.NEI: {
+            return plainTekst(tekster.nei);
+        }
+        case ESvar.VET_IKKE: {
+            return plainTekst(tekster.jegVetIkke);
+        }
+        default:
+            return søknadsvar;
     }
 };

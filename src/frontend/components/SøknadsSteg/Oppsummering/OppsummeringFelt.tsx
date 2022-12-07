@@ -7,6 +7,7 @@ import { BodyLong, Label } from '@navikt/ds-react';
 import { useApp } from '../../../context/AppContext';
 import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
 import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
+import { formaterSøknadsvar } from '../../../utils/språk';
 
 const StyledOppsummeringsFelt = styled.div`
     margin-bottom: 1rem;
@@ -24,12 +25,18 @@ export const OppsummeringFelt: React.FC<IOppsummeringsFeltProps> = ({
     flettefelter,
     children,
 }) => {
-    const { plainTekst } = useApp();
+    const { plainTekst, tekster } = useApp();
 
     return (
         <StyledOppsummeringsFelt>
             {spørsmålstekst && <Label>{plainTekst(spørsmålstekst, flettefelter)}</Label>}
-            {søknadsvar ? <BodyLong>{søknadsvar}</BodyLong> : children}
+            {søknadsvar ? (
+                <BodyLong>
+                    {formaterSøknadsvar(søknadsvar, plainTekst, tekster().FELLES.frittståendeOrd)}
+                </BodyLong>
+            ) : (
+                children
+            )}
         </StyledOppsummeringsFelt>
     );
 };
