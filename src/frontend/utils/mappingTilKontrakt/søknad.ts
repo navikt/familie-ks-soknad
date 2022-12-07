@@ -15,7 +15,7 @@ import { sivilstandTilSanitySivilstandApiKey } from '../språk';
 import { jaNeiSvarTilSpråkId } from '../spørsmål';
 import { barnISøknadsFormat } from './barn';
 import { dokumentasjonISøknadFormat } from './dokumentasjon';
-import { sammeVerdiAlleSpråk, søknadsfeltHof } from './hjelpefunksjoner';
+import { nullableSøknadsfeltForESvarHof, søknadsfeltForESvarHof } from './hjelpefunksjoner';
 import { søkerIKontraktFormat } from './søker';
 
 const antallEøsSteg = (søker: ISøker, barnInkludertISøknaden: IBarnMedISøknad[]) => {
@@ -40,7 +40,8 @@ export const dataISøknadKontraktFormatV1 = (
     const { barnInkludertISøknaden } = søknad;
     const fellesTekster = tekster.FELLES;
 
-    const søknadsfelt = søknadsfeltHof(tilRestLocaleRecord);
+    const nullableSøknadsfeltForESvar = nullableSøknadsfeltForESvarHof(tilRestLocaleRecord);
+    const søknadsfeltForESvar = søknadsfeltForESvarHof(tilRestLocaleRecord);
 
     return {
         kontraktVersjon: 1,
@@ -50,49 +51,41 @@ export const dataISøknadKontraktFormatV1 = (
             barnISøknadsFormat(barn, søknad, tekster, tilRestLocaleRecord)
         ),
         lestOgForståttBekreftelse: søknad.lestOgForståttBekreftelse,
-        spørsmål: {
-            erNoenAvBarnaFosterbarn: søknadsfelt(
-                tekster.OM_BARNA.fosterbarn.sporsmal,
-                sammeVerdiAlleSpråk(søknad.erNoenAvBarnaFosterbarn.svar)
-            ),
-            søktAsylForBarn: søknadsfelt(
-                tekster.OM_BARNA.asyl.sporsmal,
-                sammeVerdiAlleSpråk(søknad.søktAsylForBarn.svar)
-            ),
-            oppholderBarnSegIInstitusjon: søknadsfelt(
-                tekster.OM_BARNA.institusjonKontantstoette.sporsmal,
-                sammeVerdiAlleSpråk(søknad.oppholderBarnSegIInstitusjon.svar)
-            ),
-            barnOppholdtSegTolvMndSammenhengendeINorge: søknadsfelt(
-                tekster.OM_BARNA.sammenhengendeOppholdINorge.sporsmal,
-                sammeVerdiAlleSpråk(søknad.barnOppholdtSegTolvMndSammenhengendeINorge.svar)
-            ),
-            erBarnAdoptert: søknadsfelt(
-                tekster.OM_BARNA.adoptertKontantstoette.sporsmal,
-                sammeVerdiAlleSpråk(søknad.erBarnAdoptert.svar)
-            ),
-            mottarKontantstøtteForBarnFraAnnetEøsland: søknadsfelt(
-                tekster.OM_BARNA.soektYtelseEuEoes.sporsmal,
-                sammeVerdiAlleSpråk(søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar)
-            ),
-            harEllerTildeltBarnehageplass: søknadsfelt(
-                tekster.OM_BARNA.barnehageplass.sporsmal,
-                sammeVerdiAlleSpråk(søknad.harEllerTildeltBarnehageplass.svar)
-            ),
-            erAvdødPartnerForelder: søknadsfelt(
-                søknad.erAvdødPartnerForelder.id ===
-                    OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
-                    ? tekster.OM_BARNA.folkeregistrertGjenlevende.sporsmal
-                    : tekster.OM_BARNA.folkeregistrertEnkeEnkemann.sporsmal,
-                sammeVerdiAlleSpråk(søknad.erAvdødPartnerForelder.svar)
-            ),
-            lestOgForståttBekreftelse: søknadsfelt(
-                tekster.FORSIDE.bekreftelsesboksBroedtekst,
-                søknad.lestOgForståttBekreftelse
-                    ? tilRestLocaleRecord(tekster.FORSIDE.bekreftelsesboksErklaering)
-                    : sammeVerdiAlleSpråk(ESvar.NEI)
-            ),
-        },
+        erNoenAvBarnaFosterbarn: søknadsfeltForESvar(
+            tekster.OM_BARNA.fosterbarn.sporsmal,
+            søknad.erNoenAvBarnaFosterbarn.svar
+        ),
+        søktAsylForBarn: søknadsfeltForESvar(
+            tekster.OM_BARNA.asyl.sporsmal,
+            søknad.søktAsylForBarn.svar
+        ),
+        oppholderBarnSegIInstitusjon: søknadsfeltForESvar(
+            tekster.OM_BARNA.institusjonKontantstoette.sporsmal,
+            søknad.oppholderBarnSegIInstitusjon.svar
+        ),
+        barnOppholdtSegTolvMndSammenhengendeINorge: søknadsfeltForESvar(
+            tekster.OM_BARNA.sammenhengendeOppholdINorge.sporsmal,
+            søknad.barnOppholdtSegTolvMndSammenhengendeINorge.svar
+        ),
+        erBarnAdoptert: søknadsfeltForESvar(
+            tekster.OM_BARNA.adoptertKontantstoette.sporsmal,
+            søknad.erBarnAdoptert.svar
+        ),
+        mottarKontantstøtteForBarnFraAnnetEøsland: søknadsfeltForESvar(
+            tekster.OM_BARNA.soektYtelseEuEoes.sporsmal,
+            søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar
+        ),
+        harEllerTildeltBarnehageplass: søknadsfeltForESvar(
+            tekster.OM_BARNA.barnehageplass.sporsmal,
+            søknad.harEllerTildeltBarnehageplass.svar
+        ),
+        erAvdødPartnerForelder: nullableSøknadsfeltForESvar(
+            søknad.erAvdødPartnerForelder.id ===
+                OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+                ? tekster.OM_BARNA.folkeregistrertGjenlevende.sporsmal
+                : tekster.OM_BARNA.folkeregistrertEnkeEnkemann.sporsmal,
+            søknad.erAvdødPartnerForelder.svar
+        ),
         dokumentasjon: søknad.dokumentasjon
             .filter(dok => erDokumentasjonRelevant(dok))
             .map(dok => dokumentasjonISøknadFormat(dok, tekster, tilRestLocaleRecord)),
