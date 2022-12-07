@@ -124,7 +124,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                             />
                             {skjema.felter.skriftligAvtaleOmDeltBosted.verdi === ESvar.JA && (
                                 <VedleggNotis dynamisk>
-                                    <BodyShort>{deltBosted.vedleggsnotis}</BodyShort>
+                                    <BodyShort>{plainTekst(deltBosted.vedleggsnotis)}</BodyShort>
                                 </VedleggNotis>
                             )}
                         </>
