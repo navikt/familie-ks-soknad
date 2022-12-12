@@ -68,13 +68,16 @@ export const validerDato = (
             )
         );
     }
+
     if (
         !!startdatoAvgrensning &&
         erDatoFørStartDatoAvgrensning(feltState.verdi, startdatoAvgrensning)
     ) {
         return feil(
             feltState,
-            customStartdatoFeilmelding ?? plainTekst(tekster.periodeAvsluttesForTidlig)
+            customStartdatoFeilmelding
+                ? customStartdatoFeilmelding
+                : plainTekst(tekster.periodeAvsluttesForTidlig)
         );
     }
     return ok(feltState);

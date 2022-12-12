@@ -1,6 +1,7 @@
 import React from 'react';
 
 import * as Sentry from '@sentry/react';
+import { registerLocale } from 'i18n-iso-countries';
 import ReactDOM from 'react-dom';
 
 import { HttpProvider } from '@navikt/familie-http';
@@ -21,7 +22,7 @@ const polyfillLocaledata = async () => {
             /* webpackChunkName: "localedata" */
             /* webpackMode: "lazy-once" */
             `i18n-iso-countries/langs/${locale}.json`
-        );
+        ).then(result => registerLocale(result));
     }
 };
 
