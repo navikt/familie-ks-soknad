@@ -4,9 +4,6 @@ import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import { LocaleRecordBlock, LocaleRecordString } from '../common';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export type SpørsmålMap = Record<string, ISøknadsfelt<any>>;
-
 export interface ISøknadsfelt<T> {
     label: Record<LocaleType, string>;
     verdi: Record<LocaleType, T>;

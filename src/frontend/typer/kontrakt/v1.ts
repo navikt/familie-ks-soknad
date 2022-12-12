@@ -9,7 +9,6 @@ import {
     IAdresse,
     ISøknadsfelt,
     IUtenlandsperiodeIKontraktFormat,
-    SpørsmålMap,
 } from './generelle';
 
 export interface ISøknadKontrakt {
@@ -18,10 +17,17 @@ export interface ISøknadKontrakt {
     antallEøsSteg: number;
     søker: ISøknadKontraktSøker;
     barn: ISøknadIKontraktBarn[];
-    spørsmål: SpørsmålMap;
     dokumentasjon: ISøknadKontraktDokumentasjon[];
     teksterTilPdf: Record<string, Record<LocaleType, string>>;
     originalSpråk: LocaleType;
+    erNoenAvBarnaFosterbarn: ISøknadsfelt<ESvar>;
+    søktAsylForBarn: ISøknadsfelt<ESvar>;
+    oppholderBarnSegIInstitusjon: ISøknadsfelt<ESvar>;
+    barnOppholdtSegTolvMndSammenhengendeINorge: ISøknadsfelt<ESvar>;
+    erBarnAdoptert: ISøknadsfelt<ESvar>;
+    mottarKontantstøtteForBarnFraAnnetEøsland: ISøknadsfelt<ESvar>;
+    harEllerTildeltBarnehageplass: ISøknadsfelt<ESvar>;
+    erAvdødPartnerForelder: ISøknadsfelt<ESvar> | null;
 }
 
 export interface ISøknadKontraktSøker {

@@ -26,21 +26,14 @@ describe('erklaering-interceptor', () => {
     });
 
     it('sender 400 hvis søknad ikke har korrekt format', () => {
-        const invalidRequests: DeepPartial<ISøknadKontrakt>[] = [
-            {},
-            { spørsmål: {} },
-            { spørsmål: { lestOgForståttBekreftelse: {} } },
-            { spørsmål: { lestOgForståttBekreftelse: { label: { nb: 'test' } } } },
-        ];
+        const invalidRequest1: DeepPartial<ISøknadKontrakt> = {};
 
-        invalidRequests.forEach(reqData => {
-            erklaeringInterceptor(request(reqData), response, next);
-            expect(next).not.toHaveBeenCalled();
-            expect(response.status).toHaveBeenCalledWith(400);
-            expect(response.send).toHaveBeenCalled();
-            response.send.mockReset();
-            response.status.mockReset().mockReturnThis();
-        });
+        erklaeringInterceptor(request(invalidRequest1), response, next);
+        expect(next).not.toHaveBeenCalled();
+        expect(response.status).toHaveBeenCalledWith(400);
+        expect(response.send).toHaveBeenCalled();
+        response.send.mockReset();
+        response.status.mockReset().mockReturnThis();
     });
 
     it('Sender 403 hvis søker ikke har erklært riktig informasjon', () => {
