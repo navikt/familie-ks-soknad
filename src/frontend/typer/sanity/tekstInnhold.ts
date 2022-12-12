@@ -125,6 +125,7 @@ export interface IFrittståendeOrdTekstinnhold {
     av: LocaleRecordString;
     vedlegg: LocaleRecordString;
     barn: LocaleRecordString;
+    soeker: LocaleRecordString;
 }
 
 export interface INavigasjonTekstinnhold {
