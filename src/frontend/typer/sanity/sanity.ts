@@ -17,7 +17,7 @@ export interface ISanitySpørsmålDokument extends SanityDokument {
     alert?: LocaleRecordBlock;
     beskrivelse?: LocaleRecordString;
     vedleggsnotis?: LocaleRecordString;
-    checkboxLabel?: LocaleRecordString;
+    checkboxLabel?: LocaleRecordBlock;
 }
 
 export enum ESanitySteg {
