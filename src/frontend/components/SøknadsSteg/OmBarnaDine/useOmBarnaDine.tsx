@@ -222,11 +222,6 @@ export const useOmBarnaDine = (): {
                             ...dok,
                             gjelderForBarnId: hvemErAdoptert.verdi,
                         };
-                    case Dokumentasjonsbehov.BEKREFTELSE_FRA_BARNEVERN:
-                        return {
-                            ...dok,
-                            gjelderForBarnId: hvemErFosterbarn.verdi,
-                        };
                     case Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS:
                         return {
                             ...dok,

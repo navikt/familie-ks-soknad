@@ -112,6 +112,7 @@ export const dataISøknadKontraktFormatV1 = (
                 tekster.VELG_BARN.velgBarnTittel,
                 tekster.VELG_BARN.registrertPaaAdressenDin,
                 tekster.VELG_BARN.ikkeRegistrertPaaAdressenDin,
+                tekster.OM_BARNA.omBarnaTittel,
                 tekster.EØS_FOR_SØKER.eoesForSoekerTittel,
                 tekster.FELLES.frittståendeOrd.vedlegg,
                 tekster.FELLES.frittståendeOrd.av,

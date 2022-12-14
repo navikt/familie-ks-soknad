@@ -42,8 +42,6 @@ export const dokumentasjonsbehovTilTittelSanityApiNavn = (
             return TittelSanityApiNavn.annenDokumentasjon;
         case Dokumentasjonsbehov.AVTALE_DELT_BOSTED:
             return TittelSanityApiNavn.avtaleOmDeltBostedTittel;
-        case Dokumentasjonsbehov.BEKREFTELSE_FRA_BARNEVERN:
-            return TittelSanityApiNavn.bekreftelseFraBarnevernetTittel;
         case Dokumentasjonsbehov.BOR_FAST_MED_SØKER:
             return TittelSanityApiNavn.bekreftelsePaaAtBarnBorSammenMedDegTittel;
         case Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE:
@@ -72,8 +70,6 @@ export const dokumentasjonsbehovTilBeskrivelseSanityApiNavn = (
             return null;
         case Dokumentasjonsbehov.AVTALE_DELT_BOSTED:
             return BeskrivelseSanityApiNavn.avtaleOmDeltBosted;
-        case Dokumentasjonsbehov.BEKREFTELSE_FRA_BARNEVERN:
-            return BeskrivelseSanityApiNavn.bekreftelseFraBarnevernet;
         case Dokumentasjonsbehov.BOR_FAST_MED_SØKER:
             return BeskrivelseSanityApiNavn.bekreftelsePaaAtBarnBorSammenMedDeg;
         case Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE:
