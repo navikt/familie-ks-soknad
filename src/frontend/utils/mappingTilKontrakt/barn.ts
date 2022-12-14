@@ -250,7 +250,6 @@ export const barnISøknadsFormat = (
         teksterTilPdf: {
             ...[
                 tekster.OM_BARNET.opplystAdoptert,
-                tekster.OM_BARNET.opplystInstitusjon,
                 tekster.OM_BARNET.opplystBarnOppholdUtenforNorge,
                 tekster.OM_BARNET.opplystFaarHarFaattEllerSoektYtelse,
                 tekster.OM_BARNET.barnetsAndreForelder,
