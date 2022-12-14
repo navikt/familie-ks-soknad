@@ -54,7 +54,6 @@ export const dokumentasjonsbehovTilTittelSanityApiNavn = (
 export enum BeskrivelseSanityApiNavn {
     bekreftelsePaaAdopsjonKontantstoette = 'bekreftelsePaaAdopsjonKontantstoette',
     avtaleOmDeltBosted = 'avtaleOmDeltBosted',
-    bekreftelseFraBarnevernet = 'bekreftelseFraBarnevernet',
     bekreftelsePaaAtBarnBorSammenMedDeg = 'bekreftelsePaaAtBarnBorSammenMedDeg',
     vedtakOmOppholdstillatelse = 'vedtakOmOppholdstillatelse',
     bekreftelsePaaBarnehageplass = 'bekreftelsePaaBarnehageplass',
