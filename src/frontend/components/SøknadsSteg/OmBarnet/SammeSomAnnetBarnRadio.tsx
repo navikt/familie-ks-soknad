@@ -2,8 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { RadioPanelGruppe } from 'nav-frontend-skjema';
-
+import { Radio, RadioGroup } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
@@ -14,7 +13,7 @@ import { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { OmBarnetSpørsmålsId } from './spørsmål';
 
-const StyledRadioPanelGruppe = styled(RadioPanelGruppe)`
+const StyledRadioGroup = styled(RadioGroup)`
     && label:not(:last-child) {
         margin-bottom: 1rem;
     }
@@ -45,7 +44,7 @@ const SammeSomAnnetBarnRadio: React.FC<{
         });
 
     return (
-        <StyledRadioPanelGruppe
+        <StyledRadioGroup
             {...felt.hentNavInputProps(skjema.visFeilmeldinger)}
             legend={
                 <TekstBlock
@@ -53,14 +52,19 @@ const SammeSomAnnetBarnRadio: React.FC<{
                     flettefelter={{ barnetsNavn }}
                 />
             }
-            checked={felt.verdi ?? undefined}
             name={OmBarnetSpørsmålsId.sammeForelderSomAnnetBarn}
-            radios={radios}
-            onChange={(_event, value) => {
+            onChange={value => {
                 felt.onChange(value);
             }}
-            feil={felt.feilmelding}
-        />
+            error={felt.feilmelding}
+            size={'medium'}
+        >
+            {radios.map(radio => (
+                <Radio key={radio.value} value={radio.value}>
+                    {radio.label}
+                </Radio>
+            ))}
+        </StyledRadioGroup>
     );
 };
 
