@@ -1,6 +1,5 @@
 import React from 'react';
 
-import * as Sentry from '@sentry/react';
 import { registerLocale } from 'i18n-iso-countries';
 import ReactDOM from 'react-dom';
 
@@ -9,8 +8,6 @@ import { LocaleType, SprakProvider } from '@navikt/familie-sprakvelger';
 
 import './index.less';
 import App from './App';
-import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
-import { logError } from './utils/amplitude';
 import { initSentry } from './utils/sentry';
 import '@navikt/ds-css';
 
@@ -39,13 +36,7 @@ polyfillLocaledata().then(() => {
         <React.StrictMode>
             <SprakProvider defaultLocale={LocaleType.nb}>
                 <HttpProvider>
-                    <Sentry.ErrorBoundary
-                        fallback={() => <Feilside />}
-                        beforeCapture={scope => scope.setTag('scope', 'familie-ks-soknad')}
-                        onError={logError}
-                    >
-                        <App />
-                    </Sentry.ErrorBoundary>
+                    <App />
                 </HttpProvider>
             </SprakProvider>
         </React.StrictMode>,
