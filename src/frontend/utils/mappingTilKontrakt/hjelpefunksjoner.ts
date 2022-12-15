@@ -56,7 +56,7 @@ export const sammeVerdiAlleSpråk = <T>(verdi: T): Record<LocaleType, T> =>
 export const sammeVerdiAlleSpråkEllerUkjent = <T>(
     tilRestLocaleRecord: TilRestLocaleRecord,
     svar: T | AlternativtSvarForInput,
-    checkboxLabel?: LocaleRecordString,
+    checkboxLabel?: LocaleRecordBlock,
     flettefelter?: FlettefeltVerdier
 ): Record<LocaleType, T | string> =>
     checkboxLabel && svar === AlternativtSvarForInput.UKJENT
