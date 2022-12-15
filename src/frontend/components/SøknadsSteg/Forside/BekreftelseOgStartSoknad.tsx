@@ -51,6 +51,8 @@ const BekreftelseOgStartSoknad: React.FC = () => {
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
     const { plainTekst, tekster } = useApp();
 
+    throw Error('sentry test');
+
     const {
         FORSIDE: {
             bekreftelsesboksFeilmelding,
