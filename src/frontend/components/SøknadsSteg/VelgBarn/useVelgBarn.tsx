@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { feil, ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
@@ -6,13 +6,12 @@ import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { useSteg } from '../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { BarnetsId, Typografi } from '../../../typer/common';
+import { BarnetsId } from '../../../typer/common';
 import { IBarn } from '../../../typer/person';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IVelgBarnFeltTyper } from '../../../typer/skjema';
 import { setUserProperty, UserProperty } from '../../../utils/amplitude';
 import { genererInitialBarnMedISøknad } from '../../../utils/barn';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { IVelgBarnTekstinnhold } from './innholdTyper';
 import { VelgBarnSpørsmålId } from './spørsmål';
 
@@ -26,7 +25,7 @@ export const useVelgBarn = (): {
     fjernBarn: (ident: string) => void;
     validerAlleSynligeFelter: () => void;
 } => {
-    const { søknad, settSøknad, mellomlagre, tekster } = useApp();
+    const { søknad, settSøknad, mellomlagre, tekster, plainTekst } = useApp();
     const { barnInkludertISøknaden } = søknad;
     const { settBarnForSteg } = useSteg();
     const { settBarnSomTriggerEøs } = useEøs();
@@ -55,13 +54,7 @@ export const useVelgBarn = (): {
         valideringsfunksjon: (felt, avhengigheter) => {
             return avhengigheter?.barnSomSkalVæreMed.length > 0
                 ? ok(felt)
-                : feil(
-                      felt,
-                      <TekstBlock
-                          block={teksterForSteg.maaVelgeEtBarnForAaGaaVidere}
-                          typografi={Typografi.ErrorMessage}
-                      />
-                  );
+                : feil(felt, plainTekst(teksterForSteg.maaVelgeEtBarnForAaGaaVidere));
         },
         avhengigheter: { barnSomSkalVæreMed },
     });
