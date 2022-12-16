@@ -12,6 +12,7 @@ import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
 import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import { ISteg, RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import { AppLenke } from '../../Felleskomponenter/AppLenke/AppLenke';
 import { SkjemaFeiloppsummering } from '../../Felleskomponenter/SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 
@@ -75,7 +76,7 @@ const Oppsummeringsbolk: React.FC<Props> = ({
         <Accordion>
             <Accordion.Item defaultOpen={true}>
                 <Accordion.Header type="button">
-                    {`${stegnummer}. ${plainTekst(tittel, flettefelter)}`}
+                    {`${stegnummer}. ${uppercaseFørsteBokstav(plainTekst(tittel, flettefelter))}`}
                 </Accordion.Header>
                 <StyledAccordionContent>
                     {children}
