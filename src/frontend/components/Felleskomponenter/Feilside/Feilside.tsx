@@ -1,16 +1,28 @@
 import React from 'react';
 
-import { useApp } from '../../../context/AppContext';
+import { BodyShort } from '@navikt/ds-react';
+import { LocaleType, useSprakContext } from '@navikt/familie-sprakvelger';
+
 import AlertStripe from '../AlertStripe/AlertStripe';
-import TekstBlock from '../TekstBlock';
 
 export const Feilside: React.FC = () => {
-    const { tekster } = useApp();
-    const { enFeilHarOppstaatt } = tekster().FELLES.kanIkkeBrukeSoeknad;
+    const [valgtSpråk] = useSprakContext();
+
+    const feilsidetekstPåRiktigSpråk = () => {
+        switch (valgtSpråk) {
+            case LocaleType.nb:
+                return 'En feil har oppstått! Vennligst prøv igjen. Hvis det fremdeles er problem må du bruke PDF/papir-skjema for å søke.';
+            case LocaleType.nn:
+                return 'Ein feil har oppstått! Ver venleg og prøv igjen. Dersom det framleis er problem må du bruke PDF/papir-skjema for å søke.';
+            case LocaleType.en:
+                return 'An error has occurred. Please try again. If the problem persists, you will need to apply using a PDF/paper application form.';
+        }
+    };
+
     return (
         <div>
             <AlertStripe variant="error" aria-live={'polite'}>
-                <TekstBlock block={enFeilHarOppstaatt} />
+                <BodyShort>{feilsidetekstPåRiktigSpråk()}</BodyShort>
             </AlertStripe>
         </div>
     );
