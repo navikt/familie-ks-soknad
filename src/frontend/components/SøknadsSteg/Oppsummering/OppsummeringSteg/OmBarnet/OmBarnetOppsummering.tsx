@@ -127,6 +127,10 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
             )}
             {barn[barnDataKeySpørsmål.harBarnehageplass].svar === ESvar.JA && (
                 <StyledOppsummeringsFeltGruppe>
+                    <OppsummeringFelt
+                        spørsmålstekst={omBarnetTekster.opplystBarnehageplass}
+                        flettefelter={flettefelter}
+                    />
                     {barn.barnehageplassPerioder.map((periode, index) => (
                         <BarnehageplassPeriodeOppsummering
                             key={`barnehageplass-periode-${index}`}
