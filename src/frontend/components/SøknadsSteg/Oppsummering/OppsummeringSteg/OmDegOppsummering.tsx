@@ -11,7 +11,7 @@ import { useRoutes } from '../../../../context/RoutesContext';
 import { PersonType } from '../../../../typer/personType';
 import { RouteEnum } from '../../../../typer/routes';
 import { genererAdresseVisning } from '../../../../utils/adresse';
-import { landkodeTilSpråk } from '../../../../utils/språk';
+import { landkodeTilSpråk, sivilstandTilSanitySivilstandApiKey } from '../../../../utils/språk';
 import { jaNeiSvarTilSpråkId } from '../../../../utils/spørsmål';
 import { UtenlandsperiodeOppsummering } from '../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
 import { useOmdeg } from '../../OmDeg/useOmdeg';
@@ -29,7 +29,7 @@ interface Props {
 
 const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
     const { søknad, tekster, plainTekst } = useApp();
-    const { OM_DEG: omDegTekster, FORSIDE: forsideTekster } = tekster();
+    const { OM_DEG: omDegTekster, FORSIDE: forsideTekster, FELLES: fellesTekster } = tekster();
     const [valgtLocale] = useSprakContext();
     const { hentRouteObjektForRouteEnum } = useRoutes();
     const omDegHook = useOmdeg();
@@ -66,7 +66,11 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                 />
                 <OppsummeringFelt
                     spørsmålstekst={omDegTekster.sivilstatus}
-                    søknadsvar={søknad.søker.sivilstand.type}
+                    søknadsvar={plainTekst(
+                        fellesTekster.frittståendeOrd[
+                            sivilstandTilSanitySivilstandApiKey(søknad.søker.sivilstand.type)
+                        ]
+                    )}
                 />
 
                 <OppsummeringFelt
