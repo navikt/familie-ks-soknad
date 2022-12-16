@@ -159,7 +159,6 @@ export interface IVedlikeholdsarbeidTekstinnhold {
 }
 
 export interface IKanIkkeBrukeSoeknadTekstinnhold {
-    enFeilHarOppstaatt: LocaleRecordBlock;
     brukPDFKontantstoette: LocaleRecordBlock;
 }
 
