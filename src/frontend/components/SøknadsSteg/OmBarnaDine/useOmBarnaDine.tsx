@@ -241,7 +241,7 @@ export const useOmBarnaDine = (): {
         felter: {
             erNoenAvBarnaFosterbarn,
             oppholderBarnSegIInstitusjon,
-            erBarnAdoptert: erBarnAdoptert,
+            erBarnAdoptert,
             søktAsylForBarn,
             barnOppholdtSegTolvMndSammenhengendeINorge,
             mottarKontantstøtteForBarnFraAnnetEøsland,
