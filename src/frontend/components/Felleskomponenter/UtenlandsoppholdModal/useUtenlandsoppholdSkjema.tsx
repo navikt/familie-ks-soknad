@@ -93,8 +93,10 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
             : hentMinAvgrensningPåTilDato(utenlandsoppholdÅrsak.verdi),
         customStartdatoFeilmelding: !harTilhørendeFomFelt(utenlandsoppholdÅrsak.verdi)
             ? utenlandsoppholdÅrsak.verdi === EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE
-                ? 'felles.dato.tilbake-i-tid.feilmelding'
-                : 'modal.nårflyttettilnorge.mer-enn-ett-år.feilmelding'
+                ? plainTekst(tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid)
+                : plainTekst(
+                      tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaere12MndTilbake
+                  )
             : undefined,
         avhengigheter: { utenlandsoppholdÅrsak },
     });
