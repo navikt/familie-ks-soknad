@@ -29,7 +29,7 @@ const [InnloggetProvider, useInnloggetContext] = createUseContext(() => {
         settInnloggetStatus: (innloggetStatus: InnloggetStatus) => void
     ) => {
         return axiosRequest({
-            url: `${soknadApi}/innlogget`,
+            url: `${soknadApi}/innlogget/kontantstotte`,
             method: 'GET',
             withCredentials: true,
             påvirkerSystemLaster: true,
