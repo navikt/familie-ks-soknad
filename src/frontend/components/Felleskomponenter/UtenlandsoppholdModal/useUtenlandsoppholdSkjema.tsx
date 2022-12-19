@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, FeltState, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
@@ -7,7 +7,6 @@ import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
-import { Typografi } from '../../../typer/common';
 import { PersonType } from '../../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -20,7 +19,6 @@ import {
     hentMaxAvgrensningPåTilDato,
     hentMinAvgrensningPåTilDato,
 } from '../../../utils/utenlandsopphold';
-import TekstBlock from '../TekstBlock';
 import { UtenlandsoppholdSpørsmålId } from './spørsmål';
 import {
     hentFraDatoFeilmelding,
@@ -33,7 +31,7 @@ export interface IUseUtenlandsoppholdSkjemaParams {
 }
 
 export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSkjemaParams) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const teksterForPersontype: IUtenlandsoppholdTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
 
@@ -43,13 +41,7 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
         valideringsfunksjon: (felt: FeltState<EUtenlandsoppholdÅrsak | ''>) =>
             felt.verdi !== ''
                 ? ok(felt)
-                : feil(
-                      felt,
-                      <TekstBlock
-                          block={teksterForPersontype.periodeBeskrivelse.feilmelding}
-                          typografi={Typografi.ErrorMessage}
-                      />
-                  ),
+                : feil(felt, plainTekst(teksterForPersontype.periodeBeskrivelse.feilmelding)),
     });
 
     useEffect(() => {
@@ -101,8 +93,10 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
             : hentMinAvgrensningPåTilDato(utenlandsoppholdÅrsak.verdi),
         customStartdatoFeilmelding: !harTilhørendeFomFelt(utenlandsoppholdÅrsak.verdi)
             ? utenlandsoppholdÅrsak.verdi === EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE
-                ? 'felles.dato.tilbake-i-tid.feilmelding'
-                : 'modal.nårflyttettilnorge.mer-enn-ett-år.feilmelding'
+                ? plainTekst(tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid)
+                : plainTekst(
+                      tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaere12MndTilbake
+                  )
             : undefined,
         avhengigheter: { utenlandsoppholdÅrsak },
     });
