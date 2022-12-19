@@ -6,7 +6,7 @@ import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
-import { formaterDato } from '../../../utils/dato';
+import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
@@ -100,7 +100,10 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
                         ? barnehageplassTekster.sluttdatoFortid.sporsmal
                         : barnehageplassTekster.sluttdatoFremtid.sporsmal
                 }
-                søknadsvar={formaterDato(slutterIBarnehagen.svar)}
+                søknadsvar={formaterDatoMedUkjent(
+                    slutterIBarnehagen.svar,
+                    plainTekst(barnehageplassTekster.sluttdatoFremtid.checkboxLabel)
+                )}
             />
         </PeriodeOppsummering>
     );

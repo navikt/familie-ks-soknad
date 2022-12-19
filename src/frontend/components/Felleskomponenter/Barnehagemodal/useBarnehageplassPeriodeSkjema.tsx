@@ -113,7 +113,7 @@ export const useBarnehageplassPeriodeSkjema = () => {
         verdi: ESvar.NEI,
         feltId: BarnehageplassPeriodeSpørsmålId.slutterIBarnehagenVetIkke,
         skalFeltetVises: avhengigheter =>
-            avhengigheter?.barnehageplassPeriodeBeskrivelse?.verdi ===
+            avhengigheter?.barnehageplassPeriodeBeskrivelse.verdi !==
             EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE,
         avhengigheter: { barnehageplassPeriodeBeskrivelse },
     });
@@ -126,16 +126,12 @@ export const useBarnehageplassPeriodeSkjema = () => {
             ? barnehageplassTekster.sluttdatoFortid.feilmelding
             : barnehageplassTekster.sluttdatoFremtid.feilmelding,
         skalFeltetVises: !!barnehageplassPeriodeBeskrivelse.verdi,
+        sluttdatoAvgrensning: periodenErAvsluttet ? dagensDato() : undefined,
         startdatoAvgrensning:
             barnehageplassPeriodeBeskrivelse.verdi ===
             EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
                 ? morgendagensDato()
                 : dagenEtterDato(startetIBarnehagen.verdi),
-        sluttdatoAvgrensning:
-            barnehageplassPeriodeBeskrivelse.verdi ===
-            EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                ? dagensDato()
-                : undefined,
         customStartdatoFeilmelding: erSammeDatoSomDagensDato(startetIBarnehagen.verdi)
             ? undefined
             : plainTekst(formateringsfeilmeldinger.periodeAvsluttesForTidlig),
