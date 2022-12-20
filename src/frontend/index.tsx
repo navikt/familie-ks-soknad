@@ -1,16 +1,13 @@
 import React from 'react';
 
-import * as Sentry from '@sentry/react';
 import { registerLocale } from 'i18n-iso-countries';
 import ReactDOM from 'react-dom';
 
-import { HttpProvider } from '@navikt/familie-http';
-import { LocaleType, SprakProvider } from '@navikt/familie-sprakvelger';
+import { LocaleType } from '@navikt/familie-sprakvelger';
 
-import './index.less';
 import App from './App';
-import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
-import { logError } from './utils/amplitude';
+import FellesWrapper from './FellesWrapper';
+import './index.less';
 import { initSentry } from './utils/sentry';
 import '@navikt/ds-css';
 
@@ -36,19 +33,9 @@ polyfillLocaledata().then(() => {
     }
 
     ReactDOM.render(
-        <React.StrictMode>
-            <SprakProvider defaultLocale={LocaleType.nb}>
-                <HttpProvider>
-                    <Sentry.ErrorBoundary
-                        fallback={() => <Feilside />}
-                        beforeCapture={scope => scope.setTag('scope', 'familie-ks-soknad')}
-                        onError={logError}
-                    >
-                        <App />
-                    </Sentry.ErrorBoundary>
-                </HttpProvider>
-            </SprakProvider>
-        </React.StrictMode>,
+        <FellesWrapper>
+            <App />
+        </FellesWrapper>,
         document.getElementById('root')
     );
 });
