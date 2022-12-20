@@ -79,7 +79,7 @@ const Filopplaster: React.FC<Props> = ({
                 open={åpenModal}
                 onClose={() => lukkModal()}
                 closeButton={true}
-                aria-label="Modal" //todo: fikse en bedre aria-label
+                aria-label={plainTekst(lastOppKnapp)}
             >
                 <ModalContent>
                     <FeilmeldingWrapper>
