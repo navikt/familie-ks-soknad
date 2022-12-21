@@ -24,6 +24,7 @@ const StyledLabel = styled(Label)`
 
 interface Props {
     typografi?: Typografi;
+    style?: React.CSSProperties;
 }
 
 const StyledBodyLong = styled(BodyLong)`
@@ -32,46 +33,50 @@ const StyledBodyLong = styled(BodyLong)`
     }
 `;
 
-export const TypografiWrapper: React.FC<Props> = ({ children, typografi }) => {
+export const TypografiWrapper: React.FC<Props> = ({ typografi, style, children }) => {
     switch (typografi) {
         case Typografi.StegHeadingH1:
             return (
-                <Heading level={'1'} size={'xsmall'}>
+                <Heading level={'1'} size={'xsmall'} style={style}>
                     {children}
                 </Heading>
             );
         case Typografi.ModalHeadingH1:
             return (
-                <Heading level={'1'} size={'large'}>
+                <Heading level={'1'} size={'large'} style={style}>
                     {children}
                 </Heading>
             );
         case Typografi.ForsideHeadingH1:
             return (
-                <Heading level={'1'} size={'xlarge'}>
+                <Heading level={'1'} size={'xlarge'} style={style}>
                     {children}
                 </Heading>
             );
         case Typografi.HeadingH2:
             return (
-                <Heading level={'2'} size={'xsmall'} spacing>
+                <Heading level={'2'} size={'xsmall'} spacing style={style}>
                     {children}
                 </Heading>
             );
         case Typografi.Ingress:
-            return <Ingress>{children}</Ingress>;
+            return <Ingress style={style}>{children}</Ingress>;
         case Typografi.BodyLong:
-            return <StyledBodyLong>{children}</StyledBodyLong>;
+            return <StyledBodyLong style={style}>{children}</StyledBodyLong>;
         case Typografi.BodyShort:
-            return <BodyShort>{children}</BodyShort>;
+            return <BodyShort style={style}>{children}</BodyShort>;
         case Typografi.Label:
-            return <StyledLabel spacing>{children}</StyledLabel>;
+            return (
+                <StyledLabel spacing style={style}>
+                    {children}
+                </StyledLabel>
+            );
         case Typografi.Detail:
-            return <Detail>{children}</Detail>;
+            return <Detail style={style}>{children}</Detail>;
         case Typografi.ErrorMessage:
-            return <ErrorMessage>{children}</ErrorMessage>;
+            return <ErrorMessage style={style}>{children}</ErrorMessage>;
         case undefined:
-            return <>{children}</>;
+            return <div style={style}>{children}</div>;
     }
 };
 
@@ -89,7 +94,9 @@ const TekstBlock: React.FC<{
             components={{
                 block: {
                     normal: ({ children }) => (
-                        <TypografiWrapper typografi={typografi}>{children}</TypografiWrapper>
+                        <TypografiWrapper typografi={typografi} style={{ minHeight: '1rem' }}>
+                            {children}
+                        </TypografiWrapper>
                     ),
                     h1: ({ children }) => (
                         <TypografiWrapper typografi={typografi}>{children}</TypografiWrapper>
@@ -118,7 +125,6 @@ const TekstBlock: React.FC<{
                                 target={props.value.blank ? '_blank' : '_self'}
                                 rel={'noopener noreferrer'}
                                 href={encodeURI(props.value.href)}
-                                style={{ display: 'block' }}
                             >
                                 {props.text}
                             </a>
