@@ -88,7 +88,7 @@ export const dataISøknadKontraktFormatV1 = (
         ),
         dokumentasjon: søknad.dokumentasjon
             .filter(dok => erDokumentasjonRelevant(dok))
-            .map(dok => dokumentasjonISøknadFormat(dok, tekster, tilRestLocaleRecord)),
+            .map(dok => dokumentasjonISøknadFormat(dok, tekster, tilRestLocaleRecord, søknad)),
         teksterTilPdf: {
             ...Object.values(ESivilstand).reduce(
                 (map, sivilstand) => ({

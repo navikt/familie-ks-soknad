@@ -8,16 +8,20 @@ import {
     ISøknadKontraktDokumentasjon,
     ISøknadKontraktVedlegg,
 } from '../../typer/kontrakt/dokumentasjon';
-import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
+import { FlettefeltVerdier, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { ESanitySteg } from '../../typer/sanity/sanity';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
+import { ISøknad } from '../../typer/søknad';
+import { slåSammen } from '../slåSammen';
 
 export const dokumentasjonISøknadFormat = (
     dokumentasjon: IDokumentasjon,
     tekster: ITekstinnhold,
-    tilRestLocaleRecord: TilRestLocaleRecord
+    tilRestLocaleRecord: TilRestLocaleRecord,
+    søknad: ISøknad
 ): ISøknadKontraktDokumentasjon => {
     const dokumentsjonstekster = tekster[ESanitySteg.DOKUMENTASJON];
+
     return {
         dokumentasjonsbehov: dokumentasjon.dokumentasjonsbehov,
         harSendtInn: dokumentasjon.harSendtInn,
@@ -27,9 +31,22 @@ export const dokumentasjonISøknadFormat = (
         dokumentasjonSpråkTittel: tilRestLocaleRecord(
             dokumentsjonstekster[
                 dokumentasjonsbehovTilTittelSanityApiNavn(dokumentasjon.dokumentasjonsbehov)
-            ]
+            ],
+            flettefelterForDokumentasjonTittel(dokumentasjon.dokumentasjonsbehov, søknad)
         ),
     };
+};
+
+const flettefelterForDokumentasjonTittel = (
+    dokumentasjonsbehov: Dokumentasjonsbehov,
+    søknad: ISøknad
+): FlettefeltVerdier => {
+    switch (dokumentasjonsbehov) {
+        case Dokumentasjonsbehov.BOR_FAST_MED_SØKER:
+            return { barnetsNavn: slåSammen(søknad.barnRegistrertManuelt.map(barn => barn.navn)) };
+        default:
+            return {};
+    }
 };
 
 export const vedleggISøknadFormat = (
