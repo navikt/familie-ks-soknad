@@ -27,8 +27,6 @@ spec:
     outbound:
       rules:
         - application: familie-baks-soknad-api
-      external:
-        - host: "www-q1.nav.no"
   resources:
     limits:
       cpu: 2000m
