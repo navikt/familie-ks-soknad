@@ -90,13 +90,13 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     return felt.erSynlig ? (
         <div aria-live={dynamisk ? 'polite' : 'off'}>
             <StyledFamilieDatovelger
+                {...felt.hentNavBaseSkjemaProps(skjema.visFeilmeldinger)}
                 description={<BodyShort>{plainTekst(datoformatHjelpetekst)}</BodyShort>}
                 allowInvalidDateSelection={false}
                 limitations={hentBegrensninger()}
                 placeholder={plainTekst(datoformatPlaceholder)}
-                valgtDato={disabled ? '' : felt.verdi}
+                value={disabled ? '' : felt.verdi}
                 label={label}
-                {...felt.hentNavBaseSkjemaProps(skjema.visFeilmeldinger)}
                 onChange={dato => {
                     felt.hentNavInputProps(false).onChange(dato);
                 }}
