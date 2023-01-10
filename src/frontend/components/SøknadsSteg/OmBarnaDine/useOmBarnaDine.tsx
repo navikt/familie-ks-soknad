@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { ISkjema, useSkjema } from '@navikt/familie-skjema';
@@ -12,7 +12,6 @@ import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnaDineFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { IOmBarnaTekstinnhold } from './innholdTyper';
 import { OmBarnaDineSpørsmålId } from './spørsmål';
 import useBarnCheckboxFelt from './useBarnCheckboxFelt';
@@ -25,7 +24,7 @@ export const useOmBarnaDine = (): {
     oppdaterSøknad: () => void;
     validerAlleSynligeFelter: () => void;
 } => {
-    const { søknad, settSøknad, tekster } = useApp();
+    const { søknad, settSøknad, tekster, plainTekst } = useApp();
     const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } = useEøs();
 
     const teksterForSteg: IOmBarnaTekstinnhold = tekster()[ESanitySteg.OM_BARNA];
@@ -37,7 +36,7 @@ export const useOmBarnaDine = (): {
 
     const hvemErFosterbarn = useBarnCheckboxFelt(
         barnDataKeySpørsmål.erFosterbarn,
-        <TekstBlock block={teksterForSteg.hvemFosterbarn.feilmelding} />,
+        plainTekst(teksterForSteg.hvemFosterbarn.feilmelding),
         erNoenAvBarnaFosterbarn
     );
 
@@ -48,7 +47,7 @@ export const useOmBarnaDine = (): {
 
     const hvemOppholderSegIInstitusjon = useBarnCheckboxFelt(
         barnDataKeySpørsmål.oppholderSegIInstitusjon,
-        <TekstBlock block={teksterForSteg.hvemInstitusjon.feilmelding} />,
+        plainTekst(teksterForSteg.hvemInstitusjon.feilmelding),
         oppholderBarnSegIInstitusjon
     );
 
@@ -59,7 +58,7 @@ export const useOmBarnaDine = (): {
 
     const hvemErAdoptert = useBarnCheckboxFelt(
         barnDataKeySpørsmål.erAdoptert,
-        <TekstBlock block={teksterForSteg.hvemAdoptertKontantstoette.feilmelding} />,
+        plainTekst(teksterForSteg.hvemAdoptertKontantstoette.feilmelding),
         erBarnAdoptert
     );
 
@@ -70,7 +69,7 @@ export const useOmBarnaDine = (): {
 
     const hvemErSøktAsylFor = useBarnCheckboxFelt(
         barnDataKeySpørsmål.erAsylsøker,
-        <TekstBlock block={teksterForSteg.hvemAsyl.feilmelding} />,
+        plainTekst(teksterForSteg.hvemAsyl.feilmelding),
         søktAsylForBarn
     );
 
@@ -81,7 +80,7 @@ export const useOmBarnaDine = (): {
 
     const hvemTolvMndSammenhengendeINorge = useBarnCheckboxFelt(
         barnDataKeySpørsmål.boddMindreEnn12MndINorge,
-        <TekstBlock block={teksterForSteg.hvemOppholdUtenforNorge.feilmelding} />,
+        plainTekst(teksterForSteg.hvemOppholdUtenforNorge.feilmelding),
         barnOppholdtSegTolvMndSammenhengendeINorge,
         ESvar.NEI
     );
@@ -93,7 +92,7 @@ export const useOmBarnaDine = (): {
 
     const hvemKontantstøtteFraAnnetEøsland = useBarnCheckboxFelt(
         barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland,
-        <TekstBlock block={teksterForSteg.hvemSoektYtelse.feilmelding} />,
+        plainTekst(teksterForSteg.hvemSoektYtelse.feilmelding),
         mottarKontantstøtteForBarnFraAnnetEøsland
     );
 
@@ -104,7 +103,7 @@ export const useOmBarnaDine = (): {
 
     const hvemHarBarnehageplass = useBarnCheckboxFelt(
         barnDataKeySpørsmål.harBarnehageplass,
-        <TekstBlock block={teksterForSteg.hvemBarnehageplass.feilmelding} />,
+        plainTekst(teksterForSteg.hvemBarnehageplass.feilmelding),
         harEllerTildeltBarnehageplass
     );
 
@@ -123,14 +122,12 @@ export const useOmBarnaDine = (): {
 
     const hvemAvdødPartner = useBarnCheckboxFelt(
         barnDataKeySpørsmål.andreForelderErDød,
-        <TekstBlock
-            block={
-                søknad.erAvdødPartnerForelder.id ===
+        plainTekst(
+            søknad.erAvdødPartnerForelder.id ===
                 OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
-                    ? teksterForSteg.hvemAvBarnaAvdoedPartner.feilmelding
-                    : teksterForSteg.hvemAvBarnaAvdoedEktefelle.feilmelding
-            }
-        />,
+                ? teksterForSteg.hvemAvBarnaAvdoedPartner.feilmelding
+                : teksterForSteg.hvemAvBarnaAvdoedEktefelle.feilmelding
+        ),
         erAvdødPartnerForelder
     );
 

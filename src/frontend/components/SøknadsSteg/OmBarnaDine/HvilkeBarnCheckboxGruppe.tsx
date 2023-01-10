@@ -45,13 +45,7 @@ const HvilkeBarnCheckboxGruppe: React.FC<Props> = ({
                 aria-live={'polite'}
                 legend={legend}
                 {...skjemafelt.hentNavBaseSkjemaProps(visFeilmelding)}
-                error={
-                    visFeilmelding ? (
-                        <span>{skjemafelt.hentNavBaseSkjemaProps(visFeilmelding).feil}</span>
-                    ) : (
-                        ''
-                    )
-                }
+                error={visFeilmelding ? skjemafelt.feilmelding : ''}
                 onChange={value => settValgteBarn(value)}
             >
                 {søknad.barnInkludertISøknaden.map((barnISøknad, index) => {

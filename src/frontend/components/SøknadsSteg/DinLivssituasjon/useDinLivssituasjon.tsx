@@ -12,12 +12,15 @@ import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { IArbeidsperiode, IPensjonsperiode } from '../../../typer/perioder';
 import { ISøker } from '../../../typer/person';
+import { PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
 import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IDinLivssituasjonFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
+import { ArbeidsperiodeSpørsmålsId } from '../../Felleskomponenter/Arbeidsperiode/spørsmål';
+import { PensjonsperiodeSpørsmålId } from '../../Felleskomponenter/Pensjonsmodal/spørsmål';
 import { idNummerLand } from '../EøsSteg/idnummerUtils';
 import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
 
@@ -58,6 +61,7 @@ export const useDinLivssituasjon = (): {
         leggTilPeriode: leggTilArbeidsperiode,
         registrertePerioder: registrerteArbeidsperioder,
     } = usePerioder<IArbeidsperiode>(
+        `${ArbeidsperiodeSpørsmålsId.arbeidsperioder}-${PersonType.søker}-utland`,
         søker.arbeidsperioderUtland,
         { arbeidIUtlandet },
         avhengigheter => avhengigheter.arbeidIUtlandet.verdi === ESvar.JA,
@@ -84,6 +88,7 @@ export const useDinLivssituasjon = (): {
         leggTilPeriode: leggTilPensjonsperiode,
         registrertePerioder: registrertePensjonsperioder,
     } = usePerioder<IPensjonsperiode>(
+        `${PensjonsperiodeSpørsmålId.pensjonsperioder}-${PersonType.søker}-utland`,
         søker.pensjonsperioderUtland,
         { mottarUtenlandspensjon },
         avhengigheter => avhengigheter.mottarUtenlandspensjon.verdi === ESvar.JA,
