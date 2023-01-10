@@ -10,12 +10,14 @@ import { usePerioder } from '../../../hooks/usePerioder';
 import { AlternativtSvarForInput } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { IIdNummer } from '../../../typer/person';
+import { PersonType } from '../../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmDegFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
 import { flyttetPermanentFraNorge } from '../../../utils/utenlandsopphold';
+import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { idNummerLandMedPeriodeType, PeriodeType } from '../EøsSteg/idnummerUtils';
 import { IOmDegTekstinnhold } from './innholdTyper';
 
@@ -52,6 +54,7 @@ export const useOmdeg = (): {
         leggTilPeriode: leggTilUtenlandsperiode,
         registrertePerioder: registrerteUtenlandsperioder,
     } = usePerioder<IUtenlandsperiode>(
+        `${UtenlandsoppholdSpørsmålId.utenlandsopphold}-${PersonType.søker}`,
         søker.utenlandsperioder,
         { værtINorgeITolvMåneder },
         avhengigheter => avhengigheter.værtINorgeITolvMåneder.verdi === ESvar.NEI,

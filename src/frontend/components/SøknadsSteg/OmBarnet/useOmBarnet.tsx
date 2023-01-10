@@ -27,6 +27,7 @@ import {
     IUtenlandsperiode,
 } from '../../../typer/perioder';
 import { IIdNummer } from '../../../typer/person';
+import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import {
@@ -41,6 +42,11 @@ import { formaterInitVerdiForInputMedUkjent, formaterVerdiForCheckbox } from '..
 import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
 import { flyttetPermanentFraNorge } from '../../../utils/utenlandsopphold';
+import { ArbeidsperiodeSpørsmålsId } from '../../Felleskomponenter/Arbeidsperiode/spørsmål';
+import { BarnehageplassPeriodeSpørsmålId } from '../../Felleskomponenter/Barnehagemodal/spørsmål';
+import { KontantstøttePeriodeSpørsmålId } from '../../Felleskomponenter/KontantstøttePeriode/spørsmål';
+import { PensjonsperiodeSpørsmålId } from '../../Felleskomponenter/Pensjonsmodal/spørsmål';
+import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { idNummerLand } from '../EøsSteg/idnummerUtils';
 import { IOmBarnetTekstinnhold } from './innholdTyper';
 import { OmBarnetSpørsmålsId } from './spørsmål';
@@ -111,6 +117,7 @@ export const useOmBarnet = (
         leggTilPeriode: leggTilUtenlandsperiodeBarn,
         registrertePerioder: barnRegistrerteUtenlandsperioder,
     } = usePerioder<IUtenlandsperiode>(
+        `${UtenlandsoppholdSpørsmålId.utenlandsopphold}-${PersonType.barn}`,
         gjeldendeBarn.utenlandsperioder ?? [],
         {},
         () => skalFeltetVises(barnDataKeySpørsmål.boddMindreEnn12MndINorge),
@@ -160,6 +167,7 @@ export const useOmBarnet = (
         leggTilPeriode: leggTilKontantstøttePeriode,
         registrertePerioder: registrerteEøsKontantstøttePerioder,
     } = usePerioder<IEøsKontantstøttePeriode>(
+        `${KontantstøttePeriodeSpørsmålId.kontantstøttePeriodeEøs}-${PersonType.søker}`,
         gjeldendeBarn.eøsKontantstøttePerioder,
         { mottarEllerMottokEøsKontantstøtte },
         avhengigheter => avhengigheter.mottarEllerMottokEøsKontantstøtte.verdi === ESvar.JA,
@@ -178,6 +186,7 @@ export const useOmBarnet = (
         leggTilPeriode: leggTilBarnehageplassPeriode,
         registrertePerioder: registrerteBarnehageplassPerioder,
     } = usePerioder<IBarnehageplassPeriode>(
+        `${BarnehageplassPeriodeSpørsmålId.barnehageplassPeriode}-${PersonType.barn}`,
         gjeldendeBarn.barnehageplassPerioder,
         {},
         () => skalFeltetVises(barnDataKeySpørsmål.harBarnehageplass),
@@ -352,6 +361,7 @@ export const useOmBarnet = (
         leggTilPeriode: leggTilArbeidsperiode,
         registrertePerioder: andreForelderArbeidsperioderUtland,
     } = usePerioder<IArbeidsperiode>(
+        `${ArbeidsperiodeSpørsmålsId.arbeidsperioder}-${PersonType.andreForelder}-utland`,
         andreForelder?.arbeidsperioderUtland ?? [],
         { andreForelderArbeidUtlandet },
         avhengigheter => avhengigheter.andreForelderArbeidUtlandet.verdi === ESvar.JA,
@@ -398,6 +408,7 @@ export const useOmBarnet = (
         leggTilPeriode: leggTilPensjonsperiode,
         registrertePerioder: andreForelderPensjonsperioderUtland,
     } = usePerioder<IPensjonsperiode>(
+        `${PensjonsperiodeSpørsmålId.pensjonsperioder}-${PersonType.andreForelder}-utland`,
         andreForelder?.pensjonsperioderUtland ?? [],
         { andreForelderPensjonUtland },
         avhengigheter => avhengigheter.andreForelderPensjonUtland.verdi === ESvar.JA,
