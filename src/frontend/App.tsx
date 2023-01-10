@@ -22,17 +22,14 @@ const App = () => {
                         <RoutesProvider>
                             <Router basename={routerBasePath}>
                                 <StegProvider>
-                                    {
-                                        // todo: Kommentere denne inn når vi går live
-                                        //process.env.NODE_ENV !== 'production' && (
+                                    {process.env.NODE_ENV !== 'production' && (
                                         <AlertStripe variant="warning">
                                             {`Denne siden er under utvikling. `}
                                             <a href="https://www.nav.no/kontantstotte">
                                                 Klikk her for å gå til våre sider for kontantstøtte
                                             </a>
                                         </AlertStripe>
-                                        //)
-                                    }
+                                    )}
                                     <AppNavigationProvider>
                                         <AppContainer />
                                     </AppNavigationProvider>
