@@ -20,7 +20,6 @@ import TekstBlock from '../TekstBlock';
 import { PensjonModal } from './Pensjonsmodal';
 import { PensjonsperiodeOppsummering } from './PensjonsperiodeOppsummering';
 import { pensjonSpørsmålDokument } from './språkUtils';
-import { PensjonsperiodeSpørsmålId } from './spørsmål';
 
 interface PensjonsperiodeProps {
     skjema: ISkjema<
@@ -95,7 +94,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
                     )}
                     <LeggTilKnapp
                         onClick={togglePensjonsmodal}
-                        id={PensjonsperiodeSpørsmålId.pensjonsperioder}
+                        id={registrertePensjonsperioder.id}
                         feilmelding={
                             registrertePensjonsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&
