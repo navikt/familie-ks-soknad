@@ -15,7 +15,6 @@ import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 import { BarnehageplassPeriodeModal } from './BarnehageplassPeriodeModal';
 import { BarnehageplassPeriodeOppsummering } from './BarnehageplassPeriodeOppsummering';
-import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 
 interface BarnehageplassPeriodeProps {
     skjema: ISkjema<IOmBarnetFeltTyper, string>;
@@ -65,7 +64,7 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
 
             <LeggTilKnapp
                 onClick={toggleBarnehageplassModal}
-                id={BarnehageplassPeriodeSpørsmålId.barnehageplassPeriode}
+                id={registrerteBarnehageplassPerioder.id}
                 feilmelding={
                     registrerteBarnehageplassPerioder.erSynlig &&
                     skjema.visFeilmeldinger &&

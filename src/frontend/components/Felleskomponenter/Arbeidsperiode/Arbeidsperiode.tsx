@@ -21,7 +21,6 @@ import TekstBlock from '../TekstBlock';
 import { ArbeidsperiodeModal } from './ArbeidsperiodeModal';
 import { ArbeidsperiodeOppsummering } from './ArbeidsperiodeOppsummering';
 import { arbeidsperiodeSpørsmålDokument } from './arbeidsperiodeSpråkUtils';
-import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
 
 interface ArbeidsperiodeProps {
     skjema: ISkjema<
@@ -97,7 +96,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                     )}
                     <LeggTilKnapp
                         onClick={toggleArbeidsmodal}
-                        id={ArbeidsperiodeSpørsmålsId.arbeidsperioder}
+                        id={registrerteArbeidsperioder.id}
                         feilmelding={
                             registrerteArbeidsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&

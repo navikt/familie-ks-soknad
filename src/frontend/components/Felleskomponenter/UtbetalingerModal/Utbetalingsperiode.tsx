@@ -13,7 +13,6 @@ import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 import { mottarEllerMottattUtbetalingApiNavn } from './språkUtils';
-import { UtbetalingerSpørsmålId } from './spørsmål';
 import { UtbetalingerModal } from './UtbetalingerModal';
 import { UtbetalingsperiodeOppsummering } from './UtbetalingsperiodeOppsummering';
 
@@ -78,7 +77,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                     )}
                     <LeggTilKnapp
                         onClick={toggleUtbetalingsmodal}
-                        id={UtbetalingerSpørsmålId.utbetalingsperioder}
+                        id={registrerteUtbetalingsperioder.id}
                         feilmelding={
                             registrerteUtbetalingsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&
