@@ -46,10 +46,10 @@ app.use((_req, res, next) => {
     res.removeHeader('X-Powered-By');
     res.setHeader(
         'Content-Security-Policy',
-        `script-src 'self' 'unsafe-inline' 'unsafe-eval' ${[
+        `script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: ${[
             'www.nav.no',
             'account.psplugin.com',
-            'in.taskanalytics.com',
+            'in2.taskanalytics.com',
             'static.hotjar.com',
         ].join(
             ' '
