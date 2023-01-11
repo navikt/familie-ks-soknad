@@ -42,6 +42,22 @@ konfigurerStatic(app);
 // Middleware for unleash kill-switch
 app.use(expressToggleInterceptor);
 
+app.use((_req, res, next) => {
+    res.removeHeader('X-Powered-By');
+    res.setHeader(
+        'Content-Security-Policy',
+        `script-src 'self' 'unsafe-inline' 'unsafe-eval' ${[
+            'www.nav.no',
+            'account.psplugin.com',
+            'in.taskanalytics.com',
+            'static.hotjar.com',
+        ].join(
+            ' '
+        )}; connect-src 'self' api.amplitude.com amplitude.nav.no nav.psplugin.com tjenester.nav.no vc.hotjar.io by26nl8j.apicdn.sanity.io;`
+    );
+    next();
+});
+
 konfigurerIndex(app);
 konfigurerNais(app);
 konfigurerApi(app);
