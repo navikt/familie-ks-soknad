@@ -36,8 +36,11 @@ spec:
       memory: 1024Mi
     requests:
       memory: 512Mi
-  envFrom:
-    - configmap: loginservice-idporten
+  idporten:
+    enabled: true
+    sidecar:
+      enabled: true
+      autoLogin: true
   env:
     - name: BASE_PATH
       value: {{base_path}}
