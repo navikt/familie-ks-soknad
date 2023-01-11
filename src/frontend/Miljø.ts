@@ -4,6 +4,7 @@ import { SanityDataSet } from './typer/sanity/sanity';
 interface MiljøProps {
     soknadApi: string;
     loginService: string;
+    loginUrl?: string;
     visInnsendingsknapp: boolean;
     mellomlagerUrl: string;
     modellVersjon: number;
@@ -21,6 +22,7 @@ const Miljø = (): MiljøProps => {
             sanityDataset: 'production',
             soknadApi: `https://familie-ks-soknad.dev.nav.no${basePath}api`,
             loginService: 'https://loginservice.dev.nav.no/login?',
+            loginUrl: 'https://familie-ks-soknad.dev.nav.no/oauth2/login?',
             visInnsendingsknapp: true,
             mellomlagerUrl:
                 'https://familie-dokument.dev.nav.no/familie/dokument/api/soknad/kontantstotte',
