@@ -23,6 +23,8 @@ const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
             'vc.hotjar.io',
             'localhost:8082',
         ],
+        'form-action': ["'self'"],
+        'frame-ancestors': ["'none'"],
         'font-src': ["'self'", 'data:', '*.psplugin.com'],
         'frame-src': ['vars.hotjar.com'],
         'img-src': ["'self'", 'www.nav.no', 'data:'],

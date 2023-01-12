@@ -49,19 +49,7 @@ app.use((_req, res, next) => {
         'Content-Security-Policy',
         cspString(process.env.DEKORATOREN_URL ?? 'https://www.nav.no/dekoratoren')
     );
-    // res.setHeader(
-    //     'Content-Security-Policy',
-    //     `script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: ${[
-    //         'www.nav.no',
-    //         'account.psplugin.com',
-    //         'in2.taskanalytics.com',
-    //         'static.hotjar.com',
-    //         'script.hotjar.com',
-    //     ].join(
-    //         ' '
-    //     )}; connect-src 'self' api.amplitude.com amplitude.nav.no nav.psplugin.com tjenester.nav.no vc.hotjar.io by26nl8j.apicdn.sanity.io www.nav.no familie-dokument.dev.nav.no sentry.gc.nav.no amplitude.nav.no vc.hotjar.io`
-    // );
-    res.setHeader('X-Frame-Options', 'DENY');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
     next();
 });
 
