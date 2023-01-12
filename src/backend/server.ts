@@ -51,6 +51,7 @@ app.use((_req, res, next) => {
             'account.psplugin.com',
             'in2.taskanalytics.com',
             'static.hotjar.com',
+            'script.hotjar.com',
         ].join(
             ' '
         )}; connect-src 'self' api.amplitude.com amplitude.nav.no nav.psplugin.com tjenester.nav.no vc.hotjar.io by26nl8j.apicdn.sanity.io www.nav.no familie-dokument.dev.nav.no sentry.gc.nav.no amplitude.nav.no;`
