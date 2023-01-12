@@ -7,10 +7,8 @@
   default-src 'self';
   style-src 'self' 'unsafe-inline' %DEKORATOREN_URL%/css/client.css;
   font-src 'self' data:;
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' %DEKORATOREN_URL%/client.js account.psplugin.com in2.taskanalytics.com static.hotjar.com;
-  script-src-elem script.hotjar.com;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' %DEKORATOREN_URL%/client.js account.psplugin.com in2.taskanalytics.com static.hotjar.com script.hotjar.com vars.hotjar.com;
   worker-src blob:;
-  frame-src vars.hotjar.com;
   connect-src 'self' www.nav.no by26nl8j.apicdn.sanity.io amplitude.nav.no nav.psplugin.com familie-dokument.dev.nav.no;
   img-src 'self' www.nav.no"
   />
