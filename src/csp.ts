@@ -12,7 +12,7 @@ const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
             'script.hotjar.com',
             'vars.hotjar.com',
         ],
-        'style-src': ['self', "'unsafe-inline'", dekoratorenUrl + '/css/client.css'],
+        'style-src': ["'self'", "'unsafe-inline'", dekoratorenUrl + '/css/client.css'],
         'connect-src': [
             "'self'",
             '*.nav.no',
