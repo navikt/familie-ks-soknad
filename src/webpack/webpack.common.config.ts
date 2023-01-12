@@ -7,6 +7,7 @@ import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin.js';
 import webpackModule from 'webpack';
 import webpack from 'webpack';
 
+import { cspString } from '../csp';
 import { unslash } from '../shared-utils/unslash';
 const { DefinePlugin, ProvidePlugin } = webpackModule;
 
@@ -19,6 +20,7 @@ const commonConfig: webpack.Configuration = {
         new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
             PUBLIC_URL: (process.env.BASE_PATH ?? '/') + publicUrl.substr(1),
             DEKORATOREN_URL: process.env.DEKORATOREN_URL ?? 'https://www.nav.no/dekoratoren',
+            CSP: cspString(process.env.DEKORATOREN_URL ?? 'https://www.nav.no/dekoratoren'),
         }),
         new HtmlWebpackPlugin({
             template: path.join(process.cwd(), 'src/frontend/public/index.html'),
