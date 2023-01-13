@@ -23,6 +23,8 @@ import { konfigurerStatic } from './routes/static';
 dotenv.config();
 const app = express();
 
+app.disable('x-powered-by');
+
 // webpack serve kjører på en annen port enn oss, må tillate det som origin
 process.env.NODE_ENV === 'development' &&
     app.use(
@@ -44,12 +46,12 @@ konfigurerStatic(app);
 app.use(expressToggleInterceptor);
 
 app.use((_req, res, next) => {
-    res.removeHeader('X-Powered-By');
-    res.setHeader(
+    res.header(
         'Content-Security-Policy',
         cspString(process.env.DEKORATOREN_URL ?? 'https://www.nav.no/dekoratoren')
     );
-    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.header('X-Content-Type-Options', 'nosniff');
+    res.header('X-Frame-Options', 'DENY');
     next();
 });
 

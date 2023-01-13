@@ -29,6 +29,7 @@ const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
         'frame-src': ['vars.hotjar.com'],
         'img-src': ["'self'", 'www.nav.no', 'data:'],
         'worker-src': ["'self'", 'blob:'],
+        'manifest-src': ["'self'", 'www.nav.no'],
     };
 };
 
