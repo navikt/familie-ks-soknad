@@ -12,10 +12,14 @@ import { usePerioder } from '../../../../hooks/usePerioder';
 import { AlternativtSvarForInput } from '../../../../typer/common';
 import { IArbeidsperiode, IPensjonsperiode, IUtbetalingsperiode } from '../../../../typer/perioder';
 import { ISøker } from '../../../../typer/person';
+import { PersonType } from '../../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../../typer/sanity/modaler/arbeidsperiode';
 import { IEøsForSøkerFeltTyper } from '../../../../typer/skjema';
 import { valideringAdresse } from '../../../../utils/adresse';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
+import { ArbeidsperiodeSpørsmålsId } from '../../../Felleskomponenter/Arbeidsperiode/spørsmål';
+import { PensjonsperiodeSpørsmålId } from '../../../Felleskomponenter/Pensjonsmodal/spørsmål';
+import { UtbetalingerSpørsmålId } from '../../../Felleskomponenter/UtbetalingerModal/spørsmål';
 import { idNummerKeyPrefix } from '../idnummerUtils';
 import { EøsSøkerSpørsmålId } from './spørsmål';
 
@@ -65,6 +69,7 @@ export const useEøsForSøker = (): {
         leggTilPeriode: leggTilArbeidsperiode,
         registrertePerioder: registrerteArbeidsperioder,
     } = usePerioder<IArbeidsperiode>(
+        `${ArbeidsperiodeSpørsmålsId.arbeidsperioder}-${PersonType.søker}`,
         søker.arbeidsperioderNorge,
         { arbeidINorge },
         avhengigheter => avhengigheter.arbeidINorge.verdi === ESvar.JA,
@@ -90,6 +95,7 @@ export const useEøsForSøker = (): {
         leggTilPeriode: leggTilPensjonsperiode,
         registrertePerioder: registrertePensjonsperioder,
     } = usePerioder<IPensjonsperiode>(
+        `${PensjonsperiodeSpørsmålId.pensjonsperioder}-${PersonType.søker}`,
         søker.pensjonsperioderNorge,
         { pensjonNorgeFelt },
         avhengigheter => avhengigheter.pensjonNorgeFelt.verdi === ESvar.JA,
@@ -111,6 +117,7 @@ export const useEøsForSøker = (): {
         leggTilPeriode: leggTilAndreUtbetalingsperiode,
         registrertePerioder: registrerteAndreUtbetalinger,
     } = usePerioder<IUtbetalingsperiode>(
+        `${UtbetalingerSpørsmålId.utbetalingsperioder}-${PersonType.søker}`,
         søker.andreUtbetalingsperioder,
         { andreUtbetalinger },
         avhengigheter => avhengigheter.andreUtbetalinger.verdi === ESvar.JA,

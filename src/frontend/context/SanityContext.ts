@@ -21,7 +21,7 @@ const [SanityProvider, useSanity] = createUseContext(() => {
         projectId: 'by26nl8j',
         dataset: Miljø().sanityDataset,
         apiVersion: '2021-10-21',
-        useCdn: false,
+        useCdn: true,
     });
 
     useEffect(() => {

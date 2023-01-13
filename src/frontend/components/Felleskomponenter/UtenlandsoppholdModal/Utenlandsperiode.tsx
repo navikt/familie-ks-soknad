@@ -12,7 +12,6 @@ import { IOmBarnetFeltTyper, IOmDegFeltTyper } from '../../../typer/skjema';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
-import { UtenlandsoppholdSpørsmålId } from './spørsmål';
 import { UtenlandsoppholdModal } from './UtenlandsoppholdModal';
 import { UtenlandsperiodeOppsummering } from './UtenlandsperiodeOppsummering';
 
@@ -69,7 +68,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
                 <TekstBlock block={flerePerioder} typografi={Typografi.Label} />
             )}
             <LeggTilKnapp
-                id={UtenlandsoppholdSpørsmålId.utenlandsopphold}
+                id={registrerteUtenlandsperioder.id}
                 onClick={toggleModal}
                 feilmelding={
                     registrerteUtenlandsperioder.erSynlig &&

@@ -4,6 +4,7 @@ import { Avhengigheter, useFelt } from '@navikt/familie-skjema';
 import { ValiderFelt } from '@navikt/familie-skjema/dist/typer';
 
 export const usePerioder = <T>(
+    feltId: string,
     verdi: T[],
     avhengigheter?: Avhengigheter,
     skalFeltetVises?: (avhengigheter: Avhengigheter) => boolean,
@@ -19,6 +20,7 @@ export const usePerioder = <T>(
     };
 
     const registrertePerioder = useFelt<T[]>({
+        feltId,
         verdi: perioder,
         avhengigheter,
         skalFeltetVises,

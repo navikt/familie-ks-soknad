@@ -17,7 +17,6 @@ import TekstBlock from '../TekstBlock';
 import { KontantstøttePeriodeModal } from './KontantstøttePeriodeModal';
 import { KontantstøttePeriodeOppsummering } from './KontantstøttePeriodeOppsummering';
 import { eøsKontantstøtteSpørsmålsdokument } from './kontantstøttePeriodeSpråkUtils';
-import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 
 interface Props {
     skjema: ISkjema<IOmBarnetFeltTyper | IEøsForBarnFeltTyper, string>;
@@ -81,7 +80,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
 
                     <LeggTilKnapp
                         onClick={toggleKontantstøtteModal}
-                        id={KontantstøttePeriodeSpørsmålId.kontantstøttePeriodeEøs}
+                        id={registrerteEøsKontantstøttePerioder.id}
                         feilmelding={
                             registrerteEøsKontantstøttePerioder.erSynlig &&
                             skjema.visFeilmeldinger &&
