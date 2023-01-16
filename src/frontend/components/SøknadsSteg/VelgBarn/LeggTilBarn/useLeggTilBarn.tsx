@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import {
     feil,
@@ -13,13 +11,12 @@ import {
 
 import { useApp } from '../../../../context/AppContext';
 import useInputFeltMedUkjent from '../../../../hooks/useInputFeltMedUkjent';
-import { ESvarMedUbesvart, LocaleRecordBlock, Typografi } from '../../../../typer/common';
+import { ESvarMedUbesvart, LocaleRecordBlock } from '../../../../typer/common';
 import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { ILeggTilBarnTyper } from '../../../../typer/skjema';
 import { erBarnRegistrertFraFør, hentUid } from '../../../../utils/barn';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
-import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { VelgBarnSpørsmålId } from '../spørsmål';
 
 export const useLeggTilBarn = (): {
@@ -45,21 +42,9 @@ export const useLeggTilBarn = (): {
                 case ESvar.JA:
                     return ok(felt);
                 case ESvar.NEI:
-                    return feil(
-                        felt,
-                        <TekstBlock
-                            block={teksterForModal.barnIkkeFoedtFeilmelding}
-                            typografi={Typografi.ErrorMessage}
-                        />
-                    );
+                    return feil(felt, plainTekst(teksterForModal.barnIkkeFoedtFeilmelding));
                 default:
-                    return feil(
-                        felt,
-                        <TekstBlock
-                            block={teksterForModal.erBarnetFoedt.feilmelding}
-                            typografi={Typografi.ErrorMessage}
-                        />
-                    );
+                    return feil(felt, plainTekst(teksterForModal.erBarnetFoedt.feilmelding));
             }
         },
     });
@@ -96,13 +81,7 @@ export const useLeggTilBarn = (): {
         valideringsfunksjon: felt =>
             felt.verdi === ESvar.NEI
                 ? ok(felt)
-                : feil(
-                      felt,
-                      <TekstBlock
-                          block={teksterForModal.foedselsnummerFeilmelding}
-                          typografi={Typografi.ErrorMessage}
-                      />
-                  ),
+                : feil(felt, plainTekst(teksterForModal.foedselsnummerFeilmelding)),
         skalFeltetVises: ({ erFødt }) => erFødt.verdi === ESvar.JA,
         avhengigheter: { erFødt },
     });
@@ -118,13 +97,7 @@ export const useLeggTilBarn = (): {
         skalVises: erFødt.valideringsstatus === Valideringsstatus.OK,
         customValidering: (felt: FeltState<string>) => {
             return erBarnRegistrertFraFør(søknad, felt.verdi)
-                ? feil(
-                      felt,
-                      <TekstBlock
-                          block={teksterForModal.sammeFoedselsnummerFeilmelding}
-                          typografi={Typografi.ErrorMessage}
-                      />
-                  )
+                ? feil(felt, plainTekst(teksterForModal.sammeFoedselsnummerFeilmelding))
                 : ok(felt);
         },
     });
