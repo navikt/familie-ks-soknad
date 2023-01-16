@@ -35,6 +35,5 @@ export enum Typografi {
     BodyShort = 'BodyShort',
     Label = 'Label',
     Detail = 'Detail',
-    ErrorMessage = 'ErrorMessage',
     HeadingH2 = 'HeadingH2',
 }
