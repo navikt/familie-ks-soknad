@@ -27,7 +27,7 @@ export const tilIPensjonsperiodeIKontraktFormat = ({
 }: PensjonsperiodeIKontraktFormatParams): ISøknadsfelt<IPensjonsperiodeIKontraktFormat> => {
     const { mottarPensjonNå, pensjonsland, pensjonFra, pensjonTil } = periode;
 
-    const periodenErAvsluttet = mottarPensjonNå?.svar === ESvar.NEI;
+    const periodenErAvsluttet = mottarPensjonNå?.svar !== ESvar.JA;
 
     return {
         label: tilRestLocaleRecord(tekster.oppsummeringstittel, {
