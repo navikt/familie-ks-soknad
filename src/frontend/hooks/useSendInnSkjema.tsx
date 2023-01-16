@@ -31,8 +31,6 @@ export const useSendInnSkjema = (): {
             tilRestLocaleRecord
         );
 
-        console.log(formatert);
-
         const res = await sendInn<ISøknadKontrakt>(
             formatert,
             axiosRequest,

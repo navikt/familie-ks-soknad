@@ -127,10 +127,7 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
                 gåVidere();
             }
         } else if (gåVidereCallback) {
-            gåVidereCallback().then(
-                resultat =>
-                    resultat && nyesteNåværendeRoute !== RouteEnum.Dokumentasjon && gåVidere()
-            );
+            gåVidereCallback().then(resultat => resultat && gåVidere());
         } else {
             gåVidere();
         }
