@@ -68,7 +68,7 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, erDød) =
         feltId: KontantstøttePeriodeSpørsmålId.månedligBeløp,
         valideringsfunksjon: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
-            if (verdi.match(/^[\d\s.\\/]{1,7}$/)) {
+            if (verdi.match(/^[\d\s.\\/]{1,20}$/)) {
                 return ok(felt);
             } else {
                 return feil(
