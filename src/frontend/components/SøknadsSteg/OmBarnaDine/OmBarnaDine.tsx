@@ -93,13 +93,6 @@ const OmBarnaDine: React.FC = () => {
                     skjema={skjema}
                     felt={skjema.felter.oppholderBarnSegIInstitusjon}
                     spørsmålDokument={institusjonKontantstoette}
-                    tilleggsinfo={
-                        <AlertStripe variant={'info'}>
-                            <BodyShort>
-                                {plainTekst(institusjonKontantstoette.beskrivelse)}
-                            </BodyShort>
-                        </AlertStripe>
-                    }
                 />
                 <HvilkeBarnCheckboxGruppe
                     legend={<TekstBlock block={hvemInstitusjon.sporsmal} />}
