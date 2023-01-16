@@ -80,7 +80,7 @@ const Kvittering: React.FC = () => {
                 </KomponentGruppe>
             )}
 
-            <TekstBlock block={kvitteringTekster.fikkDuIkkeLastetOppDokumentasjonen} />
+            <TekstBlock block={kvitteringTekster.ettersendelseKontantstotte} />
             <BlokkerTilbakeKnappModal />
         </Steg>
     );
