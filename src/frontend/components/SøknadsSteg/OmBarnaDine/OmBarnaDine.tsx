@@ -124,15 +124,6 @@ const OmBarnaDine: React.FC = () => {
                     nullstillValgteBarn={skjema.felter.erBarnAdoptert.verdi === ESvar.NEI}
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
-                {skjema.felter.erBarnAdoptert.verdi === ESvar.JA && (
-                    <VedleggNotisWrapper>
-                        <VedleggNotis dynamisk>
-                            <BodyShort>
-                                {plainTekst(adoptertKontantstoette.vedleggsnotis)}
-                            </BodyShort>
-                        </VedleggNotis>
-                    </VedleggNotisWrapper>
-                )}
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.søktAsylForBarn}
