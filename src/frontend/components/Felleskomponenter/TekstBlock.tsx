@@ -3,15 +3,7 @@ import React from 'react';
 import { PortableText } from '@portabletext/react';
 import styled from 'styled-components';
 
-import {
-    BodyLong,
-    BodyShort,
-    Detail,
-    ErrorMessage,
-    Heading,
-    Ingress,
-    Label,
-} from '@navikt/ds-react';
+import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds-react';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../context/AppContext';
@@ -73,8 +65,6 @@ export const TypografiWrapper: React.FC<Props> = ({ typografi, style, children }
             );
         case Typografi.Detail:
             return <Detail style={style}>{children}</Detail>;
-        case Typografi.ErrorMessage:
-            return <ErrorMessage style={style}>{children}</ErrorMessage>;
         case undefined:
             return <div style={style}>{children}</div>;
     }
