@@ -114,6 +114,7 @@ export interface IEøsForBarnFeltTyper {
     omsorgspersonIdNummer: string;
     omsorgspersonIdNummerVetIkke: ESvar;
     omsorgspersonAdresse: string;
+    omsorgspersonAdresseVetIkke: ESvar;
     omsorgspersonArbeidUtland: ESvar | null;
     omsorgspersonArbeidsperioderUtland: IArbeidsperiode[];
     omsorgspersonArbeidNorge: ESvar | null;

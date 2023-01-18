@@ -17,6 +17,7 @@ import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøt
 import {
     nullableSøknadsfeltForESvarHof,
     sammeVerdiAlleSpråk,
+    sammeVerdiAlleSpråkEllerUkjent,
     søknadsfeltForESvarHof,
     søknadsfeltHof,
     verdiCallbackAlleSpråk,
@@ -155,7 +156,11 @@ export const barnISøknadsFormat = (
         adresse: adresse.svar
             ? søknadsfelt(
                   eøsTekster.hvorBorBarnet.sporsmal,
-                  sammeVerdiAlleSpråk(adresse.svar),
+                  sammeVerdiAlleSpråkEllerUkjent(
+                      tilRestLocaleRecord,
+                      adresse.svar,
+                      eøsTekster.hvorBorBarnet.checkboxLabel
+                  ),
                   flettefelter
               )
             : null,
