@@ -18,6 +18,7 @@ import { Arbeidsperiode } from '../../../Felleskomponenter/Arbeidsperiode/Arbeid
 import { LandDropdown } from '../../../Felleskomponenter/Dropdowns/LandDropdown';
 import SlektsforholdDropdown from '../../../Felleskomponenter/Dropdowns/SlektsforholdDropdown';
 import JaNeiSpm from '../../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
+import KomponentGruppe from '../../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import { KontantstøttePeriode } from '../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriode';
 import { Pensjonsperiode } from '../../../Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
 import { SkjemaCheckbox } from '../../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
@@ -120,12 +121,24 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                     label={plainTekst(eøsForBarnTekster.idNummerOmsorgsperson.checkboxLabel)}
                 />
             </>
-            <SkjemaFeltInput
-                felt={skjema.felter.omsorgspersonAdresse}
-                visFeilmeldinger={skjema.visFeilmeldinger}
-                label={<TekstBlock block={eøsForBarnTekster.hvorBorOmsorgsperson.sporsmal} />}
-                description={plainTekst(eøsForBarnTekster.hvorBorOmsorgsperson.beskrivelse)}
-            />
+            <KomponentGruppe>
+                <>
+                    <SkjemaFeltInput
+                        felt={skjema.felter.omsorgspersonAdresse}
+                        visFeilmeldinger={skjema.visFeilmeldinger}
+                        label={
+                            <TekstBlock block={eøsForBarnTekster.hvorBorOmsorgsperson.sporsmal} />
+                        }
+                        description={plainTekst(eøsForBarnTekster.hvorBorOmsorgsperson.beskrivelse)}
+                        disabled={skjema.felter.omsorgspersonAdresseVetIkke.verdi === ESvar.JA}
+                    />
+                    <SkjemaCheckbox
+                        felt={skjema.felter.omsorgspersonAdresseVetIkke}
+                        label={plainTekst(eøsForBarnTekster.hvorBorOmsorgsperson.checkboxLabel)}
+                    />
+                </>
+            </KomponentGruppe>
+
             <Arbeidsperiode
                 skjema={skjema}
                 leggTilArbeidsperiode={leggTilArbeidsperiodeUtlandOmsorgsperson}

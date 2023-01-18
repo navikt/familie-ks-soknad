@@ -91,7 +91,11 @@ export const omsorgspersonTilISøknadsfelt = (
         ),
         adresse: søknadsfelt(
             eøsTekster.hvorBorOmsorgsperson.sporsmal,
-            sammeVerdiAlleSpråk(adresse.svar)
+            sammeVerdiAlleSpråkEllerUkjent(
+                tilRestLocaleRecord,
+                adresse.svar,
+                eøsTekster.hvorBorOmsorgsperson.checkboxLabel
+            )
         ),
         arbeidUtland: søknadsfeltForESvar(
             eøsTekster.arbeidUtenforNorgeOmsorgsperson.sporsmal,

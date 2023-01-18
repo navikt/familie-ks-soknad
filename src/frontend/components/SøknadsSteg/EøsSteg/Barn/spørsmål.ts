@@ -21,6 +21,7 @@ export enum EøsBarnSpørsmålId {
     omsorgspersonIdNummerVetIkke = 'omsorgsperson-id-nummer-vet-ikke',
     omsorgspersonIdNummer = 'omsorgsperson-id-nummer',
     omsorgspersonAdresse = 'omsorgsperson-adresse',
+    omsorgspersonAdresseVetIkke = 'omsorgsperson-adresse-ukjent',
     omsorgspersonArbeidUtland = 'omsorgsperson-arbeid-utland',
     omsorgspersonArbeidNorge = 'omsorgsperson-arbeid-norge',
     omsorgspersonPensjonUtland = 'omsorgsperson-pensjon-utland',
