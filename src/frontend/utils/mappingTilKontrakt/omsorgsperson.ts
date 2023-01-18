@@ -65,16 +65,22 @@ export const omsorgspersonTilISøknadsfelt = (
             eøsTekster.hvaHeterOmsorgspersonen.sporsmal,
             sammeVerdiAlleSpråk(navn.svar)
         ),
-        slektsforhold: søknadsfelt(
-            eøsTekster.slektsforholdOmsorgsperson.sporsmal,
-            tilRestLocaleRecord(hentSlektsforhold(slektsforhold.svar as Slektsforhold, eøsTekster)),
-            flettefelter
-        ),
-        slektsforholdSpesifisering: søknadsfelt(
-            eøsTekster.hvilkenRelasjonOmsorgsperson.sporsmal,
-            sammeVerdiAlleSpråk(slektsforholdSpesifisering.svar),
-            flettefelter
-        ),
+        slektsforhold: slektsforhold.svar
+            ? søknadsfelt(
+                  eøsTekster.slektsforholdOmsorgsperson.sporsmal,
+                  tilRestLocaleRecord(
+                      hentSlektsforhold(slektsforhold.svar as Slektsforhold, eøsTekster)
+                  ),
+                  flettefelter
+              )
+            : null,
+        slektsforholdSpesifisering: slektsforholdSpesifisering.svar
+            ? søknadsfelt(
+                  eøsTekster.hvilkenRelasjonOmsorgsperson.sporsmal,
+                  sammeVerdiAlleSpråk(slektsforholdSpesifisering.svar),
+                  flettefelter
+              )
+            : null,
         idNummer: søknadsfelt(
             eøsTekster.idNummerOmsorgsperson.sporsmal,
             sammeVerdiAlleSpråkEllerUkjent(
