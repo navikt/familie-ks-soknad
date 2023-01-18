@@ -51,6 +51,7 @@ export enum ESanityFlettefeltverdi {
     BARN_NAVN = 'BARN_NAVN',
     SØKER_NAVN = 'SØKER_NAVN',
     YTELSE = 'YTELSE',
+    YTELSE_BESTEMT_FORM = 'YTELSE_BESTEMT_FORM',
     I_UTENFOR = 'I_UTENFOR',
     UTLANDET_NORGE = 'UTLANDET_NORGE',
     ANTALL = 'ANTALL',

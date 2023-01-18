@@ -103,8 +103,7 @@ export interface IModalerTekstinnhold {
 
 export interface IFrittståendeOrdTekstinnhold {
     kontantstoette: LocaleRecordString;
-    ordinaerBarnetrygd: LocaleRecordString;
-    utvidetBarnetrygd: LocaleRecordString;
+    kontantstoetten: LocaleRecordString;
     sivilstandUoppgitt: LocaleRecordString;
     sivilstandEnkeEnkemann: LocaleRecordString;
     sivilstandGift: LocaleRecordString;
