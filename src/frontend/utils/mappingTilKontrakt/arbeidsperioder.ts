@@ -37,7 +37,7 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
         tilDatoArbeidsperiode,
     } = periode;
 
-    const periodenErAvsluttet: boolean = arbeidsperiodeAvsluttet?.svar !== ESvar.JA;
+    const periodenErAvsluttet: boolean = arbeidsperiodeAvsluttet?.svar !== ESvar.NEI;
 
     return {
         label: tilRestLocaleRecord(tekster.oppsummeringstittel, {

@@ -32,18 +32,23 @@ export const dokumentasjonISøknadFormat = (
             dokumentsjonstekster[
                 dokumentasjonsbehovTilTittelSanityApiNavn(dokumentasjon.dokumentasjonsbehov)
             ],
-            flettefelterForDokumentasjonTittel(dokumentasjon.dokumentasjonsbehov, søknad)
+            flettefelterForDokumentasjonTittel(dokumentasjon, søknad)
         ),
     };
 };
 
 const flettefelterForDokumentasjonTittel = (
-    dokumentasjonsbehov: Dokumentasjonsbehov,
+    dokumentasjon: IDokumentasjon,
     søknad: ISøknad
 ): FlettefeltVerdier => {
-    switch (dokumentasjonsbehov) {
+    switch (dokumentasjon.dokumentasjonsbehov) {
         case Dokumentasjonsbehov.BOR_FAST_MED_SØKER:
-            return { barnetsNavn: slåSammen(søknad.barnRegistrertManuelt.map(barn => barn.navn)) };
+            const barnDokumentasjonsbehovGjelderFor = søknad.barnInkludertISøknaden
+                .filter(barn => dokumentasjon.gjelderForBarnId.find(id => barn.id === id))
+                .map(barn => barn.navn);
+            return {
+                barnetsNavn: slåSammen(barnDokumentasjonsbehovGjelderFor),
+            };
         default:
             return {};
     }

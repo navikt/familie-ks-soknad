@@ -108,7 +108,7 @@ export interface ISøknadIKontraktBarn {
 
 export interface IOmsorgspersonIKontraktFormat {
     navn: ISøknadsfelt<string>;
-    slektsforhold: ISøknadsfelt<string>;
+    slektsforhold: ISøknadsfelt<string> | null;
     slektsforholdSpesifisering: ISøknadsfelt<string> | null;
     idNummer: ISøknadsfelt<string>;
     adresse: ISøknadsfelt<string>;
