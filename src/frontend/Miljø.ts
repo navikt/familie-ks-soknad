@@ -18,7 +18,7 @@ export const basePath = process.env.BASE_PATH ?? '/';
 export const routerBasePath = basePath;
 
 const Miljø = (): MiljøProps => {
-    if (window.location.hostname.indexOf('familie-ks-soknad.dev') > -1) {
+    if (process.env.NODE_ENV === 'development') {
         return {
             sanityDataset: 'production',
             soknadApi: `https://familie-ks-soknad.dev.nav.no${basePath}api`,
@@ -34,7 +34,7 @@ const Miljø = (): MiljøProps => {
             //apiProxyUrl,
             //dokumentProxyUrl
         };
-    } else if (window.location.hostname.indexOf('www.nav') > -1) {
+    } else if (process.env.NODE_ENV === 'production') {
         return {
             sanityDataset: 'production',
             soknadApi: `https://www.nav.no${basePath}api`,
