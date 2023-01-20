@@ -35,9 +35,13 @@ const EøsAndreForelderOppsummering: React.FC<{
         paagaaendeSoeknadYtelseAndreForelder,
         hvilketLandSoektYtelseAndreForelder,
         arbeidNorgeAndreForelder,
+        arbeidNorgeAndreForelderGjenlevende,
         pensjonNorgeAndreForelder,
+        pensjonNorgeAndreForelderGjenlevende,
         utbetalingerAndreForelder,
+        utbetalingerAndreForelderGjenlevende,
         ytelseFraAnnetLandAndreForelder,
+        ytelseFraAnnetLandAndreForelderGjenlevende,
     } = tekster().EØS_FOR_BARN;
     const [valgtLocale] = useSprakContext();
 
@@ -85,7 +89,9 @@ const EøsAndreForelderOppsummering: React.FC<{
             <StyledOppsummeringsFeltGruppe>
                 {jaNeiSpmOppsummering({
                     andreForelderDataKeySpm: andreForelderDataKeySpørsmål.arbeidNorge,
-                    spørsmålstekst: arbeidNorgeAndreForelder.sporsmal,
+                    spørsmålstekst: andreForelderErDød
+                        ? arbeidNorgeAndreForelderGjenlevende.sporsmal
+                        : arbeidNorgeAndreForelder.sporsmal,
                 })}
                 {andreForelder.arbeidsperioderNorge.map((arbeidsperiode, index) => (
                     <ArbeidsperiodeOppsummering
@@ -100,7 +106,9 @@ const EøsAndreForelderOppsummering: React.FC<{
                 ))}
                 {jaNeiSpmOppsummering({
                     andreForelderDataKeySpm: andreForelderDataKeySpørsmål.pensjonNorge,
-                    spørsmålstekst: pensjonNorgeAndreForelder.sporsmal,
+                    spørsmålstekst: andreForelderErDød
+                        ? pensjonNorgeAndreForelderGjenlevende.sporsmal
+                        : pensjonNorgeAndreForelder.sporsmal,
                 })}
                 {andreForelder.pensjonsperioderNorge.map((pensjonsperiode, index) => (
                     <PensjonsperiodeOppsummering
@@ -115,7 +123,9 @@ const EøsAndreForelderOppsummering: React.FC<{
                 ))}
                 {jaNeiSpmOppsummering({
                     andreForelderDataKeySpm: andreForelderDataKeySpørsmål.andreUtbetalinger,
-                    spørsmålstekst: utbetalingerAndreForelder.sporsmal,
+                    spørsmålstekst: andreForelderErDød
+                        ? utbetalingerAndreForelderGjenlevende.sporsmal
+                        : utbetalingerAndreForelder.sporsmal,
                 })}
                 {andreForelder.andreUtbetalingsperioder.map((utbetalingsperiode, index) => (
                     <UtbetalingsperiodeOppsummering
@@ -146,7 +156,9 @@ const EøsAndreForelderOppsummering: React.FC<{
 
                 {jaNeiSpmOppsummering({
                     andreForelderDataKeySpm: andreForelderDataKeySpørsmål.kontantstøtteFraEøs,
-                    spørsmålstekst: ytelseFraAnnetLandAndreForelder.sporsmal,
+                    spørsmålstekst: andreForelderErDød
+                        ? ytelseFraAnnetLandAndreForelderGjenlevende.sporsmal
+                        : ytelseFraAnnetLandAndreForelder.sporsmal,
                 })}
                 {andreForelder.eøsKontantstøttePerioder.map((periode, index) => (
                     <KontantstøttePeriodeOppsummering

@@ -268,6 +268,12 @@ const [AppProvider, useApp] = createUseContext(() => {
                     undefined,
                     spesifikkLocale ?? valgtLocale
                 );
+            case ESanityFlettefeltverdi.YTELSE_BESTEMT_FORM:
+                return plainTekst(
+                    frittståendeOrd.kontantstoetten,
+                    undefined,
+                    spesifikkLocale ?? valgtLocale
+                );
             case ESanityFlettefeltverdi.I_UTENFOR:
                 return plainTekst(
                     flettefelter?.gjelderUtland ? frittståendeOrd.utenfor : frittståendeOrd.i,

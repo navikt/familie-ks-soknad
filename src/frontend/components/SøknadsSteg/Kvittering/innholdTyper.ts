@@ -5,5 +5,5 @@ export interface IKvitteringTekstinnhold {
     soeknadMottatt: LocaleRecordBlock;
     infoTilSoker: LocaleRecordBlock;
     kontonummerEOES: LocaleRecordBlock;
-    fikkDuIkkeLastetOppDokumentasjonen: LocaleRecordBlock;
+    ettersendelseKontantstotte: LocaleRecordBlock;
 }

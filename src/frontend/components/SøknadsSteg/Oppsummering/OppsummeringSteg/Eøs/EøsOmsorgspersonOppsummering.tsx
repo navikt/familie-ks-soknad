@@ -66,7 +66,11 @@ const EøsOmsorgspersonOppsummering: React.FC<{
             {omsorgsperson.adresse.svar && (
                 <OppsummeringFelt
                     spørsmålstekst={eøsBarnTekster.hvorBorOmsorgsperson.sporsmal}
-                    søknadsvar={omsorgsperson.adresse.svar}
+                    søknadsvar={
+                        omsorgsperson.adresse.svar === AlternativtSvarForInput.UKJENT
+                            ? plainTekst(eøsBarnTekster.hvorBorOmsorgsperson.checkboxLabel)
+                            : omsorgsperson.adresse.svar
+                    }
                 />
             )}
 

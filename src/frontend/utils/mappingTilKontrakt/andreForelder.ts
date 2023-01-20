@@ -162,7 +162,11 @@ export const andreForelderTilISøknadsfelt = (
         adresse: adresse.svar
             ? søknadsfelt(
                   eøsTekster.hvorBorAndreForelder.sporsmal,
-                  sammeVerdiAlleSpråk(adresse.svar),
+                  sammeVerdiAlleSpråkEllerUkjent(
+                      tilRestLocaleRecord,
+                      adresse.svar,
+                      eøsTekster.hvorBorAndreForelder.checkboxLabel
+                  ),
                   flettefelter
               )
             : null,

@@ -221,12 +221,19 @@ export const useEøsForBarn = (
         nullstillVedAvhengighetEndring: false,
     });
 
-    const omsorgspersonAdresse = useInputFelt({
+    const omsorgspersonAdresseVetIkke = useFelt<ESvar>({
+        verdi: formaterVerdiForCheckbox(omsorgsperson?.adresse.svar),
+        feltId: EøsBarnSpørsmålId.omsorgspersonAdresseVetIkke,
+        skalFeltetVises: avhengigheter => avhengigheter.borMedOmsorgsperson.verdi === ESvar.JA,
+        avhengigheter: { borMedOmsorgsperson },
+    });
+
+    const omsorgspersonAdresse = useInputFeltMedUkjent({
         søknadsfelt: omsorgsperson && omsorgsperson.adresse,
+        avhengighet: omsorgspersonAdresseVetIkke,
         feilmelding: eøsForBarnTekster.hvorBorOmsorgsperson.feilmelding,
         skalVises: borMedOmsorgsperson.verdi === ESvar.JA,
         customValidering: felt => valideringAdresse(felt, plainTekst(forLangAdresseTekst)),
-        nullstillVedAvhengighetEndring: false,
     });
 
     const omsorgspersonArbeidUtland = useJaNeiSpmFelt({
@@ -674,7 +681,9 @@ export const useEøsForBarn = (
         },
         adresse: {
             id: EøsBarnSpørsmålId.omsorgspersonAdresse,
-            svar: trimWhiteSpace(omsorgspersonAdresse.verdi),
+            svar: trimWhiteSpace(
+                svarForSpørsmålMedUkjent(omsorgspersonAdresseVetIkke, omsorgspersonAdresse)
+            ),
         },
         arbeidUtland: {
             id: EøsBarnSpørsmålId.omsorgspersonArbeidUtland,
@@ -838,6 +847,7 @@ export const useEøsForBarn = (
             omsorgspersonIdNummer,
             omsorgspersonIdNummerVetIkke,
             omsorgspersonAdresse,
+            omsorgspersonAdresseVetIkke,
             omsorgspersonArbeidUtland,
             omsorgspersonArbeidsperioderUtland,
             omsorgspersonArbeidNorge,

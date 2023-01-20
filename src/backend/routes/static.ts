@@ -16,6 +16,14 @@ export const konfigurerStatic = (app: Express): Express => {
     process.env.NODE_ENV !== 'production' && app.set('view cache', false);
 
     // Serve alle statiske filer utenom index.html direkte fra dist-mappen
-    app.use(basePath, express.static(frontendMappe, { index: false }));
+    app.use(
+        basePath,
+        express.static(frontendMappe, {
+            index: false,
+            setHeaders: res => {
+                res.header('X-Content-Type-Options', 'nosniff');
+            },
+        })
+    );
     return app;
 };
