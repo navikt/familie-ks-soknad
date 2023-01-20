@@ -7,6 +7,7 @@ metadata:
     team: teamfamilie
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "25M"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
 spec:
   image: {{ image }}
   team: teamfamilie
@@ -27,6 +28,7 @@ spec:
     outbound:
       rules:
         - application: familie-baks-soknad-api
+        - application: familie-dokument
       external:
          - host: www.nav.no
          - host: by26nl8j.apicdn.sanity.io
@@ -40,6 +42,10 @@ spec:
     enabled: true
     sidecar:
       enabled: true
+      autoLogin: true
+      level: Level4
+  tokenx:
+    enabled: true
   env:
     - name: BASE_PATH
       value: {{base_path}}

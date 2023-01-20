@@ -5,7 +5,7 @@ import Miljø, { routerBasePath } from '../Miljø';
 
 const er401Feil = (error: AxiosError) => error && error.response && error.response.status === 401;
 const getLoginUrl = () => {
-    return `${Miljø().loginUrl}&redirect=${window.location.origin}${routerBasePath}`;
+    return `${Miljø().wonderwallUrl}${window.location.origin}${routerBasePath}`;
 };
 
 export enum InnloggetStatus {

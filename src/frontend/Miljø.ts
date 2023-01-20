@@ -4,7 +4,8 @@ import { SanityDataSet } from './typer/sanity/sanity';
 interface MiljøProps {
     soknadApi: string;
     loginService: string;
-    loginUrl?: string;
+    wonderwallUrl?: string; //todo: ta bort optional når vi er ferdig
+    oauthCallbackUri?: string; //todo: ta bort optional når vi er ferdig
     visInnsendingsknapp: boolean;
     mellomlagerUrl: string;
     modellVersjon: number;
@@ -21,14 +22,17 @@ const Miljø = (): MiljøProps => {
         return {
             sanityDataset: 'production',
             soknadApi: `https://familie-ks-soknad.dev.nav.no${basePath}api`,
-            loginService: 'https://loginservice.dev.nav.no/login?',
-            loginUrl: 'https://familie-ks-soknad.dev.nav.no/oauth2/login?',
+            loginService: 'https://loginservice.dev.nav.no/login',
+            wonderwallUrl: 'https://familie-ks-soknad.dev.nav.no/oauth2/login?redirect=',
             visInnsendingsknapp: true,
             mellomlagerUrl:
                 'https://familie-dokument.dev.nav.no/familie/dokument/api/soknad/kontantstotte',
             modellVersjon: modellVersjon,
             dokumentUrl:
                 'https://familie-dokument.dev.nav.no/familie/dokument/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
+            oauthCallbackUri: 'https://familie-ks-soknad.dev.nav.no/oauth2/callback',
+            //apiProxyUrl,
+            //dokumentProxyUrl
         };
     } else if (window.location.hostname.indexOf('www.nav') > -1) {
         return {
