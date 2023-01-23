@@ -122,6 +122,17 @@ export const hentAlder = (dato: string): string => {
     return alder.toString();
 };
 
+export const erBarnUnder11Mnd = (dato: string): boolean => {
+    const idag = new Date();
+    const fødselsdato = new Date(dato);
+    const differanseIMnd =
+        idag.getMonth() -
+        fødselsdato.getMonth() +
+        (idag.getFullYear() - fødselsdato.getFullYear()) * 12 -
+        (idag.getDate() - fødselsdato.getDate() < 0 ? 1 : 0);
+    return differanseIMnd < 11;
+};
+
 export const erBarnRegistrertFraFør = (søknad: ISøknad, ident: string) => {
     const barnFraPdl = søknad.søker.barn.find(barn => barn.ident === ident);
     const barnRegistrertManuelt = søknad.barnRegistrertManuelt.find(barn => barn.ident === ident);
@@ -240,6 +251,7 @@ export const mapBarnResponsTilBarn = (
         navn: barnetsNavnValue(barnRespons, tekster, plainTekst),
         ident: barnRespons.ident,
         alder: barnRespons.fødselsdato ? hentAlder(barnRespons.fødselsdato) : null,
+        erUnder11Mnd: barnRespons.fødselsdato ? erBarnUnder11Mnd(barnRespons.fødselsdato) : false,
         borMedSøker: barnRespons.borMedSøker,
         adressebeskyttelse: barnRespons.adressebeskyttelse,
     }));
