@@ -2,9 +2,9 @@ import { ReactNode, useCallback, useState } from 'react';
 
 import axios from 'axios';
 
+import Miljø from '../../../../../shared-utils/Miljø';
 import { useApp } from '../../../../context/AppContext';
 import { useLastRessurserContext } from '../../../../context/LastRessurserContext';
-import Miljø from '../../../../Miljø';
 import { LocaleRecordString } from '../../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';

@@ -21,10 +21,7 @@
     "start": "NODE_ENV=production node --es-module-specifier-resolution=node build/backend/server.js",
     "clean": "rm -rf dist build",
     "typecheck": "tsc --noEmit -p src/frontend/tsconfig.json",
-    "setup:docker:env": "node dockerstuff/dcp-configurator.js",
-    "texts:find-unused": "python3 src/scripts/finn-ubrukte-språktekster.py",
-    "texts:find-missing": "node src/scripts/find-missing-text-ids.js",
-    "texts:cleanup": "src/scripts/formater-tekster.sh src/frontend/assets/lang"
+    "setup:docker:env": "node dockerstuff/dcp-configurator.js"
   },
   "jest": {
     "roots": [

@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom';
 
 import Lenke from 'nav-frontend-lenker';
 
+import { basePath } from '../../../../shared-utils/Miljø';
 import { unslash } from '../../../../shared-utils/unslash';
 import { useAppNavigation } from '../../../context/AppNavigationContext';
-import { basePath } from '../../../Miljø';
 import { ISteg } from '../../../typer/routes';
 
 interface Props {

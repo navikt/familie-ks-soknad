@@ -11,8 +11,8 @@ import {
     byggFeiletRessurs,
 } from '@navikt/familie-typer';
 
+import Miljø from '../../../shared-utils/Miljø';
 import { useApp } from '../../context/AppContext';
-import Miljø from '../../Miljø';
 
 const Helse: React.FC = () => {
     const { axiosRequest } = useApp();

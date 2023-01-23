@@ -1,9 +1,9 @@
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 import { RessursStatus } from '@navikt/familie-typer';
 
+import Miljø from '../../shared-utils/Miljø';
 import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon';
 import { useApp } from '../context/AppContext';
-import Miljø from '../Miljø';
 import { ISøknadKontrakt } from '../typer/kontrakt/v1';
 import { dataISøknadKontraktFormatV1 } from '../utils/mappingTilKontrakt/søknad';
 import { sendInn } from '../utils/sendInnSkjema';

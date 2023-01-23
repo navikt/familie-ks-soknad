@@ -1,4 +1,5 @@
 export default function () {
+    // Todo: Putt dette inni Miljø.ts
     if (process.env.ENV === 'prod') {
         return {
             apiUrl: 'http://familie-baks-soknad-api',

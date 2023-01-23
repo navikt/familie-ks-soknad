@@ -1,5 +1,5 @@
-import { modellVersjon } from '../shared-utils/modellversjon';
-import { SanityDataSet } from './typer/sanity/sanity';
+import { SanityDataSet } from '../frontend/typer/sanity/sanity';
+import { modellVersjon } from './modellversjon';
 
 interface MiljøProps {
     soknadApi: string;
@@ -17,8 +17,22 @@ export const basePath = process.env.BASE_PATH ?? '/';
 
 export const routerBasePath = basePath;
 
+const erProd = () => {
+    if (typeof window === 'undefined') {
+        return process.env.ENV === 'prod';
+    }
+    return window.location.hostname.indexOf('www') > -1;
+};
+
+const erDev = () => {
+    if (typeof window === 'undefined') {
+        return process.env.ENV === 'dev';
+    }
+    return window.location.hostname.indexOf('dev') > -1;
+};
+
 const Miljø = (): MiljøProps => {
-    if (process.env.ENV === 'dev') {
+    if (erDev()) {
         return {
             sanityDataset: 'production',
             soknadApi: `https://familie-ks-soknad.dev.nav.no${basePath}api`,
@@ -34,7 +48,7 @@ const Miljø = (): MiljøProps => {
             //apiProxyUrl,
             //dokumentProxyUrl
         };
-    } else if (process.env.ENV === 'prod') {
+    } else if (erProd()) {
         return {
             sanityDataset: 'production',
             soknadApi: `https://www.nav.no${basePath}api`,

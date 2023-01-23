@@ -4,7 +4,7 @@ import createUseContext from 'constate';
 
 import { RessursStatus } from '@navikt/familie-typer';
 
-import Miljø from '../Miljø';
+import Miljø from '../../shared-utils/Miljø';
 import { autentiseringsInterceptor, InnloggetStatus } from '../utils/autentisering';
 import { useLastRessurserContext } from './LastRessurserContext';
 

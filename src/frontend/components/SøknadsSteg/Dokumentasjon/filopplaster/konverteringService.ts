@@ -1,5 +1,5 @@
+import { basePath } from '../../../../../shared-utils/Miljø';
 import { preferredAxios } from '../../../../context/axios';
-import { basePath } from '../../../../Miljø';
 
 export const konverter = async (fil: File): Promise<File> => {
     const response = await preferredAxios.request<Blob>({
