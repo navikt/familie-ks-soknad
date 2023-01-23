@@ -3,6 +3,8 @@ import React from 'react';
 import Masonry from 'react-masonry-css';
 import styled from 'styled-components';
 
+import { Alert } from '@navikt/ds-react';
+
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -30,6 +32,10 @@ const LenkeContainer = styled.div`
     margin-top: 1.5rem;
 `;
 
+const StyledWarningAlert = styled(Alert)`
+    margin-top: 1.5rem;
+`;
+
 const VelgBarn: React.FC = () => {
     const { søknad, tekster } = useApp();
     const { toggleModal, erÅpen } = useModal();
@@ -46,10 +52,15 @@ const VelgBarn: React.FC = () => {
     const barnFraRespons = søknad.søker.barn;
     const barnManueltLagtTil = søknad.barnRegistrertManuelt;
     const barn = barnFraRespons.concat(barnManueltLagtTil);
+    const finnesBarnUnder1År = barnSomSkalVæreMed.some(barn => barn.erUnder11Mnd);
 
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
-    const { velgBarnTittel, hvisOpplysningeneIkkeStemmer, leseMerOmRegleneKontantstoette } =
-        teksterForSteg;
+    const {
+        velgBarnTittel,
+        hvisOpplysningeneIkkeStemmer,
+        leseMerOmRegleneKontantstoette,
+        kanIkkeBestemmeRettUnder1Aar,
+    } = teksterForSteg;
 
     return (
         <>
@@ -90,6 +101,13 @@ const VelgBarn: React.FC = () => {
                     ))}
                     <NyttBarnKort onLeggTilBarn={toggleModal} />
                 </BarnekortContainer>
+
+                {finnesBarnUnder1År && (
+                    <StyledWarningAlert inline variant={'warning'}>
+                        <TekstBlock block={kanIkkeBestemmeRettUnder1Aar} />
+                    </StyledWarningAlert>
+                )}
+
                 <LenkeContainer>
                     <TekstBlock block={leseMerOmRegleneKontantstoette} />
                 </LenkeContainer>

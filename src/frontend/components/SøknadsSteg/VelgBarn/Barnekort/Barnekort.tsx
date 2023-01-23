@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Checkbox } from 'nav-frontend-skjema';
 
-import { Heading } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 import {
     NavdsGlobalColorGray100,
     NavdsGlobalColorPurple400,
@@ -72,6 +72,10 @@ const StyledHeading = styled(Heading)`
     margin-bottom: 1rem;
 `;
 
+const StyledWarningAlert = styled(Alert)`
+    margin-top: 1.5rem;
+`;
+
 const Barnekort: React.FC<IBarnekortProps> = ({
     barn,
     velgBarnCallback,
@@ -92,6 +96,7 @@ const Barnekort: React.FC<IBarnekortProps> = ({
         soekOmYtelseForBarnetSjekkboks,
         foedselsnummerLabel,
         navnErstatterForAdressesperre,
+        under1Aar,
     } = teksterForSteg;
 
     const erMedISøknad = !!barnSomSkalVæreMed.find(barnMedISøknad => barnMedISøknad.id === barn.id);
@@ -139,6 +144,11 @@ const Barnekort: React.FC<IBarnekortProps> = ({
                     onChange={() => velgBarnCallback(barn, erMedISøknad)}
                     data-testid={'velg-barn-checkbox'}
                 />
+                {erMedISøknad && barn.erUnder11Mnd && (
+                    <StyledWarningAlert inline variant={'warning'}>
+                        <TekstBlock block={under1Aar} />
+                    </StyledWarningAlert>
+                )}
             </InformasjonsboksInnhold>
             {erRegistrertManuelt && (
                 <FjernBarnKnapp barnId={barn.id} fjernBarnCallback={fjernBarnCallback} />
