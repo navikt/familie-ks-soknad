@@ -38,7 +38,7 @@ const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
         'img-src': ["'self'", 'www.nav.no', 'data:'],
         'worker-src': ["'self'", 'blob:'],
         // Hvor manifest-filer kan hentes fra
-        'manifest-src': ["'self'", 'www.nav.no'],
+        'manifest-src': ["'self'", 'www.nav.no', 'oidc-ver2.difi.no'],
     };
 };
 
