@@ -38,6 +38,10 @@ export const useVelgBarn = (): {
         settBarnForSteg(barnSomSkalVæreMed);
     }, [barnSomSkalVæreMed]);
 
+    useEffect(() => {
+        mellomlagre();
+    }, [søknad.barnRegistrertManuelt]);
+
     const fjernBarn = (id: BarnetsId) => {
         settSøknad({
             ...søknad,
@@ -45,7 +49,6 @@ export const useVelgBarn = (): {
         });
         settBarnSomSkalVæreMed(barnSomSkalVæreMed.filter(barn => id !== barn.id));
         settBarnSomTriggerEøs(prevState => prevState.filter(barnetsId => id !== barnetsId));
-        mellomlagre();
     };
 
     const barnMedISøknad = useFelt<IBarn[]>({

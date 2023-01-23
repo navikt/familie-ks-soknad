@@ -15,8 +15,14 @@ import { ESvarMedUbesvart, LocaleRecordBlock } from '../../../../typer/common';
 import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { ILeggTilBarnTyper } from '../../../../typer/skjema';
-import { erBarnRegistrertFraFør, hentUid } from '../../../../utils/barn';
+import {
+    erBarnRegistrertFraFør,
+    erBarnUnder11Mnd,
+    hentAlder,
+    hentUid,
+} from '../../../../utils/barn';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
+import { identTilFødselsdato } from '../../../../utils/ident';
 import { VelgBarnSpørsmålId } from '../spørsmål';
 
 export const useLeggTilBarn = (): {
@@ -26,7 +32,7 @@ export const useLeggTilBarn = (): {
     nullstillSkjema: () => void;
     leggTilBarn: () => void;
 } => {
-    const { søknad, settSøknad, mellomlagre, tekster, plainTekst } = useApp();
+    const { søknad, settSøknad, tekster, plainTekst } = useApp();
 
     const teksterForModal: ILeggTilBarnTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
@@ -124,6 +130,7 @@ export const useLeggTilBarn = (): {
     };
 
     const leggTilBarn = () => {
+        const fødselsdato = identTilFødselsdato(ident.verdi);
         settSøknad({
             ...søknad,
             barnRegistrertManuelt: søknad.barnRegistrertManuelt.concat([
@@ -132,14 +139,13 @@ export const useLeggTilBarn = (): {
                     navn: fulltNavn() || plainTekst(navnIkkeBestemtTekst),
                     ident: ident.verdi,
                     borMedSøker: undefined,
-                    alder: null,
-                    erUnder11Mnd: false,
+                    alder: hentAlder(fødselsdato),
+                    erUnder11Mnd: erBarnUnder11Mnd(fødselsdato),
                     adressebeskyttelse: false,
                 },
             ]),
         });
         nullstillSkjema();
-        mellomlagre();
     };
 
     return {
