@@ -16,4 +16,6 @@ export interface IVelgBarnTekstinnhold {
     navnErstatterForAdressesperre: LocaleRecordBlock;
     maaVelgeEtBarnForAaGaaVidere: LocaleRecordBlock;
     navnIkkeBestemtLabel: LocaleRecordBlock;
+    under1Aar: LocaleRecordBlock;
+    kanIkkeBestemmeRettUnder1Aar: LocaleRecordBlock;
 }

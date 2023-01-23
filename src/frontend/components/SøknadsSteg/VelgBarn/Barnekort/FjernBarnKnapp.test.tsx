@@ -28,6 +28,7 @@ describe('FjernBarnKnapp', () => {
             navn: 'Test',
             borMedSøker: true,
             alder: null,
+            erUnder11Mnd: false,
             adressebeskyttelse: false,
         };
         const pdlBarn: IBarn = {
@@ -36,6 +37,7 @@ describe('FjernBarnKnapp', () => {
             navn: 'Også test',
             borMedSøker: true,
             alder: null,
+            erUnder11Mnd: false,
             adressebeskyttelse: false,
         };
 
@@ -66,6 +68,7 @@ describe('FjernBarnKnapp', () => {
             navn: 'Test',
             borMedSøker: true,
             alder: null,
+            erUnder11Mnd: false,
             adressebeskyttelse: false,
         };
 

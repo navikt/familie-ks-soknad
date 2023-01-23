@@ -133,6 +133,7 @@ export const useLeggTilBarn = (): {
                     ident: ident.verdi,
                     borMedSøker: undefined,
                     alder: null,
+                    erUnder11Mnd: false,
                     adressebeskyttelse: false,
                 },
             ]),

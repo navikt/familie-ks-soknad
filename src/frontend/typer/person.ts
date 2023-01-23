@@ -36,6 +36,7 @@ export interface IBarn extends IPerson {
     navn: string;
     borMedSøker: boolean | undefined;
     alder: string | null;
+    erUnder11Mnd: boolean;
 }
 
 export interface IIdNummer {
