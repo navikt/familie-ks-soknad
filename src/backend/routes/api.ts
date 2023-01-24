@@ -18,14 +18,14 @@ export const konfigurerApi = (app: Express): Express => {
         `${process.env.BASE_PATH}/api`,
         addCallId(),
         attachToken('familie-baks-soknad-api'),
-        createApiForwardingFunction(Miljø().soknadApiUrl, `${process.env.BASE_PATH}/api`)
+        createApiForwardingFunction(Miljø().soknadApiUrl, `${process.env.BASE_PATH}api`)
     );
 
     app.use(
         `${process.env.BASE_PATH}/dokument`,
         addCallId(),
         attachToken('familie-dokument'),
-        createApiForwardingFunction(Miljø().dokumentUrl, `${process.env.BASE_PATH}/dokument`)
+        createApiForwardingFunction(Miljø().dokumentUrl, `${process.env.BASE_PATH}dokument`)
     );
 
     return app;
