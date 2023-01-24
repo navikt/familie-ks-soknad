@@ -3,7 +3,7 @@ import path from 'path';
 import express, { Express } from 'express';
 import mustacheExpress from 'mustache-express';
 
-import { basePath } from '../environment';
+import { basePath } from '../../shared-utils/Miljø';
 
 export const konfigurerStatic = (app: Express): Express => {
     // Sett opp mustache templates for index.html og disabled.html

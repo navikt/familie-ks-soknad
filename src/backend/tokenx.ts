@@ -4,7 +4,6 @@ import { Client, Issuer, TokenSet } from 'openid-client';
 import { v4 as uuid } from 'uuid';
 
 import Miljø from '../shared-utils/Miljø';
-import environment from './environment';
 import logger from './logger';
 import { ApplicationName } from './types';
 
@@ -14,7 +13,7 @@ class TokenXClient {
 
     constructor() {
         logger.info('Setter opp TokenX');
-        if (environment().isLocal) {
+        if (Miljø().isLocal) {
             logger.info('Setter ikke opp TokenX lokalt');
             return;
         }

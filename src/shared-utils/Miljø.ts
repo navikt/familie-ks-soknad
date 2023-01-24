@@ -66,15 +66,16 @@ const Miljø = (): MiljøProps => {
     } else {
         return {
             sanityDataset: 'test',
-            soknadApiProxyUrl: `http://localhost:8080`,
-            soknadApiUrl: 'http://localhost:8080',
+            soknadApiProxyUrl: `http://localhost:8080/api`,
+            soknadApiUrl: 'http://localhost:8080/api',
             dokumentProxyUrl: `http://localhost:8082/familie-dokument/api`,
             dokumentUrl: `http://localhost:8082/familie-dokument/api`,
             loginService: `http://localhost:8080/local/cookie?issuerId=selvbetjening&audience=aud-localhost&cookiename=localhost-idtoken&subject=12345678901`,
             visInnsendingsknapp: true,
             modellVersjon: modellVersjon,
-            wonderwallUrl: '',
-            oauthCallbackUri: '',
+            wonderwallUrl:
+                'http://localhost:8080/local/cookie?issuerId=tokenx&audience=familie-app&subject=21057822284&redirect=',
+            oauthCallbackUri: 'http://localhost:3000/',
             port: 55554,
             isLocal: true,
         };

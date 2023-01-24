@@ -3,7 +3,7 @@ import sharp from 'sharp';
 
 import { logError, logWarn } from '@navikt/familie-logging';
 
-import { basePath } from '../environment';
+import { basePath } from '../../shared-utils/Miljø';
 import { jwtValidationInterceptor } from '../middlewares/jwt-interceptor';
 
 async function prosesser(bilde: Buffer): Promise<Buffer> {
