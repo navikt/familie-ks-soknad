@@ -28,6 +28,7 @@ class TokenXClient {
     exchangeToken = async (idportenToken: string, applicationName: ApplicationName) => {
         const clientAssertion = await this.createClientAssertion();
 
+        logger.info('Veksler inn ID-porten token til tokenx');
         return this.tokenxClient
             .grant({
                 grant_type: 'urn:ietf:params:oauth:grant-type:token-exchange',
