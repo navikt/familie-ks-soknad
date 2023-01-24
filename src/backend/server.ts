@@ -6,7 +6,6 @@ import express from 'express';
 
 import { logInfo } from '@navikt/familie-logging';
 
-import { cspString } from '../csp';
 import Miljø, { basePath } from '../shared-utils/Miljø';
 import { expressToggleInterceptor } from './middlewares/feature-toggles';
 import { konfigurerIndex, konfigurerIndexFallback } from './routes';
@@ -45,15 +44,15 @@ konfigurerStatic(app);
 // Middleware for unleash kill-switch
 app.use(expressToggleInterceptor);
 
-app.use((_req, res, next) => {
-    res.header(
-        'Content-Security-Policy',
-        cspString(process.env.DEKORATOREN_URL ?? 'https://www.nav.no/dekoratoren')
-    );
-    res.header('X-Content-Type-Options', 'nosniff');
-    res.header('X-Frame-Options', 'DENY');
-    next();
-});
+// app.use((_req, res, next) => {
+//     res.header(
+//         'Content-Security-Policy',
+//         cspString(process.env.DEKORATOREN_URL ?? 'https://www.nav.no/dekoratoren')
+//     );
+//     res.header('X-Content-Type-Options', 'nosniff');
+//     res.header('X-Frame-Options', 'DENY');
+//     next();
+// });
 
 konfigurerIndex(app);
 konfigurerNais(app);
