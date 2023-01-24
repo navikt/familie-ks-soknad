@@ -22,14 +22,14 @@ const [EøsProvider, useEøs] = createUseContext(() => {
         søknad.barnInkludertISøknaden.filter(barn => barn.triggetEøs).map(barn => barn.id)
     );
 
-    const { soknadApi } = Miljø();
+    const { soknadApiProxyUrl } = Miljø();
 
     useEffect(() => {
         settEøsLand(byggHenterRessurs());
         (async () => {
             try {
                 const eøsLandResponse = await axiosRequest<Map<Alpha3Code, string>, void>({
-                    url: `${soknadApi}/kodeverk/eos-land`,
+                    url: `${soknadApiProxyUrl}/kodeverk/eos-land`,
                     method: 'GET',
                     påvirkerSystemLaster: true,
                 });

@@ -119,7 +119,7 @@ const [AppProvider, useApp] = createUseContext(() => {
             locale: valgtLocale,
         };
         axiosRequest<IMellomlagretKontantstøtte, IMellomlagretKontantstøtte>({
-            url: Miljø().mellomlagerUrl,
+            url: `${Miljø().dokumentProxyUrl}/soknad/kontantstotte`,
             method: 'post',
             withCredentials: true,
             påvirkerSystemLaster: false,
@@ -138,7 +138,7 @@ const [AppProvider, useApp] = createUseContext(() => {
 
     const hentOgSettMellomlagretData = () => {
         preferredAxios
-            .get(Miljø().mellomlagerUrl, {
+            .get(`${Miljø().dokumentProxyUrl}/soknad/kontantstotte`, {
                 withCredentials: true,
             })
             .then((response: { data?: IMellomlagretKontantstøtte }) => {
@@ -160,7 +160,7 @@ const [AppProvider, useApp] = createUseContext(() => {
 
     const nullstillMellomlagretVerdi = () => {
         axiosRequest<void, void>({
-            url: Miljø().mellomlagerUrl,
+            url: `${Miljø().dokumentProxyUrl}/soknad/kontantstotte`,
             method: 'delete',
             withCredentials: true,
             påvirkerSystemLaster: false,

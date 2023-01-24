@@ -79,13 +79,17 @@ export const useFilopplaster = (
                         requestData.append('file', fil);
 
                         await axios
-                            .post<OpplastetVedlegg>(`${Miljø().dokumentUrl}`, requestData, {
-                                withCredentials: true,
-                                headers: {
-                                    'content-type': 'multipart/form-data',
-                                    accept: 'application/json',
-                                },
-                            })
+                            .post<OpplastetVedlegg>(
+                                `${Miljø().dokumentProxyUrl}/mapper/familievedlegg`,
+                                requestData,
+                                {
+                                    withCredentials: true,
+                                    headers: {
+                                        'content-type': 'multipart/form-data',
+                                        accept: 'application/json',
+                                    },
+                                }
+                            )
                             .then((response: { data: OpplastetVedlegg }) => {
                                 const { data } = response;
                                 nyeVedlegg.push({

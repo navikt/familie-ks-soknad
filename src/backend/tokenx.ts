@@ -3,7 +3,7 @@ import nodeJose from 'node-jose';
 import { Client, Issuer, TokenSet } from 'openid-client';
 import { v4 as uuid } from 'uuid';
 
-import Miljø from '../frontend/Miljø';
+import Miljø from '../shared-utils/Miljø';
 import environment from './environment';
 import logger from './logger';
 import { ApplicationName } from './types';

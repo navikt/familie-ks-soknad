@@ -1,6 +1,6 @@
 import express, { Express, RequestHandler } from 'express';
 
-import Miljø from '../../frontend/Miljø';
+import Miljø from '../../shared-utils/Miljø';
 import { basePath } from '../environment';
 import { erklaeringInterceptor } from '../middlewares/erklaering-interceptor';
 import { escapeBody } from '../middlewares/escape';
@@ -18,7 +18,7 @@ export const konfigurerApi = (app: Express): Express => {
         `${process.env.BASE_PATH}/api`,
         addCallId(),
         attachToken('familie-baks-soknad-api'),
-        createApiForwardingFunction(Miljø().soknadApi, `${process.env.BASE_PATH}/api`)
+        createApiForwardingFunction(Miljø().soknadApiUrl, `${process.env.BASE_PATH}/api`)
     );
 
     app.use(

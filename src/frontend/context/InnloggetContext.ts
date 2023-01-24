@@ -15,7 +15,7 @@ const [InnloggetProvider, useInnloggetContext] = createUseContext(() => {
         InnloggetStatus.IKKE_VERIFISERT
     );
 
-    const { soknadApi } = Miljø();
+    const { soknadApiProxyUrl } = Miljø();
 
     autentiseringsInterceptor();
 
@@ -29,7 +29,7 @@ const [InnloggetProvider, useInnloggetContext] = createUseContext(() => {
         settInnloggetStatus: (innloggetStatus: InnloggetStatus) => void
     ) => {
         return axiosRequest({
-            url: `${soknadApi}/innlogget/kontantstotte`,
+            url: `${soknadApiProxyUrl}/innlogget/kontantstotte`,
             method: 'GET',
             withCredentials: true,
             påvirkerSystemLaster: true,
