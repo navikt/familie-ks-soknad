@@ -18,8 +18,6 @@ interface MiljøProps {
 
 export const basePath = process.env.BASE_PATH ?? '/';
 
-export const routerBasePath = basePath;
-
 const erProd = () => {
     if (typeof window === 'undefined') {
         return process.env.ENV === 'prod';
@@ -39,9 +37,9 @@ const Miljø = (): MiljøProps => {
         return {
             sanityDataset: 'production',
             soknadApiProxyUrl: `https://familie-ks-soknad.dev.nav.no${basePath}api`,
-            soknadApiUrl: `https://familie-baks-soknad-api/api`,
+            soknadApiUrl: `http://familie-baks-soknad-api/api`,
             dokumentProxyUrl: `https://familie-ks-soknad.dev.nav.no${basePath}dokument`,
-            dokumentUrl: 'https://familie-dokument/familie/dokument/api', //Vil uansett gå til bucket "familievedlegg" enn så lenge
+            dokumentUrl: 'http://familie-dokument/familie/dokument/api', //Vil uansett gå til bucket "familievedlegg" enn så lenge
             loginService: 'https://loginservice.dev.nav.no/login',
             visInnsendingsknapp: true,
             modellVersjon: modellVersjon,
@@ -49,16 +47,14 @@ const Miljø = (): MiljøProps => {
             oauthCallbackUri: 'https://familie-ks-soknad.dev.nav.no/oauth2/callback',
             port: 9000,
             isLocal: false,
-            //apiProxyUrl,
-            //dokumentProxyUrl
         };
     } else if (erProd()) {
         return {
             sanityDataset: 'production',
             soknadApiProxyUrl: `https://www.nav.no${basePath}api`,
-            soknadApiUrl: `https://familie-baks-soknad-api`,
+            soknadApiUrl: `http://familie-baks-soknad-api/api`,
             dokumentProxyUrl: `https://www.nav.no${basePath}dokument`,
-            dokumentUrl: 'https://www.nav.no/familie/dokument/api', //Vil uansett gå til bucket "familievedlegg" enn så lenge,
+            dokumentUrl: 'http://familie-dokument/familie/dokument/api', //Vil uansett gå til bucket "familievedlegg" enn så lenge,
             loginService: 'https://loginservice.nav.no/login?',
             visInnsendingsknapp: false,
             modellVersjon: modellVersjon,

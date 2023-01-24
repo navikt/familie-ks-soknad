@@ -2,7 +2,7 @@ import React from 'react';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { routerBasePath } from '../shared-utils/Miljø';
+import { basePath } from '../shared-utils/Miljø';
 import AppContainer from './AppContainer';
 import AlertStripe from './components/Felleskomponenter/AlertStripe/AlertStripe';
 import { AppProvider } from './context/AppContext';
@@ -20,7 +20,7 @@ const App = () => {
                 <AppProvider>
                     <EøsProvider>
                         <RoutesProvider>
-                            <Router basename={routerBasePath}>
+                            <Router basename={basePath}>
                                 <StegProvider>
                                     {process.env.NODE_ENV !== 'production' && (
                                         <AlertStripe variant="warning">
