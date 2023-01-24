@@ -39,13 +39,12 @@ const Miljø = (): MiljøProps => {
         return {
             sanityDataset: 'production',
             soknadApiProxyUrl: `https://familie-ks-soknad.dev.nav.no${basePath}api`,
-            soknadApiUrl: `https://familie-baks-soknad-api`,
+            soknadApiUrl: `https://familie-baks-soknad-api/api`,
             dokumentProxyUrl: `https://familie-ks-soknad.dev.nav.no${basePath}dokument`,
-            dokumentUrl: 'https://familie-dokument.dev.nav.no/familie/dokument/api', //Vil uansett gå til bucket "familievedlegg" enn så lenge
+            dokumentUrl: 'https://familie-dokument/familie/dokument/api', //Vil uansett gå til bucket "familievedlegg" enn så lenge
             loginService: 'https://loginservice.dev.nav.no/login',
             visInnsendingsknapp: true,
             modellVersjon: modellVersjon,
-
             wonderwallUrl: 'https://familie-ks-soknad.dev.nav.no/oauth2/login?redirect=',
             oauthCallbackUri: 'https://familie-ks-soknad.dev.nav.no/oauth2/callback',
             port: 9000,
