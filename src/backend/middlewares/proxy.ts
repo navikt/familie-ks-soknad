@@ -6,6 +6,8 @@ import { v4 as uuid } from 'uuid';
 
 import { logError, logSecure } from '@navikt/familie-logging';
 
+import logger from '../logger';
+
 const restream = (proxyReq: ClientRequest, req: Request, _res: Response) => {
     if (req.body) {
         const bodyData = JSON.stringify(req.body);
@@ -16,6 +18,7 @@ const restream = (proxyReq: ClientRequest, req: Request, _res: Response) => {
 };
 
 export const createApiForwardingFunction = (targetUrl: string, context: string): RequestHandler => {
+    logger.info('TargetUrl: ' + targetUrl);
     return createProxyMiddleware(context, {
         changeOrigin: true,
         logLevel: 'info',
@@ -23,6 +26,7 @@ export const createApiForwardingFunction = (targetUrl: string, context: string):
         secure: true,
         onProxyReq: restream,
         pathRewrite: (path: string) => {
+            logger.info('Path rewrite: ' + path.replace(context, ''));
             return path.replace(context, '');
         },
         onError: (err: Error, req: Request, res: Response) => {

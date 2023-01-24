@@ -15,6 +15,7 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
             const authenticationHeader = await prepareSecuredRequest(req, applicationName);
             req.headers[AUTHORIZATION_HEADER] = authenticationHeader.authorization;
             req.headers[WONDERWALL_ID_TOKEN_HEADER] = '';
+            logInfo('Autorization header: ' + req.headers[AUTHORIZATION_HEADER], req);
             next();
         } catch (error) {
             logWarn(
