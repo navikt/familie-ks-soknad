@@ -1,12 +1,13 @@
 import { AxiosError } from 'axios';
 
 // import Miljø, { basePath } from '../../shared-utils/Miljø';
+import Miljø, { basePath } from '../../shared-utils/Miljø';
 import { preferredAxios as axios } from '../context/axios';
 
 const er401Feil = (error: AxiosError) => error && error.response && error.response.status === 401;
-// const getLoginUrl = () => {
-//     return `${Miljø().wonderwallUrl}${window.location.origin}${basePath}`;
-// };
+const getLoginUrl = () => {
+    return `${Miljø().wonderwallUrl}${window.location.origin}${basePath}`;
+};
 
 export enum InnloggetStatus {
     AUTENTISERT,
@@ -21,7 +22,7 @@ export const autentiseringsInterceptor = () => {
         },
         (error: AxiosError) => {
             if (er401Feil(error)) {
-                //window.location.href = getLoginUrl();
+                window.location.href = getLoginUrl();
             } else {
                 throw error;
             }

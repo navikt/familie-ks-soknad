@@ -1,5 +1,5 @@
 // CSP eller Content-Security-Policy er en HTTP-Header som lar oss spesifisere hvor appen kan kjøre REST-kall mot og hvor den kan hente diverse innhold fra (fonter, bilder, javascript, stylesheets mm).
-const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
+export const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
     return {
         'default-src': ["'self'"],
         // Hvor vi kan hente .js filer fra.
@@ -28,8 +28,6 @@ const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
         ],
         // Kan kun submitte forms til seg selv.
         'form-action': ["'self'"],
-        // Ingen kan embedde appen på egen nettside.
-        'frame-ancestors': ["'none'"],
         // Hvor fonter kan hentes fra.
         'font-src': ["'self'", 'data:', '*.psplugin.com'],
         // Hvor vi hente innhold til iFrames fra.

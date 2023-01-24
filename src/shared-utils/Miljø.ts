@@ -18,6 +18,14 @@ interface MiljøProps {
 
 export const basePath = process.env.BASE_PATH ?? '/';
 
+type NaisEnv = 'prod' | 'dev';
+
+export const getEnv = (): NaisEnv | 'localhost' => {
+    if (erProd()) return 'prod';
+    if (erDev()) return 'dev';
+    return 'localhost';
+};
+
 const erProd = () => {
     if (typeof window === 'undefined') {
         return process.env.ENV === 'prod';

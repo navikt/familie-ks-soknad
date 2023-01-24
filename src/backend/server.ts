@@ -5,8 +5,10 @@ import dotenv from 'dotenv';
 import express from 'express';
 
 import { logInfo } from '@navikt/familie-logging';
+import { buildCspHeader } from '@navikt/nav-dekoratoren-moduler/ssr';
 
-import Miljø, { basePath } from '../shared-utils/Miljø';
+import { cspMap } from '../csp';
+import Miljø, { basePath, getEnv } from '../shared-utils/Miljø';
 import { expressToggleInterceptor } from './middlewares/feature-toggles';
 import { konfigurerIndex, konfigurerIndexFallback } from './routes';
 import { konfigurerApi } from './routes/api';
@@ -44,15 +46,17 @@ konfigurerStatic(app);
 // Middleware for unleash kill-switch
 app.use(expressToggleInterceptor);
 
-// app.use((_req, res, next) => {
-//     res.header(
-//         'Content-Security-Policy',
-//         cspString(process.env.DEKORATOREN_URL ?? 'https://www.nav.no/dekoratoren')
-//     );
-//     res.header('X-Content-Type-Options', 'nosniff');
-//     res.header('X-Frame-Options', 'DENY');
-//     next();
-// });
+const csp = await buildCspHeader(
+    cspMap(process.env.DEKORATOREN_URL ?? 'https://www.nav.no/dekoratoren'),
+    { env: getEnv() }
+);
+
+app.use((_req, res, next) => {
+    res.header('Content-Security-Policy', csp);
+    res.header('X-Content-Type-Options', 'nosniff');
+    res.header('X-Frame-Options', 'DENY');
+    next();
+});
 
 konfigurerIndex(app);
 konfigurerNais(app);
