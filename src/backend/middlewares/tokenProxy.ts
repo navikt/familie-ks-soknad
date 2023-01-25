@@ -1,5 +1,6 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 
+import { getEnv } from '../../shared-utils/Miljø';
 import { logWarn, logInfo } from '../logger';
 import TokenXClient from '../tokenx';
 import { ApplicationName } from '../types';
@@ -29,7 +30,7 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
 };
 
 const erLokalt = () => {
-    return process.env.ENV === 'localhost';
+    return getEnv() === 'localhost';
 };
 
 const harBearerToken = (authorization: string) => {
@@ -37,6 +38,8 @@ const harBearerToken = (authorization: string) => {
 };
 
 const utledToken = (req: Request, authorization: string | undefined): string => {
+    logInfo('ErLokalt: ' + erLokalt(), req);
+    logInfo('Cookie localhost-idtoken: ' + req.cookies['localhost-idtoken'], req);
     if (erLokalt()) {
         return req.cookies['localhost-idtoken'];
     } else if (authorization && harBearerToken(authorization)) {
@@ -50,6 +53,11 @@ const prepareSecuredRequest = async (req: Request, applicationName: ApplicationN
     logInfo('PrepareSecuredRequest', req);
     const { authorization } = req.headers;
     const token = utledToken(req, authorization);
+    if (erLokalt()) {
+        return {
+            authorization: `Bearer ${token}`,
+        };
+    }
     logInfo('IdPorten-token found: ' + (token.length > 1), req);
     const accessToken = await exchangeToken(token, applicationName).then(
         accessToken => accessToken
