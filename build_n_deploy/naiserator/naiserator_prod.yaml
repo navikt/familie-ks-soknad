@@ -31,6 +31,7 @@ spec:
     outbound:
       rules:
         - application: familie-baks-soknad-api
+        - application: familie-dokument
       external:
         - host: www.nav.no
         - host: by26nl8j.apicdn.sanity.io
@@ -40,6 +41,17 @@ spec:
       memory: 1024Mi
     requests:
       memory: 512Mi
+  idporten:
+    enabled: true
+    sidecar:
+      enabled: true
+      autoLogin: true
+      level: Level4
+      autoLoginIgnorePaths:
+        - /familie/kontantstotte/soknad/**/*.css
+        - /familie/kontantstotte/soknad/**/manifest.json
+    tokenx:
+      enabled: true
   envFrom:
     - configmap: loginservice-idporten
   env:
