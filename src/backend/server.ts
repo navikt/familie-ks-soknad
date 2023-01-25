@@ -48,7 +48,9 @@ app.use(expressToggleInterceptor);
 
 const csp = await buildCspHeader(
     cspMap(process.env.DEKORATOREN_URL ?? 'https://www.nav.no/dekoratoren'),
-    { env: getEnv() }
+    {
+        env: getEnv(),
+    }
 );
 
 app.use((_req, res, next) => {

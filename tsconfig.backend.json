@@ -4,6 +4,7 @@
     "allowJs": true,
     "skipLibCheck": true,
     "module": "esnext",
+    "target": "es2017",
     "outDir": "./build",
     "rootDir": "./src",
     "resolveJsonModule": true
