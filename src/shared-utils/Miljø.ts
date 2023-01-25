@@ -13,32 +13,25 @@ interface MiljøProps {
     modellVersjon: number;
     sanityDataset: SanityDataSet;
     port: number;
-    isLocal: boolean;
 }
 
 export const basePath = process.env.BASE_PATH ?? '/';
 
-type NaisEnv = 'prod' | 'dev';
-
-export const getEnv = (): NaisEnv | 'localhost' => {
-    if (erProd()) return 'prod';
-    if (erDev()) return 'dev';
-    return 'localhost';
-};
-
-const erProd = () => {
+export const erProd = () => {
     if (typeof window === 'undefined') {
         return process.env.ENV === 'prod';
     }
     return window.location.hostname.indexOf('www') > -1;
 };
 
-const erDev = () => {
+export const erDev = () => {
     if (typeof window === 'undefined') {
         return process.env.ENV === 'dev';
     }
     return window.location.hostname.indexOf('dev') > -1;
 };
+
+export const erLokalt = () => !erProd() && !erDev();
 
 const Miljø = (): MiljøProps => {
     if (erDev()) {
@@ -54,7 +47,6 @@ const Miljø = (): MiljøProps => {
             wonderwallUrl: 'https://familie-ks-soknad.dev.nav.no/oauth2/login?redirect=',
             oauthCallbackUri: 'https://familie-ks-soknad.dev.nav.no/oauth2/callback',
             port: 9000,
-            isLocal: false,
         };
     } else if (erProd()) {
         return {
@@ -69,7 +61,6 @@ const Miljø = (): MiljøProps => {
             wonderwallUrl: '',
             oauthCallbackUri: '',
             port: 9000,
-            isLocal: false,
         };
     } else {
         return {
@@ -85,7 +76,6 @@ const Miljø = (): MiljøProps => {
                 'http://localhost:8080/local/cookie?issuerId=tokenx&audience=familie-app&cookiename=localhost-idtoken&subject=12345678901&redirect=',
             oauthCallbackUri: 'http://localhost:3000/',
             port: 55554,
-            isLocal: true,
         };
     }
 };

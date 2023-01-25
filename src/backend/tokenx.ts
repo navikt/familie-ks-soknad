@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 
 import { logError, logInfo } from '@navikt/familie-logging';
 
-import Miljø from '../shared-utils/Miljø';
+import Miljø, { erLokalt } from '../shared-utils/Miljø';
 import { ApplicationName } from './types';
 
 class TokenXClient {
@@ -14,7 +14,7 @@ class TokenXClient {
 
     constructor() {
         logInfo('Setter opp TokenX');
-        if (Miljø().isLocal) {
+        if (erLokalt()) {
             logInfo('Setter ikke opp TokenX lokalt');
             return;
         }

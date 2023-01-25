@@ -2,7 +2,7 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
 
 import { LOG_LEVEL } from '@navikt/familie-logging';
 
-import { getEnv } from '../../shared-utils/Miljø';
+import { erLokalt } from '../../shared-utils/Miljø';
 import { logRequest } from '../logger';
 import TokenXClient from '../tokenx';
 import { ApplicationName } from '../types';
@@ -29,10 +29,6 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
             return res.status(401).send('En uventet feil oppstod. Ingen gyldig token');
         }
     };
-};
-
-const erLokalt = () => {
-    return getEnv() === 'localhost';
 };
 
 const harBearerToken = (authorization: string) => {

@@ -15,7 +15,7 @@ const restream = (proxyReq: ClientRequest, req: Request, _res: Response) => {
     }
 };
 
-export const createApiForwardingFunction = (targetUrl: string, context: string): RequestHandler => {
+export const doProxy = (targetUrl: string, context: string): RequestHandler => {
     return createProxyMiddleware(context, {
         changeOrigin: true,
         logLevel: 'info',
