@@ -6,7 +6,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { ESvar } from '@navikt/familie-form-elements';
 import { byggHenterRessurs, hentDataFraRessurs } from '@navikt/familie-typer';
 
-import Miljø from '../Miljø';
+import Miljø from '../../shared-utils/Miljø';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../typer/barn';
 import { BarnetsId } from '../typer/common';
 import { ISøker } from '../typer/person';
@@ -22,14 +22,14 @@ const [EøsProvider, useEøs] = createUseContext(() => {
         søknad.barnInkludertISøknaden.filter(barn => barn.triggetEøs).map(barn => barn.id)
     );
 
-    const { soknadApi } = Miljø();
+    const { soknadApiProxyUrl } = Miljø();
 
     useEffect(() => {
         settEøsLand(byggHenterRessurs());
         (async () => {
             try {
                 const eøsLandResponse = await axiosRequest<Map<Alpha3Code, string>, void>({
-                    url: `${soknadApi}/kodeverk/eos-land`,
+                    url: `${soknadApiProxyUrl}/kodeverk/eos-land`,
                     method: 'GET',
                     påvirkerSystemLaster: true,
                 });

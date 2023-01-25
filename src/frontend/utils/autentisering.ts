@@ -1,11 +1,11 @@
 import { AxiosError } from 'axios';
 
+import Miljø, { basePath } from '../../shared-utils/Miljø';
 import { preferredAxios as axios } from '../context/axios';
-import Miljø, { routerBasePath } from '../Miljø';
 
 const er401Feil = (error: AxiosError) => error && error.response && error.response.status === 401;
 const getLoginUrl = () => {
-    return `${Miljø().loginService}&redirect=${window.location.origin}${routerBasePath}`;
+    return `${Miljø().wonderwallUrl}${window.location.origin}${basePath}`;
 };
 
 export enum InnloggetStatus {

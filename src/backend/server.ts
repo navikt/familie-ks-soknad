@@ -7,7 +7,7 @@ import express from 'express';
 import { logInfo } from '@navikt/familie-logging';
 
 import { cspString } from '../csp';
-import environment, { basePath } from './environment';
+import Miljø, { basePath } from '../shared-utils/Miljø';
 import { expressToggleInterceptor } from './middlewares/feature-toggles';
 import { konfigurerIndex, konfigurerIndexFallback } from './routes';
 import { konfigurerApi } from './routes/api';
@@ -65,6 +65,6 @@ konfigurerModellVersjonEndpoint(app);
 
 konfigurerIndexFallback(app);
 
-logInfo(`Starting server on localhost: http://localhost:${environment().port}${basePath}`);
+logInfo(`Starting server on localhost: http://localhost:${Miljø().port}${basePath}`);
 
-app.listen(environment().port);
+app.listen(Miljø().port);

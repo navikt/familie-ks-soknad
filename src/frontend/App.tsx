@@ -2,6 +2,7 @@ import React from 'react';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import { basePath } from '../shared-utils/Miljø';
 import AppContainer from './AppContainer';
 import AlertStripe from './components/Felleskomponenter/AlertStripe/AlertStripe';
 import { AppProvider } from './context/AppContext';
@@ -11,7 +12,6 @@ import { FeatureTogglesProvider } from './context/FeatureToggleContext';
 import { InnloggetProvider } from './context/InnloggetContext';
 import { RoutesProvider } from './context/RoutesContext';
 import { StegProvider } from './context/StegContext';
-import { routerBasePath } from './Miljø';
 
 const App = () => {
     return (
@@ -20,7 +20,7 @@ const App = () => {
                 <AppProvider>
                     <EøsProvider>
                         <RoutesProvider>
-                            <Router basename={routerBasePath}>
+                            <Router basename={basePath}>
                                 <StegProvider>
                                     {process.env.NODE_ENV !== 'production' && (
                                         <AlertStripe variant="warning">

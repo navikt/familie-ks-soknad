@@ -5,7 +5,7 @@ import createUseContext from 'constate';
 
 import { byggHenterRessurs, byggTomRessurs, RessursStatus } from '@navikt/familie-typer';
 
-import Miljø from '../Miljø';
+import Miljø from '../../shared-utils/Miljø';
 import { SanityDokument } from '../typer/sanity/sanity';
 import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { transformerTilTekstinnhold } from '../utils/sanity';

@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 import { LocaleType, Sprakvelger } from '@navikt/familie-sprakvelger';
 
+import Miljø from '../../../../shared-utils/Miljø';
 import VeilederSnakkeboble from '../../../assets/VeilederSnakkeboble';
 import { useApp } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
-import Miljø from '../../../Miljø';
 import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
 import { ESanitySteg } from '../../../typer/sanity/sanity';

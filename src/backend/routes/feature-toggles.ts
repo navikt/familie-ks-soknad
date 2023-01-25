@@ -8,7 +8,7 @@ import {
     EFeatureToggle,
     ToggleKeys,
 } from '../../frontend/typer/feature-toggles';
-import { basePath } from '../environment';
+import { basePath } from '../../shared-utils/Miljø';
 import { isEnabled } from '../utils/unleash';
 
 const toggleFetchHandler: RequestHandler = (req, res) => {
