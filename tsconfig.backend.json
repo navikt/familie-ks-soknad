@@ -3,8 +3,7 @@
   "compilerOptions": {
     "allowJs": true,
     "skipLibCheck": true,
-    "module": "esnext",
-    "target": "es2017",
+    "module": "ESNext",
     "outDir": "./build",
     "rootDir": "./src",
     "resolveJsonModule": true

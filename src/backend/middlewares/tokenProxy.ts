@@ -16,7 +16,6 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
             const authenticationHeader = await prepareSecuredRequest(req, applicationName);
             req.headers[AUTHORIZATION_HEADER] = authenticationHeader.authorization;
             req.headers[WONDERWALL_ID_TOKEN_HEADER] = '';
-            logInfo('Autorization header: ' + req.headers[AUTHORIZATION_HEADER], req);
             next();
         } catch (error) {
             logWarn(
@@ -38,8 +37,6 @@ const harBearerToken = (authorization: string) => {
 };
 
 const utledToken = (req: Request, authorization: string | undefined): string => {
-    logInfo('ErLokalt: ' + erLokalt(), req);
-    logInfo('Cookie localhost-idtoken: ' + req.cookies['localhost-idtoken'], req);
     if (erLokalt()) {
         return req.cookies['localhost-idtoken'];
     } else if (authorization && harBearerToken(authorization)) {
