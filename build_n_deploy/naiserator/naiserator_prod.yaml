@@ -50,8 +50,8 @@ spec:
       autoLoginIgnorePaths:
         - /familie/kontantstotte/soknad/**/*.css
         - /familie/kontantstotte/soknad/**/manifest.json
-    tokenx:
-      enabled: true
+  tokenx:
+    enabled: true
   envFrom:
     - configmap: loginservice-idporten
   env:
