@@ -1,41 +1,33 @@
 import { Request } from 'express';
-import winston from 'winston';
 
-const logger = winston.createLogger({
-    transports: [
-        new winston.transports.Console({
-            format: winston.format.json(),
-        }),
-    ],
-});
+import { LOG_LEVEL, logDebug, logError, logInfo, logWarn } from '@navikt/familie-logging';
 
 const prefix = (req: Request) => {
     return `${req.method} - ${req.originalUrl}`;
 };
 
-const utledMetadata = (req: Request, error?: unknown) => {
+export const logRequest = (req: Request, message: string, level: LOG_LEVEL, error?: unknown) => {
+    const melding = `${prefix(req)}: ${message}`;
     const callId = req.header('nav-call-id');
     const requestId = req.header('x-request-id');
 
-    return {
+    const meta = {
         ...(callId ? { x_callId: callId } : {}),
         ...(requestId ? { x_requestId: requestId } : {}),
         ...(error ? { error: error } : {}),
     };
+    switch (level) {
+        case LOG_LEVEL.DEBUG:
+            logDebug(melding, meta);
+            break;
+        case LOG_LEVEL.WARNING:
+            logWarn(melding, meta);
+            break;
+        case LOG_LEVEL.ERROR:
+            logError(melding, undefined, meta);
+            break;
+        case LOG_LEVEL.INFO:
+        default:
+            logInfo(melding, meta);
+    }
 };
-
-export const logInfo = (message: string, req: Request) => {
-    const melding = `${prefix(req)}: ${message}`;
-    const meta = utledMetadata(req);
-
-    logger.info(melding, meta);
-};
-
-export const logWarn = (message: string, req: Request, error?: unknown) => {
-    const melding = `${prefix(req)}: ${message}`;
-    const meta = utledMetadata(req, error);
-
-    logger.warn(melding, meta);
-};
-
-export default logger;

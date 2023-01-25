@@ -1,7 +1,9 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 
+import { LOG_LEVEL } from '@navikt/familie-logging';
+
 import { getEnv } from '../../shared-utils/Miljø';
-import { logWarn, logInfo } from '../logger';
+import { logRequest } from '../logger';
 import TokenXClient from '../tokenx';
 import { ApplicationName } from '../types';
 
@@ -18,9 +20,10 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
             req.headers[WONDERWALL_ID_TOKEN_HEADER] = '';
             next();
         } catch (error) {
-            logWarn(
-                `Noe gikk galt ved setting av token (${req.method} - ${req.path}): `,
+            logRequest(
                 req,
+                `Noe gikk galt ved setting av token (${req.method} - ${req.path}): `,
+                LOG_LEVEL.WARNING,
                 error
             );
             return res.status(401).send('En uventet feil oppstod. Ingen gyldig token');
@@ -47,7 +50,7 @@ const utledToken = (req: Request, authorization: string | undefined): string => 
 };
 
 const prepareSecuredRequest = async (req: Request, applicationName: ApplicationName) => {
-    logInfo('PrepareSecuredRequest', req);
+    logRequest(req, 'PrepareSecuredRequest', LOG_LEVEL.INFO);
     const { authorization } = req.headers;
     const token = utledToken(req, authorization);
     if (erLokalt()) {
@@ -55,7 +58,7 @@ const prepareSecuredRequest = async (req: Request, applicationName: ApplicationN
             authorization: `Bearer ${token}`,
         };
     }
-    logInfo('IdPorten-token found: ' + (token.length > 1), req);
+    logRequest(req, 'IdPorten-token found: ' + (token.length > 1), LOG_LEVEL.INFO);
     const accessToken = await exchangeToken(token, applicationName).then(
         accessToken => accessToken
     );
