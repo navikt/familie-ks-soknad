@@ -3,8 +3,9 @@ import nodeJose from 'node-jose';
 import { Client, Issuer, TokenSet } from 'openid-client';
 import { v4 as uuid } from 'uuid';
 
-import Miljø from '../shared-utils/Miljø';
-import logger from './logger';
+import { logError, logInfo } from '@navikt/familie-logging';
+
+import Miljø, { erLokalt } from '../shared-utils/Miljø';
 import { ApplicationName } from './types';
 
 class TokenXClient {
@@ -12,9 +13,9 @@ class TokenXClient {
     private audience!: string | undefined;
 
     constructor() {
-        logger.info('Setter opp TokenX');
-        if (Miljø().isLocal) {
-            logger.info('Setter ikke opp TokenX lokalt');
+        logInfo('Setter opp TokenX');
+        if (erLokalt()) {
+            logInfo('Setter ikke opp TokenX lokalt');
             return;
         }
         this.init()
@@ -27,7 +28,7 @@ class TokenXClient {
     exchangeToken = async (idportenToken: string, applicationName: ApplicationName) => {
         const clientAssertion = await this.createClientAssertion();
 
-        logger.info('Veksler inn ID-porten token til tokenx');
+        logInfo('Veksler inn ID-porten token til tokenx');
         return this.tokenxClient
             .grant({
                 grant_type: 'urn:ietf:params:oauth:grant-type:token-exchange',
@@ -42,14 +43,14 @@ class TokenXClient {
                 return Promise.resolve(tokenSet.access_token);
             })
             .catch((err: unknown) => {
-                logger.error('Feil under utveksling av token: ', err);
+                logError('Feil under utveksling av token: ', undefined, { error: err });
                 return Promise.reject(err);
             });
     };
 
     private createClientAssertion = async () => {
         if (!tokenxConfig.privateJwk) {
-            logger.error('Mangler miljøvariabel TOKEN_X_PRIVATE_JWK');
+            logError('Mangler miljøvariabel TOKEN_X_PRIVATE_JWK');
             throw new TypeError('Miljøvariabelen "TOKEN_X_PRIVATE_JWK må være satt');
         }
 
@@ -81,7 +82,7 @@ class TokenXClient {
 
     private asKey = async (jwk: string) => {
         if (!jwk) {
-            logger.error('JWK Mangler');
+            logError('JWK Mangler');
             throw Error('JWK Mangler');
         }
 
@@ -92,17 +93,17 @@ class TokenXClient {
 
     private init = async () => {
         if (!tokenxConfig.discoveryUrl) {
-            logger.error('Mangler miljøvariabel TOKEN_X_WELL_KNOWN_URL');
+            logError('Mangler miljøvariabel TOKEN_X_WELL_KNOWN_URL');
             throw new TypeError('Miljøvariabelen "TOKEN_X_WELL_KNOWN_URL må være satt');
         }
         if (!tokenxConfig.clientId) {
-            logger.error('Mangler miljøvariabel TOKEN_X_CLIENT_ID');
+            logError('Mangler miljøvariabel TOKEN_X_CLIENT_ID');
             throw new TypeError('Miljøvariabelen "TOKEN_X_CLIENT_ID må være satt');
         }
         const { metadata, Client } = await Issuer.discover(tokenxConfig.discoveryUrl);
         this.audience = metadata.token_endpoint;
 
-        logger.info(`Discovered TokenX @ ${metadata.issuer}`);
+        logInfo(`Discovered TokenX @ ${metadata.issuer}`);
 
         try {
             const client = new Client({
@@ -111,13 +112,14 @@ class TokenXClient {
                 token_endpoint_auth_method: 'none',
             });
 
-            logger.info('Opprettet TokenX client');
+            logInfo('Opprettet TokenX client');
 
             return Promise.resolve(client);
-        } catch (err) {
-            logger.error(
+        } catch (err: unknown) {
+            logError(
                 'Feil oppstod under parsing av jwt eller opprettelse av TokenX client',
-                err
+                undefined,
+                { error: err }
             );
             return Promise.reject(err);
         }
