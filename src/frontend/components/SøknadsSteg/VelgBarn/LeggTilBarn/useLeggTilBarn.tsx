@@ -1,17 +1,9 @@
 import { ESvar } from '@navikt/familie-form-elements';
-import {
-    feil,
-    FeltState,
-    ISkjema,
-    ok,
-    useFelt,
-    useSkjema,
-    Valideringsstatus,
-} from '@navikt/familie-skjema';
+import { feil, FeltState, ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../../context/AppContext';
 import useInputFeltMedUkjent from '../../../../hooks/useInputFeltMedUkjent';
-import { ESvarMedUbesvart, LocaleRecordBlock } from '../../../../typer/common';
+import { LocaleRecordBlock } from '../../../../typer/common';
 import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { ILeggTilBarnTyper } from '../../../../typer/skjema';
@@ -40,26 +32,9 @@ export const useLeggTilBarn = (): {
     const navnIkkeBestemtTekst: LocaleRecordBlock =
         tekster()[ESanitySteg.VELG_BARN].navnIkkeBestemtLabel;
 
-    const erFødt = useFelt<ESvarMedUbesvart>({
-        verdi: null,
-        feltId: VelgBarnSpørsmålId.leggTilBarnErFødt,
-        valideringsfunksjon: felt => {
-            switch (felt.verdi) {
-                case ESvar.JA:
-                    return ok(felt);
-                case ESvar.NEI:
-                    return feil(felt, plainTekst(teksterForModal.barnIkkeFoedtFeilmelding));
-                default:
-                    return feil(felt, plainTekst(teksterForModal.erBarnetFoedt.feilmelding));
-            }
-        },
-    });
-
     const navnetErUbestemt = useFelt<ESvar>({
         verdi: ESvar.NEI,
         feltId: VelgBarnSpørsmålId.leggTilBarnNavnIkkeBestemt,
-        skalFeltetVises: ({ erFødt }) => erFødt.valideringsstatus === Valideringsstatus.OK,
-        avhengigheter: { erFødt },
     });
 
     const fornavn = useInputFeltMedUkjent({
@@ -69,7 +44,6 @@ export const useLeggTilBarn = (): {
         },
         avhengighet: navnetErUbestemt,
         feilmelding: teksterForModal.fornavn.feilmelding,
-        skalVises: erFødt.valideringsstatus === Valideringsstatus.OK,
     });
 
     const etternavn = useInputFeltMedUkjent({
@@ -79,7 +53,6 @@ export const useLeggTilBarn = (): {
         },
         avhengighet: navnetErUbestemt,
         feilmelding: teksterForModal.etternavn.feilmelding,
-        skalVises: erFødt.valideringsstatus === Valideringsstatus.OK,
     });
 
     const ikkeFåttIdentChecked = useFelt<ESvar>({
@@ -88,8 +61,6 @@ export const useLeggTilBarn = (): {
             felt.verdi === ESvar.NEI
                 ? ok(felt)
                 : feil(felt, plainTekst(teksterForModal.foedselsnummerFeilmelding)),
-        skalFeltetVises: ({ erFødt }) => erFødt.verdi === ESvar.JA,
-        avhengigheter: { erFødt },
     });
 
     const ident = useInputFeltMedUkjent({
@@ -100,7 +71,6 @@ export const useLeggTilBarn = (): {
         avhengighet: ikkeFåttIdentChecked,
         feilmelding: teksterForModal.foedselsnummerEllerDNummer.feilmelding,
         erFnrInput: true,
-        skalVises: erFødt.valideringsstatus === Valideringsstatus.OK,
         customValidering: (felt: FeltState<string>) => {
             return erBarnRegistrertFraFør(søknad, felt.verdi)
                 ? feil(felt, plainTekst(teksterForModal.sammeFoedselsnummerFeilmelding))
@@ -113,7 +83,6 @@ export const useLeggTilBarn = (): {
         string
     >({
         felter: {
-            erFødt,
             fornavn,
             etternavn,
             navnetErUbestemt,
