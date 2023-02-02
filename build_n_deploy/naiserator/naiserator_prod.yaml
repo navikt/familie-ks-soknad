@@ -52,8 +52,6 @@ spec:
         - /familie/kontantstotte/soknad/**/manifest.json
   tokenx:
     enabled: true
-  envFrom:
-    - configmap: loginservice-idporten
   env:
     - name: BASE_PATH
       value: {{base_path}}
