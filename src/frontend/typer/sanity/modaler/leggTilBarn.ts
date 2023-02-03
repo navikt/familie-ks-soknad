@@ -8,11 +8,8 @@ export interface ILeggTilBarnTekstinnhold {
     fornavn: ISanitySpørsmålDokument;
     etternavn: ISanitySpørsmålDokument;
     foedselsnummerEllerDNummer: ISanitySpørsmålDokument;
-    erBarnetFoedt: ISanitySpørsmålDokument;
-    ikkeFoedtAlert: LocaleRecordBlock;
     barnetsNavnSubtittel: LocaleRecordBlock;
     foedselsnummerAlert: LocaleRecordBlock;
-    barnIkkeFoedtFeilmelding: LocaleRecordBlock;
     foedselsnummerFeilmelding: LocaleRecordBlock;
     sammeFoedselsnummerFeilmelding: LocaleRecordBlock;
 }
