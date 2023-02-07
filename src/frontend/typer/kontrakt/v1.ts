@@ -161,6 +161,7 @@ export interface IArbeidsperiodeIKontraktFormat {
     arbeidsgiver: ISøknadsfelt<string> | null;
     fraDatoArbeidsperiode: ISøknadsfelt<ISODateString> | null;
     tilDatoArbeidsperiode: ISøknadsfelt<ISODateString> | null;
+    adresse: ISøknadsfelt<string> | null;
 }
 
 export interface IIdNummerIKontraktFormat {
