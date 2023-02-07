@@ -116,10 +116,7 @@ export const useArbeidsperiodeSkjema = (
         verdi: ESvar.NEI,
         feltId: ArbeidsperiodeSpørsmålsId.adresseVetIkke,
         skalFeltetVises: avhengigheter =>
-            gjelderUtlandet
-                ? !!erEøsLand(arbeidsperiodeLand.verdi)
-                : avhengigheter.arbeidsperiodeAvsluttet.valideringsstatus ===
-                      Valideringsstatus.OK || andreForelderErDød,
+            gjelderUtlandet && !!erEøsLand(avhengigheter.arbeidsperiodeLand?.verdi),
         avhengigheter: { arbeidsperiodeAvsluttet, arbeidsperiodeLand },
         nullstillVedAvhengighetEndring: false,
     });
@@ -131,10 +128,7 @@ export const useArbeidsperiodeSkjema = (
         },
         avhengighet: adresseUkjent,
         feilmelding: adresseTekst.feilmelding,
-        skalVises: gjelderUtlandet
-            ? !!erEøsLand(arbeidsperiodeLand.verdi)
-            : arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
-              andreForelderErDød,
+        skalVises: gjelderUtlandet && !!erEøsLand(arbeidsperiodeLand.verdi),
     });
 
     const skjema = useSkjema<IArbeidsperioderFeltTyper, 'string'>({
