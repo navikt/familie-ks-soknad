@@ -5,7 +5,7 @@ import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { Typografi } from '../../../typer/common';
+import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
@@ -46,6 +46,7 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
         arbeidsgiver,
         fraDatoArbeidsperiode,
         tilDatoArbeidsperiode,
+        adresse,
     } = arbeidsperiode;
 
     const teksterForModal: IArbeidsperiodeTekstinnhold =
@@ -54,6 +55,10 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
     const periodenErAvsluttet =
         arbeidsperiodeAvsluttet?.svar === ESvar.JA ||
         (personType === PersonType.andreForelder && erDød);
+
+    const adresseTekst = periodenErAvsluttet
+        ? teksterForModal.adresseFortid
+        : teksterForModal.adresseNaatid;
 
     return (
         <PeriodeOppsummering
@@ -109,6 +114,16 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
                         tilDatoArbeidsperiode.svar,
                         plainTekst(teksterForModal.sluttdatoFremtid.checkboxLabel)
                     )}
+                />
+            )}
+            {adresse.svar && (
+                <OppsummeringFelt
+                    spørsmålstekst={adresseTekst.sporsmal}
+                    søknadsvar={
+                        adresse.svar === AlternativtSvarForInput.UKJENT
+                            ? plainTekst(adresseTekst.checkboxLabel)
+                            : adresse.svar
+                    }
                 />
             )}
         </PeriodeOppsummering>
