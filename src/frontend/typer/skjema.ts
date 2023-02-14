@@ -185,6 +185,8 @@ export interface IArbeidsperioderFeltTyper {
     fraDatoArbeidsperiode: ISODateString;
     tilDatoArbeidsperiode: ISODateString;
     tilDatoArbeidsperiodeUkjent: ESvar;
+    adresse: string;
+    adresseUkjent: ESvar;
 }
 
 export interface IKontantstøttePerioderFeltTyper {

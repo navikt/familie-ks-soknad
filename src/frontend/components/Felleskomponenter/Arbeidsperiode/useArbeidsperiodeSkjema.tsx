@@ -6,6 +6,7 @@ import { useEøs } from '../../../context/EøsContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useInputFelt from '../../../hooks/useInputFelt';
+import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { PersonType } from '../../../typer/personType';
@@ -40,6 +41,10 @@ export const useArbeidsperiodeSkjema = (
     });
 
     const periodenErAvsluttet = arbeidsperiodeAvsluttet.verdi === ESvar.JA || andreForelderErDød;
+
+    const adresseTekst = periodenErAvsluttet
+        ? teksterForPersonType.adresseFortid
+        : teksterForPersonType.adresseNaatid;
 
     const arbeidsperiodeLand = useLanddropdownFelt({
         søknadsfelt: { id: ArbeidsperiodeSpørsmålsId.arbeidsperiodeLand, svar: '' },
@@ -107,6 +112,25 @@ export const useArbeidsperiodeSkjema = (
                   ),
     });
 
+    const adresseUkjent = useFelt<ESvar>({
+        verdi: ESvar.NEI,
+        feltId: ArbeidsperiodeSpørsmålsId.adresseVetIkke,
+        skalFeltetVises: avhengigheter =>
+            gjelderUtlandet && !!erEøsLand(avhengigheter.arbeidsperiodeLand?.verdi),
+        avhengigheter: { arbeidsperiodeAvsluttet, arbeidsperiodeLand },
+        nullstillVedAvhengighetEndring: false,
+    });
+
+    const adresse = useInputFeltMedUkjent({
+        søknadsfelt: {
+            id: ArbeidsperiodeSpørsmålsId.adresse,
+            svar: '',
+        },
+        avhengighet: adresseUkjent,
+        feilmelding: adresseTekst.feilmelding,
+        skalVises: gjelderUtlandet && !!erEøsLand(arbeidsperiodeLand.verdi),
+    });
+
     const skjema = useSkjema<IArbeidsperioderFeltTyper, 'string'>({
         felter: {
             arbeidsperiodeAvsluttet,
@@ -115,6 +139,8 @@ export const useArbeidsperiodeSkjema = (
             fraDatoArbeidsperiode,
             tilDatoArbeidsperiode,
             tilDatoArbeidsperiodeUkjent,
+            adresse,
+            adresseUkjent,
         },
         skjemanavn: 'arbeidsperioder',
     });
