@@ -15,7 +15,6 @@ import {
     konfigurerAllFeatureTogglesEndpoint,
     konfigurerFeatureTogglesEndpoint,
 } from './routes/feature-toggles';
-import { konfigurerBildeProsessering } from './routes/imageprocessor';
 import { konfigurerModellVersjonEndpoint } from './routes/modellversjon';
 import { konfigurerNais } from './routes/nais';
 import { konfigurerStatic } from './routes/static';
@@ -58,7 +57,6 @@ app.use((_req, res, next) => {
 konfigurerIndex(app);
 konfigurerNais(app);
 konfigurerApi(app);
-konfigurerBildeProsessering(app);
 konfigurerFeatureTogglesEndpoint(app);
 konfigurerAllFeatureTogglesEndpoint(app);
 konfigurerModellVersjonEndpoint(app);

@@ -39,7 +39,6 @@ const devConfig: webpack.Configuration = mergeWithRules({
             [`${basePath}api`]: `http://localhost:55554`,
             [`${basePath}dokument`]: `http://localhost:55554`,
             [`${basePath}toggles`]: `http://localhost:55554`,
-            [`${basePath}konverter`]: `http://localhost:55554`,
             // Essentially en workaround for https://github.com/nrwl/nx/issues/3859
             '*': {
                 target: 'http://localhost:3000',
