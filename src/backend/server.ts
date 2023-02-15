@@ -11,10 +11,7 @@ import Miljø, { basePath } from '../shared-utils/Miljø';
 import { expressToggleInterceptor } from './middlewares/feature-toggles';
 import { konfigurerIndex, konfigurerIndexFallback } from './routes';
 import { konfigurerApi } from './routes/api';
-import {
-    konfigurerAllFeatureTogglesEndpoint,
-    konfigurerFeatureTogglesEndpoint,
-} from './routes/feature-toggles';
+import { konfigurerAllFeatureTogglesEndpoint } from './routes/feature-toggles';
 import { konfigurerBildeProsessering } from './routes/imageprocessor';
 import { konfigurerModellVersjonEndpoint } from './routes/modellversjon';
 import { konfigurerNais } from './routes/nais';
@@ -59,7 +56,6 @@ konfigurerIndex(app);
 konfigurerNais(app);
 konfigurerApi(app);
 konfigurerBildeProsessering(app);
-konfigurerFeatureTogglesEndpoint(app);
 konfigurerAllFeatureTogglesEndpoint(app);
 konfigurerModellVersjonEndpoint(app);
 

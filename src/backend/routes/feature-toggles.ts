@@ -1,42 +1,31 @@
 import { Express, RequestHandler } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
 
-import { byggFeiletRessurs, byggSuksessRessurs, Ressurs } from '@navikt/familie-typer';
+import { byggSuksessRessurs, Ressurs } from '@navikt/familie-typer';
 
 import {
     EAllFeatureToggles,
-    EFeatureToggle,
+    defaultFeatureToggleValues,
     ToggleKeys,
 } from '../../frontend/typer/feature-toggles';
 import { basePath } from '../../shared-utils/Miljø';
 import { isEnabled } from '../utils/unleash';
 
-const toggleFetchHandler: RequestHandler = (req, res) => {
-    const toggleId = req.params.id;
-    if (!toggleId) {
-        res.status(404).send(byggFeiletRessurs('Mangler toggle-id'));
-        return;
-    }
-
-    res.send(byggSuksessRessurs(isEnabled(toggleId)));
-};
-
-export const konfigurerFeatureTogglesEndpoint = (app: Express): Express => {
-    // Matcher bare toggles som tilhører oss, bruker {0,} pga en express-quirk
-    // ref http://expressjs.com/en/guide/routing.html#route-parameters
-    app.get(`${basePath}toggles/:id(familie-ks-soknad.[a-zA-Z-]{0,})`, toggleFetchHandler);
-    return app;
-};
-
 const fetchAllFeatureTogglesHandler: RequestHandler<
     ParamsDictionary,
     Ressurs<EAllFeatureToggles>
 > = (_, res) => {
-    res.send(
-        byggSuksessRessurs({
-            [EFeatureToggle.DISABLE_SEND_INN_KNAPP]: isEnabled(ToggleKeys.DISABLE_SEND_INN_KNAPP),
-        })
+    const featureToggles = Object.entries(ToggleKeys).reduce(
+        (allFeatureToggles, featureToggleEntry) => {
+            allFeatureToggles[featureToggleEntry[0]] = isEnabled(
+                featureToggleEntry[1],
+                defaultFeatureToggleValues[featureToggleEntry[0]]
+            );
+            return allFeatureToggles;
+        },
+        {} as EAllFeatureToggles
     );
+    res.send(byggSuksessRessurs(featureToggles));
 };
 
 export const konfigurerAllFeatureTogglesEndpoint = (app: Express): Express => {

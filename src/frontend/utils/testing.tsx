@@ -154,7 +154,7 @@ export const mockFeatureToggle = () => {
         .spyOn(featureToggleContext, 'useFeatureToggles')
         .mockImplementation(
             jest.fn().mockReturnValue({
-                toggles: { [EFeatureToggle.DISABLE_SEND_INN_KNAPP]: false },
+                toggles: { [EFeatureToggle.EKSEMPEL_TOGGLE]: false },
             })
         );
     return { useFeatureToggle };
