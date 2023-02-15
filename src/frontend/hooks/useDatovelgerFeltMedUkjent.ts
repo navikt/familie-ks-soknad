@@ -13,7 +13,7 @@ const useDatovelgerFeltMedUkjent = ({
     vetIkkeCheckbox,
     feilmelding,
     skalFeltetVises,
-    nullstillVedAvhengighetEndring = true,
+    nullstillVedAvhengighetEndring = false,
     sluttdatoAvgrensning = '',
     startdatoAvgrensning = '',
     customStartdatoFeilmelding = '',

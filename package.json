@@ -95,9 +95,9 @@
     ]
   },
   "dependencies": {
-    "@navikt/ds-css": "^1.3.4",
-    "@navikt/ds-icons": "^1.3.4",
-    "@navikt/ds-react": "^1.3.4",
+    "@navikt/ds-css": "^2.1.7",
+    "@navikt/ds-icons": "^2.1.7",
+    "@navikt/ds-react": "^2.1.7",
     "@navikt/ds-tokens": "^1.3.4",
     "@navikt/familie-logging": "^6.0.0",
     "@navikt/familie-typer": "^5.0.0",

@@ -40,6 +40,10 @@ export const erSammeDatoSomDagensDato = (dato: ISODateString) => dayjs(dato).isS
 export const dagenEtterDato = (dato: ISODateString) =>
     dayjs(dato).add(1, 'day').format('YYYY-MM-DD');
 
+export const tidenesMorgen = () => new Date(1000, 0);
+
+export const tidenesEnde = () => new Date(3000, 0);
+
 export const validerDato = (
     tekster: IFormateringsfeilmeldingerTekstinnhold,
     plainTekst: PlainTekst,
