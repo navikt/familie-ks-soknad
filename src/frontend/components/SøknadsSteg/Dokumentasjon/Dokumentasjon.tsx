@@ -119,7 +119,7 @@ const Dokumentasjon: React.FC = () => {
 
             {/*
             Bruke feature toggle til å styre innhold:
-            {toggles.DISABLE_SEND_INN_KNAPP && (
+            {toggles.EKSEMPEL_TOGGLE && (
                 <EnKomponent/>
             )}
             */}
