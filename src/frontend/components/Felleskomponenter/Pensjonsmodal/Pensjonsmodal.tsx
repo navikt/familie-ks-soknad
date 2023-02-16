@@ -123,7 +123,6 @@ export const PensjonModal: React.FC<Props> = ({
                         label={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
                         skjema={skjema}
                         avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
-                        calendarPosition={'fullscreen'}
                     />
                 )}
                 {pensjonTilDato.erSynlig && (
@@ -133,7 +132,6 @@ export const PensjonModal: React.FC<Props> = ({
                         skjema={skjema}
                         avgrensMaxDato={dagensDato()}
                         tilhørendeFraOgMedFelt={pensjonFraDato}
-                        calendarPosition={'fullscreen'}
                         dynamisk
                     />
                 )}

@@ -158,7 +158,6 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                         avgrensMaxDato={hentMaxAvgrensningPåFraDato(
                             skjema.felter.utenlandsoppholdÅrsak.verdi
                         )}
-                        calendarPosition={'fullscreen'}
                     />
                 )}
                 <>
@@ -186,7 +185,6 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                                     : undefined
                             }
                             disabled={skjema.felter.oppholdslandTilDatoUkjent.verdi === ESvar.JA}
-                            calendarPosition={'fullscreen'}
                         />
                     )}
                     {skjema.felter.oppholdslandTilDatoUkjent.erSynlig && (

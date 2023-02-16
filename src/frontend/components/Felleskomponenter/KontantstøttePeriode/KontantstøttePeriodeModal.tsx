@@ -135,7 +135,6 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                         felt={skjema.felter.fraDatoKontantstøttePeriode}
                         skjema={skjema}
                         label={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
-                        calendarPosition={'fullscreen'}
                         avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
                     />
                 )}
@@ -146,7 +145,6 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                         label={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
                         avgrensMinDato={skjema.felter.fraDatoKontantstøttePeriode.verdi}
                         avgrensMaxDato={dagensDato()}
-                        calendarPosition={'fullscreen'}
                     />
                 )}
                 {månedligBeløp.erSynlig && (

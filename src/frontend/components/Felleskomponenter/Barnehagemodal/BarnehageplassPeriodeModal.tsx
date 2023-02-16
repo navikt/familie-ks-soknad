@@ -194,7 +194,6 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                                 )}
                             />
                         }
-                        calendarPosition={'fullscreen'}
                         avgrensMinDato={
                             barnehageplassPeriodeBeskrivelse.verdi ===
                             EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
@@ -225,12 +224,14 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                                     )}
                                 />
                             }
-                            calendarPosition={'fullscreen'}
                             avgrensMinDato={
-                                barnehageplassPeriodeBeskrivelse.verdi ===
-                                EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
-                                    ? morgendagensDato()
-                                    : dagenEtterDato(startetIBarnehagen.verdi)
+                                barnehageplassPeriodeBeskrivelse.verdi !==
+                                    EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ &&
+                                startetIBarnehagen.verdi
+                                    ? dagenEtterDato(startetIBarnehagen.verdi)
+                                    : EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                                    ? ''
+                                    : morgendagensDato()
                             }
                             avgrensMaxDato={
                                 barnehageplassPeriodeBeskrivelse.verdi ===

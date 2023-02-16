@@ -1,5 +1,7 @@
 import React, { ReactNode, useEffect } from 'react';
 
+import dayjs from 'dayjs';
+
 import { Feilmelding } from 'nav-frontend-typografi';
 
 import { BodyShort, UNSAFE_DatePicker, UNSAFE_useDatepicker } from '@navikt/ds-react';
@@ -21,7 +23,7 @@ interface DatoVelgerProps {
     label: ReactNode;
     disabled?: boolean;
     dynamisk?: boolean;
-    calendarPosition?: '' | 'fullscreen' | 'responsive';
+    strategy?: 'absolute' | 'fixed';
 }
 
 const Datovelger: React.FC<DatoVelgerProps> = ({
@@ -34,7 +36,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     label,
     disabled = false,
     dynamisk = false,
-    calendarPosition = '',
+    strategy = 'fixed',
 }) => {
     const [valgtLocale] = useSprakContext();
     const { tekster, plainTekst } = useApp();
@@ -65,23 +67,24 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
         return maxDato;
     };
 
-    const { datepickerProps, inputProps } = UNSAFE_useDatepicker({
+    const { datepickerProps, inputProps, reset } = UNSAFE_useDatepicker({
         locale: valgtLocale,
         fromDate: hentFromDate(),
         toDate: hentToDate(),
-        disabled: [disabled],
+        today: hentFromDate(),
         defaultSelected: felt.verdi ? new Date(felt.verdi) : undefined,
         onDateChange: dato => {
             dato && felt.hentNavInputProps(false).onChange(dato.toISOString().split('T')[0]);
         },
-        onValidate: () => {
-            return;
-        },
     });
+
+    useEffect(() => {
+        dayjs(hentFromDate()).isAfter(dayjs()) && reset();
+    }, [tilhørendeFraOgMedFelt?.verdi]);
 
     return felt.erSynlig ? (
         <div aria-live={dynamisk ? 'polite' : 'off'}>
-            <UNSAFE_DatePicker dropdownCaption strategy={'fixed'} {...datepickerProps}>
+            <UNSAFE_DatePicker dropdownCaption strategy={strategy} {...datepickerProps}>
                 <UNSAFE_DatePicker.Input
                     {...inputProps}
                     disabled={disabled}
