@@ -12,7 +12,6 @@ import { expressToggleInterceptor } from './middlewares/feature-toggles';
 import { konfigurerIndex, konfigurerIndexFallback } from './routes';
 import { konfigurerApi } from './routes/api';
 import { konfigurerAllFeatureTogglesEndpoint } from './routes/feature-toggles';
-import { konfigurerBildeProsessering } from './routes/imageprocessor';
 import { konfigurerModellVersjonEndpoint } from './routes/modellversjon';
 import { konfigurerNais } from './routes/nais';
 import { konfigurerStatic } from './routes/static';
@@ -55,7 +54,6 @@ app.use((_req, res, next) => {
 konfigurerIndex(app);
 konfigurerNais(app);
 konfigurerApi(app);
-konfigurerBildeProsessering(app);
 konfigurerAllFeatureTogglesEndpoint(app);
 konfigurerModellVersjonEndpoint(app);
 

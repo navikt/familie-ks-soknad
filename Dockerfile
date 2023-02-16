@@ -1,9 +1,6 @@
 # syntax=docker/dockerfile:1.3
 
 FROM navikt/node-express:16 as builder-base
-USER root
-# Vi installerer compilere slik at node-pakken "sharp" kan bygge mot vips-dev image conversion biblioteket
-RUN apk --no-cache add curl binutils make gcc g++ --repository http://dl-cdn.alpinelinux.org/alpine/3.15/community/ vips-dev=8.13.3-r1
 USER apprunner
 
 COPY --chown=apprunner:apprunner ./.npmrc ./.yarnrc ./yarn.lock ./package.json /var/server/
@@ -32,8 +29,6 @@ RUN --mount=type=secret,id=sentry_token,mode=0444 SENTRY_AUTH_TOKEN=$(cat /run/s
 
 
 FROM navikt/node-express:16 as prod-runner
-USER root
-RUN apk add --repository http://dl-cdn.alpinelinux.org/alpine/3.15/community/ vips-dev=8.13.3-r1
 USER apprunner
 
 COPY --from=runtime-deps-builder /var/server/ /var/server
