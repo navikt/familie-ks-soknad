@@ -31,10 +31,6 @@ const Dokumentasjon: React.FC = () => {
     const { sendInnSkjema } = useSendInnSkjema();
     const [slettaVedlegg, settSlettaVedlegg] = useState<IVedlegg[]>([]);
 
-    /* Hente definerte feature toggles fra unleash:
-     * const { toggles } = useFeatureToggles();
-     */
-
     const { dokumentasjonInfo, dokumentasjonTittel, forLangTidDokumentasjon, nudgeDokumentasjon } =
         tekster().DOKUMENTASJON;
 
@@ -116,13 +112,6 @@ const Dokumentasjon: React.FC = () => {
                     />
                 ))}
             {innsendingStatus.status === RessursStatus.FEILET && <Feilside />}
-
-            {/*
-            Bruke feature toggle til å styre innhold:
-            {toggles.EKSEMPEL_TOGGLE && (
-                <EnKomponent/>
-            )}
-            */}
         </Steg>
     );
 };
