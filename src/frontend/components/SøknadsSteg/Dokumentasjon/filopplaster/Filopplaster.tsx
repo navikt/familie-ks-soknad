@@ -65,11 +65,13 @@ const Filopplaster: React.FC<Props> = ({
 }) => {
     const { onDrop, åpenModal, lukkModal, feilmeldinger, slettVedlegg } = useFilopplaster(
         maxFilstørrelse,
-        tillatteFiltyper,
         dokumentasjon,
         oppdaterDokumentasjon
     );
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        onDrop,
+        accept: tillatteFiltyper,
+    });
     const { tekster, plainTekst } = useApp();
     const { lastOppKnapp, slippFilenHer } = tekster().DOKUMENTASJON;
 

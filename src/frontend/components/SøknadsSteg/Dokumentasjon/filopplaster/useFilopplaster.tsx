@@ -1,6 +1,7 @@
 import { ReactNode, useCallback, useState } from 'react';
 
 import axios from 'axios';
+import { FileRejection } from 'react-dropzone';
 
 import Miljø from '../../../../../shared-utils/Miljø';
 import { useApp } from '../../../../context/AppContext';
@@ -8,7 +9,6 @@ import { useLastRessurserContext } from '../../../../context/LastRessurserContex
 import { LocaleRecordString } from '../../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
-import { konverter } from './konverteringService';
 
 interface OpplastetVedlegg {
     dokumentId: string;
@@ -17,7 +17,6 @@ interface OpplastetVedlegg {
 
 export const useFilopplaster = (
     maxFilstørrelse: number,
-    tillatteFiltyper: string[],
     dokumentasjon: IDokumentasjon,
     oppdaterDokumentasjon: (
         dokumentasjonsBehov: Dokumentasjonsbehov,
@@ -38,7 +37,7 @@ export const useFilopplaster = (
     const dagensDatoStreng = datoTilStreng(new Date());
 
     const onDrop = useCallback(
-        async filer => {
+        async (filer: File[], filRejections: FileRejection[]) => {
             const feilmeldingsliste: ReactNode[] = [];
             const nyeVedlegg: IVedlegg[] = [];
 
@@ -46,30 +45,17 @@ export const useFilopplaster = (
                 feilmeldingsliste.push(
                     `${plainTekst(feilmelding)} ${plainTekst(dokumentasjonTekster.fil)} ${fil.name}`
                 );
-                settFeilmeldinger(feilmeldingsliste);
-                settÅpenModal(true);
             };
 
-            const håndterFeilType = (fil: File) =>
-                pushFeilmelding(dokumentasjonTekster.feilFiltype, fil);
+            if (filRejections.length > 0) {
+                filRejections.map((filRejection: FileRejection) => {
+                    pushFeilmelding(dokumentasjonTekster.feilFiltype, filRejection.file);
+                });
+            }
 
             await Promise.all(
                 filer.map((fil: File) =>
                     wrapMedSystemetLaster(async () => {
-                        if (!tillatteFiltyper.includes(fil.type)) {
-                            if (fil.type?.match(/^image\//)) {
-                                try {
-                                    fil = await konverter(fil);
-                                } catch (e) {
-                                    håndterFeilType(fil);
-                                    return;
-                                }
-                            } else {
-                                håndterFeilType(fil);
-                                return;
-                            }
-                        }
-
                         if (maxFilstørrelse && fil.size > maxFilstørrelse) {
                             pushFeilmelding(dokumentasjonTekster.forStor, fil);
                             return;
@@ -105,6 +91,11 @@ export const useFilopplaster = (
                     })
                 )
             );
+
+            if (feilmeldingsliste.length > 0) {
+                settFeilmeldinger(feilmeldingsliste);
+                settÅpenModal(true);
+            }
 
             oppdaterDokumentasjon(
                 dokumentasjon.dokumentasjonsbehov,
