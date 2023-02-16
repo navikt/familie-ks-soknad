@@ -20,8 +20,7 @@
     "test": "jest",
     "start": "NODE_ENV=production node --es-module-specifier-resolution=node build/backend/server.js",
     "clean": "rm -rf dist build",
-    "typecheck": "tsc --noEmit -p src/frontend/tsconfig.json",
-    "setup:docker:env": "node dockerstuff/dcp-configurator.js"
+    "typecheck": "tsc --noEmit -p src/frontend/tsconfig.json"
   },
   "jest": {
     "roots": [
