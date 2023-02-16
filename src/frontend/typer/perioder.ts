@@ -3,7 +3,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { ESvar, ISODateString } from '@navikt/familie-form-elements';
 
 import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
-import { DatoMedUkjent } from './common';
+import { AlternativtSvarForInput, DatoMedUkjent } from './common';
 import { ISøknadSpørsmål } from './spørsmål';
 import { EUtenlandsoppholdÅrsak } from './utenlandsopphold';
 
@@ -20,6 +20,7 @@ export interface IArbeidsperiode {
     arbeidsgiver: ISøknadSpørsmål<string>;
     fraDatoArbeidsperiode: ISøknadSpørsmål<ISODateString | ''>;
     tilDatoArbeidsperiode: ISøknadSpørsmål<DatoMedUkjent | ''>;
+    adresse: ISøknadSpørsmål<string | AlternativtSvarForInput.UKJENT>;
 }
 
 export interface IPensjonsperiode {
