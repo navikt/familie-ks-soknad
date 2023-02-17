@@ -9,7 +9,7 @@ import { IBarnMedISøknad } from '../../../typer/barn';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
-import { dagensDato, gårsdagensDato } from '../../../utils/dato';
+import { dagenEtterDato, dagensDato, gårsdagensDato } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import AlertStripe from '../AlertStripe/AlertStripe';
 import Datovelger from '../Datovelger/Datovelger';
@@ -144,7 +144,9 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                         felt={skjema.felter.tilDatoKontantstøttePeriode}
                         skjema={skjema}
                         label={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
-                        avgrensMinDato={skjema.felter.fraDatoKontantstøttePeriode.verdi}
+                        avgrensMinDato={dagenEtterDato(
+                            skjema.felter.fraDatoKontantstøttePeriode.verdi
+                        )}
                         avgrensMaxDato={dagensDato()}
                         calendarPosition={'fullscreen'}
                     />
