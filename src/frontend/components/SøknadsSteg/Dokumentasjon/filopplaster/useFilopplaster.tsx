@@ -15,6 +15,20 @@ interface OpplastetVedlegg {
     filnavn: string;
 }
 
+enum BadRequestCode {
+    IMAGE_TOO_LARGE = 'IMAGE_TOO_LARGE',
+    IMAGE_DIMENSIONS_TOO_SMALL = 'IMAGE_DIMENSIONS_TOO_SMALL',
+}
+
+// Meldingsfeltet på respons ved BadRequest inneholder tekst på følgende format: CODE=ENUM_NAVN
+const badRequestCodeFraError = (error): BadRequestCode | undefined => {
+    const melding = error.response?.data?.melding;
+    if (melding) {
+        return BadRequestCode[melding.split('=')[1]];
+    }
+    return;
+};
+
 export const useFilopplaster = (
     maxFilstørrelse: number,
     dokumentasjon: IDokumentasjon,
@@ -85,8 +99,18 @@ export const useFilopplaster = (
                                     tidspunkt: dagensDatoStreng,
                                 });
                             })
-                            .catch(_error => {
-                                pushFeilmelding(dokumentasjonTekster.noeGikkFeil, fil);
+                            .catch(error => {
+                                const badRequestCode = badRequestCodeFraError(error);
+                                switch (badRequestCode) {
+                                    case BadRequestCode.IMAGE_TOO_LARGE:
+                                        pushFeilmelding(dokumentasjonTekster.forStor, fil);
+                                        break;
+                                    case BadRequestCode.IMAGE_DIMENSIONS_TOO_SMALL:
+                                        pushFeilmelding(dokumentasjonTekster.bildetForLite, fil);
+                                        break;
+                                    default:
+                                        pushFeilmelding(dokumentasjonTekster.noeGikkFeil, fil);
+                                }
                             });
                     })
                 )
