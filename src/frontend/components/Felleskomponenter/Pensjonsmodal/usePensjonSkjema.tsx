@@ -72,7 +72,6 @@ export const usePensjonSkjema = ({
         feilmelding: teksterForPersonType.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
         avhengigheter: { mottarPensjonNå },
-        nullstillVedAvhengighetEndring: true,
     });
 
     const pensjonTilDato = useDatovelgerFelt({
@@ -85,9 +84,8 @@ export const usePensjonSkjema = ({
             (!gjelderUtland || !!erEøsLand(pensjonsland.verdi)),
         feilmelding: teksterForPersonType.sluttdato.feilmelding,
         sluttdatoAvgrensning: dagensDato(),
-        startdatoAvgrensning: dagenEtterDato(pensjonFraDato.verdi),
+        startdatoAvgrensning: dagenEtterDato(new Date(pensjonFraDato.verdi)),
         avhengigheter: { mottarPensjonNå, pensjonFraDato },
-        nullstillVedAvhengighetEndring: true,
     });
 
     const skjema = useSkjema<IPensjonsperiodeFeltTyper, 'string'>({

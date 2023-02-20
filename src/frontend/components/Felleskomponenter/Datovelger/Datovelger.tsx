@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react';
 
-import dayjs from 'dayjs';
+import { isAfter, parse } from 'date-fns';
 
 import { Feilmelding } from 'nav-frontend-typografi';
 
@@ -16,8 +16,8 @@ import { dagenEtterDato, dagensDato, tidenesEnde, tidenesMorgen } from '../../..
 interface DatoVelgerProps {
     felt: Felt<ISODateString>;
     avgrensDatoFremITid?: boolean;
-    avgrensMaxDato?: ISODateString;
-    avgrensMinDato?: ISODateString;
+    avgrensMaxDato?: Date;
+    avgrensMinDato?: Date;
     tilhørendeFraOgMedFelt?: Felt<ISODateString>;
     skjema: ISkjema<SkjemaFeltTyper, string>;
     label: ReactNode;
@@ -42,17 +42,18 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     const { tekster, plainTekst } = useApp();
     const { datoformatHjelpetekst, datoformatPlaceholder } = tekster().FELLES.hjelpeteksterForInput;
 
-    useEffect(() => {
-        felt.validerOgSettFelt(felt.verdi);
-    }, [tilhørendeFraOgMedFelt?.verdi, avgrensMaxDato]);
+    const minDatoErIFremtiden = () =>
+        tilhørendeFraOgMedFelt?.verdi &&
+        hentFromDate() !== undefined &&
+        isAfter(hentFromDate() as Date, dagensDato());
 
     const hentFromDate = (): Date | undefined => {
         let minDato = tidenesMorgen();
 
         if (avgrensMinDato) {
-            minDato = new Date(avgrensMinDato);
+            minDato = avgrensMinDato;
         } else if (tilhørendeFraOgMedFelt?.verdi) {
-            minDato = new Date(dagenEtterDato(tilhørendeFraOgMedFelt.verdi));
+            minDato = dagenEtterDato(new Date(tilhørendeFraOgMedFelt.verdi));
         }
         return minDato;
     };
@@ -61,7 +62,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
         let maxDato = tidenesEnde();
 
         if (avgrensDatoFremITid || avgrensMaxDato) {
-            maxDato = avgrensMaxDato ? new Date(avgrensMaxDato) : new Date(dagensDato());
+            maxDato = avgrensMaxDato ? avgrensMaxDato : dagensDato();
         }
 
         return maxDato;
@@ -71,16 +72,26 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
         locale: valgtLocale,
         fromDate: hentFromDate(),
         toDate: hentToDate(),
-        today: hentFromDate(),
+        today: minDatoErIFremtiden() ? hentFromDate() : dagensDato(),
         defaultSelected: felt.verdi ? new Date(felt.verdi) : undefined,
-        onDateChange: dato => {
-            dato && felt.hentNavInputProps(false).onChange(dato.toISOString().split('T')[0]);
+        onDateChange: (dato: Date | undefined) => {
+            if (dato) {
+                felt.validerOgSettFelt(dato.toDateString());
+            }
         },
     });
 
     useEffect(() => {
-        dayjs(hentFromDate()).isAfter(dayjs()) && reset();
+        minDatoErIFremtiden() && reset();
     }, [tilhørendeFraOgMedFelt?.verdi]);
+
+    useEffect(() => {
+        if (inputProps.value && inputProps.value !== '') {
+            const parsetDato = parse(inputProps.value.toString(), 'dd.MM.yyyy', new Date());
+            felt.hentNavInputProps(false).onChange(parsetDato.toDateString());
+            felt.validerOgSettFelt(parsetDato.toDateString());
+        }
+    }, [inputProps.value, disabled]);
 
     return felt.erSynlig ? (
         <div aria-live={dynamisk ? 'polite' : 'off'}>

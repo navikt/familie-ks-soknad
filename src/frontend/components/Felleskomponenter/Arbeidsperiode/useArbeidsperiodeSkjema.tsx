@@ -70,7 +70,6 @@ export const useArbeidsperiodeSkjema = (
               andreForelderErDød,
         feilmelding: teksterForPersonType.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
-        nullstillVedAvhengighetEndring: true,
     });
 
     const tilDatoArbeidsperiodeUkjent = useFelt<ESvar>({
@@ -97,10 +96,10 @@ export const useArbeidsperiodeSkjema = (
         sluttdatoAvgrensning: periodenErAvsluttet ? dagensDato() : undefined,
         startdatoAvgrensning: minTilDatoForUtbetalingEllerArbeidsperiode(
             periodenErAvsluttet,
-            fraDatoArbeidsperiode.verdi
+            new Date(fraDatoArbeidsperiode.verdi)
         ),
         customStartdatoFeilmelding:
-            erSammeDatoSomDagensDato(fraDatoArbeidsperiode.verdi) || periodenErAvsluttet
+            erSammeDatoSomDagensDato(new Date(fraDatoArbeidsperiode.verdi)) || periodenErAvsluttet
                 ? undefined
                 : plainTekst(
                       tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid

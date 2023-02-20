@@ -143,7 +143,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                         felt={skjema.felter.tilDatoKontantstøttePeriode}
                         skjema={skjema}
                         label={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
-                        avgrensMinDato={skjema.felter.fraDatoKontantstøttePeriode.verdi}
+                        avgrensMinDato={new Date(skjema.felter.fraDatoKontantstøttePeriode.verdi)}
                         avgrensMaxDato={dagensDato()}
                     />
                 )}

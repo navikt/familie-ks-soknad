@@ -1,4 +1,15 @@
-import dayjs from 'dayjs';
+import {
+    add,
+    format,
+    isAfter,
+    isBefore,
+    isFuture,
+    isToday,
+    isValid,
+    startOfDay,
+    startOfToday,
+    sub,
+} from 'date-fns';
 
 import { ISODateString } from '@navikt/familie-form-elements';
 import { feil, FeltState, ok } from '@navikt/familie-skjema';
@@ -7,62 +18,61 @@ import { AlternativtSvarForInput, DatoMedUkjent, LocaleRecordBlock } from '../ty
 import { PlainTekst } from '../typer/kontrakt/generelle';
 import { IFormateringsfeilmeldingerTekstinnhold } from '../typer/sanity/tekstInnhold';
 
-export const erDatoFormatGodkjent = (verdi: string) => {
-    /*FamilieDatoVelger har allerede sin egen validering.
-      Dersom valideringen går igjennom der, blir datoen formatert til YYYY-MM-DD.
-      Derfor sjekker vi her om FamilieDatoVelger har klart å formatere den,
-      i tillegg til om det er en gyldig dato med dayjs.*/
-    return dayjs(verdi, 'YYYY-MM-DD').format('YYYY-MM-DD') === verdi;
-};
+export const erDatoFormatGodkjent = (dato: Date) => isValid(dato);
 
-export const erDatoFremITid = (dato: ISODateString) => {
-    return dayjs(dato).isAfter(dayjs());
-};
+export const erDatoFremITid = (dato: Date) => isFuture(dato);
 
-export const erDatoEtterSluttdatoAvgresning = (dato: ISODateString, sluttdato: ISODateString) => {
-    return dayjs(dato).isAfter(dayjs(sluttdato));
-};
+export const erDatoEtterSluttdatoAvgresning = (dato: Date, sluttdato: Date) =>
+    isAfter(dato, sluttdato);
 
-export const erDatoFørStartDatoAvgrensning = (dato: ISODateString, startdato: ISODateString) => {
-    return dayjs(dato).isBefore(dayjs(startdato));
-};
+export const erDatoFørStartDatoAvgrensning = (dato: Date, startdato: Date) =>
+    isBefore(dato, startdato);
 
-export const gårsdagensDato = () => dayjs().subtract(1, 'day').format('YYYY-MM-DD');
+export const gårsdagensDato = () => startOfDay(sub(dagensDato(), { days: 1 }));
 
-export const ettÅrTilbakeDato = () => dayjs().subtract(1, 'year').format('YYYY-MM-DD');
+export const ettÅrTilbakeDato = () => startOfDay(sub(dagensDato(), { years: 1 }));
 
-export const dagensDato = () => dayjs().format('YYYY-MM-DD');
+export const dagensDato = () => startOfToday();
 
-export const morgendagensDato = () => dayjs().add(1, 'day').format('YYYY-MM-DD');
+export const morgendagensDato = () => startOfDay(add(dagensDato(), { days: 1 }));
 
-export const erSammeDatoSomDagensDato = (dato: ISODateString) => dayjs(dato).isSame(dayjs(), 'day');
+export const erSammeDatoSomDagensDato = (dato: Date) => isToday(dato);
 
-export const dagenEtterDato = (dato: ISODateString) =>
-    dayjs(dato).add(1, 'day').format('YYYY-MM-DD');
+export const dagenEtterDato = (dato: Date) => startOfDay(add(dato, { days: 1 }));
 
-export const tidenesMorgen = () => new Date(1000, 0);
+export const tidenesMorgen = () => startOfDay(new Date(1000, 0));
 
-export const tidenesEnde = () => new Date(3000, 0);
+export const tidenesEnde = () => startOfDay(new Date(3000, 0));
 
-export const validerDato = (
-    tekster: IFormateringsfeilmeldingerTekstinnhold,
-    plainTekst: PlainTekst,
-    feltState: FeltState<string>,
-    feilmelding: LocaleRecordBlock | undefined,
-    startdatoAvgrensning = '',
-    sluttdatoAvgrensning = '',
-    customStartdatoFeilmelding = ''
-): FeltState<string> => {
+interface ValiderDatoParams {
+    tekster: IFormateringsfeilmeldingerTekstinnhold;
+    plainTekst: PlainTekst;
+    feltState: FeltState<string>;
+    feilmelding: LocaleRecordBlock | undefined;
+    startdatoAvgrensning: Date | undefined;
+    sluttdatoAvgrensning: Date | undefined;
+    customStartdatoFeilmelding?: string;
+}
+
+export const validerDato = ({
+    tekster,
+    plainTekst,
+    feltState,
+    feilmelding,
+    startdatoAvgrensning = undefined,
+    sluttdatoAvgrensning = undefined,
+    customStartdatoFeilmelding = '',
+}: ValiderDatoParams): FeltState<string> => {
     if (feltState.verdi === '') {
         return feil(feltState, plainTekst(feilmelding) ?? '');
     }
-    if (!erDatoFormatGodkjent(feltState.verdi)) {
+
+    const dato = new Date(feltState.verdi);
+
+    if (!erDatoFormatGodkjent(dato)) {
         return feil(feltState, plainTekst(tekster.ugyldigDato));
     }
-    if (
-        !!sluttdatoAvgrensning &&
-        erDatoEtterSluttdatoAvgresning(feltState.verdi, sluttdatoAvgrensning)
-    ) {
+    if (!!sluttdatoAvgrensning && erDatoEtterSluttdatoAvgresning(dato, sluttdatoAvgrensning)) {
         return feil(
             feltState,
             plainTekst(
@@ -73,10 +83,7 @@ export const validerDato = (
         );
     }
 
-    if (
-        !!startdatoAvgrensning &&
-        erDatoFørStartDatoAvgrensning(feltState.verdi, startdatoAvgrensning)
-    ) {
+    if (!!startdatoAvgrensning && erDatoFørStartDatoAvgrensning(dato, startdatoAvgrensning)) {
         return feil(
             feltState,
             customStartdatoFeilmelding
@@ -87,13 +94,11 @@ export const validerDato = (
     return ok(feltState);
 };
 
-export const formaterDato = (isoDateString: ISODateString) =>
-    isoDateString === AlternativtSvarForInput.UKJENT
-        ? isoDateString
-        : dayjs(isoDateString).format('DD.MM.YYYY');
+export const formaterDato = (datoString: ISODateString) =>
+    format(new Date(datoString), 'dd.MM.yyyy');
 
 export const formaterDatoMedUkjent = (datoMedUkjent: DatoMedUkjent, tekstForUkjent): string => {
     return datoMedUkjent === AlternativtSvarForInput.UKJENT
         ? tekstForUkjent
-        : formaterDato(datoMedUkjent);
+        : format(new Date(datoMedUkjent), 'dd.MM.yyyy');
 };

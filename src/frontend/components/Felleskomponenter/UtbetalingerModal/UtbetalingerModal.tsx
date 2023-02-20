@@ -138,7 +138,7 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
                             avgrensMaxDato={periodenErAvsluttet ? dagensDato() : undefined}
                             avgrensMinDato={minTilDatoForUtbetalingEllerArbeidsperiode(
                                 periodenErAvsluttet,
-                                utbetalingFraDato.verdi
+                                new Date(utbetalingFraDato.verdi)
                             )}
                             disabled={utbetalingTilDatoUkjent.verdi === ESvar.JA}
                         />

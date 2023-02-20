@@ -10,16 +10,16 @@ const useDatovelgerFelt = ({
     søknadsfelt,
     skalFeltetVises,
     feilmelding,
-    sluttdatoAvgrensning = '',
-    startdatoAvgrensning = '',
+    sluttdatoAvgrensning = undefined,
+    startdatoAvgrensning = undefined,
     avhengigheter,
-    nullstillVedAvhengighetEndring = false,
+    nullstillVedAvhengighetEndring = true,
 }: {
     søknadsfelt: ISøknadSpørsmål<ISODateString>;
     skalFeltetVises: boolean;
     feilmelding: LocaleRecordBlock;
-    sluttdatoAvgrensning?: ISODateString;
-    startdatoAvgrensning?: ISODateString;
+    sluttdatoAvgrensning?: Date;
+    startdatoAvgrensning?: Date;
     avhengigheter?: Avhengigheter;
     nullstillVedAvhengighetEndring?: boolean;
 }) => {
@@ -28,23 +28,19 @@ const useDatovelgerFelt = ({
         feltId: søknadsfelt.id,
         verdi: søknadsfelt.svar,
         valideringsfunksjon: (felt, avhengigheter) => {
-            const startdatoAvgrensning = avhengigheter && avhengigheter.startdatoAvgrensning;
-            const sluttdatoAvgrensning = avhengigheter && avhengigheter.sluttdatoAvgrensning;
             const feilmelding = avhengigheter && (avhengigheter.feilmelding as LocaleRecordBlock);
 
-            return validerDato(
-                tekster().FELLES.formateringsfeilmeldinger,
+            return validerDato({
+                tekster: tekster().FELLES.formateringsfeilmeldinger,
                 plainTekst,
-                felt,
+                feltState: felt,
                 feilmelding,
                 startdatoAvgrensning,
-                sluttdatoAvgrensning
-            );
+                sluttdatoAvgrensning,
+            });
         },
         skalFeltetVises: avhengigheter => avhengigheter?.skalFeltetVises,
         avhengigheter: {
-            sluttdatoAvgrensning,
-            startdatoAvgrensning,
             skalFeltetVises,
             feilmelding,
             ...avhengigheter,

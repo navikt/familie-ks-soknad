@@ -13,20 +13,20 @@ const useDatovelgerFeltMedUkjent = ({
     vetIkkeCheckbox,
     feilmelding,
     skalFeltetVises,
-    nullstillVedAvhengighetEndring = false,
-    sluttdatoAvgrensning = '',
-    startdatoAvgrensning = '',
+    nullstillVedAvhengighetEndring = true,
+    sluttdatoAvgrensning = undefined,
+    startdatoAvgrensning = undefined,
     customStartdatoFeilmelding = '',
     avhengigheter,
 }: {
     feltId;
-    initiellVerdi;
+    initiellVerdi: ISODateString;
     vetIkkeCheckbox: Felt<ESvar>;
     feilmelding: LocaleRecordBlock;
     skalFeltetVises: boolean;
     nullstillVedAvhengighetEndring?: boolean;
-    sluttdatoAvgrensning?: ISODateString;
-    startdatoAvgrensning?: ISODateString;
+    sluttdatoAvgrensning?: Date;
+    startdatoAvgrensning?: Date;
     customStartdatoFeilmelding?: string;
     avhengigheter?: Avhengigheter;
 }) => {
@@ -43,27 +43,23 @@ const useDatovelgerFeltMedUkjent = ({
                 return ok(felt);
             }
 
-            const startdatoAvgrensning = avhengigheter && avhengigheter.startdatoAvgrensning;
-            const sluttdatoAvgrensning = avhengigheter && avhengigheter.sluttdatoAvgrensning;
             const feilmelding = avhengigheter && (avhengigheter.feilmelding as LocaleRecordBlock);
             const customStartdatoFeilmelding =
                 avhengigheter && avhengigheter.customStartdatoFeilmelding;
 
-            return validerDato(
-                tekster().FELLES.formateringsfeilmeldinger,
+            return validerDato({
+                tekster: tekster().FELLES.formateringsfeilmeldinger,
                 plainTekst,
-                felt,
+                feltState: felt,
                 feilmelding,
                 startdatoAvgrensning,
                 sluttdatoAvgrensning,
-                customStartdatoFeilmelding
-            );
+                customStartdatoFeilmelding,
+            });
         },
         avhengigheter: {
             vetIkkeCheckbox,
             skalFeltetVises,
-            startdatoAvgrensning,
-            sluttdatoAvgrensning,
             customStartdatoFeilmelding,
             feilmelding,
             ...avhengigheter,

@@ -55,7 +55,6 @@ export const useUtbetalingerSkjema = (personType, barn, erDød) => {
             andreForelderErDød || fårUtbetalingNå.valideringsstatus === Valideringsstatus.OK,
         feilmelding: teksterForPersontype.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
-        nullstillVedAvhengighetEndring: true,
     });
 
     const utbetalingTilDatoUkjent = useFelt<ESvar>({
@@ -77,10 +76,10 @@ export const useUtbetalingerSkjema = (personType, barn, erDød) => {
         sluttdatoAvgrensning: periodenErAvsluttet ? dagensDato() : undefined,
         startdatoAvgrensning: minTilDatoForUtbetalingEllerArbeidsperiode(
             periodenErAvsluttet,
-            utbetalingFraDato.verdi
+            new Date(utbetalingFraDato.verdi)
         ),
         customStartdatoFeilmelding:
-            erSammeDatoSomDagensDato(utbetalingFraDato.verdi) || periodenErAvsluttet
+            erSammeDatoSomDagensDato(new Date(utbetalingFraDato.verdi)) || periodenErAvsluttet
                 ? undefined
                 : plainTekst(
                       tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid

@@ -66,7 +66,6 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
         feilmelding: hentFraDatoFeilmelding(utenlandsoppholdÅrsak.verdi, teksterForPersontype),
         sluttdatoAvgrensning: hentMaxAvgrensningPåFraDato(utenlandsoppholdÅrsak.verdi),
         avhengigheter: { utenlandsoppholdÅrsak },
-        nullstillVedAvhengighetEndring: true,
     });
 
     const oppholdslandTilDatoUkjent = useFelt<ESvar>({
@@ -89,7 +88,7 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
             utenlandsoppholdÅrsak.verdi !== EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE,
         sluttdatoAvgrensning: hentMaxAvgrensningPåTilDato(utenlandsoppholdÅrsak.verdi),
         startdatoAvgrensning: harTilhørendeFomFelt(utenlandsoppholdÅrsak.verdi)
-            ? dagenEtterDato(oppholdslandFraDato.verdi)
+            ? dagenEtterDato(new Date(oppholdslandFraDato.verdi))
             : hentMinAvgrensningPåTilDato(utenlandsoppholdÅrsak.verdi),
         customStartdatoFeilmelding: !harTilhørendeFomFelt(utenlandsoppholdÅrsak.verdi)
             ? utenlandsoppholdÅrsak.verdi === EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE
