@@ -21,8 +21,8 @@ enum BadRequestCode {
 }
 
 // Meldingsfeltet på respons ved BadRequest inneholder tekst på følgende format: CODE=ENUM_NAVN
-const badRequestCodeFraError = (_error): BadRequestCode | undefined => {
-    const melding = _error.response?.data?.melding;
+const badRequestCodeFraError = (error): BadRequestCode | undefined => {
+    const melding = error.response?.data?.melding;
     if (melding) {
         return BadRequestCode[melding.split('=')[1]];
     }
