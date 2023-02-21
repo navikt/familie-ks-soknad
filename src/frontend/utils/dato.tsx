@@ -11,10 +11,14 @@ import {
     sub,
 } from 'date-fns';
 
-import { ISODateString } from '@navikt/familie-form-elements';
 import { feil, FeltState, ok } from '@navikt/familie-skjema';
 
-import { AlternativtSvarForInput, DatoMedUkjent, LocaleRecordBlock } from '../typer/common';
+import {
+    AlternativtSvarForInput,
+    DatoMedUkjent,
+    ISODateString,
+    LocaleRecordBlock,
+} from '../typer/common';
 import { PlainTekst } from '../typer/kontrakt/generelle';
 import { IFormateringsfeilmeldingerTekstinnhold } from '../typer/sanity/tekstInnhold';
 

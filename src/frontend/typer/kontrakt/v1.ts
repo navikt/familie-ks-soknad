@@ -1,7 +1,8 @@
-import { ESvar, ISODateString } from '@navikt/familie-form-elements';
+import { ESvar } from '@navikt/familie-form-elements';
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import { barnDataKeySpørsmål } from '../barn';
+import { ISODateString } from '../common';
 import { ISøknadKontraktDokumentasjon } from './dokumentasjon';
 import {
     ERegistrertBostedType,
@@ -161,6 +162,7 @@ export interface IArbeidsperiodeIKontraktFormat {
     arbeidsgiver: ISøknadsfelt<string> | null;
     fraDatoArbeidsperiode: ISøknadsfelt<ISODateString> | null;
     tilDatoArbeidsperiode: ISøknadsfelt<ISODateString> | null;
+    adresse: ISøknadsfelt<string> | null;
 }
 
 export interface IIdNummerIKontraktFormat {

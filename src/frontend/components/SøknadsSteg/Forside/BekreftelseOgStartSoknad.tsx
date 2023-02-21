@@ -5,11 +5,7 @@ import styled from 'styled-components';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 
 import { Button } from '@navikt/ds-react';
-import {
-    NavdsGlobalColorGreen500,
-    NavdsGlobalColorNavRed,
-    NavdsGlobalColorOrange500,
-} from '@navikt/ds-tokens/dist/tokens';
+import { AGreen500, ANavRed, AOrange500 } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
@@ -39,11 +35,11 @@ const StyledButton = styled(Button)`
 export const bekreftelseBoksBorderFarge = (status: BekreftelseStatus) => {
     switch (status) {
         case BekreftelseStatus.BEKREFTET:
-            return NavdsGlobalColorGreen500;
+            return AGreen500;
         case BekreftelseStatus.FEIL:
-            return NavdsGlobalColorNavRed;
+            return ANavRed;
         default:
-            return NavdsGlobalColorOrange500;
+            return AOrange500;
     }
 };
 

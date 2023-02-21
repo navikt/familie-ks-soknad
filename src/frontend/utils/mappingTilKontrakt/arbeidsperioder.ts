@@ -9,6 +9,7 @@ import { landkodeTilSpråk } from '../språk';
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjent,
+    søknadsfeltHof,
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
 
@@ -35,9 +36,16 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
         arbeidsgiver,
         fraDatoArbeidsperiode,
         tilDatoArbeidsperiode,
+        adresse,
     } = periode;
 
+    const søknadsfelt = søknadsfeltHof(tilRestLocaleRecord);
+
     const periodenErAvsluttet: boolean = arbeidsperiodeAvsluttet?.svar !== ESvar.NEI;
+
+    const adresseTekst = periodenErAvsluttet ? tekster.adresseFortid : tekster.adresseNaatid;
+    const sluttdatoTekst = periodenErAvsluttet ? tekster.sluttdatoFortid : tekster.sluttdatoFremtid;
+    const landTekst = periodenErAvsluttet ? tekster.hvilketLandFortid : tekster.hvilketLandNaatid;
 
     return {
         label: tilRestLocaleRecord(tekster.oppsummeringstittel, {
@@ -53,12 +61,7 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
                 : null,
             arbeidsperiodeland: arbeidsperiodeland.svar
                 ? {
-                      label: tilRestLocaleRecord(
-                          periodenErAvsluttet
-                              ? tekster.hvilketLandFortid.sporsmal
-                              : tekster.hvilketLandNaatid.sporsmal,
-                          { barnetsNavn: barn?.navn }
-                      ),
+                      label: tilRestLocaleRecord(landTekst.sporsmal, { barnetsNavn: barn?.navn }),
                       verdi: verdiCallbackAlleSpråk(locale =>
                           landkodeTilSpråk(arbeidsperiodeland.svar, locale)
                       ),
@@ -78,17 +81,23 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
                 : null,
             tilDatoArbeidsperiode: tilDatoArbeidsperiode.svar
                 ? {
-                      label: tilRestLocaleRecord(
-                          periodenErAvsluttet
-                              ? tekster.sluttdatoFortid.sporsmal
-                              : tekster.sluttdatoFremtid.sporsmal
-                      ),
+                      label: tilRestLocaleRecord(sluttdatoTekst.sporsmal),
                       verdi: sammeVerdiAlleSpråkEllerUkjent(
                           tilRestLocaleRecord,
                           tilDatoArbeidsperiode.svar,
                           tekster.sluttdatoFremtid.checkboxLabel
                       ),
                   }
+                : null,
+            adresse: adresse.svar
+                ? søknadsfelt(
+                      adresseTekst.sporsmal,
+                      sammeVerdiAlleSpråkEllerUkjent(
+                          tilRestLocaleRecord,
+                          adresse.svar,
+                          adresseTekst.checkboxLabel
+                      )
+                  )
                 : null,
         }),
     };

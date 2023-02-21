@@ -4,15 +4,14 @@ import styled from 'styled-components';
 
 import { DeleteFilled } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
-import { NavdsSemanticColorBorder } from '@navikt/ds-tokens/dist/tokens';
+import { ABorderDefault } from '@navikt/ds-tokens/dist/tokens';
 
 import { LocaleRecordBlock } from '../../../typer/common';
 import TekstBlock from '../TekstBlock';
 
 const PeriodeContainer = styled.div<{ bottomBorder: boolean }>`
     margin: 2rem 0;
-    border-bottom: ${props =>
-        props.bottomBorder ? `1px solid ${NavdsSemanticColorBorder}` : 'none'};
+    border-bottom: ${props => (props.bottomBorder ? `1px solid ${ABorderDefault}` : 'none')};
 `;
 
 const StyledButton = styled(Button)`

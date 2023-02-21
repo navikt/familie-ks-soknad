@@ -1,10 +1,10 @@
 import { Alpha3Code } from 'i18n-iso-countries';
 
-import { ESvar, ISODateString } from '@navikt/familie-form-elements';
+import { ESvar } from '@navikt/familie-form-elements';
 
 import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 import { barnDataKeySpørsmål } from './barn';
-import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent } from './common';
+import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent, ISODateString } from './common';
 import { Slektsforhold } from './kontrakt/generelle';
 import {
     IArbeidsperiode,
@@ -185,6 +185,8 @@ export interface IArbeidsperioderFeltTyper {
     fraDatoArbeidsperiode: ISODateString;
     tilDatoArbeidsperiode: ISODateString;
     tilDatoArbeidsperiodeUkjent: ESvar;
+    adresse: string;
+    adresseUkjent: ESvar;
 }
 
 export interface IKontantstøttePerioderFeltTyper {

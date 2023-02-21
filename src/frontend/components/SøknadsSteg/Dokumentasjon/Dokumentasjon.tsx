@@ -6,7 +6,6 @@ import { BodyShort } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useApp } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { useSendInnSkjema } from '../../../hooks/useSendInnSkjema';
 import { Typografi } from '../../../typer/common';
@@ -31,7 +30,6 @@ const Dokumentasjon: React.FC = () => {
     const { søknad, settSøknad, innsendingStatus, tekster } = useApp();
     const { sendInnSkjema } = useSendInnSkjema();
     const [slettaVedlegg, settSlettaVedlegg] = useState<IVedlegg[]>([]);
-    const { toggles } = useFeatureToggles();
 
     const { dokumentasjonInfo, dokumentasjonTittel, forLangTidDokumentasjon, nudgeDokumentasjon } =
         tekster().DOKUMENTASJON;
@@ -73,14 +71,10 @@ const Dokumentasjon: React.FC = () => {
     return (
         <Steg
             tittel={<TekstBlock block={dokumentasjonTittel} typografi={Typografi.StegHeadingH1} />}
-            gåVidereCallback={
-                !toggles.DISABLE_SEND_INN_KNAPP
-                    ? async () => {
-                          const [success, _] = await sendInnSkjema();
-                          return success;
-                      }
-                    : undefined
-            }
+            gåVidereCallback={async () => {
+                const [success, _] = await sendInnSkjema();
+                return success;
+            }}
         >
             {slettaVedlegg.length > 0 && (
                 <KomponentGruppe>
@@ -118,15 +112,6 @@ const Dokumentasjon: React.FC = () => {
                     />
                 ))}
             {innsendingStatus.status === RessursStatus.FEILET && <Feilside />}
-            {toggles.DISABLE_SEND_INN_KNAPP && (
-                <div>
-                    <AlertStripe variant="error">
-                        <BodyShort>
-                            Denne siden er under utvikling og du kan derfor ikke sende inn en søknad
-                        </BodyShort>
-                    </AlertStripe>
-                </div>
-            )}
         </Steg>
     );
 };

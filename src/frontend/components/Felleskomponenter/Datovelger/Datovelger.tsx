@@ -5,11 +5,11 @@ import { isAfter, parse } from 'date-fns';
 import { Feilmelding } from 'nav-frontend-typografi';
 
 import { BodyShort, UNSAFE_DatePicker, UNSAFE_useDatepicker } from '@navikt/ds-react';
-import { ISODateString } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
+import { ISODateString } from '../../../typer/common';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { dagenEtterDato, dagensDato, tidenesEnde, tidenesMorgen } from '../../../utils/dato';
 

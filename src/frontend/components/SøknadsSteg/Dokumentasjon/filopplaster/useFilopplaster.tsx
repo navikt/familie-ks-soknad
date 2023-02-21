@@ -1,6 +1,7 @@
 import { ReactNode, useCallback, useState } from 'react';
 
 import axios from 'axios';
+import { FileRejection } from 'react-dropzone';
 
 import Miljø from '../../../../../shared-utils/Miljø';
 import { useApp } from '../../../../context/AppContext';
@@ -8,16 +9,28 @@ import { useLastRessurserContext } from '../../../../context/LastRessurserContex
 import { LocaleRecordString } from '../../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
-import { konverter } from './konverteringService';
 
 interface OpplastetVedlegg {
     dokumentId: string;
     filnavn: string;
 }
 
+enum BadRequestCode {
+    IMAGE_TOO_LARGE = 'IMAGE_TOO_LARGE',
+    IMAGE_DIMENSIONS_TOO_SMALL = 'IMAGE_DIMENSIONS_TOO_SMALL',
+}
+
+// Meldingsfeltet på respons ved BadRequest inneholder tekst på følgende format: CODE=ENUM_NAVN
+const badRequestCodeFraError = (error): BadRequestCode | undefined => {
+    const melding = error.response?.data?.melding;
+    if (melding) {
+        return BadRequestCode[melding.split('=')[1]];
+    }
+    return;
+};
+
 export const useFilopplaster = (
     maxFilstørrelse: number,
-    tillatteFiltyper: string[],
     dokumentasjon: IDokumentasjon,
     oppdaterDokumentasjon: (
         dokumentasjonsBehov: Dokumentasjonsbehov,
@@ -38,7 +51,7 @@ export const useFilopplaster = (
     const dagensDatoStreng = datoTilStreng(new Date());
 
     const onDrop = useCallback(
-        async filer => {
+        async (filer: File[], filRejections: FileRejection[]) => {
             const feilmeldingsliste: ReactNode[] = [];
             const nyeVedlegg: IVedlegg[] = [];
 
@@ -46,30 +59,17 @@ export const useFilopplaster = (
                 feilmeldingsliste.push(
                     `${plainTekst(feilmelding)} ${plainTekst(dokumentasjonTekster.fil)} ${fil.name}`
                 );
-                settFeilmeldinger(feilmeldingsliste);
-                settÅpenModal(true);
             };
 
-            const håndterFeilType = (fil: File) =>
-                pushFeilmelding(dokumentasjonTekster.feilFiltype, fil);
+            if (filRejections.length > 0) {
+                filRejections.map((filRejection: FileRejection) => {
+                    pushFeilmelding(dokumentasjonTekster.feilFiltype, filRejection.file);
+                });
+            }
 
             await Promise.all(
                 filer.map((fil: File) =>
                     wrapMedSystemetLaster(async () => {
-                        if (!tillatteFiltyper.includes(fil.type)) {
-                            if (fil.type?.match(/^image\//)) {
-                                try {
-                                    fil = await konverter(fil);
-                                } catch (e) {
-                                    håndterFeilType(fil);
-                                    return;
-                                }
-                            } else {
-                                håndterFeilType(fil);
-                                return;
-                            }
-                        }
-
                         if (maxFilstørrelse && fil.size > maxFilstørrelse) {
                             pushFeilmelding(dokumentasjonTekster.forStor, fil);
                             return;
@@ -99,12 +99,27 @@ export const useFilopplaster = (
                                     tidspunkt: dagensDatoStreng,
                                 });
                             })
-                            .catch(_error => {
-                                pushFeilmelding(dokumentasjonTekster.noeGikkFeil, fil);
+                            .catch(error => {
+                                const badRequestCode = badRequestCodeFraError(error);
+                                switch (badRequestCode) {
+                                    case BadRequestCode.IMAGE_TOO_LARGE:
+                                        pushFeilmelding(dokumentasjonTekster.forStor, fil);
+                                        break;
+                                    case BadRequestCode.IMAGE_DIMENSIONS_TOO_SMALL:
+                                        pushFeilmelding(dokumentasjonTekster.bildetForLite, fil);
+                                        break;
+                                    default:
+                                        pushFeilmelding(dokumentasjonTekster.noeGikkFeil, fil);
+                                }
                             });
                     })
                 )
             );
+
+            if (feilmeldingsliste.length > 0) {
+                settFeilmeldinger(feilmeldingsliste);
+                settÅpenModal(true);
+            }
 
             oppdaterDokumentasjon(
                 dokumentasjon.dokumentasjonsbehov,

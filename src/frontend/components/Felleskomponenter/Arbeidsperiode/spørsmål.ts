@@ -6,4 +6,6 @@ export enum ArbeidsperiodeSpørsmålsId {
     fraDatoArbeidsperiode = 'fra-dato-arbeidsperiode',
     tilDatoArbeidsperiode = 'til-dato-arbeidsperiode',
     tilDatoArbeidsperiodeVetIkke = 'til-dato-arbeidsperiode-vet-ikke',
+    adresse = 'adresse',
+    adresseVetIkke = 'adresse-vet-ikke',
 }

@@ -6,7 +6,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 
 import { Attachment, DeleteFilled } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
-import { NavdsSemanticColorDivider } from '@navikt/ds-tokens/dist/tokens';
+import { ABorderDivider } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../../context/AppContext';
 import { IVedlegg } from '../../../../typer/dokumentasjon';
@@ -25,8 +25,7 @@ const FilRad = styled.li<{ skillelinje: boolean }>`
     display: flex;
     justify-content: space-between;
     padding: 1rem 0;
-    border-bottom: ${props =>
-        props.skillelinje ? `1px solid ${NavdsSemanticColorDivider}` : 'none'};
+    border-bottom: ${props => (props.skillelinje ? `1px solid ${ABorderDivider}` : 'none')};
 `;
 
 const FilTekstWrapper = styled.div`
