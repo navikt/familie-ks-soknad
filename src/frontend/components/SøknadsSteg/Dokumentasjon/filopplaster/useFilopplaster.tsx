@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import axios from 'axios';
 import { FileRejection } from 'react-dropzone';
@@ -39,9 +39,9 @@ export const useFilopplaster = (
     ) => void
 ) => {
     const { wrapMedSystemetLaster } = useLastRessurserContext();
-    const { tekster, plainTekst } = useApp();
+    const { tekster } = useApp();
     const [feilmeldinger, settFeilmeldinger] = useState<Map<LocaleRecordString, File[]>>(new Map());
-    const [åpenModal, settÅpenModal] = useState<boolean>(false);
+    const [harFeil, settHarFeil] = useState<boolean>(false);
 
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
 
@@ -52,7 +52,6 @@ export const useFilopplaster = (
 
     const onDrop = useCallback(
         async (filer: File[], filRejections: FileRejection[]) => {
-            const feilmeldingsliste: ReactNode[] = [];
             const nyeVedlegg: IVedlegg[] = [];
             const feilmeldingMap: Map<LocaleRecordString, File[]> = new Map();
 
@@ -65,9 +64,6 @@ export const useFilopplaster = (
                     filer.push(fil);
                     feilmeldingMap.set(feilmelding, filer);
                 }
-                feilmeldingsliste.push(
-                    `${plainTekst(feilmelding)} ${plainTekst(dokumentasjonTekster.fil)} ${fil.name}`
-                );
             };
 
             if (filRejections.length > 0) {
@@ -127,7 +123,7 @@ export const useFilopplaster = (
 
             if (feilmeldingMap.size > 0) {
                 settFeilmeldinger(feilmeldingMap);
-                settÅpenModal(true);
+                settHarFeil(true);
             }
 
             oppdaterDokumentasjon(
@@ -150,16 +146,10 @@ export const useFilopplaster = (
         );
     };
 
-    const lukkModal = () => {
-        settÅpenModal(false);
-    };
-
     return {
         onDrop,
-        åpenModal,
-        settÅpenModal,
+        harFeil,
         feilmeldinger,
         slettVedlegg,
-        lukkModal,
     };
 };

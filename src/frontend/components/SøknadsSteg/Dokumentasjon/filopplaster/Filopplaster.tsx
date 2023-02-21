@@ -55,6 +55,7 @@ const StyledUpload = styled(Upload)`
 `;
 
 const StyledFeilmeldingList = styled.ul`
+    padding-inline-start: 1.25rem;
     > li {
         font-weight: 600;
         color: #ba3a26;
@@ -67,7 +68,7 @@ const Filopplaster: React.FC<Props> = ({
     tillatteFiltyper,
     maxFilstørrelse,
 }) => {
-    const { onDrop, åpenModal, feilmeldinger, slettVedlegg } = useFilopplaster(
+    const { onDrop, harFeil, feilmeldinger, slettVedlegg } = useFilopplaster(
         maxFilstørrelse,
         dokumentasjon,
         oppdaterDokumentasjon
@@ -79,31 +80,33 @@ const Filopplaster: React.FC<Props> = ({
     const { tekster, plainTekst } = useApp();
     const { lastOppKnapp, slippFilenHer } = tekster().DOKUMENTASJON;
 
-    const feilmeldingListe = Array.from(feilmeldinger).map(([key, value], index) => (
-        <li key={index}>
-            {plainTekst(key)}
-            {
-                <ul>
-                    {value.map((fil, index) => (
-                        <li key={index}>{fil.name}</li>
-                    ))}
-                </ul>
-            }
-        </li>
-    ));
-
     return (
         <>
-            <FilopplastningBoks type={'button'} {...getRootProps()} harFeil={åpenModal}>
+            <FilopplastningBoks type={'button'} {...getRootProps()} harFeil={harFeil}>
                 <input {...getInputProps()} />
                 <StyledUpload focusable={false} />
                 <Normaltekst>{plainTekst(isDragActive ? slippFilenHer : lastOppKnapp)}</Normaltekst>
             </FilopplastningBoks>
-            {åpenModal && <StyledFeilmeldingList>{feilmeldingListe}</StyledFeilmeldingList>}
             <OpplastedeFiler
                 filliste={dokumentasjon.opplastedeVedlegg}
                 slettVedlegg={slettVedlegg}
             />
+            {harFeil && (
+                <StyledFeilmeldingList>
+                    {Array.from(feilmeldinger).map(([key, value], index) => (
+                        <li key={index}>
+                            {plainTekst(key)}
+                            {
+                                <StyledFeilmeldingList>
+                                    {value.map((fil, index) => (
+                                        <li key={index}>{fil.name}</li>
+                                    ))}
+                                </StyledFeilmeldingList>
+                            }
+                        </li>
+                    ))}
+                </StyledFeilmeldingList>
+            )}
         </>
     );
 };
