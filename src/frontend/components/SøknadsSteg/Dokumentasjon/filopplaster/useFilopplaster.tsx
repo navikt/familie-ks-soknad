@@ -40,7 +40,7 @@ export const useFilopplaster = (
 ) => {
     const { wrapMedSystemetLaster } = useLastRessurserContext();
     const { tekster, plainTekst } = useApp();
-    const [feilmeldinger, settFeilmeldinger] = useState<ReactNode[]>([]);
+    const [feilmeldinger, settFeilmeldinger] = useState<Map<LocaleRecordString, File[]>>(new Map());
     const [åpenModal, settÅpenModal] = useState<boolean>(false);
 
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
@@ -54,8 +54,17 @@ export const useFilopplaster = (
         async (filer: File[], filRejections: FileRejection[]) => {
             const feilmeldingsliste: ReactNode[] = [];
             const nyeVedlegg: IVedlegg[] = [];
+            const feilmeldingMap: Map<LocaleRecordString, File[]> = new Map();
 
             const pushFeilmelding = (feilmelding: LocaleRecordString, fil: File) => {
+                if (!feilmeldingMap.has(feilmelding)) {
+                    feilmeldingMap.set(feilmelding, []);
+                }
+                const filer = feilmeldingMap.get(feilmelding);
+                if (filer) {
+                    filer.push(fil);
+                    feilmeldingMap.set(feilmelding, filer);
+                }
                 feilmeldingsliste.push(
                     `${plainTekst(feilmelding)} ${plainTekst(dokumentasjonTekster.fil)} ${fil.name}`
                 );
@@ -116,8 +125,8 @@ export const useFilopplaster = (
                 )
             );
 
-            if (feilmeldingsliste.length > 0) {
-                settFeilmeldinger(feilmeldingsliste);
+            if (feilmeldingMap.size > 0) {
+                settFeilmeldinger(feilmeldingMap);
                 settÅpenModal(true);
             }
 
