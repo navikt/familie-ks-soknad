@@ -1,5 +1,4 @@
-import { ISODateString } from '@navikt/familie-form-elements';
-
+import { ISODateString } from '../typer/common';
 import { dagenEtterDato, dagensDato, erSammeDatoSomDagensDato, morgendagensDato } from './dato';
 
 export const minTilDatoForUtbetalingEllerArbeidsperiode = (

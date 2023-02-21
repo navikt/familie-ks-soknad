@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
-import { ESvar, ISODateString } from '@navikt/familie-form-elements';
+import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, useFelt } from '@navikt/familie-skjema';
 
 import { useApp } from '../context/AppContext';
-import { LocaleRecordBlock } from '../typer/common';
+import { ISODateString, LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { validerDato } from '../utils/dato';
 

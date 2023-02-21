@@ -8,15 +8,12 @@ import { Feilmelding } from 'nav-frontend-typografi';
 
 import { BodyShort } from '@navikt/ds-react';
 import { ARed500 } from '@navikt/ds-tokens/dist/tokens';
-import {
-    DatepickerLimitations,
-    FamilieDatovelger,
-    ISODateString,
-} from '@navikt/familie-form-elements';
+import { DatepickerLimitations, FamilieDatovelger } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
+import { ISODateString } from '../../../typer/common';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { dagensDato } from '../../../utils/dato';
 

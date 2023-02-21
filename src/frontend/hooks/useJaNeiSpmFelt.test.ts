@@ -2,11 +2,11 @@ import { renderHook } from '@testing-library/react-hooks';
 import { Alpha3Code } from 'i18n-iso-countries';
 import { mock } from 'jest-mock-extended';
 
-import { ESvar, ISODateString } from '@navikt/familie-form-elements';
+import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, Valideringsstatus } from '@navikt/familie-skjema';
 
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
-import { LocaleRecordBlock } from '../typer/common';
+import { ISODateString, LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import useJaNeiSpmFelt, { erRelevanteAvhengigheterValidert } from './useJaNeiSpmFelt';
 
