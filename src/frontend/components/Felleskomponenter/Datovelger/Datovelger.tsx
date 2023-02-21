@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import { Feilmelding } from 'nav-frontend-typografi';
 
 import { BodyShort } from '@navikt/ds-react';
-import { NavdsGlobalColorRed500 } from '@navikt/ds-tokens/dist/tokens';
+import { ARed500 } from '@navikt/ds-tokens/dist/tokens';
 import {
     DatepickerLimitations,
     FamilieDatovelger,
@@ -40,10 +40,10 @@ const StyledFamilieDatovelger = styled(FamilieDatovelger)<{ feil: boolean }>`
             .nav-datovelger:not(:hover) {
                 input:not(:focus, :active),
                 input:not(:focus, :active) + button {
-                    border-color: ${NavdsGlobalColorRed500};
+                    border-color: ${ARed500};
                 }
                 input:not(:focus, :active) {
-                    box-shadow: 0 0 0 1px ${NavdsGlobalColorRed500};
+                    box-shadow: 0 0 0 1px ${ARed500};
                 }
             }
         `}

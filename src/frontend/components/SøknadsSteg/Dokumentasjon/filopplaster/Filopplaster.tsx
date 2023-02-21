@@ -7,7 +7,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 
 import { Upload } from '@navikt/ds-icons';
 import { Modal } from '@navikt/ds-react';
-import { NavdsGlobalColorBlue500, NavdsSemanticColorBorder } from '@navikt/ds-tokens/dist/tokens';
+import { ABlue500, ABorderDefault } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../../context/AppContext';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
@@ -32,18 +32,18 @@ const FilopplastningBoks = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px dashed ${NavdsSemanticColorBorder};
+    border: 2px dashed ${ABorderDefault};
     border-radius: 4px;
     background-color: rgba(204, 222, 230, 0.5);
     width: 100%;
     padding: 1rem;
     margin: 2rem 0 1rem 0;
-    color: ${NavdsGlobalColorBlue500};
+    color: ${ABlue500};
     box-sizing: border-box;
 
     :focus,
     :hover {
-        border: 2px solid ${NavdsGlobalColorBlue500};
+        border: 2px solid ${ABlue500};
         cursor: pointer;
     }
 `;
