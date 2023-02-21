@@ -5,11 +5,7 @@ import styled from 'styled-components';
 import { Checkbox } from 'nav-frontend-skjema';
 
 import { Alert, Heading } from '@navikt/ds-react';
-import {
-    NavdsGlobalColorGray100,
-    NavdsGlobalColorPurple400,
-    NavdsGlobalColorPurple800,
-} from '@navikt/ds-tokens/dist/tokens';
+import { AGray100, APurple400, APurple800 } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../../context/AppContext';
 import { device } from '../../../../Theme';
@@ -36,7 +32,7 @@ export const StyledBarnekort = styled.div`
     max-width: calc(16.3rem - 0.3rem * 2);
     padding: 2rem;
     margin: 0 0.3125rem 0.625rem;
-    background-color: ${NavdsGlobalColorGray100};
+    background-color: ${AGray100};
     @media all and ${device.mobile} {
         width: 100%;
     }
@@ -55,8 +51,8 @@ const InformasjonsboksInnhold = styled.div`
 
 const BarnekortHeader = styled.div`
     height: 8rem;
-    background-color: ${NavdsGlobalColorPurple800};
-    border-bottom: 0.25rem solid ${NavdsGlobalColorPurple400};
+    background-color: ${APurple800};
+    border-bottom: 0.25rem solid ${APurple400};
     border-radius: 0.3rem 0.3rem 0 0;
     display: flex;
     align-items: flex-end;
