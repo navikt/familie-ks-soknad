@@ -176,7 +176,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                             }
                             avgrensMinDato={minTilDatoForUtbetalingEllerArbeidsperiode(
                                 periodenErAvsluttet,
-                                new Date(skjema.felter.fraDatoArbeidsperiode.verdi)
+                                skjema.felter.fraDatoArbeidsperiode.verdi
                             )}
                             avgrensMaxDato={periodenErAvsluttet ? dagensDato() : undefined}
                             disabled={skjema.felter.tilDatoArbeidsperiodeUkjent.verdi === ESvar.JA}

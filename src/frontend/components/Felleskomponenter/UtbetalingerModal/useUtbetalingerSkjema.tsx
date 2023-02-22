@@ -76,7 +76,7 @@ export const useUtbetalingerSkjema = (personType, barn, erDød) => {
         sluttdatoAvgrensning: periodenErAvsluttet ? dagensDato() : undefined,
         startdatoAvgrensning: minTilDatoForUtbetalingEllerArbeidsperiode(
             periodenErAvsluttet,
-            new Date(utbetalingFraDato.verdi)
+            utbetalingFraDato.verdi
         ),
         customStartdatoFeilmelding:
             erSammeDatoSomDagensDato(new Date(utbetalingFraDato.verdi)) || periodenErAvsluttet

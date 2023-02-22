@@ -101,7 +101,7 @@ export const useArbeidsperiodeSkjema = (
         sluttdatoAvgrensning: periodenErAvsluttet ? dagensDato() : undefined,
         startdatoAvgrensning: minTilDatoForUtbetalingEllerArbeidsperiode(
             periodenErAvsluttet,
-            new Date(fraDatoArbeidsperiode.verdi)
+            fraDatoArbeidsperiode.verdi
         ),
         customStartdatoFeilmelding:
             erSammeDatoSomDagensDato(new Date(fraDatoArbeidsperiode.verdi)) || periodenErAvsluttet
