@@ -86,12 +86,11 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     }, [tilhørendeFraOgMedFelt?.verdi]);
 
     useEffect(() => {
-        if (inputProps.value && inputProps.value !== '') {
+        if (inputProps.value && inputProps.value !== '' && !disabled) {
             const parsetDato = parse(inputProps.value.toString(), 'dd.MM.yyyy', new Date());
-            felt.hentNavInputProps(false).onChange(parsetDato.toDateString());
             felt.validerOgSettFelt(parsetDato.toDateString());
         }
-    }, [inputProps.value, disabled]);
+    }, [inputProps, disabled]);
 
     return felt.erSynlig ? (
         <div aria-live={dynamisk ? 'polite' : 'off'}>

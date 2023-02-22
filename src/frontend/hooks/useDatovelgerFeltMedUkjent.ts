@@ -47,15 +47,15 @@ const useDatovelgerFeltMedUkjent = ({
             const customStartdatoFeilmelding =
                 avhengigheter && avhengigheter.customStartdatoFeilmelding;
 
-            return validerDato({
-                tekster: tekster().FELLES.formateringsfeilmeldinger,
+            return validerDato(
+                tekster().FELLES.formateringsfeilmeldinger,
                 plainTekst,
-                feltState: felt,
+                felt,
                 feilmelding,
                 startdatoAvgrensning,
                 sluttdatoAvgrensning,
-                customStartdatoFeilmelding,
-            });
+                customStartdatoFeilmelding
+            );
         },
         avhengigheter: {
             vetIkkeCheckbox,

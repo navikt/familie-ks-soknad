@@ -29,14 +29,14 @@ const useDatovelgerFelt = ({
         valideringsfunksjon: (felt, avhengigheter) => {
             const feilmelding = avhengigheter && (avhengigheter.feilmelding as LocaleRecordBlock);
 
-            return validerDato({
-                tekster: tekster().FELLES.formateringsfeilmeldinger,
+            return validerDato(
+                tekster().FELLES.formateringsfeilmeldinger,
                 plainTekst,
-                feltState: felt,
+                felt,
                 feilmelding,
                 startdatoAvgrensning,
-                sluttdatoAvgrensning,
-            });
+                sluttdatoAvgrensning
+            );
         },
         skalFeltetVises: avhengigheter => avhengigheter?.skalFeltetVises,
         avhengigheter: {

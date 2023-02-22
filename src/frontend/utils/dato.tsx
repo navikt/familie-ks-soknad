@@ -48,25 +48,15 @@ export const tidenesMorgen = () => startOfDay(new Date(1000, 0));
 
 export const tidenesEnde = () => startOfDay(new Date(3000, 0));
 
-interface ValiderDatoParams {
-    tekster: IFormateringsfeilmeldingerTekstinnhold;
-    plainTekst: PlainTekst;
-    feltState: FeltState<string>;
-    feilmelding: LocaleRecordBlock | undefined;
-    startdatoAvgrensning: Date | undefined;
-    sluttdatoAvgrensning: Date | undefined;
-    customStartdatoFeilmelding?: string;
-}
-
-export const validerDato = ({
-    tekster,
-    plainTekst,
-    feltState,
-    feilmelding,
-    startdatoAvgrensning = undefined,
-    sluttdatoAvgrensning = undefined,
-    customStartdatoFeilmelding = '',
-}: ValiderDatoParams): FeltState<string> => {
+export const validerDato = (
+    tekster: IFormateringsfeilmeldingerTekstinnhold,
+    plainTekst: PlainTekst,
+    feltState: FeltState<string>,
+    feilmelding: LocaleRecordBlock | undefined,
+    startdatoAvgrensning: Date | undefined = undefined,
+    sluttdatoAvgrensning: Date | undefined = undefined,
+    customStartdatoFeilmelding = ''
+): FeltState<string> => {
     if (feltState.verdi === '') {
         return feil(feltState, plainTekst(feilmelding) ?? '');
     }
