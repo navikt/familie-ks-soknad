@@ -59,7 +59,9 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, erDød) =
         skalFeltetVises: periodenErAvsluttet || andreForelderErDød,
         feilmelding: teksterForPersonType.sluttdato.feilmelding,
         sluttdatoAvgrensning: dagensDato(),
-        startdatoAvgrensning: dagenEtterDato(new Date(fraDatoKontantstøttePeriode.verdi)),
+        startdatoAvgrensning: fraDatoKontantstøttePeriode.verdi
+            ? dagenEtterDato(new Date(fraDatoKontantstøttePeriode.verdi))
+            : undefined,
     });
 
     const månedligBeløp = useFelt<string>({
