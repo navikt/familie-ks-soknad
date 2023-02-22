@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
-import { ESvar, ISODateString } from '@navikt/familie-form-elements';
+import { ESvar } from '@navikt/familie-form-elements';
 import { Avhengigheter, Felt, FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import { useApp } from '../context/AppContext';
-import { LocaleRecordBlock } from '../typer/common';
+import { ISODateString, LocaleRecordBlock } from '../typer/common';
 import { validerDato } from '../utils/dato';
 
 const useDatovelgerFeltMedUkjent = ({

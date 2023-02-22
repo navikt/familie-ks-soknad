@@ -1,5 +1,4 @@
-import { ISODateString } from '@navikt/familie-form-elements';
-
+import { ISODateString } from '../typer/common';
 import { IUtenlandsperiode } from '../typer/perioder';
 import { EUtenlandsoppholdÅrsak } from '../typer/utenlandsopphold';
 import { dagensDato, ettÅrTilbakeDato, gårsdagensDato } from './dato';
