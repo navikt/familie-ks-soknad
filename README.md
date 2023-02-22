@@ -77,6 +77,35 @@ if (toggles.NY_TOGGLE) {
 }
 ```
 
+# Test av PDF
+Etter at søknaden er sendt inn, vil det genereres en PDF basert på svarene som er gitt. Søknaden går først til `familie-baks-soknad-api` før den sendes over til `familie-baks-mottak` som forbereder og trigger PDF-generering i appen `familie-baks-dokgen`. For å teste hele dette løpet trenger man derfor å kjøre opp alle disse applikasjonene:
+* `familie-ks-soknad` (`yarn start:dev`)
+* `familie-baks-soknad-api` (Kjør `LokalLauncher.kt`, se `README.md`)
+* `familie-dokument` (Kjør `ApplicationLocalSoknad.kt`, Valgfri)
+* `familie-baks-mottak` (Kjør `DevLauncherPostgress.kt`, se `README.md`)
+* `familie-baks-dokgen` (Se `README.md`)
+
+I dev og prod kan man se den genererte PDF'en inne i Gosys, men når man jobber lokalt har vi ingen kobling dit. For å generere og se PDF'en, bruker vi istedenfor Swagger i `familie-baks-dokgen` og debug-breakpoint eller logging i `familie-baks-mottak`.
+
+## Hent input til PDF-generering fra baks-mottak
+
+I `familie-baks-mottak`, naviger til `PdfService.kt` og metoden `lagKontantstøttePdf`. Legg inn følgende kode før metoden returnerer:
+
+```kotlin
+logger.info(objectMapper.writeValueAsString(kontantstøtteSøknadMapForSpråk + ekstraFelterMap))
+```
+
+Kopier JSON-stringen som logges til konsollen.
+
+## Generer PDF manuelt med Swagger
+
+Naviger til Swagger-urlen til `familie-baks-dokgen`: http://localhost:5914/swagger-ui/index.html og finn "download-pdf" endepunktet. Her velger man "Try it out" og fyller inn `templateName = kontantstotte-soknad`, limer inn den kopierte JSON-stringen i `Request body` og trykker "Execute". Det vil da dukke opp en "Download now" lenke du kan trykke på for å se den genererte PDF'en.
+
+
+# Tilgjengelighetserklæring
+
+Applikasjonens tilgjengelighetserklæring ligger lagret som filen `UU-rapport.json` og kan åpnes og redigeres i verktøyet [WCAG-EM Report Tool](https://www.w3.org/WAI/eval/report-tool/). For mer informasjon om tilgjengelighetserklæring se [Aksel](https://aksel.nav.no/produktbloggen/tilgjengelighetserklaringer-kom-i-gang).
+
 # Henvendelser
 Ved spørsmål knyttet til koden eller prosjektet opprett en issue.
 
