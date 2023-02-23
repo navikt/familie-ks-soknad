@@ -12,6 +12,7 @@ const useDatovelgerFelt = ({
     sluttdatoAvgrensning = undefined,
     startdatoAvgrensning = undefined,
     avhengigheter,
+    customStartdatoFeilmelding = '',
     nullstillVedAvhengighetEndring = true,
 }: {
     søknadsfelt: ISøknadSpørsmål<ISODateString>;
@@ -21,6 +22,7 @@ const useDatovelgerFelt = ({
     startdatoAvgrensning?: Date;
     avhengigheter?: Avhengigheter;
     nullstillVedAvhengighetEndring?: boolean;
+    customStartdatoFeilmelding?: string;
 }) => {
     const { plainTekst, tekster } = useApp();
     return useFelt<ISODateString>({
@@ -35,7 +37,8 @@ const useDatovelgerFelt = ({
                 felt,
                 feilmelding,
                 startdatoAvgrensning,
-                sluttdatoAvgrensning
+                sluttdatoAvgrensning,
+                customStartdatoFeilmelding
             );
         },
         skalFeltetVises: avhengigheter => avhengigheter?.skalFeltetVises,

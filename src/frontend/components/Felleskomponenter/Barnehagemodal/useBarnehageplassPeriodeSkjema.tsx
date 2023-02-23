@@ -108,6 +108,9 @@ export const useBarnehageplassPeriodeSkjema = () => {
                   EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
                 ? gårsdagensDato()
                 : undefined,
+        customStartdatoFeilmelding: plainTekst(
+            formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
+        ),
     });
 
     const slutterIBarnehagenVetIkke = useFelt<ESvar>({
