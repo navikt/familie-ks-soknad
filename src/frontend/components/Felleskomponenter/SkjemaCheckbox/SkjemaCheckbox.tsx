@@ -2,8 +2,7 @@ import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
-import { Checkbox } from 'nav-frontend-skjema';
-
+import { Checkbox } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt } from '@navikt/familie-skjema';
 
@@ -30,9 +29,10 @@ export const SkjemaCheckbox: React.FC<{
     return felt.erSynlig ? (
         <StyledCheckbox
             checked={felt.verdi === ESvar.JA}
-            {...felt.hentNavInputProps(visFeilmeldinger)}
-            label={label}
+            error={visFeilmeldinger}
             onChange={onChange}
-        />
+        >
+            {label}
+        </StyledCheckbox>
     ) : null;
 };

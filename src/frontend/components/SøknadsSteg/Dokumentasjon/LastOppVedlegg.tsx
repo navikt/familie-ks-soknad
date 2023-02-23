@@ -2,9 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Checkbox } from 'nav-frontend-skjema';
-
-import { Heading } from '@navikt/ds-react';
+import { Checkbox, Heading } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
@@ -126,13 +124,15 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
             {dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON && (
                 <Checkbox
                     data-testid={'dokumentasjon-er-sendt-inn-checkboks'}
-                    label={plainTekst(dokumentasjonstekster.sendtInnTidligere)}
+                    value={plainTekst(dokumentasjonstekster.sendtInnTidligere)}
                     aria-label={`${plainTekst(
                         dokumentasjonstekster.sendtInnTidligere
                     )} (${plainTekst(tittelBlock, { barnetsNavn: barnasNavn })})`}
                     checked={dokumentasjon.harSendtInn}
                     onChange={settHarSendtInnTidligere}
-                />
+                >
+                    {plainTekst(dokumentasjonstekster.sendtInnTidligere)}
+                </Checkbox>
             )}
         </Container>
     );
