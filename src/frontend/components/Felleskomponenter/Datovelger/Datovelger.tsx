@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react';
 
-import { isAfter, parse } from 'date-fns';
+import { formatISO, isAfter, parse } from 'date-fns';
 
 import { Feilmelding } from 'nav-frontend-typografi';
 
@@ -76,7 +76,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
         defaultSelected: felt.verdi ? new Date(felt.verdi) : undefined,
         onDateChange: (dato: Date | undefined) => {
             if (dato) {
-                felt.validerOgSettFelt(dato.toDateString());
+                felt.validerOgSettFelt(formatISO(dato), { representation: 'date' });
             }
         },
     });
@@ -88,7 +88,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     useEffect(() => {
         if (inputProps.value && inputProps.value !== '' && !disabled) {
             const parsetDato = parse(inputProps.value.toString(), 'dd.MM.yyyy', new Date());
-            felt.validerOgSettFelt(parsetDato.toDateString());
+            felt.validerOgSettFelt(formatISO(parsetDato, { representation: 'date' }));
         }
     }, [inputProps, disabled]);
 
