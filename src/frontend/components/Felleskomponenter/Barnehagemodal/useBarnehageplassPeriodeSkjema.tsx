@@ -149,6 +149,7 @@ export const useBarnehageplassPeriodeSkjema = () => {
         customStartdatoFeilmelding: erSammeDatoSomDagensDato(new Date(startetIBarnehagen.verdi))
             ? undefined
             : plainTekst(formateringsfeilmeldinger.periodeAvsluttesForTidlig),
+        avhengigheter: { startetIBarnehagen },
     });
 
     const skjema = useSkjema<IBarnehageplassPerioderFeltTyper, 'string'>({
