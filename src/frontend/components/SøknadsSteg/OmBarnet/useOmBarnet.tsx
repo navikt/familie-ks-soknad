@@ -308,6 +308,9 @@ export const useOmBarnet = (
             andreForelderFnrUkjent.erSynlig &&
             andreForelderFnrUkjent.verdi === ESvar.JA &&
             andreForelderKanIkkeGiOpplysninger.verdi === ESvar.NEI,
+        nullstillVedAvhengighetEndring:
+            sammeForelderSomAnnetBarn.verdi === null ||
+            sammeForelderSomAnnetBarn.verdi === AlternativtSvarForInput.ANNEN_FORELDER,
         sluttdatoAvgrensning: dagensDato(),
     });
 
