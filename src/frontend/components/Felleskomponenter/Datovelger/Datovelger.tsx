@@ -11,7 +11,13 @@ import { useSprakContext } from '@navikt/familie-sprakvelger';
 import { useApp } from '../../../context/AppContext';
 import { ISODateString } from '../../../typer/common';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
-import { dagenEtterDato, dagensDato, tidenesEnde, tidenesMorgen } from '../../../utils/dato';
+import {
+    dagenEtterDato,
+    dagensDato,
+    erDatoFormatGodkjent,
+    tidenesEnde,
+    tidenesMorgen,
+} from '../../../utils/dato';
 
 interface DatoVelgerProps {
     felt: Felt<ISODateString>;
@@ -88,7 +94,12 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     useEffect(() => {
         if (inputProps.value && inputProps.value !== '' && !disabled) {
             const parsetDato = parse(inputProps.value.toString(), 'dd.MM.yyyy', new Date());
-            felt.validerOgSettFelt(formatISO(parsetDato, { representation: 'date' }));
+            const parsetDatoErGyldig = erDatoFormatGodkjent(parsetDato);
+            felt.validerOgSettFelt(
+                parsetDatoErGyldig
+                    ? formatISO(parsetDato, { representation: 'date' })
+                    : parsetDato.toString()
+            );
         }
     }, [inputProps, disabled]);
 
