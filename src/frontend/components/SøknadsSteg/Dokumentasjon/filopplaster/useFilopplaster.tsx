@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import axios from 'axios';
 import { FileRejection } from 'react-dropzone';
@@ -39,9 +39,9 @@ export const useFilopplaster = (
     ) => void
 ) => {
     const { wrapMedSystemetLaster } = useLastRessurserContext();
-    const { tekster, plainTekst } = useApp();
-    const [feilmeldinger, settFeilmeldinger] = useState<ReactNode[]>([]);
-    const [åpenModal, settÅpenModal] = useState<boolean>(false);
+    const { tekster } = useApp();
+    const [feilmeldinger, settFeilmeldinger] = useState<Map<LocaleRecordString, File[]>>(new Map());
+    const [harFeil, settHarFeil] = useState<boolean>(false);
 
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
 
@@ -52,13 +52,18 @@ export const useFilopplaster = (
 
     const onDrop = useCallback(
         async (filer: File[], filRejections: FileRejection[]) => {
-            const feilmeldingsliste: ReactNode[] = [];
             const nyeVedlegg: IVedlegg[] = [];
+            const feilmeldingMap: Map<LocaleRecordString, File[]> = new Map();
 
             const pushFeilmelding = (feilmelding: LocaleRecordString, fil: File) => {
-                feilmeldingsliste.push(
-                    `${plainTekst(feilmelding)} ${plainTekst(dokumentasjonTekster.fil)} ${fil.name}`
-                );
+                if (!feilmeldingMap.has(feilmelding)) {
+                    feilmeldingMap.set(feilmelding, []);
+                }
+                const filer = feilmeldingMap.get(feilmelding);
+                if (filer) {
+                    filer.push(fil);
+                    feilmeldingMap.set(feilmelding, filer);
+                }
             };
 
             if (filRejections.length > 0) {
@@ -116,9 +121,9 @@ export const useFilopplaster = (
                 )
             );
 
-            if (feilmeldingsliste.length > 0) {
-                settFeilmeldinger(feilmeldingsliste);
-                settÅpenModal(true);
+            if (feilmeldingMap.size > 0) {
+                settFeilmeldinger(feilmeldingMap);
+                settHarFeil(true);
             }
 
             oppdaterDokumentasjon(
@@ -141,16 +146,10 @@ export const useFilopplaster = (
         );
     };
 
-    const lukkModal = () => {
-        settÅpenModal(false);
-    };
-
     return {
         onDrop,
-        åpenModal,
-        settÅpenModal,
+        harFeil,
         feilmeldinger,
         slettVedlegg,
-        lukkModal,
     };
 };
