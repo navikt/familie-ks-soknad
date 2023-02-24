@@ -2,7 +2,7 @@ import React, { MouseEventHandler } from 'react';
 
 import { useHistory } from 'react-router-dom';
 
-import Lenke from 'nav-frontend-lenker';
+import { Link } from '@navikt/ds-react';
 
 import { basePath } from '../../../../shared-utils/Miljø';
 import { unslash } from '../../../../shared-utils/unslash';
@@ -29,12 +29,12 @@ export const AppLenke: React.FC<Props> = ({ steg, hash, returnTo, children }) =>
     };
 
     return (
-        <Lenke
+        <Link
             href={basePath + unslash(steg.path) + (hash ? '#' + hash : '')}
             rel="noopener noreferrer"
             onClick={clickHandler}
         >
             {children}
-        </Lenke>
+        </Link>
     );
 };
