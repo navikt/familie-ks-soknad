@@ -83,7 +83,7 @@ const Oppsummeringsbolk: React.FC<Props> = ({
                     {visFeil && (
                         <SkjemaFeiloppsummering
                             skjema={skjema}
-                            overstyrMedLenkeTilSteg={steg}
+                            stegMedFeil={steg}
                             id={feilOppsummeringId}
                         />
                     )}

@@ -10,15 +10,11 @@ import { AppLenke } from '../AppLenke/AppLenke';
 
 interface Props {
     skjema: ISkjema<SkjemaFeltTyper, string>;
-    overstyrMedLenkeTilSteg?: ISteg;
+    stegMedFeil?: ISteg;
     id?: string;
 }
 
-export const SkjemaFeiloppsummering: React.FC<Props> = ({
-    skjema,
-    overstyrMedLenkeTilSteg,
-    id,
-}) => {
+export const SkjemaFeiloppsummering: React.FC<Props> = ({ skjema, stegMedFeil, id }) => {
     const { tekster, plainTekst } = useApp();
     return (
         <ErrorSummary
@@ -30,8 +26,8 @@ export const SkjemaFeiloppsummering: React.FC<Props> = ({
                     return felt.erSynlig && felt.valideringsstatus === Valideringsstatus.FEIL;
                 })
                 .map(felt =>
-                    overstyrMedLenkeTilSteg ? (
-                        <AppLenke steg={overstyrMedLenkeTilSteg} hash={felt.id}>
+                    stegMedFeil ? (
+                        <AppLenke steg={stegMedFeil} hash={felt.id}>
                             {felt.feilmelding}
                         </AppLenke>
                     ) : (
