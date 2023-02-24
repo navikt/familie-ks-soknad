@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { SkjemaGruppe } from 'nav-frontend-skjema';
-
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../../context/AppContext';
@@ -12,6 +10,7 @@ import KomponentGruppe from '../../../Felleskomponenter/KomponentGruppe/Komponen
 import { SkjemaCheckbox } from '../../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeiloppsummering } from '../../../Felleskomponenter/SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import { SkjemaFeltInput } from '../../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
+import SkjemaFieldset from '../../../Felleskomponenter/SkjemaFieldset';
 import SkjemaModal from '../../../Felleskomponenter/SkjemaModal/SkjemaModal';
 import { SøkerMåBrukePDF } from '../../../Felleskomponenter/SøkerMåBrukePDF';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
@@ -57,12 +56,13 @@ const LeggTilBarnModal: React.FC<{
             onAvbrytCallback={nullstillSkjema}
         >
             <KomponentGruppe dynamisk>
-                <SkjemaGruppe legend={<TekstBlock block={barnetsNavnSubtittel} />}>
+                <SkjemaFieldset tittel={<TekstBlock block={barnetsNavnSubtittel} />}>
                     <SkjemaFeltInput
                         felt={skjema.felter.fornavn}
                         visFeilmeldinger={skjema.visFeilmeldinger}
                         label={<TekstBlock block={fornavn.sporsmal} />}
                         disabled={skjema.felter.navnetErUbestemt.verdi === ESvar.JA}
+                        htmlSize={40}
                     />
 
                     <SkjemaFeltInput
@@ -70,6 +70,7 @@ const LeggTilBarnModal: React.FC<{
                         visFeilmeldinger={skjema.visFeilmeldinger}
                         label={<TekstBlock block={etternavn.sporsmal} />}
                         disabled={skjema.felter.navnetErUbestemt.verdi === ESvar.JA}
+                        htmlSize={40}
                     />
 
                     <SkjemaCheckbox
@@ -77,13 +78,14 @@ const LeggTilBarnModal: React.FC<{
                         visFeilmeldinger={skjema.visFeilmeldinger}
                         label={plainTekst(etternavn.checkboxLabel)}
                     />
-                </SkjemaGruppe>
+                </SkjemaFieldset>
 
                 <SkjemaFeltInput
                     felt={skjema.felter.ident}
                     visFeilmeldinger={skjema.visFeilmeldinger}
                     label={<TekstBlock block={foedselsnummerEllerDNummer.sporsmal} />}
                     disabled={skjema.felter.ikkeFåttIdentChecked.verdi === ESvar.JA}
+                    htmlSize={40}
                 />
 
                 <SkjemaCheckbox

@@ -1,16 +1,10 @@
 import React, { ReactNode } from 'react';
 
-import styled from 'styled-components';
-
 import { Checkbox } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
-import { Felt } from '@navikt/familie-skjema';
+import { Felt, Valideringsstatus } from '@navikt/familie-skjema';
 
 import useFørsteRender from '../../../hooks/useFørsteRender';
-
-const StyledCheckbox = styled(Checkbox)`
-    margin-top: 1rem;
-`;
 
 export const SkjemaCheckbox: React.FC<{
     felt: Felt<ESvar>;
@@ -21,18 +15,13 @@ export const SkjemaCheckbox: React.FC<{
         felt.validerOgSettFelt(felt.verdi);
     });
 
-    const onChange = event => {
-        const { onChange: feltOnChange } = felt.hentNavInputProps(false);
-        feltOnChange(event.target.checked ? ESvar.JA : ESvar.NEI);
-    };
-
     return felt.erSynlig ? (
-        <StyledCheckbox
+        <Checkbox
             checked={felt.verdi === ESvar.JA}
-            error={visFeilmeldinger}
-            onChange={onChange}
+            error={visFeilmeldinger && felt.valideringsstatus === Valideringsstatus.FEIL}
+            onChange={event => felt.validerOgSettFelt(event.target.checked ? ESvar.JA : ESvar.NEI)}
         >
             {label}
-        </StyledCheckbox>
+        </Checkbox>
     ) : null;
 };

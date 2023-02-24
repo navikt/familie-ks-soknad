@@ -166,7 +166,6 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                                 <TekstBlock block={teksterForPersonType.beloepPerMaaned.alert} />
                             </StyledAlertStripe>
                         }
-                        bredde={'S'}
                     />
                 )}
             </KomponentGruppe>

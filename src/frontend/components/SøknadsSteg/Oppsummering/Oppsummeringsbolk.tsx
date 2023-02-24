@@ -80,13 +80,7 @@ const Oppsummeringsbolk: React.FC<Props> = ({
                 </Accordion.Header>
                 <StyledAccordionContent>
                     {children}
-                    {visFeil && (
-                        <SkjemaFeiloppsummering
-                            skjema={skjema}
-                            routeForFeilmeldinger={steg}
-                            id={feilOppsummeringId}
-                        />
-                    )}
+                    {visFeil && <SkjemaFeiloppsummering skjema={skjema} id={feilOppsummeringId} />}
                     {steg && !visFeil && (
                         <AppLenke steg={steg}>
                             {plainTekst(tekster().OPPSUMMERING.endreSvarLenkeTekst)}

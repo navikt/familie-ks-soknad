@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SkjemaGruppe } from 'nav-frontend-skjema';
+import styled from 'styled-components';
 
 import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
@@ -40,6 +40,10 @@ export interface IUseBarnehageplassSkjemaParams {
 interface Props extends ReturnType<typeof useModal>, IUseBarnehageplassSkjemaParams {
     onLeggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
 }
+
+const StyledAlert = styled(Alert)`
+    margin-top: 1rem;
+`;
 
 export const BarnehageplassPeriodeModal: React.FC<Props> = ({
     erÅpen,
@@ -126,7 +130,6 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                         }
                         skjema={skjema}
                         placeholder={plainTekst(barnehageplassTekster.valgalternativPlaceholder)}
-                        bredde={'fullbredde'}
                     >
                         {Object.keys(EBarnehageplassPeriodeBeskrivelse).map(
                             (beskrivelse, number) => (
@@ -167,20 +170,20 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     />
                 )}
                 {antallTimer.erSynlig && (
-                    <SkjemaGruppe>
+                    <>
                         <SkjemaFeltInput
                             felt={antallTimer}
                             visFeilmeldinger={skjema.visFeilmeldinger}
                             label={
                                 <TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />
                             }
-                            bredde={'S'}
+                            htmlSize={20}
                         />
 
-                        <Alert variant={'info'} inline>
+                        <StyledAlert variant={'info'} inline>
                             {plainTekst(barnehageplassTekster.antallTimer.alert)}
-                        </Alert>
-                    </SkjemaGruppe>
+                        </StyledAlert>
+                    </>
                 )}
                 {startetIBarnehagen.erSynlig && (
                     <Datovelger
