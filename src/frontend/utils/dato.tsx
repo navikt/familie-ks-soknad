@@ -51,8 +51,8 @@ export const tidenesEnde = () => startOfDay(new Date(3000, 0));
 
 export const stringTilDate = (dato: string) => startOfDay(new Date(dato));
 
-export const parseTilGyldigDato = (dateString: string): Date | undefined => {
-    const parsetDato = parse(dateString, 'dd.MM.yyyy', new Date());
+export const parseTilGyldigDato = (dateString: string, format: string): Date | undefined => {
+    const parsetDato = parse(dateString, format, new Date());
     const parsetDatoErGyldig = erDatoFormatGodkjent(parsetDato);
     return parsetDatoErGyldig ? parsetDato : undefined;
 };

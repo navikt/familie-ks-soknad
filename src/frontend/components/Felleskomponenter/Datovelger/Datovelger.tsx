@@ -80,7 +80,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
         fromDate: hentFromDate(),
         toDate: hentToDate(),
         today: minDatoErIFremtiden() ? hentFromDate() : dagensDato(),
-        defaultSelected: parseTilGyldigDato(felt.verdi),
+        defaultSelected: parseTilGyldigDato(felt.verdi, 'yyyy-MM-dd'),
         onDateChange: (dato: Date | undefined) => {
             if (dato) {
                 felt.validerOgSettFelt(formatISO(dato), { representation: 'date' });
@@ -94,7 +94,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
 
     useEffect(() => {
         if (inputProps.value && inputProps.value !== '' && !disabled) {
-            const parsetDato = parseTilGyldigDato(inputProps.value.toString());
+            const parsetDato = parseTilGyldigDato(inputProps.value.toString(), 'dd.MM.yyyy');
             felt.validerOgSettFelt(
                 parsetDato
                     ? formatISO(startOfDay(parsetDato), { representation: 'date' })
