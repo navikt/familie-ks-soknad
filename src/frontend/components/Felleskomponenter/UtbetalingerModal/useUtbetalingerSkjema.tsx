@@ -89,6 +89,7 @@ export const useUtbetalingerSkjema = (personType, barn, erDød) => {
                 : plainTekst(
                       tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
                   ),
+        avhengigheter: { utbetalingFraDato },
     });
 
     const skjema = useSkjema<IUtbetalingerFeltTyper, 'string'>({

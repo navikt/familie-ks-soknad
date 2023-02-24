@@ -62,6 +62,7 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, erDød) =
         startdatoAvgrensning: fraDatoKontantstøttePeriode.verdi
             ? dagenEtterDato(stringTilDate(fraDatoKontantstøttePeriode.verdi))
             : undefined,
+        avhengigheter: { fraDatoKontantstøttePeriode },
     });
 
     const månedligBeløp = useFelt<string>({
