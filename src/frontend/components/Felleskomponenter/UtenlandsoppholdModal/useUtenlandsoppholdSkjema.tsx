@@ -97,7 +97,7 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
                       tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaere12MndTilbake
                   )
             : undefined,
-        avhengigheter: { utenlandsoppholdÅrsak },
+        avhengigheter: { utenlandsoppholdÅrsak, oppholdslandFraDato },
     });
 
     const skjema = useSkjema<IUtenlandsoppholdFeltTyper, 'string'>({
