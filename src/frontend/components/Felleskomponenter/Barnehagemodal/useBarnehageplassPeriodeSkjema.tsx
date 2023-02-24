@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
 
-import { isAfter } from 'date-fns';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, FeltState, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
@@ -124,16 +122,18 @@ export const useBarnehageplassPeriodeSkjema = () => {
     });
 
     const slutterIBarnehagenMinDato = () => {
-        if (startetIBarnehagen.verdi) {
-            const startetIBarnehageDato = stringTilDate(startetIBarnehagen.verdi);
-            return isAfter(startetIBarnehageDato, dagensDato())
-                ? dagenEtterDato(startetIBarnehageDato)
-                : morgendagensDato();
-        } else {
-            return barnehageplassPeriodeBeskrivelse.verdi?.valueOf() !==
-                EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                ? morgendagensDato()
-                : undefined;
+        const startetIBarnehageDato =
+            startetIBarnehagen.verdi && stringTilDate(startetIBarnehagen.verdi);
+
+        switch (barnehageplassPeriodeBeskrivelse.verdi) {
+            case EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE:
+                return startetIBarnehageDato ? dagenEtterDato(startetIBarnehageDato) : undefined;
+            case EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ:
+                return morgendagensDato();
+            case EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN:
+                return startetIBarnehageDato
+                    ? dagenEtterDato(startetIBarnehageDato)
+                    : morgendagensDato();
         }
     };
 

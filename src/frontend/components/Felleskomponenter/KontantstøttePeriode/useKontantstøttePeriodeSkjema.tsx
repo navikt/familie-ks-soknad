@@ -50,7 +50,6 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, erDød) =
             mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK ||
             andreForelderErDød,
         feilmelding: teksterForPersonType.startdato.feilmelding,
-
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
     });
 

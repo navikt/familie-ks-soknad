@@ -6,6 +6,7 @@ import {
     isFuture,
     isToday,
     isValid,
+    parse,
     startOfDay,
     startOfToday,
     sub,
@@ -49,6 +50,12 @@ export const tidenesMorgen = () => startOfDay(new Date(1000, 0));
 export const tidenesEnde = () => startOfDay(new Date(3000, 0));
 
 export const stringTilDate = (dato: string) => startOfDay(new Date(dato));
+
+export const parseTilGyldigDato = (dateString: string): Date | undefined => {
+    const parsetDato = parse(dateString, 'dd.MM.yyyy', new Date());
+    const parsetDatoErGyldig = erDatoFormatGodkjent(parsetDato);
+    return parsetDatoErGyldig ? parsetDato : undefined;
+};
 
 export const validerDato = (
     tekster: IFormateringsfeilmeldingerTekstinnhold,
