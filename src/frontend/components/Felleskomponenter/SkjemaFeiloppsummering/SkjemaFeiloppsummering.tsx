@@ -31,7 +31,9 @@ export const SkjemaFeiloppsummering: React.FC<Props> = ({
                 })
                 .map(felt =>
                     overstyrMedLenkeTilSteg ? (
-                        <AppLenke steg={overstyrMedLenkeTilSteg}>{felt.feilmelding}</AppLenke>
+                        <AppLenke steg={overstyrMedLenkeTilSteg} hash={felt.id}>
+                            {felt.feilmelding}
+                        </AppLenke>
                     ) : (
                         <ErrorSummary.Item href={'#' + felt.id}>
                             {felt.feilmelding}
