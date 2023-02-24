@@ -9903,16 +9903,6 @@ nav-frontend-typografi@^4.0.x:
   resolved "https://registry.npmjs.org/nav-frontend-typografi/-/nav-frontend-typografi-4.0.2.tgz#470cc95f4b4ff3a94363dd86eeea45bd9dc6014a"
   integrity sha512-WUlhb9hXp1Z0CIqULGTYnD7EBPW5dTpBq0qlv+CcjiE4ooqWaRjvhDycj/rR9sjaB4EciF8uViUpIZk4YATqlw==
 
-nav-frontend-veileder-style@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/nav-frontend-veileder-style/-/nav-frontend-veileder-style-3.0.1.tgz#dc030acae9338b5820b745fe41981b8d26916546"
-  integrity sha512-5kHC0tLcWuVVb6hXnLvlH+sZmbYwzyDILAi2jX3oy7FQ0EmQhpksKkDf+23LPE+rC0+RK7Zun3dH/Rpcrm0W9A==
-
-nav-frontend-veileder@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/nav-frontend-veileder/-/nav-frontend-veileder-3.0.1.tgz#f85a427c1af5ada42fe80921d34395c7c463418a"
-  integrity sha512-/8QURdRjHUPnDolxx7m6U2xsq5kKFTAcmwvOWvD7cx4xMmzryfzai4N2qJd7lSK6ay9OzNxdQX3n4SZi0St4lQ==
-
 needle@^2.5.2:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/needle/-/needle-2.6.0.tgz#24dbb55f2509e2324b4a99d61f413982013ccdbe"

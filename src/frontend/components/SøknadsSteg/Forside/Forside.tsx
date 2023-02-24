@@ -51,10 +51,9 @@ const Forside: React.FC = () => {
 
     return (
         <InnholdContainer>
-            <VeilederSnakkeboble
-                tekst={<TekstBlock block={veilederhilsen} typografi={Typografi.BodyShort} />}
-                posisjon={'høyre'}
-            />
+            <VeilederSnakkeboble>
+                <TekstBlock block={veilederhilsen} typografi={Typografi.BodyShort} />
+            </VeilederSnakkeboble>
 
             <TittelContainer>
                 <TekstBlock block={soeknadstittel} typografi={Typografi.ForsideHeadingH1} />

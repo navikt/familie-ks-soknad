@@ -47,10 +47,9 @@ export const DisabledApp: React.FC = () => {
                 {
                     // TODO: Dekoratøren språk-handling fra PR: #265
                 }
-                <VeilederSnakkeboble
-                    tekst={<TekstBlock block={vedlikeholdVeileder} />}
-                    posisjon={'høyre'}
-                />
+                <VeilederSnakkeboble>
+                    <TekstBlock block={vedlikeholdVeileder} />
+                </VeilederSnakkeboble>
                 <TittelContainer>
                     <TekstBlock block={vedlikeholdTittel} typografi={Typografi.ForsideHeadingH1} />
                 </TittelContainer>
