@@ -1,22 +1,22 @@
 import { add } from 'date-fns';
 
-import { erDatoFormatGodkjent, erDatoFremITid } from './dato';
+import { erDatoFormatGodkjent, erDatoFremITid, stringTilDate } from './dato';
 
 describe('erDatoFormatGodkjent', () => {
     test('Skal returnere false dersom dato ikke er gyldig', () => {
-        expect(erDatoFormatGodkjent(new Date('2008-14-02'))).toEqual(false);
+        expect(erDatoFormatGodkjent(stringTilDate('2008-14-02'))).toEqual(false);
     });
 
     test('Skal returnere false dersom dato er på feil format', () => {
-        expect(erDatoFormatGodkjent(new Date('102-14-2008'))).toEqual(false);
+        expect(erDatoFormatGodkjent(stringTilDate('102-14-2008'))).toEqual(false);
     });
 
     test('Skal returnere false dersom dato er en tekst', () => {
-        expect(erDatoFormatGodkjent(new Date('jegerendato'))).toEqual(false);
+        expect(erDatoFormatGodkjent(stringTilDate('jegerendato'))).toEqual(false);
     });
 
     test('Skal returnere true dersom dato er på riktig format og gyldig', () => {
-        expect(erDatoFormatGodkjent(new Date('2008-12-02'))).toEqual(true);
+        expect(erDatoFormatGodkjent(stringTilDate('2008-12-02'))).toEqual(true);
     });
 });
 

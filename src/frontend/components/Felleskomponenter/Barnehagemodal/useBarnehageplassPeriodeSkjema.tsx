@@ -21,6 +21,7 @@ import {
     erSammeDatoSomDagensDato,
     gårsdagensDato,
     morgendagensDato,
+    stringTilDate,
 } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
@@ -124,7 +125,7 @@ export const useBarnehageplassPeriodeSkjema = () => {
 
     const slutterIBarnehagenMinDato = () => {
         if (startetIBarnehagen.verdi) {
-            const startetIBarnehageDato = new Date(startetIBarnehagen.verdi);
+            const startetIBarnehageDato = stringTilDate(startetIBarnehagen.verdi);
             return isAfter(startetIBarnehageDato, dagensDato())
                 ? dagenEtterDato(startetIBarnehageDato)
                 : morgendagensDato();
@@ -146,7 +147,9 @@ export const useBarnehageplassPeriodeSkjema = () => {
         skalFeltetVises: !!barnehageplassPeriodeBeskrivelse.verdi,
         sluttdatoAvgrensning: periodenErAvsluttet ? dagensDato() : undefined,
         startdatoAvgrensning: slutterIBarnehagenMinDato(),
-        customStartdatoFeilmelding: erSammeDatoSomDagensDato(new Date(startetIBarnehagen.verdi))
+        customStartdatoFeilmelding: erSammeDatoSomDagensDato(
+            stringTilDate(startetIBarnehagen.verdi)
+        )
             ? undefined
             : plainTekst(formateringsfeilmeldinger.periodeAvsluttesForTidlig),
         avhengigheter: { startetIBarnehagen },

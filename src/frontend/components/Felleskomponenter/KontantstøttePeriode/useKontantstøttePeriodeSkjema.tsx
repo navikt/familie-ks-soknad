@@ -9,7 +9,7 @@ import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IKontantstøttePerioderFeltTyper } from '../../../typer/skjema';
-import { dagenEtterDato, dagensDato, gårsdagensDato } from '../../../utils/dato';
+import { dagenEtterDato, dagensDato, gårsdagensDato, stringTilDate } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 
@@ -60,7 +60,7 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, erDød) =
         feilmelding: teksterForPersonType.sluttdato.feilmelding,
         sluttdatoAvgrensning: dagensDato(),
         startdatoAvgrensning: fraDatoKontantstøttePeriode.verdi
-            ? dagenEtterDato(new Date(fraDatoKontantstøttePeriode.verdi))
+            ? dagenEtterDato(stringTilDate(fraDatoKontantstøttePeriode.verdi))
             : undefined,
     });
 

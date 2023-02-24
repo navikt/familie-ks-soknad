@@ -12,7 +12,7 @@ import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/ute
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IUtenlandsoppholdFeltTyper } from '../../../typer/skjema';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
-import { dagenEtterDato } from '../../../utils/dato';
+import { dagenEtterDato, stringTilDate } from '../../../utils/dato';
 import {
     harTilhørendeFomFelt,
     hentMaxAvgrensningPåFraDato,
@@ -88,7 +88,7 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
             utenlandsoppholdÅrsak.verdi !== EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE,
         sluttdatoAvgrensning: hentMaxAvgrensningPåTilDato(utenlandsoppholdÅrsak.verdi),
         startdatoAvgrensning: harTilhørendeFomFelt(utenlandsoppholdÅrsak.verdi)
-            ? dagenEtterDato(new Date(oppholdslandFraDato.verdi))
+            ? dagenEtterDato(stringTilDate(oppholdslandFraDato.verdi))
             : hentMinAvgrensningPåTilDato(utenlandsoppholdÅrsak.verdi),
         customStartdatoFeilmelding: !harTilhørendeFomFelt(utenlandsoppholdÅrsak.verdi)
             ? utenlandsoppholdÅrsak.verdi === EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE

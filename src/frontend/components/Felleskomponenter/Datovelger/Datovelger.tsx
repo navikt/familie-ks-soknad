@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react';
 
-import { formatISO, isAfter, parse } from 'date-fns';
+import { formatISO, isAfter, parse, startOfDay } from 'date-fns';
 
 import { Feilmelding } from 'nav-frontend-typografi';
 
@@ -15,6 +15,7 @@ import {
     dagenEtterDato,
     dagensDato,
     erDatoFormatGodkjent,
+    stringTilDate,
     tidenesEnde,
     tidenesMorgen,
 } from '../../../utils/dato';
@@ -59,7 +60,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
         if (avgrensMinDato) {
             minDato = avgrensMinDato;
         } else if (tilhørendeFraOgMedFelt?.verdi) {
-            minDato = dagenEtterDato(new Date(tilhørendeFraOgMedFelt.verdi));
+            minDato = dagenEtterDato(stringTilDate(tilhørendeFraOgMedFelt.verdi));
         }
         return minDato;
     };
@@ -79,7 +80,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
         fromDate: hentFromDate(),
         toDate: hentToDate(),
         today: minDatoErIFremtiden() ? hentFromDate() : dagensDato(),
-        defaultSelected: felt.verdi ? new Date(felt.verdi) : undefined,
+        defaultSelected: felt.verdi ? stringTilDate(felt.verdi) : undefined,
         onDateChange: (dato: Date | undefined) => {
             if (dato) {
                 felt.validerOgSettFelt(formatISO(dato), { representation: 'date' });
@@ -97,7 +98,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
             const parsetDatoErGyldig = erDatoFormatGodkjent(parsetDato);
             felt.validerOgSettFelt(
                 parsetDatoErGyldig
-                    ? formatISO(parsetDato, { representation: 'date' })
+                    ? formatISO(startOfDay(parsetDato), { representation: 'date' })
                     : parsetDato.toString()
             );
         }

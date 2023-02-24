@@ -11,7 +11,12 @@ import { PersonType } from '../../../typer/personType';
 import { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IUtbetalingerFeltTyper } from '../../../typer/skjema';
-import { dagensDato, erSammeDatoSomDagensDato, gårsdagensDato } from '../../../utils/dato';
+import {
+    dagensDato,
+    erSammeDatoSomDagensDato,
+    gårsdagensDato,
+    stringTilDate,
+} from '../../../utils/dato';
 import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
 import { UtbetalingerSpørsmålId } from './spørsmål';
 
@@ -79,7 +84,7 @@ export const useUtbetalingerSkjema = (personType, barn, erDød) => {
             utbetalingFraDato.verdi
         ),
         customStartdatoFeilmelding:
-            erSammeDatoSomDagensDato(new Date(utbetalingFraDato.verdi)) || periodenErAvsluttet
+            erSammeDatoSomDagensDato(stringTilDate(utbetalingFraDato.verdi)) || periodenErAvsluttet
                 ? undefined
                 : plainTekst(
                       tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid

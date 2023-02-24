@@ -32,21 +32,23 @@ export const erDatoEtterSluttdatoAvgresning = (dato: Date, sluttdato: Date) =>
 export const erDatoFørStartDatoAvgrensning = (dato: Date, startdato: Date) =>
     isBefore(dato, startdato);
 
-export const gårsdagensDato = () => startOfDay(sub(dagensDato(), { days: 1 }));
+export const gårsdagensDato = () => sub(dagensDato(), { days: 1 });
 
-export const ettÅrTilbakeDato = () => startOfDay(sub(dagensDato(), { years: 1 }));
+export const ettÅrTilbakeDato = () => sub(dagensDato(), { years: 1 });
 
 export const dagensDato = () => startOfToday();
 
-export const morgendagensDato = () => startOfDay(add(dagensDato(), { days: 1 }));
+export const morgendagensDato = () => add(dagensDato(), { days: 1 });
 
 export const erSammeDatoSomDagensDato = (dato: Date) => isToday(dato);
 
-export const dagenEtterDato = (dato: Date) => startOfDay(add(dato, { days: 1 }));
+export const dagenEtterDato = (dato: Date) => add(dato, { days: 1 });
 
 export const tidenesMorgen = () => startOfDay(new Date(1000, 0));
 
 export const tidenesEnde = () => startOfDay(new Date(3000, 0));
+
+export const stringTilDate = (dato: string) => startOfDay(new Date(dato));
 
 export const validerDato = (
     tekster: IFormateringsfeilmeldingerTekstinnhold,
@@ -61,7 +63,7 @@ export const validerDato = (
         return feil(feltState, plainTekst(feilmelding) ?? '');
     }
 
-    const dato = new Date(feltState.verdi);
+    const dato = stringTilDate(feltState.verdi);
 
     if (!erDatoFormatGodkjent(dato)) {
         return feil(feltState, plainTekst(tekster.ugyldigDato));
