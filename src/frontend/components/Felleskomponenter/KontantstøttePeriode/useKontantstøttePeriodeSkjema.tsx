@@ -9,7 +9,7 @@ import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IKontantstøttePerioderFeltTyper } from '../../../typer/skjema';
-import { dagenEtterDato, dagensDato, gårsdagensDato } from '../../../utils/dato';
+import { dagenEtterDato, dagensDato, gårsdagensDato, stringTilDate } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 
@@ -50,9 +50,7 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, erDød) =
             mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK ||
             andreForelderErDød,
         feilmelding: teksterForPersonType.startdato.feilmelding,
-
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
-        nullstillVedAvhengighetEndring: true,
     });
 
     const tilDatoKontantstøttePeriode = useDatovelgerFelt({
@@ -60,7 +58,10 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, erDød) =
         skalFeltetVises: periodenErAvsluttet || andreForelderErDød,
         feilmelding: teksterForPersonType.sluttdato.feilmelding,
         sluttdatoAvgrensning: dagensDato(),
-        startdatoAvgrensning: dagenEtterDato(fraDatoKontantstøttePeriode.verdi),
+        startdatoAvgrensning: fraDatoKontantstøttePeriode.verdi
+            ? dagenEtterDato(stringTilDate(fraDatoKontantstøttePeriode.verdi))
+            : undefined,
+        avhengigheter: { fraDatoKontantstøttePeriode },
     });
 
     const månedligBeløp = useFelt<string>({

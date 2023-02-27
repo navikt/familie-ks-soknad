@@ -10,7 +10,7 @@ import { IBarnMedISøknad } from '../../../typer/barn';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { dagenEtterDato, dagensDato, gårsdagensDato, morgendagensDato } from '../../../utils/dato';
+import { dagensDato, gårsdagensDato } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
 import Datovelger from '../Datovelger/Datovelger';
@@ -47,8 +47,13 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
     onLeggTilBarnehageplassPeriode,
     barn,
 }) => {
-    const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
-        useBarnehageplassPeriodeSkjema();
+    const {
+        skjema,
+        valideringErOk,
+        nullstillSkjema,
+        validerFelterOgVisFeilmelding,
+        slutterIBarnehagenMinDato,
+    } = useBarnehageplassPeriodeSkjema();
     const { tekster, plainTekst } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
@@ -194,7 +199,6 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                                 )}
                             />
                         }
-                        calendarPosition={'fullscreen'}
                         avgrensMinDato={
                             barnehageplassPeriodeBeskrivelse.verdi ===
                             EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
@@ -225,13 +229,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                                     )}
                                 />
                             }
-                            calendarPosition={'fullscreen'}
-                            avgrensMinDato={
-                                barnehageplassPeriodeBeskrivelse.verdi ===
-                                EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
-                                    ? morgendagensDato()
-                                    : dagenEtterDato(startetIBarnehagen.verdi)
-                            }
+                            avgrensMinDato={slutterIBarnehagenMinDato()}
                             avgrensMaxDato={
                                 barnehageplassPeriodeBeskrivelse.verdi ===
                                 EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE

@@ -157,7 +157,6 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                         felt={skjema.felter.fraDatoArbeidsperiode}
                         skjema={skjema}
                         label={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
-                        calendarPosition={'fullscreen'}
                         avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
                     />
                 )}
@@ -181,7 +180,6 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                             )}
                             avgrensMaxDato={periodenErAvsluttet ? dagensDato() : undefined}
                             disabled={skjema.felter.tilDatoArbeidsperiodeUkjent.verdi === ESvar.JA}
-                            calendarPosition={'fullscreen'}
                         />
 
                         <SkjemaCheckbox
