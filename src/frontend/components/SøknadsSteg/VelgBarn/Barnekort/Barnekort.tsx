@@ -35,6 +35,8 @@ export const StyledBarnekort = styled.div`
     background-color: ${AGray100};
     @media all and ${device.mobile} {
         width: 100%;
+        max-width: none;
+        margin: 0 0 0.625rem;
     }
 `;
 

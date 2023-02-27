@@ -226,8 +226,6 @@
     "nav-frontend-stegindikator-style": "^2.0.1",
     "nav-frontend-typografi": "^4.0.1",
     "nav-frontend-typografi-style": "^2.0.1",
-    "nav-frontend-veileder": "^3.0.1",
-    "nav-frontend-veileder-style": "^3.0.1",
     "nodemon": "^2.0.18",
     "prettier": "^2.6.2",
     "prop-types": "^15.7.2",

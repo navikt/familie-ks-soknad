@@ -37,7 +37,7 @@ const StyledButton = styled(Button)<{
 }>`
     && {
         grid-area: ${props => props.gridarea};
-        min-width: 10rem;
+        min-width: 12.5rem;
         place-self: ${props => props.placeself};
         @media all and ${device.mobile} {
             place-self: center;

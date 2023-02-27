@@ -26,7 +26,6 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
-    box-sizing: content-box;
   }
 
   .blur {
