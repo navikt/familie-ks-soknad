@@ -4,9 +4,7 @@ import dayjs from 'dayjs';
 import { css } from 'styled-components';
 import styled from 'styled-components';
 
-import { Feilmelding } from 'nav-frontend-typografi';
-
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, ErrorMessage } from '@navikt/ds-react';
 import { ARed500 } from '@navikt/ds-tokens/dist/tokens';
 import { DatepickerLimitations, FamilieDatovelger } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
@@ -103,7 +101,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
                 allowNavigationToDisabledMonths={false}
                 calendarSettings={{ position: calendarPosition }}
             />
-            {skjema.visFeilmeldinger && <Feilmelding>{felt.feilmelding}</Feilmelding>}
+            {skjema.visFeilmeldinger && <ErrorMessage>{felt.feilmelding}</ErrorMessage>}
         </div>
     ) : null;
 };

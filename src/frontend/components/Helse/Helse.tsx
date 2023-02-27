@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Undertittel, Normaltekst } from 'nav-frontend-typografi';
-
-import { Loader } from '@navikt/ds-react';
+import { BodyShort, Heading, Loader } from '@navikt/ds-react';
 import {
     Ressurs,
     RessursStatus,
@@ -63,7 +61,9 @@ const Helse: React.FC = () => {
 
     return (
         <div className={'helse'}>
-            <Undertittel>Helse</Undertittel>
+            <Heading level={'2'} size={'small'}>
+                Helse
+            </Heading>
             {renderHelse(helseApi, 'søknad api')}
             {renderHelse(helseMottak, 'mottak')}
             {renderHelse(helsePdl, 'pdl')}
@@ -74,13 +74,13 @@ const Helse: React.FC = () => {
 const renderHelse = (ressurs: Ressurs<string>, tjeneste: string) => {
     return (
         <div className={'helse__tjeneste'}>
-            <Normaltekst>{`Svar fra ${tjeneste}:`}</Normaltekst>
+            <BodyShort>{`Svar fra ${tjeneste}:`}</BodyShort>
             {ressurs.status === RessursStatus.SUKSESS && (
-                <Normaltekst children={`suksess (${ressurs.data})`} />
+                <BodyShort children={`suksess (${ressurs.data})`} />
             )}
             {ressurs.status === RessursStatus.HENTER && <Loader />}
             {ressurs.status === RessursStatus.FEILET && (
-                <Normaltekst children={`feilet (${ressurs.frontendFeilmelding})`} />
+                <BodyShort children={`feilet (${ressurs.frontendFeilmelding})`} />
             )}
         </div>
     );

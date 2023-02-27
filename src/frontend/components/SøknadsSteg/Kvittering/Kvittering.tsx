@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import dayjs, { Dayjs } from 'dayjs';
 
-import { Normaltekst } from 'nav-frontend-typografi';
-
+import { BodyShort } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useApp } from '../../../context/AppContext';
@@ -69,9 +68,9 @@ const Kvittering: React.FC = () => {
                 </AlertStripe>
             </KomponentGruppe>
             <KomponentGruppe>
-                <Normaltekst>
+                <BodyShort>
                     <TekstBlock block={kvitteringTekster.infoTilSoker} />
-                </Normaltekst>
+                </BodyShort>
             </KomponentGruppe>
 
             {varEøsSøknad && (
