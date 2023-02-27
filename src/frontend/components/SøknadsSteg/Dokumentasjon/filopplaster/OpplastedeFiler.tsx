@@ -3,12 +3,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Attachment, DeleteFilled } from '@navikt/ds-icons';
-import { BodyShort, Button } from '@navikt/ds-react';
+import { Button } from '@navikt/ds-react';
 import { ABorderDivider } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../../context/AppContext';
+import { Typografi } from '../../../../typer/common';
 import { IVedlegg } from '../../../../typer/dokumentasjon';
 import { formaterFilstørrelse } from '../../../../utils/dokumentasjon';
+import { TypografiWrapper } from '../../../Felleskomponenter/TekstBlock';
 
 interface Props {
     filliste: IVedlegg[];
@@ -52,9 +54,9 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
                                 aria-hidden={true}
                                 aria-label={''}
                             />
-                            <BodyShort>
+                            <TypografiWrapper typografi={Typografi.BodyShort}>
                                 {`${fil.navn} (${formaterFilstørrelse(fil.størrelse)})`}
-                            </BodyShort>
+                            </TypografiWrapper>
                         </FilTekstWrapper>
                         <Button
                             variant={'tertiary'}

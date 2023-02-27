@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 
-import { css } from 'styled-components';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
-import { BodyShort } from '@navikt/ds-react';
-
+import { Typografi } from '../../../typer/common';
 import AlertStripe from '../AlertStripe/AlertStripe';
+import { TypografiWrapper } from '../TekstBlock';
 import CollapsableContainer from './CollapsableContainer';
 import InfoToggleButton from './InfoToggleButton';
 
@@ -62,7 +61,9 @@ const ExpandableInfo = ({
                     isOpen={isOpen}
                     controlsId={toggleContentId}
                 >
-                    <BodyShort>{isOpen ? closeTitle || title : title}</BodyShort>
+                    <TypografiWrapper typografi={Typografi.BodyShort}>
+                        {isOpen ? closeTitle || title : title}
+                    </TypografiWrapper>
                 </InfoToggleButton>
             </ButtonContainer>
             <InnholdContainer id={toggleContentId}>

@@ -2,7 +2,8 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Heading } from '@navikt/ds-react';
+import { Typografi } from '../../../typer/common';
+import { TypografiWrapper } from '../TekstBlock';
 
 export interface IInformasjonsbolkProps {
     tittel?: string;
@@ -20,9 +21,7 @@ const Informasjonsbolk: React.FC<IInformasjonsbolkProps> = ({ tittel, children, 
     return (
         <InformasjonsbolkContainer {...props}>
             {tittel && (
-                <Heading level={'2'} size={'xsmall'}>
-                    {tittel}
-                </Heading>
+                <TypografiWrapper typografi={Typografi.HeadingH2}>{tittel}</TypografiWrapper>
             )}
             <InformasjonsbolkChildrenWrapper>{children}</InformasjonsbolkChildrenWrapper>
         </InformasjonsbolkContainer>
