@@ -284,11 +284,9 @@ export const useOmBarnet = (
         feltId: OmBarnetSpørsmålsId.andreForelderFødselsdatoUkjent,
         skalFeltetVises: avhengigheter => {
             return (
-                avhengigheter &&
-                avhengigheter.andreForelderFnrUkjent &&
-                avhengigheter.andreForelderFnrUkjent.erSynlig &&
-                avhengigheter.andreForelderFnrUkjent.verdi === ESvar.JA &&
-                avhengigheter.andreForelderKanIkkeGiOpplysninger.verdi === ESvar.NEI
+                avhengigheter?.andreForelderFnrUkjent?.erSynlig &&
+                avhengigheter?.andreForelderFnrUkjent?.verdi === ESvar.JA &&
+                avhengigheter?.andreForelderKanIkkeGiOpplysninger?.verdi === ESvar.NEI
             );
         },
         avhengigheter: {

@@ -29,7 +29,7 @@ const useDatovelgerFelt = ({
         feltId: søknadsfelt.id,
         verdi: søknadsfelt.svar,
         valideringsfunksjon: (felt, avhengigheter) => {
-            const feilmelding = avhengigheter && (avhengigheter.feilmelding as LocaleRecordBlock);
+            const feilmelding = avhengigheter?.feilmelding as LocaleRecordBlock;
 
             return validerDato(
                 tekster().FELLES.formateringsfeilmeldinger,
