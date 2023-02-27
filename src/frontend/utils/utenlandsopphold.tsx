@@ -1,11 +1,10 @@
-import { ISODateString } from '../typer/common';
 import { IUtenlandsperiode } from '../typer/perioder';
 import { EUtenlandsoppholdÅrsak } from '../typer/utenlandsopphold';
 import { dagensDato, ettÅrTilbakeDato, gårsdagensDato } from './dato';
 
 export const hentMaxAvgrensningPåFraDato = (
     utenlandsoppÅrsak: EUtenlandsoppholdÅrsak | ''
-): ISODateString | undefined => {
+): Date | undefined => {
     switch (utenlandsoppÅrsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE:
             return dagensDato();
@@ -18,7 +17,7 @@ export const hentMaxAvgrensningPåFraDato = (
 };
 export const hentMinAvgrensningPåTilDato = (
     utenlandsoppÅrsak: EUtenlandsoppholdÅrsak | ''
-): ISODateString | undefined => {
+): Date | undefined => {
     switch (utenlandsoppÅrsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE:
             return ettÅrTilbakeDato();
@@ -31,7 +30,7 @@ export const hentMinAvgrensningPåTilDato = (
 
 export const hentMaxAvgrensningPåTilDato = (
     utenlandsoppÅrsak: EUtenlandsoppholdÅrsak | ''
-): ISODateString | undefined => {
+): Date | undefined => {
     switch (utenlandsoppÅrsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE:
         case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:

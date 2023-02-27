@@ -13,7 +13,7 @@ import { PersonType } from '../../../typer/personType';
 import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IPensjonsperiodeFeltTyper } from '../../../typer/skjema';
-import { dagenEtterDato, dagensDato, gårsdagensDato } from '../../../utils/dato';
+import { dagenEtterDato, dagensDato, gårsdagensDato, stringTilDate } from '../../../utils/dato';
 import { mottarPensjonNåFeilmelding } from './språkUtils';
 import { PensjonsperiodeSpørsmålId } from './spørsmål';
 
@@ -72,7 +72,6 @@ export const usePensjonSkjema = ({
         feilmelding: teksterForPersonType.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
         avhengigheter: { mottarPensjonNå },
-        nullstillVedAvhengighetEndring: true,
     });
 
     const pensjonTilDato = useDatovelgerFelt({
@@ -85,9 +84,8 @@ export const usePensjonSkjema = ({
             (!gjelderUtland || !!erEøsLand(pensjonsland.verdi)),
         feilmelding: teksterForPersonType.sluttdato.feilmelding,
         sluttdatoAvgrensning: dagensDato(),
-        startdatoAvgrensning: dagenEtterDato(pensjonFraDato.verdi),
+        startdatoAvgrensning: dagenEtterDato(stringTilDate(pensjonFraDato.verdi)),
         avhengigheter: { mottarPensjonNå, pensjonFraDato },
-        nullstillVedAvhengighetEndring: true,
     });
 
     const skjema = useSkjema<IPensjonsperiodeFeltTyper, 'string'>({
