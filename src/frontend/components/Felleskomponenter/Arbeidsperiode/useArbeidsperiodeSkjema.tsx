@@ -12,7 +12,12 @@ import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
 import { IArbeidsperioderFeltTyper } from '../../../typer/skjema';
-import { dagensDato, erSammeDatoSomDagensDato, gårsdagensDato } from '../../../utils/dato';
+import {
+    dagensDato,
+    erSammeDatoSomDagensDato,
+    gårsdagensDato,
+    stringTilDate,
+} from '../../../utils/dato';
 import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
 import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
 
@@ -75,7 +80,6 @@ export const useArbeidsperiodeSkjema = (
               andreForelderErDød,
         feilmelding: teksterForPersonType.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
-        nullstillVedAvhengighetEndring: true,
     });
 
     const tilDatoArbeidsperiodeUkjent = useFelt<ESvar>({
@@ -105,11 +109,13 @@ export const useArbeidsperiodeSkjema = (
             fraDatoArbeidsperiode.verdi
         ),
         customStartdatoFeilmelding:
-            erSammeDatoSomDagensDato(fraDatoArbeidsperiode.verdi) || periodenErAvsluttet
+            erSammeDatoSomDagensDato(stringTilDate(fraDatoArbeidsperiode.verdi)) ||
+            periodenErAvsluttet
                 ? undefined
                 : plainTekst(
                       tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
                   ),
+        avhengigheter: { fraDatoArbeidsperiode },
     });
 
     const adresseUkjent = useFelt<ESvar>({

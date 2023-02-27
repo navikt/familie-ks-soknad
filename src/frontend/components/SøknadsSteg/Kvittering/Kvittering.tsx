@@ -60,7 +60,7 @@ const Kvittering: React.FC = () => {
             }
         >
             <KomponentGruppe>
-                <AlertStripe variant="success">
+                <AlertStripe variant="success" inline={false}>
                     <TekstBlock
                         block={kvitteringTekster.soeknadMottatt}
                         flettefelter={{ dato, klokkeslett }}

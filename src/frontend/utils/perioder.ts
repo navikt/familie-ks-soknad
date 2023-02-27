@@ -1,13 +1,20 @@
-import { ISODateString } from '../typer/common';
-import { dagenEtterDato, dagensDato, erSammeDatoSomDagensDato, morgendagensDato } from './dato';
+import {
+    dagenEtterDato,
+    dagensDato,
+    erDatoFormatGodkjent,
+    erSammeDatoSomDagensDato,
+    morgendagensDato,
+    stringTilDate,
+} from './dato';
 
 export const minTilDatoForUtbetalingEllerArbeidsperiode = (
     periodenErAvsluttet: boolean,
-    fraDato: ISODateString
+    fraDato: string
 ) => {
+    const gyldigFraDato = fraDato !== '' && erDatoFormatGodkjent(stringTilDate(fraDato));
     if (periodenErAvsluttet) {
-        return dagenEtterDato(fraDato);
-    } else if (erSammeDatoSomDagensDato(fraDato)) {
+        return gyldigFraDato ? dagenEtterDato(stringTilDate(fraDato)) : undefined;
+    } else if (gyldigFraDato && erSammeDatoSomDagensDato(stringTilDate(fraDato))) {
         return morgendagensDato();
     } else {
         return dagensDato();

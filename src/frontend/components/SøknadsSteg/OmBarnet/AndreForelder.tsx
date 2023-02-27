@@ -134,6 +134,7 @@ const AndreForelder: React.FC<{
                                                 skjema.felter.andreForelderFødselsdatoUkjent
                                                     .verdi === ESvar.JA
                                             }
+                                            strategy={'absolute'}
                                         />
                                         <SkjemaCheckbox
                                             label={plainTekst(
