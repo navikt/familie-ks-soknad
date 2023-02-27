@@ -27,11 +27,11 @@ export const SkjemaFeiloppsummering: React.FC<Props> = ({ skjema, stegMedFeil, i
                 })
                 .map(felt =>
                     stegMedFeil ? (
-                        <AppLenke steg={stegMedFeil} hash={felt.id}>
+                        <AppLenke steg={stegMedFeil} hash={felt.id} key={`feil-${stegMedFeil}`}>
                             {felt.feilmelding}
                         </AppLenke>
                     ) : (
-                        <ErrorSummary.Item href={'#' + felt.id}>
+                        <ErrorSummary.Item href={'#' + felt.id} key={`feil-${felt.id}`}>
                             {felt.feilmelding}
                         </ErrorSummary.Item>
                     )
