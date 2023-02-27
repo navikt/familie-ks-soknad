@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Undertittel } from 'nav-frontend-typografi';
+import { Heading } from '@navikt/ds-react';
 
 export interface IInformasjonsbolkProps {
     tittel?: string;
@@ -19,7 +19,11 @@ const InformasjonsbolkChildrenWrapper = styled.div`
 const Informasjonsbolk: React.FC<IInformasjonsbolkProps> = ({ tittel, children, ...props }) => {
     return (
         <InformasjonsbolkContainer {...props}>
-            {tittel && <Undertittel>{tittel}</Undertittel>}
+            {tittel && (
+                <Heading level={'2'} size={'xsmall'}>
+                    {tittel}
+                </Heading>
+            )}
             <InformasjonsbolkChildrenWrapper>{children}</InformasjonsbolkChildrenWrapper>
         </InformasjonsbolkContainer>
     );
