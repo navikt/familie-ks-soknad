@@ -19,6 +19,7 @@ import {
     erSammeDatoSomDagensDato,
     gårsdagensDato,
     morgendagensDato,
+    stringTilDate,
 } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
@@ -106,7 +107,9 @@ export const useBarnehageplassPeriodeSkjema = () => {
                   EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
                 ? gårsdagensDato()
                 : undefined,
-        nullstillVedAvhengighetEndring: true,
+        customStartdatoFeilmelding: plainTekst(
+            formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
+        ),
     });
 
     const slutterIBarnehagenVetIkke = useFelt<ESvar>({
@@ -118,6 +121,22 @@ export const useBarnehageplassPeriodeSkjema = () => {
         avhengigheter: { barnehageplassPeriodeBeskrivelse },
     });
 
+    const slutterIBarnehagenMinDato = () => {
+        const startetIBarnehageDato =
+            startetIBarnehagen.verdi && stringTilDate(startetIBarnehagen.verdi);
+
+        switch (barnehageplassPeriodeBeskrivelse.verdi) {
+            case EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE:
+                return startetIBarnehageDato ? dagenEtterDato(startetIBarnehageDato) : undefined;
+            case EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ:
+                return morgendagensDato();
+            case EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN:
+                return startetIBarnehageDato
+                    ? dagenEtterDato(startetIBarnehageDato)
+                    : morgendagensDato();
+        }
+    };
+
     const slutterIBarnehagen = useDatovelgerFeltMedUkjent({
         feltId: BarnehageplassPeriodeSpørsmålId.slutterIBarnehagen,
         initiellVerdi: '',
@@ -127,14 +146,13 @@ export const useBarnehageplassPeriodeSkjema = () => {
             : barnehageplassTekster.sluttdatoFremtid.feilmelding,
         skalFeltetVises: !!barnehageplassPeriodeBeskrivelse.verdi,
         sluttdatoAvgrensning: periodenErAvsluttet ? dagensDato() : undefined,
-        startdatoAvgrensning:
-            barnehageplassPeriodeBeskrivelse.verdi ===
-            EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
-                ? morgendagensDato()
-                : dagenEtterDato(startetIBarnehagen.verdi),
-        customStartdatoFeilmelding: erSammeDatoSomDagensDato(startetIBarnehagen.verdi)
+        startdatoAvgrensning: slutterIBarnehagenMinDato(),
+        customStartdatoFeilmelding: erSammeDatoSomDagensDato(
+            stringTilDate(startetIBarnehagen.verdi)
+        )
             ? undefined
             : plainTekst(formateringsfeilmeldinger.periodeAvsluttesForTidlig),
+        avhengigheter: { startetIBarnehagen },
     });
 
     const skjema = useSkjema<IBarnehageplassPerioderFeltTyper, 'string'>({
@@ -155,5 +173,6 @@ export const useBarnehageplassPeriodeSkjema = () => {
     return {
         ...skjema,
         validerFelterOgVisFeilmelding: skjema.kanSendeSkjema,
+        slutterIBarnehagenMinDato,
     };
 };
