@@ -83,7 +83,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
         defaultSelected: parseTilGyldigDato(felt.verdi, 'yyyy-MM-dd'),
         onDateChange: (dato: Date | undefined) => {
             if (dato) {
-                felt.validerOgSettFelt(formatISO(dato), { representation: 'date' });
+                felt.validerOgSettFelt(formatISO(dato, { representation: 'date' }));
             }
         },
     });
