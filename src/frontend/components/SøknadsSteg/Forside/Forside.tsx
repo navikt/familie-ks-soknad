@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 
 import styled from 'styled-components';
 
+import { GuidePanel } from '@navikt/ds-react';
 import { LocaleType, Sprakvelger } from '@navikt/familie-sprakvelger';
 
 import Miljø from '../../../../shared-utils/Miljø';
-import VeilederSnakkeboble from '../../../assets/VeilederSnakkeboble';
 import { useApp } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { Typografi } from '../../../typer/common';
@@ -51,9 +51,9 @@ const Forside: React.FC = () => {
 
     return (
         <InnholdContainer>
-            <VeilederSnakkeboble>
+            <GuidePanel>
                 <TekstBlock block={veilederhilsen} typografi={Typografi.BodyShort} />
-            </VeilederSnakkeboble>
+            </GuidePanel>
 
             <TittelContainer>
                 <TekstBlock block={soeknadstittel} typografi={Typografi.ForsideHeadingH1} />

@@ -2,10 +2,10 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { GuidePanel } from '@navikt/ds-react';
 import { LocaleType, Sprakvelger } from '@navikt/familie-sprakvelger';
 import { RessursStatus } from '@navikt/familie-typer';
 
-import VeilederSnakkeboble from '../../assets/VeilederSnakkeboble';
 import { useLastRessurserContext } from '../../context/LastRessurserContext';
 import { useSanity } from '../../context/SanityContext';
 import { Typografi } from '../../typer/common';
@@ -47,9 +47,9 @@ export const DisabledApp: React.FC = () => {
                 {
                     // TODO: Dekoratøren språk-handling fra PR: #265
                 }
-                <VeilederSnakkeboble>
+                <GuidePanel>
                     <TekstBlock block={vedlikeholdVeileder} />
-                </VeilederSnakkeboble>
+                </GuidePanel>
                 <TittelContainer>
                     <TekstBlock block={vedlikeholdTittel} typografi={Typografi.ForsideHeadingH1} />
                 </TittelContainer>
