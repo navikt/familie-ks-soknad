@@ -22,7 +22,7 @@ const useLanddropdownFelt = ({
         feltId: søknadsfelt.id,
         verdi: søknadsfelt.svar,
         skalFeltetVises: avhengigheter => {
-            return avhengigheter && avhengigheter.skalFeltetVises;
+            return avhengigheter?.skalFeltetVises;
         },
         valideringsfunksjon: (felt: FeltState<Alpha3Code | ''>, avhengigheter) => {
             return felt.verdi !== ''

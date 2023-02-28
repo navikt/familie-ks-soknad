@@ -27,7 +27,7 @@ const useBarnCheckboxFelt = (
             return felt.verdi.length > 0 ? ok(felt) : feil(felt, feilmelding);
         },
         skalFeltetVises: (avhengigheter: Avhengigheter) => {
-            return avhengigheter && avhengigheter.jaNeiSpm
+            return avhengigheter?.jaNeiSpm
                 ? (avhengigheter.jaNeiSpm as Felt<ESvar | null>).verdi ===
                       avhengigJaNeiSpmSvarCondition
                 : true;
