@@ -9,6 +9,7 @@ import useInputFelt from '../../../hooks/useInputFelt';
 import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
 import { IArbeidsperioderFeltTyper } from '../../../typer/skjema';
@@ -31,7 +32,7 @@ export const useArbeidsperiodeSkjema = (
     gjelderUtlandet: boolean,
     personType: PersonType,
     erDød = false
-) => {
+): IUsePeriodeSkjemaVerdi<IArbeidsperioderFeltTyper> => {
     const { tekster, plainTekst } = useApp();
     const { erEøsLand } = useEøs();
     const teksterForPersonType: IArbeidsperiodeTekstinnhold =
@@ -137,7 +138,7 @@ export const useArbeidsperiodeSkjema = (
         skalVises: gjelderUtlandet && !!erEøsLand(arbeidsperiodeLand.verdi),
     });
 
-    const skjema = useSkjema<IArbeidsperioderFeltTyper, 'string'>({
+    const skjema = useSkjema<IArbeidsperioderFeltTyper, string>({
         felter: {
             arbeidsperiodeAvsluttet,
             arbeidsperiodeLand,

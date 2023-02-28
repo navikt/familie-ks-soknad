@@ -7,6 +7,7 @@ import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -30,7 +31,9 @@ export interface IUseUtenlandsoppholdSkjemaParams {
     personType: PersonType;
 }
 
-export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSkjemaParams) => {
+export const useUtenlandsoppholdSkjema = ({
+    personType,
+}: IUseUtenlandsoppholdSkjemaParams): IUsePeriodeSkjemaVerdi<IUtenlandsoppholdFeltTyper> => {
     const { tekster, plainTekst } = useApp();
     const teksterForPersontype: IUtenlandsoppholdTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
@@ -100,7 +103,7 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
         avhengigheter: { utenlandsoppholdÅrsak, oppholdslandFraDato },
     });
 
-    const skjema = useSkjema<IUtenlandsoppholdFeltTyper, 'string'>({
+    const skjema = useSkjema<IUtenlandsoppholdFeltTyper, string>({
         felter: {
             utenlandsoppholdÅrsak,
             oppholdsland,

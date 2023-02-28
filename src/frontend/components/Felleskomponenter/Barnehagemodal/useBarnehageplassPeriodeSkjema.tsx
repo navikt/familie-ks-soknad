@@ -9,6 +9,7 @@ import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjen
 import useInputFelt from '../../../hooks/useInputFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IFormateringsfeilmeldingerTekstinnhold } from '../../../typer/sanity/tekstInnhold';
@@ -25,7 +26,12 @@ import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 
-export const useBarnehageplassPeriodeSkjema = () => {
+interface UseBarnehageplassSkjemaVerdi
+    extends IUsePeriodeSkjemaVerdi<IBarnehageplassPerioderFeltTyper> {
+    slutterIBarnehagenMinDato: () => Date | undefined;
+}
+
+export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi => {
     const { tekster, plainTekst } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
@@ -155,7 +161,7 @@ export const useBarnehageplassPeriodeSkjema = () => {
         avhengigheter: { startetIBarnehagen },
     });
 
-    const skjema = useSkjema<IBarnehageplassPerioderFeltTyper, 'string'>({
+    const skjema = useSkjema<IBarnehageplassPerioderFeltTyper, string>({
         felter: {
             barnehageplassPeriodeBeskrivelse,
             barnehageplassUtlandet,

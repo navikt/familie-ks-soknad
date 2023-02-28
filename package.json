@@ -130,7 +130,7 @@
     "@babel/core": "7.12.3",
     "@babel/plugin-syntax-import-assertions": "^7.16.7",
     "@navikt/familie-form-elements": "^10.1.0",
-    "@navikt/familie-skjema": "^7.0.2",
+    "@navikt/familie-skjema": "^7.0.3",
     "@navikt/familie-sprakvelger": "^8.1.0",
     "@navikt/fnrvalidator": "^1.3.0",
     "@navikt/nav-dekoratoren-moduler": "^1.9.0",
