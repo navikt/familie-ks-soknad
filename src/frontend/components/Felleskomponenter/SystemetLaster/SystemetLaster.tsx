@@ -2,9 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Systemtittel } from 'nav-frontend-typografi';
-
-import { Loader } from '@navikt/ds-react';
+import { BodyShort, Loader } from '@navikt/ds-react';
 
 const StyledLoader = styled(Loader)`
     margin-top: 3rem;
@@ -16,7 +14,7 @@ const SystemetLaster = () => {
     return (
         <main className={'systemet-laster'}>
             <div className={'systemet-laster__content'}>
-                <Systemtittel
+                <BodyShort
                     className={'systemet-laster__content--tekst'}
                     children={'Søknaden laster'}
                 />

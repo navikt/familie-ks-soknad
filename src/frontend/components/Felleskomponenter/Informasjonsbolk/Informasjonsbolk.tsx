@@ -2,7 +2,8 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Undertittel } from 'nav-frontend-typografi';
+import { Typografi } from '../../../typer/common';
+import { TypografiWrapper } from '../TekstBlock';
 
 export interface IInformasjonsbolkProps {
     tittel?: string;
@@ -19,7 +20,9 @@ const InformasjonsbolkChildrenWrapper = styled.div`
 const Informasjonsbolk: React.FC<IInformasjonsbolkProps> = ({ tittel, children, ...props }) => {
     return (
         <InformasjonsbolkContainer {...props}>
-            {tittel && <Undertittel>{tittel}</Undertittel>}
+            {tittel && (
+                <TypografiWrapper typografi={Typografi.HeadingH2}>{tittel}</TypografiWrapper>
+            )}
             <InformasjonsbolkChildrenWrapper>{children}</InformasjonsbolkChildrenWrapper>
         </InformasjonsbolkContainer>
     );

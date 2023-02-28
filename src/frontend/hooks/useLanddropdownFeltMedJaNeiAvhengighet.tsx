@@ -38,7 +38,7 @@ const useLanddropdownFeltMedJaNeiAvhengighet = ({
             if (!skalFeltetVises) {
                 return false;
             }
-            return avhengigheter && (avhengigheter.jaNeiSpm as Felt<ESvar | null>)
+            return (avhengigheter?.jaNeiSpm as Felt<ESvar | null>)
                 ? skalViseFelt(avhengigheter.jaNeiSpm.verdi)
                 : true;
         },

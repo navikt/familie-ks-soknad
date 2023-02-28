@@ -3,14 +3,14 @@ import React from 'react';
 import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
 
-import { Normaltekst } from 'nav-frontend-typografi';
-
 import { Upload } from '@navikt/ds-icons';
 import { ABlue500, ABorderDefault } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../../context/AppContext';
+import { Typografi } from '../../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
+import { TypografiWrapper } from '../../../Felleskomponenter/TekstBlock';
 import OpplastedeFiler from './OpplastedeFiler';
 import { useFilopplaster } from './useFilopplaster';
 
@@ -85,7 +85,9 @@ const Filopplaster: React.FC<Props> = ({
             <FilopplastningBoks type={'button'} {...getRootProps()} harFeil={harFeil}>
                 <input {...getInputProps()} />
                 <StyledUpload focusable={false} />
-                <Normaltekst>{plainTekst(isDragActive ? slippFilenHer : lastOppKnapp)}</Normaltekst>
+                <TypografiWrapper typografi={Typografi.BodyShort}>
+                    {plainTekst(isDragActive ? slippFilenHer : lastOppKnapp)}
+                </TypografiWrapper>
             </FilopplastningBoks>
             <OpplastedeFiler
                 filliste={dokumentasjon.opplastedeVedlegg}

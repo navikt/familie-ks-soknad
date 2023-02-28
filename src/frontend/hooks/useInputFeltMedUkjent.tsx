@@ -46,7 +46,7 @@ const useInputFeltMedUkjent = ({
                 return ok(felt);
             }
 
-            const feilmelding = avhengigheter && (avhengigheter.feilmelding as LocaleRecordBlock);
+            const feilmelding = avhengigheter?.feilmelding as LocaleRecordBlock;
 
             if (erFnrInput) {
                 if (feltVerdi === '') {
@@ -65,7 +65,7 @@ const useInputFeltMedUkjent = ({
             }
         },
         avhengigheter: { vetIkkeCheckbox: avhengighet, skalVises, feilmelding },
-        skalFeltetVises: avhengigheter => avhengigheter && avhengigheter.skalVises,
+        skalFeltetVises: avhengigheter => avhengigheter?.skalVises,
         nullstillVedAvhengighetEndring,
     });
     useEffect(() => {
