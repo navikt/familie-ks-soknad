@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Element } from 'nav-frontend-typografi';
+import { Label } from '@navikt/ds-react';
 
 import StatusIkon, { StatusIconStatusKey } from './StatusIcon';
 
@@ -18,7 +18,7 @@ const ImageContainer = styled.div`
     margin-bottom: 0.75rem;
 `;
 
-const StyledElement = styled(Element)`
+const StyledLabel = styled(Label)`
     display: flex;
     align-items: center;
     margin-bottom: 0.5rem;
@@ -32,12 +32,12 @@ const StatusIkonContainer = styled.span`
 const PictureScanningExample = ({ image, status, statusText, description }: Props) => (
     <div>
         <ImageContainer>{image}</ImageContainer>
-        <StyledElement tag="div">
+        <StyledLabel size={'small'}>
             <StatusIkonContainer role="presentation">
                 <StatusIkon status={status} />
             </StatusIkonContainer>
             {statusText}
-        </StyledElement>
+        </StyledLabel>
         <div>{description}</div>
     </div>
 );
