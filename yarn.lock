@@ -2187,10 +2187,10 @@
   dependencies:
     winston "^3.8.1"
 
-"@navikt/familie-skjema@^7.0.2":
-  version "7.0.2"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-skjema/7.0.2/69844047a1d6f5b26683c6c5472c30172dc95306#69844047a1d6f5b26683c6c5472c30172dc95306"
-  integrity sha512-AByDqq4WFjb8pBAGqp7B4hMIfBSAjuJNPDCQzjZH8hRbxZLIFtm2YPca1/fUN1rxsPkcsc0KDOPdSXPAF0QJDw==
+"@navikt/familie-skjema@^7.0.3":
+  version "7.0.3"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-skjema/7.0.3/79ab89b45737d56174a544ac77c9d1b778f0e4f7#79ab89b45737d56174a544ac77c9d1b778f0e4f7"
+  integrity sha512-NNNiis1ARopA/GtsLhjwDIZUJ8hu4WP1WntmDGtyFNQsvJdo8S6NCoUSZHIehgB8RSHNkNtLpCdHGhou5YCYAQ==
   dependencies:
     "@navikt/familie-http" "^6.0.0"
     "@navikt/familie-typer" "^8.0.0"
@@ -9954,10 +9954,10 @@ node-int64@^0.4.0:
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
   integrity sha1-h6kGXNs1XTGC2PlM4RGIuCXGijs=
 
-node-jose@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.npmjs.org/node-jose/-/node-jose-2.1.1.tgz#7d82e8d9cef8d0a722d7fa385524babfa9e30614"
-  integrity sha512-19nyuUGShNmFmVTeqDfP6ZJCiikbcjI0Pw2kykBCH7rl8AZgSiDZK2Ww8EDaMrOSbRg6IlfIMhI5ZvCklmOhzg==
+node-jose@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npmjs.org/node-jose/-/node-jose-2.2.0.tgz#b64f3225ad6bec328509a420800de597ba2bf3ed"
+  integrity sha512-XPCvJRr94SjLrSIm4pbYHKLEaOsDvJCpyFw/6V/KK/IXmyZ6SFBzAUDO9HQf4DB/nTEFcRGH87mNciOP23kFjw==
   dependencies:
     base64url "^3.0.1"
     buffer "^6.0.3"
@@ -9967,7 +9967,7 @@ node-jose@^2.1.1:
     node-forge "^1.2.1"
     pako "^2.0.4"
     process "^0.11.10"
-    uuid "^8.3.2"
+    uuid "^9.0.0"
 
 node-releases@^1.1.71:
   version "1.1.73"

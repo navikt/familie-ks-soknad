@@ -9,6 +9,7 @@ import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -29,7 +30,7 @@ export const usePensjonSkjema = ({
     personType,
     erDød,
     barn,
-}: IUsePensjonSkjemaParams) => {
+}: IUsePensjonSkjemaParams): IUsePeriodeSkjemaVerdi<IPensjonsperiodeFeltTyper> => {
     const { tekster } = useApp();
     const { erEøsLand } = useEøs();
     const teksterForPersonType: IPensjonsperiodeTekstinnhold =
@@ -88,7 +89,7 @@ export const usePensjonSkjema = ({
         avhengigheter: { mottarPensjonNå, pensjonFraDato },
     });
 
-    const skjema = useSkjema<IPensjonsperiodeFeltTyper, 'string'>({
+    const skjema = useSkjema<IPensjonsperiodeFeltTyper, string>({
         felter: {
             mottarPensjonNå,
             pensjonsland,
