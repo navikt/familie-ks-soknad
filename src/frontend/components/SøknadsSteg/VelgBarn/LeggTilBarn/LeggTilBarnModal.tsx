@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { SkjemaGruppe } from 'nav-frontend-skjema';
-
+import { Fieldset } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../../context/AppContext';
@@ -56,8 +55,8 @@ const LeggTilBarnModal: React.FC<{
             onSubmitCallback={submitOgLukk}
             onAvbrytCallback={nullstillSkjema}
         >
-            <KomponentGruppe dynamisk>
-                <SkjemaGruppe legend={<TekstBlock block={barnetsNavnSubtittel} />}>
+            <KomponentGruppe>
+                <Fieldset legend={<TekstBlock block={barnetsNavnSubtittel} />}>
                     <SkjemaFeltInput
                         felt={skjema.felter.fornavn}
                         visFeilmeldinger={skjema.visFeilmeldinger}
@@ -77,20 +76,20 @@ const LeggTilBarnModal: React.FC<{
                         visFeilmeldinger={skjema.visFeilmeldinger}
                         label={plainTekst(etternavn.checkboxLabel)}
                     />
-                </SkjemaGruppe>
-
-                <SkjemaFeltInput
-                    felt={skjema.felter.ident}
-                    visFeilmeldinger={skjema.visFeilmeldinger}
-                    label={<TekstBlock block={foedselsnummerEllerDNummer.sporsmal} />}
-                    disabled={skjema.felter.ikkeFåttIdentChecked.verdi === ESvar.JA}
-                />
-
-                <SkjemaCheckbox
-                    felt={skjema.felter.ikkeFåttIdentChecked}
-                    visFeilmeldinger={skjema.visFeilmeldinger}
-                    label={plainTekst(foedselsnummerEllerDNummer.checkboxLabel)}
-                />
+                </Fieldset>
+                <div>
+                    <SkjemaFeltInput
+                        felt={skjema.felter.ident}
+                        visFeilmeldinger={skjema.visFeilmeldinger}
+                        label={<TekstBlock block={foedselsnummerEllerDNummer.sporsmal} />}
+                        disabled={skjema.felter.ikkeFåttIdentChecked.verdi === ESvar.JA}
+                    />
+                    <SkjemaCheckbox
+                        label={plainTekst(foedselsnummerEllerDNummer.checkboxLabel)}
+                        visFeilmeldinger={skjema.visFeilmeldinger}
+                        felt={skjema.felter.ikkeFåttIdentChecked}
+                    />
+                </div>
                 {skjema.felter.ikkeFåttIdentChecked.verdi === ESvar.JA && (
                     <SøkerMåBrukePDF advarselTekst={<TekstBlock block={foedselsnummerAlert} />} />
                 )}
