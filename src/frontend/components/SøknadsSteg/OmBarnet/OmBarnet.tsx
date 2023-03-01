@@ -4,8 +4,10 @@ import { BodyShort, Heading } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
+import { useEøs } from '../../../context/EøsContext';
 import { BarnetsId, Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
+import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import Steg from '../../Felleskomponenter/Steg/Steg';
@@ -19,6 +21,7 @@ import { useOmBarnet } from './useOmBarnet';
 
 const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
     const { tekster, plainTekst } = useApp();
+    const { erEøsTrigget } = useEøs();
     const {
         skjema,
         validerFelterOgVisFeilmelding,
@@ -40,8 +43,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
 
     const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
 
-    const { omBarnetTittel, fastBosted, bosted, borBarnFastSammenMedDeg, deltBosted } =
-        teksterForSteg;
+    const { omBarnetTittel, bosted, borBarnFastSammenMedDeg, deltBosted } = teksterForSteg;
 
     const barnetsNavn = barn?.navn;
 
@@ -97,15 +99,19 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     }
                     dynamisk
                 >
-                    {barn.andreForelderErDød?.svar !== ESvar.JA && (
-                        <TekstBlock block={fastBosted} typografi={Typografi.BodyLong} />
-                    )}
                     <JaNeiSpm
                         skjema={skjema}
                         felt={skjema.felter.borFastMedSøker}
                         spørsmålDokument={borBarnFastSammenMedDeg}
                         flettefelter={{ barnetsNavn }}
                     />
+
+                    {skjema.felter.borFastMedSøker.verdi === ESvar.NEI && !erEøsTrigget() && (
+                        <AlertStripe variant={'warning'}>
+                            <TekstBlock block={borBarnFastSammenMedDeg.alert} />
+                        </AlertStripe>
+                    )}
+
                     {skjema.felter.borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker && (
                         <VedleggNotis dynamisk>
                             <BodyShort>
