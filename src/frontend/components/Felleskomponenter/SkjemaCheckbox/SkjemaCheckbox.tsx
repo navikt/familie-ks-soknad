@@ -7,7 +7,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt } from '@navikt/familie-skjema';
 
 const CheckboxWrapper = styled.div`
-    margin: 1rem 0;
+    margin: 0 0 1rem 0;
 `;
 
 export const SkjemaCheckbox: React.FC<{
@@ -26,7 +26,9 @@ export const SkjemaCheckbox: React.FC<{
             >
                 {label}
             </Checkbox>
-            {visFeilmeldinger && <ErrorMessage>{felt.feilmelding}</ErrorMessage>}
+            {visFeilmeldinger && felt.feilmelding && (
+                <ErrorMessage>{felt.feilmelding}</ErrorMessage>
+            )}
         </CheckboxWrapper>
     ) : null;
 };
