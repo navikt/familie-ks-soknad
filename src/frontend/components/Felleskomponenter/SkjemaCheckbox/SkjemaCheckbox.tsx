@@ -1,38 +1,32 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 import styled from 'styled-components';
 
-import { Checkbox } from 'nav-frontend-skjema';
-
+import { Checkbox, ErrorMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt } from '@navikt/familie-skjema';
 
-import useFørsteRender from '../../../hooks/useFørsteRender';
-
-const StyledCheckbox = styled(Checkbox)`
-    margin-top: 1rem;
+const StyledCheckboxWrapper = styled.div`
+    margin: 1rem 0;
 `;
 
 export const SkjemaCheckbox: React.FC<{
     felt: Felt<ESvar>;
     visFeilmeldinger?: boolean;
-    label: ReactNode;
+    label: string;
 }> = ({ felt, visFeilmeldinger = false, label }) => {
-    useFørsteRender(() => {
-        felt.validerOgSettFelt(felt.verdi);
-    });
-
-    const onChange = event => {
-        const { onChange: feltOnChange } = felt.hentNavInputProps(false);
-        feltOnChange(event.target.checked ? ESvar.JA : ESvar.NEI);
-    };
-
     return felt.erSynlig ? (
-        <StyledCheckbox
-            checked={felt.verdi === ESvar.JA}
-            {...felt.hentNavInputProps(visFeilmeldinger)}
-            label={label}
-            onChange={onChange}
-        />
+        <StyledCheckboxWrapper>
+            <Checkbox
+                checked={felt.verdi === ESvar.JA}
+                aria-label={label}
+                onChange={event =>
+                    felt.validerOgSettFelt(event.target.checked ? ESvar.JA : ESvar.NEI)
+                }
+            >
+                {label}
+            </Checkbox>
+            {visFeilmeldinger && <ErrorMessage>{felt.feilmelding}</ErrorMessage>}
+        </StyledCheckboxWrapper>
     ) : null;
 };
