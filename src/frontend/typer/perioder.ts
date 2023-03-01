@@ -1,6 +1,7 @@
 import { Alpha3Code } from 'i18n-iso-countries';
 
 import { ESvar } from '@navikt/familie-form-elements';
+import { UseSkjemaVerdi } from '@navikt/familie-skjema';
 
 import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 import { AlternativtSvarForInput, DatoMedUkjent, ISODateString } from './common';
@@ -53,4 +54,8 @@ export interface IBarnehageplassPeriode {
     antallTimer: ISøknadSpørsmål<string>;
     startetIBarnehagen: ISøknadSpørsmål<ISODateString>;
     slutterIBarnehagen: ISøknadSpørsmål<DatoMedUkjent>;
+}
+
+export interface IUsePeriodeSkjemaVerdi<T> extends UseSkjemaVerdi<T, string> {
+    validerFelterOgVisFeilmelding: () => boolean;
 }

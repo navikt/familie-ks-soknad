@@ -5,6 +5,7 @@ import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -18,7 +19,10 @@ export interface IUsePensjonsperiodeSkjemaParams {
     erDød?: boolean;
 }
 
-export const useKontantstøttePeriodeSkjema = (personType: PersonType, erDød) => {
+export const useKontantstøttePeriodeSkjema = (
+    personType: PersonType,
+    erDød
+): IUsePeriodeSkjemaVerdi<IKontantstøttePerioderFeltTyper> => {
     const { tekster, plainTekst } = useApp();
     const teksterForPersonType: IEøsYtelseTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.eøsYtelse[personType];
@@ -89,7 +93,7 @@ export const useKontantstøttePeriodeSkjema = (personType: PersonType, erDød) =
         avhengigheter: { mottarEøsKontantstøtteNå },
     });
 
-    const skjema = useSkjema<IKontantstøttePerioderFeltTyper, 'string'>({
+    const skjema = useSkjema<IKontantstøttePerioderFeltTyper, string>({
         felter: {
             mottarEøsKontantstøtteNå,
             kontantstøtteLand,
