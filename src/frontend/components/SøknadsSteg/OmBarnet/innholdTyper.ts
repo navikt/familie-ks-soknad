@@ -16,7 +16,6 @@ export interface IOmBarnetTekstinnhold {
     svaralternativSammeSomAnnenForelder: LocaleRecordBlock;
     svaralternativAnnenForelder: LocaleRecordBlock;
     barnXAvY: LocaleRecordBlock;
-    fastBosted: LocaleRecordBlock;
 
     /* Subtitler */
     barnetsAndreForelder: LocaleRecordString;
