@@ -44,7 +44,7 @@ export const dataISøknadKontraktFormatV1 = (
     const søknadsfeltForESvar = søknadsfeltForESvarHof(tilRestLocaleRecord);
 
     return {
-        kontraktVersjon: 2,
+        kontraktVersjon: 3,
         antallEøsSteg: antallEøsSteg(søker, barnInkludertISøknaden),
         søker: søkerIKontraktFormat(søknad, tekster, tilRestLocaleRecord),
         barn: barnInkludertISøknaden.map(barn =>
