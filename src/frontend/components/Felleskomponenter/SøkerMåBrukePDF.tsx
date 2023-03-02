@@ -13,7 +13,7 @@ export const SøkerMåBrukePDF: FC<Props> = ({ advarselTekst }) => {
     const { tekster } = useApp();
     const { brukPDFKontantstoette } = tekster().FELLES.kanIkkeBrukeSoeknad;
     return (
-        <KomponentGruppe aria-live={'polite'}>
+        <KomponentGruppe dynamisk>
             <AlertStripe variant={'warning'}>{advarselTekst}</AlertStripe>
             <TekstBlock block={brukPDFKontantstoette} />
         </KomponentGruppe>
