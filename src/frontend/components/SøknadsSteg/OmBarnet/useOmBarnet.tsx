@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, FeltState, ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
@@ -32,6 +32,7 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import {
     filtrerteRelevanteIdNummerForBarn,
+    finnesPeriodeMedGradertBarnehageplass,
     genererInitiellAndreForelder,
     nullstilteEøsFelterForBarn,
     skalViseBorMedOmsorgsperson,
@@ -58,6 +59,7 @@ export const useOmBarnet = (
     barn: IBarnMedISøknad | undefined;
     validerFelterOgVisFeilmelding: () => boolean;
     valideringErOk: () => boolean;
+    harPeriodeMedGradertBarnehageplass: boolean;
     oppdaterSøknad: () => void;
     andreBarnSomErFyltUt: IBarnMedISøknad[];
     validerAlleSynligeFelter: () => void;
@@ -78,6 +80,12 @@ export const useOmBarnet = (
     const teksterForModaler = tekster()[ESanitySteg.FELLES].modaler;
 
     const gjeldendeBarn = søknad.barnInkludertISøknaden.find(barn => barn.id === barnetsUuid);
+
+    const [harPeriodeMedGradertBarnehageplass, setHarPeriodeMedGradertBarnehageplass] = useState(
+        gjeldendeBarn?.barnehageplassPerioder
+            ? finnesPeriodeMedGradertBarnehageplass(gjeldendeBarn?.barnehageplassPerioder)
+            : false
+    );
 
     if (!gjeldendeBarn) {
         throw new TypeError('Kunne ikke finne barn som skulle være her');
@@ -474,6 +482,14 @@ export const useOmBarnet = (
         skjemanavn: `om-barnet-${gjeldendeBarn.id}`,
     });
 
+    useEffect(() => {
+        setHarPeriodeMedGradertBarnehageplass(
+            finnesPeriodeMedGradertBarnehageplass(
+                skjema.felter.registrerteBarnehageplassPerioder.verdi
+            )
+        );
+    }, [skjema.felter.registrerteBarnehageplassPerioder.verdi]);
+
     const genererOppdatertDokumentasjon = (
         dokumentasjon: IDokumentasjon,
         kreverDokumentasjon,
@@ -780,5 +796,6 @@ export const useOmBarnet = (
         fjernKontantstøttePeriode,
         leggTilBarnehageplassPeriode,
         fjernBarnehageplassPeriode,
+        harPeriodeMedGradertBarnehageplass,
     };
 };
