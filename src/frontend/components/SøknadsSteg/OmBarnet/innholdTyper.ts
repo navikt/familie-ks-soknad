@@ -38,4 +38,6 @@ export interface IOmBarnetTekstinnhold {
     pensjonUtlandAndreForelder: ISanitySpørsmålDokument;
     pensjonUtlandAndreForelderGjenlevende: ISanitySpørsmålDokument;
     medlemAvFolktetrygdenAndreForelder: ISanitySpørsmålDokument;
+    borForeldreSammen: ISanitySpørsmålDokument;
+    soekerDeltKontantstoette: ISanitySpørsmålDokument;
 }
