@@ -67,6 +67,8 @@ export interface IOmBarnetFeltTyper {
     skriftligAvtaleOmDeltBosted: ESvar | null;
     sammeForelderSomAnnetBarn: string | null;
     barnRegistrerteUtenlandsperioder: IUtenlandsperiode[];
+    foreldreBorSammen: ESvar | null;
+    søkerDeltKontantstøtte: ESvar | null;
 }
 
 export interface IOmDegFeltTyper {
