@@ -99,6 +99,8 @@ const [EøsProvider, useEøs] = createUseContext(() => {
         }
     }, [søknad.søker, søknad.barnInkludertISøknaden]);
 
+    const erEøsTrigget = () => søkerTriggerEøs || barnSomTriggerEøs.length;
+
     return {
         erEøsLand,
         skalTriggeEøsForSøker,
@@ -107,6 +109,7 @@ const [EøsProvider, useEøs] = createUseContext(() => {
         settBarnSomTriggerEøs,
         søkerTriggerEøs,
         barnSomTriggerEøs,
+        erEøsTrigget,
     };
 });
 
