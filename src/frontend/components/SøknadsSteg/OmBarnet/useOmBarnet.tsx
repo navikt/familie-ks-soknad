@@ -81,7 +81,7 @@ export const useOmBarnet = (
 
     const gjeldendeBarn = søknad.barnInkludertISøknaden.find(barn => barn.id === barnetsUuid);
 
-    const [harPeriodeMedGradertBarnehageplass, setHarPeriodeMedGradertBarnehageplass] = useState(
+    const [harPeriodeMedGradertBarnehageplass, settHarPeriodeMedGradertBarnehageplass] = useState(
         gjeldendeBarn?.barnehageplassPerioder
             ? finnesPeriodeMedGradertBarnehageplass(gjeldendeBarn?.barnehageplassPerioder)
             : false
@@ -483,7 +483,7 @@ export const useOmBarnet = (
     });
 
     useEffect(() => {
-        setHarPeriodeMedGradertBarnehageplass(
+        settHarPeriodeMedGradertBarnehageplass(
             finnesPeriodeMedGradertBarnehageplass(
                 skjema.felter.registrerteBarnehageplassPerioder.verdi
             )
