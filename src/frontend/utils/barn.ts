@@ -230,6 +230,14 @@ export const genererInitialBarnMedISøknad = (barn: IBarn): IBarnMedISøknad => 
             id: EøsBarnSpørsmålId.barnetsAdresse,
             svar: '',
         },
+        [barnDataKeySpørsmål.foreldreBorSammen]: {
+            id: EøsBarnSpørsmålId.foreldreBorSammen,
+            svar: null,
+        },
+        [barnDataKeySpørsmål.søkerDeltKontantstøtte]: {
+            id: EøsBarnSpørsmålId.søkerDeltKontantstøtte,
+            svar: null,
+        },
     };
 };
 

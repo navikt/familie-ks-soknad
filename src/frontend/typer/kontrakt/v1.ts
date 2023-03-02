@@ -94,6 +94,8 @@ export interface ISøknadIKontraktBarn {
 
     // Om barnet
     [barnDataKeySpørsmål.borFastMedSøker]: ISøknadsfelt<ESvar>;
+    [barnDataKeySpørsmål.foreldreBorSammen]: ISøknadsfelt<ESvar> | null;
+    [barnDataKeySpørsmål.søkerDeltKontantstøtte]: ISøknadsfelt<ESvar> | null;
     andreForelder: IAndreForelderIKontraktFormat | null;
     utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
 
