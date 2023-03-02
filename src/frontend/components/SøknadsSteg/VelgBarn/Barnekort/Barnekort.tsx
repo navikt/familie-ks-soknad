@@ -2,9 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Checkbox } from 'nav-frontend-skjema';
-
-import { Alert, Heading } from '@navikt/ds-react';
+import { Alert, Checkbox, Heading } from '@navikt/ds-react';
 import { AGray100, APurple400, APurple800 } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../../context/AppContext';
@@ -137,11 +135,12 @@ const Barnekort: React.FC<IBarnekortProps> = ({
                 )}
                 <StyledCheckbox
                     checked={erMedISøknad}
-                    label={<TekstBlock block={soekOmYtelseForBarnetSjekkboks} />}
                     aria-label={`${plainTekst(soekOmYtelseForBarnetSjekkboks)} ${barn.navn}`}
                     onChange={() => velgBarnCallback(barn, erMedISøknad)}
                     data-testid={'velg-barn-checkbox'}
-                />
+                >
+                    <TekstBlock block={soekOmYtelseForBarnetSjekkboks} />
+                </StyledCheckbox>
                 {erMedISøknad && barn.erUnder11Mnd && (
                     <StyledWarningAlert inline variant={'warning'}>
                         <TekstBlock block={under1Aar} />
