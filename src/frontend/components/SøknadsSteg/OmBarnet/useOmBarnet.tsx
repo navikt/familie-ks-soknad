@@ -434,6 +434,20 @@ export const useOmBarnet = (
         flettefelter: { barnetsNavn: gjeldendeBarn.navn },
     });
 
+    const foreldreBorSammen = useJaNeiSpmFelt({
+        søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.foreldreBorSammen],
+        feilmelding: teksterForSteg.borForeldreSammen.feilmelding,
+        flettefelter: { barnetsNavn: gjeldendeBarn.navn },
+        skalSkjules: borFastMedSøker.verdi !== ESvar.JA,
+    });
+
+    const søkerDeltKontantstøtte = useJaNeiSpmFelt({
+        søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.søkerDeltKontantstøtte],
+        feilmelding: teksterForSteg.soekerDeltKontantstoette.feilmelding,
+        flettefelter: { barnetsNavn: gjeldendeBarn.navn },
+        skalSkjules: !foreldreBorSammen.erSynlig || foreldreBorSammen.verdi !== ESvar.NEI,
+    });
+
     const skriftligAvtaleOmDeltBosted = useJaNeiSpmFelt({
         søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.skriftligAvtaleOmDeltBosted],
         feilmelding: teksterForSteg.deltBosted.feilmelding,
@@ -468,6 +482,8 @@ export const useOmBarnet = (
             andreForelderPensjonUtland,
             andreForelderPensjonsperioderUtland,
             borFastMedSøker,
+            foreldreBorSammen,
+            søkerDeltKontantstøtte,
             skriftligAvtaleOmDeltBosted,
             sammeForelderSomAnnetBarn,
         },
@@ -637,7 +653,7 @@ export const useOmBarnet = (
             planleggerÅBoINorge12Mnd: {
                 ...barn.planleggerÅBoINorge12Mnd,
                 svar: !flyttetPermanentFraNorge(utenlandsperioder)
-                    ? skjema.felter.planleggerÅBoINorge12Mnd.verdi
+                    ? planleggerÅBoINorge12Mnd.verdi
                     : null,
             },
             pågåendeSøknadFraAnnetEøsLand: {
@@ -662,6 +678,14 @@ export const useOmBarnet = (
             borFastMedSøker: {
                 ...barn.borFastMedSøker,
                 svar: borFastMedSøker.verdi,
+            },
+            foreldreBorSammen: {
+                ...barn.foreldreBorSammen,
+                svar: foreldreBorSammen.erSynlig ? foreldreBorSammen.verdi : null,
+            },
+            søkerDeltKontantstøtte: {
+                ...barn.søkerDeltKontantstøtte,
+                svar: søkerDeltKontantstøtte.erSynlig ? søkerDeltKontantstøtte.verdi : null,
             },
             borMedOmsorgsperson,
             omsorgsperson: borMedOmsorgsperson.svar === ESvar.JA ? barn.omsorgsperson : null,

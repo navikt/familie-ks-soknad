@@ -155,6 +155,20 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
                     flettefelter={flettefelter}
                     søknadsvar={barn[barnDataKeySpørsmål.borFastMedSøker].svar}
                 />
+                {barn[barnDataKeySpørsmål.foreldreBorSammen].svar && (
+                    <OppsummeringFelt
+                        spørsmålstekst={omBarnetTekster.borForeldreSammen.sporsmal}
+                        flettefelter={flettefelter}
+                        søknadsvar={barn[barnDataKeySpørsmål.foreldreBorSammen].svar}
+                    />
+                )}
+                {barn[barnDataKeySpørsmål.søkerDeltKontantstøtte].svar && (
+                    <OppsummeringFelt
+                        spørsmålstekst={omBarnetTekster.soekerDeltKontantstoette.sporsmal}
+                        flettefelter={flettefelter}
+                        søknadsvar={barn[barnDataKeySpørsmål.søkerDeltKontantstøtte].svar}
+                    />
+                )}
                 {barn.andreForelder?.[andreForelderDataKeySpørsmål.skriftligAvtaleOmDeltBosted]
                     .svar && (
                     <OppsummeringFelt
