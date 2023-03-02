@@ -59,13 +59,6 @@ export const genererInitiellAndreForelder = (
                 ? OmBarnetSpørsmålsId.andreForelderPensjonUtlandEnke
                 : OmBarnetSpørsmålsId.andreForelderPensjonUtland,
         },
-        skriftligAvtaleOmDeltBosted: {
-            id: OmBarnetSpørsmålsId.skriftligAvtaleOmDeltBosted,
-            svar:
-                andreForelder && !andreForelderErDød
-                    ? andreForelder.skriftligAvtaleOmDeltBosted.svar
-                    : null,
-        },
         arbeidNorge: {
             svar: andreForelder?.arbeidNorge.svar ?? null,
             id: andreForelderErDød

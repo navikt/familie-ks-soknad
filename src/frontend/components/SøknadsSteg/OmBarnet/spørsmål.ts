@@ -16,6 +16,5 @@ export enum OmBarnetSpørsmålsId {
     andreForelderPensjonUtland = 'andre-forelder-pensjon-utland',
     andreForelderPensjonUtlandEnke = 'andre-forelder-pensjon-utland-enke',
     borFastMedSøker = 'bor-barnet-fast-med-deg',
-    skriftligAvtaleOmDeltBosted = 'skriftlig-avtale-om-delt-bosted',
     sammeForelderSomAnnetBarn = 'samme-forelder-som-annet-barn',
 }

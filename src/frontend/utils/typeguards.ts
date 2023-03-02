@@ -62,7 +62,6 @@ export const erGyldigISøknadKontraktAndreForelder = (
         'fødselsdato' in input &&
         'pensjonUtland' in input &&
         'arbeidUtlandet' in input &&
-        'skriftligAvtaleOmDeltBosted' in input &&
         'pensjonNorge' in input &&
         'arbeidNorge' in input &&
         'andreUtbetalinger' in input &&

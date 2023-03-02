@@ -64,7 +64,6 @@ export interface IOmBarnetFeltTyper {
     andreForelderPensjonUtland: ESvar | null;
     andreForelderPensjonsperioderUtland: IPensjonsperiode[];
     borFastMedSøker: ESvar | null;
-    skriftligAvtaleOmDeltBosted: ESvar | null;
     sammeForelderSomAnnetBarn: string | null;
     barnRegistrerteUtenlandsperioder: IUtenlandsperiode[];
     foreldreBorSammen: ESvar | null;

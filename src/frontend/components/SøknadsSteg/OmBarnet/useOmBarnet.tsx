@@ -448,15 +448,6 @@ export const useOmBarnet = (
         skalSkjules: !foreldreBorSammen.erSynlig || foreldreBorSammen.verdi !== ESvar.NEI,
     });
 
-    const skriftligAvtaleOmDeltBosted = useJaNeiSpmFelt({
-        søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.skriftligAvtaleOmDeltBosted],
-        feilmelding: teksterForSteg.deltBosted.feilmelding,
-        skalSkjules:
-            !andreForelder ||
-            gjeldendeBarn[barnDataKeySpørsmål.andreForelderErDød].svar === ESvar.JA,
-        flettefelter: { barnetsNavn: gjeldendeBarn.navn },
-    });
-
     const { kanSendeSkjema, skjema, valideringErOk, validerAlleSynligeFelter } = useSkjema<
         IOmBarnetFeltTyper,
         string
@@ -484,7 +475,6 @@ export const useOmBarnet = (
             borFastMedSøker,
             foreldreBorSammen,
             søkerDeltKontantstøtte,
-            skriftligAvtaleOmDeltBosted,
             sammeForelderSomAnnetBarn,
         },
         skjemanavn: `om-barnet-${gjeldendeBarn.id}`,
@@ -545,10 +535,6 @@ export const useOmBarnet = (
         if (barnMedSammeForelder?.andreForelder) {
             return {
                 ...barnMedSammeForelder.andreForelder,
-                skriftligAvtaleOmDeltBosted: {
-                    ...andreForelder.skriftligAvtaleOmDeltBosted,
-                    svar: skriftligAvtaleOmDeltBosted.verdi,
-                },
             };
         } else if (andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA) {
             return {
@@ -556,10 +542,6 @@ export const useOmBarnet = (
                 kanIkkeGiOpplysninger: {
                     ...andreForelder[andreForelderDataKeySpørsmål.kanIkkeGiOpplysninger],
                     svar: ESvar.JA,
-                },
-                skriftligAvtaleOmDeltBosted: {
-                    ...andreForelder.skriftligAvtaleOmDeltBosted,
-                    svar: skriftligAvtaleOmDeltBosted.verdi,
                 },
             };
         } else {
@@ -605,10 +587,6 @@ export const useOmBarnet = (
                     andreForelderPensjonUtland.verdi === ESvar.JA
                         ? andreForelderPensjonsperioderUtland.verdi
                         : [],
-                skriftligAvtaleOmDeltBosted: {
-                    ...andreForelder.skriftligAvtaleOmDeltBosted,
-                    svar: skriftligAvtaleOmDeltBosted.verdi,
-                },
             };
         }
     };
@@ -770,7 +748,8 @@ export const useOmBarnet = (
                     case Dokumentasjonsbehov.AVTALE_DELT_BOSTED:
                         return genererOppdatertDokumentasjon(
                             dok,
-                            skriftligAvtaleOmDeltBosted.verdi === ESvar.JA && !!andreForelder,
+                            søkerDeltKontantstøtte.erSynlig &&
+                                søkerDeltKontantstøtte.verdi === ESvar.JA,
                             gjeldendeBarn.id
                         );
                     case Dokumentasjonsbehov.BOR_FAST_MED_SØKER:
