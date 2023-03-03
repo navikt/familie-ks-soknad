@@ -39,6 +39,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         fjernKontantstøttePeriode,
         leggTilBarnehageplassPeriode,
         fjernBarnehageplassPeriode,
+        harPeriodeMedGradertBarnehageplass,
     } = useOmBarnet(barnetsId);
 
     const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
@@ -142,6 +143,16 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                         felt={søkerDeltKontantstøtte}
                         spørsmålDokument={soekerDeltKontantstoette}
                         flettefelter={{ barnetsNavn }}
+                        tilleggsinfo={
+                            harPeriodeMedGradertBarnehageplass ? (
+                                <AlertStripe variant={'info'}>
+                                    <TekstBlock
+                                        block={soekerDeltKontantstoette.alert}
+                                        typografi={Typografi.BodyShort}
+                                    />
+                                </AlertStripe>
+                            ) : undefined
+                        }
                     />
                     {søkerDeltKontantstøtte.erSynlig && søkerDeltKontantstøtte.verdi === ESvar.JA && (
                         <VedleggNotis dynamisk>
