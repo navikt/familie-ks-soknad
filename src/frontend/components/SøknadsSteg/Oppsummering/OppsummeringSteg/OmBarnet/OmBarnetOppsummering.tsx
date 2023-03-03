@@ -5,11 +5,7 @@ import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../../../context/AppContext';
 import { useSteg } from '../../../../../context/StegContext';
-import {
-    andreForelderDataKeySpørsmål,
-    barnDataKeySpørsmål,
-    IBarnMedISøknad,
-} from '../../../../../typer/barn';
+import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../../typer/barn';
 import { FlettefeltVerdier } from '../../../../../typer/kontrakt/generelle';
 import { PersonType } from '../../../../../typer/personType';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
@@ -167,18 +163,6 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
                         spørsmålstekst={omBarnetTekster.soekerDeltKontantstoette.sporsmal}
                         flettefelter={flettefelter}
                         søknadsvar={barn[barnDataKeySpørsmål.søkerDeltKontantstøtte].svar}
-                    />
-                )}
-                {barn.andreForelder?.[andreForelderDataKeySpørsmål.skriftligAvtaleOmDeltBosted]
-                    .svar && (
-                    <OppsummeringFelt
-                        spørsmålstekst={omBarnetTekster.deltBosted.sporsmal}
-                        flettefelter={flettefelter}
-                        søknadsvar={
-                            barn.andreForelder[
-                                andreForelderDataKeySpørsmål.skriftligAvtaleOmDeltBosted
-                            ].svar
-                        }
                     />
                 )}
             </StyledOppsummeringsFeltGruppe>

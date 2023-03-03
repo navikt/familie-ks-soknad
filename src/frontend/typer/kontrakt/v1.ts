@@ -139,7 +139,6 @@ export interface IAndreForelderIKontraktFormat {
     yrkesaktivFemÅr: ISøknadsfelt<ESvar> | null;
     pensjonUtland: ISøknadsfelt<ESvar> | null;
     arbeidUtlandet: ISøknadsfelt<ESvar> | null;
-    skriftligAvtaleOmDeltBosted: ISøknadsfelt<ESvar> | null;
 
     //EØS
     pensjonNorge: ISøknadsfelt<ESvar> | null;

@@ -25,7 +25,6 @@ export enum andreForelderDataKeySpørsmål {
 
     arbeidUtlandet = 'arbeidUtlandet',
     pensjonUtland = 'pensjonUtland',
-    skriftligAvtaleOmDeltBosted = 'skriftligAvtaleOmDeltBosted',
     adresse = 'adresse',
 
     // EØS
@@ -72,7 +71,6 @@ export interface IAndreForelder {
     [andreForelderDataKeySpørsmål.yrkesaktivFemÅr]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.arbeidUtlandet]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.pensjonUtland]: ISøknadSpørsmål<ESvar | null>;
-    [andreForelderDataKeySpørsmål.skriftligAvtaleOmDeltBosted]: ISøknadSpørsmål<ESvar | null>;
 
     //EØS
     arbeidsperioderNorge: IArbeidsperiode[];
