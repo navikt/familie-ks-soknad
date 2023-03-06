@@ -92,6 +92,7 @@ export const useOmBarnet = (
     }
 
     const andreForelder = gjeldendeBarn.andreForelder;
+    const andreForelderErDød = gjeldendeBarn.andreForelderErDød.svar === ESvar.JA;
 
     const skalFeltetVises = (
         søknadsdataFelt: Exclude<
@@ -322,10 +323,9 @@ export const useOmBarnet = (
 
     const andreForelderArbeidUtlandet = useJaNeiSpmFelt({
         søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.arbeidUtlandet],
-        feilmelding:
-            gjeldendeBarn.andreForelderErDød.svar === ESvar.JA
-                ? teksterForSteg.arbeidUtenforNorgeAndreForelderGjenlevende.feilmelding
-                : teksterForSteg.arbeidUtenforNorgeAndreForelder.feilmelding,
+        feilmelding: andreForelderErDød
+            ? teksterForSteg.arbeidUtenforNorgeAndreForelderGjenlevende.feilmelding
+            : teksterForSteg.arbeidUtenforNorgeAndreForelder.feilmelding,
         avhengigheter: {
             andreForelderNavn: {
                 hovedSpørsmål: andreForelderNavn,
@@ -357,9 +357,7 @@ export const useOmBarnet = (
                       }
                     : undefined,
         },
-        skalSkjules:
-            andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA ||
-            gjeldendeBarn.andreForelderErDød.svar === ESvar.JA,
+        skalSkjules: andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA || andreForelderErDød,
     });
 
     const {
@@ -389,10 +387,9 @@ export const useOmBarnet = (
 
     const andreForelderPensjonUtland = useJaNeiSpmFelt({
         søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.pensjonUtland],
-        feilmelding:
-            gjeldendeBarn.andreForelderErDød.svar === ESvar.JA
-                ? teksterForSteg.pensjonUtlandAndreForelderGjenlevende.feilmelding
-                : teksterForSteg.pensjonUtlandAndreForelder.feilmelding,
+        feilmelding: andreForelderErDød
+            ? teksterForSteg.pensjonUtlandAndreForelderGjenlevende.feilmelding
+            : teksterForSteg.pensjonUtlandAndreForelder.feilmelding,
         avhengigheter: {
             andreForelderNavn: {
                 hovedSpørsmål: andreForelderNavn,
@@ -446,14 +443,17 @@ export const useOmBarnet = (
         søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.foreldreBorSammen],
         feilmelding: teksterForSteg.borForeldreSammen.feilmelding,
         flettefelter: { barnetsNavn: gjeldendeBarn.navn },
-        skalSkjules: borFastMedSøker.verdi !== ESvar.JA,
+        skalSkjules: andreForelderErDød || borFastMedSøker.verdi !== ESvar.JA,
     });
 
     const søkerDeltKontantstøtte = useJaNeiSpmFelt({
         søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.søkerDeltKontantstøtte],
         feilmelding: teksterForSteg.soekerDeltKontantstoette.feilmelding,
         flettefelter: { barnetsNavn: gjeldendeBarn.navn },
-        skalSkjules: !foreldreBorSammen.erSynlig || foreldreBorSammen.verdi !== ESvar.NEI,
+        skalSkjules:
+            andreForelderErDød ||
+            !foreldreBorSammen.erSynlig ||
+            foreldreBorSammen.verdi !== ESvar.NEI,
     });
 
     const { kanSendeSkjema, skjema, valideringErOk, validerAlleSynligeFelter } = useSkjema<
@@ -546,7 +546,6 @@ export const useOmBarnet = (
 
     const genererOppdatertAndreForelder = (andreForelder: IAndreForelder): IAndreForelder => {
         const barnMedSammeForelder = annetBarnMedSammeForelder();
-        const andreForelderErDød = gjeldendeBarn.andreForelderErDød.svar === ESvar.JA;
 
         if (barnMedSammeForelder?.andreForelder) {
             return {
