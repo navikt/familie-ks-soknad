@@ -1,5 +1,7 @@
 import React from 'react';
 
+import styled from 'styled-components';
+
 import { SkjemaGruppe } from 'nav-frontend-skjema';
 
 import { Alert } from '@navikt/ds-react';
@@ -40,6 +42,10 @@ export interface IUseBarnehageplassSkjemaParams {
 interface Props extends ReturnType<typeof useModal>, IUseBarnehageplassSkjemaParams {
     onLeggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
 }
+
+const StyledAlert = styled(Alert)`
+    margin-top: 1rem;
+`;
 
 export const BarnehageplassPeriodeModal: React.FC<Props> = ({
     erÅpen,
@@ -179,12 +185,12 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                             label={
                                 <TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />
                             }
-                            bredde={'S'}
+                            htmlSize={15}
                         />
 
-                        <Alert variant={'info'} inline>
+                        <StyledAlert variant={'info'} inline>
                             {plainTekst(barnehageplassTekster.antallTimer.alert)}
-                        </Alert>
+                        </StyledAlert>
                     </SkjemaGruppe>
                 )}
                 {startetIBarnehagen.erSynlig && (
