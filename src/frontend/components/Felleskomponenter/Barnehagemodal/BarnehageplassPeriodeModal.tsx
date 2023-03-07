@@ -137,7 +137,6 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                         }
                         skjema={skjema}
                         placeholder={plainTekst(barnehageplassTekster.valgalternativPlaceholder)}
-                        bredde={'fullbredde'}
                     >
                         {Object.keys(EBarnehageplassPeriodeBeskrivelse).map(
                             (beskrivelse, number) => (
