@@ -63,13 +63,6 @@ export const genererInitiellAndreForelder = (
                 ? OmBarnetSpørsmålsId.andreForelderPensjonUtlandEnke
                 : OmBarnetSpørsmålsId.andreForelderPensjonUtland,
         },
-        skriftligAvtaleOmDeltBosted: {
-            id: OmBarnetSpørsmålsId.skriftligAvtaleOmDeltBosted,
-            svar:
-                andreForelder && !andreForelderErDød
-                    ? andreForelder.skriftligAvtaleOmDeltBosted.svar
-                    : null,
-        },
         arbeidNorge: {
             svar: andreForelder?.arbeidNorge.svar ?? null,
             id: andreForelderErDød
@@ -233,6 +226,14 @@ export const genererInitialBarnMedISøknad = (barn: IBarn): IBarnMedISøknad => 
         [barnDataKeySpørsmål.adresse]: {
             id: EøsBarnSpørsmålId.barnetsAdresse,
             svar: '',
+        },
+        [barnDataKeySpørsmål.foreldreBorSammen]: {
+            id: EøsBarnSpørsmålId.foreldreBorSammen,
+            svar: null,
+        },
+        [barnDataKeySpørsmål.søkerDeltKontantstøtte]: {
+            id: EøsBarnSpørsmålId.søkerDeltKontantstøtte,
+            svar: null,
         },
     };
 };

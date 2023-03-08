@@ -35,7 +35,6 @@ export const andreForelderTilISøknadsfelt = (
         arbeidNorge,
         andreUtbetalinger,
         kontantstøtteFraEøs,
-        skriftligAvtaleOmDeltBosted,
         arbeidsperioderUtland,
         pensjonsperioderUtland,
         arbeidsperioderNorge,
@@ -152,11 +151,6 @@ export const andreForelderTilISøknadsfelt = (
                 ? eøsTekster.ytelseFraAnnetLandAndreForelderGjenlevende.sporsmal
                 : eøsTekster.ytelseFraAnnetLandAndreForelder.sporsmal,
             kontantstøtteFraEøs.svar,
-            flettefelter
-        ),
-        skriftligAvtaleOmDeltBosted: nullableSøknadsfeltForESvar(
-            omBarnetTekster.deltBosted.sporsmal,
-            skriftligAvtaleOmDeltBosted.svar,
             flettefelter
         ),
         adresse: adresse.svar

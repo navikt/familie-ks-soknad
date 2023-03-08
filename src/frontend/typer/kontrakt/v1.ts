@@ -94,6 +94,8 @@ export interface ISøknadIKontraktBarn {
 
     // Om barnet
     [barnDataKeySpørsmål.borFastMedSøker]: ISøknadsfelt<ESvar>;
+    [barnDataKeySpørsmål.foreldreBorSammen]: ISøknadsfelt<ESvar> | null;
+    [barnDataKeySpørsmål.søkerDeltKontantstøtte]: ISøknadsfelt<ESvar> | null;
     andreForelder: IAndreForelderIKontraktFormat | null;
     utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
 
@@ -137,7 +139,6 @@ export interface IAndreForelderIKontraktFormat {
     yrkesaktivFemÅr: ISøknadsfelt<ESvar> | null;
     pensjonUtland: ISøknadsfelt<ESvar> | null;
     arbeidUtlandet: ISøknadsfelt<ESvar> | null;
-    skriftligAvtaleOmDeltBosted: ISøknadsfelt<ESvar> | null;
 
     //EØS
     pensjonNorge: ISøknadsfelt<ESvar> | null;
