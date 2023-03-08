@@ -248,10 +248,6 @@ export const testdata4: TilKontraktTestData = {
                         svar: null,
                         id: 'andre-forelder-pensjon-utland',
                     },
-                    skriftligAvtaleOmDeltBosted: {
-                        id: 'skriftlig-avtale-om-delt-bosted',
-                        svar: 'JA',
-                    },
                 },
                 triggetEøs: true,
                 sammeForelderSomAnnetBarnMedId: {
@@ -1837,14 +1833,6 @@ export const testdata4: TilKontraktTestData = {
                             nn: 'Får eller har Barn Barnessen III sin andre forelder fått barnetrygd frå eit anna EU/EØS-land?',
                         },
                         verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
-                    },
-                    skriftligAvtaleOmDeltBosted: {
-                        label: {
-                            en: 'Do you and the other parent have a written agreement on dual residence for Barn Barnessen III?',
-                            nb: 'Har du og den andre forelderen skriftlig avtale om delt bosted for Barn Barnessen III?',
-                            nn: 'Har du og den andre forelderen skriftleg avtale om delt bustad for Barn Barnessen III?',
-                        },
-                        verdi: { nb: 'JA', nn: 'JA', en: 'JA' },
                     },
                     adresse: {
                         label: {

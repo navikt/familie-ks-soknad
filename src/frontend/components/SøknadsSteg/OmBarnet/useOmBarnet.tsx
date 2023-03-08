@@ -92,6 +92,7 @@ export const useOmBarnet = (
     }
 
     const andreForelder = gjeldendeBarn.andreForelder;
+    const andreForelderErDød = gjeldendeBarn.andreForelderErDød.svar === ESvar.JA;
 
     const skalFeltetVises = (
         søknadsdataFelt: Exclude<
@@ -322,10 +323,9 @@ export const useOmBarnet = (
 
     const andreForelderArbeidUtlandet = useJaNeiSpmFelt({
         søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.arbeidUtlandet],
-        feilmelding:
-            gjeldendeBarn.andreForelderErDød.svar === ESvar.JA
-                ? teksterForSteg.arbeidUtenforNorgeAndreForelderGjenlevende.feilmelding
-                : teksterForSteg.arbeidUtenforNorgeAndreForelder.feilmelding,
+        feilmelding: andreForelderErDød
+            ? teksterForSteg.arbeidUtenforNorgeAndreForelderGjenlevende.feilmelding
+            : teksterForSteg.arbeidUtenforNorgeAndreForelder.feilmelding,
         avhengigheter: {
             andreForelderNavn: {
                 hovedSpørsmål: andreForelderNavn,
@@ -357,9 +357,7 @@ export const useOmBarnet = (
                       }
                     : undefined,
         },
-        skalSkjules:
-            andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA ||
-            gjeldendeBarn.andreForelderErDød.svar === ESvar.JA,
+        skalSkjules: andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA || andreForelderErDød,
     });
 
     const {
@@ -389,10 +387,9 @@ export const useOmBarnet = (
 
     const andreForelderPensjonUtland = useJaNeiSpmFelt({
         søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.pensjonUtland],
-        feilmelding:
-            gjeldendeBarn.andreForelderErDød.svar === ESvar.JA
-                ? teksterForSteg.pensjonUtlandAndreForelderGjenlevende.feilmelding
-                : teksterForSteg.pensjonUtlandAndreForelder.feilmelding,
+        feilmelding: andreForelderErDød
+            ? teksterForSteg.pensjonUtlandAndreForelderGjenlevende.feilmelding
+            : teksterForSteg.pensjonUtlandAndreForelder.feilmelding,
         avhengigheter: {
             andreForelderNavn: {
                 hovedSpørsmål: andreForelderNavn,
@@ -442,13 +439,21 @@ export const useOmBarnet = (
         flettefelter: { barnetsNavn: gjeldendeBarn.navn },
     });
 
-    const skriftligAvtaleOmDeltBosted = useJaNeiSpmFelt({
-        søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.skriftligAvtaleOmDeltBosted],
-        feilmelding: teksterForSteg.deltBosted.feilmelding,
-        skalSkjules:
-            !andreForelder ||
-            gjeldendeBarn[barnDataKeySpørsmål.andreForelderErDød].svar === ESvar.JA,
+    const foreldreBorSammen = useJaNeiSpmFelt({
+        søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.foreldreBorSammen],
+        feilmelding: teksterForSteg.borForeldreSammen.feilmelding,
         flettefelter: { barnetsNavn: gjeldendeBarn.navn },
+        skalSkjules: andreForelderErDød || borFastMedSøker.verdi !== ESvar.JA,
+    });
+
+    const søkerDeltKontantstøtte = useJaNeiSpmFelt({
+        søknadsfelt: gjeldendeBarn[barnDataKeySpørsmål.søkerDeltKontantstøtte],
+        feilmelding: teksterForSteg.soekerDeltKontantstoette.feilmelding,
+        flettefelter: { barnetsNavn: gjeldendeBarn.navn },
+        skalSkjules:
+            andreForelderErDød ||
+            !foreldreBorSammen.erSynlig ||
+            foreldreBorSammen.verdi !== ESvar.NEI,
     });
 
     const { kanSendeSkjema, skjema, valideringErOk, validerAlleSynligeFelter } = useSkjema<
@@ -476,7 +481,8 @@ export const useOmBarnet = (
             andreForelderPensjonUtland,
             andreForelderPensjonsperioderUtland,
             borFastMedSøker,
-            skriftligAvtaleOmDeltBosted,
+            foreldreBorSammen,
+            søkerDeltKontantstøtte,
             sammeForelderSomAnnetBarn,
         },
         skjemanavn: `om-barnet-${gjeldendeBarn.id}`,
@@ -540,15 +546,10 @@ export const useOmBarnet = (
 
     const genererOppdatertAndreForelder = (andreForelder: IAndreForelder): IAndreForelder => {
         const barnMedSammeForelder = annetBarnMedSammeForelder();
-        const andreForelderErDød = gjeldendeBarn.andreForelderErDød.svar === ESvar.JA;
 
         if (barnMedSammeForelder?.andreForelder) {
             return {
                 ...barnMedSammeForelder.andreForelder,
-                skriftligAvtaleOmDeltBosted: {
-                    ...andreForelder.skriftligAvtaleOmDeltBosted,
-                    svar: skriftligAvtaleOmDeltBosted.verdi,
-                },
             };
         } else if (andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA) {
             return {
@@ -556,10 +557,6 @@ export const useOmBarnet = (
                 kanIkkeGiOpplysninger: {
                     ...andreForelder[andreForelderDataKeySpørsmål.kanIkkeGiOpplysninger],
                     svar: ESvar.JA,
-                },
-                skriftligAvtaleOmDeltBosted: {
-                    ...andreForelder.skriftligAvtaleOmDeltBosted,
-                    svar: skriftligAvtaleOmDeltBosted.verdi,
                 },
             };
         } else {
@@ -605,10 +602,6 @@ export const useOmBarnet = (
                     andreForelderPensjonUtland.verdi === ESvar.JA
                         ? andreForelderPensjonsperioderUtland.verdi
                         : [],
-                skriftligAvtaleOmDeltBosted: {
-                    ...andreForelder.skriftligAvtaleOmDeltBosted,
-                    svar: skriftligAvtaleOmDeltBosted.verdi,
-                },
             };
         }
     };
@@ -653,7 +646,7 @@ export const useOmBarnet = (
             planleggerÅBoINorge12Mnd: {
                 ...barn.planleggerÅBoINorge12Mnd,
                 svar: !flyttetPermanentFraNorge(utenlandsperioder)
-                    ? skjema.felter.planleggerÅBoINorge12Mnd.verdi
+                    ? planleggerÅBoINorge12Mnd.verdi
                     : null,
             },
             pågåendeSøknadFraAnnetEøsLand: {
@@ -678,6 +671,14 @@ export const useOmBarnet = (
             borFastMedSøker: {
                 ...barn.borFastMedSøker,
                 svar: borFastMedSøker.verdi,
+            },
+            foreldreBorSammen: {
+                ...barn.foreldreBorSammen,
+                svar: foreldreBorSammen.erSynlig ? foreldreBorSammen.verdi : null,
+            },
+            søkerDeltKontantstøtte: {
+                ...barn.søkerDeltKontantstøtte,
+                svar: søkerDeltKontantstøtte.erSynlig ? søkerDeltKontantstøtte.verdi : null,
             },
             borMedOmsorgsperson,
             omsorgsperson: borMedOmsorgsperson.svar === ESvar.JA ? barn.omsorgsperson : null,
@@ -762,7 +763,8 @@ export const useOmBarnet = (
                     case Dokumentasjonsbehov.AVTALE_DELT_BOSTED:
                         return genererOppdatertDokumentasjon(
                             dok,
-                            skriftligAvtaleOmDeltBosted.verdi === ESvar.JA && !!andreForelder,
+                            søkerDeltKontantstøtte.erSynlig &&
+                                søkerDeltKontantstøtte.verdi === ESvar.JA,
                             gjeldendeBarn.id
                         );
                     case Dokumentasjonsbehov.BOR_FAST_MED_SØKER:

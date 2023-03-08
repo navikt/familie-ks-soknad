@@ -25,7 +25,6 @@ export enum andreForelderDataKeySpørsmål {
 
     arbeidUtlandet = 'arbeidUtlandet',
     pensjonUtland = 'pensjonUtland',
-    skriftligAvtaleOmDeltBosted = 'skriftligAvtaleOmDeltBosted',
     adresse = 'adresse',
 
     // EØS
@@ -58,6 +57,8 @@ export enum barnDataKeySpørsmål {
     borMedAndreForelder = 'borMedAndreForelder',
     borMedOmsorgsperson = 'borMedOmsorgsperson',
     adresse = 'adresse',
+    søkerDeltKontantstøtte = 'søkerDeltKontantstøtte',
+    foreldreBorSammen = 'foreldreBorSammen',
 }
 
 export interface IAndreForelder {
@@ -70,7 +71,6 @@ export interface IAndreForelder {
     [andreForelderDataKeySpørsmål.yrkesaktivFemÅr]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.arbeidUtlandet]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.pensjonUtland]: ISøknadSpørsmål<ESvar | null>;
-    [andreForelderDataKeySpørsmål.skriftligAvtaleOmDeltBosted]: ISøknadSpørsmål<ESvar | null>;
 
     //EØS
     arbeidsperioderNorge: IArbeidsperiode[];
@@ -120,6 +120,8 @@ export interface IBarnMedISøknad extends IBarn {
     [barnDataKeySpørsmål.borMedAndreForelder]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.borMedOmsorgsperson]: ISøknadSpørsmål<ESvar | null>;
     [barnDataKeySpørsmål.adresse]: ISøknadSpørsmål<string | AlternativtSvarForInput.UKJENT>;
+    [barnDataKeySpørsmål.foreldreBorSammen]: ISøknadSpørsmål<ESvar | null>;
+    [barnDataKeySpørsmål.søkerDeltKontantstøtte]: ISøknadSpørsmål<ESvar | null>;
 }
 
 export const muligeSlektsforhold: Slektsforhold[] = [
