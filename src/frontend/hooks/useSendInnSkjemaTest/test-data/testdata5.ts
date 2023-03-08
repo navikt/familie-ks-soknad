@@ -61,10 +61,6 @@ export const testdata5: TilKontraktTestData = {
                         svar: 'VET_IKKE',
                         id: 'andre-forelder-pensjon-utland',
                     },
-                    skriftligAvtaleOmDeltBosted: {
-                        id: 'skriftlig-avtale-om-delt-bosted',
-                        svar: 'NEI',
-                    },
                     adresse: {
                         svar: 'Heisannveien 14',
                         id: 'andre-forelder-adresse',
@@ -240,10 +236,6 @@ export const testdata5: TilKontraktTestData = {
                     pensjonUtland: {
                         svar: 'VET_IKKE',
                         id: 'andre-forelder-pensjon-utland',
-                    },
-                    skriftligAvtaleOmDeltBosted: {
-                        id: 'skriftlig-avtale-om-delt-bosted',
-                        svar: 'NEI',
                     },
                     adresse: {
                         svar: 'Heisannveien 14',
@@ -857,14 +849,6 @@ export const testdata5: TilKontraktTestData = {
                         },
                         verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
                     },
-                    skriftligAvtaleOmDeltBosted: {
-                        label: {
-                            en: 'Do you and the other parent have a written agreement on dual residence for Barn 234567 89876?',
-                            nb: 'Har du og den andre forelderen skriftlig avtale om delt bosted for Barn 234567 89876?',
-                            nn: 'Har du og den andre forelderen skriftleg avtale om delt bustad for Barn 234567 89876?',
-                        },
-                        verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
-                    },
                     adresse: {
                         label: {
                             en: "Where is Barn 234567 89876's other parent living during the period for which you are applying for child benefit?",
@@ -1254,14 +1238,6 @@ export const testdata5: TilKontraktTestData = {
                             en: "Is Barn Barnessen III's other parent receiving or have they received child benefit from another EEA country?",
                             nb: 'Får eller har Barn Barnessen III sin andre forelder fått barnetrygd fra et annet EU/EØS land?',
                             nn: 'Får eller har Barn Barnessen III sin andre forelder fått barnetrygd frå eit anna EU/EØS-land?',
-                        },
-                        verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
-                    },
-                    skriftligAvtaleOmDeltBosted: {
-                        label: {
-                            en: 'Do you and the other parent have a written agreement on dual residence for Barn Barnessen III?',
-                            nb: 'Har du og den andre forelderen skriftlig avtale om delt bosted for Barn Barnessen III?',
-                            nn: 'Har du og den andre forelderen skriftleg avtale om delt bustad for Barn Barnessen III?',
                         },
                         verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
                     },

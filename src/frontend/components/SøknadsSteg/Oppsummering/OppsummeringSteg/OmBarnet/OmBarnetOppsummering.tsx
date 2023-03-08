@@ -5,11 +5,7 @@ import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../../../context/AppContext';
 import { useSteg } from '../../../../../context/StegContext';
-import {
-    andreForelderDataKeySpørsmål,
-    barnDataKeySpørsmål,
-    IBarnMedISøknad,
-} from '../../../../../typer/barn';
+import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../../typer/barn';
 import { FlettefeltVerdier } from '../../../../../typer/kontrakt/generelle';
 import { PersonType } from '../../../../../typer/personType';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
@@ -155,16 +151,18 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
                     flettefelter={flettefelter}
                     søknadsvar={barn[barnDataKeySpørsmål.borFastMedSøker].svar}
                 />
-                {barn.andreForelder?.[andreForelderDataKeySpørsmål.skriftligAvtaleOmDeltBosted]
-                    .svar && (
+                {barn[barnDataKeySpørsmål.foreldreBorSammen].svar && (
                     <OppsummeringFelt
-                        spørsmålstekst={omBarnetTekster.deltBosted.sporsmal}
+                        spørsmålstekst={omBarnetTekster.borForeldreSammen.sporsmal}
                         flettefelter={flettefelter}
-                        søknadsvar={
-                            barn.andreForelder[
-                                andreForelderDataKeySpørsmål.skriftligAvtaleOmDeltBosted
-                            ].svar
-                        }
+                        søknadsvar={barn[barnDataKeySpørsmål.foreldreBorSammen].svar}
+                    />
+                )}
+                {barn[barnDataKeySpørsmål.søkerDeltKontantstøtte].svar && (
+                    <OppsummeringFelt
+                        spørsmålstekst={omBarnetTekster.soekerDeltKontantstoette.sporsmal}
+                        flettefelter={flettefelter}
+                        søknadsvar={barn[barnDataKeySpørsmål.søkerDeltKontantstøtte].svar}
                     />
                 )}
             </StyledOppsummeringsFeltGruppe>

@@ -4,7 +4,6 @@ import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 export interface IOmBarnetTekstinnhold {
     omBarnetTittel: LocaleRecordBlock;
     borBarnFastSammenMedDeg: ISanitySpørsmålDokument;
-    deltBosted: ISanitySpørsmålDokument;
     paagaaendeSoeknadYtelse: ISanitySpørsmålDokument;
     hvilketLandYtelse: ISanitySpørsmålDokument;
     planlagtBoSammenhengendeINorge: ISanitySpørsmålDokument;
@@ -37,4 +36,6 @@ export interface IOmBarnetTekstinnhold {
     pensjonUtlandAndreForelder: ISanitySpørsmålDokument;
     pensjonUtlandAndreForelderGjenlevende: ISanitySpørsmålDokument;
     medlemAvFolktetrygdenAndreForelder: ISanitySpørsmålDokument;
+    borForeldreSammen: ISanitySpørsmålDokument;
+    soekerDeltKontantstoette: ISanitySpørsmålDokument;
 }
