@@ -34,4 +34,6 @@ export enum EøsBarnSpørsmålId {
     idNummerAndreForelder = 'id-nummer-andre-forelder',
     barnetsAdresse = 'barnets-adresse',
     barnetsAdresseVetIkke = 'barnets-adresse-vet-ikke',
+    foreldreBorSammen = 'foreldre-bor-sammen',
+    søkerDeltKontantstøtte = 'søker-delt-kontantstøtte',
 }
