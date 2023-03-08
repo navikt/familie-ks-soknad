@@ -35,9 +35,9 @@ const Miljø = (): MiljøProps => {
     if (erDev()) {
         return {
             sanityDataset: 'production',
-            soknadApiProxyUrl: `https://familie-ks-soknad.dev.nav.no${basePath}api`,
+            soknadApiProxyUrl: `https://familie-ks-soknad.intern.dev.nav.no${basePath}api`,
             soknadApiUrl: `http://familie-baks-soknad-api/api`,
-            dokumentProxyUrl: `https://familie-ks-soknad.dev.nav.no${basePath}dokument`,
+            dokumentProxyUrl: `https://familie-ks-soknad.intern.dev.nav.no${basePath}dokument`,
             dokumentUrl: 'http://familie-dokument/familie/dokument/api', //Vil uansett gå til bucket "familievedlegg" enn så lenge
             modellVersjon: modellVersjon,
             wonderwallUrl:
