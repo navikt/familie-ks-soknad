@@ -204,7 +204,7 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                     ekskluderNorge
                     label={
                         <TekstBlock
-                            block={eøsForBarnTekster.hvilketLandSoektYtelseAndreForelder.sporsmal}
+                            block={eøsForBarnTekster.hvilketLandSoektYtelseOmsorgsperson.sporsmal}
                             flettefelter={flettefelter}
                         />
                     }
