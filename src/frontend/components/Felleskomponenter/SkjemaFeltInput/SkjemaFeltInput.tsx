@@ -1,16 +1,14 @@
 import React, { ReactNode } from 'react';
 
-import { Input, InputProps } from 'nav-frontend-skjema';
-
+import { TextField, TextFieldProps } from '@navikt/ds-react';
 import { Felt } from '@navikt/familie-skjema';
 
-interface SkjemaFeltInputProps extends InputProps {
+interface SkjemaFeltInputProps extends TextFieldProps {
     // eslint-disable-next-line
     felt: Felt<any>;
     visFeilmeldinger: boolean;
     label: ReactNode;
     tilleggsinfo?: ReactNode;
-    bredde?: 'fullbredde' | 'XXL' | 'XL' | 'L' | 'M' | 'S' | 'XS' | 'XXS';
 }
 
 /**
@@ -22,23 +20,19 @@ export const SkjemaFeltInput: React.FC<SkjemaFeltInputProps> = props => {
         label,
         visFeilmeldinger,
         tilleggsinfo,
-        bredde,
         autoComplete = 'off',
-        ...øvrigePropsStøttetAvNavInput
+        ...øvrigePropsStøttetAvTextField
     } = props;
     const navInputPropsFraFeltHook = felt.hentNavInputProps(visFeilmeldinger);
 
     return felt.erSynlig ? (
-        <div>
-            <Input
-                autoComplete={autoComplete}
-                label={label}
-                description={tilleggsinfo}
-                {...navInputPropsFraFeltHook}
-                {...øvrigePropsStøttetAvNavInput}
-                maxLength={500}
-                bredde={bredde}
-            />
-        </div>
+        <TextField
+            autoComplete={autoComplete}
+            label={label}
+            description={tilleggsinfo}
+            {...navInputPropsFraFeltHook}
+            {...øvrigePropsStøttetAvTextField}
+            maxLength={500}
+        />
     ) : null;
 };
