@@ -175,7 +175,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     />
                 )}
                 {antallTimer.erSynlig && (
-                    <KomponentGruppe inlinec>
+                    <KomponentGruppe inline>
                         <SkjemaFeltInput
                             felt={antallTimer}
                             visFeilmeldinger={skjema.visFeilmeldinger}
