@@ -2,8 +2,6 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { SkjemaGruppe } from 'nav-frontend-skjema';
-
 import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
@@ -177,7 +175,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     />
                 )}
                 {antallTimer.erSynlig && (
-                    <SkjemaGruppe>
+                    <KomponentGruppe inlinec>
                         <SkjemaFeltInput
                             felt={antallTimer}
                             visFeilmeldinger={skjema.visFeilmeldinger}
@@ -190,7 +188,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                         <StyledAlert variant={'info'} inline>
                             {plainTekst(barnehageplassTekster.antallTimer.alert)}
                         </StyledAlert>
-                    </SkjemaGruppe>
+                    </KomponentGruppe>
                 )}
                 {startetIBarnehagen.erSynlig && (
                     <Datovelger
