@@ -1,10 +1,9 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
-import Stegindikator from 'nav-frontend-stegindikator';
-
+import { Stepper } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
@@ -58,7 +57,19 @@ const Form = styled.form`
 
 const StegindikatorContainer = styled.div`
     margin: 0 1rem;
+    text-align: center;
 `;
+
+const StyledStepper = styled(Stepper)`
+    display: inline-flex;
+    --navds-stepper-circle-size: 2.125rem;
+    --navds-stepper-border-width: 1px;
+    > li {
+        gap: 0;
+    }
+`;
+
+const StyledStepperStep = styled(Stepper.Step)``;
 
 const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) => {
     const history = useHistory();
@@ -77,9 +88,10 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
         hentNåværendeStegIndex,
         stegIndikatorObjekter,
         erPåKvitteringsside,
-        hentNåværendeStegindikatorNummer,
     } = useSteg();
     const { komFra, settKomFra } = useAppNavigation();
+
+    const [aktivtSteg, settAktivtSteg] = useState(hentNåværendeStegIndex());
 
     const nesteRoute = hentNesteSteg();
     const forrigeRoute = hentForrigeSteg();
@@ -144,12 +156,22 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
                 <Banner />
                 {nyesteNåværendeRoute !== RouteEnum.Kvittering && (
                     <StegindikatorContainer>
-                        <Stegindikator
-                            autoResponsiv={true}
-                            aktivtSteg={hentNåværendeStegindikatorNummer()}
-                            steg={stegIndikatorObjekter}
-                            visLabel={false}
-                        />
+                        <StyledStepper
+                            aria-labelledby="Søknadssteg"
+                            activeStep={aktivtSteg}
+                            onStepChange={x => settAktivtSteg(x)}
+                            orientation="horizontal"
+                            interactive={false}
+                        >
+                            {stegIndikatorObjekter.map(value => (
+                                <StyledStepperStep
+                                    href="#"
+                                    children={''}
+                                    title={value.label}
+                                    key={value.key}
+                                />
+                            ))}
+                        </StyledStepper>
                     </StegindikatorContainer>
                 )}
             </header>

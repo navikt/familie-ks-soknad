@@ -213,8 +213,6 @@
     "lint-staged": "^10.5.3",
     "lodash.throttle": "^4.1.1",
     "mini-css-extract-plugin": "^2.4.1",
-    "nav-frontend-stegindikator": "^2.0.1",
-    "nav-frontend-stegindikator-style": "^2.0.1",
     "nodemon": "^2.0.18",
     "prettier": "^2.6.2",
     "prop-types": "^15.7.2",
