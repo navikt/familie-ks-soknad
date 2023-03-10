@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -91,8 +91,6 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
     } = useSteg();
     const { komFra, settKomFra } = useAppNavigation();
 
-    const [aktivtSteg, settAktivtSteg] = useState(hentNåværendeStegIndex());
-
     const nesteRoute = hentNesteSteg();
     const forrigeRoute = hentForrigeSteg();
     const nåværendeStegIndex = hentNåværendeStegIndex();
@@ -158,8 +156,7 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
                     <StegindikatorContainer>
                         <StyledStepper
                             aria-labelledby="Søknadssteg"
-                            activeStep={aktivtSteg}
-                            onStepChange={x => settAktivtSteg(x)}
+                            activeStep={hentNåværendeStegIndex()}
                             orientation="horizontal"
                             interactive={false}
                         >
