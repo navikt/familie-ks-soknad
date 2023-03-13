@@ -100,7 +100,7 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
         hentForrigeSteg,
         hentNåværendeSteg,
         hentNåværendeStegIndex,
-        stegIndikatorObjekter,
+        stepperObjekter,
         erPåKvitteringsside,
     } = useSteg();
     const { komFra, settKomFra } = useAppNavigation();
@@ -167,14 +167,14 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
             <header>
                 <Banner />
                 {nyesteNåværendeRoute !== RouteEnum.Kvittering && (
-                    <StepperContainer antallSteg={stegIndikatorObjekter.length}>
+                    <StepperContainer antallSteg={stepperObjekter.length}>
                         <Stepper
                             aria-label={'Søknadssteg'}
                             activeStep={hentNåværendeStegIndex()}
                             orientation={'horizontal'}
                             interactive={false}
                         >
-                            {stegIndikatorObjekter.map((value, index) => (
+                            {stepperObjekter.map((value, index) => (
                                 <Stepper.Step
                                     children={''}
                                     title={value.label}

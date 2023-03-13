@@ -9,7 +9,7 @@ import { useApp } from './AppContext';
 import { useEøs } from './EøsContext';
 import { useRoutes } from './RoutesContext';
 
-interface StegindikatorStegProps {
+interface StepperStegProps {
     label: string;
     index: number;
     key: number;
@@ -71,7 +71,7 @@ const [StegProvider, useSteg] = createUseContext(() => {
         })
         .flat();
 
-    const stegIndikatorObjekter: StegindikatorStegProps[] = steg
+    const stepperObjekter: StepperStegProps[] = steg
         .filter(steg => steg.route !== RouteEnum.Forside)
         .map((steg, index) => ({
             label: steg.label,
@@ -126,15 +126,11 @@ const [StegProvider, useSteg] = createUseContext(() => {
         );
     };
 
-    const hentNåværendeStegindikatorNummer = (): number => {
-        return Math.max(steg.findIndex(steg => steg === hentNåværendeSteg()) - 1, 0);
-    };
-
     const erPåKvitteringsside = () => hentNåværendeSteg().route === RouteEnum.Kvittering;
 
     return {
         steg,
-        stegIndikatorObjekter,
+        stepperObjekter,
         hentStegNummer,
         hentStegObjektForBarn,
         hentNesteSteg,
@@ -143,7 +139,6 @@ const [StegProvider, useSteg] = createUseContext(() => {
         hentNåværendeStegIndex,
         erPåKvitteringsside,
         settBarnForSteg,
-        hentNåværendeStegindikatorNummer,
         hentStegObjektForBarnEøs,
     };
 });
