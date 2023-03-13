@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect } from 'react';
 
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Stepper } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
@@ -10,6 +10,7 @@ import { useApp } from '../../../context/AppContext';
 import { useAppNavigation } from '../../../context/AppNavigationContext';
 import { useSteg } from '../../../context/StegContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
+import { device } from '../../../Theme';
 import { RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import {
@@ -55,21 +56,34 @@ const Form = styled.form`
     width: 100%;
 `;
 
-const StegindikatorContainer = styled.div`
-    margin: 0 1rem;
-    text-align: center;
-`;
-
-const StyledStepper = styled(Stepper)`
-    display: inline-flex;
-    --navds-stepper-circle-size: 2.125rem;
-    --navds-stepper-border-width: 1px;
-    > li {
-        gap: 0;
+const kompaktStepper = () => css`
+    * {
+        font-size: 0;
+        --navds-stepper-circle-size: 0.75rem;
+        --navds-stepper-border-width: 1px;
+        > li {
+            gap: 0;
+        }
     }
 `;
 
-const StyledStepperStep = styled(Stepper.Step)``;
+const StepperContainer = styled.div<{ antallSteg: number }>`
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  
+    @media all and ${device.mobile} {
+       ${kompaktStepper};
+    }
+
+  ${props =>
+      props.antallSteg > 12 &&
+      css`
+          @media all and ${device.tablet} {
+              ${kompaktStepper};
+          }
+      `}
+}`;
 
 const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) => {
     const history = useHistory();
@@ -153,23 +167,23 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
             <header>
                 <Banner />
                 {nyesteNåværendeRoute !== RouteEnum.Kvittering && (
-                    <StegindikatorContainer>
-                        <StyledStepper
-                            aria-labelledby="Søknadssteg"
+                    <StepperContainer antallSteg={stegIndikatorObjekter.length}>
+                        <Stepper
+                            aria-label={'Søknadssteg'}
                             activeStep={hentNåværendeStegIndex()}
-                            orientation="horizontal"
+                            orientation={'horizontal'}
                             interactive={false}
                         >
-                            {stegIndikatorObjekter.map(value => (
-                                <StyledStepperStep
-                                    href="#"
+                            {stegIndikatorObjekter.map((value, index) => (
+                                <Stepper.Step
                                     children={''}
                                     title={value.label}
                                     key={value.key}
+                                    completed={index + 1 < hentNåværendeStegIndex()}
                                 />
                             ))}
-                        </StyledStepper>
-                    </StegindikatorContainer>
+                        </Stepper>
+                    </StepperContainer>
                 )}
             </header>
             <InnholdContainer>
