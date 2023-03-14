@@ -4,8 +4,10 @@ import { BodyShort, Heading } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
+import { useEøs } from '../../../context/EøsContext';
 import { BarnetsId, Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
+import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import Steg from '../../Felleskomponenter/Steg/Steg';
@@ -19,6 +21,7 @@ import { useOmBarnet } from './useOmBarnet';
 
 const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
     const { tekster, plainTekst } = useApp();
+    const { erEøsTrigget } = useEøs();
     const {
         skjema,
         validerFelterOgVisFeilmelding,
@@ -36,14 +39,28 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         fjernKontantstøttePeriode,
         leggTilBarnehageplassPeriode,
         fjernBarnehageplassPeriode,
+        harPeriodeMedGradertBarnehageplass,
     } = useOmBarnet(barnetsId);
 
     const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
 
-    const { omBarnetTittel, fastBosted, bosted, borBarnFastSammenMedDeg, deltBosted } =
-        teksterForSteg;
+    const {
+        omBarnetTittel,
+        bosted,
+        borBarnFastSammenMedDeg,
+        borForeldreSammen,
+        soekerDeltKontantstoette,
+    } = teksterForSteg;
 
     const barnetsNavn = barn?.navn;
+
+    const {
+        registrerteEøsKontantstøttePerioder,
+        registrerteBarnehageplassPerioder,
+        borFastMedSøker,
+        foreldreBorSammen,
+        søkerDeltKontantstøtte,
+    } = skjema.felter;
 
     return barn ? (
         <Steg
@@ -69,12 +86,10 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                 fjernUtenlandsperiode={fjernUtenlandsperiodeBarn}
                 leggTilKontantstøttePeriode={leggTilKontantstøttePeriode}
                 fjernKontantstøttePeriode={fjernKontantstøttePeriode}
-                registrerteEøsKontantstøttePerioder={
-                    skjema.felter.registrerteEøsKontantstøttePerioder
-                }
+                registrerteEøsKontantstøttePerioder={registrerteEøsKontantstøttePerioder}
                 leggTilBarnehageplassPeriode={leggTilBarnehageplassPeriode}
                 fjernBarnehageplassPeriode={fjernBarnehageplassPeriode}
-                registrerteBarnehageplassPerioder={skjema.felter.registrerteBarnehageplassPerioder}
+                registrerteBarnehageplassPerioder={registrerteBarnehageplassPerioder}
             />
             {barn.andreForelder && (
                 <AndreForelder
@@ -88,49 +103,66 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                 />
             )}
 
-            {skjema.felter.borFastMedSøker.erSynlig && (
-                <SkjemaFieldset
-                    tittel={
-                        <Heading size={'xsmall'} level={'2'} spacing>
-                            {plainTekst(bosted)}
-                        </Heading>
-                    }
-                    dynamisk
-                >
-                    {barn.andreForelderErDød?.svar !== ESvar.JA && (
-                        <TekstBlock block={fastBosted} typografi={Typografi.BodyLong} />
-                    )}
+            <SkjemaFieldset
+                tittel={
+                    <Heading size={'xsmall'} level={'2'} spacing>
+                        {plainTekst(bosted)}
+                    </Heading>
+                }
+                dynamisk
+            >
+                <JaNeiSpm
+                    skjema={skjema}
+                    felt={borFastMedSøker}
+                    spørsmålDokument={borBarnFastSammenMedDeg}
+                    flettefelter={{ barnetsNavn }}
+                />
+
+                {borFastMedSøker.verdi === ESvar.NEI && !erEøsTrigget() && (
+                    <AlertStripe variant={'warning'}>
+                        <TekstBlock block={borBarnFastSammenMedDeg.alert} />
+                    </AlertStripe>
+                )}
+
+                {borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker && (
+                    <VedleggNotis dynamisk>
+                        <BodyShort>{plainTekst(borBarnFastSammenMedDeg.vedleggsnotis)}</BodyShort>
+                    </VedleggNotis>
+                )}
+
+                <JaNeiSpm
+                    skjema={skjema}
+                    felt={foreldreBorSammen}
+                    spørsmålDokument={borForeldreSammen}
+                    flettefelter={{ barnetsNavn }}
+                />
+
+                <>
                     <JaNeiSpm
                         skjema={skjema}
-                        felt={skjema.felter.borFastMedSøker}
-                        spørsmålDokument={borBarnFastSammenMedDeg}
+                        felt={søkerDeltKontantstøtte}
+                        spørsmålDokument={soekerDeltKontantstoette}
                         flettefelter={{ barnetsNavn }}
+                        tilleggsinfo={
+                            harPeriodeMedGradertBarnehageplass ? (
+                                <AlertStripe variant={'info'}>
+                                    <TekstBlock
+                                        block={soekerDeltKontantstoette.alert}
+                                        typografi={Typografi.BodyShort}
+                                    />
+                                </AlertStripe>
+                            ) : undefined
+                        }
                     />
-                    {skjema.felter.borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker && (
+                    {søkerDeltKontantstøtte.erSynlig && søkerDeltKontantstøtte.verdi === ESvar.JA && (
                         <VedleggNotis dynamisk>
                             <BodyShort>
-                                {plainTekst(borBarnFastSammenMedDeg.vedleggsnotis)}
+                                {plainTekst(soekerDeltKontantstoette.vedleggsnotis)}
                             </BodyShort>
                         </VedleggNotis>
                     )}
-
-                    {skjema.felter.skriftligAvtaleOmDeltBosted.erSynlig && (
-                        <>
-                            <JaNeiSpm
-                                skjema={skjema}
-                                felt={skjema.felter.skriftligAvtaleOmDeltBosted}
-                                spørsmålDokument={deltBosted}
-                                flettefelter={{ barnetsNavn }}
-                            />
-                            {skjema.felter.skriftligAvtaleOmDeltBosted.verdi === ESvar.JA && (
-                                <VedleggNotis dynamisk>
-                                    <BodyShort>{plainTekst(deltBosted.vedleggsnotis)}</BodyShort>
-                                </VedleggNotis>
-                            )}
-                        </>
-                    )}
-                </SkjemaFieldset>
-            )}
+                </>
+            </SkjemaFieldset>
         </Steg>
     ) : null;
 };

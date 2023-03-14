@@ -7,12 +7,13 @@ import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IUtenlandsoppholdFeltTyper } from '../../../typer/skjema';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
-import { dagenEtterDato } from '../../../utils/dato';
+import { dagenEtterDato, stringTilDate } from '../../../utils/dato';
 import {
     harTilhørendeFomFelt,
     hentMaxAvgrensningPåFraDato,
@@ -30,7 +31,9 @@ export interface IUseUtenlandsoppholdSkjemaParams {
     personType: PersonType;
 }
 
-export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSkjemaParams) => {
+export const useUtenlandsoppholdSkjema = ({
+    personType,
+}: IUseUtenlandsoppholdSkjemaParams): IUsePeriodeSkjemaVerdi<IUtenlandsoppholdFeltTyper> => {
     const { tekster, plainTekst } = useApp();
     const teksterForPersontype: IUtenlandsoppholdTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
@@ -66,7 +69,6 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
         feilmelding: hentFraDatoFeilmelding(utenlandsoppholdÅrsak.verdi, teksterForPersontype),
         sluttdatoAvgrensning: hentMaxAvgrensningPåFraDato(utenlandsoppholdÅrsak.verdi),
         avhengigheter: { utenlandsoppholdÅrsak },
-        nullstillVedAvhengighetEndring: true,
     });
 
     const oppholdslandTilDatoUkjent = useFelt<ESvar>({
@@ -89,7 +91,7 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
             utenlandsoppholdÅrsak.verdi !== EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE,
         sluttdatoAvgrensning: hentMaxAvgrensningPåTilDato(utenlandsoppholdÅrsak.verdi),
         startdatoAvgrensning: harTilhørendeFomFelt(utenlandsoppholdÅrsak.verdi)
-            ? dagenEtterDato(oppholdslandFraDato.verdi)
+            ? dagenEtterDato(stringTilDate(oppholdslandFraDato.verdi))
             : hentMinAvgrensningPåTilDato(utenlandsoppholdÅrsak.verdi),
         customStartdatoFeilmelding: !harTilhørendeFomFelt(utenlandsoppholdÅrsak.verdi)
             ? utenlandsoppholdÅrsak.verdi === EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE
@@ -98,10 +100,10 @@ export const useUtenlandsoppholdSkjema = ({ personType }: IUseUtenlandsoppholdSk
                       tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaere12MndTilbake
                   )
             : undefined,
-        avhengigheter: { utenlandsoppholdÅrsak },
+        avhengigheter: { utenlandsoppholdÅrsak, oppholdslandFraDato },
     });
 
-    const skjema = useSkjema<IUtenlandsoppholdFeltTyper, 'string'>({
+    const skjema = useSkjema<IUtenlandsoppholdFeltTyper, string>({
         felter: {
             utenlandsoppholdÅrsak,
             oppholdsland,

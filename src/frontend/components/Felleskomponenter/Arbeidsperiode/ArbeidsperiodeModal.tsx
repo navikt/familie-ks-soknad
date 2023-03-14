@@ -55,6 +55,8 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
         fraDatoArbeidsperiode,
         tilDatoArbeidsperiode,
         tilDatoArbeidsperiodeUkjent,
+        adresse,
+        adresseUkjent,
     } = skjema.felter;
 
     const onLeggTil = () => {
@@ -86,6 +88,10 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                     ? svarForSpørsmålMedUkjent(tilDatoArbeidsperiodeUkjent, tilDatoArbeidsperiode)
                     : '',
             },
+            adresse: {
+                id: ArbeidsperiodeSpørsmålsId.adresse,
+                svar: adresse.erSynlig ? svarForSpørsmålMedUkjent(adresseUkjent, adresse) : '',
+            },
         });
 
         toggleModal();
@@ -95,6 +101,10 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
     const periodenErAvsluttet =
         arbeidsperiodeAvsluttet.verdi === ESvar.JA ||
         (personType === PersonType.andreForelder && erDød);
+
+    const adresseTekst = periodenErAvsluttet
+        ? teksterForModal.adresseFortid
+        : teksterForModal.adresseNaatid;
 
     return (
         <SkjemaModal
@@ -147,7 +157,6 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                         felt={skjema.felter.fraDatoArbeidsperiode}
                         skjema={skjema}
                         label={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
-                        calendarPosition={'fullscreen'}
                         avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
                     />
                 )}
@@ -171,7 +180,6 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                             )}
                             avgrensMaxDato={periodenErAvsluttet ? dagensDato() : undefined}
                             disabled={skjema.felter.tilDatoArbeidsperiodeUkjent.verdi === ESvar.JA}
-                            calendarPosition={'fullscreen'}
                         />
 
                         <SkjemaCheckbox
@@ -180,6 +188,20 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                         />
                     </>
                 )}
+                <>
+                    <SkjemaFeltInput
+                        felt={skjema.felter.adresse}
+                        visFeilmeldinger={skjema.visFeilmeldinger}
+                        label={plainTekst(adresseTekst.sporsmal)}
+                        disabled={skjema.felter.adresseUkjent.verdi === ESvar.JA}
+                        description={plainTekst(adresseTekst.beskrivelse)}
+                    />
+
+                    <SkjemaCheckbox
+                        felt={skjema.felter.adresseUkjent}
+                        label={plainTekst(adresseTekst.checkboxLabel)}
+                    />
+                </>
             </KomponentGruppe>
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>

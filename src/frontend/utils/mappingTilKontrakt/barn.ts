@@ -65,6 +65,8 @@ export const barnISøknadsFormat = (
         søkersSlektsforholdSpesifisering,
         borMedAndreForelder,
         borMedOmsorgsperson,
+        foreldreBorSammen,
+        søkerDeltKontantstøtte,
     } = barn;
     const fellesTekster = tekster.FELLES;
     const eøsTekster = tekster.EØS_FOR_BARN;
@@ -224,6 +226,16 @@ export const barnISøknadsFormat = (
         borFastMedSøker: søknadsfeltForESvar(
             omBarnetTekster.borBarnFastSammenMedDeg.sporsmal,
             borFastMedSøker.svar,
+            flettefelter
+        ),
+        foreldreBorSammen: nullableSøknadsfeltForESvar(
+            omBarnetTekster.borForeldreSammen.sporsmal,
+            foreldreBorSammen.svar,
+            flettefelter
+        ),
+        søkerDeltKontantstøtte: nullableSøknadsfeltForESvar(
+            omBarnetTekster.soekerDeltKontantstoette.sporsmal,
+            søkerDeltKontantstøtte.svar,
             flettefelter
         ),
         søkersSlektsforhold: søkersSlektsforhold.svar

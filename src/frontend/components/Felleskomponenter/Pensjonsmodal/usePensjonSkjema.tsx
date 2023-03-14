@@ -9,11 +9,12 @@ import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IPensjonsperiodeFeltTyper } from '../../../typer/skjema';
-import { dagenEtterDato, dagensDato, gårsdagensDato } from '../../../utils/dato';
+import { dagenEtterDato, dagensDato, gårsdagensDato, stringTilDate } from '../../../utils/dato';
 import { mottarPensjonNåFeilmelding } from './språkUtils';
 import { PensjonsperiodeSpørsmålId } from './spørsmål';
 
@@ -29,7 +30,7 @@ export const usePensjonSkjema = ({
     personType,
     erDød,
     barn,
-}: IUsePensjonSkjemaParams) => {
+}: IUsePensjonSkjemaParams): IUsePeriodeSkjemaVerdi<IPensjonsperiodeFeltTyper> => {
     const { tekster } = useApp();
     const { erEøsLand } = useEøs();
     const teksterForPersonType: IPensjonsperiodeTekstinnhold =
@@ -72,7 +73,6 @@ export const usePensjonSkjema = ({
         feilmelding: teksterForPersonType.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
         avhengigheter: { mottarPensjonNå },
-        nullstillVedAvhengighetEndring: true,
     });
 
     const pensjonTilDato = useDatovelgerFelt({
@@ -85,12 +85,11 @@ export const usePensjonSkjema = ({
             (!gjelderUtland || !!erEøsLand(pensjonsland.verdi)),
         feilmelding: teksterForPersonType.sluttdato.feilmelding,
         sluttdatoAvgrensning: dagensDato(),
-        startdatoAvgrensning: dagenEtterDato(pensjonFraDato.verdi),
+        startdatoAvgrensning: dagenEtterDato(stringTilDate(pensjonFraDato.verdi)),
         avhengigheter: { mottarPensjonNå, pensjonFraDato },
-        nullstillVedAvhengighetEndring: true,
     });
 
-    const skjema = useSkjema<IPensjonsperiodeFeltTyper, 'string'>({
+    const skjema = useSkjema<IPensjonsperiodeFeltTyper, string>({
         felter: {
             mottarPensjonNå,
             pensjonsland,

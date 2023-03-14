@@ -1,9 +1,8 @@
 import { PortableTextBlock } from '@portabletext/types';
 
-import { ESvar, ISODateString } from '@navikt/familie-form-elements';
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
-export type ESvarMedUbesvart = ESvar | null;
+export type ISODateString = string;
 
 export enum AlternativtSvarForInput {
     UKJENT = 'UKJENT',

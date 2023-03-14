@@ -9,6 +9,7 @@ import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjen
 import useInputFelt from '../../../hooks/useInputFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IFormateringsfeilmeldingerTekstinnhold } from '../../../typer/sanity/tekstInnhold';
@@ -19,12 +20,18 @@ import {
     erSammeDatoSomDagensDato,
     gårsdagensDato,
     morgendagensDato,
+    stringTilDate,
 } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 
-export const useBarnehageplassPeriodeSkjema = () => {
+interface UseBarnehageplassSkjemaVerdi
+    extends IUsePeriodeSkjemaVerdi<IBarnehageplassPerioderFeltTyper> {
+    slutterIBarnehagenMinDato: () => Date | undefined;
+}
+
+export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi => {
     const { tekster, plainTekst } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
@@ -106,7 +113,9 @@ export const useBarnehageplassPeriodeSkjema = () => {
                   EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
                 ? gårsdagensDato()
                 : undefined,
-        nullstillVedAvhengighetEndring: true,
+        customStartdatoFeilmelding: plainTekst(
+            formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
+        ),
     });
 
     const slutterIBarnehagenVetIkke = useFelt<ESvar>({
@@ -118,6 +127,22 @@ export const useBarnehageplassPeriodeSkjema = () => {
         avhengigheter: { barnehageplassPeriodeBeskrivelse },
     });
 
+    const slutterIBarnehagenMinDato = () => {
+        const startetIBarnehageDato =
+            startetIBarnehagen.verdi && stringTilDate(startetIBarnehagen.verdi);
+
+        switch (barnehageplassPeriodeBeskrivelse.verdi) {
+            case EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE:
+                return startetIBarnehageDato ? dagenEtterDato(startetIBarnehageDato) : undefined;
+            case EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ:
+                return morgendagensDato();
+            case EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN:
+                return startetIBarnehageDato
+                    ? dagenEtterDato(startetIBarnehageDato)
+                    : morgendagensDato();
+        }
+    };
+
     const slutterIBarnehagen = useDatovelgerFeltMedUkjent({
         feltId: BarnehageplassPeriodeSpørsmålId.slutterIBarnehagen,
         initiellVerdi: '',
@@ -127,17 +152,16 @@ export const useBarnehageplassPeriodeSkjema = () => {
             : barnehageplassTekster.sluttdatoFremtid.feilmelding,
         skalFeltetVises: !!barnehageplassPeriodeBeskrivelse.verdi,
         sluttdatoAvgrensning: periodenErAvsluttet ? dagensDato() : undefined,
-        startdatoAvgrensning:
-            barnehageplassPeriodeBeskrivelse.verdi ===
-            EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
-                ? morgendagensDato()
-                : dagenEtterDato(startetIBarnehagen.verdi),
-        customStartdatoFeilmelding: erSammeDatoSomDagensDato(startetIBarnehagen.verdi)
+        startdatoAvgrensning: slutterIBarnehagenMinDato(),
+        customStartdatoFeilmelding: erSammeDatoSomDagensDato(
+            stringTilDate(startetIBarnehagen.verdi)
+        )
             ? undefined
             : plainTekst(formateringsfeilmeldinger.periodeAvsluttesForTidlig),
+        avhengigheter: { startetIBarnehagen },
     });
 
-    const skjema = useSkjema<IBarnehageplassPerioderFeltTyper, 'string'>({
+    const skjema = useSkjema<IBarnehageplassPerioderFeltTyper, string>({
         felter: {
             barnehageplassPeriodeBeskrivelse,
             barnehageplassUtlandet,
@@ -155,5 +179,6 @@ export const useBarnehageplassPeriodeSkjema = () => {
     return {
         ...skjema,
         validerFelterOgVisFeilmelding: skjema.kanSendeSkjema,
+        slutterIBarnehagenMinDato,
     };
 };

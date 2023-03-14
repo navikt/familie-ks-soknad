@@ -6,7 +6,6 @@ import { Button } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useApp } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { useSteg } from '../../../context/StegContext';
 import { device } from '../../../Theme';
 import { RouteEnum } from '../../../typer/routes';
@@ -38,7 +37,7 @@ const StyledButton = styled(Button)<{
 }>`
     && {
         grid-area: ${props => props.gridarea};
-        min-width: 10rem;
+        min-width: 12.5rem;
         place-self: ${props => props.placeself};
         @media all and ${device.mobile} {
             place-self: center;
@@ -56,7 +55,6 @@ const Navigeringspanel: React.FC<{
     const { hentNesteSteg } = useSteg();
     const nesteSteg = hentNesteSteg();
     const { innsendingStatus, tekster, plainTekst } = useApp();
-    const { toggles } = useFeatureToggles();
 
     const { avbrytSoeknad, tilbakeKnapp, gaaVidereKnapp, sendSoeknadKnapp } =
         tekster().FELLES.navigasjon;
@@ -87,9 +85,6 @@ const Navigeringspanel: React.FC<{
                 gridarea={'gåVidere'}
                 loading={innsendingStatus.status === RessursStatus.HENTER}
                 data-testid={'gå-videre-knapp'}
-                disabled={
-                    nesteSteg.route === RouteEnum.Kvittering && toggles.DISABLE_SEND_INN_KNAPP
-                }
             >
                 {plainTekst(
                     nesteSteg.route === RouteEnum.Kvittering ? sendSoeknadKnapp : gaaVidereKnapp

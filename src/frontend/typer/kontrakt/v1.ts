@@ -1,7 +1,8 @@
-import { ESvar, ISODateString } from '@navikt/familie-form-elements';
+import { ESvar } from '@navikt/familie-form-elements';
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import { barnDataKeySpørsmål } from '../barn';
+import { ISODateString } from '../common';
 import { ISøknadKontraktDokumentasjon } from './dokumentasjon';
 import {
     ERegistrertBostedType,
@@ -93,6 +94,8 @@ export interface ISøknadIKontraktBarn {
 
     // Om barnet
     [barnDataKeySpørsmål.borFastMedSøker]: ISøknadsfelt<ESvar>;
+    [barnDataKeySpørsmål.foreldreBorSammen]: ISøknadsfelt<ESvar> | null;
+    [barnDataKeySpørsmål.søkerDeltKontantstøtte]: ISøknadsfelt<ESvar> | null;
     andreForelder: IAndreForelderIKontraktFormat | null;
     utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
 
@@ -136,7 +139,6 @@ export interface IAndreForelderIKontraktFormat {
     yrkesaktivFemÅr: ISøknadsfelt<ESvar> | null;
     pensjonUtland: ISøknadsfelt<ESvar> | null;
     arbeidUtlandet: ISøknadsfelt<ESvar> | null;
-    skriftligAvtaleOmDeltBosted: ISøknadsfelt<ESvar> | null;
 
     //EØS
     pensjonNorge: ISøknadsfelt<ESvar> | null;
@@ -161,6 +163,7 @@ export interface IArbeidsperiodeIKontraktFormat {
     arbeidsgiver: ISøknadsfelt<string> | null;
     fraDatoArbeidsperiode: ISøknadsfelt<ISODateString> | null;
     tilDatoArbeidsperiode: ISøknadsfelt<ISODateString> | null;
+    adresse: ISøknadsfelt<string> | null;
 }
 
 export interface IIdNummerIKontraktFormat {

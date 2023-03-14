@@ -9,7 +9,11 @@ import { OmBarnetSpørsmålsId } from '../components/SøknadsSteg/OmBarnet/spør
 import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../typer/barn';
 import { tomString } from '../typer/common';
 import { PlainTekst } from '../typer/kontrakt/generelle';
-import { IEøsKontantstøttePeriode, IUtenlandsperiode } from '../typer/perioder';
+import {
+    IBarnehageplassPeriode,
+    IEøsKontantstøttePeriode,
+    IUtenlandsperiode,
+} from '../typer/perioder';
 import { IBarn, IBarnRespons, IIdNummer } from '../typer/person';
 import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
 import { ISøknad } from '../typer/søknad';
@@ -58,13 +62,6 @@ export const genererInitiellAndreForelder = (
             id: andreForelderErDød
                 ? OmBarnetSpørsmålsId.andreForelderPensjonUtlandEnke
                 : OmBarnetSpørsmålsId.andreForelderPensjonUtland,
-        },
-        skriftligAvtaleOmDeltBosted: {
-            id: OmBarnetSpørsmålsId.skriftligAvtaleOmDeltBosted,
-            svar:
-                andreForelder && !andreForelderErDød
-                    ? andreForelder.skriftligAvtaleOmDeltBosted.svar
-                    : null,
         },
         arbeidNorge: {
             svar: andreForelder?.arbeidNorge.svar ?? null,
@@ -230,6 +227,14 @@ export const genererInitialBarnMedISøknad = (barn: IBarn): IBarnMedISøknad => 
             id: EøsBarnSpørsmålId.barnetsAdresse,
             svar: '',
         },
+        [barnDataKeySpørsmål.foreldreBorSammen]: {
+            id: EøsBarnSpørsmålId.foreldreBorSammen,
+            svar: null,
+        },
+        [barnDataKeySpørsmål.søkerDeltKontantstøtte]: {
+            id: EøsBarnSpørsmålId.søkerDeltKontantstøtte,
+            svar: null,
+        },
     };
 };
 
@@ -388,3 +393,7 @@ export const skalViseBorMedOmsorgsperson = (
 
     return borMedAndreForelder === ESvar.NEI || andreSituasjonerSomUtløserOmsorgsperson;
 };
+
+export const finnesPeriodeMedGradertBarnehageplass = (
+    barnehageplassPerioder: IBarnehageplassPeriode[]
+) => barnehageplassPerioder.some(periode => Number(periode.antallTimer.svar) < 33);

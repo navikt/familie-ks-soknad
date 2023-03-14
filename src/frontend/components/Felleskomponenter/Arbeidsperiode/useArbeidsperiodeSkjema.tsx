@@ -6,12 +6,19 @@ import { useEøs } from '../../../context/EøsContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useInputFelt from '../../../hooks/useInputFelt';
+import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
 import { IArbeidsperioderFeltTyper } from '../../../typer/skjema';
-import { dagensDato, erSammeDatoSomDagensDato, gårsdagensDato } from '../../../utils/dato';
+import {
+    dagensDato,
+    erSammeDatoSomDagensDato,
+    gårsdagensDato,
+    stringTilDate,
+} from '../../../utils/dato';
 import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
 import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
 
@@ -25,7 +32,7 @@ export const useArbeidsperiodeSkjema = (
     gjelderUtlandet: boolean,
     personType: PersonType,
     erDød = false
-) => {
+): IUsePeriodeSkjemaVerdi<IArbeidsperioderFeltTyper> => {
     const { tekster, plainTekst } = useApp();
     const { erEøsLand } = useEøs();
     const teksterForPersonType: IArbeidsperiodeTekstinnhold =
@@ -40,6 +47,10 @@ export const useArbeidsperiodeSkjema = (
     });
 
     const periodenErAvsluttet = arbeidsperiodeAvsluttet.verdi === ESvar.JA || andreForelderErDød;
+
+    const adresseTekst = periodenErAvsluttet
+        ? teksterForPersonType.adresseFortid
+        : teksterForPersonType.adresseNaatid;
 
     const arbeidsperiodeLand = useLanddropdownFelt({
         søknadsfelt: { id: ArbeidsperiodeSpørsmålsId.arbeidsperiodeLand, svar: '' },
@@ -70,7 +81,6 @@ export const useArbeidsperiodeSkjema = (
               andreForelderErDød,
         feilmelding: teksterForPersonType.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
-        nullstillVedAvhengighetEndring: true,
     });
 
     const tilDatoArbeidsperiodeUkjent = useFelt<ESvar>({
@@ -100,14 +110,35 @@ export const useArbeidsperiodeSkjema = (
             fraDatoArbeidsperiode.verdi
         ),
         customStartdatoFeilmelding:
-            erSammeDatoSomDagensDato(fraDatoArbeidsperiode.verdi) || periodenErAvsluttet
+            erSammeDatoSomDagensDato(stringTilDate(fraDatoArbeidsperiode.verdi)) ||
+            periodenErAvsluttet
                 ? undefined
                 : plainTekst(
                       tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
                   ),
+        avhengigheter: { fraDatoArbeidsperiode },
     });
 
-    const skjema = useSkjema<IArbeidsperioderFeltTyper, 'string'>({
+    const adresseUkjent = useFelt<ESvar>({
+        verdi: ESvar.NEI,
+        feltId: ArbeidsperiodeSpørsmålsId.adresseVetIkke,
+        skalFeltetVises: avhengigheter =>
+            gjelderUtlandet && !!erEøsLand(avhengigheter.arbeidsperiodeLand?.verdi),
+        avhengigheter: { arbeidsperiodeAvsluttet, arbeidsperiodeLand },
+        nullstillVedAvhengighetEndring: false,
+    });
+
+    const adresse = useInputFeltMedUkjent({
+        søknadsfelt: {
+            id: ArbeidsperiodeSpørsmålsId.adresse,
+            svar: '',
+        },
+        avhengighet: adresseUkjent,
+        feilmelding: adresseTekst.feilmelding,
+        skalVises: gjelderUtlandet && !!erEøsLand(arbeidsperiodeLand.verdi),
+    });
+
+    const skjema = useSkjema<IArbeidsperioderFeltTyper, string>({
         felter: {
             arbeidsperiodeAvsluttet,
             arbeidsperiodeLand,
@@ -115,6 +146,8 @@ export const useArbeidsperiodeSkjema = (
             fraDatoArbeidsperiode,
             tilDatoArbeidsperiode,
             tilDatoArbeidsperiodeUkjent,
+            adresse,
+            adresseUkjent,
         },
         skjemanavn: 'arbeidsperioder',
     });

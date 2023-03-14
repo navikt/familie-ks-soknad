@@ -7,11 +7,17 @@ import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjen
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IUtbetalingerFeltTyper } from '../../../typer/skjema';
-import { dagensDato, erSammeDatoSomDagensDato, gårsdagensDato } from '../../../utils/dato';
+import {
+    dagensDato,
+    erSammeDatoSomDagensDato,
+    gårsdagensDato,
+    stringTilDate,
+} from '../../../utils/dato';
 import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
 import { UtbetalingerSpørsmålId } from './spørsmål';
 
@@ -21,7 +27,11 @@ export interface IUseUtbetalingerSkjemaParams {
     erDød?: boolean;
 }
 
-export const useUtbetalingerSkjema = (personType, barn, erDød) => {
+export const useUtbetalingerSkjema = (
+    personType,
+    barn,
+    erDød
+): IUsePeriodeSkjemaVerdi<IUtbetalingerFeltTyper> => {
     const { tekster, plainTekst } = useApp();
     const teksterForPersontype: IAndreUtbetalingerTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.andreUtbetalinger[personType];
@@ -55,7 +65,6 @@ export const useUtbetalingerSkjema = (personType, barn, erDød) => {
             andreForelderErDød || fårUtbetalingNå.valideringsstatus === Valideringsstatus.OK,
         feilmelding: teksterForPersontype.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
-        nullstillVedAvhengighetEndring: true,
     });
 
     const utbetalingTilDatoUkjent = useFelt<ESvar>({
@@ -80,14 +89,15 @@ export const useUtbetalingerSkjema = (personType, barn, erDød) => {
             utbetalingFraDato.verdi
         ),
         customStartdatoFeilmelding:
-            erSammeDatoSomDagensDato(utbetalingFraDato.verdi) || periodenErAvsluttet
+            erSammeDatoSomDagensDato(stringTilDate(utbetalingFraDato.verdi)) || periodenErAvsluttet
                 ? undefined
                 : plainTekst(
                       tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
                   ),
+        avhengigheter: { utbetalingFraDato },
     });
 
-    const skjema = useSkjema<IUtbetalingerFeltTyper, 'string'>({
+    const skjema = useSkjema<IUtbetalingerFeltTyper, string>({
         felter: {
             fårUtbetalingNå,
             utbetalingLand,

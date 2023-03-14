@@ -33,6 +33,10 @@ const arbeidsPeriodeMock = () => ({
         id: ArbeidsperiodeSpørsmålsId.tilDatoArbeidsperiode,
         svar: '',
     },
+    adresse: {
+        id: ArbeidsperiodeSpørsmålsId.adresse,
+        svar: '',
+    },
 });
 
 const pensjonsPeriodeMock = () => ({

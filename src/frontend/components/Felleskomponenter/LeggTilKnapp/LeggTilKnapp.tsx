@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { AddCircle } from '@navikt/ds-icons';
 import { Button, ErrorMessage } from '@navikt/ds-react';
-import { NavdsGlobalColorRed500 } from '@navikt/ds-tokens/dist/tokens';
+import { ARed500 } from '@navikt/ds-tokens/dist/tokens';
 
 interface Props {
     onClick: () => void | Promise<void>;
@@ -15,7 +15,7 @@ interface Props {
 const StyledButton = styled(Button)`
     && {
         margin: 0.5rem 0 0.5rem 0;
-        border: ${props => (props.$feilmelding ? `2px solid ${NavdsGlobalColorRed500}` : 'none')};
+        border: ${props => (props.$feilmelding ? `2px solid ${ARed500}` : 'none')};
     }
 `;
 

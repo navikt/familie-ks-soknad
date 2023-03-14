@@ -15,4 +15,6 @@ export interface IArbeidsperiodeTekstinnhold {
     leggTilKnapp: LocaleRecordBlock;
     leggTilFeilmelding: LocaleRecordBlock;
     oppsummeringstittel: LocaleRecordBlock;
+    adresseFortid: ISanitySpørsmålDokument;
+    adresseNaatid: ISanitySpørsmålDokument;
 }

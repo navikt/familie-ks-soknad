@@ -28,6 +28,7 @@ export const doProxy = (targetUrl: string, context: string): RequestHandler => {
         onError: (err: Error, req: Request, res: Response) => {
             logError('Feil under proxy til apiet, se i securelog');
             logSecure('Feil under proxy til apiet', { err, req, res });
+            throw err;
         },
     });
 };

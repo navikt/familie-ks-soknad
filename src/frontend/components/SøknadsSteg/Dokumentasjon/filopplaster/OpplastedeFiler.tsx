@@ -2,15 +2,15 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Normaltekst } from 'nav-frontend-typografi';
-
 import { Attachment, DeleteFilled } from '@navikt/ds-icons';
 import { Button } from '@navikt/ds-react';
-import { NavdsSemanticColorDivider } from '@navikt/ds-tokens/dist/tokens';
+import { ABorderDivider } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../../context/AppContext';
+import { Typografi } from '../../../../typer/common';
 import { IVedlegg } from '../../../../typer/dokumentasjon';
 import { formaterFilstørrelse } from '../../../../utils/dokumentasjon';
+import { TypografiWrapper } from '../../../Felleskomponenter/TekstBlock';
 
 interface Props {
     filliste: IVedlegg[];
@@ -25,8 +25,7 @@ const FilRad = styled.li<{ skillelinje: boolean }>`
     display: flex;
     justify-content: space-between;
     padding: 1rem 0;
-    border-bottom: ${props =>
-        props.skillelinje ? `1px solid ${NavdsSemanticColorDivider}` : 'none'};
+    border-bottom: ${props => (props.skillelinje ? `1px solid ${ABorderDivider}` : 'none')};
 `;
 
 const FilTekstWrapper = styled.div`
@@ -55,9 +54,9 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
                                 aria-hidden={true}
                                 aria-label={''}
                             />
-                            <Normaltekst>
+                            <TypografiWrapper typografi={Typografi.BodyShort}>
                                 {`${fil.navn} (${formaterFilstørrelse(fil.størrelse)})`}
-                            </Normaltekst>
+                            </TypografiWrapper>
                         </FilTekstWrapper>
                         <Button
                             variant={'tertiary'}

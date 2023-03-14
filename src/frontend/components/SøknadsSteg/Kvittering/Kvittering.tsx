@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import dayjs, { Dayjs } from 'dayjs';
 
-import { Normaltekst } from 'nav-frontend-typografi';
-
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useApp } from '../../../context/AppContext';
@@ -61,7 +59,7 @@ const Kvittering: React.FC = () => {
             }
         >
             <KomponentGruppe>
-                <AlertStripe variant="success">
+                <AlertStripe variant="success" inline={false}>
                     <TekstBlock
                         block={kvitteringTekster.soeknadMottatt}
                         flettefelter={{ dato, klokkeslett }}
@@ -69,9 +67,10 @@ const Kvittering: React.FC = () => {
                 </AlertStripe>
             </KomponentGruppe>
             <KomponentGruppe>
-                <Normaltekst>
-                    <TekstBlock block={kvitteringTekster.infoTilSoker} />
-                </Normaltekst>
+                <TekstBlock
+                    block={kvitteringTekster.infoTilSoker}
+                    typografi={Typografi.BodyShort}
+                />
             </KomponentGruppe>
 
             {varEøsSøknad && (

@@ -21,7 +21,7 @@ const unleash = initialize({
     strategies: [new ByClusterStrategy()],
 });
 
-export const isEnabled = (feature: string): boolean => {
+export const isEnabled = (feature: string, defaultValue?: boolean): boolean => {
     // Hvis vi bare deconstructer og eksporterer isEnabled fra unleash crasher det fordi isEnabled ikke veit hva `this` er...
-    return unleash.isEnabled(feature);
+    return unleash.isEnabled(feature, undefined, defaultValue);
 };

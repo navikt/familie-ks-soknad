@@ -23,7 +23,7 @@ const App = () => {
                             <Router basename={basePath}>
                                 <StegProvider>
                                     {process.env.NODE_ENV !== 'production' && (
-                                        <AlertStripe variant="warning">
+                                        <AlertStripe variant="warning" inline={false}>
                                             {`Denne siden er under utvikling. `}
                                             <a href="https://www.nav.no/kontantstotte">
                                                 Klikk her for å gå til våre sider for kontantstøtte

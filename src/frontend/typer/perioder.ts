@@ -1,9 +1,10 @@
 import { Alpha3Code } from 'i18n-iso-countries';
 
-import { ESvar, ISODateString } from '@navikt/familie-form-elements';
+import { ESvar } from '@navikt/familie-form-elements';
+import { UseSkjemaVerdi } from '@navikt/familie-skjema';
 
 import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
-import { DatoMedUkjent } from './common';
+import { AlternativtSvarForInput, DatoMedUkjent, ISODateString } from './common';
 import { ISøknadSpørsmål } from './spørsmål';
 import { EUtenlandsoppholdÅrsak } from './utenlandsopphold';
 
@@ -20,6 +21,7 @@ export interface IArbeidsperiode {
     arbeidsgiver: ISøknadSpørsmål<string>;
     fraDatoArbeidsperiode: ISøknadSpørsmål<ISODateString | ''>;
     tilDatoArbeidsperiode: ISøknadSpørsmål<DatoMedUkjent | ''>;
+    adresse: ISøknadSpørsmål<string | AlternativtSvarForInput.UKJENT>;
 }
 
 export interface IPensjonsperiode {
@@ -52,4 +54,8 @@ export interface IBarnehageplassPeriode {
     antallTimer: ISøknadSpørsmål<string>;
     startetIBarnehagen: ISøknadSpørsmål<ISODateString>;
     slutterIBarnehagen: ISøknadSpørsmål<DatoMedUkjent>;
+}
+
+export interface IUsePeriodeSkjemaVerdi<T> extends UseSkjemaVerdi<T, string> {
+    validerFelterOgVisFeilmelding: () => boolean;
 }

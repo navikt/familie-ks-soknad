@@ -94,10 +94,6 @@ export const testdata1: TilKontraktTestData = {
                         svar: null,
                         id: 'andre-forelder-andre-utbetalinger',
                     },
-                    skriftligAvtaleOmDeltBosted: {
-                        id: 'skriftlig-avtale-om-delt-bosted',
-                        svar: 'NEI',
-                    },
                     arbeidNorge: {
                         svar: null,
                         id: 'andre-forelder-arbeid-norge',
@@ -593,14 +589,6 @@ export const testdata1: TilKontraktTestData = {
                             en: "Is Barn 234567 89876's other parent receiving or have they received child benefit from another EEA country?",
                             nb: 'Får eller har Barn 234567 89876 sin andre forelder fått barnetrygd fra et annet EU/EØS land?',
                             nn: 'Får eller har Barn 234567 89876 sin andre forelder fått barnetrygd frå eit anna EU/EØS-land?',
-                        },
-                        verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
-                    },
-                    skriftligAvtaleOmDeltBosted: {
-                        label: {
-                            en: 'Do you and the other parent have a written agreement on dual residence for Barn 234567 89876?',
-                            nb: 'Har du og den andre forelderen skriftlig avtale om delt bosted for Barn 234567 89876?',
-                            nn: 'Har du og den andre forelderen skriftleg avtale om delt bustad for Barn 234567 89876?',
                         },
                         verdi: { nb: 'NEI', nn: 'NEI', en: 'NEI' },
                     },

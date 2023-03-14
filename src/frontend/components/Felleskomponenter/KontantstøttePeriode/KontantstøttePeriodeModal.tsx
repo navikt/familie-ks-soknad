@@ -9,7 +9,7 @@ import { IBarnMedISøknad } from '../../../typer/barn';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
-import { dagensDato, gårsdagensDato } from '../../../utils/dato';
+import { dagenEtterDato, dagensDato, gårsdagensDato, stringTilDate } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import AlertStripe from '../AlertStripe/AlertStripe';
 import Datovelger from '../Datovelger/Datovelger';
@@ -135,7 +135,6 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                         felt={skjema.felter.fraDatoKontantstøttePeriode}
                         skjema={skjema}
                         label={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
-                        calendarPosition={'fullscreen'}
                         avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
                     />
                 )}
@@ -144,9 +143,14 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                         felt={skjema.felter.tilDatoKontantstøttePeriode}
                         skjema={skjema}
                         label={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
-                        avgrensMinDato={skjema.felter.fraDatoKontantstøttePeriode.verdi}
+                        avgrensMinDato={
+                            skjema.felter.fraDatoKontantstøttePeriode.verdi
+                                ? dagenEtterDato(
+                                      stringTilDate(skjema.felter.fraDatoKontantstøttePeriode.verdi)
+                                  )
+                                : undefined
+                        }
                         avgrensMaxDato={dagensDato()}
-                        calendarPosition={'fullscreen'}
                     />
                 )}
                 {månedligBeløp.erSynlig && (
@@ -164,7 +168,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                                 <TekstBlock block={teksterForPersonType.beloepPerMaaned.alert} />
                             </StyledAlertStripe>
                         }
-                        bredde={'S'}
+                        htmlSize={15}
                     />
                 )}
             </KomponentGruppe>
