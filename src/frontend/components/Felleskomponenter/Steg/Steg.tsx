@@ -1,16 +1,16 @@
 import React, { ReactNode, useEffect } from 'react';
 
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-import Stegindikator from 'nav-frontend-stegindikator';
-
+import { Stepper } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { useAppNavigation } from '../../../context/AppNavigationContext';
 import { useSteg } from '../../../context/StegContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
+import { device } from '../../../Theme';
 import { RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import {
@@ -56,9 +56,34 @@ const Form = styled.form`
     width: 100%;
 `;
 
-const StegindikatorContainer = styled.div`
-    margin: 0 1rem;
+const kompaktStepper = () => css`
+    * {
+        font-size: 0;
+        --navds-stepper-circle-size: 0.75rem;
+        --navds-stepper-border-width: 1px;
+        > li {
+            gap: 0;
+        }
+    }
 `;
+
+const StepperContainer = styled.div<{ antallSteg: number }>`
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  
+    @media all and ${device.mobile} {
+       ${kompaktStepper};
+    }
+
+  ${props =>
+      props.antallSteg > 12 &&
+      css`
+          @media all and ${device.tablet} {
+              ${kompaktStepper};
+          }
+      `}
+}`;
 
 const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) => {
     const history = useHistory();
@@ -75,9 +100,8 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
         hentForrigeSteg,
         hentNåværendeSteg,
         hentNåværendeStegIndex,
-        stegIndikatorObjekter,
+        stepperObjekter,
         erPåKvitteringsside,
-        hentNåværendeStegindikatorNummer,
     } = useSteg();
     const { komFra, settKomFra } = useAppNavigation();
 
@@ -143,14 +167,23 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
             <header>
                 <Banner />
                 {nyesteNåværendeRoute !== RouteEnum.Kvittering && (
-                    <StegindikatorContainer>
-                        <Stegindikator
-                            autoResponsiv={true}
-                            aktivtSteg={hentNåværendeStegindikatorNummer()}
-                            steg={stegIndikatorObjekter}
-                            visLabel={false}
-                        />
-                    </StegindikatorContainer>
+                    <StepperContainer antallSteg={stepperObjekter.length}>
+                        <Stepper
+                            aria-label={'Søknadssteg'}
+                            activeStep={hentNåværendeStegIndex()}
+                            orientation={'horizontal'}
+                            interactive={false}
+                        >
+                            {stepperObjekter.map((value, index) => (
+                                <Stepper.Step
+                                    children={''}
+                                    title={value.label}
+                                    key={value.key}
+                                    completed={index + 1 < hentNåværendeStegIndex()}
+                                />
+                            ))}
+                        </Stepper>
+                    </StepperContainer>
                 )}
             </header>
             <InnholdContainer>
