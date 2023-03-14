@@ -99,7 +99,7 @@
     "@navikt/ds-icons": "^2.2.0",
     "@navikt/ds-react": "^2.2.0",
     "@navikt/ds-tokens": "^2.2.0",
-    "@navikt/familie-form-elements": "^10.1.0",
+    "@navikt/familie-form-elements": "^10.1.1",
     "@navikt/familie-http": "6.0.0",
     "@navikt/familie-logging": "^6.0.0",
     "@navikt/familie-skjema": "^7.0.3",
@@ -144,6 +144,7 @@
     "xss": "^1.0.9"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
     "@babel/plugin-syntax-import-assertions": "^7.16.7",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@portabletext/types": "^1.0.3",
@@ -199,9 +200,11 @@
     "less": "^4.1.1",
     "less-loader": "^7.3.0",
     "lint-staged": "^10.5.3",
+    "lodash.throttle": "^4.1.1",
     "mini-css-extract-plugin": "^2.4.1",
     "nodemon": "^2.0.18",
     "prettier": "^2.6.2",
+    "prop-types": "^15.5.10",
     "react-app-polyfill": "^2.0.0",
     "react-day-picker": "^7.4.10",
     "react-dev-utils": "^12.0.1",
