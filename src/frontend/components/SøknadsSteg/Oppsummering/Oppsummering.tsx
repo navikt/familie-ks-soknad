@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { BodyShort } from '@navikt/ds-react';
@@ -26,7 +26,7 @@ const StyledBodyShort = styled(BodyShort)`
 
 const Oppsummering: React.FC = () => {
     const { søknad, tekster, plainTekst } = useApp();
-    const { push: pushHistory } = useHistory();
+    const navigate = useNavigate();
     const [feilAnchors, settFeilAnchors] = useState<string[]>([]);
     const { barnSomTriggerEøs, søkerTriggerEøs } = useEøs();
     const søkerHarEøsSteg = søkerTriggerEøs || !!barnSomTriggerEøs.length;
@@ -40,7 +40,7 @@ const Oppsummering: React.FC = () => {
 
     const scrollTilFeil = (elementId: string) => {
         // Gjør dette for syns skyld, men push scroller ikke vinduet
-        pushHistory({ hash: elementId });
+        navigate({ hash: elementId });
         const element = document.getElementById(elementId);
         element && element.scrollIntoView();
     };

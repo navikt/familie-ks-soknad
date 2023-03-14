@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { BodyShort } from '@navikt/ds-react';
@@ -29,7 +29,7 @@ const OmBarnaDine: React.FC = () => {
     const { skjema, validerFelterOgVisFeilmelding, valideringErOk, oppdaterSøknad } =
         useOmBarnaDine();
 
-    const history = useHistory();
+    const navigate = useNavigate();
     const { søknad, tekster, plainTekst } = useApp();
     const { barnInkludertISøknaden } = søknad;
 
@@ -57,7 +57,7 @@ const OmBarnaDine: React.FC = () => {
     } = teksterForSteg;
 
     if (!barnInkludertISøknaden.length) {
-        history.push('/velg-barn');
+        navigate('/velg-barn');
         return null;
     }
     return (

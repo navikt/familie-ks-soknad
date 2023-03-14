@@ -2,6 +2,7 @@ import React from 'react';
 
 import { registerLocale } from 'i18n-iso-countries';
 import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
@@ -32,10 +33,11 @@ polyfillLocaledata().then(() => {
         });
     }
 
-    ReactDOM.render(
+    const container = document.getElementById('root');
+    const root = createRoot(container); // createRoot(container!) if you use TypeScript
+    root.render(
         <FellesWrapper>
             <App />
-        </FellesWrapper>,
-        document.getElementById('root')
+        </FellesWrapper>
     );
 });

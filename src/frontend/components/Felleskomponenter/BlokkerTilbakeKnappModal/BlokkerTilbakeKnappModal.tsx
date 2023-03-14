@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Prompt } from 'react-router-dom';
+// import { Prompt } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Button, Modal } from '@navikt/ds-react';
@@ -25,17 +25,17 @@ const BlokkerTilbakeKnappModal = () => {
     const { tekster } = useApp();
     const blokkerTilbakeknappTekster = tekster()[ESanitySteg.FELLES].modaler.blokkerTilbakeKnapp;
 
-    const håndterNavigasjon = () => {
-        setShow(true);
-        return false;
-    };
+    // const håndterNavigasjon = () => {
+    //     setShow(true);
+    //     return false;
+    // };
     const håndterAvbryt = () => {
         setShow(false);
     };
 
     return (
         <>
-            <Prompt message={håndterNavigasjon} />
+            {/*<Prompt message={håndterNavigasjon} />*/}
             <Modal onClose={() => setShow(false)} open={show}>
                 <ModalContent>
                     <TekstBlock

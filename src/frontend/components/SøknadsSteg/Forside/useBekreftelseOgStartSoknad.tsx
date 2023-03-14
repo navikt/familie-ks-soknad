@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
@@ -23,7 +23,7 @@ export const useBekreftelseOgStartSoknad = (): {
     visStartPåNyttModal: boolean;
     settVisStartPåNyttModal: (synlig: boolean) => void;
 } => {
-    const history = useHistory();
+    const navigate = useNavigate();
     const [visStartPåNyttModal, settVisStartPåNyttModal] = useState(false);
 
     const { steg, hentNesteSteg, hentNåværendeStegIndex, settBarnForSteg } = useSteg();
@@ -49,7 +49,7 @@ export const useBekreftelseOgStartSoknad = (): {
 
     useEffect(() => {
         if (gjenopprettetFraMellomlagring && mellomlagretVerdi) {
-            history.push(steg[mellomlagretVerdi.sisteUtfylteStegIndex].path);
+            navigate(steg[mellomlagretVerdi.sisteUtfylteStegIndex].path);
             settGjenpprettetFraMellomlagring(false);
         }
     }, [gjenopprettetFraMellomlagring]);
@@ -70,7 +70,7 @@ export const useBekreftelseOgStartSoknad = (): {
             settSøkerTriggerEøs(søker.triggetEøs);
             settGjenpprettetFraMellomlagring(true);
         } else {
-            history.push(nesteRoute.path);
+            navigate(nesteRoute.path);
         }
         logForsettPåSøknad();
     };
@@ -90,7 +90,7 @@ export const useBekreftelseOgStartSoknad = (): {
                 settSisteUtfylteStegIndex(nåværendeStegIndex);
             }
             logSkjemaStartet();
-            history.push(nesteRoute.path);
+            navigate(nesteRoute.path);
         } else {
             settBekreftelseStatus(BekreftelseStatus.FEIL);
         }
