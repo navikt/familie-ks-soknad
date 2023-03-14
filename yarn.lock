@@ -8747,10 +8747,10 @@ jose@^2.0.5:
   dependencies:
     "@panva/asn1.js" "^1.0.0"
 
-jose@^3.20.4:
-  version "3.20.4"
-  resolved "https://registry.npmjs.org/jose/-/jose-3.20.4.tgz#f5b6559cf2625efca098e472257525c6f3d302be"
-  integrity sha512-PRnyOQwWGD3EZnnSpKOOLqQ0RT9chbB8f8AzY4bEHY0I2FCtrcp1ojG0nBgAMn2MtuPpE3wOwIhhW0G7AGzbLw==
+jose@^4.13.1:
+  version "4.13.1"
+  resolved "https://registry.npmjs.org/jose/-/jose-4.13.1.tgz#449111bb5ab171db85c03f1bd2cb1647ca06db1c"
+  integrity sha512-MSJQC5vXco5Br38mzaQKiq9mwt7lwj2eXpgpRyQYNHYt2lq1PjkWa7DLXX0WVcQLE9HhMh3jPiufS7fhJf+CLQ==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
