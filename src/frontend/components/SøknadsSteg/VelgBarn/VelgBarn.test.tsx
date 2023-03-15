@@ -39,6 +39,12 @@ jest.mock('@sanity/client', () => {
     };
 });
 
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: () => jest.fn(),
+    useLocation: () => jest.fn(),
+}));
+
 const manueltRegistrert: Partial<IBarnMedISøknad> = {
     id: 'random-id-1',
     ident: '12345',

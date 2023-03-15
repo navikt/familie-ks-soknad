@@ -7,7 +7,7 @@ import { mockEøs, mockFeatureToggle, mockHistory, spyOnUseApp } from '../utils/
 import { RoutesProvider } from './RoutesContext';
 import { StegProvider, useSteg } from './StegContext';
 
-mockHistory(['/om-barnet/barn-1']);
+mockHistory(['/om-barnet/barn/1']);
 
 describe('Steg', () => {
     beforeEach(() => {
@@ -69,7 +69,7 @@ describe('Steg', () => {
                 },
             ],
         });
-        mockHistory(['/om-barnet/barn-1']);
+        mockHistory(['/om-barnet/barn/1']);
         const wrapper = ({ children }) => (
             <RoutesProvider>
                 <StegProvider>{children}</StegProvider>
@@ -88,7 +88,7 @@ describe('Steg', () => {
                 },
             ],
         });
-        mockHistory(['/om-barnet/barn-1']);
+        mockHistory(['/om-barnet/barn/1']);
         const wrapper = ({ children }) => (
             <RoutesProvider>
                 <StegProvider>{children}</StegProvider>
@@ -137,11 +137,11 @@ describe('Steg', () => {
             </RoutesProvider>
         );
 
-        mockHistory(['/om-barnet/barn-1']);
+        mockHistory(['/om-barnet/barn/1']);
         const { result } = renderHook(() => useSteg(), { wrapper });
 
         expect(result.current.hentForrigeSteg().path).toBe('/om-barna');
-        expect(result.current.hentNesteSteg().path).toBe('/om-barnet/barn-2');
+        expect(result.current.hentNesteSteg().path).toBe('/om-barnet/barn/2');
     });
 
     test(`Kan navigere mellom tilbake til barn-1 eller til oppsummering dersom det er to barn`, () => {
@@ -161,10 +161,10 @@ describe('Steg', () => {
             </RoutesProvider>
         );
 
-        mockHistory(['/om-barnet/barn-2']);
+        mockHistory(['/om-barnet/barn/2']);
         const { result } = renderHook(() => useSteg(), { wrapper });
 
-        expect(result.current.hentForrigeSteg().path).toBe('/om-barnet/barn-1');
+        expect(result.current.hentForrigeSteg().path).toBe('/om-barnet/barn/1');
         expect(result.current.hentNesteSteg().path).toBe('/oppsummering');
     });
 });
