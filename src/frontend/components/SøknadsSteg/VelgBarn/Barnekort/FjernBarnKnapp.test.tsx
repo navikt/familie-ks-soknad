@@ -13,12 +13,6 @@ import {
 } from '../../../../utils/testing';
 import VelgBarn from '../VelgBarn';
 
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: () => jest.fn(),
-    useLocation: () => jest.fn(),
-}));
-
 describe('FjernBarnKnapp', () => {
     beforeEach(() => {
         mockEøs();
