@@ -7,7 +7,6 @@ import { IBarn } from '../../../../typer/person';
 import {
     mekkGyldigSøker,
     mockEøs,
-    mockHistory,
     spyOnModal,
     spyOnUseApp,
     TestProvidere,
@@ -22,7 +21,6 @@ jest.mock('react-router-dom', () => ({
 
 describe('FjernBarnKnapp', () => {
     beforeEach(() => {
-        mockHistory(['/velg-barn']);
         mockEøs();
         spyOnModal();
     });

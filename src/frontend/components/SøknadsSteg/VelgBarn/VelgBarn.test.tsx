@@ -16,7 +16,6 @@ import {
     mekkGyldigSøker,
     mockEøs,
     mockFeatureToggle,
-    mockHistory,
     mockRoutes,
     spyOnModal,
     spyOnUseApp,
@@ -73,7 +72,6 @@ const fraPdlSomIBarnMedISøknad: Partial<IBarnMedISøknad> = {
 
 describe('VelgBarn', () => {
     beforeEach(() => {
-        mockHistory(['/velg-barn']);
         jest.spyOn(pdlRequest, 'hentSluttbrukerFraPdl').mockImplementation(async () => ({
             status: RessursStatus.SUKSESS,
             data: mockDeep<ISøkerRespons>({

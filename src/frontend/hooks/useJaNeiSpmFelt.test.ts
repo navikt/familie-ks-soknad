@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { Alpha3Code } from 'i18n-iso-countries';
 import { mock } from 'jest-mock-extended';
 

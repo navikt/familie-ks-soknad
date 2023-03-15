@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import { RouteEnum } from '../typer/routes';
 import { mockEøs, mockFeatureToggle, mockHistory, spyOnUseApp } from '../utils/testing';
@@ -163,7 +163,6 @@ describe('Steg', () => {
 
         mockHistory(['/om-barnet/barn/2']);
         const { result } = renderHook(() => useSteg(), { wrapper });
-
         expect(result.current.hentForrigeSteg().path).toBe('/om-barnet/barn/1');
         expect(result.current.hentNesteSteg().path).toBe('/oppsummering');
     });

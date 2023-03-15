@@ -4,13 +4,7 @@ import { render } from '@testing-library/react';
 import { mockDeep } from 'jest-mock-extended';
 
 import { ISøker } from '../../../typer/person';
-import {
-    mockEøs,
-    mockHistory,
-    spyOnModal,
-    spyOnUseApp,
-    TestProvidere,
-} from '../../../utils/testing';
+import { mockEøs, spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
 import OmDeg from './OmDeg';
 import { OmDegSpørsmålId } from './spørsmål';
 
@@ -20,16 +14,9 @@ const TestKomponent = () => (
     </TestProvidere>
 );
 
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: () => jest.fn(),
-    useLocation: () => jest.fn(),
-}));
-
 describe('OmDeg', () => {
     beforeEach(() => {
         mockEøs();
-        mockHistory(['/om-deg']);
         spyOnModal();
     });
 

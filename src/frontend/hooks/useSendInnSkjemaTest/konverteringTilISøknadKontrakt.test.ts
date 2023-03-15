@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import { ISøknadKontrakt } from '../../typer/kontrakt/v1';
 import { spyOnModal, spyOnUseApp, TestProvidere } from '../../utils/testing';
