@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-// import { Prompt } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Button, Modal } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
+import { useAppNavigation } from '../../../context/AppNavigationContext';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import ModalContent from '../ModalContent';
@@ -20,49 +20,45 @@ const Flex = styled.div`
 `;
 
 const BlokkerTilbakeKnappModal = () => {
-    const [show, setShow] = useState(false);
+    const { visBlokkerTilbakeKnappModal, settVisBlokkerTilbakeKnappModal } = useAppNavigation();
 
     const { tekster } = useApp();
     const blokkerTilbakeknappTekster = tekster()[ESanitySteg.FELLES].modaler.blokkerTilbakeKnapp;
 
-    // const håndterNavigasjon = () => {
-    //     setShow(true);
-    //     return false;
-    // };
     const håndterAvbryt = () => {
-        setShow(false);
+        settVisBlokkerTilbakeKnappModal(false);
     };
 
     return (
-        <>
-            {/*<Prompt message={håndterNavigasjon} />*/}
-            <Modal onClose={() => setShow(false)} open={show}>
-                <ModalContent>
-                    <TekstBlock
-                        block={blokkerTilbakeknappTekster.tittel}
-                        typografi={Typografi.ModalHeadingH1}
-                    />
+        <Modal
+            onClose={() => settVisBlokkerTilbakeKnappModal(false)}
+            open={visBlokkerTilbakeKnappModal}
+        >
+            <ModalContent>
+                <TekstBlock
+                    block={blokkerTilbakeknappTekster.tittel}
+                    typografi={Typografi.ModalHeadingH1}
+                />
 
-                    <TekstBlock
-                        block={blokkerTilbakeknappTekster.tekst}
-                        typografi={Typografi.BodyLong}
-                    />
+                <TekstBlock
+                    block={blokkerTilbakeknappTekster.tekst}
+                    typografi={Typografi.BodyLong}
+                />
 
-                    <Flex>
+                <Flex>
+                    <TekstBlock
+                        block={blokkerTilbakeknappTekster.tilDittNav}
+                        typografi={Typografi.BodyShort}
+                    />
+                    <Button onClick={håndterAvbryt}>
                         <TekstBlock
-                            block={blokkerTilbakeknappTekster.tilDittNav}
+                            block={blokkerTilbakeknappTekster.avbryt}
                             typografi={Typografi.BodyShort}
                         />
-                        <Button onClick={håndterAvbryt}>
-                            <TekstBlock
-                                block={blokkerTilbakeknappTekster.avbryt}
-                                typografi={Typografi.BodyShort}
-                            />
-                        </Button>
-                    </Flex>
-                </ModalContent>
-            </Modal>
-        </>
+                    </Button>
+                </Flex>
+            </ModalContent>
+        </Modal>
     );
 };
 
