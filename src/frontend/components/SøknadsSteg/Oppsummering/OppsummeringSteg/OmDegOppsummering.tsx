@@ -98,12 +98,10 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         personType={PersonType.søker}
                     />
                 ))}
-                {søknad.søker.planleggerÅBoINorgeTolvMnd.svar && (
-                    <OppsummeringFelt
-                        spørsmålstekst={omDegTekster.planleggerAaBoSammenhengende.sporsmal}
-                        søknadsvar={søknad.søker.planleggerÅBoINorgeTolvMnd.svar}
-                    />
-                )}
+                <OppsummeringFelt
+                    spørsmålstekst={omDegTekster.planleggerAaBoSammenhengende.sporsmal}
+                    søknadsvar={søknad.søker.planleggerÅBoINorgeTolvMnd.svar}
+                />
                 <OppsummeringFelt
                     spørsmålstekst={omDegTekster.medlemAvFolketrygden.sporsmal}
                     søknadsvar={søknad.søker.yrkesaktivFemÅr.svar}

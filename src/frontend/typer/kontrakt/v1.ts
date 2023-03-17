@@ -44,7 +44,7 @@ export interface ISøknadKontraktSøker {
     borPåRegistrertAdresse: ISøknadsfelt<ESvar> | null;
     værtINorgeITolvMåneder: ISøknadsfelt<ESvar>;
     utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
-    planleggerÅBoINorgeTolvMnd: ISøknadsfelt<ESvar> | null;
+    planleggerÅBoINorgeTolvMnd: ISøknadsfelt<ESvar>;
     yrkesaktivFemÅr: ISøknadsfelt<ESvar>;
 
     // Din livssituasjon
