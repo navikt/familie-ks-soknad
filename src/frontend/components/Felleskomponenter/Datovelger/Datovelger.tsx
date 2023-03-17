@@ -99,7 +99,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
                     : inputProps.value.toString()
             );
         }
-    }, [inputProps, disabled]);
+    }, [inputProps.value, disabled]);
 
     return felt.erSynlig ? (
         <div aria-live={dynamisk ? 'polite' : 'off'}>
