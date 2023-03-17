@@ -81,7 +81,7 @@ export const søkerIKontraktFormat = (
             omDegTekster.oppholdtDegSammenhengende.sporsmal,
             værtINorgeITolvMåneder.svar
         ),
-        planleggerÅBoINorgeTolvMnd: nullableSøknadsfeltForESvar(
+        planleggerÅBoINorgeTolvMnd: søknadsfeltForESvar(
             omDegTekster.planleggerAaBoSammenhengende.sporsmal,
             planleggerÅBoINorgeTolvMnd.svar
         ),

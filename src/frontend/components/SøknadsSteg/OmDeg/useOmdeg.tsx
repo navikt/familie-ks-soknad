@@ -16,7 +16,6 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmDegFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
-import { flyttetPermanentFraNorge } from '../../../utils/utenlandsopphold';
 import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { idNummerLandMedPeriodeType, PeriodeType } from '../EøsSteg/idnummerUtils';
 import { IOmDegTekstinnhold } from './innholdTyper';
@@ -69,14 +68,6 @@ export const useOmdeg = (): {
     const planleggerÅBoINorgeTolvMnd = useJaNeiSpmFelt({
         søknadsfelt: søker.planleggerÅBoINorgeTolvMnd,
         feilmelding: teksterForSteg.planleggerAaBoSammenhengende.feilmelding,
-        avhengigheter: {
-            værtINorgeITolvMåneder: { hovedSpørsmål: værtINorgeITolvMåneder },
-        },
-        skalSkjules:
-            flyttetPermanentFraNorge(registrerteUtenlandsperioder.verdi) ||
-            værtINorgeITolvMåneder.verdi === ESvar.JA ||
-            (værtINorgeITolvMåneder.verdi === ESvar.NEI &&
-                !registrerteUtenlandsperioder.verdi.length),
     });
 
     const yrkesaktivFemÅr = useJaNeiSpmFelt({
@@ -132,11 +123,7 @@ export const useOmdeg = (): {
         },
         planleggerÅBoINorgeTolvMnd: {
             ...søker.planleggerÅBoINorgeTolvMnd,
-            svar:
-                !flyttetPermanentFraNorge(registrerteUtenlandsperioder.verdi) &&
-                værtINorgeITolvMåneder.verdi === ESvar.NEI
-                    ? skjema.felter.planleggerÅBoINorgeTolvMnd.verdi
-                    : null,
+            svar: skjema.felter.planleggerÅBoINorgeTolvMnd.verdi,
         },
         yrkesaktivFemÅr: {
             ...søker.yrkesaktivFemÅr,
