@@ -17,7 +17,7 @@ export const getRoutes = () => {
         { path: '/velg-barn', label: 'Velg barn', route: RouteEnum.VelgBarn },
         { path: '/om-barna', label: 'Om barna', route: RouteEnum.OmBarna },
         {
-            path: `/${omBarnetBasePath}/barn-:number`,
+            path: `/${omBarnetBasePath}/barn/:number`,
             label: `Om barnet`,
             route: RouteEnum.OmBarnet,
         },
@@ -27,7 +27,7 @@ export const getRoutes = () => {
             route: RouteEnum.EøsForSøker,
         },
         {
-            path: `/${eøsBarnBasePath}/barn-:number`,
+            path: `/${eøsBarnBasePath}/barn/:number`,
             label: `Om EØS barn`,
             route: RouteEnum.EøsForBarn,
         },

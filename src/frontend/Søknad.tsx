@@ -1,8 +1,7 @@
 import React from 'react';
 
 import classNames from 'classnames';
-import { useParams } from 'react-router';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
 
 import { DekoratørenSpråkHandler } from './components/Felleskomponenter/Dekoratøren/DekoratørenSpråkHandler';
 import RedirectTilStart from './components/Felleskomponenter/RedirectTilStart/RedirectTilStart';
@@ -79,19 +78,19 @@ const Søknad = () => {
     return (
         <div className={classNames(systemetLaster() && 'blur')}>
             <DekoratørenSpråkHandler />
-            <Switch>
-                <Route exact={true} path={'/helse'} component={Helse} />
-                <Route exact={true} path={'/'} component={Forside} />
+            <Routes>
+                <Route path={'/helse'} element={<Helse />} />
+                <Route path={'/'} element={<Forside />} />
                 {routes.map((route, index) => (
-                    <RedirectTilStart
+                    <Route
                         key={index}
-                        exact={true}
                         path={route.path}
-                        component={routeTilKomponent(route)}
+                        element={<RedirectTilStart component={routeTilKomponent(route)} />}
                     />
                 ))}
-                <Route path={'*'} component={Forside} />
-            </Switch>
+                ;
+                <Route path={'*'} element={<Forside />} />
+            </Routes>
         </div>
     );
 };

@@ -22,7 +22,6 @@ const getIdentType = (digits: string): IdentType => {
 // Kopiert fra https://github.com/navikt/fnrvalidator/blob/master/src/validator.js
 export const identTilFødselsdato = (ident: string): string => {
     const type = getIdentType(ident);
-    console.log(type);
     let fnr = '';
     switch (type) {
         case IdentType.DNR:

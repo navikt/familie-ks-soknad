@@ -18,7 +18,7 @@ interface StepperStegProps {
 const [StegProvider, useSteg] = createUseContext(() => {
     const { søknad } = useApp();
     const { barnInkludertISøknaden } = søknad;
-    const { pathname: currentLocation } = useLocation();
+    const { pathname } = useLocation();
     const { routes } = useRoutes();
 
     const [barnForSteg, settBarnForSteg] = useState<IBarnMedISøknad[]>([]);
@@ -79,8 +79,8 @@ const [StegProvider, useSteg] = createUseContext(() => {
             key: index,
         }));
 
-    const hentSteg = (location: string): ISteg => {
-        const index = steg.findIndex(steg => matchPath(location, { path: steg.path, exact: true }));
+    const hentSteg = (pathname: string): ISteg => {
+        const index = steg.findIndex(steg => matchPath(steg.path, decodeURIComponent(pathname)));
         return steg[index] ?? steg[0];
     };
 
@@ -96,17 +96,17 @@ const [StegProvider, useSteg] = createUseContext(() => {
     };
 
     const hentNåværendeSteg = (): ISteg => {
-        return hentSteg(currentLocation);
+        return hentSteg(pathname);
     };
 
     const hentNesteSteg = (): ISteg => {
-        const nåværendeSteg = hentSteg(currentLocation);
+        const nåværendeSteg = hentSteg(pathname);
         const nåværendeIndex = steg.findIndex(steg => steg === nåværendeSteg);
         return steg[Math.min(nåværendeIndex + 1, steg.length - 1)];
     };
 
     const hentForrigeSteg = (): ISteg => {
-        const nåværendeSteg = hentSteg(currentLocation);
+        const nåværendeSteg = hentSteg(pathname);
         const nåværendeIndex = steg.findIndex(steg => steg === nåværendeSteg);
         return steg[Math.max(nåværendeIndex - 1, 0)];
     };

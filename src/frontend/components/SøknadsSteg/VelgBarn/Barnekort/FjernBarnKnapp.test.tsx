@@ -7,7 +7,6 @@ import { IBarn } from '../../../../typer/person';
 import {
     mekkGyldigSøker,
     mockEøs,
-    mockHistory,
     spyOnModal,
     spyOnUseApp,
     TestProvidere,
@@ -16,7 +15,6 @@ import VelgBarn from '../VelgBarn';
 
 describe('FjernBarnKnapp', () => {
     beforeEach(() => {
-        mockHistory(['/velg-barn']);
         mockEøs();
         spyOnModal();
     });
