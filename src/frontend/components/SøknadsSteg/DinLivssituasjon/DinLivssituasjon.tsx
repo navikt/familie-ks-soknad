@@ -7,12 +7,14 @@ import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
+import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import { Pensjonsperiode } from '../../Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
 import { IDinLivssituasjonTekstinnhold } from './innholdTyper';
 import { useDinLivssituasjon } from './useDinLivssituasjon';
@@ -28,11 +30,13 @@ const DinLivssituasjon: React.FC = () => {
         fjernArbeidsperiode,
         leggTilPensjonsperiode,
         fjernPensjonsperiode,
+        leggTilUtenlandsperiode,
+        fjernUtenlandsperiode,
     } = useDinLivssituasjon();
 
     const teksterForSteg: IDinLivssituasjonTekstinnhold = tekster()[ESanitySteg.DIN_LIVSSITUASJON];
 
-    const { dinLivssituasjonTittel, asylsoeker } = teksterForSteg;
+    const { dinLivssituasjonTittel, asylsoeker, utenlandsoppholdUtenArbeid } = teksterForSteg;
 
     return (
         <Steg
@@ -69,6 +73,33 @@ const DinLivssituasjon: React.FC = () => {
                     registrerteArbeidsperioder={skjema.felter.registrerteArbeidsperioder}
                     personType={PersonType.søker}
                 />
+
+                <>
+                    <JaNeiSpm
+                        skjema={skjema}
+                        felt={skjema.felter.utenlandsoppholdUtenArbeid}
+                        spørsmålDokument={utenlandsoppholdUtenArbeid}
+                        tilleggsinfo={
+                            <AlertStripe variant={'info'}>
+                                <TekstBlock
+                                    block={utenlandsoppholdUtenArbeid.alert}
+                                    typografi={Typografi.BodyShort}
+                                />
+                            </AlertStripe>
+                        }
+                    />
+                    {skjema.felter.utenlandsoppholdUtenArbeid.verdi === ESvar.JA && (
+                        <Utenlandsperiode
+                            personType={PersonType.søker}
+                            skjema={skjema}
+                            leggTilUtenlandsperiode={leggTilUtenlandsperiode}
+                            fjernUtenlandsperiode={fjernUtenlandsperiode}
+                            registrerteUtenlandsperioder={
+                                skjema.felter.registrerteUtenlandsperioder
+                            }
+                        />
+                    )}
+                </>
 
                 <Pensjonsperiode
                     skjema={skjema}

@@ -43,15 +43,16 @@ export interface ISøknadKontraktSøker {
     sivilstand: ISøknadsfelt<ESivilstand>;
     borPåRegistrertAdresse: ISøknadsfelt<ESvar> | null;
     værtINorgeITolvMåneder: ISøknadsfelt<ESvar>;
-    utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
     planleggerÅBoINorgeTolvMnd: ISøknadsfelt<ESvar>;
     yrkesaktivFemÅr: ISøknadsfelt<ESvar>;
 
     // Din livssituasjon
     erAsylsøker: ISøknadsfelt<ESvar>;
     arbeidIUtlandet: ISøknadsfelt<ESvar>;
+    utenlandsoppholdUtenArbeid: ISøknadsfelt<ESvar>;
     mottarUtenlandspensjon: ISøknadsfelt<ESvar>;
     arbeidsperioderUtland: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
+    utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
     pensjonsperioderUtland: ISøknadsfelt<IPensjonsperiodeIKontraktFormat>[];
 
     // EØS

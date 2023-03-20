@@ -6,6 +6,7 @@ import { PersonType } from '../../../../typer/personType';
 import { RouteEnum } from '../../../../typer/routes';
 import { ArbeidsperiodeOppsummering } from '../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
+import { UtenlandsperiodeOppsummering } from '../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
 import { useDinLivssituasjon } from '../../DinLivssituasjon/useDinLivssituasjon';
 import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';
@@ -44,6 +45,20 @@ const DinLivssituasjonOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         nummer={index + 1}
                         arbeidsperiode={periode}
                         gjelderUtlandet={true}
+                        personType={PersonType.søker}
+                    />
+                ))}
+
+                <OppsummeringFelt
+                    spørsmålstekst={dinLivssituasjonTekster.utenlandsoppholdUtenArbeid.sporsmal}
+                    søknadsvar={søknad.søker.utenlandsoppholdUtenArbeid.svar}
+                />
+
+                {søknad.søker.utenlandsperioder.map((periode, index) => (
+                    <UtenlandsperiodeOppsummering
+                        key={index}
+                        periode={periode}
+                        nummer={index + 1}
                         personType={PersonType.søker}
                     />
                 ))}

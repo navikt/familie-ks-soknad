@@ -23,6 +23,8 @@ export interface IDinLivssituasjonFeltTyper {
     registrerteArbeidsperioder: IArbeidsperiode[];
     mottarUtenlandspensjon: ESvar | null;
     registrertePensjonsperioder: IPensjonsperiode[];
+    utenlandsoppholdUtenArbeid: ESvar | null;
+    registrerteUtenlandsperioder: IUtenlandsperiode[];
 }
 
 export interface IOmBarnaDineFeltTyper {
