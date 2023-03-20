@@ -1,23 +1,14 @@
 import { useEffect } from 'react';
 
-import { ESvar } from '@navikt/familie-form-elements';
-import { feil, ISkjema, ok, useSkjema } from '@navikt/familie-skjema';
+import { ISkjema, useSkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
-import { usePerioder } from '../../../hooks/usePerioder';
-import { AlternativtSvarForInput } from '../../../typer/common';
-import { IUtenlandsperiode } from '../../../typer/perioder';
-import { IIdNummer } from '../../../typer/person';
-import { PersonType } from '../../../typer/personType';
-import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmDegFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
-import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
-import { idNummerLandMedPeriodeType, PeriodeType } from '../EøsSteg/idnummerUtils';
 import { IOmDegTekstinnhold } from './innholdTyper';
 
 export const useOmdeg = (): {
@@ -26,16 +17,11 @@ export const useOmdeg = (): {
     valideringErOk: () => boolean;
     oppdaterSøknad: () => void;
     validerAlleSynligeFelter: () => void;
-    leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
-    fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
 } => {
-    const { søknad, settSøknad, tekster, plainTekst } = useApp();
-    const { erEøsLand } = useEøs();
+    const { søknad, settSøknad, tekster } = useApp();
     const søker = søknad.søker;
     const { skalTriggeEøsForSøker, søkerTriggerEøs, settSøkerTriggerEøs } = useEøs();
     const teksterForSteg: IOmDegTekstinnhold = tekster()[ESanitySteg.OM_DEG];
-    const teksterForUtenlandsperiode: IUtenlandsoppholdTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold.søker;
 
     const borPåRegistrertAdresse = useJaNeiSpmFelt({
         søknadsfelt: søker.borPåRegistrertAdresse,
@@ -47,23 +33,6 @@ export const useOmdeg = (): {
         søknadsfelt: søker.værtINorgeITolvMåneder,
         feilmelding: teksterForSteg.oppholdtDegSammenhengende.feilmelding,
     });
-
-    const {
-        fjernPeriode: fjernUtenlandsperiode,
-        leggTilPeriode: leggTilUtenlandsperiode,
-        registrertePerioder: registrerteUtenlandsperioder,
-    } = usePerioder<IUtenlandsperiode>(
-        `${UtenlandsoppholdSpørsmålId.utenlandsopphold}-${PersonType.søker}`,
-        søker.utenlandsperioder,
-        { værtINorgeITolvMåneder },
-        avhengigheter => avhengigheter.værtINorgeITolvMåneder.verdi === ESvar.NEI,
-        (felt, avhengigheter) => {
-            return avhengigheter?.værtINorgeITolvMåneder.verdi === ESvar.JA ||
-                (avhengigheter?.værtINorgeITolvMåneder.verdi === ESvar.NEI && felt.verdi.length)
-                ? ok(felt)
-                : feil(felt, plainTekst(teksterForUtenlandsperiode.leggTilFeilmelding));
-        }
-    );
 
     const planleggerÅBoINorgeTolvMnd = useJaNeiSpmFelt({
         søknadsfelt: søker.planleggerÅBoINorgeTolvMnd,
@@ -81,38 +50,8 @@ export const useOmdeg = (): {
             settSøkerTriggerEøs(prevState => !prevState);
     }, [værtINorgeITolvMåneder]);
 
-    const gyldigVerdiPåIdNummer = (idNummerObj: IIdNummer) =>
-        idNummerObj.idnummer !== AlternativtSvarForInput.UKJENT ||
-        relevanteLandMedPeriodeType().find(
-            landMedPeriode => idNummerObj.land === landMedPeriode.land
-        )?.periodeType === PeriodeType.utenlandsperiode;
-
-    const relevanteLandMedPeriodeType = () =>
-        idNummerLandMedPeriodeType(
-            {
-                arbeidsperioderUtland: søker.arbeidsperioderUtland,
-                pensjonsperioderUtland: søker.pensjonsperioderUtland,
-                utenlandsperioder:
-                    værtINorgeITolvMåneder.verdi === ESvar.NEI
-                        ? registrerteUtenlandsperioder.verdi
-                        : [],
-            },
-            erEøsLand
-        );
-
-    const filtrerteRelevanteIdNummer = (): IIdNummer[] =>
-        søknad.søker.idNummer.filter(
-            idNummerObj =>
-                relevanteLandMedPeriodeType()
-                    .map(landMedPeriode => landMedPeriode.land)
-                    .includes(idNummerObj.land) && gyldigVerdiPåIdNummer(idNummerObj)
-        );
-
     const genererOppdatertSøker = () => ({
         ...søker,
-        utenlandsperioder:
-            værtINorgeITolvMåneder.verdi === ESvar.NEI ? registrerteUtenlandsperioder.verdi : [],
-        idNummer: filtrerteRelevanteIdNummer(),
         borPåRegistrertAdresse: {
             ...søker.borPåRegistrertAdresse,
             svar: skjema.felter.borPåRegistrertAdresse.verdi,
@@ -161,7 +100,6 @@ export const useOmdeg = (): {
             borPåRegistrertAdresse,
             værtINorgeITolvMåneder,
             planleggerÅBoINorgeTolvMnd,
-            registrerteUtenlandsperioder,
             yrkesaktivFemÅr,
         },
         skjemanavn: 'omdeg',
@@ -173,7 +111,5 @@ export const useOmdeg = (): {
         validerAlleSynligeFelter,
         valideringErOk,
         oppdaterSøknad,
-        leggTilUtenlandsperiode,
-        fjernUtenlandsperiode,
     };
 };

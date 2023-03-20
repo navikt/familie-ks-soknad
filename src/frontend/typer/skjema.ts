@@ -74,7 +74,6 @@ export interface IOmDegFeltTyper {
     borPåRegistrertAdresse: ESvar | null;
     værtINorgeITolvMåneder: ESvar | null;
     planleggerÅBoINorgeTolvMnd: ESvar | null;
-    registrerteUtenlandsperioder: IUtenlandsperiode[];
     yrkesaktivFemÅr: ESvar | null;
 }
 
