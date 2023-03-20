@@ -1,27 +1,20 @@
 import React from 'react';
 
 import { Alpha3Code } from 'i18n-iso-countries';
-import styled from 'styled-components';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../../context/AppContext';
 import { useRoutes } from '../../../../context/RoutesContext';
-import { PersonType } from '../../../../typer/personType';
 import { RouteEnum } from '../../../../typer/routes';
 import { genererAdresseVisning } from '../../../../utils/adresse';
 import { landkodeTilSpråk, sivilstandTilSanitySivilstandApiKey } from '../../../../utils/språk';
 import { jaNeiSvarTilSpråkId } from '../../../../utils/spørsmål';
-import { UtenlandsperiodeOppsummering } from '../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
 import { useOmdeg } from '../../OmDeg/useOmdeg';
 import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';
 import { StyledOppsummeringsFeltGruppe } from '../OppsummeringsFeltGruppe';
-
-const StyledUtenlandsperiodeOppsummering = styled(UtenlandsperiodeOppsummering)`
-    border-bottom: none;
-`;
 
 interface Props {
     settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
@@ -90,14 +83,6 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                     spørsmålstekst={omDegTekster.oppholdtDegSammenhengende.sporsmal}
                     søknadsvar={søknad.søker.værtINorgeITolvMåneder.svar}
                 />
-                {søknad.søker.utenlandsperioder.map((periode, index) => (
-                    <StyledUtenlandsperiodeOppsummering
-                        key={index}
-                        periode={periode}
-                        nummer={index + 1}
-                        personType={PersonType.søker}
-                    />
-                ))}
                 <OppsummeringFelt
                     spørsmålstekst={omDegTekster.planleggerAaBoSammenhengende.sporsmal}
                     søknadsvar={søknad.søker.planleggerÅBoINorgeTolvMnd.svar}
