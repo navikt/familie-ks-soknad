@@ -1,7 +1,5 @@
 import React, { ReactNode } from 'react';
 
-import * as history from 'history';
-import { History } from 'history';
 import { mockDeep } from 'jest-mock-extended';
 
 import { Modal } from '@navikt/ds-react';
@@ -198,12 +196,10 @@ const wrapMedDefaultProvidere = (children: ReactNode) =>
 
 export const TestProvidere: React.FC = ({ children }) => wrapMedDefaultProvidere(children);
 
-export const mockHistory = (
-    newHistory: string[]
-): { mockedHistory: History; mockedHistoryArray: string[] } => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore denne har vi definert i __mocks__/history
-    return history.__setHistory(newHistory);
+export const mockedHistory: string[] = [];
+
+export const mockHistory = (newHistory: string[]) => {
+    mockedHistory.push(...newHistory);
 };
 
 export const mekkGyldigSøker = (): ISøker => {

@@ -1,21 +1,18 @@
-import * as history from 'history';
+import { mockedHistory } from '../frontend/utils/testing';
 const reactRouterDom = jest.requireActual('react-router-dom');
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const { __getMockedHistoryArray, __getMockedHistory } = history;
-
 const useLocation = () => {
-    const array = __getMockedHistoryArray();
     return {
-        pathname: array[array.length - 1],
+        pathname: mockedHistory[mockedHistory.length - 1],
     };
 };
 
-const useHistory = () => __getMockedHistory();
+const useNavigate = () => (to: string) => {
+    mockedHistory.push(to);
+};
 
 module.exports = {
     ...reactRouterDom,
-    useHistory,
     useLocation,
+    useNavigate,
 };
