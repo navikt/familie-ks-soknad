@@ -6,4 +6,5 @@ export interface IDinLivssituasjonTekstinnhold {
     arbeidUtenforNorge: ISanitySpørsmålDokument;
     pensjonUtland: ISanitySpørsmålDokument;
     asylsoeker: ISanitySpørsmålDokument;
+    utenlandsoppholdUtenArbeid: ISanitySpørsmålDokument;
 }

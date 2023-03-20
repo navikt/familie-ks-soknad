@@ -8,7 +8,7 @@ import { Typografi } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IOmBarnetFeltTyper, IOmDegFeltTyper } from '../../../typer/skjema';
+import { IDinLivssituasjonFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
@@ -21,7 +21,7 @@ type PersonTypeMedBarn =
     | { personType: PersonType.andreForelder; barn: IBarnMedISøknad };
 
 type Props = PersonTypeMedBarn & {
-    skjema: ISkjema<IOmDegFeltTyper | IOmBarnetFeltTyper, string>;
+    skjema: ISkjema<IDinLivssituasjonFeltTyper | IOmBarnetFeltTyper, string>;
     leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
     fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
     registrerteUtenlandsperioder: Felt<IUtenlandsperiode[]>;

@@ -58,7 +58,6 @@ export const initialStateSøknad: ISøknad = {
             postnummer: '',
             poststed: '',
         },
-        utenlandsperioder: [],
         borPåRegistrertAdresse: {
             id: OmDegSpørsmålId.borPåRegistrertAdresse,
             svar: null,
@@ -88,12 +87,16 @@ export const initialStateSøknad: ISøknad = {
             svar: null,
         },
         arbeidsperioderUtland: [],
-
         arbeidINorge: {
             id: EøsSøkerSpørsmålId.arbeidINorge,
             svar: null,
         },
         arbeidsperioderNorge: [],
+        utenlandsoppholdUtenArbeid: {
+            id: DinLivssituasjonSpørsmålId.utenlandsoppholdUtenArbeid,
+            svar: null,
+        },
+        utenlandsperioder: [],
         pensjonNorge: {
             id: EøsSøkerSpørsmålId.pensjonNorge,
             svar: null,

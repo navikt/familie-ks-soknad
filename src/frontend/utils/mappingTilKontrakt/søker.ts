@@ -49,6 +49,7 @@ export const søkerIKontraktFormat = (
         idNummer,
         adresseISøkeperiode,
         triggetEøs,
+        utenlandsoppholdUtenArbeid,
     } = søker;
     const { barnInkludertISøknaden } = søknad;
     const fellesTekster = tekster.FELLES;
@@ -96,6 +97,10 @@ export const søkerIKontraktFormat = (
         arbeidIUtlandet: søknadsfeltForESvar(
             dinLivssituasjonTekster.arbeidUtenforNorge.sporsmal,
             arbeidIUtlandet.svar
+        ),
+        utenlandsoppholdUtenArbeid: søknadsfeltForESvar(
+            dinLivssituasjonTekster.utenlandsoppholdUtenArbeid.sporsmal,
+            utenlandsoppholdUtenArbeid.svar
         ),
         mottarUtenlandspensjon: søknadsfeltForESvar(
             dinLivssituasjonTekster.pensjonUtland.sporsmal,
