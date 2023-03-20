@@ -53,52 +53,40 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
             gjelderUtland: gjelderUtlandet,
         }),
         verdi: sammeVerdiAlleSpråk({
-            arbeidsperiodeAvsluttet: arbeidsperiodeAvsluttet.svar
-                ? {
-                      label: tilRestLocaleRecord(tekster.arbeidsperiodenAvsluttet.sporsmal),
-                      verdi: sammeVerdiAlleSpråk(arbeidsperiodeAvsluttet.svar),
-                  }
-                : null,
-            arbeidsperiodeland: arbeidsperiodeland.svar
-                ? {
-                      label: tilRestLocaleRecord(landTekst.sporsmal, { barnetsNavn: barn?.navn }),
-                      verdi: verdiCallbackAlleSpråk(locale =>
-                          landkodeTilSpråk(arbeidsperiodeland.svar, locale)
-                      ),
-                  }
-                : null,
-            arbeidsgiver: arbeidsgiver.svar
-                ? {
-                      label: tilRestLocaleRecord(tekster.arbeidsgiver.sporsmal),
-                      verdi: sammeVerdiAlleSpråk(arbeidsgiver.svar),
-                  }
-                : null,
-            fraDatoArbeidsperiode: fraDatoArbeidsperiode.svar
-                ? {
-                      label: tilRestLocaleRecord(tekster.startdato.sporsmal),
-                      verdi: sammeVerdiAlleSpråk(fraDatoArbeidsperiode.svar),
-                  }
-                : null,
-            tilDatoArbeidsperiode: tilDatoArbeidsperiode.svar
-                ? {
-                      label: tilRestLocaleRecord(sluttdatoTekst.sporsmal),
-                      verdi: sammeVerdiAlleSpråkEllerUkjent(
-                          tilRestLocaleRecord,
-                          tilDatoArbeidsperiode.svar,
-                          tekster.sluttdatoFremtid.checkboxLabel
-                      ),
-                  }
-                : null,
-            adresse: adresse.svar
-                ? søknadsfelt(
-                      adresseTekst.sporsmal,
-                      sammeVerdiAlleSpråkEllerUkjent(
-                          tilRestLocaleRecord,
-                          adresse.svar,
-                          adresseTekst.checkboxLabel
-                      )
-                  )
-                : null,
+            arbeidsperiodeAvsluttet: {
+                label: tilRestLocaleRecord(tekster.arbeidsperiodenAvsluttet.sporsmal),
+                verdi: sammeVerdiAlleSpråk(arbeidsperiodeAvsluttet.svar),
+            },
+            arbeidsperiodeland: {
+                label: tilRestLocaleRecord(landTekst.sporsmal, { barnetsNavn: barn?.navn }),
+                verdi: verdiCallbackAlleSpråk(locale =>
+                    landkodeTilSpråk(arbeidsperiodeland.svar, locale)
+                ),
+            },
+            arbeidsgiver: {
+                label: tilRestLocaleRecord(tekster.arbeidsgiver.sporsmal),
+                verdi: sammeVerdiAlleSpråk(arbeidsgiver.svar),
+            },
+            fraDatoArbeidsperiode: {
+                label: tilRestLocaleRecord(tekster.startdato.sporsmal),
+                verdi: sammeVerdiAlleSpråk(fraDatoArbeidsperiode.svar),
+            },
+            tilDatoArbeidsperiode: {
+                label: tilRestLocaleRecord(sluttdatoTekst.sporsmal),
+                verdi: sammeVerdiAlleSpråkEllerUkjent(
+                    tilRestLocaleRecord,
+                    tilDatoArbeidsperiode.svar,
+                    tekster.sluttdatoFremtid.checkboxLabel
+                ),
+            },
+            adresse: søknadsfelt(
+                adresseTekst.sporsmal,
+                sammeVerdiAlleSpråkEllerUkjent(
+                    tilRestLocaleRecord,
+                    adresse.svar,
+                    adresseTekst.checkboxLabel
+                )
+            ),
         }),
     };
 };
