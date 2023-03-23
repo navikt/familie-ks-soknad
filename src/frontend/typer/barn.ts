@@ -22,8 +22,8 @@ export enum andreForelderDataKeySpørsmål {
     fnr = 'fnr',
     yrkesaktivFemÅr = 'yrkesaktivFemÅr',
     fødselsdato = 'fødselsdato',
-
     arbeidUtlandet = 'arbeidUtlandet',
+    utenlandsoppholdUtenArbeid = 'utenlandsoppholdUtenArbeid',
     pensjonUtland = 'pensjonUtland',
     adresse = 'adresse',
 
@@ -63,6 +63,7 @@ export enum barnDataKeySpørsmål {
 
 export interface IAndreForelder {
     arbeidsperioderUtland: IArbeidsperiode[];
+    utenlandsperioder: IUtenlandsperiode[];
     pensjonsperioderUtland: IPensjonsperiode[];
     kanIkkeGiOpplysninger: ISøknadSpørsmål<ESvar>;
     [andreForelderDataKeySpørsmål.navn]: ISøknadSpørsmål<string | ''>;
@@ -70,6 +71,7 @@ export interface IAndreForelder {
     [andreForelderDataKeySpørsmål.fødselsdato]: ISøknadSpørsmål<DatoMedUkjent>;
     [andreForelderDataKeySpørsmål.yrkesaktivFemÅr]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.arbeidUtlandet]: ISøknadSpørsmål<ESvar | null>;
+    [andreForelderDataKeySpørsmål.utenlandsoppholdUtenArbeid]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.pensjonUtland]: ISøknadSpørsmål<ESvar | null>;
 
     //EØS

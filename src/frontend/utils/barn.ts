@@ -34,6 +34,7 @@ export const genererInitiellAndreForelder = (
         pensjonsperioderNorge: andreForelder?.pensjonsperioderNorge ?? [],
         pensjonsperioderUtland: andreForelder?.pensjonsperioderUtland ?? [],
         eøsKontantstøttePerioder: andreForelder?.eøsKontantstøttePerioder ?? [],
+        utenlandsperioder: andreForelder?.utenlandsperioder ?? [],
         idNummer: andreForelder?.idNummer ?? [],
         navn: {
             id: OmBarnetSpørsmålsId.andreForelderNavn,
@@ -56,6 +57,12 @@ export const genererInitiellAndreForelder = (
             id: andreForelderErDød
                 ? OmBarnetSpørsmålsId.andreForelderArbeidUtlandetEnke
                 : OmBarnetSpørsmålsId.andreForelderArbeidUtlandet,
+        },
+        utenlandsoppholdUtenArbeid: {
+            svar: andreForelder?.utenlandsoppholdUtenArbeid.svar ?? null,
+            id: andreForelderErDød
+                ? OmBarnetSpørsmålsId.andreForelderUtenlandsoppholdUtenArbeidGjenlevende
+                : OmBarnetSpørsmålsId.andreForelderUtenlandsoppholdUtenArbeid,
         },
         pensjonUtland: {
             svar: andreForelder?.pensjonUtland.svar ?? null,
