@@ -66,7 +66,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
         onLeggTilArbeidsperiode({
             arbeidsperiodeAvsluttet: {
                 id: ArbeidsperiodeSpørsmålsId.arbeidsperiodeAvsluttet,
-                svar: arbeidsperiodeAvsluttet.verdi as ESvar,
+                svar: arbeidsperiodeAvsluttet.verdi,
             },
             arbeidsperiodeland: {
                 id: ArbeidsperiodeSpørsmålsId.arbeidsperiodeLand,
