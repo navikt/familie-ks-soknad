@@ -59,14 +59,12 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
                       verdi: sammeVerdiAlleSpråk(arbeidsperiodeAvsluttet.svar),
                   }
                 : null,
-            arbeidsperiodeland: arbeidsperiodeland.svar
-                ? {
-                      label: tilRestLocaleRecord(landTekst.sporsmal, { barnetsNavn: barn?.navn }),
-                      verdi: verdiCallbackAlleSpråk(locale =>
-                          landkodeTilSpråk(arbeidsperiodeland.svar, locale)
-                      ),
-                  }
-                : null,
+            arbeidsperiodeland: {
+                label: tilRestLocaleRecord(landTekst.sporsmal, { barnetsNavn: barn?.navn }),
+                verdi: verdiCallbackAlleSpråk(locale =>
+                    landkodeTilSpråk(arbeidsperiodeland.svar, locale)
+                ),
+            },
             arbeidsgiver: {
                 label: tilRestLocaleRecord(tekster.arbeidsgiver.sporsmal),
                 verdi: sammeVerdiAlleSpråk(arbeidsgiver.svar),
@@ -83,16 +81,14 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
                     tekster.sluttdatoFremtid.checkboxLabel
                 ),
             },
-            adresse: adresse.svar
-                ? søknadsfelt(
-                      adresseTekst.sporsmal,
-                      sammeVerdiAlleSpråkEllerUkjent(
-                          tilRestLocaleRecord,
-                          adresse.svar,
-                          adresseTekst.checkboxLabel
-                      )
-                  )
-                : null,
+            adresse: søknadsfelt(
+                adresseTekst.sporsmal,
+                sammeVerdiAlleSpråkEllerUkjent(
+                    tilRestLocaleRecord,
+                    adresse.svar,
+                    adresseTekst.checkboxLabel
+                )
+            ),
         }),
     };
 };
