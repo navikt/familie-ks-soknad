@@ -16,7 +16,7 @@ export interface IUtenlandsperiode {
 }
 
 export interface IArbeidsperiode {
-    arbeidsperiodeAvsluttet: ISøknadSpørsmål<ESvar>;
+    arbeidsperiodeAvsluttet: ISøknadSpørsmål<ESvar | null>;
     arbeidsperiodeland: ISøknadSpørsmål<Alpha3Code | ''>;
     arbeidsgiver: ISøknadSpørsmål<string>;
     fraDatoArbeidsperiode: ISøknadSpørsmål<ISODateString | ''>;

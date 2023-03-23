@@ -66,17 +66,15 @@ export const useArbeidsperiodeSkjema = (
         søknadsfelt: { id: ArbeidsperiodeSpørsmålsId.arbeidsgiver, svar: '' },
         feilmelding: teksterForPersonType.arbeidsgiver.feilmelding,
         skalVises:
-            gjelderUtlandet &&
-            (arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
-                andreForelderErDød),
+            arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
+            andreForelderErDød,
     });
 
     const fraDatoArbeidsperiode = useDatovelgerFelt({
         søknadsfelt: { id: ArbeidsperiodeSpørsmålsId.fraDatoArbeidsperiode, svar: '' },
         skalFeltetVises:
-            gjelderUtlandet &&
-            (arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
-                andreForelderErDød),
+            arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
+            andreForelderErDød,
         feilmelding: teksterForPersonType.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
     });
@@ -84,10 +82,8 @@ export const useArbeidsperiodeSkjema = (
     const tilDatoArbeidsperiodeUkjent = useFelt<ESvar>({
         verdi: ESvar.NEI,
         feltId: ArbeidsperiodeSpørsmålsId.tilDatoArbeidsperiodeVetIkke,
-        skalFeltetVises: avhengigheter => {
-            if (avhengigheter.arbeidsperiodeAvsluttet?.verdi !== ESvar.NEI) return false;
-            return gjelderUtlandet;
-        },
+        skalFeltetVises: avhengigheter =>
+            avhengigheter?.arbeidsperiodeAvsluttet?.verdi === ESvar.NEI,
         avhengigheter: { arbeidsperiodeAvsluttet },
     });
 
@@ -99,9 +95,8 @@ export const useArbeidsperiodeSkjema = (
             ? teksterForPersonType.sluttdatoFortid.feilmelding
             : teksterForPersonType.sluttdatoFremtid.feilmelding,
         skalFeltetVises:
-            gjelderUtlandet &&
-            (arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
-                andreForelderErDød),
+            arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
+            andreForelderErDød,
         sluttdatoAvgrensning: periodenErAvsluttet ? dagensDato() : undefined,
         startdatoAvgrensning: minTilDatoForUtbetalingEllerArbeidsperiode(
             periodenErAvsluttet,

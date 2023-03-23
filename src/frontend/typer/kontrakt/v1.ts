@@ -158,12 +158,12 @@ export interface IAndreForelderIKontraktFormat {
 }
 
 export interface IArbeidsperiodeIKontraktFormat {
-    arbeidsperiodeAvsluttet: ISøknadsfelt<string>;
-    arbeidsperiodeland: ISøknadsfelt<string>;
-    arbeidsgiver: ISøknadsfelt<string>;
-    fraDatoArbeidsperiode: ISøknadsfelt<ISODateString>;
-    tilDatoArbeidsperiode: ISøknadsfelt<ISODateString>;
-    adresse: ISøknadsfelt<string>;
+    arbeidsperiodeAvsluttet: ISøknadsfelt<string> | null;
+    arbeidsperiodeland: ISøknadsfelt<string> | null;
+    arbeidsgiver: ISøknadsfelt<string> | null;
+    fraDatoArbeidsperiode: ISøknadsfelt<ISODateString> | null;
+    tilDatoArbeidsperiode: ISøknadsfelt<ISODateString> | null;
+    adresse: ISøknadsfelt<string> | null;
 }
 
 export interface IIdNummerIKontraktFormat {
