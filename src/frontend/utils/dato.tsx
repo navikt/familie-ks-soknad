@@ -70,9 +70,9 @@ export const validerDato = (
         return feil(feltState, plainTekst(feilmelding) ?? '');
     }
 
-    const dato = stringTilDate(feltState.verdi);
+    const dato = parseTilGyldigDato(feltState.verdi, 'yyyy-MM-dd');
 
-    if (!erDatoFormatGodkjent(dato)) {
+    if (!dato) {
         return feil(feltState, plainTekst(tekster.ugyldigDato));
     }
     if (!!sluttdatoAvgrensning && erDatoEtterSluttdatoAvgresning(dato, sluttdatoAvgrensning)) {
