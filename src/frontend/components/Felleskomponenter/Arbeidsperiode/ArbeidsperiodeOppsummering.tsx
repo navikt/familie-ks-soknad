@@ -91,31 +91,25 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
                     søknadsvar={landkodeTilSpråk(arbeidsperiodeland.svar, valgtLocale)}
                 />
             )}
-            {arbeidsgiver.svar && (
-                <OppsummeringFelt
-                    spørsmålstekst={teksterForModal.arbeidsgiver.sporsmal}
-                    søknadsvar={arbeidsgiver.svar}
-                />
-            )}
-            {fraDatoArbeidsperiode.svar && (
-                <OppsummeringFelt
-                    spørsmålstekst={teksterForModal.startdato.sporsmal}
-                    søknadsvar={formaterDato(fraDatoArbeidsperiode.svar)}
-                />
-            )}
-            {tilDatoArbeidsperiode.svar && (
-                <OppsummeringFelt
-                    spørsmålstekst={
-                        periodenErAvsluttet
-                            ? teksterForModal.sluttdatoFortid.sporsmal
-                            : teksterForModal.sluttdatoFremtid.sporsmal
-                    }
-                    søknadsvar={formaterDatoMedUkjent(
-                        tilDatoArbeidsperiode.svar,
-                        plainTekst(teksterForModal.sluttdatoFremtid.checkboxLabel)
-                    )}
-                />
-            )}
+            <OppsummeringFelt
+                spørsmålstekst={teksterForModal.arbeidsgiver.sporsmal}
+                søknadsvar={arbeidsgiver.svar}
+            />
+            <OppsummeringFelt
+                spørsmålstekst={teksterForModal.startdato.sporsmal}
+                søknadsvar={formaterDato(fraDatoArbeidsperiode.svar)}
+            />
+            <OppsummeringFelt
+                spørsmålstekst={
+                    periodenErAvsluttet
+                        ? teksterForModal.sluttdatoFortid.sporsmal
+                        : teksterForModal.sluttdatoFremtid.sporsmal
+                }
+                søknadsvar={formaterDatoMedUkjent(
+                    tilDatoArbeidsperiode.svar,
+                    plainTekst(teksterForModal.sluttdatoFremtid.checkboxLabel)
+                )}
+            />
             {adresse.svar && (
                 <OppsummeringFelt
                     spørsmålstekst={adresseTekst.sporsmal}
