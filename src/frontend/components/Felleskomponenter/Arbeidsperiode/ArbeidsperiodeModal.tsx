@@ -66,31 +66,27 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
         onLeggTilArbeidsperiode({
             arbeidsperiodeAvsluttet: {
                 id: ArbeidsperiodeSpørsmålsId.arbeidsperiodeAvsluttet,
-                svar: arbeidsperiodeAvsluttet.erSynlig
-                    ? (arbeidsperiodeAvsluttet.verdi as ESvar)
-                    : null,
+                svar: arbeidsperiodeAvsluttet.verdi,
             },
             arbeidsperiodeland: {
                 id: ArbeidsperiodeSpørsmålsId.arbeidsperiodeLand,
-                svar: arbeidsperiodeLand.erSynlig ? arbeidsperiodeLand.verdi : '',
+                svar: arbeidsperiodeLand.verdi,
             },
             arbeidsgiver: {
                 id: ArbeidsperiodeSpørsmålsId.arbeidsgiver,
-                svar: arbeidsgiver.erSynlig ? trimWhiteSpace(arbeidsgiver.verdi) : '',
+                svar: trimWhiteSpace(arbeidsgiver.verdi),
             },
             fraDatoArbeidsperiode: {
                 id: ArbeidsperiodeSpørsmålsId.fraDatoArbeidsperiode,
-                svar: fraDatoArbeidsperiode.erSynlig ? fraDatoArbeidsperiode.verdi : '',
+                svar: fraDatoArbeidsperiode.verdi,
             },
             tilDatoArbeidsperiode: {
                 id: ArbeidsperiodeSpørsmålsId.tilDatoArbeidsperiode,
-                svar: tilDatoArbeidsperiode.erSynlig
-                    ? svarForSpørsmålMedUkjent(tilDatoArbeidsperiodeUkjent, tilDatoArbeidsperiode)
-                    : '',
+                svar: svarForSpørsmålMedUkjent(tilDatoArbeidsperiodeUkjent, tilDatoArbeidsperiode),
             },
             adresse: {
                 id: ArbeidsperiodeSpørsmålsId.adresse,
-                svar: adresse.erSynlig ? svarForSpørsmålMedUkjent(adresseUkjent, adresse) : '',
+                svar: svarForSpørsmålMedUkjent(adresseUkjent, adresse),
             },
         });
 

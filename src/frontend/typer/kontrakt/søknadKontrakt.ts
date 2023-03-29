@@ -163,9 +163,9 @@ export interface IAndreForelderIKontraktFormat {
 export interface IArbeidsperiodeIKontraktFormat {
     arbeidsperiodeAvsluttet: ISøknadsfelt<string> | null;
     arbeidsperiodeland: ISøknadsfelt<string> | null;
-    arbeidsgiver: ISøknadsfelt<string> | null;
-    fraDatoArbeidsperiode: ISøknadsfelt<ISODateString> | null;
-    tilDatoArbeidsperiode: ISøknadsfelt<ISODateString> | null;
+    arbeidsgiver: ISøknadsfelt<string>;
+    fraDatoArbeidsperiode: ISøknadsfelt<ISODateString>;
+    tilDatoArbeidsperiode: ISøknadsfelt<ISODateString>;
     adresse: ISøknadsfelt<string> | null;
 }
 
