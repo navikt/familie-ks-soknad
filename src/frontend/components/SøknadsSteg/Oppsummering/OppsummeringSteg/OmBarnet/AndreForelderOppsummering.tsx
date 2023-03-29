@@ -16,6 +16,7 @@ import { ESanitySteg } from '../../../../../typer/sanity/sanity';
 import { formaterDatoMedUkjent } from '../../../../../utils/dato';
 import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
+import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
 import { IOmBarnetTekstinnhold } from '../../../OmBarnet/innholdTyper';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
@@ -26,6 +27,7 @@ const AndreForelderOppsummering: React.FC<{
 }> = ({ barn, andreForelder }) => {
     const { tekster, plainTekst } = useApp();
     const omBarnetTekster: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
+    const erDød = barn.andreForelderErDød.svar === ESvar.JA;
 
     const flettefelter = { barnetsNavn: barn.navn };
     return (
@@ -83,7 +85,7 @@ const AndreForelderOppsummering: React.FC<{
                     {andreForelder[andreForelderDataKeySpørsmål.arbeidUtlandet].svar && (
                         <OppsummeringFelt
                             spørsmålstekst={
-                                barn.andreForelderErDød.svar === ESvar.JA
+                                erDød
                                     ? omBarnetTekster.arbeidUtenforNorgeAndreForelderGjenlevende
                                           .sporsmal
                                     : omBarnetTekster.arbeidUtenforNorgeAndreForelder.sporsmal
@@ -107,10 +109,32 @@ const AndreForelderOppsummering: React.FC<{
                         />
                     ))}
 
+                    <OppsummeringFelt
+                        spørsmålstekst={
+                            erDød
+                                ? omBarnetTekster.utenlandsoppholdUtenArbeidAndreForelderGjenlevende
+                                      .sporsmal
+                                : omBarnetTekster.utenlandsoppholdUtenArbeidAndreForelder.sporsmal
+                        }
+                        flettefelter={flettefelter}
+                        søknadsvar={andreForelder.utenlandsoppholdUtenArbeid.svar}
+                    />
+
+                    {andreForelder.utenlandsperioder.map((periode, index) => (
+                        <UtenlandsperiodeOppsummering
+                            key={index}
+                            periode={periode}
+                            nummer={index + 1}
+                            personType={PersonType.andreForelder}
+                            erDød={erDød}
+                            barn={barn}
+                        />
+                    ))}
+
                     {andreForelder[andreForelderDataKeySpørsmål.pensjonUtland].svar && (
                         <OppsummeringFelt
                             spørsmålstekst={
-                                barn.andreForelderErDød.svar === ESvar.JA
+                                erDød
                                     ? omBarnetTekster.pensjonUtlandAndreForelderGjenlevende.sporsmal
                                     : omBarnetTekster.pensjonUtlandAndreForelder.sporsmal
                             }
