@@ -1,5 +1,5 @@
 import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { IIdNummerIKontraktFormat } from '../../typer/kontrakt/v1';
+import { IIdNummerIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
 import { IIdNummer } from '../../typer/person';
 import { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
 import { landkodeTilSpråk } from '../språk';

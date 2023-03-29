@@ -1,6 +1,6 @@
 import { IBarnMedISøknad } from '../../typer/barn';
 import { Slektsforhold, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { IOmsorgspersonIKontraktFormat } from '../../typer/kontrakt/v1';
+import { IOmsorgspersonIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
 import { IOmsorgsperson } from '../../typer/omsorgsperson';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { hentSlektsforhold, landkodeTilSpråk } from '../språk';

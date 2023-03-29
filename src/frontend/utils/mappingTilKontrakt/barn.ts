@@ -6,7 +6,7 @@ import {
     Slektsforhold,
     TilRestLocaleRecord,
 } from '../../typer/kontrakt/generelle';
-import { ISøknadIKontraktBarn } from '../../typer/kontrakt/v1';
+import { ISøknadIKontraktBarn } from '../../typer/kontrakt/søknadKontrakt';
 import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknad } from '../../typer/søknad';

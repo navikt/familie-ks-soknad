@@ -5,7 +5,7 @@ import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDi
 import { IBarnMedISøknad } from '../../typer/barn';
 import { LocaleRecordBlock, LocaleRecordString } from '../../typer/common';
 import { ESivilstand, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { ISøknadKontrakt } from '../../typer/kontrakt/v1';
+import { ISøknadKontrakt } from '../../typer/kontrakt/søknadKontrakt';
 import { ISøker } from '../../typer/person';
 import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
@@ -29,7 +29,7 @@ const antallEøsSteg = (søker: ISøker, barnInkludertISøknaden: IBarnMedISøkn
     }
 };
 
-export const dataISøknadKontraktFormatV1 = (
+export const dataISøknadKontraktFormat = (
     valgtSpråk: LocaleType,
     søknad: ISøknad,
     tekster: ITekstinnhold,
@@ -44,7 +44,7 @@ export const dataISøknadKontraktFormatV1 = (
     const søknadsfeltForESvar = søknadsfeltForESvarHof(tilRestLocaleRecord);
 
     return {
-        kontraktVersjon: 3,
+        kontraktVersjon: 4,
         antallEøsSteg: antallEøsSteg(søker, barnInkludertISøknaden),
         søker: søkerIKontraktFormat(søknad, tekster, tilRestLocaleRecord),
         barn: barnInkludertISøknaden.map(barn =>

@@ -2,7 +2,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../typer/barn';
 import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { IAndreForelderIKontraktFormat } from '../../typer/kontrakt/v1';
+import { IAndreForelderIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
 import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { landkodeTilSpråk } from '../språk';
