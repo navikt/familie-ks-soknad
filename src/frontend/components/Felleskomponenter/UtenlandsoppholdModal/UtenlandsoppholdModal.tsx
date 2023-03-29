@@ -3,9 +3,8 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
 import { IUtenlandsperiode } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
+import { PeriodePersonTypeMedBarnProps } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
@@ -34,11 +33,10 @@ import {
     hentUtenlandsoppholdÅrsak,
 } from './utenlandsoppholdSpråkUtils';
 
-type Props = ReturnType<typeof useModal> & {
-    onLeggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
-    personType: PersonType;
-    barn?: IBarnMedISøknad;
-};
+type Props = PeriodePersonTypeMedBarnProps &
+    ReturnType<typeof useModal> & {
+        onLeggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
+    };
 
 export const UtenlandsoppholdModal: React.FC<Props> = ({
     erÅpen,
@@ -46,6 +44,9 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
     onLeggTilUtenlandsperiode,
     personType,
     barn,
+    // Midlertidig ubrukt erDød til todo lenger ned er fikset
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    erDød,
 }) => {
     const { tekster, plainTekst } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
@@ -54,8 +55,6 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
         });
 
     const teksterForPersonType = tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
-
-    const barnetsNavn = barn?.navn;
 
     const onLeggTil = () => {
         if (!validerFelterOgVisFeilmelding()) {
@@ -91,11 +90,13 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
         nullstillSkjema();
     };
 
+    // Todo: håndtere gjenlevende (kun perioder som er avsluttet som alternativer dersom erDød)
+
     return (
         <SkjemaModal
             erÅpen={erÅpen}
             tittel={teksterForPersonType.tittel}
-            flettefelter={{ barnetsNavn }}
+            flettefelter={{ barnetsNavn: barn?.navn }}
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
             onSubmitCallback={onLeggTil}
             toggleModal={toggleModal}
@@ -136,6 +137,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                                 skjema.felter.utenlandsoppholdÅrsak.verdi,
                                 teksterForPersonType
                             )}
+                            flettefelter={{ barnetsNavn: barn?.navn }}
                         />
                     }
                     dynamisk

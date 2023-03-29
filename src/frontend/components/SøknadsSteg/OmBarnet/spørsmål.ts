@@ -17,4 +17,6 @@ export enum OmBarnetSpørsmålsId {
     andreForelderPensjonUtlandEnke = 'andre-forelder-pensjon-utland-enke',
     borFastMedSøker = 'bor-barnet-fast-med-deg',
     sammeForelderSomAnnetBarn = 'samme-forelder-som-annet-barn',
+    andreForelderUtenlandsoppholdUtenArbeid = 'andre-forelder-utenlandsopphold',
+    andreForelderUtenlandsoppholdUtenArbeidGjenlevende = 'andre-forelder-utenlandsopphold-gjenlevende',
 }

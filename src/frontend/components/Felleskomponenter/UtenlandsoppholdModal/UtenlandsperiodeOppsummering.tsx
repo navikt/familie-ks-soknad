@@ -5,7 +5,7 @@ import { useSprakContext } from '@navikt/familie-sprakvelger';
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
+import { PeriodePersonTypeMedBarnProps } from '../../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
@@ -23,14 +23,19 @@ type Props = {
     periode: IUtenlandsperiode;
     nummer: number;
     fjernPeriodeCallback?: (periode: IUtenlandsperiode) => void;
-    personType: PersonType;
 };
 
-export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
+type UtenlandsperiodeOppsummeringProps = Props & PeriodePersonTypeMedBarnProps;
+
+export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummeringProps> = ({
     periode,
     nummer,
     fjernPeriodeCallback,
     personType,
+    barn,
+    // Midlertidig ubrukt erDød til todo lenger ned er fikset
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    erDød,
 }) => {
     const [valgtLocale] = useSprakContext();
     const { plainTekst, tekster } = useApp();
@@ -39,6 +44,8 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
     const årsak = utenlandsoppholdÅrsak.svar;
     const teksterForPersonType: IUtenlandsoppholdTekstinnhold =
         tekster().FELLES.modaler.utenlandsopphold[personType];
+
+    // Todo: håndtere gjenlevende (kun perioder som er avsluttet som alternativer dersom erDød)
 
     return (
         <>
@@ -64,6 +71,7 @@ export const UtenlandsperiodeOppsummering: React.FC<Props> = ({
                         teksterForPersonType
                     )}
                     søknadsvar={landkodeTilSpråk(oppholdsland.svar, valgtLocale)}
+                    flettefelter={{ barnetsNavn: barn?.navn }}
                 />
 
                 {oppholdslandFraDato && (

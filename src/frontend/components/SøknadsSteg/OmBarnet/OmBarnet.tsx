@@ -40,6 +40,8 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         leggTilBarnehageplassPeriode,
         fjernBarnehageplassPeriode,
         harPeriodeMedGradertBarnehageplass,
+        leggTilUtenlandsperiodeAndreForelder,
+        fjernUtenlandsperiodeAndreForelder,
     } = useOmBarnet(barnetsId);
 
     const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
@@ -100,6 +102,8 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     fjernArbeidsperiode={fjernArbeidsperiode}
                     leggTilPensjonsperiode={leggTilPensjonsperiode}
                     fjernPensjonsperiode={fjernPensjonsperiode}
+                    leggTilUtenlandsperiode={leggTilUtenlandsperiodeAndreForelder}
+                    fjernUtenlandsperiode={fjernUtenlandsperiodeAndreForelder}
                 />
             )}
 

@@ -4,10 +4,9 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
 import { IArbeidsperiode } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
+import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
@@ -22,12 +21,7 @@ interface Props {
     gjelderUtlandet: boolean;
 }
 
-type ArbeidperiodeOppsummeringPersonTypeProps =
-    | { personType: PersonType.søker; erDød?: boolean; barn?: IBarnMedISøknad | undefined }
-    | { personType: PersonType.omsorgsperson; erDød?: boolean; barn: IBarnMedISøknad | undefined }
-    | { personType: PersonType.andreForelder; erDød: boolean; barn: IBarnMedISøknad | undefined };
-
-type ArbeidsperiodeOppsummeringProps = Props & ArbeidperiodeOppsummeringPersonTypeProps;
+type ArbeidsperiodeOppsummeringProps = Props & PeriodePersonTypeMedBarnProps;
 
 export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProps> = ({
     arbeidsperiode,
