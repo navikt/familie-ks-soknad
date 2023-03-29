@@ -3,6 +3,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../typer/barn';
 import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IAndreForelderIKontraktFormat } from '../../typer/kontrakt/v1';
+import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { landkodeTilSpråk } from '../språk';
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
@@ -17,6 +18,7 @@ import {
 } from './hjelpefunksjoner';
 import { idNummerTilISøknadsfelt } from './idNummer';
 import { tilIPensjonsperiodeIKontraktFormat } from './pensjonsperioder';
+import { utenlandsperiodeTilISøknadsfelt } from './utenlandsperiode';
 
 export const andreForelderTilISøknadsfelt = (
     andreForelder: IAndreForelder,
@@ -46,6 +48,8 @@ export const andreForelderTilISøknadsfelt = (
         idNummer,
         adresse,
         kanIkkeGiOpplysninger,
+        utenlandsoppholdUtenArbeid,
+        utenlandsperioder,
     } = andreForelder;
 
     const søknadsfelt = søknadsfeltHof(tilRestLocaleRecord);
@@ -111,6 +115,13 @@ export const andreForelderTilISøknadsfelt = (
             arbeidUtlandet.svar,
             flettefelter
         ),
+        utenlandsoppholdUtenArbeid: nullableSøknadsfeltForESvar(
+            erForelderDød
+                ? omBarnetTekster.utenlandsoppholdUtenArbeidAndreForelderGjenlevende.sporsmal
+                : omBarnetTekster.utenlandsoppholdUtenArbeidAndreForelder.sporsmal,
+            utenlandsoppholdUtenArbeid.svar,
+            flettefelter
+        ),
         pensjonNorge: nullableSøknadsfeltForESvar(
             erForelderDød
                 ? eøsTekster.pensjonNorgeAndreForelderGjenlevende.sporsmal
@@ -171,6 +182,15 @@ export const andreForelderTilISøknadsfelt = (
                 gjelderUtlandet: true,
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.arbeidsperiode.andreForelder,
+                barn,
+            })
+        ),
+        utenlandsperioder: utenlandsperioder.map((periode, index) =>
+            utenlandsperiodeTilISøknadsfelt({
+                utenlandperiode: periode,
+                periodeNummer: index + 1,
+                tekster: tekster.FELLES.modaler.utenlandsopphold[PersonType.andreForelder],
+                tilRestLocaleRecord,
                 barn,
             })
         ),

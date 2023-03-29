@@ -116,12 +116,12 @@ export const barnISøknadsFormat = (
         ),
         alder: alder ? søknadsfelt(velgBarnTekster.alderLabel, sammeVerdiAlleSpråk(alder)) : null,
         utenlandsperioder: utenlandsperioder.map((periode, index) =>
-            utenlandsperiodeTilISøknadsfelt(
-                periode,
-                index + 1,
-                fellesTekster.modaler.utenlandsopphold[PersonType.barn],
-                tilRestLocaleRecord
-            )
+            utenlandsperiodeTilISøknadsfelt({
+                utenlandperiode: periode,
+                periodeNummer: index + 1,
+                tekster: fellesTekster.modaler.utenlandsopphold[PersonType.barn],
+                tilRestLocaleRecord,
+            })
         ),
         eøsKontantstøttePerioder: eøsKontantstøttePerioder.map((periode, index) =>
             tilIEøsKontantstøttePeriodeIKontraktFormat({

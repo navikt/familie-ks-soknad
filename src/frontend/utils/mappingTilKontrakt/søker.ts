@@ -125,12 +125,12 @@ export const søkerIKontraktFormat = (
               )
             : null,
         utenlandsperioder: utenlandsperioder.map((periode, index) =>
-            utenlandsperiodeTilISøknadsfelt(
-                periode,
-                index + 1,
-                fellesTekster.modaler.utenlandsopphold[PersonType.søker],
-                tilRestLocaleRecord
-            )
+            utenlandsperiodeTilISøknadsfelt({
+                utenlandperiode: periode,
+                periodeNummer: index + 1,
+                tekster: fellesTekster.modaler.utenlandsopphold[PersonType.søker],
+                tilRestLocaleRecord,
+            })
         ),
         idNummer: idNummer.map(idnummerObj =>
             idNummerTilISøknadsfelt(
