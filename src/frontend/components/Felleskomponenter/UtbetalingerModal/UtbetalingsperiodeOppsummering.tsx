@@ -4,10 +4,9 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { IUtbetalingsperiode } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
+import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
@@ -21,12 +20,7 @@ interface Props {
     fjernPeriodeCallback?: (utbetalingsperiode: IUtbetalingsperiode) => void;
 }
 
-type UtbetalingsperiodeOppsummeringPersonTypeProps =
-    | { personType: PersonType.søker; erDød?: boolean; barn?: IBarnMedISøknad | undefined }
-    | { personType: PersonType.omsorgsperson; erDød?: boolean; barn: IBarnMedISøknad | undefined }
-    | { personType: PersonType.andreForelder; erDød: boolean; barn: IBarnMedISøknad | undefined };
-
-type UtbetalingsperiodeOppsummeringProps = Props & UtbetalingsperiodeOppsummeringPersonTypeProps;
+type UtbetalingsperiodeOppsummeringProps = Props & PeriodePersonTypeMedBarnProps;
 
 export const UtbetalingsperiodeOppsummering: React.FC<UtbetalingsperiodeOppsummeringProps> = ({
     utbetalingsperiode,

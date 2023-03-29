@@ -3,10 +3,9 @@ import React from 'react';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
+import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IDinLivssituasjonFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
@@ -15,12 +14,7 @@ import TekstBlock from '../TekstBlock';
 import { UtenlandsoppholdModal } from './UtenlandsoppholdModal';
 import { UtenlandsperiodeOppsummering } from './UtenlandsperiodeOppsummering';
 
-type PersonTypeMedBarn =
-    | { personType: PersonType.søker; barn?: never }
-    | { personType: PersonType.barn; barn: IBarnMedISøknad }
-    | { personType: PersonType.andreForelder; barn: IBarnMedISøknad };
-
-type Props = PersonTypeMedBarn & {
+type Props = PeriodePersonTypeMedBarnProps & {
     skjema: ISkjema<IDinLivssituasjonFeltTyper | IOmBarnetFeltTyper, string>;
     leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
     fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
@@ -34,6 +28,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
     registrerteUtenlandsperioder,
     barn,
     personType,
+    erDød,
 }) => {
     const { tekster } = useApp();
     const { erÅpen, toggleModal } = useModal();
@@ -53,7 +48,8 @@ export const Utenlandsperiode: React.FC<Props> = ({
                 toggleModal={toggleModal}
                 onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
                 personType={personType}
-                barn={barn}
+                barn={personType !== PersonType.søker ? barn : undefined}
+                erDød={personType === PersonType.andreForelder && erDød}
             />
             {registrerteUtenlandsperioder.verdi.map((periode, index) => (
                 <UtenlandsperiodeOppsummering
@@ -62,6 +58,8 @@ export const Utenlandsperiode: React.FC<Props> = ({
                     nummer={index + 1}
                     fjernPeriodeCallback={fjernUtenlandsperiode}
                     personType={personType}
+                    barn={personType !== PersonType.søker ? barn : undefined}
+                    erDød={personType === PersonType.andreForelder && erDød}
                 />
             ))}
             {registrerteUtenlandsperioder.verdi.length > 0 && (

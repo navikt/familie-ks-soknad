@@ -4,10 +4,9 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { IPensjonsperiode } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
+import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { formaterDato } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
@@ -21,12 +20,7 @@ interface Props {
     gjelderUtlandet: boolean;
 }
 
-type PensjonsperiodeOppsummeringPersonTypeProps =
-    | { personType: PersonType.søker; erDød?: boolean; barn?: IBarnMedISøknad | undefined }
-    | { personType: PersonType.omsorgsperson; erDød?: boolean; barn: IBarnMedISøknad | undefined }
-    | { personType: PersonType.andreForelder; erDød: boolean; barn: IBarnMedISøknad | undefined };
-
-type PensjonsperiodeOppsummeringProps = Props & PensjonsperiodeOppsummeringPersonTypeProps;
+type PensjonsperiodeOppsummeringProps = Props & PeriodePersonTypeMedBarnProps;
 
 export const PensjonsperiodeOppsummering: React.FC<PensjonsperiodeOppsummeringProps> = ({
     pensjonsperiode,

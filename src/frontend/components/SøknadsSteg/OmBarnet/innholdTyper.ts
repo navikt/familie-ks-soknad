@@ -39,4 +39,5 @@ export interface IOmBarnetTekstinnhold {
     borForeldreSammen: ISanitySpørsmålDokument;
     soekerDeltKontantstoette: ISanitySpørsmålDokument;
     utenlandsoppholdUtenArbeidAndreForelder: ISanitySpørsmålDokument;
+    utenlandsoppholdUtenArbeidAndreForelderGjenlevende: ISanitySpørsmålDokument;
 }

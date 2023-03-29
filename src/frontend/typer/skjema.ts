@@ -63,6 +63,8 @@ export interface IOmBarnetFeltTyper {
     andreForelderYrkesaktivFemÅr: ESvar | null;
     andreForelderArbeidUtlandet: ESvar | null;
     andreForelderArbeidsperioderUtland: IArbeidsperiode[];
+    andreForelderUtenlandsoppholdUtenArbeid: ESvar | null;
+    andreForelderUtenlandsperioder: IUtenlandsperiode[];
     andreForelderPensjonUtland: ESvar | null;
     andreForelderPensjonsperioderUtland: IPensjonsperiode[];
     borFastMedSøker: ESvar | null;

@@ -8,9 +8,10 @@ export enum PersonType {
 }
 
 export type PeriodePersonTypeMedBarnProps =
-    | { personType: PersonType.søker; barn?: never; erDød?: never }
-    | { personType: PersonType.omsorgsperson; barn: IBarnMedISøknad; erDød?: never }
-    | { personType: PersonType.andreForelder; barn: IBarnMedISøknad; erDød: boolean };
+    | { personType: PersonType.søker; erDød?: boolean; barn?: IBarnMedISøknad | undefined }
+    | { personType: PersonType.omsorgsperson; erDød?: boolean; barn: IBarnMedISøknad | undefined }
+    | { personType: PersonType.andreForelder; erDød: boolean; barn: IBarnMedISøknad | undefined }
+    | { personType: PersonType.barn; erDød?: boolean; barn?: IBarnMedISøknad | undefined };
 
 export type PeriodePersonTypeProps =
     | { personType: PersonType.søker; erDød?: never }
