@@ -116,9 +116,7 @@ export const andreForelderTilISøknadsfelt = (
             flettefelter
         ),
         utenlandsoppholdUtenArbeid: nullableSøknadsfeltForESvar(
-            erForelderDød
-                ? omBarnetTekster.utenlandsoppholdUtenArbeidAndreForelderGjenlevende.sporsmal
-                : omBarnetTekster.utenlandsoppholdUtenArbeidAndreForelder.sporsmal,
+            omBarnetTekster.utenlandsoppholdUtenArbeidAndreForelder.sporsmal,
             utenlandsoppholdUtenArbeid.svar,
             flettefelter
         ),

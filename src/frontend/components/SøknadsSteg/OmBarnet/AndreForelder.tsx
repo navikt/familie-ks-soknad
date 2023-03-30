@@ -60,7 +60,6 @@ const AndreForelder: React.FC<{
         foedselsnummerDnummerAndreForelder,
         medlemAvFolktetrygdenAndreForelder,
         utenlandsoppholdUtenArbeidAndreForelder,
-        utenlandsoppholdUtenArbeidAndreForelderGjenlevende,
     } = teksterForSteg;
 
     const andreForelderErDød = barn.andreForelderErDød.svar === ESvar.JA;
@@ -188,18 +187,12 @@ const AndreForelder: React.FC<{
                                     <JaNeiSpm
                                         skjema={skjema}
                                         felt={skjema.felter.andreForelderUtenlandsoppholdUtenArbeid}
-                                        spørsmålDokument={
-                                            andreForelderErDød
-                                                ? utenlandsoppholdUtenArbeidAndreForelderGjenlevende
-                                                : utenlandsoppholdUtenArbeidAndreForelder
-                                        }
+                                        spørsmålDokument={utenlandsoppholdUtenArbeidAndreForelder}
                                         tilleggsinfo={
                                             <AlertStripe variant={'info'}>
                                                 <TekstBlock
                                                     block={
-                                                        andreForelderErDød
-                                                            ? utenlandsoppholdUtenArbeidAndreForelderGjenlevende.alert
-                                                            : utenlandsoppholdUtenArbeidAndreForelder.alert
+                                                        utenlandsoppholdUtenArbeidAndreForelder.alert
                                                     }
                                                     typografi={Typografi.BodyShort}
                                                 />
@@ -219,7 +212,6 @@ const AndreForelder: React.FC<{
                                                 skjema.felter.andreForelderUtenlandsperioder
                                             }
                                             barn={barn}
-                                            erDød={andreForelderErDød}
                                         />
                                     )}
                                 </>

@@ -27,7 +27,7 @@ const AndreForelderOppsummering: React.FC<{
 }> = ({ barn, andreForelder }) => {
     const { tekster, plainTekst } = useApp();
     const omBarnetTekster: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
-    const erDød = barn.andreForelderErDød.svar === ESvar.JA;
+    const andreForelderErDød = barn.andreForelderErDød.svar === ESvar.JA;
 
     const flettefelter = { barnetsNavn: barn.navn };
     return (
@@ -85,7 +85,7 @@ const AndreForelderOppsummering: React.FC<{
                     {andreForelder[andreForelderDataKeySpørsmål.arbeidUtlandet].svar && (
                         <OppsummeringFelt
                             spørsmålstekst={
-                                erDød
+                                andreForelderErDød
                                     ? omBarnetTekster.arbeidUtenforNorgeAndreForelderGjenlevende
                                           .sporsmal
                                     : omBarnetTekster.arbeidUtenforNorgeAndreForelder.sporsmal
@@ -109,16 +109,15 @@ const AndreForelderOppsummering: React.FC<{
                         />
                     ))}
 
-                    <OppsummeringFelt
-                        spørsmålstekst={
-                            erDød
-                                ? omBarnetTekster.utenlandsoppholdUtenArbeidAndreForelderGjenlevende
-                                      .sporsmal
-                                : omBarnetTekster.utenlandsoppholdUtenArbeidAndreForelder.sporsmal
-                        }
-                        flettefelter={flettefelter}
-                        søknadsvar={andreForelder.utenlandsoppholdUtenArbeid.svar}
-                    />
+                    {andreForelder.utenlandsoppholdUtenArbeid.svar && (
+                        <OppsummeringFelt
+                            spørsmålstekst={
+                                omBarnetTekster.utenlandsoppholdUtenArbeidAndreForelder.sporsmal
+                            }
+                            flettefelter={flettefelter}
+                            søknadsvar={andreForelder.utenlandsoppholdUtenArbeid.svar}
+                        />
+                    )}
 
                     {andreForelder.utenlandsperioder.map((periode, index) => (
                         <UtenlandsperiodeOppsummering
@@ -126,7 +125,6 @@ const AndreForelderOppsummering: React.FC<{
                             periode={periode}
                             nummer={index + 1}
                             personType={PersonType.andreForelder}
-                            erDød={erDød}
                             barn={barn}
                         />
                     ))}
@@ -134,7 +132,7 @@ const AndreForelderOppsummering: React.FC<{
                     {andreForelder[andreForelderDataKeySpørsmål.pensjonUtland].svar && (
                         <OppsummeringFelt
                             spørsmålstekst={
-                                erDød
+                                andreForelderErDød
                                     ? omBarnetTekster.pensjonUtlandAndreForelderGjenlevende.sporsmal
                                     : omBarnetTekster.pensjonUtlandAndreForelder.sporsmal
                             }

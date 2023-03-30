@@ -10,7 +10,7 @@ export enum PersonType {
 export type PeriodePersonTypeMedBarnProps =
     | { personType: PersonType.søker; erDød?: boolean; barn?: IBarnMedISøknad | undefined }
     | { personType: PersonType.omsorgsperson; erDød?: boolean; barn: IBarnMedISøknad | undefined }
-    | { personType: PersonType.andreForelder; erDød: boolean; barn: IBarnMedISøknad | undefined }
+    | { personType: PersonType.andreForelder; erDød?: boolean; barn: IBarnMedISøknad | undefined }
     | { personType: PersonType.barn; erDød?: boolean; barn?: IBarnMedISøknad | undefined };
 
 export type PeriodePersonTypeProps =
