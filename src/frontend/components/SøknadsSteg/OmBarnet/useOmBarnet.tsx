@@ -391,9 +391,7 @@ export const useOmBarnet = (
 
     const andreForelderUtenlandsoppholdUtenArbeid = useJaNeiSpmFelt({
         søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.utenlandsoppholdUtenArbeid],
-        feilmelding: andreForelderErDød
-            ? teksterForSteg.utenlandsoppholdUtenArbeidAndreForelderGjenlevende.feilmelding
-            : teksterForSteg.utenlandsoppholdUtenArbeidAndreForelder.feilmelding,
+        feilmelding: teksterForSteg.utenlandsoppholdUtenArbeidAndreForelder.feilmelding,
         avhengigheter: {
             andreForelderNavn: {
                 hovedSpørsmål: andreForelderNavn,
@@ -406,7 +404,7 @@ export const useOmBarnet = (
                       }
                     : undefined,
         },
-        skalSkjules: andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA,
+        skalSkjules: andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA || andreForelderErDød,
     });
 
     const {

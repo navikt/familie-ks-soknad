@@ -44,9 +44,6 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
     onLeggTilUtenlandsperiode,
     personType,
     barn,
-    // Midlertidig ubrukt erDød til todo lenger ned er fikset
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    erDød,
 }) => {
     const { tekster, plainTekst } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
@@ -89,8 +86,6 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
         toggleModal();
         nullstillSkjema();
     };
-
-    // Todo: håndtere gjenlevende (kun perioder som er avsluttet som alternativer dersom erDød)
 
     return (
         <SkjemaModal

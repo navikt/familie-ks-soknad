@@ -2,7 +2,7 @@ import { RequestHandler, Request, Response } from 'express';
 
 import { byggFeiletRessurs } from '@navikt/familie-typer';
 
-import { ISøknadKontrakt } from '../../frontend/typer/kontrakt/v1';
+import { ISøknadKontrakt } from '../../frontend/typer/kontrakt/søknadKontrakt';
 
 export const erklaeringInterceptor: RequestHandler = (
     request: Request,

@@ -28,7 +28,6 @@ export const Utenlandsperiode: React.FC<Props> = ({
     registrerteUtenlandsperioder,
     barn,
     personType,
-    erDød,
 }) => {
     const { tekster } = useApp();
     const { erÅpen, toggleModal } = useModal();
@@ -49,7 +48,6 @@ export const Utenlandsperiode: React.FC<Props> = ({
                 onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
                 personType={personType}
                 barn={personType !== PersonType.søker ? barn : undefined}
-                erDød={personType === PersonType.andreForelder && erDød}
             />
             {registrerteUtenlandsperioder.verdi.map((periode, index) => (
                 <UtenlandsperiodeOppsummering
@@ -59,7 +57,6 @@ export const Utenlandsperiode: React.FC<Props> = ({
                     fjernPeriodeCallback={fjernUtenlandsperiode}
                     personType={personType}
                     barn={personType !== PersonType.søker ? barn : undefined}
-                    erDød={personType === PersonType.andreForelder && erDød}
                 />
             ))}
             {registrerteUtenlandsperioder.verdi.length > 0 && (

@@ -4,6 +4,7 @@ import {
     hentTilDatoSpørsmål,
     hentUtenlandsoppholdÅrsak,
 } from '../../components/Felleskomponenter/UtenlandsoppholdModal/utenlandsoppholdSpråkUtils';
+import { IBarnMedISøknad } from '../../typer/barn';
 import {
     ISøknadsfelt,
     IUtenlandsperiodeIKontraktFormat,
@@ -18,12 +19,20 @@ import {
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
 
-export const utenlandsperiodeTilISøknadsfelt = (
-    utenlandperiode: IUtenlandsperiode,
-    periodeNummer: number,
-    tekster: IUtenlandsoppholdTekstinnhold,
-    tilRestLocaleRecord: TilRestLocaleRecord
-): ISøknadsfelt<IUtenlandsperiodeIKontraktFormat> => {
+interface UtenlandsperiodeIKontraktFormatParams {
+    utenlandperiode: IUtenlandsperiode;
+    periodeNummer: number;
+    tekster: IUtenlandsoppholdTekstinnhold;
+    tilRestLocaleRecord: TilRestLocaleRecord;
+    barn?: IBarnMedISøknad;
+}
+export const utenlandsperiodeTilISøknadsfelt = ({
+    utenlandperiode,
+    periodeNummer,
+    tekster,
+    tilRestLocaleRecord,
+    barn,
+}: UtenlandsperiodeIKontraktFormatParams): ISøknadsfelt<IUtenlandsperiodeIKontraktFormat> => {
     const { periodeBeskrivelse } = tekster;
     return {
         label: tilRestLocaleRecord(tekster.oppsummeringstittel, {
@@ -38,7 +47,8 @@ export const utenlandsperiodeTilISøknadsfelt = (
             },
             oppholdsland: {
                 label: tilRestLocaleRecord(
-                    hentLandSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster)
+                    hentLandSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster),
+                    { barnetsNavn: barn?.navn }
                 ),
                 verdi: verdiCallbackAlleSpråk(locale =>
                     landkodeTilSpråk(utenlandperiode.oppholdsland.svar, locale)

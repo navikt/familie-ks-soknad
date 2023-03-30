@@ -4,7 +4,7 @@ import {
     hentTilDatoSpørsmål,
 } from '../../components/Felleskomponenter/Barnehagemodal/barnehageplassSpråkUtils';
 import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { IBarnehageplassPeriodeIKontraktFormat } from '../../typer/kontrakt/v1';
+import { IBarnehageplassPeriodeIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
 import { IBarnehageplassPeriode } from '../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../typer/sanity/modaler/barnehageplass';
 import { landkodeTilSpråk } from '../språk';

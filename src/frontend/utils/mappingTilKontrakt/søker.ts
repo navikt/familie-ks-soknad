@@ -1,5 +1,5 @@
 import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { ISøknadKontraktSøker } from '../../typer/kontrakt/v1';
+import { ISøknadKontraktSøker } from '../../typer/kontrakt/søknadKontrakt';
 import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknad } from '../../typer/søknad';
@@ -125,12 +125,12 @@ export const søkerIKontraktFormat = (
               )
             : null,
         utenlandsperioder: utenlandsperioder.map((periode, index) =>
-            utenlandsperiodeTilISøknadsfelt(
-                periode,
-                index + 1,
-                fellesTekster.modaler.utenlandsopphold[PersonType.søker],
-                tilRestLocaleRecord
-            )
+            utenlandsperiodeTilISøknadsfelt({
+                utenlandperiode: periode,
+                periodeNummer: index + 1,
+                tekster: fellesTekster.modaler.utenlandsopphold[PersonType.søker],
+                tilRestLocaleRecord,
+            })
         ),
         idNummer: idNummer.map(idnummerObj =>
             idNummerTilISøknadsfelt(

@@ -140,14 +140,16 @@ export interface IAndreForelderIKontraktFormat {
     yrkesaktivFemÅr: ISøknadsfelt<ESvar> | null;
     pensjonUtland: ISøknadsfelt<ESvar> | null;
     arbeidUtlandet: ISøknadsfelt<ESvar> | null;
+    utenlandsoppholdUtenArbeid: ISøknadsfelt<ESvar> | null;
+    arbeidsperioderUtland: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
+    pensjonsperioderUtland: ISøknadsfelt<IPensjonsperiodeIKontraktFormat>[];
+    utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
 
     //EØS
     pensjonNorge: ISøknadsfelt<ESvar> | null;
     arbeidNorge: ISøknadsfelt<ESvar> | null;
     andreUtbetalinger: ISøknadsfelt<ESvar> | null;
     kontantstøtteFraEøs: ISøknadsfelt<ESvar> | null;
-    arbeidsperioderUtland: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
-    pensjonsperioderUtland: ISøknadsfelt<IPensjonsperiodeIKontraktFormat>[];
     arbeidsperioderNorge: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
     pensjonsperioderNorge: ISøknadsfelt<IPensjonsperiodeIKontraktFormat>[];
     pågåendeSøknadFraAnnetEøsLand: ISøknadsfelt<ESvar> | null;

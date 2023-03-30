@@ -33,9 +33,6 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
     fjernPeriodeCallback,
     personType,
     barn,
-    // Midlertidig ubrukt erDød til todo lenger ned er fikset
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    erDød,
 }) => {
     const [valgtLocale] = useSprakContext();
     const { plainTekst, tekster } = useApp();
@@ -44,8 +41,6 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
     const årsak = utenlandsoppholdÅrsak.svar;
     const teksterForPersonType: IUtenlandsoppholdTekstinnhold =
         tekster().FELLES.modaler.utenlandsopphold[personType];
-
-    // Todo: håndtere gjenlevende (kun perioder som er avsluttet som alternativer dersom erDød)
 
     return (
         <>

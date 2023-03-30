@@ -4,8 +4,8 @@ import { RessursStatus } from '@navikt/familie-typer';
 import Miljø from '../../shared-utils/Miljø';
 import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon';
 import { useApp } from '../context/AppContext';
-import { ISøknadKontrakt } from '../typer/kontrakt/v1';
-import { dataISøknadKontraktFormatV1 } from '../utils/mappingTilKontrakt/søknad';
+import { ISøknadKontrakt } from '../typer/kontrakt/søknadKontrakt';
+import { dataISøknadKontraktFormat } from '../utils/mappingTilKontrakt/søknad';
 import { sendInn } from '../utils/sendInnSkjema';
 
 export const useSendInnSkjema = (): {
@@ -24,7 +24,7 @@ export const useSendInnSkjema = (): {
     const sendInnSkjema = async (): Promise<[boolean, ISøknadKontrakt]> => {
         settInnsendingStatus({ status: RessursStatus.HENTER });
 
-        const formatert: ISøknadKontrakt = dataISøknadKontraktFormatV1(
+        const formatert: ISøknadKontrakt = dataISøknadKontraktFormat(
             valgtSpråk,
             søknad,
             tekster(),
@@ -34,7 +34,7 @@ export const useSendInnSkjema = (): {
         const res = await sendInn<ISøknadKontrakt>(
             formatert,
             axiosRequest,
-            `${soknadApiProxyUrl}/soknad/kontantstotte/v3`,
+            `${soknadApiProxyUrl}/soknad/kontantstotte/v4`,
             res => {
                 const responseData = res.response?.data;
                 if (responseData && erModellMismatchResponsRessurs(responseData)) {
