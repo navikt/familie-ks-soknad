@@ -79,14 +79,14 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
                     flettefelter={{ barnetsNavn: barn?.navn }}
                 />
 
-                {oppholdslandFraDato && (
+                {oppholdslandFraDato.svar && (
                     <OppsummeringFelt
                         spørsmålstekst={hentFraDatoSpørsmål(årsak, teksterForPersonType)}
                         søknadsvar={formaterDato(oppholdslandFraDato.svar)}
                     />
                 )}
 
-                {oppholdslandTilDato && (
+                {oppholdslandTilDato.svar && (
                     <OppsummeringFelt
                         spørsmålstekst={hentTilDatoSpørsmål(årsak, teksterForPersonType)}
                         søknadsvar={formaterDatoMedUkjent(
@@ -96,7 +96,7 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
                     />
                 )}
 
-                {adresse?.svar && (
+                {adresse.svar && (
                     <OppsummeringFelt
                         spørsmålstekst={adresseTekst?.sporsmal}
                         søknadsvar={

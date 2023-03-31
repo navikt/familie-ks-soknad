@@ -67,24 +67,26 @@ export const utenlandsperiodeTilISøknadsfelt = ({
                     landkodeTilSpråk(utenlandperiode.oppholdsland.svar, locale)
                 ),
             },
-            oppholdslandFraDato: {
-                label: tilRestLocaleRecord(
-                    hentFraDatoSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster)
-                ),
-                verdi: sammeVerdiAlleSpråk(utenlandperiode.oppholdslandFraDato?.svar),
-            },
-            oppholdslandTilDato: {
-                label: tilRestLocaleRecord(
-                    hentTilDatoSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster)
-                ),
-                verdi: utenlandperiode.oppholdslandTilDato?.svar
-                    ? sammeVerdiAlleSpråkEllerUkjent(
+            oppholdslandFraDato: utenlandperiode.oppholdslandFraDato?.svar
+                ? {
+                      label: tilRestLocaleRecord(
+                          hentFraDatoSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster)
+                      ),
+                      verdi: sammeVerdiAlleSpråk(utenlandperiode.oppholdslandFraDato?.svar),
+                  }
+                : null,
+            oppholdslandTilDato: utenlandperiode.oppholdslandTilDato?.svar
+                ? {
+                      label: tilRestLocaleRecord(
+                          hentTilDatoSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster)
+                      ),
+                      verdi: sammeVerdiAlleSpråkEllerUkjent(
                           tilRestLocaleRecord,
                           utenlandperiode.oppholdslandTilDato?.svar,
                           tekster.sluttdatoFremtid.checkboxLabel
-                      )
-                    : sammeVerdiAlleSpråk(undefined),
-            },
+                      ),
+                  }
+                : null,
             adresse: utenlandperiode.adresse?.svar
                 ? søknadsfelt(
                       adresseTekst?.sporsmal,

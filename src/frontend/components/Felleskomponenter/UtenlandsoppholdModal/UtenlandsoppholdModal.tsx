@@ -76,18 +76,14 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                 id: UtenlandsoppholdSpørsmålId.landUtenlandsopphold,
                 svar: oppholdsland.verdi,
             },
-            ...(oppholdslandFraDato.erSynlig && {
-                oppholdslandFraDato: {
-                    id: UtenlandsoppholdSpørsmålId.fraDatoUtenlandsopphold,
-                    svar: oppholdslandFraDato.verdi,
-                },
-            }),
-            ...(oppholdslandTilDato.erSynlig && {
-                oppholdslandTilDato: {
-                    id: UtenlandsoppholdSpørsmålId.tilDatoUtenlandsopphold,
-                    svar: svarForSpørsmålMedUkjent(oppholdslandTilDatoUkjent, oppholdslandTilDato),
-                },
-            }),
+            oppholdslandFraDato: {
+                id: UtenlandsoppholdSpørsmålId.fraDatoUtenlandsopphold,
+                svar: oppholdslandFraDato.verdi,
+            },
+            oppholdslandTilDato: {
+                id: UtenlandsoppholdSpørsmålId.tilDatoUtenlandsopphold,
+                svar: svarForSpørsmålMedUkjent(oppholdslandTilDatoUkjent, oppholdslandTilDato),
+            },
             adresse: {
                 id: UtenlandsoppholdSpørsmålId.adresse,
                 svar: svarForSpørsmålMedUkjent(adresseUkjent, adresse),
