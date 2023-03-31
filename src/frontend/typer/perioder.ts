@@ -11,9 +11,9 @@ import { EUtenlandsoppholdÅrsak } from './utenlandsopphold';
 export interface IUtenlandsperiode {
     utenlandsoppholdÅrsak: ISøknadSpørsmål<EUtenlandsoppholdÅrsak>;
     oppholdsland: ISøknadSpørsmål<Alpha3Code | ''>;
-    oppholdslandFraDato?: ISøknadSpørsmål<ISODateString>;
-    oppholdslandTilDato?: ISøknadSpørsmål<DatoMedUkjent>;
-    adresse?: ISøknadSpørsmål<string | AlternativtSvarForInput.UKJENT>;
+    oppholdslandFraDato: ISøknadSpørsmål<ISODateString | ''>;
+    oppholdslandTilDato: ISøknadSpørsmål<DatoMedUkjent | ''>;
+    adresse: ISøknadSpørsmål<'' | string | AlternativtSvarForInput.UKJENT>;
 }
 
 export interface IArbeidsperiode {
