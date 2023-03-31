@@ -12,10 +12,13 @@ import {
 } from '../../typer/kontrakt/generelle';
 import { IUtenlandsperiode } from '../../typer/perioder';
 import { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenlandsopphold';
+import { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
+import { EUtenlandsoppholdÅrsak } from '../../typer/utenlandsopphold';
 import { landkodeTilSpråk } from '../språk';
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjent,
+    søknadsfeltHof,
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
 
@@ -33,7 +36,17 @@ export const utenlandsperiodeTilISøknadsfelt = ({
     tilRestLocaleRecord,
     barn,
 }: UtenlandsperiodeIKontraktFormatParams): ISøknadsfelt<IUtenlandsperiodeIKontraktFormat> => {
-    const { periodeBeskrivelse } = tekster;
+    const { periodeBeskrivelse, adresseNaatid, adresseFortid } = tekster;
+    const søknadsfelt = søknadsfeltHof(tilRestLocaleRecord);
+
+    const adresseTekst: ISanitySpørsmålDokument | undefined =
+        utenlandperiode.utenlandsoppholdÅrsak.svar ===
+            EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE ||
+        utenlandperiode.utenlandsoppholdÅrsak.svar ===
+            EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE
+            ? adresseFortid
+            : adresseNaatid;
+
     return {
         label: tilRestLocaleRecord(tekster.oppsummeringstittel, {
             antall: periodeNummer.toString(),
@@ -72,6 +85,16 @@ export const utenlandsperiodeTilISøknadsfelt = ({
                       )
                     : sammeVerdiAlleSpråk(undefined),
             },
+            adresse: utenlandperiode.adresse?.svar
+                ? søknadsfelt(
+                      adresseTekst?.sporsmal,
+                      sammeVerdiAlleSpråkEllerUkjent(
+                          tilRestLocaleRecord,
+                          utenlandperiode.adresse.svar,
+                          adresseTekst?.checkboxLabel
+                      )
+                  )
+                : null,
         }),
     };
 };

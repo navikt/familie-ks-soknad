@@ -13,6 +13,7 @@ export interface IUtenlandsperiode {
     oppholdsland: ISøknadSpørsmål<Alpha3Code | ''>;
     oppholdslandFraDato?: ISøknadSpørsmål<ISODateString>;
     oppholdslandTilDato?: ISøknadSpørsmål<DatoMedUkjent>;
+    adresse?: ISøknadSpørsmål<string | AlternativtSvarForInput.UKJENT>;
 }
 
 export interface IArbeidsperiode {
