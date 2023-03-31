@@ -23,4 +23,6 @@ export interface IUtenlandsoppholdTekstinnhold {
     valgalternativPermanentIUtland: LocaleRecordString;
     valgalternativPlaceholder: LocaleRecordString;
     oppsummeringstittel: LocaleRecordBlock;
+    adresseFortid: ISanitySpørsmålDokument;
+    adresseNaatid: ISanitySpørsmålDokument;
 }

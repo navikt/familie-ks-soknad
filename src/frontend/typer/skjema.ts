@@ -165,6 +165,8 @@ export interface IUtenlandsoppholdFeltTyper {
     oppholdslandFraDato: ISODateString;
     oppholdslandTilDato: ISODateString;
     oppholdslandTilDatoUkjent: ESvar;
+    adresse: string;
+    adresseUkjent: ESvar;
 }
 
 export interface IUtbetalingerFeltTyper {

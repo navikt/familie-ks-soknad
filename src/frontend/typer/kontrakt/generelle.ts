@@ -35,6 +35,7 @@ export interface IUtenlandsperiodeIKontraktFormat {
     oppholdsland: ISøknadsfelt<string>;
     oppholdslandTilDato: ISøknadsfelt<string | undefined>;
     oppholdslandFraDato: ISøknadsfelt<string | undefined>;
+    adresse: ISøknadsfelt<string> | null;
 }
 
 export enum ESivilstand {
