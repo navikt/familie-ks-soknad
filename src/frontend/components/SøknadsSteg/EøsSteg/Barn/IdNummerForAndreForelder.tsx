@@ -27,6 +27,7 @@ const IdNummerForAndreForelder: React.FC<{
         {
             pensjonsperioderUtland: barn.andreForelder.pensjonsperioderUtland,
             arbeidsperioderUtland: barn.andreForelder.arbeidsperioderUtland,
+            utenlandsperioder: barn.andreForelder.utenlandsperioder,
         },
         erEøsLand
     );
