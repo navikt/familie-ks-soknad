@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import dayjs, { Dayjs } from 'dayjs';
+import { format } from 'date-fns';
 
 import { RessursStatus } from '@navikt/familie-typer';
 
@@ -27,13 +27,13 @@ const Kvittering: React.FC = () => {
     const { hentStegNummer } = useSteg();
 
     const { innsendingStatus } = useApp();
-    const innsendtDato: Dayjs =
+    const innsendtDato: Date =
         innsendingStatus.status === RessursStatus.SUKSESS
-            ? dayjs(innsendingStatus.data.mottattDato)
-            : dayjs();
+            ? new Date(innsendingStatus.data.mottattDato)
+            : new Date();
 
-    const klokkeslett = innsendtDato.format('HH:mm');
-    const dato = innsendtDato.format('DD.MM.YY');
+    const klokkeslett = format(innsendtDato, 'HH:mm');
+    const dato = format(innsendtDato, 'dd.MM.yy');
     const [varEøsSøknad] = useState(erEøs);
 
     const kvitteringTekster = tekster().KVITTERING;
