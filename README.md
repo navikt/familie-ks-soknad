@@ -5,7 +5,7 @@ Dette er en skinnet kopi av barnetrygdsøknaden (kopiert 2.8.22): https://github
 ADR-dokument: https://github.com/navikt/familie/blob/master/doc/adr/0008-KS-lager-egen-søknadsdialog-app.md
 
 ## Avhengigheter
-1. Node versjon >=16.17.0
+1. Node versjon >=18.13.0
 2. familie-baks-soknad-api (https://github.com/navikt/familie-baks-soknad-api)
 
 ## Log in på https://npm.pkg.github.com

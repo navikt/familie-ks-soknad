@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.3
 
-FROM navikt/node-express:16 as builder-base
+FROM navikt/node-express:18 as builder-base
 USER apprunner
 
 COPY --chown=apprunner:apprunner ./.npmrc ./.yarnrc ./yarn.lock ./package.json /var/server/
@@ -28,7 +28,7 @@ ENV BASE_PATH=$base_path \
 RUN --mount=type=secret,id=sentry_token,mode=0444 SENTRY_AUTH_TOKEN=$(cat /run/secrets/sentry_token) yarn build
 
 
-FROM navikt/node-express:16 as prod-runner
+FROM navikt/node-express:18 as prod-runner
 USER apprunner
 
 COPY --from=runtime-deps-builder /var/server/ /var/server
