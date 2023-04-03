@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import dayjs from 'dayjs';
+import { add, isBefore } from 'date-fns';
 
 import { BodyShort } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
@@ -22,8 +22,8 @@ import LastOppVedlegg from './LastOppVedlegg';
 
 // Vedlegg er lagret 48 timer
 export const erVedleggstidspunktGyldig = (vedleggTidspunkt: string): boolean => {
-    const grenseTidForVedlegg = dayjs(vedleggTidspunkt).add(46, 'hours');
-    return dayjs().isBefore(grenseTidForVedlegg);
+    const grenseTidForVedlegg = add(new Date(vedleggTidspunkt), { hours: 46 });
+    return isBefore(new Date(), grenseTidForVedlegg);
 };
 
 const Dokumentasjon: React.FC = () => {
