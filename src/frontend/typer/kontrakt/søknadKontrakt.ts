@@ -43,15 +43,16 @@ export interface ISøknadKontraktSøker {
     sivilstand: ISøknadsfelt<ESivilstand>;
     borPåRegistrertAdresse: ISøknadsfelt<ESvar> | null;
     værtINorgeITolvMåneder: ISøknadsfelt<ESvar>;
-    utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
-    planleggerÅBoINorgeTolvMnd: ISøknadsfelt<ESvar> | null;
+    planleggerÅBoINorgeTolvMnd: ISøknadsfelt<ESvar>;
     yrkesaktivFemÅr: ISøknadsfelt<ESvar>;
 
     // Din livssituasjon
     erAsylsøker: ISøknadsfelt<ESvar>;
     arbeidIUtlandet: ISøknadsfelt<ESvar>;
+    utenlandsoppholdUtenArbeid: ISøknadsfelt<ESvar>;
     mottarUtenlandspensjon: ISøknadsfelt<ESvar>;
     arbeidsperioderUtland: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
+    utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
     pensjonsperioderUtland: ISøknadsfelt<IPensjonsperiodeIKontraktFormat>[];
 
     // EØS
@@ -139,14 +140,16 @@ export interface IAndreForelderIKontraktFormat {
     yrkesaktivFemÅr: ISøknadsfelt<ESvar> | null;
     pensjonUtland: ISøknadsfelt<ESvar> | null;
     arbeidUtlandet: ISøknadsfelt<ESvar> | null;
+    utenlandsoppholdUtenArbeid: ISøknadsfelt<ESvar> | null;
+    arbeidsperioderUtland: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
+    pensjonsperioderUtland: ISøknadsfelt<IPensjonsperiodeIKontraktFormat>[];
+    utenlandsperioder: ISøknadsfelt<IUtenlandsperiodeIKontraktFormat>[];
 
     //EØS
     pensjonNorge: ISøknadsfelt<ESvar> | null;
     arbeidNorge: ISøknadsfelt<ESvar> | null;
     andreUtbetalinger: ISøknadsfelt<ESvar> | null;
     kontantstøtteFraEøs: ISøknadsfelt<ESvar> | null;
-    arbeidsperioderUtland: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
-    pensjonsperioderUtland: ISøknadsfelt<IPensjonsperiodeIKontraktFormat>[];
     arbeidsperioderNorge: ISøknadsfelt<IArbeidsperiodeIKontraktFormat>[];
     pensjonsperioderNorge: ISøknadsfelt<IPensjonsperiodeIKontraktFormat>[];
     pågåendeSøknadFraAnnetEøsLand: ISøknadsfelt<ESvar> | null;
@@ -160,9 +163,9 @@ export interface IAndreForelderIKontraktFormat {
 export interface IArbeidsperiodeIKontraktFormat {
     arbeidsperiodeAvsluttet: ISøknadsfelt<string> | null;
     arbeidsperiodeland: ISøknadsfelt<string> | null;
-    arbeidsgiver: ISøknadsfelt<string> | null;
-    fraDatoArbeidsperiode: ISøknadsfelt<ISODateString> | null;
-    tilDatoArbeidsperiode: ISøknadsfelt<ISODateString> | null;
+    arbeidsgiver: ISøknadsfelt<string>;
+    fraDatoArbeidsperiode: ISøknadsfelt<ISODateString>;
+    tilDatoArbeidsperiode: ISøknadsfelt<ISODateString>;
     adresse: ISøknadsfelt<string> | null;
 }
 

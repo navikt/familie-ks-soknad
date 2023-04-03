@@ -2,7 +2,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { IBarnMedISøknad } from '../../typer/barn';
 import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { IPensjonsperiodeIKontraktFormat } from '../../typer/kontrakt/v1';
+import { IPensjonsperiodeIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
 import { IPensjonsperiode } from '../../typer/perioder';
 import { IPensjonsperiodeTekstinnhold } from '../../typer/sanity/modaler/pensjonsperiode';
 import { landkodeTilSpråk } from '../språk';

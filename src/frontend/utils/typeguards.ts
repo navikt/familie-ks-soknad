@@ -7,7 +7,7 @@ import {
     ISøknadIKontraktBarn,
     ISøknadKontraktSøker,
     ISøknadKontrakt,
-} from '../typer/kontrakt/v1';
+} from '../typer/kontrakt/søknadKontrakt';
 
 export const erGyldigISøknadKontraktSøker = (input): input is ISøknadKontraktSøker =>
     'harEøsSteg' in input &&

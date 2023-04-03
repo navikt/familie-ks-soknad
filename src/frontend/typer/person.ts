@@ -50,7 +50,6 @@ export interface ISøker extends Omit<ISøkerRespons, 'barn'> {
     triggetEøs: boolean;
     borPåRegistrertAdresse: ISøknadSpørsmål<ESvar | null>;
     værtINorgeITolvMåneder: ISøknadSpørsmål<ESvar | null>;
-    utenlandsperioder: IUtenlandsperiode[];
     planleggerÅBoINorgeTolvMnd: ISøknadSpørsmål<ESvar | null>;
     yrkesaktivFemÅr: ISøknadSpørsmål<ESvar | null>;
 
@@ -58,6 +57,8 @@ export interface ISøker extends Omit<ISøkerRespons, 'barn'> {
     erAsylsøker: ISøknadSpørsmål<ESvar | null>;
     arbeidIUtlandet: ISøknadSpørsmål<ESvar | null>;
     arbeidsperioderUtland: IArbeidsperiode[];
+    utenlandsoppholdUtenArbeid: ISøknadSpørsmål<ESvar | null>;
+    utenlandsperioder: IUtenlandsperiode[];
     mottarUtenlandspensjon: ISøknadSpørsmål<ESvar | null>;
     pensjonsperioderUtland: IPensjonsperiode[];
 

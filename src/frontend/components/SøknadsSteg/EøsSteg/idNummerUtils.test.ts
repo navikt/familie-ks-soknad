@@ -58,6 +58,15 @@ describe('idNummerLandMedPeriodeType', () => {
                     svar: EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE,
                 },
                 oppholdsland: { id: UtenlandsoppholdSpørsmålId.landUtenlandsopphold, svar: 'BGR' },
+                oppholdslandFraDato: {
+                    id: UtenlandsoppholdSpørsmålId.fraDatoUtenlandsopphold,
+                    svar: '',
+                },
+                oppholdslandTilDato: {
+                    id: UtenlandsoppholdSpørsmålId.tilDatoUtenlandsopphold,
+                    svar: '',
+                },
+                adresse: { id: UtenlandsoppholdSpørsmålId.adresse, svar: '' },
             },
         ];
         const arbeidsperioder: IArbeidsperiode[] = [
@@ -134,6 +143,15 @@ describe('idNummerLandMedPeriodeType', () => {
                     svar: EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE,
                 },
                 oppholdsland: { id: UtenlandsoppholdSpørsmålId.landUtenlandsopphold, svar: 'BEL' },
+                oppholdslandFraDato: {
+                    id: UtenlandsoppholdSpørsmålId.fraDatoUtenlandsopphold,
+                    svar: '',
+                },
+                oppholdslandTilDato: {
+                    id: UtenlandsoppholdSpørsmålId.tilDatoUtenlandsopphold,
+                    svar: '',
+                },
+                adresse: { id: UtenlandsoppholdSpørsmålId.adresse, svar: '' },
             },
         ];
         const arbeidsperioder: IArbeidsperiode[] = [

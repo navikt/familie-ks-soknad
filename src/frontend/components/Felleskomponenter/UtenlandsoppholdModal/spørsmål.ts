@@ -5,4 +5,6 @@ export enum UtenlandsoppholdSpørsmålId {
     tilDatoUtenlandsopphold = 'til-dato-utenlandsopphold',
     tilDatoUtenlandsoppholdVetIkke = 'til-dato-utenlandsopphold-vet-ikke',
     utenlandsopphold = 'utenlandsopphold',
+    adresse = 'adresse',
+    adresseUkjent = 'adresse-ukjent',
 }

@@ -33,8 +33,9 @@ export type FlettefeltVerdier = {
 export interface IUtenlandsperiodeIKontraktFormat {
     utenlandsoppholdÅrsak: ISøknadsfelt<string>;
     oppholdsland: ISøknadsfelt<string>;
-    oppholdslandTilDato: ISøknadsfelt<string | undefined>;
-    oppholdslandFraDato: ISøknadsfelt<string | undefined>;
+    oppholdslandTilDato: ISøknadsfelt<string> | null;
+    oppholdslandFraDato: ISøknadsfelt<string> | null;
+    adresse: ISøknadsfelt<string> | null;
 }
 
 export enum ESivilstand {

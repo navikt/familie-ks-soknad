@@ -3,10 +3,9 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
 import { IUtenlandsperiode } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
+import { PeriodePersonTypeMedBarnProps } from '../../../typer/personType';
+import { ESanitySteg, ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
@@ -22,6 +21,7 @@ import StyledDropdown from '../Dropdowns/StyledDropdown';
 import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { SkjemaCheckbox } from '../SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
+import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
@@ -34,11 +34,10 @@ import {
     hentUtenlandsoppholdÅrsak,
 } from './utenlandsoppholdSpråkUtils';
 
-type Props = ReturnType<typeof useModal> & {
-    onLeggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
-    personType: PersonType;
-    barn?: IBarnMedISøknad;
-};
+type Props = PeriodePersonTypeMedBarnProps &
+    ReturnType<typeof useModal> & {
+        onLeggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
+    };
 
 export const UtenlandsoppholdModal: React.FC<Props> = ({
     erÅpen,
@@ -54,8 +53,15 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
         });
 
     const teksterForPersonType = tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
-
-    const barnetsNavn = barn?.navn;
+    const {
+        utenlandsoppholdÅrsak,
+        oppholdsland,
+        oppholdslandTilDato,
+        oppholdslandFraDato,
+        oppholdslandTilDatoUkjent,
+        adresseUkjent,
+        adresse,
+    } = skjema.felter;
 
     const onLeggTil = () => {
         if (!validerFelterOgVisFeilmelding()) {
@@ -64,38 +70,41 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
         onLeggTilUtenlandsperiode({
             utenlandsoppholdÅrsak: {
                 id: UtenlandsoppholdSpørsmålId.årsakUtenlandsopphold,
-                svar: skjema.felter.utenlandsoppholdÅrsak.verdi as EUtenlandsoppholdÅrsak,
+                svar: utenlandsoppholdÅrsak.verdi as EUtenlandsoppholdÅrsak,
             },
             oppholdsland: {
                 id: UtenlandsoppholdSpørsmålId.landUtenlandsopphold,
-                svar: skjema.felter.oppholdsland.verdi,
+                svar: oppholdsland.verdi,
             },
-            ...(skjema.felter.oppholdslandFraDato.erSynlig && {
-                oppholdslandFraDato: {
-                    id: UtenlandsoppholdSpørsmålId.fraDatoUtenlandsopphold,
-                    svar: skjema.felter.oppholdslandFraDato.verdi,
-                },
-            }),
-            ...(skjema.felter.oppholdslandTilDato.erSynlig && {
-                oppholdslandTilDato: {
-                    id: UtenlandsoppholdSpørsmålId.tilDatoUtenlandsopphold,
-                    svar: svarForSpørsmålMedUkjent(
-                        skjema.felter.oppholdslandTilDatoUkjent,
-                        skjema.felter.oppholdslandTilDato
-                    ),
-                },
-            }),
+            oppholdslandFraDato: {
+                id: UtenlandsoppholdSpørsmålId.fraDatoUtenlandsopphold,
+                svar: oppholdslandFraDato.verdi,
+            },
+            oppholdslandTilDato: {
+                id: UtenlandsoppholdSpørsmålId.tilDatoUtenlandsopphold,
+                svar: svarForSpørsmålMedUkjent(oppholdslandTilDatoUkjent, oppholdslandTilDato),
+            },
+            adresse: {
+                id: UtenlandsoppholdSpørsmålId.adresse,
+                svar: svarForSpørsmålMedUkjent(adresseUkjent, adresse),
+            },
         });
 
         toggleModal();
         nullstillSkjema();
     };
 
+    const adresseTekst: ISanitySpørsmålDokument | undefined =
+        utenlandsoppholdÅrsak.verdi === EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE ||
+        utenlandsoppholdÅrsak.verdi === EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE
+            ? teksterForPersonType.adresseFortid
+            : teksterForPersonType.adresseNaatid;
+
     return (
         <SkjemaModal
             erÅpen={erÅpen}
             tittel={teksterForPersonType.tittel}
-            flettefelter={{ barnetsNavn }}
+            flettefelter={{ barnetsNavn: barn?.navn }}
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
             onSubmitCallback={onLeggTil}
             toggleModal={toggleModal}
@@ -105,10 +114,8 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
             <KomponentGruppe inline>
                 <div>
                     <StyledDropdown<EUtenlandsoppholdÅrsak | ''>
-                        {...skjema.felter.utenlandsoppholdÅrsak.hentNavInputProps(
-                            skjema.visFeilmeldinger
-                        )}
-                        felt={skjema.felter.utenlandsoppholdÅrsak}
+                        {...utenlandsoppholdÅrsak.hentNavInputProps(skjema.visFeilmeldinger)}
+                        felt={utenlandsoppholdÅrsak}
                         label={
                             <TekstBlock block={teksterForPersonType.periodeBeskrivelse.sporsmal} />
                         }
@@ -128,71 +135,86 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                     </StyledDropdown>
                 </div>
                 <LandDropdown
-                    felt={skjema.felter.oppholdsland}
+                    felt={oppholdsland}
                     skjema={skjema}
                     label={
                         <TekstBlock
                             block={hentLandSpørsmål(
-                                skjema.felter.utenlandsoppholdÅrsak.verdi,
+                                utenlandsoppholdÅrsak.verdi,
                                 teksterForPersonType
                             )}
+                            flettefelter={{ barnetsNavn: barn?.navn }}
                         />
                     }
                     dynamisk
                     ekskluderNorge
                 />
 
-                {skjema.felter.oppholdslandFraDato.erSynlig && (
+                {oppholdslandFraDato.erSynlig && (
                     <Datovelger
-                        felt={skjema.felter.oppholdslandFraDato}
+                        felt={oppholdslandFraDato}
                         label={
                             <TekstBlock
                                 block={hentFraDatoSpørsmål(
-                                    skjema.felter.utenlandsoppholdÅrsak.verdi,
+                                    utenlandsoppholdÅrsak.verdi,
                                     teksterForPersonType
                                 )}
                             />
                         }
                         skjema={skjema}
-                        avgrensMaxDato={hentMaxAvgrensningPåFraDato(
-                            skjema.felter.utenlandsoppholdÅrsak.verdi
-                        )}
+                        avgrensMaxDato={hentMaxAvgrensningPåFraDato(utenlandsoppholdÅrsak.verdi)}
                     />
                 )}
                 <>
-                    {skjema.felter.oppholdslandTilDato.erSynlig && (
+                    {oppholdslandTilDato.erSynlig && (
                         <Datovelger
-                            felt={skjema.felter.oppholdslandTilDato}
+                            felt={oppholdslandTilDato}
                             label={
                                 <TekstBlock
                                     block={hentTilDatoSpørsmål(
-                                        skjema.felter.utenlandsoppholdÅrsak.verdi,
+                                        utenlandsoppholdÅrsak.verdi,
                                         teksterForPersonType
                                     )}
                                 />
                             }
                             skjema={skjema}
                             avgrensMinDato={hentMinAvgrensningPåTilDato(
-                                skjema.felter.utenlandsoppholdÅrsak.verdi
+                                utenlandsoppholdÅrsak.verdi
                             )}
                             avgrensMaxDato={hentMaxAvgrensningPåTilDato(
-                                skjema.felter.utenlandsoppholdÅrsak.verdi
+                                utenlandsoppholdÅrsak.verdi
                             )}
                             tilhørendeFraOgMedFelt={
-                                harTilhørendeFomFelt(skjema.felter.utenlandsoppholdÅrsak.verdi)
-                                    ? skjema.felter.oppholdslandFraDato
+                                harTilhørendeFomFelt(utenlandsoppholdÅrsak.verdi)
+                                    ? oppholdslandFraDato
                                     : undefined
                             }
-                            disabled={skjema.felter.oppholdslandTilDatoUkjent.verdi === ESvar.JA}
+                            disabled={oppholdslandTilDatoUkjent.verdi === ESvar.JA}
                         />
                     )}
-                    {skjema.felter.oppholdslandTilDatoUkjent.erSynlig && (
+                    {oppholdslandTilDatoUkjent.erSynlig && (
                         <SkjemaCheckbox
-                            felt={skjema.felter.oppholdslandTilDatoUkjent}
+                            felt={oppholdslandTilDatoUkjent}
                             label={plainTekst(teksterForPersonType.sluttdatoFremtid.checkboxLabel)}
                         />
                     )}
                 </>
+                {adresse.erSynlig && (
+                    <>
+                        <SkjemaFeltInput
+                            felt={adresse}
+                            visFeilmeldinger={skjema.visFeilmeldinger}
+                            label={plainTekst(adresseTekst?.sporsmal)}
+                            disabled={adresseUkjent.verdi === ESvar.JA}
+                            description={plainTekst(adresseTekst?.beskrivelse)}
+                        />
+
+                        <SkjemaCheckbox
+                            felt={adresseUkjent}
+                            label={plainTekst(adresseTekst?.checkboxLabel)}
+                        />
+                    </>
+                )}
             </KomponentGruppe>
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>

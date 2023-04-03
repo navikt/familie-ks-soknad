@@ -10,17 +10,19 @@ import { usePerioder } from '../../../hooks/usePerioder';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
-import { IArbeidsperiode, IPensjonsperiode } from '../../../typer/perioder';
+import { IArbeidsperiode, IPensjonsperiode, IUtenlandsperiode } from '../../../typer/perioder';
 import { ISøker } from '../../../typer/person';
 import { PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
 import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
+import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IDinLivssituasjonFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
 import { ArbeidsperiodeSpørsmålsId } from '../../Felleskomponenter/Arbeidsperiode/spørsmål';
 import { PensjonsperiodeSpørsmålId } from '../../Felleskomponenter/Pensjonsmodal/spørsmål';
+import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { idNummerLand } from '../EøsSteg/idnummerUtils';
 import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
 
@@ -34,6 +36,8 @@ export const useDinLivssituasjon = (): {
     fjernArbeidsperiode: (periode: IArbeidsperiode) => void;
     leggTilPensjonsperiode: (periode: IPensjonsperiode) => void;
     fjernPensjonsperiode: (periode: IPensjonsperiode) => void;
+    leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
+    fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
 } => {
     const { søknad, settSøknad, tekster, plainTekst } = useApp();
     const { skalTriggeEøsForSøker, søkerTriggerEøs, settSøkerTriggerEøs, erEøsLand } = useEøs();
@@ -43,6 +47,8 @@ export const useDinLivssituasjon = (): {
         tekster()[ESanitySteg.FELLES].modaler.arbeidsperiode.søker;
     const teksterForPensjonsperiode: IPensjonsperiodeTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.pensjonsperiode.søker;
+    const teksterForUtenlandsperiode: IUtenlandsoppholdTekstinnhold =
+        tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold.søker;
 
     /*--- ASYL ARBEID OG PENSJON ----*/
 
@@ -75,6 +81,28 @@ export const useDinLivssituasjon = (): {
                           gjelderUtland: true,
                       })
                   );
+        }
+    );
+
+    const utenlandsoppholdUtenArbeid = useJaNeiSpmFelt({
+        søknadsfelt: søker.utenlandsoppholdUtenArbeid,
+        feilmelding: teksterForSteg.utenlandsoppholdUtenArbeid.feilmelding,
+    });
+
+    const {
+        fjernPeriode: fjernUtenlandsperiode,
+        leggTilPeriode: leggTilUtenlandsperiode,
+        registrertePerioder: registrerteUtenlandsperioder,
+    } = usePerioder<IUtenlandsperiode>(
+        `${UtenlandsoppholdSpørsmålId.utenlandsopphold}-${PersonType.søker}`,
+        søker.utenlandsperioder,
+        { utenlandsoppholdUtenArbeid },
+        avhengigheter => avhengigheter.utenlandsoppholdUtenArbeid.verdi === ESvar.JA,
+        (felt, avhengigheter) => {
+            return avhengigheter?.utenlandsoppholdUtenArbeid.verdi === ESvar.NEI ||
+                (avhengigheter?.utenlandsoppholdUtenArbeid.verdi === ESvar.JA && felt.verdi.length)
+                ? ok(felt)
+                : feil(felt, plainTekst(teksterForUtenlandsperiode.leggTilFeilmelding));
         }
     );
 
@@ -111,8 +139,10 @@ export const useDinLivssituasjon = (): {
     >({
         felter: {
             erAsylsøker,
-            arbeidIUtlandet: arbeidIUtlandet,
+            arbeidIUtlandet,
             registrerteArbeidsperioder,
+            utenlandsoppholdUtenArbeid,
+            registrerteUtenlandsperioder,
             mottarUtenlandspensjon,
             registrertePensjonsperioder,
         },
@@ -131,9 +161,9 @@ export const useDinLivssituasjon = (): {
         }
     };
 
-    const filtrerteRelevanteIdNummer = () => {
-        return søknad.søker.idNummer.filter(idNummer => {
-            return idNummerLand(
+    const filtrerteRelevanteIdNummer = () =>
+        søknad.søker.idNummer.filter(idNummer =>
+            idNummerLand(
                 {
                     arbeidsperioderUtland:
                         arbeidIUtlandet.verdi === ESvar.JA ? registrerteArbeidsperioder.verdi : [],
@@ -141,13 +171,14 @@ export const useDinLivssituasjon = (): {
                         mottarUtenlandspensjon.verdi === ESvar.JA
                             ? registrertePensjonsperioder.verdi
                             : [],
-                    utenlandsperioder: søker.utenlandsperioder,
+                    utenlandsperioder:
+                        utenlandsoppholdUtenArbeid.verdi === ESvar.JA
+                            ? registrerteUtenlandsperioder.verdi
+                            : [],
                 },
                 erEøsLand
-            ).includes(idNummer.land);
-        });
-    };
-
+            ).includes(idNummer.land)
+        );
     const genererOppdatertSøker = (): ISøker => ({
         ...søknad.søker,
         erAsylsøker: {
@@ -162,6 +193,12 @@ export const useDinLivssituasjon = (): {
             skjema.felter.arbeidIUtlandet.verdi === ESvar.JA
                 ? skjema.felter.registrerteArbeidsperioder.verdi
                 : [],
+        utenlandsoppholdUtenArbeid: {
+            ...søknad.søker.utenlandsoppholdUtenArbeid,
+            svar: skjema.felter.utenlandsoppholdUtenArbeid.verdi,
+        },
+        utenlandsperioder:
+            utenlandsoppholdUtenArbeid.verdi === ESvar.JA ? registrerteUtenlandsperioder.verdi : [],
         mottarUtenlandspensjon: {
             ...søknad.søker.mottarUtenlandspensjon,
             svar: skjema.felter.mottarUtenlandspensjon.verdi,
@@ -227,7 +264,9 @@ export const useDinLivssituasjon = (): {
         oppdaterSøknad,
         leggTilArbeidsperiode,
         fjernArbeidsperiode,
-        fjernPensjonsperiode,
         leggTilPensjonsperiode,
+        fjernPensjonsperiode,
+        leggTilUtenlandsperiode,
+        fjernUtenlandsperiode,
     };
 };

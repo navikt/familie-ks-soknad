@@ -1,16 +1,17 @@
 import { useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { feil, FeltState, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
+import { feil, FeltState, ok, useFelt, useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
+import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
+import { ESanitySteg, ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { IUtenlandsoppholdFeltTyper } from '../../../typer/skjema';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 import { dagenEtterDato, stringTilDate } from '../../../utils/dato';
@@ -50,6 +51,12 @@ export const useUtenlandsoppholdSkjema = ({
     useEffect(() => {
         skjema.settVisfeilmeldinger(false);
     }, [utenlandsoppholdÅrsak.verdi]);
+
+    const adresseTekst: ISanitySpørsmålDokument | undefined =
+        utenlandsoppholdÅrsak.verdi === EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE ||
+        utenlandsoppholdÅrsak.verdi === EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE
+            ? teksterForPersontype.adresseFortid
+            : teksterForPersontype.adresseNaatid;
 
     const oppholdsland = useLanddropdownFelt({
         søknadsfelt: { id: UtenlandsoppholdSpørsmålId.landUtenlandsopphold, svar: '' },
@@ -103,6 +110,27 @@ export const useUtenlandsoppholdSkjema = ({
         avhengigheter: { utenlandsoppholdÅrsak, oppholdslandFraDato },
     });
 
+    const adresseUkjent = useFelt<ESvar>({
+        verdi: ESvar.NEI,
+        feltId: UtenlandsoppholdSpørsmålId.adresseUkjent,
+        skalFeltetVises: avhengigheter =>
+            personType !== PersonType.barn && !!avhengigheter.utenlandsoppholdÅrsak.verdi,
+        avhengigheter: { utenlandsoppholdÅrsak },
+        nullstillVedAvhengighetEndring: false,
+    });
+
+    const adresse = useInputFeltMedUkjent({
+        søknadsfelt: {
+            id: UtenlandsoppholdSpørsmålId.adresse,
+            svar: '',
+        },
+        avhengighet: adresseUkjent,
+        feilmelding: adresseTekst?.feilmelding,
+        skalVises:
+            personType !== PersonType.barn &&
+            utenlandsoppholdÅrsak.valideringsstatus === Valideringsstatus.OK,
+    });
+
     const skjema = useSkjema<IUtenlandsoppholdFeltTyper, string>({
         felter: {
             utenlandsoppholdÅrsak,
@@ -110,6 +138,8 @@ export const useUtenlandsoppholdSkjema = ({
             oppholdslandFraDato,
             oppholdslandTilDato,
             oppholdslandTilDatoUkjent,
+            adresse,
+            adresseUkjent,
         },
         skjemanavn: 'utenlandsopphold',
     });

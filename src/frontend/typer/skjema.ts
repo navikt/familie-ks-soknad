@@ -23,6 +23,8 @@ export interface IDinLivssituasjonFeltTyper {
     registrerteArbeidsperioder: IArbeidsperiode[];
     mottarUtenlandspensjon: ESvar | null;
     registrertePensjonsperioder: IPensjonsperiode[];
+    utenlandsoppholdUtenArbeid: ESvar | null;
+    registrerteUtenlandsperioder: IUtenlandsperiode[];
 }
 
 export interface IOmBarnaDineFeltTyper {
@@ -61,6 +63,8 @@ export interface IOmBarnetFeltTyper {
     andreForelderYrkesaktivFemÅr: ESvar | null;
     andreForelderArbeidUtlandet: ESvar | null;
     andreForelderArbeidsperioderUtland: IArbeidsperiode[];
+    andreForelderUtenlandsoppholdUtenArbeid: ESvar | null;
+    andreForelderUtenlandsperioder: IUtenlandsperiode[];
     andreForelderPensjonUtland: ESvar | null;
     andreForelderPensjonsperioderUtland: IPensjonsperiode[];
     borFastMedSøker: ESvar | null;
@@ -74,7 +78,6 @@ export interface IOmDegFeltTyper {
     borPåRegistrertAdresse: ESvar | null;
     værtINorgeITolvMåneder: ESvar | null;
     planleggerÅBoINorgeTolvMnd: ESvar | null;
-    registrerteUtenlandsperioder: IUtenlandsperiode[];
     yrkesaktivFemÅr: ESvar | null;
 }
 
@@ -162,6 +165,8 @@ export interface IUtenlandsoppholdFeltTyper {
     oppholdslandFraDato: ISODateString;
     oppholdslandTilDato: ISODateString;
     oppholdslandTilDatoUkjent: ESvar;
+    adresse: string;
+    adresseUkjent: ESvar;
 }
 
 export interface IUtbetalingerFeltTyper {

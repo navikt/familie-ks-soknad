@@ -28,6 +28,7 @@ import {
 } from '../../../typer/perioder';
 import { IIdNummer } from '../../../typer/person';
 import { PersonType } from '../../../typer/personType';
+import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import {
@@ -73,11 +74,15 @@ export const useOmBarnet = (
     fjernKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
     leggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
     fjernBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
+    leggTilUtenlandsperiodeAndreForelder: (periode: IUtenlandsperiode) => void;
+    fjernUtenlandsperiodeAndreForelder: (periode: IUtenlandsperiode) => void;
 } => {
     const { søknad, settSøknad, tekster, plainTekst } = useApp();
     const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } = useEøs();
     const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     const teksterForModaler = tekster()[ESanitySteg.FELLES].modaler;
+    const teksterForUtenlandsperiode: IUtenlandsoppholdTekstinnhold =
+        teksterForModaler.utenlandsopphold.andreForelder;
 
     const gjeldendeBarn = søknad.barnInkludertISøknaden.find(barn => barn.id === barnetsUuid);
 
@@ -339,7 +344,6 @@ export const useOmBarnet = (
                     : undefined,
         },
         skalSkjules: andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA,
-        flettefelter: { barnetsNavn: gjeldendeBarn.navn },
     });
 
     const andreForelderYrkesaktivFemÅr = useJaNeiSpmFelt({
@@ -385,6 +389,42 @@ export const useOmBarnet = (
         }
     );
 
+    const andreForelderUtenlandsoppholdUtenArbeid = useJaNeiSpmFelt({
+        søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.utenlandsoppholdUtenArbeid],
+        feilmelding: teksterForSteg.utenlandsoppholdUtenArbeidAndreForelder.feilmelding,
+        avhengigheter: {
+            andreForelderNavn: {
+                hovedSpørsmål: andreForelderNavn,
+            },
+            andreForelderFnr:
+                andreForelderKanIkkeGiOpplysninger.verdi === ESvar.NEI
+                    ? {
+                          hovedSpørsmål: andreForelderFnr,
+                          tilhørendeFelter: [andreForelderFødselsdato],
+                      }
+                    : undefined,
+        },
+        skalSkjules: andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA || andreForelderErDød,
+    });
+
+    const {
+        fjernPeriode: fjernUtenlandsperiodeAndreForelder,
+        leggTilPeriode: leggTilUtenlandsperiodeAndreForelder,
+        registrertePerioder: andreForelderUtenlandsperioder,
+    } = usePerioder<IUtenlandsperiode>(
+        `${UtenlandsoppholdSpørsmålId.utenlandsopphold}-${PersonType.andreForelder}`,
+        andreForelder?.utenlandsperioder ?? [],
+        { andreForelderUtenlandsoppholdUtenArbeid },
+        avhengigheter => avhengigheter.andreForelderUtenlandsoppholdUtenArbeid.verdi === ESvar.JA,
+        (felt, avhengigheter) => {
+            return avhengigheter?.andreForelderUtenlandsoppholdUtenArbeid.verdi === ESvar.NEI ||
+                (avhengigheter?.andreForelderUtenlandsoppholdUtenArbeid.verdi === ESvar.JA &&
+                    felt.verdi.length)
+                ? ok(felt)
+                : feil(felt, plainTekst(teksterForUtenlandsperiode.leggTilFeilmelding));
+        }
+    );
+
     const andreForelderPensjonUtland = useJaNeiSpmFelt({
         søknadsfelt: andreForelder?.[andreForelderDataKeySpørsmål.pensjonUtland],
         feilmelding: andreForelderErDød
@@ -403,7 +443,6 @@ export const useOmBarnet = (
                     : undefined,
         },
         skalSkjules: andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA,
-        flettefelter: { barnetsNavn: gjeldendeBarn.navn },
     });
 
     const {
@@ -478,6 +517,8 @@ export const useOmBarnet = (
             andreForelderYrkesaktivFemÅr,
             andreForelderArbeidUtlandet,
             andreForelderArbeidsperioderUtland,
+            andreForelderUtenlandsoppholdUtenArbeid,
+            andreForelderUtenlandsperioder,
             andreForelderPensjonUtland,
             andreForelderPensjonsperioderUtland,
             borFastMedSøker,
@@ -534,6 +575,10 @@ export const useOmBarnet = (
                     pensjonsperioderUtland:
                         andreForelderPensjonUtland.verdi === ESvar.JA
                             ? andreForelderPensjonsperioderUtland.verdi
+                            : [],
+                    utenlandsperioder:
+                        andreForelderUtenlandsoppholdUtenArbeid.verdi === ESvar.JA
+                            ? andreForelderUtenlandsperioder.verdi
                             : [],
                 },
                 erEøsLand
@@ -593,6 +638,14 @@ export const useOmBarnet = (
                 arbeidsperioderUtland:
                     andreForelderArbeidUtlandet.verdi === ESvar.JA
                         ? andreForelderArbeidsperioderUtland.verdi
+                        : [],
+                utenlandsoppholdUtenArbeid: {
+                    ...andreForelder[andreForelderDataKeySpørsmål.utenlandsoppholdUtenArbeid],
+                    svar: andreForelderUtenlandsoppholdUtenArbeid.verdi,
+                },
+                utenlandsperioder:
+                    andreForelderUtenlandsoppholdUtenArbeid.verdi === ESvar.JA
+                        ? andreForelderUtenlandsperioder.verdi
                         : [],
                 pensjonUtland: {
                     ...andreForelder[andreForelderDataKeySpørsmål.pensjonUtland],
@@ -799,5 +852,7 @@ export const useOmBarnet = (
         leggTilBarnehageplassPeriode,
         fjernBarnehageplassPeriode,
         harPeriodeMedGradertBarnehageplass,
+        fjernUtenlandsperiodeAndreForelder,
+        leggTilUtenlandsperiodeAndreForelder,
     };
 };
