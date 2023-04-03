@@ -3,6 +3,7 @@ import { Felt } from '@navikt/familie-skjema';
 
 import { AlternativtSvarForInput } from '../typer/common';
 import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
+import { trimWhiteSpace } from './hjelpefunksjoner';
 
 export const svarForSpørsmålMedUkjent = (
     vetIkkeFelt: Felt<ESvar>,
@@ -11,7 +12,9 @@ export const svarForSpørsmålMedUkjent = (
     if (!spørsmålFelt.erSynlig) {
         return '';
     } else {
-        return vetIkkeFelt.verdi === ESvar.JA ? AlternativtSvarForInput.UKJENT : spørsmålFelt.verdi;
+        return vetIkkeFelt.verdi === ESvar.JA
+            ? AlternativtSvarForInput.UKJENT
+            : trimWhiteSpace(spørsmålFelt.verdi);
     }
 };
 
