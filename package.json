@@ -94,7 +94,7 @@
     ]
   },
   "dependencies": {
-    "@axe-core/react": "^4.2.2",
+    "@axe-core/react": "^4.7.1",
     "@navikt/ds-css": "^2.2.0",
     "@navikt/ds-icons": "^2.2.0",
     "@navikt/ds-react": "^2.2.0",
