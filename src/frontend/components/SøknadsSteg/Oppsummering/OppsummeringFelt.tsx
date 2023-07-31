@@ -17,14 +17,15 @@ interface IOppsummeringsFeltProps {
     spørsmålstekst: LocaleRecordBlock | LocaleRecordString;
     søknadsvar?: ReactNode | null;
     flettefelter?: FlettefeltVerdier;
+    children?: ReactNode;
 }
 
-export const OppsummeringFelt: React.FC<IOppsummeringsFeltProps> = ({
+export function OppsummeringFelt({
     søknadsvar,
     spørsmålstekst,
     flettefelter,
     children,
-}) => {
+}: IOppsummeringsFeltProps) {
     const { plainTekst, tekster } = useApp();
 
     return (
@@ -39,4 +40,4 @@ export const OppsummeringFelt: React.FC<IOppsummeringsFeltProps> = ({
             )}
         </StyledOppsummeringsFelt>
     );
-};
+}

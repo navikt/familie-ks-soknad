@@ -36,6 +36,7 @@ interface ISteg {
         settSøknadsdataCallback: () => void;
     };
     gåVidereCallback?: () => Promise<boolean>;
+    children?: ReactNode;
 }
 
 const ChildrenContainer = styled.div`
@@ -85,7 +86,7 @@ const StepperContainer = styled.div<{ antallSteg: number }>`
       `}
 }`;
 
-const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) => {
+function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
     const navigate = useNavigate();
     const { erÅpen: erModellVersjonModalÅpen, toggleModal: toggleModellVersjonModal } = useModal();
     const {
@@ -207,6 +208,6 @@ const Steg: React.FC<ISteg> = ({ tittel, skjema, gåVidereCallback, children }) 
             </InnholdContainer>
         </>
     );
-};
+}
 
 export default Steg;

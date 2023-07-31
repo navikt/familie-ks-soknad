@@ -10,6 +10,7 @@ interface Props {
     onClick: () => void | Promise<void>;
     feilmelding: ReactNode;
     id?: string;
+    children?: ReactNode;
 }
 
 const StyledButton = styled(Button)`
@@ -19,18 +20,20 @@ const StyledButton = styled(Button)`
     }
 `;
 
-export const LeggTilKnapp: React.FC<Props> = ({ onClick, feilmelding, id, children }) => (
-    <>
-        <StyledButton
-            id={id}
-            variant={'tertiary'}
-            type={'button'}
-            onClick={onClick}
-            $feilmelding={!!feilmelding}
-            icon={<AddCircle />}
-        >
-            {children}
-        </StyledButton>
-        {!!feilmelding && <ErrorMessage>{feilmelding}</ErrorMessage>}
-    </>
-);
+export function LeggTilKnapp({ onClick, feilmelding, id, children }: Props) {
+    return (
+        <>
+            <StyledButton
+                id={id}
+                variant={'tertiary'}
+                type={'button'}
+                onClick={onClick}
+                $feilmelding={!!feilmelding}
+                icon={<AddCircle />}
+            >
+                {children}
+            </StyledButton>
+            {!!feilmelding && <ErrorMessage>{feilmelding}</ErrorMessage>}
+        </>
+    );
+}

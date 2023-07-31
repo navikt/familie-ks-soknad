@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
@@ -7,6 +7,7 @@ import { TypografiWrapper } from '../TekstBlock';
 
 export interface IInformasjonsbolkProps {
     tittel?: string;
+    children?: ReactNode;
 }
 
 const InformasjonsbolkContainer = styled.div`
@@ -17,7 +18,7 @@ const InformasjonsbolkChildrenWrapper = styled.div`
     margin-top: 1.125rem;
 `;
 
-const Informasjonsbolk: React.FC<IInformasjonsbolkProps> = ({ tittel, children, ...props }) => {
+function Informasjonsbolk({ tittel, children, ...props }: IInformasjonsbolkProps) {
     return (
         <InformasjonsbolkContainer {...props}>
             {tittel && (
@@ -26,6 +27,6 @@ const Informasjonsbolk: React.FC<IInformasjonsbolkProps> = ({ tittel, children, 
             <InformasjonsbolkChildrenWrapper>{children}</InformasjonsbolkChildrenWrapper>
         </InformasjonsbolkContainer>
     );
-};
+}
 
 export default Informasjonsbolk;

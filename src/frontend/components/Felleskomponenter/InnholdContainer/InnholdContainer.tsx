@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
 import { device } from '../../../Theme';
+
+interface Props {
+    className?: string;
+    children?: ReactNode;
+}
 
 const Container = styled.div`
     max-width: var(--innhold-bredde);
@@ -17,8 +22,8 @@ const Container = styled.div`
     }
 `;
 
-const InnholdContainer: React.FC<{ className?: string }> = ({ children, className }) => {
+function InnholdContainer({ className, children }: Props) {
     return <Container className={className}>{children}</Container>;
-};
+}
 
 export default InnholdContainer;

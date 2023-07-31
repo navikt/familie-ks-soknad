@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
@@ -33,9 +33,10 @@ interface Props {
     skjemaHook: IHookReturn;
     settFeilAnchors?: React.Dispatch<React.SetStateAction<string[]>>;
     barn?: IBarnMedISøknad;
+    children?: ReactNode;
 }
 
-const Oppsummeringsbolk: React.FC<Props> = ({
+function Oppsummeringsbolk({
     children,
     tittel,
     flettefelter,
@@ -43,7 +44,7 @@ const Oppsummeringsbolk: React.FC<Props> = ({
     skjemaHook,
     settFeilAnchors,
     barn,
-}) => {
+}: Props) {
     const { hentStegNummer } = useSteg();
     const { søknad, plainTekst, tekster } = useApp();
     const { validerAlleSynligeFelter, valideringErOk, skjema } = skjemaHook;
@@ -96,6 +97,6 @@ const Oppsummeringsbolk: React.FC<Props> = ({
             </Accordion.Item>
         </Accordion>
     );
-};
+}
 
 export default Oppsummeringsbolk;

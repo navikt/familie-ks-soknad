@@ -194,7 +194,12 @@ const wrapMedDefaultProvidere = (children: ReactNode) =>
         children
     );
 
-export const TestProvidere: React.FC = ({ children }) => wrapMedDefaultProvidere(children);
+interface TestProviderProps {
+    children?: ReactNode;
+}
+export function TestProvidere({ children }: TestProviderProps) {
+    return wrapMedDefaultProvidere(children);
+}
 
 export const mockedHistory: string[] = [];
 

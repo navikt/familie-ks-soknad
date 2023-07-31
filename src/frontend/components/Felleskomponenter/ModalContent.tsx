@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
 import { Modal } from '@navikt/ds-react';
 
 import { device } from '../../Theme';
+
+interface Props {
+    children?: ReactNode;
+}
 
 const StyledModalContent = styled(Modal.Content)`
     && {
@@ -23,8 +27,8 @@ const StyledModalContent = styled(Modal.Content)`
     }
 `;
 
-const ModalContent: React.FC = ({ children }) => {
+function ModalContent({ children }: Props) {
     return <StyledModalContent>{children}</StyledModalContent>;
-};
+}
 
 export default ModalContent;

@@ -10,16 +10,7 @@ import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import ModalContent from '../ModalContent';
 import TekstBlock from '../TekstBlock';
 
-const StyledButton = styled(Button)`
-    && {
-        margin-top: 4rem;
-        white-space: normal;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-`;
-
-const SkjemaModal: React.FC<{
+interface Props {
     erÅpen: boolean;
     toggleModal: () => void;
     submitSpinner?: boolean;
@@ -29,7 +20,19 @@ const SkjemaModal: React.FC<{
     tittel: LocaleRecordBlock;
     submitKnappTekst: ReactNode;
     flettefelter?: FlettefeltVerdier;
-}> = ({
+    children?: ReactNode;
+}
+
+const StyledButton = styled(Button)`
+    && {
+        margin-top: 4rem;
+        white-space: normal;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+`;
+
+function SkjemaModal({
     erÅpen,
     toggleModal,
     submitSpinner = false,
@@ -40,7 +43,7 @@ const SkjemaModal: React.FC<{
     submitKnappTekst,
     flettefelter,
     children,
-}) => {
+}: Props) {
     const { plainTekst } = useApp();
     return (
         <Modal
@@ -77,6 +80,6 @@ const SkjemaModal: React.FC<{
             </ModalContent>
         </Modal>
     );
-};
+}
 
 export default SkjemaModal;

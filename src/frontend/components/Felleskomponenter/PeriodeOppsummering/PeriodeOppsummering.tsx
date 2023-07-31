@@ -9,6 +9,14 @@ import { ABorderDefault } from '@navikt/ds-tokens/dist/tokens';
 import { LocaleRecordBlock } from '../../../typer/common';
 import TekstBlock from '../TekstBlock';
 
+interface Props {
+    fjernPeriodeCallback?: () => void;
+    fjernKnappTekst: LocaleRecordBlock;
+    tittel: ReactNode;
+    vedleggNotis?: ReactNode;
+    children?: ReactNode;
+}
+
 const PeriodeContainer = styled.div<{ bottomBorder: boolean }>`
     margin: 2rem 0;
     border-bottom: ${props => (props.bottomBorder ? `1px solid ${ABorderDefault}` : 'none')};
@@ -20,12 +28,13 @@ const StyledButton = styled(Button)`
     }
 `;
 
-const PeriodeOppsummering: React.FC<{
-    fjernPeriodeCallback?: () => void;
-    fjernKnappTekst: LocaleRecordBlock;
-    tittel: ReactNode;
-    vedleggNotis?: ReactNode;
-}> = ({ fjernPeriodeCallback = undefined, fjernKnappTekst, tittel, vedleggNotis, children }) => {
+function PeriodeOppsummering({
+    fjernPeriodeCallback = undefined,
+    fjernKnappTekst,
+    tittel,
+    vedleggNotis,
+    children,
+}: Props) {
     const skalHaBottomBorder = !!fjernPeriodeCallback;
 
     return (
@@ -45,6 +54,6 @@ const PeriodeOppsummering: React.FC<{
             {vedleggNotis}
         </PeriodeContainer>
     );
-};
+}
 
 export default PeriodeOppsummering;
