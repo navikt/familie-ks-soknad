@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import * as Sentry from '@sentry/react';
 
@@ -11,7 +11,11 @@ import { SanityProvider } from './context/SanityContext';
 import { GlobalStyle } from './Theme';
 import { logError } from './utils/amplitude';
 
-const FellesWrapper = ({ children }) => {
+interface Props {
+    children?: ReactNode;
+}
+
+function FellesWrapper({ children }: Props) {
     return (
         <React.StrictMode>
             <SprakProvider defaultLocale={LocaleType.nb}>
@@ -32,6 +36,6 @@ const FellesWrapper = ({ children }) => {
             </SprakProvider>
         </React.StrictMode>
     );
-};
+}
 
 export default FellesWrapper;
