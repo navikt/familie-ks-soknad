@@ -3,6 +3,9 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { PensjonModal } from './Pensjonsmodal';
+import { PensjonsperiodeOppsummering } from './PensjonsperiodeOppsummering';
+import { pensjonSpørsmålDokument } from './språkUtils';
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { IPensjonsperiode } from '../../../typer/perioder';
@@ -17,9 +20,6 @@ import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
-import { PensjonModal } from './Pensjonsmodal';
-import { PensjonsperiodeOppsummering } from './PensjonsperiodeOppsummering';
-import { pensjonSpørsmålDokument } from './språkUtils';
 
 interface PensjonsperiodeProps {
     skjema: ISkjema<

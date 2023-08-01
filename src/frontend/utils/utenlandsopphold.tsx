@@ -1,6 +1,6 @@
+import { dagensDato, ettÅrTilbakeDato, gårsdagensDato } from './dato';
 import { IUtenlandsperiode } from '../typer/perioder';
 import { EUtenlandsoppholdÅrsak } from '../typer/utenlandsopphold';
-import { dagensDato, ettÅrTilbakeDato, gårsdagensDato } from './dato';
 
 export const hentMaxAvgrensningPåFraDato = (
     utenlandsoppÅrsak: EUtenlandsoppholdÅrsak | ''

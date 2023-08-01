@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
+import { hentBarnehageplassBeskrivelse } from './barnehageplassSpråkUtils';
+import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
@@ -11,8 +13,6 @@ import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import TekstBlock from '../TekstBlock';
-import { hentBarnehageplassBeskrivelse } from './barnehageplassSpråkUtils';
-import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 
 interface BarnehageplassPeriodeProps {
     barnehageplassPeriode: IBarnehageplassPeriode;

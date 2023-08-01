@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { GuidePanel } from '@navikt/ds-react';
 import { LocaleType, Sprakvelger } from '@navikt/familie-sprakvelger';
 
+import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
+import FortsettPåSøknad from './FortsettPåSøknad';
 import Miljø from '../../../../shared-utils/Miljø';
 import { useApp } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
@@ -15,8 +17,6 @@ import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import InnholdContainer from '../../Felleskomponenter/InnholdContainer/InnholdContainer';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
-import FortsettPåSøknad from './FortsettPåSøknad';
 
 const TittelContainer = styled.div`
     && {

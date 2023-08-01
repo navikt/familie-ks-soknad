@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import { mockDeep } from 'jest-mock-extended';
 import { DeepPartial } from 'ts-essentials';
 
-import { ISøknadKontrakt } from '../../frontend/typer/kontrakt/søknadKontrakt';
 import { erklaeringInterceptor } from './erklaering-interceptor';
+import { ISøknadKontrakt } from '../../frontend/typer/kontrakt/søknadKontrakt';
 
 describe('erklaering-interceptor', () => {
     const request = (partialSøknad: DeepPartial<ISøknadKontrakt>) =>

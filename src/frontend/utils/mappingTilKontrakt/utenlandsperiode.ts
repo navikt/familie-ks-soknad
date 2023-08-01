@@ -1,4 +1,10 @@
 import {
+    sammeVerdiAlleSpråk,
+    sammeVerdiAlleSpråkEllerUkjent,
+    søknadsfeltHof,
+    verdiCallbackAlleSpråk,
+} from './hjelpefunksjoner';
+import {
     hentFraDatoSpørsmål,
     hentLandSpørsmål,
     hentTilDatoSpørsmål,
@@ -15,12 +21,6 @@ import { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenla
 import { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
 import { EUtenlandsoppholdÅrsak } from '../../typer/utenlandsopphold';
 import { landkodeTilSpråk } from '../språk';
-import {
-    sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjent,
-    søknadsfeltHof,
-    verdiCallbackAlleSpråk,
-} from './hjelpefunksjoner';
 
 interface UtenlandsperiodeIKontraktFormatParams {
     utenlandperiode: IUtenlandsperiode;

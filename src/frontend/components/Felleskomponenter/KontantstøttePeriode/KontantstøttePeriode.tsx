@@ -3,6 +3,9 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { KontantstøttePeriodeModal } from './KontantstøttePeriodeModal';
+import { KontantstøttePeriodeOppsummering } from './KontantstøttePeriodeOppsummering';
+import { eøsKontantstøtteSpørsmålsdokument } from './kontantstøttePeriodeSpråkUtils';
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
@@ -14,9 +17,6 @@ import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
-import { KontantstøttePeriodeModal } from './KontantstøttePeriodeModal';
-import { KontantstøttePeriodeOppsummering } from './KontantstøttePeriodeOppsummering';
-import { eøsKontantstøtteSpørsmålsdokument } from './kontantstøttePeriodeSpråkUtils';
 
 interface Props {
     skjema: ISkjema<IOmBarnetFeltTyper | IEøsForBarnFeltTyper, string>;

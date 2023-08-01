@@ -3,6 +3,14 @@ import React from 'react';
 import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
+import {
+    hentBarnehageplassBeskrivelse,
+    hentFraDatoSpørsmål,
+    hentTilDatoSpørsmål,
+} from './barnehageplassSpråkUtils';
+import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
+import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
+import { useBarnehageplassPeriodeSkjema } from './useBarnehageplassPeriodeSkjema';
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
@@ -22,14 +30,6 @@ import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
-import {
-    hentBarnehageplassBeskrivelse,
-    hentFraDatoSpørsmål,
-    hentTilDatoSpørsmål,
-} from './barnehageplassSpråkUtils';
-import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
-import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
-import { useBarnehageplassPeriodeSkjema } from './useBarnehageplassPeriodeSkjema';
 
 export interface IUseBarnehageplassSkjemaParams {
     barn: IBarnMedISøknad;

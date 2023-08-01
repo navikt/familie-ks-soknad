@@ -4,10 +4,10 @@ import createUseContext from 'constate';
 
 import { Ressurs, RessursStatus } from '@navikt/familie-typer';
 
+import { useLastRessurserContext } from './LastRessurserContext';
 import { basePath } from '../../shared-utils/Miljø';
 import useFørsteRender from '../hooks/useFørsteRender';
 import { EAllFeatureToggles, defaultFeatureToggleValues } from '../typer/feature-toggles';
-import { useLastRessurserContext } from './LastRessurserContext';
 
 const [FeatureTogglesProvider, useFeatureToggles] = createUseContext(() => {
     const { axiosRequest } = useLastRessurserContext();

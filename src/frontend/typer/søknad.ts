@@ -1,16 +1,16 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { DinLivssituasjonSpørsmålId } from '../components/SøknadsSteg/DinLivssituasjon/spørsmål';
-import { EøsSøkerSpørsmålId } from '../components/SøknadsSteg/EøsSteg/Søker/spørsmål';
-import { OmBarnaDineSpørsmålId } from '../components/SøknadsSteg/OmBarnaDine/spørsmål';
-import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
-import { genererInitiellDokumentasjon } from '../utils/dokumentasjon';
 import { IBarnMedISøknad } from './barn';
 import { IDokumentasjon } from './dokumentasjon';
 import { Dokumentasjonsbehov } from './kontrakt/dokumentasjon';
 import { ESivilstand } from './kontrakt/generelle';
 import { IBarn, ISøker } from './person';
 import { ISøknadSpørsmål } from './spørsmål';
+import { DinLivssituasjonSpørsmålId } from '../components/SøknadsSteg/DinLivssituasjon/spørsmål';
+import { EøsSøkerSpørsmålId } from '../components/SøknadsSteg/EøsSteg/Søker/spørsmål';
+import { OmBarnaDineSpørsmålId } from '../components/SøknadsSteg/OmBarnaDine/spørsmål';
+import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
+import { genererInitiellDokumentasjon } from '../utils/dokumentasjon';
 
 export const søknadstype = {
     id: 340008,

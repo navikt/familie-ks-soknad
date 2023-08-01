@@ -1,5 +1,7 @@
 import React from 'react';
 
+import EøsAndreForelderOppsummering from './EøsAndreForelderOppsummering';
+import EøsOmsorgspersonOppsummering from './EøsOmsorgspersonOppsummering';
 import { useApp } from '../../../../../context/AppContext';
 import { useSteg } from '../../../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../../../typer/barn';
@@ -10,8 +12,6 @@ import { useEøsForBarn } from '../../../EøsSteg/Barn/useEøsForBarn';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 import Oppsummeringsbolk from '../../Oppsummeringsbolk';
 import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
-import EøsAndreForelderOppsummering from './EøsAndreForelderOppsummering';
-import EøsOmsorgspersonOppsummering from './EøsOmsorgspersonOppsummering';
 
 interface Props {
     settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;

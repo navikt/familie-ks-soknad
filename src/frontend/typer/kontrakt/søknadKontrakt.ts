@@ -1,8 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import { LocaleType } from '@navikt/familie-sprakvelger';
 
-import { barnDataKeySpørsmål } from '../barn';
-import { ISODateString } from '../common';
 import { ISøknadKontraktDokumentasjon } from './dokumentasjon';
 import {
     ERegistrertBostedType,
@@ -11,6 +9,8 @@ import {
     ISøknadsfelt,
     IUtenlandsperiodeIKontraktFormat,
 } from './generelle';
+import { barnDataKeySpørsmål } from '../barn';
+import { ISODateString } from '../common';
 
 export interface ISøknadKontrakt {
     kontraktVersjon: number;

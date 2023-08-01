@@ -3,6 +3,11 @@ import React from 'react';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
+import AndreForelder from './AndreForelder';
+import { IOmBarnetTekstinnhold } from './innholdTyper';
+import { OmBarnetHeader } from './OmBarnetHeader';
+import Oppfølgningsspørsmål from './Oppfølgningsspørsmål';
+import { useOmBarnet } from './useOmBarnet';
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { BarnetsId, Typografi } from '../../../typer/common';
@@ -13,11 +18,6 @@ import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
-import AndreForelder from './AndreForelder';
-import { IOmBarnetTekstinnhold } from './innholdTyper';
-import { OmBarnetHeader } from './OmBarnetHeader';
-import Oppfølgningsspørsmål from './Oppfølgningsspørsmål';
-import { useOmBarnet } from './useOmBarnet';
 
 const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
     const { tekster, plainTekst } = useApp();
@@ -158,13 +158,14 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                             ) : undefined
                         }
                     />
-                    {søkerDeltKontantstøtte.erSynlig && søkerDeltKontantstøtte.verdi === ESvar.JA && (
-                        <VedleggNotis dynamisk>
-                            <BodyShort>
-                                {plainTekst(soekerDeltKontantstoette.vedleggsnotis)}
-                            </BodyShort>
-                        </VedleggNotis>
-                    )}
+                    {søkerDeltKontantstøtte.erSynlig &&
+                        søkerDeltKontantstøtte.verdi === ESvar.JA && (
+                            <VedleggNotis dynamisk>
+                                <BodyShort>
+                                    {plainTekst(soekerDeltKontantstoette.vedleggsnotis)}
+                                </BodyShort>
+                            </VedleggNotis>
+                        )}
                 </>
             </SkjemaFieldset>
         </Steg>

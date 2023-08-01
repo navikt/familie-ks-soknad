@@ -2,7 +2,6 @@ import React from 'react';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { basePath } from '../shared-utils/Miljø';
 import AppContainer from './AppContainer';
 import AlertStripe from './components/Felleskomponenter/AlertStripe/AlertStripe';
 import { AppProvider } from './context/AppContext';
@@ -12,6 +11,7 @@ import { FeatureTogglesProvider } from './context/FeatureToggleContext';
 import { InnloggetProvider } from './context/InnloggetContext';
 import { RoutesProvider } from './context/RoutesContext';
 import { StegProvider } from './context/StegContext';
+import { basePath } from '../shared-utils/Miljø';
 
 const App = () => {
     return (

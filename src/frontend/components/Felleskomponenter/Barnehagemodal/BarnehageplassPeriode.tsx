@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { BarnehageplassPeriodeModal } from './BarnehageplassPeriodeModal';
+import { BarnehageplassPeriodeOppsummering } from './BarnehageplassPeriodeOppsummering';
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
@@ -13,8 +15,6 @@ import { IOmBarnetTekstinnhold } from '../../SøknadsSteg/OmBarnet/innholdTyper'
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
-import { BarnehageplassPeriodeModal } from './BarnehageplassPeriodeModal';
-import { BarnehageplassPeriodeOppsummering } from './BarnehageplassPeriodeOppsummering';
 
 interface BarnehageplassPeriodeProps {
     skjema: ISkjema<IOmBarnetFeltTyper, string>;

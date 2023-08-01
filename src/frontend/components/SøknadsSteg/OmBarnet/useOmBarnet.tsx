@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, FeltState, ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
+import { IOmBarnetTekstinnhold } from './innholdTyper';
+import { OmBarnetSpørsmålsId } from './spørsmål';
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
@@ -50,8 +52,6 @@ import { KontantstøttePeriodeSpørsmålId } from '../../Felleskomponenter/Konta
 import { PensjonsperiodeSpørsmålId } from '../../Felleskomponenter/Pensjonsmodal/spørsmål';
 import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { idNummerLand } from '../EøsSteg/idnummerUtils';
-import { IOmBarnetTekstinnhold } from './innholdTyper';
-import { OmBarnetSpørsmålsId } from './spørsmål';
 
 export const useOmBarnet = (
     barnetsUuid: BarnetsId

@@ -3,6 +3,10 @@ import React from 'react';
 import { Heading } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
+import IdNummerForAndreForelder from './IdNummerForAndreForelder';
+import Omsorgsperson from './Omsorgsperson';
+import SamletIdNummerForBarn from './SamletIdNummerForBarn';
+import { useEøsForBarn } from './useEøsForBarn';
 import { useApp } from '../../../../context/AppContext';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../typer/barn';
 import { BarnetsId, Typografi } from '../../../../typer/common';
@@ -23,10 +27,6 @@ import Steg from '../../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { Utbetalingsperiode } from '../../../Felleskomponenter/UtbetalingerModal/Utbetalingsperiode';
 import EøsAndreForelderOppsummering from '../../Oppsummering/OppsummeringSteg/Eøs/EøsAndreForelderOppsummering';
-import IdNummerForAndreForelder from './IdNummerForAndreForelder';
-import Omsorgsperson from './Omsorgsperson';
-import SamletIdNummerForBarn from './SamletIdNummerForBarn';
-import { useEøsForBarn } from './useEøsForBarn';
 
 const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
     const {

@@ -5,6 +5,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, Felt, FeltState, ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
+import { EøsBarnSpørsmålId } from './spørsmål';
 import { useApp } from '../../../../context/AppContext';
 import useInputFelt from '../../../../hooks/useInputFelt';
 import useInputFeltMedUkjent from '../../../../hooks/useInputFeltMedUkjent';
@@ -38,7 +39,6 @@ import { KontantstøttePeriodeSpørsmålId } from '../../../Felleskomponenter/Ko
 import { PensjonsperiodeSpørsmålId } from '../../../Felleskomponenter/Pensjonsmodal/spørsmål';
 import { UtbetalingerSpørsmålId } from '../../../Felleskomponenter/UtbetalingerModal/spørsmål';
 import { idNummerKeyPrefix } from '../idnummerUtils';
-import { EøsBarnSpørsmålId } from './spørsmål';
 
 export const useEøsForBarn = (
     barnetsUuid: BarnetsId

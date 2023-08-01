@@ -6,6 +6,7 @@ import JestMockPromise from 'jest-mock-promise';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { useApp } from './AppContext';
 import { OmBarnaDineSpørsmålId } from '../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { ESivilstand } from '../typer/kontrakt/generelle';
 import { ISøkerRespons } from '../typer/person';
@@ -17,7 +18,6 @@ import {
     spyOnModal,
     TestProvidere,
 } from '../utils/testing';
-import { useApp } from './AppContext';
 
 const søknadEtterRespons: ISøknad = {
     ...initialStateSøknad,

@@ -1,17 +1,17 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { IBarnMedISøknad } from '../../typer/barn';
-import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { IArbeidsperiodeIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
-import { IArbeidsperiode } from '../../typer/perioder';
-import { IArbeidsperiodeTekstinnhold } from '../../typer/sanity/modaler/arbeidsperiode';
-import { landkodeTilSpråk } from '../språk';
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjent,
     søknadsfeltHof,
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
+import { IBarnMedISøknad } from '../../typer/barn';
+import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
+import { IArbeidsperiodeIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
+import { IArbeidsperiode } from '../../typer/perioder';
+import { IArbeidsperiodeTekstinnhold } from '../../typer/sanity/modaler/arbeidsperiode';
+import { landkodeTilSpråk } from '../språk';
 
 interface ArbeidsperiodeIKontraktFormatParams {
     periode: IArbeidsperiode;

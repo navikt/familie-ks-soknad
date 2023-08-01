@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, FeltState, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
+import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
+import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
@@ -23,8 +25,6 @@ import {
     stringTilDate,
 } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
-import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
-import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 
 interface UseBarnehageplassSkjemaVerdi
     extends IUsePeriodeSkjemaVerdi<IBarnehageplassPerioderFeltTyper> {

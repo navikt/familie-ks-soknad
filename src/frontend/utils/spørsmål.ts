@@ -1,9 +1,9 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt } from '@navikt/familie-skjema';
 
+import { trimWhiteSpace } from './hjelpefunksjoner';
 import { AlternativtSvarForInput } from '../typer/common';
 import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
-import { trimWhiteSpace } from './hjelpefunksjoner';
 
 export const svarForSpørsmålMedUkjent = (
     vetIkkeFelt: Felt<ESvar>,

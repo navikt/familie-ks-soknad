@@ -3,10 +3,10 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { mockDeep } from 'jest-mock-extended';
 
+import { OmBarnetHeader } from './OmBarnetHeader';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { ISøknad } from '../../../typer/søknad';
 import { spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
-import { OmBarnetHeader } from './OmBarnetHeader';
 
 describe('OmBarnetHeader', () => {
     beforeEach(() => {

@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Heading } from '@navikt/ds-react';
 
+import IdNummerForSøker from './IdNummerForSøker';
+import { useEøsForSøker } from './useEøsForSøker';
 import { useApp } from '../../../../context/AppContext';
 import { PersonType } from '../../../../typer/personType';
 import { uppercaseFørsteBokstav } from '../../../../utils/visning';
@@ -12,8 +14,6 @@ import { SkjemaFeltInput } from '../../../Felleskomponenter/SkjemaFeltInput/Skje
 import Steg from '../../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { Utbetalingsperiode } from '../../../Felleskomponenter/UtbetalingerModal/Utbetalingsperiode';
-import IdNummerForSøker from './IdNummerForSøker';
-import { useEøsForSøker } from './useEøsForSøker';
 
 const EøsForSøker: React.FC = () => {
     const { tekster, plainTekst } = useApp();

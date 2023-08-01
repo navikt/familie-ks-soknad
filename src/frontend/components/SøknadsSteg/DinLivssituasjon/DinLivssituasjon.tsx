@@ -3,6 +3,8 @@ import React from 'react';
 import { BodyShort } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { IDinLivssituasjonTekstinnhold } from './innholdTyper';
+import { useDinLivssituasjon } from './useDinLivssituasjon';
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { PersonType } from '../../../typer/personType';
@@ -16,8 +18,6 @@ import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
-import { IDinLivssituasjonTekstinnhold } from './innholdTyper';
-import { useDinLivssituasjon } from './useDinLivssituasjon';
 
 const DinLivssituasjon: React.FC = () => {
     const { tekster, plainTekst } = useApp();

@@ -5,6 +5,12 @@ import styled from 'styled-components';
 
 import { Alert } from '@navikt/ds-react';
 
+import Barnekort from './Barnekort/Barnekort';
+import { IVelgBarnTekstinnhold } from './innholdTyper';
+import LeggTilBarnModal from './LeggTilBarn/LeggTilBarnModal';
+import { NyttBarnKort } from './LeggTilBarn/NyttBarnKort';
+import { VelgBarnSpørsmålId } from './spørsmål';
+import { useVelgBarn } from './useVelgBarn';
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -12,12 +18,6 @@ import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import Barnekort from './Barnekort/Barnekort';
-import { IVelgBarnTekstinnhold } from './innholdTyper';
-import LeggTilBarnModal from './LeggTilBarn/LeggTilBarnModal';
-import { NyttBarnKort } from './LeggTilBarn/NyttBarnKort';
-import { VelgBarnSpørsmålId } from './spørsmål';
-import { useVelgBarn } from './useVelgBarn';
 
 /**
  * Vi har prøvd mye for å få til masonry, men før denne teknologien blir implementert

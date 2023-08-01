@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { UtenlandsoppholdModal } from './UtenlandsoppholdModal';
+import { UtenlandsperiodeOppsummering } from './UtenlandsperiodeOppsummering';
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
@@ -11,8 +13,6 @@ import { IDinLivssituasjonFeltTyper, IOmBarnetFeltTyper } from '../../../typer/s
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
-import { UtenlandsoppholdModal } from './UtenlandsoppholdModal';
-import { UtenlandsperiodeOppsummering } from './UtenlandsperiodeOppsummering';
 
 type Props = PeriodePersonTypeMedBarnProps & {
     skjema: ISkjema<IDinLivssituasjonFeltTyper | IOmBarnetFeltTyper, string>;

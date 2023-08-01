@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import createUseContext from 'constate';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { ISteg, RouteEnum } from '../typer/routes';
 import { useApp } from './AppContext';
 import { useSteg } from './StegContext';
+import { ISteg, RouteEnum } from '../typer/routes';
 
 const [AppNavigationProvider, useAppNavigation] = createUseContext(() => {
     const [komFra, settKomFra] = useState<ISteg>();

@@ -1,9 +1,3 @@
-import { IBarnMedISøknad } from '../../typer/barn';
-import { Slektsforhold, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { IOmsorgspersonIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
-import { IOmsorgsperson } from '../../typer/omsorgsperson';
-import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
-import { hentSlektsforhold, landkodeTilSpråk } from '../språk';
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
 import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
 import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';
@@ -15,6 +9,12 @@ import {
     verdiCallbackAlleSpråk,
 } from './hjelpefunksjoner';
 import { tilIPensjonsperiodeIKontraktFormat } from './pensjonsperioder';
+import { IBarnMedISøknad } from '../../typer/barn';
+import { Slektsforhold, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
+import { IOmsorgspersonIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
+import { IOmsorgsperson } from '../../typer/omsorgsperson';
+import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
+import { hentSlektsforhold, landkodeTilSpråk } from '../språk';
 
 export const omsorgspersonTilISøknadsfelt = (
     omsorgsperson: IOmsorgsperson,

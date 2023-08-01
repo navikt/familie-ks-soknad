@@ -6,6 +6,10 @@ import styled from 'styled-components';
 import { BodyShort } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
+import HvilkeBarnCheckboxGruppe from './HvilkeBarnCheckboxGruppe';
+import { IOmBarnaTekstinnhold } from './innholdTyper';
+import { OmBarnaDineSpørsmålId } from './spørsmål';
+import { useOmBarnaDine } from './useOmBarnaDine';
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
@@ -16,10 +20,6 @@ import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGr
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
-import HvilkeBarnCheckboxGruppe from './HvilkeBarnCheckboxGruppe';
-import { IOmBarnaTekstinnhold } from './innholdTyper';
-import { OmBarnaDineSpørsmålId } from './spørsmål';
-import { useOmBarnaDine } from './useOmBarnaDine';
 
 const VedleggNotisWrapper = styled.div`
     margin: -1.5rem 0 4.5rem 0;

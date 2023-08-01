@@ -3,12 +3,12 @@ import { mockDeep } from 'jest-mock-extended';
 
 import { ApiRessurs, RessursStatus } from '@navikt/familie-typer';
 
+import { modellVersjonInterceptor } from './modell-versjon-interceptor';
 import {
     modellMismatchMelding,
     ModellMismatchRespons,
     modellVersjon,
 } from '../../shared-utils/modellversjon';
-import { modellVersjonInterceptor } from './modell-versjon-interceptor';
 
 describe('modell-versjon-interceptor', () => {
     const response = mockDeep<Response>({

@@ -1,9 +1,3 @@
-import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { ISøknadKontraktSøker } from '../../typer/kontrakt/søknadKontrakt';
-import { PersonType } from '../../typer/personType';
-import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
-import { ISøknad } from '../../typer/søknad';
-import { landkodeTilSpråk } from '../språk';
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
 import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
 import {
@@ -16,6 +10,12 @@ import {
 import { idNummerTilISøknadsfelt } from './idNummer';
 import { tilIPensjonsperiodeIKontraktFormat } from './pensjonsperioder';
 import { utenlandsperiodeTilISøknadsfelt } from './utenlandsperiode';
+import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
+import { ISøknadKontraktSøker } from '../../typer/kontrakt/søknadKontrakt';
+import { PersonType } from '../../typer/personType';
+import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
+import { ISøknad } from '../../typer/søknad';
+import { landkodeTilSpråk } from '../språk';
 
 export const søkerIKontraktFormat = (
     søknad: ISøknad,

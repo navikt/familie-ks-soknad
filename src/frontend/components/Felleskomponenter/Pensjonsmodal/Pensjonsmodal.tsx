@@ -2,6 +2,8 @@ import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { PensjonsperiodeSpørsmålId } from './spørsmål';
+import { IUsePensjonSkjemaParams, usePensjonSkjema } from './usePensjonSkjema';
 import { useApp } from '../../../context/AppContext';
 import { IPensjonsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
@@ -16,8 +18,6 @@ import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeilopps
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
-import { PensjonsperiodeSpørsmålId } from './spørsmål';
-import { IUsePensjonSkjemaParams, usePensjonSkjema } from './usePensjonSkjema';
 
 interface Props extends ReturnType<typeof useModal>, IUsePensjonSkjemaParams {
     onLeggTilPensjonsperiode: (periode: IPensjonsperiode) => void;

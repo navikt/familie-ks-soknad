@@ -6,8 +6,6 @@ import express from 'express';
 
 import { logInfo } from '@navikt/familie-logging';
 
-import { cspString } from '../csp';
-import Miljø, { basePath } from '../shared-utils/Miljø';
 import { expressToggleInterceptor } from './middlewares/feature-toggles';
 import { konfigurerIndex, konfigurerIndexFallback } from './routes';
 import { konfigurerApi } from './routes/api';
@@ -15,6 +13,8 @@ import { konfigurerAllFeatureTogglesEndpoint } from './routes/feature-toggles';
 import { konfigurerModellVersjonEndpoint } from './routes/modellversjon';
 import { konfigurerNais } from './routes/nais';
 import { konfigurerStatic } from './routes/static';
+import { cspString } from '../csp';
+import Miljø, { basePath } from '../shared-utils/Miljø';
 
 dotenv.config();
 const app = express();

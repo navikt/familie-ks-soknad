@@ -1,16 +1,3 @@
-import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
-import { IBarnMedISøknad } from '../../typer/barn';
-import { LocaleRecordBlock, LocaleRecordString } from '../../typer/common';
-import {
-    ERegistrertBostedType,
-    Slektsforhold,
-    TilRestLocaleRecord,
-} from '../../typer/kontrakt/generelle';
-import { ISøknadIKontraktBarn } from '../../typer/kontrakt/søknadKontrakt';
-import { PersonType } from '../../typer/personType';
-import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
-import { ISøknad } from '../../typer/søknad';
-import { hentSlektsforhold, landkodeTilSpråk } from '../språk';
 import { andreForelderTilISøknadsfelt } from './andreForelder';
 import { tilIBarnehageplassPeriodeIKontraktFormat } from './barnehageplassperioder';
 import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';
@@ -25,6 +12,19 @@ import {
 import { idNummerTilISøknadsfelt } from './idNummer';
 import { omsorgspersonTilISøknadsfelt } from './omsorgsperson';
 import { utenlandsperiodeTilISøknadsfelt } from './utenlandsperiode';
+import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
+import { IBarnMedISøknad } from '../../typer/barn';
+import { LocaleRecordBlock, LocaleRecordString } from '../../typer/common';
+import {
+    ERegistrertBostedType,
+    Slektsforhold,
+    TilRestLocaleRecord,
+} from '../../typer/kontrakt/generelle';
+import { ISøknadIKontraktBarn } from '../../typer/kontrakt/søknadKontrakt';
+import { PersonType } from '../../typer/personType';
+import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
+import { ISøknad } from '../../typer/søknad';
+import { hentSlektsforhold, landkodeTilSpråk } from '../språk';
 
 export const barnISøknadsFormat = (
     barn: IBarnMedISøknad,

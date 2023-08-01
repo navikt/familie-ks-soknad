@@ -3,11 +3,11 @@ import React from 'react';
 import { BodyShort } from '@navikt/ds-react';
 import { feil, FeltState, ok } from '@navikt/familie-skjema';
 
+import { trimWhiteSpace } from './hjelpefunksjoner';
+import { uppercaseKunFørsteBokstav } from './visning';
 import { IOmDegTekstinnhold } from '../components/SøknadsSteg/OmDeg/innholdTyper';
 import { IAdresse, PlainTekst } from '../typer/kontrakt/generelle';
 import { ISøker } from '../typer/person';
-import { trimWhiteSpace } from './hjelpefunksjoner';
-import { uppercaseKunFørsteBokstav } from './visning';
 
 export const erNorskPostnummer = (verdi: string) =>
     !!(verdi?.length === 4 && Number.parseInt(verdi));

@@ -1,5 +1,5 @@
-import { SanityDataSet } from '../frontend/typer/sanity/sanity';
 import { modellVersjon } from './modellversjon';
+import { SanityDataSet } from '../frontend/typer/sanity/sanity';
 
 interface MiljøProps {
     soknadApiProxyUrl: string;

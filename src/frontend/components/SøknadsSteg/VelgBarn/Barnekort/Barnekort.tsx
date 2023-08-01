@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Alert, Checkbox, Heading } from '@navikt/ds-react';
 import { AGray100, APurple400, APurple800 } from '@navikt/ds-tokens/dist/tokens';
 
+import { FjernBarnKnapp } from './FjernBarnKnapp';
 import { useApp } from '../../../../context/AppContext';
 import { device } from '../../../../Theme';
 import { IBarn } from '../../../../typer/person';
@@ -15,7 +16,6 @@ import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { TilfeldigBarnIkon } from '../../../Felleskomponenter/TilfeldigBarnIkon/TilfeldigBarnIkon';
 import { OppsummeringFelt } from '../../Oppsummering/OppsummeringFelt';
 import { IVelgBarnTekstinnhold } from '../innholdTyper';
-import { FjernBarnKnapp } from './FjernBarnKnapp';
 
 interface IBarnekortProps {
     velgBarnCallback: (barn: IBarn, barnMedISøknad: boolean) => void;
