@@ -3,7 +3,6 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import { IOmBarnetTekstinnhold } from './innholdTyper';
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
@@ -24,6 +23,8 @@ import { KontantstøttePeriode } from '../../Felleskomponenter/KontantstøttePer
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
+
+import { IOmBarnetTekstinnhold } from './innholdTyper';
 
 const Oppfølgningsspørsmål: React.FC<{
     barn: IBarnMedISøknad;

@@ -2,10 +2,11 @@ import React from 'react';
 
 import { render } from '@testing-library/react';
 
-import LastOppVedlegg from './LastOppVedlegg';
 import { IDokumentasjon } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { mockEøs, spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
+
+import LastOppVedlegg from './LastOppVedlegg';
 
 const hentAnnenDokumentasjon = (): IDokumentasjon => {
     jest.resetModules();

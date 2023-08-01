@@ -5,13 +5,14 @@ import styled from 'styled-components';
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
 
-import { OmBarnetSpørsmålsId } from './spørsmål';
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+
+import { OmBarnetSpørsmålsId } from './spørsmål';
 
 const StyledRadioGroup = styled(RadioGroup)`
     && label:not(:last-child) {

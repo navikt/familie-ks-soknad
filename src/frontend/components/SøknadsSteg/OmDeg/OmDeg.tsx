@@ -2,8 +2,6 @@ import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { Personopplysninger } from './Personopplysninger';
-import { useOmdeg } from './useOmdeg';
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -12,6 +10,9 @@ import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+
+import { Personopplysninger } from './Personopplysninger';
+import { useOmdeg } from './useOmdeg';
 
 const OmDeg: React.FC = () => {
     const { tekster } = useApp();

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { Checkbox, Heading } from '@navikt/ds-react';
 
-import Filopplaster from './filopplaster/Filopplaster';
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import {
@@ -18,6 +17,8 @@ import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { slåSammen } from '../../../utils/slåSammen';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+
+import Filopplaster from './filopplaster/Filopplaster';
 
 interface Props {
     dokumentasjon: IDokumentasjon;

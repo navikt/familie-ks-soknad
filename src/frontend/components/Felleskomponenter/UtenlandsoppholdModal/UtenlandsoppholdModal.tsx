@@ -2,14 +2,6 @@ import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { UtenlandsoppholdSpørsmålId } from './spørsmål';
-import { useUtenlandsoppholdSkjema } from './useUtenlandsoppholdSkjema';
-import {
-    hentFraDatoSpørsmål,
-    hentLandSpørsmål,
-    hentTilDatoSpørsmål,
-    hentUtenlandsoppholdÅrsak,
-} from './utenlandsoppholdSpråkUtils';
 import { useApp } from '../../../context/AppContext';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps } from '../../../typer/personType';
@@ -33,6 +25,15 @@ import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
+
+import { UtenlandsoppholdSpørsmålId } from './spørsmål';
+import { useUtenlandsoppholdSkjema } from './useUtenlandsoppholdSkjema';
+import {
+    hentFraDatoSpørsmål,
+    hentLandSpørsmål,
+    hentTilDatoSpørsmål,
+    hentUtenlandsoppholdÅrsak,
+} from './utenlandsoppholdSpråkUtils';
 
 type Props = PeriodePersonTypeMedBarnProps &
     ReturnType<typeof useModal> & {

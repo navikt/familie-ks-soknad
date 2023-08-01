@@ -1,7 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import { useFelt, useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
-import { UtbetalingerSpørsmålId } from './spørsmål';
 import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
@@ -20,6 +19,8 @@ import {
     stringTilDate,
 } from '../../../utils/dato';
 import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
+
+import { UtbetalingerSpørsmålId } from './spørsmål';
 
 export interface IUseUtbetalingerSkjemaParams {
     personType: PersonType;

@@ -1,9 +1,10 @@
 import React, { FC, ReactNode } from 'react';
 
+import { useApp } from '../../context/AppContext';
+
 import AlertStripe from './AlertStripe/AlertStripe';
 import KomponentGruppe from './KomponentGruppe/KomponentGruppe';
 import TekstBlock from './TekstBlock';
-import { useApp } from '../../context/AppContext';
 
 interface Props {
     advarselTekst: ReactNode;

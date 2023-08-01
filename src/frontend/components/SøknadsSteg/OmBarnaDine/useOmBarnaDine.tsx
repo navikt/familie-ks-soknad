@@ -3,10 +3,6 @@ import { useEffect } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { ISkjema, useSkjema } from '@navikt/familie-skjema';
 
-import { IOmBarnaTekstinnhold } from './innholdTyper';
-import { OmBarnaDineSpørsmålId } from './spørsmål';
-import useBarnCheckboxFelt from './useBarnCheckboxFelt';
-import { genererOppdaterteBarn } from './utils';
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
@@ -16,6 +12,11 @@ import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnaDineFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
+
+import { IOmBarnaTekstinnhold } from './innholdTyper';
+import { OmBarnaDineSpørsmålId } from './spørsmål';
+import useBarnCheckboxFelt from './useBarnCheckboxFelt';
+import { genererOppdaterteBarn } from './utils';
 
 export const useOmBarnaDine = (): {
     skjema: ISkjema<IOmBarnaDineFeltTyper, string>;

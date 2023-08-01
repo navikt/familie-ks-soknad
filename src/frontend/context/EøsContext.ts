@@ -6,12 +6,13 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { ESvar } from '@navikt/familie-form-elements';
 import { byggHenterRessurs, hentDataFraRessurs } from '@navikt/familie-typer';
 
-import { useApp } from './AppContext';
-import { useLastRessurserContext } from './LastRessurserContext';
 import Miljø from '../../shared-utils/Miljø';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../typer/barn';
 import { BarnetsId } from '../typer/common';
 import { ISøker } from '../typer/person';
+
+import { useApp } from './AppContext';
+import { useLastRessurserContext } from './LastRessurserContext';
 
 const [EøsProvider, useEøs] = createUseContext(() => {
     const { axiosRequest } = useLastRessurserContext();

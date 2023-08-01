@@ -7,7 +7,6 @@ import { DeepPartial } from 'ts-essentials';
 import { ESvar } from '@navikt/familie-form-elements';
 import { RessursStatus } from '@navikt/familie-typer';
 
-import VelgBarn from './VelgBarn';
 import * as pdlRequest from '../../../context/pdl';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
@@ -23,6 +22,8 @@ import {
     TestProvidere,
 } from '../../../utils/testing';
 import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
+
+import VelgBarn from './VelgBarn';
 
 jest.mock('@navikt/fnrvalidator');
 

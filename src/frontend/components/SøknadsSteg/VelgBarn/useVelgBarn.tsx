@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 
 import { feil, ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
-import { IVelgBarnTekstinnhold } from './innholdTyper';
-import { VelgBarnSpørsmålId } from './spørsmål';
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { useSteg } from '../../../context/StegContext';
@@ -14,6 +12,9 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IVelgBarnFeltTyper } from '../../../typer/skjema';
 import { setUserProperty, UserProperty } from '../../../utils/amplitude';
 import { genererInitialBarnMedISøknad } from '../../../utils/barn';
+
+import { IVelgBarnTekstinnhold } from './innholdTyper';
+import { VelgBarnSpørsmålId } from './spørsmål';
 
 export const useVelgBarn = (): {
     skjema: ISkjema<IVelgBarnFeltTyper, string>;

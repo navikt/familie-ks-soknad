@@ -6,9 +6,10 @@ import { mockDeep } from 'jest-mock-extended';
 
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import { LandDropdown } from './LandDropdown';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { mockEøs, spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
+
+import { LandDropdown } from './LandDropdown';
 
 describe('LandDropdown', () => {
     beforeEach(() => {

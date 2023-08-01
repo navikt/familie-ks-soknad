@@ -3,9 +3,6 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import { mottarEllerMottattUtbetalingApiNavn } from './språkUtils';
-import { UtbetalingerModal } from './UtbetalingerModal';
-import { UtbetalingsperiodeOppsummering } from './UtbetalingsperiodeOppsummering';
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { IUtbetalingsperiode } from '../../../typer/perioder';
@@ -15,6 +12,10 @@ import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
+
+import { mottarEllerMottattUtbetalingApiNavn } from './språkUtils';
+import { UtbetalingerModal } from './UtbetalingerModal';
+import { UtbetalingsperiodeOppsummering } from './UtbetalingsperiodeOppsummering';
 
 interface UtbetalingsperiodeProps {
     skjema: ISkjema<IEøsForBarnFeltTyper | IEøsForSøkerFeltTyper, string>;

@@ -3,7 +3,6 @@ import React from 'react';
 import { Fieldset } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { useLeggTilBarn } from './useLeggTilBarn';
 import { useApp } from '../../../../context/AppContext';
 import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
@@ -15,6 +14,8 @@ import { SkjemaFeltInput } from '../../../Felleskomponenter/SkjemaFeltInput/Skje
 import SkjemaModal from '../../../Felleskomponenter/SkjemaModal/SkjemaModal';
 import { SøkerMåBrukePDF } from '../../../Felleskomponenter/SøkerMåBrukePDF';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
+
+import { useLeggTilBarn } from './useLeggTilBarn';
 
 const LeggTilBarnModal: React.FC<{
     erÅpen: boolean;

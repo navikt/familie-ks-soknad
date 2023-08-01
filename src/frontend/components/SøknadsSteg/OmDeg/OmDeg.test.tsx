@@ -3,10 +3,11 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { mockDeep } from 'jest-mock-extended';
 
-import OmDeg from './OmDeg';
-import { OmDegSpørsmålId } from './spørsmål';
 import { ISøker } from '../../../typer/person';
 import { mockEøs, spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
+
+import OmDeg from './OmDeg';
+import { OmDegSpørsmålId } from './spørsmål';
 
 const TestKomponent = () => (
     <TestProvidere>

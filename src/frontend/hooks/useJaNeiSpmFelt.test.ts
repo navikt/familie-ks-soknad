@@ -5,10 +5,11 @@ import { mock } from 'jest-mock-extended';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, Valideringsstatus } from '@navikt/familie-skjema';
 
-import useJaNeiSpmFelt, { erRelevanteAvhengigheterValidert } from './useJaNeiSpmFelt';
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
 import { ISODateString, LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
+
+import useJaNeiSpmFelt, { erRelevanteAvhengigheterValidert } from './useJaNeiSpmFelt';
 
 describe('erRelevanteAvhengigheterValidert', () => {
     test('Skal returnere true dersom alle felter er validert til OK', () => {

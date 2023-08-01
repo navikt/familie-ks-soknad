@@ -2,11 +2,12 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import PictureScanningExample from './PictureScanningExample';
-import ScanningIcon from './ScanningIcon';
 import { useApp } from '../../../context/AppContext';
 import ExpandableInfo from '../expandableContent/ExpandableInfo';
 import TekstBlock from '../TekstBlock';
+
+import PictureScanningExample from './PictureScanningExample';
+import ScanningIcon from './ScanningIcon';
 
 const Container = styled.div`
     svg {

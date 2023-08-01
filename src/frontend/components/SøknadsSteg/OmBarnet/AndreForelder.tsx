@@ -4,7 +4,6 @@ import { Heading } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { ISkjema } from '@navikt/familie-skjema';
 
-import SammeSomAnnetBarnRadio from './SammeSomAnnetBarnRadio';
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
@@ -25,6 +24,8 @@ import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
 import AndreForelderOppsummering from '../Oppsummering/OppsummeringSteg/OmBarnet/AndreForelderOppsummering';
+
+import SammeSomAnnetBarnRadio from './SammeSomAnnetBarnRadio';
 
 const AndreForelder: React.FC<{
     barn: IBarnMedISøknad;

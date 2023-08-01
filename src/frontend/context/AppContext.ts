@@ -12,11 +12,6 @@ import {
     RessursStatus,
 } from '@navikt/familie-typer';
 
-import { preferredAxios } from './axios';
-import { useInnloggetContext } from './InnloggetContext';
-import { useLastRessurserContext } from './LastRessurserContext';
-import { hentSluttbrukerFraPdl } from './pdl';
-import { useSanity } from './SanityContext';
 import Miljø, { basePath } from '../../shared-utils/Miljø';
 import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
@@ -29,6 +24,12 @@ import { initialStateSøknad, ISøknad } from '../typer/søknad';
 import { InnloggetStatus } from '../utils/autentisering';
 import { mapBarnResponsTilBarn } from '../utils/barn';
 import { plainTekstHof } from '../utils/sanity';
+
+import { preferredAxios } from './axios';
+import { useInnloggetContext } from './InnloggetContext';
+import { useLastRessurserContext } from './LastRessurserContext';
+import { hentSluttbrukerFraPdl } from './pdl';
+import { useSanity } from './SanityContext';
 
 const [AppProvider, useApp] = createUseContext(() => {
     const [valgtLocale] = useSprakContext();

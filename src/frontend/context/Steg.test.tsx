@@ -2,10 +2,11 @@ import React from 'react';
 
 import { renderHook } from '@testing-library/react';
 
-import { RoutesProvider } from './RoutesContext';
-import { StegProvider, useSteg } from './StegContext';
 import { RouteEnum } from '../typer/routes';
 import { mockEøs, mockFeatureToggle, mockHistory, spyOnUseApp } from '../utils/testing';
+
+import { RoutesProvider } from './RoutesContext';
+import { StegProvider, useSteg } from './StegContext';
 
 mockHistory(['/om-barnet/barn/1']);
 

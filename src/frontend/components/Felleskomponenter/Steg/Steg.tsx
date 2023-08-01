@@ -6,9 +6,6 @@ import styled, { css } from 'styled-components';
 import { Stepper } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
 
-import ModellVersjonModal from './ModellVersjonModal';
-import Navigeringspanel from './Navigeringspanel';
-import { ScrollHandler } from './ScrollHandler';
 import { useApp } from '../../../context/AppContext';
 import { useAppNavigation } from '../../../context/AppNavigationContext';
 import { useSteg } from '../../../context/StegContext';
@@ -26,6 +23,10 @@ import Banner from '../Banner/Banner';
 import InnholdContainer from '../InnholdContainer/InnholdContainer';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import useModal from '../SkjemaModal/useModal';
+
+import ModellVersjonModal from './ModellVersjonModal';
+import Navigeringspanel from './Navigeringspanel';
+import { ScrollHandler } from './ScrollHandler';
 
 interface ISteg {
     tittel: ReactNode;

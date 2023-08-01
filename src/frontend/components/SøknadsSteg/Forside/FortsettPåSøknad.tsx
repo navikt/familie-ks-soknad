@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { Button, Modal } from '@navikt/ds-react';
 
-import { useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 import { useApp } from '../../../context/AppContext';
 import { device } from '../../../Theme';
 import { Typografi } from '../../../typer/common';
@@ -12,6 +11,8 @@ import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import ModalContent from '../../Felleskomponenter/ModalContent';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+
+import { useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 
 const StyledButton = styled(Button)`
     && {

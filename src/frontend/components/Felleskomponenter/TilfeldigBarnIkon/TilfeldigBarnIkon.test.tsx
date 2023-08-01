@@ -3,10 +3,11 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { mockDeep } from 'jest-mock-extended';
 
-import { TilfeldigBarnIkon } from './TilfeldigBarnIkon';
 import { ISøknad } from '../../../typer/søknad';
 import * as hjelpefunksjoner from '../../../utils/hjelpefunksjoner';
 import { spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
+
+import { TilfeldigBarnIkon } from './TilfeldigBarnIkon';
 
 describe('TilfeldigBarnIkon', () => {
     beforeEach(() => {

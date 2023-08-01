@@ -2,8 +2,6 @@ import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
-import { IUseArbeidsperiodeSkjemaParams, useArbeidsperiodeSkjema } from './useArbeidsperiodeSkjema';
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IArbeidsperiode } from '../../../typer/perioder';
@@ -23,6 +21,9 @@ import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
+
+import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
+import { IUseArbeidsperiodeSkjemaParams, useArbeidsperiodeSkjema } from './useArbeidsperiodeSkjema';
 
 interface ArbeidsperiodeModalProps
     extends ReturnType<typeof useModal>,

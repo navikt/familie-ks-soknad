@@ -7,7 +7,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, Felt, FeltState, ISkjema, ok, useFelt } from '@navikt/familie-skjema';
 
-import { idNummerKeyPrefix, PeriodeType } from './idnummerUtils';
 import { useApp } from '../../../context/AppContext';
 import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
 import { IBarnMedISøknad } from '../../../typer/barn';
@@ -19,6 +18,8 @@ import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaChe
 import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { OppsummeringFelt } from '../Oppsummering/OppsummeringFelt';
+
+import { idNummerKeyPrefix, PeriodeType } from './idnummerUtils';
 
 export const IdNummerContainer = styled.div<{ lesevisning: boolean }>`
     margin-bottom: ${props => (props.lesevisning ? '1rem' : '2rem')};

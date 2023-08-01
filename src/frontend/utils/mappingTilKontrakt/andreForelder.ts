@@ -1,5 +1,12 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../typer/barn';
+import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
+import { IAndreForelderIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
+import { PersonType } from '../../typer/personType';
+import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
+import { landkodeTilSpråk } from '../språk';
+
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
 import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
 import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';
@@ -13,12 +20,6 @@ import {
 import { idNummerTilISøknadsfelt } from './idNummer';
 import { tilIPensjonsperiodeIKontraktFormat } from './pensjonsperioder';
 import { utenlandsperiodeTilISøknadsfelt } from './utenlandsperiode';
-import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../typer/barn';
-import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { IAndreForelderIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
-import { PersonType } from '../../typer/personType';
-import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
-import { landkodeTilSpråk } from '../språk';
 
 export const andreForelderTilISøknadsfelt = (
     andreForelder: IAndreForelder,

@@ -1,16 +1,17 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import {
-    sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjent,
-    verdiCallbackAlleSpråk,
-} from './hjelpefunksjoner';
 import { IBarnMedISøknad } from '../../typer/barn';
 import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IUtbetalingsperiodeIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
 import { IUtbetalingsperiode } from '../../typer/perioder';
 import { IAndreUtbetalingerTekstinnhold } from '../../typer/sanity/modaler/andreUtbetalinger';
 import { landkodeTilSpråk } from '../språk';
+
+import {
+    sammeVerdiAlleSpråk,
+    sammeVerdiAlleSpråkEllerUkjent,
+    verdiCallbackAlleSpråk,
+} from './hjelpefunksjoner';
 
 interface UtbetalingsperiodeIKontraktFormatParams {
     periode: IUtbetalingsperiode;

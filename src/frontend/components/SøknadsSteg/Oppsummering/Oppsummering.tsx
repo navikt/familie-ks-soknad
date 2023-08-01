@@ -5,13 +5,6 @@ import styled from 'styled-components';
 
 import { BodyShort } from '@navikt/ds-react';
 
-import DinLivssituasjonOppsummering from './OppsummeringSteg/DinLivssituasjonOppsummering';
-import EøsBarnOppsummering from './OppsummeringSteg/Eøs/EøsBarnOppsummering';
-import EøsSøkerOppsummering from './OppsummeringSteg/Eøs/EøsSøkerOppsummering';
-import OmBarnaOppsummering from './OppsummeringSteg/OmBarnaOppsummering';
-import OmBarnetOppsummering from './OppsummeringSteg/OmBarnet/OmBarnetOppsummering';
-import OmDegOppsummering from './OppsummeringSteg/OmDegOppsummering';
-import VelgBarnOppsummering from './OppsummeringSteg/VelgBarnOppsummering';
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
@@ -19,6 +12,14 @@ import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+
+import DinLivssituasjonOppsummering from './OppsummeringSteg/DinLivssituasjonOppsummering';
+import EøsBarnOppsummering from './OppsummeringSteg/Eøs/EøsBarnOppsummering';
+import EøsSøkerOppsummering from './OppsummeringSteg/Eøs/EøsSøkerOppsummering';
+import OmBarnaOppsummering from './OppsummeringSteg/OmBarnaOppsummering';
+import OmBarnetOppsummering from './OppsummeringSteg/OmBarnet/OmBarnetOppsummering';
+import OmDegOppsummering from './OppsummeringSteg/OmDegOppsummering';
+import VelgBarnOppsummering from './OppsummeringSteg/VelgBarnOppsummering';
 
 const StyledBodyShort = styled(BodyShort)`
     padding-bottom: 4rem;

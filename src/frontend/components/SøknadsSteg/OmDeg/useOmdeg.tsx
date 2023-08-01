@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 import { ISkjema, useSkjema } from '@navikt/familie-skjema';
 
-import { IOmDegTekstinnhold } from './innholdTyper';
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
@@ -10,6 +9,8 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmDegFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
+
+import { IOmDegTekstinnhold } from './innholdTyper';
 
 export const useOmdeg = (): {
     skjema: ISkjema<IOmDegFeltTyper, string>;

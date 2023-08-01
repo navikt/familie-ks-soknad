@@ -1,13 +1,14 @@
-import {
-    sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjent,
-    verdiCallbackAlleSpråk,
-} from './hjelpefunksjoner';
 import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IIdNummerIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
 import { IIdNummer } from '../../typer/person';
 import { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
 import { landkodeTilSpråk } from '../språk';
+
+import {
+    sammeVerdiAlleSpråk,
+    sammeVerdiAlleSpråkEllerUkjent,
+    verdiCallbackAlleSpråk,
+} from './hjelpefunksjoner';
 
 export const idNummerTilISøknadsfelt = (
     tilRestLocaleRecord: TilRestLocaleRecord,

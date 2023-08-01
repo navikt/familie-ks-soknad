@@ -4,9 +4,10 @@ import createUseContext from 'constate';
 
 import { RessursStatus } from '@navikt/familie-typer';
 
-import { useLastRessurserContext } from './LastRessurserContext';
 import Miljø from '../../shared-utils/Miljø';
 import { autentiseringsInterceptor, InnloggetStatus } from '../utils/autentisering';
+
+import { useLastRessurserContext } from './LastRessurserContext';
 
 const [InnloggetProvider, useInnloggetContext] = createUseContext(() => {
     const { axiosRequest } = useLastRessurserContext();

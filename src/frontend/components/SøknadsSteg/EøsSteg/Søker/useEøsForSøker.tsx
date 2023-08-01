@@ -5,7 +5,6 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, Felt, ISkjema, ok, useSkjema } from '@navikt/familie-skjema';
 
-import { EøsSøkerSpørsmålId } from './spørsmål';
 import { useApp } from '../../../../context/AppContext';
 import useInputFelt from '../../../../hooks/useInputFelt';
 import useJaNeiSpmFelt from '../../../../hooks/useJaNeiSpmFelt';
@@ -22,6 +21,8 @@ import { ArbeidsperiodeSpørsmålsId } from '../../../Felleskomponenter/Arbeidsp
 import { PensjonsperiodeSpørsmålId } from '../../../Felleskomponenter/Pensjonsmodal/spørsmål';
 import { UtbetalingerSpørsmålId } from '../../../Felleskomponenter/UtbetalingerModal/spørsmål';
 import { idNummerKeyPrefix } from '../idnummerUtils';
+
+import { EøsSøkerSpørsmålId } from './spørsmål';
 
 export const useEøsForSøker = (): {
     skjema: ISkjema<IEøsForSøkerFeltTyper, string>;

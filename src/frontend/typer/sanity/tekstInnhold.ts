@@ -1,14 +1,3 @@
-import { IAndreUtbetalingerTekstinnhold } from './modaler/andreUtbetalinger';
-import { IArbeidsperiodeTekstinnhold } from './modaler/arbeidsperiode';
-import { IBarnehageplassTekstinnhold } from './modaler/barnehageplass';
-import { IBlokkerTilbakeKnappModal } from './modaler/blokkerTilbakeKnapp';
-import { IEøsYtelseTekstinnhold } from './modaler/eøsYtelse';
-import { ILeggTilBarnTekstinnhold } from './modaler/leggTilBarn';
-import { IMistetInformasjonenDinModal } from './modaler/mistetInformasjonenDin';
-import { IPensjonsperiodeTekstinnhold } from './modaler/pensjonsperiode';
-import { IStartPåNyttModal } from './modaler/startPåNytt';
-import { IUtenlandsoppholdTekstinnhold } from './modaler/utenlandsopphold';
-import { ESanitySteg } from './sanity';
 import { IDinLivssituasjonTekstinnhold } from '../../components/SøknadsSteg/DinLivssituasjon/innholdTyper';
 import { IDokumentasjonTekstinnhold } from '../../components/SøknadsSteg/Dokumentasjon/innholdTyper';
 import { IEøsForBarnTekstinnhold } from '../../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
@@ -21,6 +10,18 @@ import { IOmDegTekstinnhold } from '../../components/SøknadsSteg/OmDeg/innholdT
 import { IOppsummeringTekstinnhold } from '../../components/SøknadsSteg/Oppsummering/innholdTyper';
 import { IVelgBarnTekstinnhold } from '../../components/SøknadsSteg/VelgBarn/innholdTyper';
 import { LocaleRecordBlock, LocaleRecordString } from '../common';
+
+import { IAndreUtbetalingerTekstinnhold } from './modaler/andreUtbetalinger';
+import { IArbeidsperiodeTekstinnhold } from './modaler/arbeidsperiode';
+import { IBarnehageplassTekstinnhold } from './modaler/barnehageplass';
+import { IBlokkerTilbakeKnappModal } from './modaler/blokkerTilbakeKnapp';
+import { IEøsYtelseTekstinnhold } from './modaler/eøsYtelse';
+import { ILeggTilBarnTekstinnhold } from './modaler/leggTilBarn';
+import { IMistetInformasjonenDinModal } from './modaler/mistetInformasjonenDin';
+import { IPensjonsperiodeTekstinnhold } from './modaler/pensjonsperiode';
+import { IStartPåNyttModal } from './modaler/startPåNytt';
+import { IUtenlandsoppholdTekstinnhold } from './modaler/utenlandsopphold';
+import { ESanitySteg } from './sanity';
 
 export enum SanityPersonType {
     ANDRE_FORELDER = 'ANDRE_FORELDER',

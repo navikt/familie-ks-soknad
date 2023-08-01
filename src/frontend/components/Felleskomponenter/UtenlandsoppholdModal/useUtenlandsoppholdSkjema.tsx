@@ -3,12 +3,6 @@ import { useEffect } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, FeltState, ok, useFelt, useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
-import { UtenlandsoppholdSpørsmålId } from './spørsmål';
-import {
-    hentFraDatoFeilmelding,
-    hentLandFeilmelding,
-    hentTilDatoFeilmelding,
-} from './utenlandsoppholdSpråkUtils';
 import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
@@ -27,6 +21,13 @@ import {
     hentMaxAvgrensningPåTilDato,
     hentMinAvgrensningPåTilDato,
 } from '../../../utils/utenlandsopphold';
+
+import { UtenlandsoppholdSpørsmålId } from './spørsmål';
+import {
+    hentFraDatoFeilmelding,
+    hentLandFeilmelding,
+    hentTilDatoFeilmelding,
+} from './utenlandsoppholdSpråkUtils';
 
 export interface IUseUtenlandsoppholdSkjemaParams {
     personType: PersonType;

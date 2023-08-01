@@ -6,13 +6,14 @@ import styled from 'styled-components';
 import { Upload } from '@navikt/ds-icons';
 import { ABlue500, ABorderDefault } from '@navikt/ds-tokens/dist/tokens';
 
-import OpplastedeFiler from './OpplastedeFiler';
-import { useFilopplaster } from './useFilopplaster';
 import { useApp } from '../../../../context/AppContext';
 import { Typografi } from '../../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
 import { TypografiWrapper } from '../../../Felleskomponenter/TekstBlock';
+
+import OpplastedeFiler from './OpplastedeFiler';
+import { useFilopplaster } from './useFilopplaster';
 
 interface Props {
     oppdaterDokumentasjon: (

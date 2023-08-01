@@ -5,8 +5,9 @@ import { v4 as uuid } from 'uuid';
 
 import { logError, logInfo } from '@navikt/familie-logging';
 
-import { ApplicationName } from './types';
 import Miljø, { erLokalt } from '../shared-utils/Miljø';
+
+import { ApplicationName } from './types';
 
 class TokenXClient {
     private tokenxClient!: Client;

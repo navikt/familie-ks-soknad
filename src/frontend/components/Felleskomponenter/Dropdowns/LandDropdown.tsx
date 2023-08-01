@@ -5,10 +5,11 @@ import { Alpha3Code, getAlpha3Codes, getName } from 'i18n-iso-countries';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 
-import StyledDropdown from './StyledDropdown';
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
+
+import StyledDropdown from './StyledDropdown';
 
 interface LandDropdownProps {
     felt: Felt<Alpha3Code | ''>;

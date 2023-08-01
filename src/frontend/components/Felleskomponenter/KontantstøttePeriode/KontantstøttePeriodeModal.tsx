@@ -4,11 +4,6 @@ import styled from 'styled-components';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
-import {
-    IUsePensjonsperiodeSkjemaParams,
-    useKontantstøttePeriodeSkjema,
-} from './useKontantstøttePeriodeSkjema';
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
@@ -26,6 +21,12 @@ import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
+
+import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
+import {
+    IUsePensjonsperiodeSkjemaParams,
+    useKontantstøttePeriodeSkjema,
+} from './useKontantstøttePeriodeSkjema';
 
 interface Props extends ReturnType<typeof useModal>, IUsePensjonsperiodeSkjemaParams {
     onLeggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
