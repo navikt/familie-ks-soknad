@@ -19,6 +19,7 @@ import {
     stringTilDate,
 } from '../../../utils/dato';
 import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
+
 import { UtbetalingerSpørsmålId } from './spørsmål';
 
 export interface IUseUtbetalingerSkjemaParams {

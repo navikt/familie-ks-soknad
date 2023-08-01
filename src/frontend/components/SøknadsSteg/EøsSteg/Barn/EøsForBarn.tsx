@@ -23,6 +23,7 @@ import Steg from '../../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { Utbetalingsperiode } from '../../../Felleskomponenter/UtbetalingerModal/Utbetalingsperiode';
 import EøsAndreForelderOppsummering from '../../Oppsummering/OppsummeringSteg/Eøs/EøsAndreForelderOppsummering';
+
 import IdNummerForAndreForelder from './IdNummerForAndreForelder';
 import Omsorgsperson from './Omsorgsperson';
 import SamletIdNummerForBarn from './SamletIdNummerForBarn';

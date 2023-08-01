@@ -25,6 +25,7 @@ import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
+
 import { UtenlandsoppholdSpørsmålId } from './spørsmål';
 import { useUtenlandsoppholdSkjema } from './useUtenlandsoppholdSkjema';
 import {

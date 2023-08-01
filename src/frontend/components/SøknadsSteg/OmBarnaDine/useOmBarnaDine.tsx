@@ -12,6 +12,7 @@ import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnaDineFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
+
 import { IOmBarnaTekstinnhold } from './innholdTyper';
 import { OmBarnaDineSpørsmålId } from './spørsmål';
 import useBarnCheckboxFelt from './useBarnCheckboxFelt';

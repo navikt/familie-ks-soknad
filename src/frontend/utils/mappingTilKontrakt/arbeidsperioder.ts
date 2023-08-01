@@ -6,6 +6,7 @@ import { IArbeidsperiodeIKontraktFormat } from '../../typer/kontrakt/søknadKont
 import { IArbeidsperiode } from '../../typer/perioder';
 import { IArbeidsperiodeTekstinnhold } from '../../typer/sanity/modaler/arbeidsperiode';
 import { landkodeTilSpråk } from '../språk';
+
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjent,

@@ -15,6 +15,7 @@ import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import InnholdContainer from '../../Felleskomponenter/InnholdContainer/InnholdContainer';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+
 import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
 import FortsettPåSøknad from './FortsettPåSøknad';
 

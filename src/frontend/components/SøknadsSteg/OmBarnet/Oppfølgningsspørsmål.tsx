@@ -23,6 +23,7 @@ import { KontantstøttePeriode } from '../../Felleskomponenter/KontantstøttePer
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
+
 import { IOmBarnetTekstinnhold } from './innholdTyper';
 
 const Oppfølgningsspørsmål: React.FC<{

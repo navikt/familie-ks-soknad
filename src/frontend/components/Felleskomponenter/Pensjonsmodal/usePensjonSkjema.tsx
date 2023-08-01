@@ -15,6 +15,7 @@ import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pens
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IPensjonsperiodeFeltTyper } from '../../../typer/skjema';
 import { dagenEtterDato, dagensDato, gårsdagensDato, stringTilDate } from '../../../utils/dato';
+
 import { mottarPensjonNåFeilmelding } from './språkUtils';
 import { PensjonsperiodeSpørsmålId } from './spørsmål';
 

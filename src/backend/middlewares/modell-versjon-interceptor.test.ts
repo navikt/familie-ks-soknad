@@ -8,6 +8,7 @@ import {
     ModellMismatchRespons,
     modellVersjon,
 } from '../../shared-utils/modellversjon';
+
 import { modellVersjonInterceptor } from './modell-versjon-interceptor';
 
 describe('modell-versjon-interceptor', () => {

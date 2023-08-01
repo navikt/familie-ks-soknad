@@ -10,6 +10,7 @@ import { IOmDegTekstinnhold } from '../../components/SøknadsSteg/OmDeg/innholdT
 import { IOppsummeringTekstinnhold } from '../../components/SøknadsSteg/Oppsummering/innholdTyper';
 import { IVelgBarnTekstinnhold } from '../../components/SøknadsSteg/VelgBarn/innholdTyper';
 import { LocaleRecordBlock, LocaleRecordString } from '../common';
+
 import { IAndreUtbetalingerTekstinnhold } from './modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from './modaler/arbeidsperiode';
 import { IBarnehageplassTekstinnhold } from './modaler/barnehageplass';

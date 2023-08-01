@@ -3,6 +3,7 @@ import { Felt } from '@navikt/familie-skjema';
 
 import { AlternativtSvarForInput } from '../typer/common';
 import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
+
 import { trimWhiteSpace } from './hjelpefunksjoner';
 
 export const svarForSpørsmålMedUkjent = (

@@ -3,6 +3,7 @@ import { mockDeep } from 'jest-mock-extended';
 import { DeepPartial } from 'ts-essentials';
 
 import { ISøknadKontrakt } from '../../frontend/typer/kontrakt/søknadKontrakt';
+
 import { erklaeringInterceptor } from './erklaering-interceptor';
 
 describe('erklaering-interceptor', () => {

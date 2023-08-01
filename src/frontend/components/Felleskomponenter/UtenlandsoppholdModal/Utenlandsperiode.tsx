@@ -11,6 +11,7 @@ import { IDinLivssituasjonFeltTyper, IOmBarnetFeltTyper } from '../../../typer/s
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
+
 import { UtenlandsoppholdModal } from './UtenlandsoppholdModal';
 import { UtenlandsperiodeOppsummering } from './UtenlandsperiodeOppsummering';
 

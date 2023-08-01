@@ -9,6 +9,7 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmDegFeltTyper } from '../../../typer/skjema';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
+
 import { IOmDegTekstinnhold } from './innholdTyper';
 
 export const useOmdeg = (): {

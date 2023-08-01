@@ -14,6 +14,7 @@ import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
+
 import { KontantstøttePeriodeModal } from './KontantstøttePeriodeModal';
 import { KontantstøttePeriodeOppsummering } from './KontantstøttePeriodeOppsummering';
 import { eøsKontantstøtteSpørsmålsdokument } from './kontantstøttePeriodeSpråkUtils';

@@ -12,6 +12,7 @@ import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+
 import DinLivssituasjonOppsummering from './OppsummeringSteg/DinLivssituasjonOppsummering';
 import EøsBarnOppsummering from './OppsummeringSteg/Eøs/EøsBarnOppsummering';
 import EøsSøkerOppsummering from './OppsummeringSteg/Eøs/EøsSøkerOppsummering';

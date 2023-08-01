@@ -10,6 +10,7 @@ import Miljø from '../../shared-utils/Miljø';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../typer/barn';
 import { BarnetsId } from '../typer/common';
 import { ISøker } from '../typer/person';
+
 import { useApp } from './AppContext';
 import { useLastRessurserContext } from './LastRessurserContext';
 

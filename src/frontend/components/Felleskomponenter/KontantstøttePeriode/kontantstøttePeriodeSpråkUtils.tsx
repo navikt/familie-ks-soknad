@@ -1,6 +1,7 @@
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg, ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { ITekstinnhold } from '../../../typer/sanity/tekstInnhold';
+
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 
 export const eøsKontantstøtteSpørsmålsdokument = (

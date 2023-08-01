@@ -4,6 +4,7 @@ import { IOmsorgspersonIKontraktFormat } from '../../typer/kontrakt/søknadKontr
 import { IOmsorgsperson } from '../../typer/omsorgsperson';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { hentSlektsforhold, landkodeTilSpråk } from '../språk';
+
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
 import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';
 import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';

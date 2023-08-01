@@ -18,6 +18,7 @@ import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaChe
 import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { OppsummeringFelt } from '../Oppsummering/OppsummeringFelt';
+
 import { idNummerKeyPrefix, PeriodeType } from './idnummerUtils';
 
 export const IdNummerContainer = styled.div<{ lesevisning: boolean }>`

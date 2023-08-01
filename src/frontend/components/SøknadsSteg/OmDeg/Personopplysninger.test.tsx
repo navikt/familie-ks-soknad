@@ -5,6 +5,7 @@ import { render } from '@testing-library/react';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { ISøker } from '../../../typer/person';
 import { mockEøs, spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
+
 import { Personopplysninger } from './Personopplysninger';
 
 const mockedSivilstand = ESivilstand.GIFT;

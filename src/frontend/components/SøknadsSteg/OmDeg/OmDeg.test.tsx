@@ -5,6 +5,7 @@ import { mockDeep } from 'jest-mock-extended';
 
 import { ISøker } from '../../../typer/person';
 import { mockEøs, spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
+
 import OmDeg from './OmDeg';
 import { OmDegSpørsmålId } from './spørsmål';
 

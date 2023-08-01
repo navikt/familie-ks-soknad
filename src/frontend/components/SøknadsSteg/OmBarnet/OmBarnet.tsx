@@ -13,6 +13,7 @@ import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
+
 import AndreForelder from './AndreForelder';
 import { IOmBarnetTekstinnhold } from './innholdTyper';
 import { OmBarnetHeader } from './OmBarnetHeader';
@@ -158,13 +159,14 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                             ) : undefined
                         }
                     />
-                    {søkerDeltKontantstøtte.erSynlig && søkerDeltKontantstøtte.verdi === ESvar.JA && (
-                        <VedleggNotis dynamisk>
-                            <BodyShort>
-                                {plainTekst(soekerDeltKontantstoette.vedleggsnotis)}
-                            </BodyShort>
-                        </VedleggNotis>
-                    )}
+                    {søkerDeltKontantstøtte.erSynlig &&
+                        søkerDeltKontantstøtte.verdi === ESvar.JA && (
+                            <VedleggNotis dynamisk>
+                                <BodyShort>
+                                    {plainTekst(soekerDeltKontantstoette.vedleggsnotis)}
+                                </BodyShort>
+                            </VedleggNotis>
+                        )}
                 </>
             </SkjemaFieldset>
         </Steg>

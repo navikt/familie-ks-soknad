@@ -21,6 +21,7 @@ import {
     hentMaxAvgrensningPåTilDato,
     hentMinAvgrensningPåTilDato,
 } from '../../../utils/utenlandsopphold';
+
 import { UtenlandsoppholdSpørsmålId } from './spørsmål';
 import {
     hentFraDatoFeilmelding,

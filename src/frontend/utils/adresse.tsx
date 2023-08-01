@@ -6,6 +6,7 @@ import { feil, FeltState, ok } from '@navikt/familie-skjema';
 import { IOmDegTekstinnhold } from '../components/SøknadsSteg/OmDeg/innholdTyper';
 import { IAdresse, PlainTekst } from '../typer/kontrakt/generelle';
 import { ISøker } from '../typer/person';
+
 import { trimWhiteSpace } from './hjelpefunksjoner';
 import { uppercaseKunFørsteBokstav } from './visning';
 

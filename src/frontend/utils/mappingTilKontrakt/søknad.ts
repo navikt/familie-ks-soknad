@@ -13,6 +13,7 @@ import { ISøknad } from '../../typer/søknad';
 import { erDokumentasjonRelevant } from '../dokumentasjon';
 import { sivilstandTilSanitySivilstandApiKey } from '../språk';
 import { jaNeiSvarTilSpråkId } from '../spørsmål';
+
 import { barnISøknadsFormat } from './barn';
 import { dokumentasjonISøknadFormat } from './dokumentasjon';
 import { nullableSøknadsfeltForESvarHof, søknadsfeltForESvarHof } from './hjelpefunksjoner';

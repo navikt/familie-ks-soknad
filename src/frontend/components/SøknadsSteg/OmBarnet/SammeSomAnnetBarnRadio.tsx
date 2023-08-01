@@ -11,6 +11,7 @@ import { AlternativtSvarForInput } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+
 import { OmBarnetSpørsmålsId } from './spørsmål';
 
 const StyledRadioGroup = styled(RadioGroup)`

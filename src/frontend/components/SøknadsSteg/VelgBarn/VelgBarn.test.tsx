@@ -22,6 +22,7 @@ import {
     TestProvidere,
 } from '../../../utils/testing';
 import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
+
 import VelgBarn from './VelgBarn';
 
 jest.mock('@navikt/fnrvalidator');

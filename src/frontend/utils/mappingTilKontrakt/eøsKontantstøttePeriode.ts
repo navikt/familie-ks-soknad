@@ -6,6 +6,7 @@ import { IEøsKontantstøttePeriodeIKontraktFormat } from '../../typer/kontrakt/
 import { IEøsKontantstøttePeriode } from '../../typer/perioder';
 import { IEøsYtelseTekstinnhold } from '../../typer/sanity/modaler/eøsYtelse';
 import { landkodeTilSpråk } from '../språk';
+
 import { sammeVerdiAlleSpråk, verdiCallbackAlleSpråk } from './hjelpefunksjoner';
 
 interface PensjonperiodeIKontraktFormatParams {

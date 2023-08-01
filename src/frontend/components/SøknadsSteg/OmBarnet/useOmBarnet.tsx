@@ -50,6 +50,7 @@ import { KontantstøttePeriodeSpørsmålId } from '../../Felleskomponenter/Konta
 import { PensjonsperiodeSpørsmålId } from '../../Felleskomponenter/Pensjonsmodal/spørsmål';
 import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { idNummerLand } from '../EøsSteg/idnummerUtils';
+
 import { IOmBarnetTekstinnhold } from './innholdTyper';
 import { OmBarnetSpørsmålsId } from './spørsmål';
 

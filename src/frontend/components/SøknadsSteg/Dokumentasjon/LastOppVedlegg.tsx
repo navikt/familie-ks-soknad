@@ -17,6 +17,7 @@ import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { slåSammen } from '../../../utils/slåSammen';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+
 import Filopplaster from './filopplaster/Filopplaster';
 
 interface Props {

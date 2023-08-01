@@ -16,6 +16,7 @@ import { useOmBarnet } from '../../../OmBarnet/useOmBarnet';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 import Oppsummeringsbolk from '../../Oppsummeringsbolk';
 import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
+
 import AndreForelderOppsummering from './AndreForelderOppsummering';
 
 interface Props {

@@ -6,6 +6,7 @@ import { IUtbetalingsperiodeIKontraktFormat } from '../../typer/kontrakt/søknad
 import { IUtbetalingsperiode } from '../../typer/perioder';
 import { IAndreUtbetalingerTekstinnhold } from '../../typer/sanity/modaler/andreUtbetalinger';
 import { landkodeTilSpråk } from '../språk';
+
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjent,

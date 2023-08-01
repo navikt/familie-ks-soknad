@@ -6,6 +6,7 @@ import { mockDeep } from 'jest-mock-extended';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { ISøknad } from '../../../typer/søknad';
 import { spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
+
 import { OmBarnetHeader } from './OmBarnetHeader';
 
 describe('OmBarnetHeader', () => {

@@ -10,6 +10,7 @@ import { useEøsForBarn } from '../../../EøsSteg/Barn/useEøsForBarn';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 import Oppsummeringsbolk from '../../Oppsummeringsbolk';
 import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
+
 import EøsAndreForelderOppsummering from './EøsAndreForelderOppsummering';
 import EøsOmsorgspersonOppsummering from './EøsOmsorgspersonOppsummering';
 

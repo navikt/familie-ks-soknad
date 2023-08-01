@@ -8,6 +8,7 @@ import { Felt, Valideringsstatus } from '@navikt/familie-skjema';
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
 import { ISODateString, LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
+
 import useJaNeiSpmFelt, { erRelevanteAvhengigheterValidert } from './useJaNeiSpmFelt';
 
 describe('erRelevanteAvhengigheterValidert', () => {

@@ -12,6 +12,7 @@ import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+
 import Barnekort from './Barnekort/Barnekort';
 import { IVelgBarnTekstinnhold } from './innholdTyper';
 import LeggTilBarnModal from './LeggTilBarn/LeggTilBarnModal';

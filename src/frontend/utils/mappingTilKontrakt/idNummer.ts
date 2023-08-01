@@ -3,6 +3,7 @@ import { IIdNummerIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
 import { IIdNummer } from '../../typer/person';
 import { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
 import { landkodeTilSpråk } from '../språk';
+
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjent,

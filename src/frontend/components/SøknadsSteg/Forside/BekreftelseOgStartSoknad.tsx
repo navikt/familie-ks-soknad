@@ -9,6 +9,7 @@ import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+
 import { BekreftelseStatus, useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 
 const FormContainer = styled.form`

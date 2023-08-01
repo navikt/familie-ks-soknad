@@ -11,6 +11,7 @@ import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import ModalContent from '../../Felleskomponenter/ModalContent';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+
 import { useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 
 const StyledButton = styled(Button)`

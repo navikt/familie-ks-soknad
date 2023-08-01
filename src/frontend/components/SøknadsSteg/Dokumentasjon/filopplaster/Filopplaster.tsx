@@ -11,6 +11,7 @@ import { Typografi } from '../../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
 import { TypografiWrapper } from '../../../Felleskomponenter/TekstBlock';
+
 import OpplastedeFiler from './OpplastedeFiler';
 import { useFilopplaster } from './useFilopplaster';
 

@@ -17,6 +17,7 @@ import {
 import { IBarn, IBarnRespons, IIdNummer } from '../typer/person';
 import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
 import { ISøknad } from '../typer/søknad';
+
 import { formaterFnr } from './visning';
 
 export const genererInitiellAndreForelder = (

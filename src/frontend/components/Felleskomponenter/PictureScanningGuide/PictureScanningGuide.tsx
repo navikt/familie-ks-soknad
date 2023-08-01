@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { useApp } from '../../../context/AppContext';
 import ExpandableInfo from '../expandableContent/ExpandableInfo';
 import TekstBlock from '../TekstBlock';
+
 import PictureScanningExample from './PictureScanningExample';
 import ScanningIcon from './ScanningIcon';
 

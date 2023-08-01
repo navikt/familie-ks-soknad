@@ -8,6 +8,7 @@ import { mockEøs } from '../../../utils/testing';
 import { ArbeidsperiodeSpørsmålsId } from '../../Felleskomponenter/Arbeidsperiode/spørsmål';
 import { PensjonsperiodeSpørsmålId } from '../../Felleskomponenter/Pensjonsmodal/spørsmål';
 import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
+
 import {
     eøsLandUtenDuplikatHof,
     fjernDuplikat,

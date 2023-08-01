@@ -8,6 +8,7 @@ import { logInfo } from '@navikt/familie-logging';
 
 import { cspString } from '../csp';
 import Miljø, { basePath } from '../shared-utils/Miljø';
+
 import { expressToggleInterceptor } from './middlewares/feature-toggles';
 import { konfigurerIndex, konfigurerIndexFallback } from './routes';
 import { konfigurerApi } from './routes/api';

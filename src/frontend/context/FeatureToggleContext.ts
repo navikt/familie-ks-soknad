@@ -7,6 +7,7 @@ import { Ressurs, RessursStatus } from '@navikt/familie-typer';
 import { basePath } from '../../shared-utils/Miljø';
 import useFørsteRender from '../hooks/useFørsteRender';
 import { EAllFeatureToggles, defaultFeatureToggleValues } from '../typer/feature-toggles';
+
 import { useLastRessurserContext } from './LastRessurserContext';
 
 const [FeatureTogglesProvider, useFeatureToggles] = createUseContext(() => {

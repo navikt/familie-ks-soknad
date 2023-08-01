@@ -12,6 +12,7 @@ import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
+
 import { mottarEllerMottattUtbetalingApiNavn } from './språkUtils';
 import { UtbetalingerModal } from './UtbetalingerModal';
 import { UtbetalingsperiodeOppsummering } from './UtbetalingsperiodeOppsummering';

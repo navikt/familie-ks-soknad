@@ -17,6 +17,7 @@ import {
     spyOnModal,
     TestProvidere,
 } from '../utils/testing';
+
 import { useApp } from './AppContext';
 
 const søknadEtterRespons: ISøknad = {

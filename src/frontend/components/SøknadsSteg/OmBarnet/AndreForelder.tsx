@@ -24,6 +24,7 @@ import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
 import AndreForelderOppsummering from '../Oppsummering/OppsummeringSteg/OmBarnet/AndreForelderOppsummering';
+
 import SammeSomAnnetBarnRadio from './SammeSomAnnetBarnRadio';
 
 const AndreForelder: React.FC<{

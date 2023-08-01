@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Typografi } from '../../../typer/common';
 import AlertStripe from '../AlertStripe/AlertStripe';
 import { TypografiWrapper } from '../TekstBlock';
+
 import CollapsableContainer from './CollapsableContainer';
 import InfoToggleButton from './InfoToggleButton';
 

@@ -13,6 +13,7 @@ import { IOmBarnetTekstinnhold } from '../../SøknadsSteg/OmBarnet/innholdTyper'
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
+
 import { BarnehageplassPeriodeModal } from './BarnehageplassPeriodeModal';
 import { BarnehageplassPeriodeOppsummering } from './BarnehageplassPeriodeOppsummering';
 

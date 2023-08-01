@@ -11,6 +11,7 @@ import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknad } from '../../typer/søknad';
 import { hentSlektsforhold, landkodeTilSpråk } from '../språk';
+
 import { andreForelderTilISøknadsfelt } from './andreForelder';
 import { tilIBarnehageplassPeriodeIKontraktFormat } from './barnehageplassperioder';
 import { tilIEøsKontantstøttePeriodeIKontraktFormat } from './eøsKontantstøttePeriode';

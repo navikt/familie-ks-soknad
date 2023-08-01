@@ -38,6 +38,7 @@ import { KontantstøttePeriodeSpørsmålId } from '../../../Felleskomponenter/Ko
 import { PensjonsperiodeSpørsmålId } from '../../../Felleskomponenter/Pensjonsmodal/spørsmål';
 import { UtbetalingerSpørsmålId } from '../../../Felleskomponenter/UtbetalingerModal/spørsmål';
 import { idNummerKeyPrefix } from '../idnummerUtils';
+
 import { EøsBarnSpørsmålId } from './spørsmål';
 
 export const useEøsForBarn = (

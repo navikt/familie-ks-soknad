@@ -16,6 +16,7 @@ import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeilopps
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
+
 import { PensjonsperiodeSpørsmålId } from './spørsmål';
 import { IUsePensjonSkjemaParams, usePensjonSkjema } from './usePensjonSkjema';
 

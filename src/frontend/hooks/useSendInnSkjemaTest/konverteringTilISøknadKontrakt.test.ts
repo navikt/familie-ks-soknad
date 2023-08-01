@@ -4,6 +4,7 @@ import { ISøknadKontrakt } from '../../typer/kontrakt/søknadKontrakt';
 import { spyOnModal, spyOnUseApp, TestProvidere } from '../../utils/testing';
 import { erGyldigISøknadKontrakt } from '../../utils/typeguards';
 import { useSendInnSkjema } from '../useSendInnSkjema';
+
 import { testdata1 } from './test-data/testdata1';
 import { testdata2 } from './test-data/testdata2';
 import { testdata3 } from './test-data/testdata3';

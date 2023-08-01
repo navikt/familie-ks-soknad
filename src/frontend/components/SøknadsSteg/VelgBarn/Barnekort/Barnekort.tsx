@@ -15,6 +15,7 @@ import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { TilfeldigBarnIkon } from '../../../Felleskomponenter/TilfeldigBarnIkon/TilfeldigBarnIkon';
 import { OppsummeringFelt } from '../../Oppsummering/OppsummeringFelt';
 import { IVelgBarnTekstinnhold } from '../innholdTyper';
+
 import { FjernBarnKnapp } from './FjernBarnKnapp';
 
 interface IBarnekortProps {

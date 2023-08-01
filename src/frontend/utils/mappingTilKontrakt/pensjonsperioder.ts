@@ -6,6 +6,7 @@ import { IPensjonsperiodeIKontraktFormat } from '../../typer/kontrakt/søknadKon
 import { IPensjonsperiode } from '../../typer/perioder';
 import { IPensjonsperiodeTekstinnhold } from '../../typer/sanity/modaler/pensjonsperiode';
 import { landkodeTilSpråk } from '../språk';
+
 import { sammeVerdiAlleSpråk, verdiCallbackAlleSpråk } from './hjelpefunksjoner';
 
 interface PensjonsperiodeIKontraktFormatParams {

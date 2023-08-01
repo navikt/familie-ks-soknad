@@ -12,6 +12,7 @@ import { SkjemaFeltInput } from '../../../Felleskomponenter/SkjemaFeltInput/Skje
 import Steg from '../../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { Utbetalingsperiode } from '../../../Felleskomponenter/UtbetalingerModal/Utbetalingsperiode';
+
 import IdNummerForSøker from './IdNummerForSøker';
 import { useEøsForSøker } from './useEøsForSøker';
 

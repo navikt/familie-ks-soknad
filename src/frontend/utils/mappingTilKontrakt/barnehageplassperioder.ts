@@ -8,6 +8,7 @@ import { IBarnehageplassPeriodeIKontraktFormat } from '../../typer/kontrakt/søk
 import { IBarnehageplassPeriode } from '../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../typer/sanity/modaler/barnehageplass';
 import { landkodeTilSpråk } from '../språk';
+
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjent,

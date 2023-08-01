@@ -4,6 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { UseSkjemaVerdi } from '@navikt/familie-skjema';
 
 import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
+
 import { AlternativtSvarForInput, DatoMedUkjent, ISODateString } from './common';
 import { ISøknadSpørsmål } from './spørsmål';
 import { EUtenlandsoppholdÅrsak } from './utenlandsopphold';

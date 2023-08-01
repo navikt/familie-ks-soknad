@@ -1,4 +1,5 @@
 import { SanityDataSet } from '../frontend/typer/sanity/sanity';
+
 import { modellVersjon } from './modellversjon';
 
 interface MiljøProps {

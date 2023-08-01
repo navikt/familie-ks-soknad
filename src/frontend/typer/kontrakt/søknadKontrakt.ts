@@ -3,6 +3,7 @@ import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import { barnDataKeySpørsmål } from '../barn';
 import { ISODateString } from '../common';
+
 import { ISøknadKontraktDokumentasjon } from './dokumentasjon';
 import {
     ERegistrertBostedType,

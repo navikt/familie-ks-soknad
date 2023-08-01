@@ -15,6 +15,7 @@ import { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenla
 import { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
 import { EUtenlandsoppholdÅrsak } from '../../typer/utenlandsopphold';
 import { landkodeTilSpråk } from '../språk';
+
 import {
     sammeVerdiAlleSpråk,
     sammeVerdiAlleSpråkEllerUkjent,

@@ -3,6 +3,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
+
 import { barnDataKeySpørsmål } from './barn';
 import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent, ISODateString } from './common';
 import { Slektsforhold } from './kontrakt/generelle';

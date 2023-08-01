@@ -4,6 +4,7 @@ import { useApp } from '../../../context/AppContext';
 import { muligeSlektsforhold } from '../../../typer/barn';
 import { Slektsforhold } from '../../../typer/kontrakt/generelle';
 import { hentSlektsforhold } from '../../../utils/språk';
+
 import StyledDropdown, { StyledDropdownProps } from './StyledDropdown';
 
 export interface SlektsforholdDropdownProps extends StyledDropdownProps<Slektsforhold | ''> {

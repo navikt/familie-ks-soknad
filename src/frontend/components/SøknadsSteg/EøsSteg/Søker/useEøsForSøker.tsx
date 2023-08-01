@@ -21,6 +21,7 @@ import { ArbeidsperiodeSpørsmålsId } from '../../../Felleskomponenter/Arbeidsp
 import { PensjonsperiodeSpørsmålId } from '../../../Felleskomponenter/Pensjonsmodal/spørsmål';
 import { UtbetalingerSpørsmålId } from '../../../Felleskomponenter/UtbetalingerModal/spørsmål';
 import { idNummerKeyPrefix } from '../idnummerUtils';
+
 import { EøsSøkerSpørsmålId } from './spørsmål';
 
 export const useEøsForSøker = (): {

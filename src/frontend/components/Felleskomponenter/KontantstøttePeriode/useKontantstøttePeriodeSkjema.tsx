@@ -12,6 +12,7 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IKontantstøttePerioderFeltTyper } from '../../../typer/skjema';
 import { dagenEtterDato, dagensDato, gårsdagensDato, stringTilDate } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
+
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 
 export interface IUsePensjonsperiodeSkjemaParams {
