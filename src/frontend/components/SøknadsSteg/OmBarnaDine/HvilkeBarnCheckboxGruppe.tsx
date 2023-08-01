@@ -14,16 +14,17 @@ interface Props {
     visFeilmelding: boolean;
     søknadsdatafelt: barnDataKeySpørsmål;
     nullstillValgteBarn: boolean;
+    children?: ReactNode;
 }
 
-const HvilkeBarnCheckboxGruppe: React.FC<Props> = ({
+function HvilkeBarnCheckboxGruppe({
     legend,
     skjemafelt,
     søknadsdatafelt,
     nullstillValgteBarn,
     visFeilmelding,
     children,
-}) => {
+}: Props) {
     const { søknad } = useApp();
     const [valgteBarn, settValgteBarn] = useState<BarnetsId[]>(
         søknad.barnInkludertISøknaden
@@ -59,6 +60,6 @@ const HvilkeBarnCheckboxGruppe: React.FC<Props> = ({
             {children}
         </>
     ) : null;
-};
+}
 
 export default HvilkeBarnCheckboxGruppe;

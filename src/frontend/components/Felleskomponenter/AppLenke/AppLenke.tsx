@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEventHandler, ReactNode } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -13,9 +13,10 @@ interface Props {
     steg: ISteg;
     hash?: string;
     returnTo?: ISteg;
+    children?: ReactNode;
 }
 
-export const AppLenke: React.FC<Props> = ({ steg, hash, returnTo, children }) => {
+export function AppLenke({ steg, hash, returnTo, children }: Props) {
     const navigate = useNavigate();
     const { settKomFra } = useAppNavigation();
 
@@ -37,4 +38,4 @@ export const AppLenke: React.FC<Props> = ({ steg, hash, returnTo, children }) =>
             {children}
         </Link>
     );
-};
+}

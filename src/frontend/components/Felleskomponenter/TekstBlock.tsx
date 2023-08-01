@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import { PortableText } from '@portabletext/react';
 import styled from 'styled-components';
@@ -17,6 +17,7 @@ const StyledLabel = styled(Label)`
 interface Props {
     typografi?: Typografi;
     style?: React.CSSProperties;
+    children?: ReactNode;
 }
 
 const StyledBodyLong = styled(BodyLong)`
@@ -25,7 +26,7 @@ const StyledBodyLong = styled(BodyLong)`
     }
 `;
 
-export const TypografiWrapper: React.FC<Props> = ({ typografi, style, children }) => {
+export function TypografiWrapper({ typografi, style, children }: Props) {
     switch (typografi) {
         case Typografi.StegHeadingH1:
             return (
@@ -68,7 +69,7 @@ export const TypografiWrapper: React.FC<Props> = ({ typografi, style, children }
         case undefined:
             return <div style={style}>{children}</div>;
     }
-};
+}
 
 const TekstBlock: React.FC<{
     block: LocaleRecordBlock | undefined;

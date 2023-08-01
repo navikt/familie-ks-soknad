@@ -2,6 +2,12 @@ import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
+interface Props {
+    tittel: ReactNode;
+    dynamisk?: boolean;
+    children?: ReactNode;
+}
+
 const Container = styled.fieldset`
     border: none;
     padding: 0;
@@ -15,10 +21,7 @@ const Container = styled.fieldset`
     }
 `;
 
-const SkjemaFieldset: React.FC<{
-    tittel: ReactNode;
-    dynamisk?: boolean;
-}> = ({ tittel, dynamisk = false, children }) => {
+function SkjemaFieldset({ tittel, dynamisk = false, children }: Props) {
     return (
         <Container aria-live={dynamisk ? 'polite' : 'off'}>
             {tittel}
@@ -27,6 +30,6 @@ const SkjemaFieldset: React.FC<{
             })}
         </Container>
     );
-};
+}
 
 export default SkjemaFieldset;

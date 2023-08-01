@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
+interface Props {
+    className?: string;
+    inline?: boolean;
+    dynamisk?: boolean;
+    children?: ReactNode;
+}
 const Container = styled.div<{ inline: boolean }>`
     && {
         margin-bottom: ${props => (props.inline ? '2rem' : '4rem')};
@@ -12,11 +18,7 @@ const Container = styled.div<{ inline: boolean }>`
     }
 `;
 
-const KomponentGruppe: React.FC<{
-    className?: string;
-    inline?: boolean;
-    dynamisk?: boolean;
-}> = ({ className, inline = false, dynamisk = false, children }) => {
+function KomponentGruppe({ className, inline = false, dynamisk = false, children }: Props) {
     return (
         <Container inline={inline} className={className} aria-live={dynamisk ? 'polite' : 'off'}>
             {React.Children.map(children, child => {
@@ -24,6 +26,6 @@ const KomponentGruppe: React.FC<{
             })}
         </Container>
     );
-};
+}
 
 export default KomponentGruppe;
