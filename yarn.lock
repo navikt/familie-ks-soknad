@@ -1802,7 +1802,7 @@
   resolved "https://npm.pkg.github.com/download/@navikt/ds-tokens/2.9.8/0200414612d0c42371c5a8b02e479227f7c8a4b8#0200414612d0c42371c5a8b02e479227f7c8a4b8"
   integrity sha512-orzf/CIGEO8w4WZ2TaRyqNMQ2OAKR5RA4RcBnPCuLut3R/gPBX/4X3xsxYkHOnvZCkyjxIC9wMF+mvxm/0UEfw==
 
-"@navikt/familie-form-elements@11.0.0", "@navikt/familie-form-elements@^11.0.0":
+"@navikt/familie-form-elements@^11.0.0":
   version "11.0.0"
   resolved "https://npm.pkg.github.com/download/@navikt/familie-form-elements/11.0.0/977146a92620e3d476a4e32c149468fde37e0296#977146a92620e3d476a4e32c149468fde37e0296"
   integrity sha512-w0JZLJkDwKyqeyxlp+rEaKQkx7zVNHwx0yT+hoZRWaeD4675b94TNrPuCNPeqgX3o9oArOjdcDNyEf9bTkL54g==
@@ -1845,7 +1845,7 @@
     deep-equal "^2.2.0"
     hashids "^2.2.10"
 
-"@navikt/familie-sprakvelger@8.1.3":
+"@navikt/familie-sprakvelger@^8.1.3":
   version "8.1.3"
   resolved "https://npm.pkg.github.com/download/@navikt/familie-sprakvelger/8.1.3/2aba52227ff2e97bd1432c16eb0d08a18f1388dd#2aba52227ff2e97bd1432c16eb0d08a18f1388dd"
   integrity sha512-RgAgT5DM2ydF7VbwTjYRI0OuyUr3uTapVzuKclG/DGq2aWT+BB5O/SmDRkTx3O8woskHU8yeY/b+xRCwANXTug==
@@ -4582,21 +4582,19 @@ css-declaration-sorter@^6.3.1:
   resolved "https://registry.npmjs.org/css-declaration-sorter/-/css-declaration-sorter-6.4.1.tgz#28beac7c20bad7f1775be3a7129d7eae409a3a71"
   integrity sha512-rtdthzxKuyq6IzqX6jEcIzQF/YqccluefyCYheovBOLhFT/drQA9zj/UbRAa9J7C0o6EG6u3E6g+vKkay7/k3g==
 
-css-loader@^5.0.2:
-  version "5.2.7"
-  resolved "https://registry.npmjs.org/css-loader/-/css-loader-5.2.7.tgz#9b9f111edf6fb2be5dc62525644cbc9c232064ae"
-  integrity sha512-Q7mOvpBNBG7YrVGMxRxcBJZFL75o+cH2abNASdibkj/fffYD8qWbInZrD0S9ccI6vZclF3DsHE7njGlLtaHbhg==
+css-loader@^6.8.1:
+  version "6.8.1"
+  resolved "https://registry.npmjs.org/css-loader/-/css-loader-6.8.1.tgz#0f8f52699f60f5e679eab4ec0fcd68b8e8a50a88"
+  integrity sha512-xDAXtEVGlD0gJ07iclwWVkLoZOpEvAWaSyf6W18S2pOC//K8+qUDIx8IIT3D+HjnmkJPQeesOPv5aiUaJsCM2g==
   dependencies:
     icss-utils "^5.1.0"
-    loader-utils "^2.0.0"
-    postcss "^8.2.15"
+    postcss "^8.4.21"
     postcss-modules-extract-imports "^3.0.0"
-    postcss-modules-local-by-default "^4.0.0"
+    postcss-modules-local-by-default "^4.0.3"
     postcss-modules-scope "^3.0.0"
     postcss-modules-values "^4.0.0"
-    postcss-value-parser "^4.1.0"
-    schema-utils "^3.0.0"
-    semver "^7.3.5"
+    postcss-value-parser "^4.2.0"
+    semver "^7.3.8"
 
 css-minimizer-webpack-plugin@^3:
   version "3.4.1"
@@ -8056,7 +8054,7 @@ loader-runner@^4.2.0:
   resolved "https://registry.npmjs.org/loader-runner/-/loader-runner-4.3.0.tgz#c1b4a163b99f614830353b16755e7149ac2314e1"
   integrity sha512-3R/1M+yS3j5ou80Me59j7F9IMs4PXs3VqRrm0TU3AbKPxlmpoY1TNscJV/oGJXo8qCatFGTfDbY6W6ipGOYXfg==
 
-loader-utils@^2.0.0, loader-utils@^2.0.4:
+loader-utils@^2.0.4:
   version "2.0.4"
   resolved "https://registry.npmjs.org/loader-utils/-/loader-utils-2.0.4.tgz#8b5cb38b5c34a9a018ee1fc0e6a066d1dfcc528c"
   integrity sha512-xXqpXoINfFhgua9xiqD8fPFHgkoq1mmmpE92WlDbm9rNRd/EbRb+Gqf908T2DMfuHjjJlksiK2RbHVOdD/MqSw==
@@ -9205,7 +9203,7 @@ postcss-modules-extract-imports@^3.0.0:
   resolved "https://registry.npmjs.org/postcss-modules-extract-imports/-/postcss-modules-extract-imports-3.0.0.tgz#cda1f047c0ae80c97dbe28c3e76a43b88025741d"
   integrity sha512-bdHleFnP3kZ4NYDhuGlVK+CMrQ/pqUm8bx/oGL93K6gVwiclvX5x0n76fYMKuIGKzlABOy13zsvqjb0f92TEXw==
 
-postcss-modules-local-by-default@^4.0.0:
+postcss-modules-local-by-default@^4.0.3:
   version "4.0.3"
   resolved "https://registry.npmjs.org/postcss-modules-local-by-default/-/postcss-modules-local-by-default-4.0.3.tgz#b08eb4f083050708998ba2c6061b50c2870ca524"
   integrity sha512-2/u2zraspoACtrbFRnTijMiQtb4GW4BvatjaG/bCjYQo8kLTdevCUlwuBHx2sCnSyrI3x3qj4ZK1j5LQBgzmwA==
@@ -9342,7 +9340,7 @@ postcss-value-parser@^4.0.2, postcss-value-parser@^4.1.0, postcss-value-parser@^
   resolved "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
-postcss@^8.2.15, postcss@^8.3.5:
+postcss@^8.3.5, postcss@^8.4.21:
   version "8.4.27"
   resolved "https://registry.npmjs.org/postcss/-/postcss-8.4.27.tgz#234d7e4b72e34ba5a92c29636734349e0d9c3057"
   integrity sha512-gY/ACJtJPSmUFPDCHtX78+01fHa64FaU4zaaWfuh1MhGJISufJAH4cun6k/8fwsHYeK4UQmENQK+tRLCFJE8JQ==
