@@ -10,7 +10,7 @@ const StyledLoader = styled(Loader)`
     width: 10rem;
 `;
 
-const StyledMain = styled.main`Package
+const StyledMain = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
