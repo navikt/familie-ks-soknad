@@ -53,7 +53,7 @@ const commonConfig: webpack.Configuration = {
         }),
     ],
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.less'],
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
         fallback: {
             crypto: path.resolve(process.cwd(), 'node_modules', 'crypto-browserify'),
             stream: path.resolve(process.cwd(), 'node_modules', 'stream-browserify'),
@@ -93,7 +93,7 @@ const commonConfig: webpack.Configuration = {
                 },
             },
             {
-                test: /\.(less|css)$/,
+                test: /\.(css)$/,
                 use: [
                     { loader: 'style-loader' },
                     {
@@ -104,7 +104,6 @@ const commonConfig: webpack.Configuration = {
                             },
                         },
                     },
-                    { loader: 'less-loader' },
                 ],
             },
         ],

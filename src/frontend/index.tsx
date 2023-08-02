@@ -8,7 +8,6 @@ import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import App from './App';
 import FellesWrapper from './FellesWrapper';
-import './index.less';
 import { initSentry } from './utils/sentry';
 import '@navikt/ds-css';
 

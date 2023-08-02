@@ -10,17 +10,21 @@ const StyledLoader = styled(Loader)`
     width: 10rem;
 `;
 
+const StyledMain = styled.main`Package
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+`;
+
 const SystemetLaster = () => {
     return (
-        <main className={'systemet-laster'}>
-            <div className={'systemet-laster__content'}>
-                <BodyShort
-                    className={'systemet-laster__content--tekst'}
-                    children={'Søknaden laster'}
-                />
-                <StyledLoader transparent size={'2xlarge'} />
-            </div>
-        </main>
+        <StyledMain>
+            <BodyShort>Søknaden laster</BodyShort>
+            <StyledLoader transparent size={'2xlarge'} />
+        </StyledMain>
     );
 };
 
