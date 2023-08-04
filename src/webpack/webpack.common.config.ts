@@ -100,7 +100,7 @@ const commonConfig: webpack.Configuration = {
                         loader: 'css-loader',
                         options: {
                             modules: {
-                                compileType: 'icss',
+                                mode: 'icss',
                             },
                         },
                     },
