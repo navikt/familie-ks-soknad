@@ -80,7 +80,9 @@
     "ansi-regex": "^5.0.1",
     "webpack-plugin-ramdisk": "^0.2.0",
     "got": "^11.8.5",
-    "@types/react": "^18.2.17"
+    "@types/react": "^18.2.17",
+    "tough-cookie": "^4.1.3",
+    "semver": "^7.5.2"
   },
   "browserslist": {
     "production": [
