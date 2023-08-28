@@ -22,7 +22,7 @@ interface Props {
         harSendtInn: boolean
     ) => void;
     dokumentasjon: IDokumentasjon;
-    tillatteFiltyper: string[];
+    tillatteFiltyper: { [key: string]: string[] };
     maxFilstørrelse: number;
 }
 
