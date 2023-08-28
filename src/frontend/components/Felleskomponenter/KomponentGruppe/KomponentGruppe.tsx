@@ -9,9 +9,9 @@ interface Props {
     children?: ReactNode;
 }
 
-const Container = styled.div<{ inline: boolean }>`
+const Container = styled.div<{ $inline: boolean }>`
     && {
-        margin-bottom: ${props => (props.inline ? '2rem' : '4rem')};
+        margin-bottom: ${props => (props.$inline ? '2rem' : '4rem')};
     }
 `;
 
@@ -23,7 +23,7 @@ function KomponentGruppe({ className, inline = false, dynamisk = false, children
     const childrenLengde = React.Children.count(children);
 
     return (
-        <Container inline={inline} className={className} aria-live={dynamisk ? 'polite' : 'off'}>
+        <Container $inline={inline} className={className} aria-live={dynamisk ? 'polite' : 'off'}>
             {React.Children.map(children, (child, index) => {
                 return (
                     child &&

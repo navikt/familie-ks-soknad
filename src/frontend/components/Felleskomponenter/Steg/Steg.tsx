@@ -69,7 +69,7 @@ const kompaktStepper = () => css`
     }
 `;
 
-const StepperContainer = styled.div<{ antallSteg: number }>`
+const StepperContainer = styled.div<{ $antallSteg: number }>`
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -79,7 +79,7 @@ const StepperContainer = styled.div<{ antallSteg: number }>`
     }
 
   ${props =>
-      props.antallSteg > 12 &&
+      props.$antallSteg > 12 &&
       css`
           @media all and ${device.tablet} {
               ${kompaktStepper};
@@ -169,7 +169,7 @@ function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
             <header>
                 <Banner />
                 {nyesteNåværendeRoute !== RouteEnum.Kvittering && (
-                    <StepperContainer antallSteg={stepperObjekter.length}>
+                    <StepperContainer $antallSteg={stepperObjekter.length}>
                         <Stepper
                             aria-label={'Søknadssteg'}
                             activeStep={hentNåværendeStegIndex()}

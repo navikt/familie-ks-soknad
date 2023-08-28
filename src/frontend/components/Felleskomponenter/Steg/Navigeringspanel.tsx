@@ -32,13 +32,13 @@ const Container = styled.nav`
 `;
 
 const StyledButton = styled(Button)<{
-    placeself: 'end' | 'center' | 'start';
-    gridarea: 'tilbake' | 'gåVidere' | 'avbryt';
+    $placeself: 'end' | 'center' | 'start';
+    $gridarea: 'tilbake' | 'gåVidere' | 'avbryt';
 }>`
     && {
-        grid-area: ${props => props.gridarea};
+        grid-area: ${props => props.$gridarea};
         min-width: 12.5rem;
-        place-self: ${props => props.placeself};
+        place-self: ${props => props.$placeself};
         @media all and ${device.mobile} {
             place-self: center;
         }
@@ -73,16 +73,16 @@ const Navigeringspanel: React.FC<{
                 variant={'secondary'}
                 type={'button'}
                 onClick={onTilbakeCallback}
-                placeself={'end'}
-                gridarea={'tilbake'}
+                $placeself={'end'}
+                $gridarea={'tilbake'}
             >
                 {plainTekst(tilbakeKnapp)}
             </StyledButton>
             <StyledButton
                 type={'submit'}
                 variant={hentKnappetype()}
-                placeself={'start'}
-                gridarea={'gåVidere'}
+                $placeself={'start'}
+                $gridarea={'gåVidere'}
                 loading={innsendingStatus.status === RessursStatus.HENTER}
                 data-testid={'gå-videre-knapp'}
             >
@@ -95,8 +95,8 @@ const Navigeringspanel: React.FC<{
                 variant={'tertiary'}
                 type={'button'}
                 onClick={onAvbrytCallback}
-                gridarea={'avbryt'}
-                placeself={'center'}
+                $gridarea={'avbryt'}
+                $placeself={'center'}
                 margintop={'0'}
             >
                 {plainTekst(avbrytSoeknad)}
