@@ -43,7 +43,7 @@ const [LastRessurserProvider, useLastRessurserContext] = createUseContext(() => 
                 config.rejectCallback && config.rejectCallback(error);
                 loggFeil(error);
 
-                const responsRessurs: ApiRessurs<T> = error.response?.data;
+                const responsRessurs: ApiRessurs<T> = error.response?.data as ApiRessurs<T>;
                 return håndterApiRessurs(responsRessurs ?? { status: RessursStatus.FEILET });
             });
     };

@@ -16,10 +16,10 @@ export interface IDokumentasjon {
 }
 
 export enum EFiltyper {
-    PDF = 'application/pdf',
-    PNG = 'image/png',
-    JPG = 'image/jpg',
-    JPEG = 'image/jpeg',
+    PDF = '.pdf',
+    PNG = '.png',
+    JPG = '.jpg',
+    JPEG = '.jpeg',
 }
 
 export enum TittelSanityApiNavn {

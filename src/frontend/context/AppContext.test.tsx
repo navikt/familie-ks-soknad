@@ -14,6 +14,7 @@ import {
     mockEøs,
     mockFeatureToggle,
     mockRoutes,
+    mockSanity,
     spyOnModal,
     TestProvidere,
 } from '../utils/testing';
@@ -83,6 +84,7 @@ describe('AppContext', () => {
     beforeEach(() => {
         mockEøs();
         mockRoutes();
+        mockSanity();
         mockFeatureToggle();
         spyOnModal();
         const renderhookResult = renderHook(() => useApp(), {

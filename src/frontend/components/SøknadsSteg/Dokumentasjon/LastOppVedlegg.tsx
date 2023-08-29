@@ -112,12 +112,10 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
                         oppdaterDokumentasjon={oppdaterDokumentasjon}
                         dokumentasjon={dokumentasjon}
                         maxFilstørrelse={1024 * 1024 * 10}
-                        tillatteFiltyper={[
-                            EFiltyper.PNG,
-                            EFiltyper.PDF,
-                            EFiltyper.JPG,
-                            EFiltyper.JPEG,
-                        ]}
+                        tillatteFiltyper={{
+                            'image/*': [EFiltyper.PNG, EFiltyper.JPG, EFiltyper.JPEG],
+                            'application/pdf': [EFiltyper.PDF],
+                        }}
                     />
                 </div>
             )}

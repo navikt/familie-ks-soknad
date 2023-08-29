@@ -17,6 +17,7 @@ import {
     mockEøs,
     mockFeatureToggle,
     mockRoutes,
+    mockSanity,
     spyOnModal,
     spyOnUseApp,
     TestProvidere,
@@ -26,18 +27,6 @@ import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
 import VelgBarn from './VelgBarn';
 
 jest.mock('@navikt/fnrvalidator');
-
-jest.mock('@sanity/client', () => {
-    return function sanity() {
-        return {
-            fetch: () => ({
-                then: () => ({
-                    catch: jest.fn(),
-                }),
-            }),
-        };
-    };
-});
 
 const manueltRegistrert: Partial<IBarnMedISøknad> = {
     id: 'random-id-1',
@@ -75,6 +64,7 @@ describe('VelgBarn', () => {
         }));
         mockEøs();
         mockRoutes();
+        mockSanity();
         mockFeatureToggle();
         spyOnModal();
     });

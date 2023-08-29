@@ -22,6 +22,7 @@ import { LastRessurserProvider } from '../context/LastRessurserContext';
 import * as pdlRequest from '../context/pdl';
 import * as routesContext from '../context/RoutesContext';
 import { getRoutes, RoutesProvider } from '../context/RoutesContext';
+import * as sanityContext from '../context/SanityContext';
 import { SanityProvider } from '../context/SanityContext';
 import { StegProvider } from '../context/StegContext';
 import { ESivilstand } from '../typer/kontrakt/generelle';
@@ -31,18 +32,6 @@ import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { initialStateSøknad } from '../typer/søknad';
 
 jest.mock('../context/pdl');
-
-jest.mock('@sanity/client', () => {
-    return function sanity() {
-        return {
-            fetch: () => ({
-                then: () => ({
-                    catch: jest.fn(),
-                }),
-            }),
-        };
-    };
-});
 
 export const spyOnModal = () =>
     jest.spyOn(Modal, 'setAppElement').mockImplementation(() => jest.fn());
@@ -144,6 +133,15 @@ export const mockRoutes = () => {
         })
     );
     return { useRoutes };
+};
+
+export const mockSanity = () => {
+    const useSanity = jest.spyOn(sanityContext, 'useSanity').mockImplementation(
+        jest.fn().mockReturnValue({
+            teksterRessurs: RessursStatus.SUKSESS,
+        })
+    );
+    return { useSanity };
 };
 
 export const mockFeatureToggle = () => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import sanityClient from '@sanity/client';
+import { createClient } from '@sanity/client';
 import createUseContext from 'constate';
 
 import { byggHenterRessurs, byggTomRessurs, RessursStatus } from '@navikt/familie-typer';
@@ -18,7 +18,7 @@ const [SanityProvider, useSanity] = createUseContext(() => {
         useLastRessurserContext();
     const [teksterRessurs, settTeksterRessurs] = useState(byggTomRessurs<ITekstinnhold>());
 
-    const sanityKlient = sanityClient({
+    const sanityKlient = createClient({
         projectId: 'by26nl8j',
         dataset: Miljø().sanityDataset,
         apiVersion: '2021-10-21',

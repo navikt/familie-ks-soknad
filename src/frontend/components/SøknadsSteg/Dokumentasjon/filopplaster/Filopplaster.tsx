@@ -22,19 +22,19 @@ interface Props {
         harSendtInn: boolean
     ) => void;
     dokumentasjon: IDokumentasjon;
-    tillatteFiltyper: string[];
+    tillatteFiltyper: { [key: string]: string[] };
     maxFilstørrelse: number;
 }
 
 interface FilopplastningBoksProps {
-    harFeil: boolean;
+    $harFeil: boolean;
 }
 
 const FilopplastningBoks = styled.button<FilopplastningBoksProps>`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px dashed ${props => (props.harFeil ? '#ba3a26' : ABorderDefault)};
+    border: 2px dashed ${props => (props.$harFeil ? '#ba3a26' : ABorderDefault)};
     border-radius: 4px;
     background-color: rgba(204, 222, 230, 0.5);
     width: 100%;
@@ -45,7 +45,7 @@ const FilopplastningBoks = styled.button<FilopplastningBoksProps>`
 
     :focus,
     :hover {
-        border: 2px solid ${props => (props.harFeil ? '#ba3a26' : ABlue500)};
+        border: 2px solid ${props => (props.$harFeil ? '#ba3a26' : ABlue500)};
         cursor: pointer;
     }
 `;
@@ -83,7 +83,7 @@ const Filopplaster: React.FC<Props> = ({
 
     return (
         <>
-            <FilopplastningBoks type={'button'} {...getRootProps()} harFeil={harFeil}>
+            <FilopplastningBoks type={'button'} {...getRootProps()} $harFeil={harFeil}>
                 <input {...getInputProps()} />
                 <StyledUpload focusable={false} />
                 <TypografiWrapper typografi={Typografi.BodyShort}>
