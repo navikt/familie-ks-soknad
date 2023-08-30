@@ -38,13 +38,17 @@ const [LastRessurserProvider, useLastRessurserContext] = createUseContext(() => 
 
                 return håndterApiRessurs(responsRessurs);
             })
-            .catch((error: AxiosError) => {
+            .catch((error: AxiosError<ApiRessurs<T>>) => {
                 config.påvirkerSystemLaster && fjernRessursSomLaster(ressursId);
                 config.rejectCallback && config.rejectCallback(error);
                 loggFeil(error);
 
-                const responsRessurs: ApiRessurs<T> = error.response?.data as ApiRessurs<T>;
-                return håndterApiRessurs(responsRessurs ?? { status: RessursStatus.FEILET });
+                return error.response?.data
+                    ? håndterApiRessurs(error.response.data)
+                    : {
+                          frontendFeilmelding: 'En feil har oppstått!',
+                          status: RessursStatus.FEILET,
+                      };
             });
     };
 
