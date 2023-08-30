@@ -1,3 +1,5 @@
+import { AxiosError } from 'axios';
+
 import { useSprakContext } from '@navikt/familie-sprakvelger';
 import { Ressurs, RessursStatus } from '@navikt/familie-typer';
 
@@ -36,7 +38,7 @@ export const useSendInnSkjema = (): {
             formatert,
             axiosRequest,
             `${soknadApiProxyUrl}/soknad/kontantstotte/v4`,
-            res => {
+            (res: AxiosError) => {
                 const responseData = res.response?.data as Ressurs<IKvittering>;
                 if (responseData && erModellMismatchResponsRessurs(responseData)) {
                     settSisteModellVersjon(responseData.data.modellVersjon);
