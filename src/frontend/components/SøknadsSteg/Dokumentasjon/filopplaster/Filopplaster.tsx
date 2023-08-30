@@ -43,8 +43,8 @@ const FilopplastningBoks = styled.button<FilopplastningBoksProps>`
     color: ${ABlue500};
     box-sizing: border-box;
 
-    :focus,
-    :hover {
+    &:focus,
+    &:hover {
         border: 2px solid ${props => (props.$harFeil ? '#ba3a26' : ABlue500)};
         cursor: pointer;
     }
