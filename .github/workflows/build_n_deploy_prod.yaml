@@ -3,10 +3,10 @@ name: Build, push, and deploy app to prod
 on:
   workflow_dispatch:
     branches:
-      - master
+      - main
   push:
     branches:
-      - 'master'
+      - 'main'
 
 env:
   IMAGE: ghcr.io/${{ github.repository }}/familie-ks-soknad:${{ github.sha }}
