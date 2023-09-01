@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches-ignore:
-      - 'master'
+      - 'main'
 
 env:
   IMAGE: ghcr.io/${{ github.repository }}/familie-ks-soknad:${{ github.sha }}
