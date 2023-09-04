@@ -40,6 +40,8 @@ jobs:
   build:
     name: Build and push Docker container
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
       - uses: actions/setup-node@v3
         with:
@@ -91,6 +93,8 @@ jobs:
       - build
       - test
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
       - uses: actions/checkout@v3
       - uses: nais/deploy/actions/deploy@v1
