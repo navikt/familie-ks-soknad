@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { DeleteFilled } from '@navikt/ds-icons';
+import { TrashFillIcon } from '@navikt/aksel-icons';
 import { Button } from '@navikt/ds-react';
 
 import { useApp } from '../../../../context/AppContext';
@@ -30,7 +30,7 @@ export const FjernBarnKnapp: React.FC<{
             variant={'tertiary'}
             onClick={() => fjernBarnCallback(barnId)}
             data-testid={'fjern-barn-knapp'}
-            icon={<DeleteFilled aria-hidden />}
+            icon={<TrashFillIcon aria-hidden />}
         >
             <TekstBlock block={knappetekst} />
         </StyledButton>

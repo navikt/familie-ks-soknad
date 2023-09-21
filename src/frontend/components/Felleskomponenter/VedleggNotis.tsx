@@ -2,19 +2,20 @@ import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
-import { FileContent } from '@navikt/ds-icons';
+import { FileTextIcon } from '@navikt/aksel-icons';
 
 const NotisWrapper = styled.div`
     display: flex;
     margin-top: 1rem;
 `;
 
-const StyledFileContent = styled(FileContent)`
-    max-width: 1.125rem;
-    min-width: 1.125rem;
+const StyledFileContent = styled(FileTextIcon)`
+    max-width: 1.5rem;
+    min-width: 1.5rem;
     max-height: fit-content;
     margin-right: 1rem;
     margin-top: 0.2rem;
+    font-size: 1.5rem;
 `;
 
 const NotisInnhold = styled.div`
