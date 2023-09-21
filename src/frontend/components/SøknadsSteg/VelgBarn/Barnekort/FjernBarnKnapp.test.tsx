@@ -4,19 +4,12 @@ import { act, render } from '@testing-library/react';
 
 import { ESivilstand } from '../../../../typer/kontrakt/generelle';
 import { IBarn } from '../../../../typer/person';
-import {
-    mekkGyldigSøker,
-    mockEøs,
-    spyOnModal,
-    spyOnUseApp,
-    TestProvidere,
-} from '../../../../utils/testing';
+import { mekkGyldigSøker, mockEøs, spyOnUseApp, TestProvidere } from '../../../../utils/testing';
 import VelgBarn from '../VelgBarn';
 
 describe('FjernBarnKnapp', () => {
     beforeEach(() => {
         mockEøs();
-        spyOnModal();
     });
 
     test(`Fjern-knapp dukker kun opp på manuelt registrerte barn`, () => {

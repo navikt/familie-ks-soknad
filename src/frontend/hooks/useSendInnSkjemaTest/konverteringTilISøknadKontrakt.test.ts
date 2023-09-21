@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react';
 
 import { ISøknadKontrakt } from '../../typer/kontrakt/søknadKontrakt';
-import { spyOnModal, spyOnUseApp, TestProvidere } from '../../utils/testing';
+import { spyOnUseApp, TestProvidere } from '../../utils/testing';
 import { erGyldigISøknadKontrakt } from '../../utils/typeguards';
 import { useSendInnSkjema } from '../useSendInnSkjema';
 
@@ -12,10 +12,6 @@ import { testdata4 } from './test-data/testdata4';
 import { testdata5 } from './test-data/testdata5';
 
 describe.skip('test konvertering fra ISøknad til ISøknadKontrakt', () => {
-    beforeEach(() => {
-        spyOnModal();
-    });
-
     it('case 1', async () => {
         //const { input: iSøknad, output: expectedISøknadKontrakt } = testdata1;
         const { input: iSøknad } = testdata1;

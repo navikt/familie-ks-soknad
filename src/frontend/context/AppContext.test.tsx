@@ -15,7 +15,6 @@ import {
     mockFeatureToggle,
     mockRoutes,
     mockSanity,
-    spyOnModal,
     TestProvidere,
 } from '../utils/testing';
 
@@ -86,7 +85,6 @@ describe('AppContext', () => {
         mockRoutes();
         mockSanity();
         mockFeatureToggle();
-        spyOnModal();
         const renderhookResult = renderHook(() => useApp(), {
             wrapper: TestProvidere,
         });

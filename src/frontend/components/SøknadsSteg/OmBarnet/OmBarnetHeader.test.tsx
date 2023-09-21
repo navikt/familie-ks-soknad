@@ -5,15 +5,11 @@ import { mockDeep } from 'jest-mock-extended';
 
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { ISøknad } from '../../../typer/søknad';
-import { spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
+import { spyOnUseApp, TestProvidere } from '../../../utils/testing';
 
 import { OmBarnetHeader } from './OmBarnetHeader';
 
 describe('OmBarnetHeader', () => {
-    beforeEach(() => {
-        spyOnModal();
-    });
-
     it(`rendrer 1 av 2 og 2 av 2 i den rekkefølgen`, () => {
         const barn = mockDeep<IBarnMedISøknad[]>([{ id: 'testbarn-1' }, { id: 'testbarn-2' }]);
         const søknadsMock = mockDeep<ISøknad>({

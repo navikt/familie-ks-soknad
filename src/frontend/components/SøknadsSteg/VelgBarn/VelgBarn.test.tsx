@@ -18,7 +18,6 @@ import {
     mockFeatureToggle,
     mockRoutes,
     mockSanity,
-    spyOnModal,
     spyOnUseApp,
     TestProvidere,
 } from '../../../utils/testing';
@@ -66,7 +65,6 @@ describe('VelgBarn', () => {
         mockRoutes();
         mockSanity();
         mockFeatureToggle();
-        spyOnModal();
     });
 
     test('Kan fjerne manuelt registrerte barn', () => {
