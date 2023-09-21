@@ -200,7 +200,6 @@
     "prettier": "^3.0.3",
     "prop-types": "^15.8.1",
     "react-app-polyfill": "^3.0.0",
-    "react-day-picker": "^8.8.1",
     "react-dev-utils": "^12.0.1",
     "react-intl": "^6.4.4",
     "react-is": "^18.2.0",
