@@ -71,10 +71,10 @@ const FortsettPåSøknad: FC = () => {
                     <TekstBlock block={startPaaNyttInfo} typografi={Typografi.BodyShort} />
                 </ModalContent>
                 <Modal.Footer>
-                    <Button variant={'secondary'} onClick={startPåNytt}>
+                    <Button variant={'primary'} onClick={startPåNytt}>
                         <TekstBlock block={startNySoeknadKnapp} />
                     </Button>
-                    <Button variant={'tertiary'} onClick={() => settVisStartPåNyttModal(false)}>
+                    <Button variant={'secondary'} onClick={() => settVisStartPåNyttModal(false)}>
                         <TekstBlock block={startPaaNyttAvbryt} />
                     </Button>
                 </Modal.Footer>
