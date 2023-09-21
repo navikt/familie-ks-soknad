@@ -5,7 +5,13 @@ const useModal = () => {
     const toggleModal = () => {
         settModalÅpen(!modalÅpen);
     };
-    return { erÅpen: modalÅpen, toggleModal };
+    const lukkModal = () => {
+        settModalÅpen(false);
+    };
+    const åpneModal = () => {
+        settModalÅpen(true);
+    };
+    return { erÅpen: modalÅpen, toggleModal, lukkModal, åpneModal };
 };
 
 export default useModal;

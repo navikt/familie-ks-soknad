@@ -41,7 +41,11 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
     tilhørendeJaNeiSpmFelt,
 }) => {
     const { tekster } = useApp();
-    const { erÅpen: kontantstøtteModalErÅpen, toggleModal: toggleKontantstøtteModal } = useModal();
+    const {
+        erÅpen: kontantstøtteModalErÅpen,
+        lukkModal: lukkKontantstøtteModal,
+        åpneModal: åpneKontantstøtteModal,
+    } = useModal();
 
     const teksterForPersonType: IEøsYtelseTekstinnhold =
         tekster().FELLES.modaler.eøsYtelse[personType];
@@ -80,7 +84,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                     )}
 
                     <LeggTilKnapp
-                        onClick={toggleKontantstøtteModal}
+                        onClick={åpneKontantstøtteModal}
                         id={registrerteEøsKontantstøttePerioder.id}
                         feilmelding={
                             registrerteEøsKontantstøttePerioder.erSynlig &&
@@ -90,14 +94,16 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                     >
                         <TekstBlock block={teksterForPersonType.leggTilKnapp} />
                     </LeggTilKnapp>
-                    <KontantstøttePeriodeModal
-                        erÅpen={kontantstøtteModalErÅpen}
-                        toggleModal={toggleKontantstøtteModal}
-                        onLeggTilKontantstøttePeriode={leggTilKontantstøttePeriode}
-                        barn={barn}
-                        personType={personType}
-                        erDød={erDød}
-                    />
+                    {kontantstøtteModalErÅpen && (
+                        <KontantstøttePeriodeModal
+                            erÅpen={kontantstøtteModalErÅpen}
+                            lukkModal={lukkKontantstøtteModal}
+                            onLeggTilKontantstøttePeriode={leggTilKontantstøttePeriode}
+                            barn={barn}
+                            personType={personType}
+                            erDød={erDød}
+                        />
+                    )}
                 </>
             )}
         </>

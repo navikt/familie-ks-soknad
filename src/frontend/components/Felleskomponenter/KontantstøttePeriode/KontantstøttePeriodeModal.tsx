@@ -19,7 +19,6 @@ import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
-import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
@@ -28,7 +27,9 @@ import {
     useKontantstøttePeriodeSkjema,
 } from './useKontantstøttePeriodeSkjema';
 
-interface Props extends ReturnType<typeof useModal>, IUsePensjonsperiodeSkjemaParams {
+interface Props extends IUsePensjonsperiodeSkjemaParams {
+    erÅpen: boolean;
+    lukkModal: () => void;
     onLeggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
     barn: IBarnMedISøknad;
 }
@@ -38,7 +39,7 @@ const StyledAlertStripe = styled(AlertStripe)`
 
 export const KontantstøttePeriodeModal: React.FC<Props> = ({
     erÅpen,
-    toggleModal,
+    lukkModal,
     onLeggTilKontantstøttePeriode,
     barn,
     personType,
@@ -86,7 +87,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
             },
         });
 
-        toggleModal();
+        lukkModal();
         nullstillSkjema();
     };
 
@@ -100,7 +101,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
             tittel={teksterForPersonType.tittel}
             onSubmitCallback={onLeggTil}
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
-            toggleModal={toggleModal}
+            lukkModal={lukkModal}
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
         >

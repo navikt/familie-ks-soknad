@@ -1,7 +1,5 @@
 import React, { ReactNode } from 'react';
 
-import styled from 'styled-components';
-
 import { Button, Modal } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
@@ -12,7 +10,7 @@ import TekstBlock from '../TekstBlock';
 
 interface Props {
     erÅpen: boolean;
-    toggleModal: () => void;
+    lukkModal: () => void;
     submitSpinner?: boolean;
     valideringErOk: () => boolean;
     onAvbrytCallback?: () => void;
@@ -23,18 +21,9 @@ interface Props {
     children?: ReactNode;
 }
 
-const StyledButton = styled(Button)`
-    && {
-        margin-top: 4rem;
-        white-space: normal;
-        max-width: 100%;
-        box-sizing: border-box;
-    }
-`;
-
 function SkjemaModal({
     erÅpen,
-    toggleModal,
+    lukkModal,
     submitSpinner = false,
     valideringErOk,
     onAvbrytCallback,
@@ -49,12 +38,14 @@ function SkjemaModal({
         <Modal
             open={erÅpen}
             onClose={() => {
-                toggleModal();
+                lukkModal();
                 onAvbrytCallback && onAvbrytCallback();
             }}
             aria-label={plainTekst(tittel, flettefelter)}
+            width={'medium'}
+            portal={true}
         >
-            <ModalContent>
+            <Modal.Header>
                 {tittel && (
                     <TekstBlock
                         block={tittel}
@@ -62,22 +53,24 @@ function SkjemaModal({
                         typografi={Typografi.ModalHeadingH1}
                     />
                 )}
-                <form>
-                    {children}
-                    <StyledButton
-                        variant={valideringErOk() ? 'primary' : 'secondary'}
-                        type={'submit'}
-                        data-testid={'submit-knapp-i-modal'}
-                        loading={!!submitSpinner}
-                        onClick={event => {
-                            event.preventDefault();
-                            onSubmitCallback();
-                        }}
-                    >
-                        {submitKnappTekst}
-                    </StyledButton>
-                </form>
+            </Modal.Header>
+            <ModalContent>
+                <form id="skjema">{children}</form>
             </ModalContent>
+            <Modal.Footer>
+                <Button
+                    form="skjema"
+                    variant={valideringErOk() ? 'primary' : 'secondary'}
+                    data-testid={'submit-knapp-i-modal'}
+                    loading={!!submitSpinner}
+                    onClick={event => {
+                        event.preventDefault();
+                        onSubmitCallback();
+                    }}
+                >
+                    {submitKnappTekst}
+                </Button>
+            </Modal.Footer>
         </Modal>
     );
 }

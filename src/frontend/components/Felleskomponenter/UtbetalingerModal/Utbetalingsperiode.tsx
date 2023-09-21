@@ -39,7 +39,11 @@ export const Utbetalingsperiode: React.FC<Props> = ({
     barn,
 }) => {
     const { tekster } = useApp();
-    const { erÅpen: utbetalingermodalErÅpen, toggleModal: toggleUtbetalingsmodal } = useModal();
+    const {
+        erÅpen: utbetalingermodalErÅpen,
+        lukkModal: lukkUtbetalingsmodal,
+        åpneModal: åpneUtbetalingsmodal,
+    } = useModal();
 
     const teksterForPersontype = tekster().FELLES.modaler.andreUtbetalinger[personType];
 
@@ -77,7 +81,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                         />
                     )}
                     <LeggTilKnapp
-                        onClick={toggleUtbetalingsmodal}
+                        onClick={åpneUtbetalingsmodal}
                         id={registrerteUtbetalingsperioder.id}
                         feilmelding={
                             registrerteUtbetalingsperioder.erSynlig &&
@@ -88,14 +92,16 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                         <TekstBlock block={teksterForPersontype.leggTilKnapp} />
                     </LeggTilKnapp>
 
-                    <UtbetalingerModal
-                        erÅpen={utbetalingermodalErÅpen}
-                        toggleModal={toggleUtbetalingsmodal}
-                        onLeggTilUtbetalinger={leggTilUtbetalingsperiode}
-                        personType={personType}
-                        barn={barn}
-                        erDød={erDød}
-                    />
+                    {utbetalingermodalErÅpen && (
+                        <UtbetalingerModal
+                            erÅpen={utbetalingermodalErÅpen}
+                            lukkModal={lukkUtbetalingsmodal}
+                            onLeggTilUtbetalinger={leggTilUtbetalingsperiode}
+                            personType={personType}
+                            barn={barn}
+                            erDød={erDød}
+                        />
+                    )}
                 </>
             )}
         </>
