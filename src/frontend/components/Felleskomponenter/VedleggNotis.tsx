@@ -14,7 +14,6 @@ const StyledFileContent = styled(FileTextIcon)`
     min-width: 1.5rem;
     max-height: fit-content;
     margin-right: 1rem;
-    margin-top: 0.2rem;
     font-size: 1.5rem;
 `;
 
