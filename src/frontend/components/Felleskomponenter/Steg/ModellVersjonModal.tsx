@@ -14,12 +14,6 @@ const HovedinnholdContainer = styled.div`
     margin: 2.5rem 0;
 `;
 
-const StyledButton = styled(Button)`
-    && {
-        width: fit-content;
-    }
-`;
-
 const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
     const { tekster, plainTekst } = useApp();
 
@@ -33,12 +27,13 @@ const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
             aria-label={plainTekst(mistetInformasjonenDinTekster.tittel)}
             onClose={refresh}
         >
-            <ModalContent>
+            <Modal.Header>
                 <TekstBlock
                     block={mistetInformasjonenDinTekster.tittel}
                     typografi={Typografi.ModalHeadingH1}
                 />
-
+            </Modal.Header>
+            <ModalContent>
                 <AlertStripe
                     inline={false}
                     variant={'error'}
@@ -51,14 +46,15 @@ const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
                         typografi={Typografi.BodyLong}
                     />
                 </HovedinnholdContainer>
-
-                <StyledButton onClick={refresh}>
+            </ModalContent>
+            <Modal.Footer>
+                <Button onClick={refresh}>
                     <TekstBlock
                         block={mistetInformasjonenDinTekster.knapp}
                         typografi={Typografi.BodyShort}
                     />
-                </StyledButton>
-            </ModalContent>
+                </Button>
+            </Modal.Footer>
         </Modal>
     );
 };
