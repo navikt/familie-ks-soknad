@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { Button, Modal } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
-import { device } from '../../../Theme';
 import { Typografi } from '../../../typer/common';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
@@ -26,22 +25,6 @@ const StyledFortsettPåSøknad = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-`;
-
-const ModalKnappeContainer = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-top: 1rem;
-
-    @media all and ${device.mobile} {
-        justify-content: center;
-        flex-direction: column-reverse;
-        max-width: fit-content;
-        margin-left: auto;
-        margin-right: auto;
-    }
 `;
 
 const FortsettPåSøknad: FC = () => {
@@ -81,18 +64,20 @@ const FortsettPåSøknad: FC = () => {
                     settVisStartPåNyttModal(false);
                 }}
             >
-                <ModalContent>
+                <Modal.Header>
                     <TekstBlock block={startPaaNyttTittel} typografi={Typografi.ModalHeadingH1} />
+                </Modal.Header>
+                <ModalContent>
                     <TekstBlock block={startPaaNyttInfo} typografi={Typografi.BodyShort} />
-                    <ModalKnappeContainer>
-                        <Button variant={'tertiary'} onClick={() => settVisStartPåNyttModal(false)}>
-                            <TekstBlock block={startPaaNyttAvbryt} />
-                        </Button>
-                        <Button variant={'secondary'} onClick={startPåNytt}>
-                            <TekstBlock block={startNySoeknadKnapp} />
-                        </Button>
-                    </ModalKnappeContainer>
                 </ModalContent>
+                <Modal.Footer>
+                    <Button variant={'secondary'} onClick={startPåNytt}>
+                        <TekstBlock block={startNySoeknadKnapp} />
+                    </Button>
+                    <Button variant={'tertiary'} onClick={() => settVisStartPåNyttModal(false)}>
+                        <TekstBlock block={startPaaNyttAvbryt} />
+                    </Button>
+                </Modal.Footer>
             </Modal>
         </StyledFortsettPåSøknad>
     );
