@@ -11,12 +11,8 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import ModalContent from '../ModalContent';
 import TekstBlock from '../TekstBlock';
 
-const Flex = styled.div`
-    padding-top: 1rem;
-    display: flex;
-    justify-content: flex-end;
+const StyledModalFooter = styled(Modal.Footer)`
     align-items: center;
-    gap: 1rem;
 `;
 
 const BlokkerTilbakeKnappModal = () => {
@@ -34,30 +30,30 @@ const BlokkerTilbakeKnappModal = () => {
             onClose={() => settVisBlokkerTilbakeKnappModal(false)}
             open={visBlokkerTilbakeKnappModal}
         >
-            <ModalContent>
+            <Modal.Header>
                 <TekstBlock
                     block={blokkerTilbakeknappTekster.tittel}
                     typografi={Typografi.ModalHeadingH1}
                 />
-
+            </Modal.Header>
+            <ModalContent>
                 <TekstBlock
                     block={blokkerTilbakeknappTekster.tekst}
                     typografi={Typografi.BodyLong}
                 />
-
-                <Flex>
+            </ModalContent>
+            <StyledModalFooter>
+                <Button onClick={håndterAvbryt}>
                     <TekstBlock
-                        block={blokkerTilbakeknappTekster.tilDittNav}
+                        block={blokkerTilbakeknappTekster.avbryt}
                         typografi={Typografi.BodyShort}
                     />
-                    <Button onClick={håndterAvbryt}>
-                        <TekstBlock
-                            block={blokkerTilbakeknappTekster.avbryt}
-                            typografi={Typografi.BodyShort}
-                        />
-                    </Button>
-                </Flex>
-            </ModalContent>
+                </Button>
+                <TekstBlock
+                    block={blokkerTilbakeknappTekster.tilDittNav}
+                    typografi={Typografi.BodyShort}
+                />
+            </StyledModalFooter>
         </Modal>
     );
 };
