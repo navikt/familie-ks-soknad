@@ -1812,7 +1812,7 @@
   resolved "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@navikt/aksel-icons@^5.5.0":
+"@navikt/aksel-icons@5.5.0", "@navikt/aksel-icons@^5.5.0":
   version "5.5.0"
   resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/5.5.0/b382aa387897f3f4850fbc16c3b95d6a57b7ef38#b382aa387897f3f4850fbc16c3b95d6a57b7ef38"
   integrity sha512-KKq28Ed4lYwnrESIyyOxnBGr7ef1RqTPZoLAJE1YXNGHfVMN/TEZCoZQlPialhZK8g36ngNgvtsZeEm5oCxoxQ==
