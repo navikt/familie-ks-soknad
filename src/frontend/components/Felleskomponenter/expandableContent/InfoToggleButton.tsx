@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Collapse, Expand } from '@navikt/ds-icons';
+import { ChevronDownIcon, ChevronUpIcon } from '@navikt/aksel-icons';
 
 interface Props {
     controlsId: string;
@@ -69,7 +69,13 @@ const InfoToggleButton = (props: Props) => {
         >
             <ButtonInnholdWrapper>
                 <LabelContainer>{children}</LabelContainer>
-                <ChevronContainer>{isOpen ? <Collapse /> : <Expand />}</ChevronContainer>
+                <ChevronContainer>
+                    {isOpen ? (
+                        <ChevronUpIcon fontSize={'1.5rem'} />
+                    ) : (
+                        <ChevronDownIcon fontSize={'1.5rem'} />
+                    )}
+                </ChevronContainer>
             </ButtonInnholdWrapper>
         </StyledButton>
     );

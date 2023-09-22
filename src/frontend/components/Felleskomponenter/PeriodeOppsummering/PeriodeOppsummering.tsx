@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
-import { DeleteFilled } from '@navikt/ds-icons';
+import { TrashFillIcon } from '@navikt/aksel-icons';
 import { Button } from '@navikt/ds-react';
 import { ABorderDefault } from '@navikt/ds-tokens/dist/tokens';
 
@@ -46,7 +46,7 @@ function PeriodeOppsummering({
                     type={'button'}
                     variant={'tertiary'}
                     onClick={() => fjernPeriodeCallback()}
-                    icon={<DeleteFilled />}
+                    icon={<TrashFillIcon />}
                 >
                     {<TekstBlock block={fjernKnappTekst} />}
                 </StyledButton>
