@@ -18,7 +18,7 @@ const StyledModalFooter = styled(Modal.Footer)`
 const BlokkerTilbakeKnappModal = () => {
     const { visBlokkerTilbakeKnappModal, settVisBlokkerTilbakeKnappModal } = useAppNavigation();
 
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const blokkerTilbakeknappTekster = tekster()[ESanitySteg.FELLES].modaler.blokkerTilbakeKnapp;
 
     const håndterAvbryt = () => {
@@ -29,13 +29,11 @@ const BlokkerTilbakeKnappModal = () => {
         <Modal
             onClose={() => settVisBlokkerTilbakeKnappModal(false)}
             open={visBlokkerTilbakeKnappModal}
+            header={{
+                heading: plainTekst(blokkerTilbakeknappTekster.tittel),
+                size: 'medium',
+            }}
         >
-            <Modal.Header>
-                <TekstBlock
-                    block={blokkerTilbakeknappTekster.tittel}
-                    typografi={Typografi.ModalHeadingH1}
-                />
-            </Modal.Header>
             <ModalContent>
                 <TekstBlock
                     block={blokkerTilbakeknappTekster.tekst}

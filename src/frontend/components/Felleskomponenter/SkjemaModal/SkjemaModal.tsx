@@ -3,10 +3,9 @@ import React, { ReactNode } from 'react';
 import { Button, Modal } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
-import { LocaleRecordBlock, Typografi } from '../../../typer/common';
+import { LocaleRecordBlock } from '../../../typer/common';
 import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import ModalContent from '../ModalContent';
-import TekstBlock from '../TekstBlock';
 
 interface Props {
     erÅpen: boolean;
@@ -41,19 +40,13 @@ function SkjemaModal({
                 lukkModal();
                 onAvbrytCallback && onAvbrytCallback();
             }}
-            aria-label={plainTekst(tittel, flettefelter)}
             width={'medium'}
             portal={true}
+            header={{
+                heading: plainTekst(tittel, flettefelter),
+                size: 'medium',
+            }}
         >
-            <Modal.Header>
-                {tittel && (
-                    <TekstBlock
-                        block={tittel}
-                        flettefelter={flettefelter}
-                        typografi={Typografi.ModalHeadingH1}
-                    />
-                )}
-            </Modal.Header>
             <ModalContent>
                 <form id="skjema">{children}</form>
             </ModalContent>

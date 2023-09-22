@@ -24,15 +24,12 @@ const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
     return (
         <Modal
             open={erÅpen}
-            aria-label={plainTekst(mistetInformasjonenDinTekster.tittel)}
             onClose={refresh}
+            header={{
+                heading: plainTekst(mistetInformasjonenDinTekster.tittel),
+                size: 'medium',
+            }}
         >
-            <Modal.Header>
-                <TekstBlock
-                    block={mistetInformasjonenDinTekster.tittel}
-                    typografi={Typografi.ModalHeadingH1}
-                />
-            </Modal.Header>
             <ModalContent>
                 <AlertStripe
                     inline={false}

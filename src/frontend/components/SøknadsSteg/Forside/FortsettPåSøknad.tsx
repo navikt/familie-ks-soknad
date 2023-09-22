@@ -64,10 +64,11 @@ const FortsettPåSøknad: FC = () => {
                 onClose={() => {
                     settVisStartPåNyttModal(false);
                 }}
+                header={{
+                    heading: plainTekst(startPaaNyttTittel),
+                    size: 'medium',
+                }}
             >
-                <Modal.Header>
-                    <TekstBlock block={startPaaNyttTittel} typografi={Typografi.ModalHeadingH1} />
-                </Modal.Header>
                 <ModalContent>
                     <TekstBlock block={startPaaNyttInfo} typografi={Typografi.BodyShort} />
                 </ModalContent>
