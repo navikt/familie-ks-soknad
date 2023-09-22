@@ -97,6 +97,7 @@
     ]
   },
   "dependencies": {
+    "@navikt/aksel-icons": "5.5.0",
     "@navikt/ds-css": "^2.2.0",
     "@navikt/ds-icons": "^2.2.0",
     "@navikt/ds-react": "^2.2.0",
