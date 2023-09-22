@@ -31,7 +31,11 @@ export const Utenlandsperiode: React.FC<Props> = ({
     personType,
 }) => {
     const { tekster } = useApp();
-    const { erÅpen, lukkModal, åpneModal } = useModal();
+    const {
+        erÅpen: erUtenlandsoppholdModalÅpen,
+        lukkModal: lukkUtenlandsoppholdModal,
+        åpneModal: åpneUtenlandsoppholdModal,
+    } = useModal();
 
     const {
         [ESanitySteg.FELLES]: {
@@ -43,10 +47,10 @@ export const Utenlandsperiode: React.FC<Props> = ({
 
     return (
         <>
-            {erÅpen && (
+            {erUtenlandsoppholdModalÅpen && (
                 <UtenlandsoppholdModal
-                    erÅpen={erÅpen}
-                    lukkModal={lukkModal}
+                    erÅpen={erUtenlandsoppholdModalÅpen}
+                    lukkModal={lukkUtenlandsoppholdModal}
                     onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
                     personType={personType}
                     barn={personType !== PersonType.søker ? barn : undefined}
@@ -67,7 +71,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
             )}
             <LeggTilKnapp
                 id={registrerteUtenlandsperioder.id}
-                onClick={åpneModal}
+                onClick={åpneUtenlandsoppholdModal}
                 feilmelding={
                     registrerteUtenlandsperioder.erSynlig &&
                     skjema.visFeilmeldinger &&
