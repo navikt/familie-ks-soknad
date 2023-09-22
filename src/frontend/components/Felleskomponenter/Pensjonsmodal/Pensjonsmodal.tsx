@@ -14,20 +14,21 @@ import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
-import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
 import { PensjonsperiodeSpørsmålId } from './spørsmål';
 import { IUsePensjonSkjemaParams, usePensjonSkjema } from './usePensjonSkjema';
 
-interface Props extends ReturnType<typeof useModal>, IUsePensjonSkjemaParams {
+interface Props extends IUsePensjonSkjemaParams {
+    erÅpen: boolean;
+    lukkModal: () => void;
     onLeggTilPensjonsperiode: (periode: IPensjonsperiode) => void;
     gjelderUtland: boolean;
 }
 
 export const PensjonModal: React.FC<Props> = ({
     erÅpen,
-    toggleModal,
+    lukkModal,
     onLeggTilPensjonsperiode,
     gjelderUtland,
     personType,
@@ -72,7 +73,7 @@ export const PensjonModal: React.FC<Props> = ({
             },
         });
 
-        toggleModal();
+        lukkModal();
         nullstillSkjema();
     };
 
@@ -86,7 +87,7 @@ export const PensjonModal: React.FC<Props> = ({
             flettefelter={{ gjelderUtland }}
             onSubmitCallback={onLeggTil}
             submitKnappTekst={<TekstBlock block={teksterForModal.leggTilKnapp} />}
-            toggleModal={toggleModal}
+            lukkModal={lukkModal}
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
         >

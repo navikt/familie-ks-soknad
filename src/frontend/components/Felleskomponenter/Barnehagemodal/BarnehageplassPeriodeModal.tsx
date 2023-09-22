@@ -20,7 +20,6 @@ import { SkjemaCheckbox } from '../SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
-import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
 import {
@@ -36,13 +35,15 @@ export interface IUseBarnehageplassSkjemaParams {
     barn: IBarnMedISøknad;
 }
 
-interface Props extends ReturnType<typeof useModal>, IUseBarnehageplassSkjemaParams {
+interface Props extends IUseBarnehageplassSkjemaParams {
+    erÅpen: boolean;
+    lukkModal: () => void;
     onLeggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
 }
 
 export const BarnehageplassPeriodeModal: React.FC<Props> = ({
     erÅpen,
-    toggleModal,
+    lukkModal,
     onLeggTilBarnehageplassPeriode,
     barn,
 }) => {
@@ -102,7 +103,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                 svar: svarForSpørsmålMedUkjent(slutterIBarnehagenVetIkke, slutterIBarnehagen),
             },
         });
-        toggleModal();
+        lukkModal();
         nullstillSkjema();
     };
     const barnetsNavn = barn.navn;
@@ -114,7 +115,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
             flettefelter={{ barnetsNavn }}
             onSubmitCallback={onLeggTil}
             submitKnappTekst={<TekstBlock block={barnehageplassTekster.leggTilKnapp} />}
-            toggleModal={toggleModal}
+            lukkModal={lukkModal}
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
         >

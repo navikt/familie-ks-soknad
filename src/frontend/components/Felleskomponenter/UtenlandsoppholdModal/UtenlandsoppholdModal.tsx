@@ -23,7 +23,6 @@ import { SkjemaCheckbox } from '../SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
-import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
 import { UtenlandsoppholdSpørsmålId } from './spørsmål';
@@ -35,14 +34,15 @@ import {
     hentUtenlandsoppholdÅrsak,
 } from './utenlandsoppholdSpråkUtils';
 
-type Props = PeriodePersonTypeMedBarnProps &
-    ReturnType<typeof useModal> & {
-        onLeggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
-    };
+type Props = PeriodePersonTypeMedBarnProps & {
+    erÅpen: boolean;
+    lukkModal: () => void;
+    onLeggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
+};
 
 export const UtenlandsoppholdModal: React.FC<Props> = ({
     erÅpen,
-    toggleModal,
+    lukkModal,
     onLeggTilUtenlandsperiode,
     personType,
     barn,
@@ -91,7 +91,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
             },
         });
 
-        toggleModal();
+        lukkModal();
         nullstillSkjema();
     };
 
@@ -108,7 +108,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
             flettefelter={{ barnetsNavn: barn?.navn }}
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
             onSubmitCallback={onLeggTil}
-            toggleModal={toggleModal}
+            lukkModal={lukkModal}
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
         >

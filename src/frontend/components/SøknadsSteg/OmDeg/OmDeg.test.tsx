@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import { mockDeep } from 'jest-mock-extended';
 
 import { ISøker } from '../../../typer/person';
-import { mockEøs, spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
+import { mockEøs, spyOnUseApp, TestProvidere } from '../../../utils/testing';
 
 import OmDeg from './OmDeg';
 import { OmDegSpørsmålId } from './spørsmål';
@@ -18,7 +18,6 @@ const TestKomponent = () => (
 describe('OmDeg', () => {
     beforeEach(() => {
         mockEøs();
-        spyOnModal();
     });
 
     test('Skal rendre 2 alertstriper i OmDeg', async () => {

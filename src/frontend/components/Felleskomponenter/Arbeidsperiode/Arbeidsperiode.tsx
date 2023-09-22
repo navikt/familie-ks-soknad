@@ -52,7 +52,11 @@ export const Arbeidsperiode: React.FC<Props> = ({
     barn,
 }) => {
     const { tekster } = useApp();
-    const { erÅpen: arbeidsmodalErÅpen, toggleModal: toggleArbeidsmodal } = useModal();
+    const {
+        erÅpen: arbeidsmodalErÅpen,
+        lukkModal: lukkArbeidsmodal,
+        åpneModal: åpneArbeidsmodal,
+    } = useModal();
     const teksterForModal: IArbeidsperiodeTekstinnhold =
         tekster().FELLES.modaler.arbeidsperiode[personType];
     const { flerePerioder, leggTilKnapp } = teksterForModal;
@@ -96,7 +100,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                         />
                     )}
                     <LeggTilKnapp
-                        onClick={toggleArbeidsmodal}
+                        onClick={åpneArbeidsmodal}
                         id={registrerteArbeidsperioder.id}
                         feilmelding={
                             registrerteArbeidsperioder.erSynlig &&
@@ -106,15 +110,17 @@ export const Arbeidsperiode: React.FC<Props> = ({
                     >
                         <TekstBlock block={leggTilKnapp} />
                     </LeggTilKnapp>
-                    <ArbeidsperiodeModal
-                        erÅpen={arbeidsmodalErÅpen}
-                        toggleModal={toggleArbeidsmodal}
-                        onLeggTilArbeidsperiode={leggTilArbeidsperiode}
-                        gjelderUtlandet={gjelderUtlandet}
-                        personType={personType}
-                        erDød={erDød}
-                        barn={barn}
-                    />
+                    {arbeidsmodalErÅpen && (
+                        <ArbeidsperiodeModal
+                            erÅpen={arbeidsmodalErÅpen}
+                            lukkModal={lukkArbeidsmodal}
+                            onLeggTilArbeidsperiode={leggTilArbeidsperiode}
+                            gjelderUtlandet={gjelderUtlandet}
+                            personType={personType}
+                            erDød={erDød}
+                            barn={barn}
+                        />
+                    )}
                 </>
             )}
         </>

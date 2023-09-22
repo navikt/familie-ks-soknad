@@ -39,7 +39,11 @@ const StyledWarningAlert = styled(Alert)`
 
 const VelgBarn: React.FC = () => {
     const { søknad, tekster } = useApp();
-    const { toggleModal, erÅpen } = useModal();
+    const {
+        lukkModal: lukkLeggTilBarnModal,
+        åpneModal: åpneLeggTilBarnModal,
+        erÅpen: erLeggTilBarnModalÅpen,
+    } = useModal();
     const {
         skjema,
         validerFelterOgVisFeilmelding,
@@ -100,7 +104,7 @@ const VelgBarn: React.FC = () => {
                             fjernBarnCallback={fjernBarn}
                         />
                     ))}
-                    <NyttBarnKort onLeggTilBarn={toggleModal} />
+                    <NyttBarnKort onLeggTilBarn={åpneLeggTilBarnModal} />
                 </BarnekortContainer>
 
                 {finnesBarnUnder1År && (
@@ -113,7 +117,12 @@ const VelgBarn: React.FC = () => {
                     <TekstBlock block={leseMerOmRegleneKontantstoette} />
                 </LenkeContainer>
             </Steg>
-            <LeggTilBarnModal erÅpen={erÅpen} toggleModal={toggleModal} />
+            {erLeggTilBarnModalÅpen && (
+                <LeggTilBarnModal
+                    erÅpen={erLeggTilBarnModalÅpen}
+                    lukkModal={lukkLeggTilBarnModal}
+                />
+            )}
         </>
     );
 };

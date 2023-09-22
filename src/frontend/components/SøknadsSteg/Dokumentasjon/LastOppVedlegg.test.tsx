@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 
 import { IDokumentasjon } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
-import { mockEøs, spyOnModal, spyOnUseApp, TestProvidere } from '../../../utils/testing';
+import { mockEøs, spyOnUseApp, TestProvidere } from '../../../utils/testing';
 
 import LastOppVedlegg from './LastOppVedlegg';
 
@@ -26,7 +26,6 @@ describe('LastOppVedlegg', () => {
     beforeEach(() => {
         jest.resetModules();
         mockEøs();
-        spyOnModal();
     });
 
     it('Viser ikke info-tekst og checkbox knapp for ANNEN_DOKUMENTASJON', () => {

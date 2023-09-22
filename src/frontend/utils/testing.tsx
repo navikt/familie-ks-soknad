@@ -2,7 +2,6 @@ import React, { ReactNode } from 'react';
 
 import { mockDeep } from 'jest-mock-extended';
 
-import { Modal } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { HttpProvider } from '@navikt/familie-http';
 import { LocaleType, SprakProvider } from '@navikt/familie-sprakvelger';
@@ -32,9 +31,6 @@ import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { initialStateSøknad } from '../typer/søknad';
 
 jest.mock('../context/pdl');
-
-export const spyOnModal = () =>
-    jest.spyOn(Modal, 'setAppElement').mockImplementation(() => jest.fn());
 
 export const spyOnUseApp = søknad => {
     jest.spyOn(pdlRequest, 'hentSluttbrukerFraPdl').mockImplementation(async () => ({

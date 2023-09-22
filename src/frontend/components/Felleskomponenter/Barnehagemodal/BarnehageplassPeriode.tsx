@@ -32,8 +32,11 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
     fjernBarnehageplassPeriode,
     barn,
 }) => {
-    const { erÅpen: barnehageplassModalErÅpen, toggleModal: toggleBarnehageplassModal } =
-        useModal();
+    const {
+        erÅpen: barnehageplassModalErÅpen,
+        lukkModal: lukkBarnehageplassModal,
+        åpneModal: åpneBarnehageplassModal,
+    } = useModal();
     const { tekster } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
@@ -64,7 +67,7 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
             )}
 
             <LeggTilKnapp
-                onClick={toggleBarnehageplassModal}
+                onClick={åpneBarnehageplassModal}
                 id={registrerteBarnehageplassPerioder.id}
                 feilmelding={
                     registrerteBarnehageplassPerioder.erSynlig &&
@@ -74,12 +77,14 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
             >
                 <TekstBlock block={barnehageplassTekster.leggTilKnapp} />
             </LeggTilKnapp>
-            <BarnehageplassPeriodeModal
-                erÅpen={barnehageplassModalErÅpen}
-                toggleModal={toggleBarnehageplassModal}
-                onLeggTilBarnehageplassPeriode={leggTilBarnehageplassPeriode}
-                barn={barn}
-            />
+            {barnehageplassModalErÅpen && (
+                <BarnehageplassPeriodeModal
+                    erÅpen={barnehageplassModalErÅpen}
+                    lukkModal={lukkBarnehageplassModal}
+                    onLeggTilBarnehageplassPeriode={leggTilBarnehageplassPeriode}
+                    barn={barn}
+                />
+            )}
         </>
     );
 };

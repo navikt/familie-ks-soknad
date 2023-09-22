@@ -89,7 +89,7 @@ const StepperContainer = styled.div<{ $antallSteg: number }>`
 
 function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
     const navigate = useNavigate();
-    const { erÅpen: erModellVersjonModalÅpen, toggleModal: toggleModellVersjonModal } = useModal();
+    const { erÅpen: erModellVersjonModalÅpen, åpneModal: åpneModellVersjonModal } = useModal();
     const {
         settSisteUtfylteStegIndex,
         erStegUtfyltFrafør,
@@ -126,7 +126,7 @@ function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
     }, []);
 
     useEffect(() => {
-        modellVersjonOppdatert && !erModellVersjonModalÅpen && toggleModellVersjonModal();
+        modellVersjonOppdatert && !erModellVersjonModalÅpen && åpneModellVersjonModal();
     }, [modellVersjonOppdatert]);
 
     const håndterAvbryt = () => {
@@ -205,7 +205,9 @@ function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
                         />
                     )}
                 </Form>
-                <ModellVersjonModal erÅpen={erModellVersjonModalÅpen} />
+                {erModellVersjonModalÅpen && (
+                    <ModellVersjonModal erÅpen={erModellVersjonModalÅpen} />
+                )}
             </InnholdContainer>
         </>
     );

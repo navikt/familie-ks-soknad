@@ -11,18 +11,14 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import ModalContent from '../ModalContent';
 import TekstBlock from '../TekstBlock';
 
-const Flex = styled.div`
-    padding-top: 1rem;
-    display: flex;
-    justify-content: flex-end;
+const StyledModalFooter = styled(Modal.Footer)`
     align-items: center;
-    gap: 1rem;
 `;
 
 const BlokkerTilbakeKnappModal = () => {
     const { visBlokkerTilbakeKnappModal, settVisBlokkerTilbakeKnappModal } = useAppNavigation();
 
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const blokkerTilbakeknappTekster = tekster()[ESanitySteg.FELLES].modaler.blokkerTilbakeKnapp;
 
     const håndterAvbryt = () => {
@@ -33,31 +29,29 @@ const BlokkerTilbakeKnappModal = () => {
         <Modal
             onClose={() => settVisBlokkerTilbakeKnappModal(false)}
             open={visBlokkerTilbakeKnappModal}
+            header={{
+                heading: plainTekst(blokkerTilbakeknappTekster.tittel),
+                size: 'medium',
+            }}
         >
             <ModalContent>
-                <TekstBlock
-                    block={blokkerTilbakeknappTekster.tittel}
-                    typografi={Typografi.ModalHeadingH1}
-                />
-
                 <TekstBlock
                     block={blokkerTilbakeknappTekster.tekst}
                     typografi={Typografi.BodyLong}
                 />
-
-                <Flex>
+            </ModalContent>
+            <StyledModalFooter>
+                <Button onClick={håndterAvbryt}>
                     <TekstBlock
-                        block={blokkerTilbakeknappTekster.tilDittNav}
+                        block={blokkerTilbakeknappTekster.avbryt}
                         typografi={Typografi.BodyShort}
                     />
-                    <Button onClick={håndterAvbryt}>
-                        <TekstBlock
-                            block={blokkerTilbakeknappTekster.avbryt}
-                            typografi={Typografi.BodyShort}
-                        />
-                    </Button>
-                </Flex>
-            </ModalContent>
+                </Button>
+                <TekstBlock
+                    block={blokkerTilbakeknappTekster.tilDittNav}
+                    typografi={Typografi.BodyShort}
+                />
+            </StyledModalFooter>
         </Modal>
     );
 };

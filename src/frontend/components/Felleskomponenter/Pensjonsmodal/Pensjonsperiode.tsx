@@ -53,7 +53,11 @@ export const Pensjonsperiode: React.FC<Props> = ({
     const { tekster } = useApp();
     const teksterForModal = tekster().FELLES.modaler.pensjonsperiode[personType];
 
-    const { erÅpen: pensjonsmodalErÅpen, toggleModal: togglePensjonsmodal } = useModal();
+    const {
+        erÅpen: pensjonsmodalErÅpen,
+        lukkModal: lukkPensjonsmodal,
+        åpneModal: åpnePensjonsmodal,
+    } = useModal();
 
     return (
         <>
@@ -94,7 +98,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
                         />
                     )}
                     <LeggTilKnapp
-                        onClick={togglePensjonsmodal}
+                        onClick={åpnePensjonsmodal}
                         id={registrertePensjonsperioder.id}
                         feilmelding={
                             registrertePensjonsperioder.erSynlig &&
@@ -104,15 +108,17 @@ export const Pensjonsperiode: React.FC<Props> = ({
                     >
                         <TekstBlock block={teksterForModal.leggTilKnapp} />
                     </LeggTilKnapp>
-                    <PensjonModal
-                        erÅpen={pensjonsmodalErÅpen}
-                        toggleModal={togglePensjonsmodal}
-                        onLeggTilPensjonsperiode={leggTilPensjonsperiode}
-                        gjelderUtland={gjelderUtlandet}
-                        personType={personType}
-                        erDød={erDød}
-                        barn={barn}
-                    />
+                    {pensjonsmodalErÅpen && (
+                        <PensjonModal
+                            erÅpen={pensjonsmodalErÅpen}
+                            lukkModal={lukkPensjonsmodal}
+                            onLeggTilPensjonsperiode={leggTilPensjonsperiode}
+                            gjelderUtland={gjelderUtlandet}
+                            personType={personType}
+                            erDød={erDød}
+                            barn={barn}
+                        />
+                    )}
                 </>
             )}
         </>
