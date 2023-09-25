@@ -154,17 +154,12 @@ export const mockFeatureToggle = () => {
 export const wrapMedProvidere = (
     // eslint-disable-next-line
     providerComponents: React.FC<any>[],
-    children?: ReactNode,
-    språkTekster?: Record<string, string>
+    children?: ReactNode
 ) => {
     const [Første, ...resten] = providerComponents;
     const erSpråkprovider = Første === SprakProvider;
     return (
-        <Første
-            {...(erSpråkprovider
-                ? { tekster: { [LocaleType.nb]: språkTekster }, defaultLocale: LocaleType.nb }
-                : {})}
-        >
+        <Første {...(erSpråkprovider ? { defaultLocale: LocaleType.nb } : {})}>
             {resten.length ? wrapMedProvidere(resten, children) : children}
         </Første>
     );
