@@ -11,4 +11,4 @@ COPY dist ./dist
 COPY node_modules ./node_modules
 COPY package.json .
 
-CMD ["--es-module-specifier-resolution=node", "build/backend/server.js"]
+CMD ["--es-module-specifier-resolution=node", "dist/server.js"]
