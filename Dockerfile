@@ -4,11 +4,11 @@ USER apprunner
 
 WORKDIR /var/server
 
-COPY build ./build
+COPY src/backend/dist ./dist
 COPY dist ./dist
 
 # Må kopiere package.json og node_modules for at backend skal fungere. Backend henter avhengigheter runtime fra node_modules, og package.json trengs for at 'import' statements skal fungere.
-COPY node_modules ./node_modules
+COPY src/node_modules ./node_modules
 COPY package.json .
 
 CMD ["--es-module-specifier-resolution=node", "dist/server.js"]
