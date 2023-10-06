@@ -7,4 +7,4 @@ WORKDIR /var/server
 COPY src/backend/dist ./dist
 COPY dist ./dist
 
-CMD ["--es-module-specifier-resolution=node", "dist/server.js"]
+CMD ["dist/server.js"]
