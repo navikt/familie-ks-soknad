@@ -10,7 +10,6 @@
     "start:dev": "BASE_PATH=/familie/kontantstotte/soknad/ yarn clean && yarn build:backend && concurrently \"npm:dev:*\"",
     "start:dev:ts-server": "BASE_PATH=/familie/kontantstotte/soknad/ yarn clean && concurrently --restart-tries \"-1\" \"npm:dev:webpack\" \"npm:ts:server\"",
     "dev:server": "NODE_ENV=development node src/backend/dist/server.js",
-    "ts:server": "NODE_ENV=development TS_NODE_PROJECT=tsconfig.backend.json nodemon --exec 'node' --watch src/backend --watch src/shared-utils -e ts --es-module-specifier-resolution=node --loader ts-node/esm src/backend/server.ts",
     "dev:webpack": "TS_NODE_PROJECT=src/webpack/tsconfig.json NODE_ENV=development node --loader ts-node/esm --es-module-specifier-resolution=node node_modules/.bin/webpack-cli serve -c src/webpack/webpack.development.config.ts",
     "build": "concurrently npm:build:frontend npm:build:backend",
     "build:frontend": "TS_NODE_PROJECT=src/webpack/tsconfig.json NODE_ENV=production node --loader ts-node/esm --es-module-specifier-resolution=node node_modules/.bin/webpack-cli --config src/webpack/webpack.production.config.ts",
