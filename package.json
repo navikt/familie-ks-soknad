@@ -17,7 +17,7 @@
     "build:analysis": "TS_NODE_PROJECT=src/webpack/tsconfig.json NODE_ENV=production node --loader ts-node/esm --es-module-specifier-resolution=node node_modules/.bin/webpack-cli --config src/webpack/webpack.analysis.config.ts",
     "test-ci": "CI=true build",
     "test": "jest",
-    "start": "NODE_ENV=production node dist/server.js",
+    "start": "NODE_ENV=production node src/backend/dist/server.js",
     "clean": "rm -rf dist src/backend/dist",
     "typecheck": "tsc --noEmit -p src/frontend/tsconfig.json"
   },
