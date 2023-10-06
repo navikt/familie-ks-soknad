@@ -1,37 +1,4 @@
 {
   "name": "familie-ks-soknad-backend",
-  "scripts": {
-    "format-all": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "prettier": "prettier -l \"src/**/*.{js,jsx,ts,tsx}\"",
-    "start:dev": "NODE_ENV=development node dist/bundle.js",
-    "build": "webpack"
-  },
-  "dependencies": {
-    "@navikt/familie-logging": "^6.0.0",
-    "compression": "^1.7.4",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.1",
-    "mustache-express": "^1.3.2",
-    "node-jose": "^2.2.0",
-    "openid-client": "^5.4.3",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.2.2",
-    "uuid": "^9.0.0",
-    "xss": "^1.0.14"
-  },
-  "devDependencies": {
-    "@types/cookie-parser": "^1.4.3",
-    "@types/cors": "^2.8.13",
-    "@types/jsonwebtoken": "^9.0.2",
-    "@types/mustache-express": "^1.2.2",
-    "@types/node": "^20.8.2",
-    "@types/webpack": "^5.28.3",
-    "ts-loader": "^9.4.4",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
-  }
+  "license": "MIT"
 }
