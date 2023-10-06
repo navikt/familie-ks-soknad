@@ -22,11 +22,6 @@ const serverConfig: Configuration = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
-        fallback: {
-            crypto: path.resolve(__dirname, 'node_modules', 'crypto-browserify'),
-            stream: path.resolve(__dirname, 'node_modules', 'stream-browserify'),
-            buffer: path.resolve(__dirname, 'node_modules', 'buffer'),
-        },
     },
     output: {
         filename: 'server.js',
