@@ -67,7 +67,7 @@ export const defaultFeatureToggleValues: EAllFeatureToggles = {
 };
 ```
 
-Toggelen kan derettes tas ibruk på følgende måte:
+Toggelen kan deretter tas ibruk på følgende måte:
 
 ```ts
 const { toggles } = useFeatureToggles();
