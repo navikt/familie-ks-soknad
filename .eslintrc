@@ -1,6 +1,7 @@
 {
   "ignorePatterns": [
-    "src/public/*"
+    "src/public/*",
+    "src/backend/dist/*"
   ],
   "extends": [
     "eslint:recommended",
