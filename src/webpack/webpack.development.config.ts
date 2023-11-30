@@ -63,7 +63,6 @@ const devConfig: webpack.Configuration = mergeWithRules({
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['react-app'],
                     plugins: ['react-refresh/babel', '@babel/plugin-syntax-import-assertions'],
                 },
             },
