@@ -4,7 +4,7 @@ import Miljø, { basePath } from '../../shared-utils/Miljø';
 import { erklaeringInterceptor } from '../middlewares/erklaering-interceptor';
 import { escapeBody } from '../middlewares/escape';
 import { modellVersjonInterceptor } from '../middlewares/modell-versjon-interceptor';
-import { addCallId, doProxy } from '../middlewares/proxy';
+import { addCallId, doProxy, fjernAutentiseringHeaderHvisLokalt } from '../middlewares/proxy';
 import attachToken from '../middlewares/tokenProxy';
 
 export const konfigurerApi = (app: Express): Express => {
@@ -24,6 +24,7 @@ export const konfigurerApi = (app: Express): Express => {
         `${basePath}dokument`,
         addCallId(),
         attachToken('familie-dokument'),
+        fjernAutentiseringHeaderHvisLokalt(),
         doProxy(Miljø().dokumentUrl, `${basePath}dokument`)
     );
 
