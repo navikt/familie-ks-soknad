@@ -47,7 +47,7 @@ export const fjernAutentiseringHeaderHvisLokalt = (): RequestHandler => {
     return async (req: Request, _res: Response, next: NextFunction) => {
         if (erLokalt()) {
             req.headers[AUTHORIZATION_HEADER] = '';
-            next();
         }
+        next();
     };
 };
