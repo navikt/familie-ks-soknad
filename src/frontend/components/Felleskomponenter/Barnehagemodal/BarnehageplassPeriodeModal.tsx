@@ -209,9 +209,9 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                             EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
                                 ? dagensDato()
                                 : barnehageplassPeriodeBeskrivelse.verdi ===
-                                  EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                                ? gårsdagensDato()
-                                : undefined
+                                    EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                                  ? gårsdagensDato()
+                                  : undefined
                         }
                     />
                 )}
