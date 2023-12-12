@@ -9,7 +9,7 @@ import { ApplicationName } from '../types';
 
 const { exchangeToken } = new TokenXClient();
 
-const AUTHORIZATION_HEADER = 'authorization';
+export const AUTHORIZATION_HEADER = 'authorization';
 const WONDERWALL_ID_TOKEN_HEADER = 'x-wonderwall-id-token';
 
 const attachToken = (applicationName: ApplicationName): RequestHandler => {

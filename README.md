@@ -8,13 +8,17 @@ ADR-dokument: https://github.com/navikt/familie/blob/master/doc/adr/0008-KS-lage
 1. Node versjon >=16
 2. familie-baks-soknad-api (https://github.com/navikt/familie-baks-soknad-api)
 
-## Log in på https://npm.pkg.github.com
-På github -> Settings -> Developer Settings -> Generate New Token
-Select scopes `repo` og `read:packages`
+## Logg inn på https://npm.pkg.github.com
+1. På github -> Settings -> Developer Settings -> Generate New Token
+   Select scopes `repo` og `read:packages`
+2. Eksporter miljøvariabel NPM_TOKEN, f.eks ved å legge til
+   `export NPM_TOKEN=<ditt token>` i ~/.zshrc
 
-eksporter miljøvariabel NPM_TOKEN, f eks ved å legge til
-`export NPM_TOKEN=<ditt token>` i ~/.zshrc
--
+## Legg til token for unleash for lokalmiljø
+1. Generer personlig token på [unleash](https://teamfamilie-unleash-web.nav.cloud.nais.io/profile/personal-api-tokens?sort=createdAt)
+2. Eksporter miljøvariabel UNLEASH_SERVER_API_TOKEN, f.eks ved å legge til
+   `export UNLEASH_SERVER_API_TOKEN=<ditt token>` i ~/.zshrc
+
 ## Kjør lokalt
 1. `yarn install`
 2. `yarn start:dev`
@@ -67,7 +71,7 @@ export const defaultFeatureToggleValues: EAllFeatureToggles = {
 };
 ```
 
-Toggelen kan derettes tas ibruk på følgende måte:
+Toggelen kan deretter tas ibruk på følgende måte:
 
 ```ts
 const { toggles } = useFeatureToggles();

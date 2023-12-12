@@ -9,6 +9,8 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "25M"
     nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
 spec:
+  envFrom:
+    - secret: familie-ks-soknad-unleash-api-token
   image: {{ image }}
   team: teamfamilie
   replicas:
@@ -35,6 +37,7 @@ spec:
       external:
         - host: www.nav.no
         - host: by26nl8j.apicdn.sanity.io
+        - host: teamfamilie-unleash-api.nav.cloud.nais.io
   resources:
     limits:
       cpu: 2000m

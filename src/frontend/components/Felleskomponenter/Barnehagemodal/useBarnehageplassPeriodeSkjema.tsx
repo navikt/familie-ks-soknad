@@ -111,9 +111,9 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
             EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
                 ? dagensDato()
                 : barnehageplassPeriodeBeskrivelse.verdi ===
-                  EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                ? gårsdagensDato()
-                : undefined,
+                    EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                  ? gårsdagensDato()
+                  : undefined,
         customStartdatoFeilmelding: plainTekst(
             formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
         ),

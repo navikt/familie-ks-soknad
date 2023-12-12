@@ -59,7 +59,6 @@
         "extendDefaults": true
       }
     ],
-    "react-app/react-hooks/exhaustive-deps": "off",
     "import/named": "error",
     "import/namespace": "error",
     "import/default": "error",
