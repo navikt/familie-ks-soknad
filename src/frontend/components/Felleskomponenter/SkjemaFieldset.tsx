@@ -2,16 +2,15 @@ import React, { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
+import { Fieldset } from '@navikt/ds-react';
+
 interface Props {
-    tittel: ReactNode;
+    legend: ReactNode;
     dynamisk?: boolean;
     children?: ReactNode;
 }
 
-const Container = styled.fieldset`
-    border: none;
-    padding: 0;
-
+const StyledFieldset = styled(Fieldset)`
     && {
         margin-bottom: 4rem;
     }
@@ -21,12 +20,11 @@ const ChildContainer = styled.div`
     margin-bottom: 1.5rem;
 `;
 
-function SkjemaFieldset({ tittel, dynamisk = false, children }: Props) {
+function SkjemaFieldset({ legend, dynamisk = false, children }: Props) {
     const childrenLengde = React.Children.count(children);
 
     return (
-        <Container aria-live={dynamisk ? 'polite' : 'off'}>
-            {tittel}
+        <StyledFieldset aria-live={dynamisk ? 'polite' : 'off'} legend={legend}>
             {React.Children.map(children, (child, index) => {
                 return (
                     child &&
@@ -37,7 +35,7 @@ function SkjemaFieldset({ tittel, dynamisk = false, children }: Props) {
                     ))
                 );
             })}
-        </Container>
+        </StyledFieldset>
     );
 }
 

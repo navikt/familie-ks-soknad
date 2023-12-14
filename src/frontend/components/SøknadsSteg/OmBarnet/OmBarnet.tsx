@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
@@ -108,14 +108,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                 />
             )}
 
-            <SkjemaFieldset
-                tittel={
-                    <Heading size={'xsmall'} level={'2'} spacing>
-                        {plainTekst(bosted)}
-                    </Heading>
-                }
-                dynamisk
-            >
+            <SkjemaFieldset legend={plainTekst(bosted)} dynamisk>
                 <JaNeiSpm
                     skjema={skjema}
                     felt={borFastMedSøker}
