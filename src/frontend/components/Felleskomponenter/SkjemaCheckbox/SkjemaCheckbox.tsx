@@ -19,7 +19,6 @@ export const SkjemaCheckbox: React.FC<{
         <CheckboxWrapper>
             <Checkbox
                 checked={felt.verdi === ESvar.JA}
-                aria-label={label}
                 onChange={event =>
                     felt.validerOgSettFelt(event.target.checked ? ESvar.JA : ESvar.NEI)
                 }

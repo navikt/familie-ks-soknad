@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Heading } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { ISkjema } from '@navikt/familie-skjema';
 
@@ -66,13 +65,7 @@ const AndreForelder: React.FC<{
     const andreForelderErDød = barn.andreForelderErDød.svar === ESvar.JA;
 
     return (
-        <SkjemaFieldset
-            tittel={
-                <Heading level={'2'} size={'xsmall'} spacing>
-                    {plainTekst(barnetsAndreForelder)}
-                </Heading>
-            }
-        >
+        <SkjemaFieldset legend={plainTekst(barnetsAndreForelder)}>
             <KomponentGruppe>
                 {skjema.felter.sammeForelderSomAnnetBarn.erSynlig && (
                     <SammeSomAnnetBarnRadio

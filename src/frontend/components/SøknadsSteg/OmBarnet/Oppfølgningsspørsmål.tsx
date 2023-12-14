@@ -49,7 +49,7 @@ const Oppfølgningsspørsmål: React.FC<{
     fjernBarnehageplassPeriode,
     registrerteBarnehageplassPerioder,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     const {
         paagaaendeSoeknadYtelse,
@@ -66,15 +66,7 @@ const Oppfølgningsspørsmål: React.FC<{
     return (
         <>
             {barn[barnDataKeySpørsmål.erAdoptert].svar === ESvar.JA && (
-                <SkjemaFieldset
-                    tittel={
-                        <TekstBlock
-                            block={opplystAdoptert}
-                            flettefelter={{ barnetsNavn }}
-                            typografi={Typografi.Label}
-                        />
-                    }
-                >
+                <SkjemaFieldset legend={plainTekst(opplystAdoptert, { barnetsNavn })}>
                     <JaNeiSpm
                         skjema={skjema}
                         felt={skjema.felter.utbetaltForeldrepengerEllerEngangsstønad}
@@ -84,13 +76,7 @@ const Oppfølgningsspørsmål: React.FC<{
             )}
             {barn[barnDataKeySpørsmål.boddMindreEnn12MndINorge].svar === ESvar.JA && (
                 <SkjemaFieldset
-                    tittel={
-                        <TekstBlock
-                            block={opplystBarnOppholdUtenforNorge}
-                            flettefelter={{ barnetsNavn }}
-                            typografi={Typografi.Label}
-                        />
-                    }
+                    legend={plainTekst(opplystBarnOppholdUtenforNorge, { barnetsNavn })}
                 >
                     <>
                         <Utenlandsperiode
@@ -126,13 +112,7 @@ const Oppfølgningsspørsmål: React.FC<{
             )}
             {barn[barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland].svar === ESvar.JA && (
                 <SkjemaFieldset
-                    tittel={
-                        <TekstBlock
-                            block={opplystFaarHarFaattEllerSoektYtelse}
-                            flettefelter={{ barnetsNavn }}
-                            typografi={Typografi.Label}
-                        />
-                    }
+                    legend={plainTekst(opplystFaarHarFaattEllerSoektYtelse, { barnetsNavn })}
                 >
                     <KomponentGruppe>
                         <JaNeiSpm

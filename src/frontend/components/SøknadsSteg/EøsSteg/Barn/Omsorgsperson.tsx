@@ -5,7 +5,6 @@ import { ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../../typer/barn';
-import { Typografi } from '../../../../typer/common';
 import {
     IArbeidsperiode,
     IEøsKontantstøttePeriode,
@@ -67,13 +66,7 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
     const flettefelter = { barnetsNavn: barn.navn };
     return (
         <SkjemaFieldset
-            tittel={
-                <TekstBlock
-                    block={eøsForBarnTekster.oppgittIkkeBorFastSammenMedDeg}
-                    flettefelter={flettefelter}
-                    typografi={Typografi.HeadingH2}
-                />
-            }
+            legend={plainTekst(eøsForBarnTekster.oppgittIkkeBorFastSammenMedDeg, flettefelter)}
         >
             <SkjemaFeltInput
                 felt={skjema.felter.omsorgspersonNavn}
