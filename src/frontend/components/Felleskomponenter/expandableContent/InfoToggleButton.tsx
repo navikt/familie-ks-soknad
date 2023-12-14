@@ -73,9 +73,9 @@ const InfoToggleButton = (props: Props) => {
                 <LabelContainer>{children}</LabelContainer>
                 <ChevronContainer>
                     {isOpen ? (
-                        <ChevronUpIcon fontSize={'1.5rem'} />
+                        <ChevronUpIcon fontSize={'1.5rem'} aria-hidden />
                     ) : (
-                        <ChevronDownIcon fontSize={'1.5rem'} />
+                        <ChevronDownIcon fontSize={'1.5rem'} aria-hidden />
                     )}
                 </ChevronContainer>
             </ButtonInnholdWrapper>
