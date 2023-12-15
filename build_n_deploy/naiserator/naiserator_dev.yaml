@@ -12,7 +12,6 @@ spec:
   envFrom:
     - secret: familie-ks-soknad-unleash-api-token
   image: {{ image }}
-  team: teamfamilie
   replicas:
     min: 2
     max: 2
