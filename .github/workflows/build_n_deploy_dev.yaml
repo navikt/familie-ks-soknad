@@ -35,6 +35,7 @@ jobs:
 
   bygg:
     name: Bygg app/image og push til GitHub
+    if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     permissions:
       contents: "read"
