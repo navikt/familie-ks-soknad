@@ -4,6 +4,8 @@ Frontend - søknad for kontantstøtte.
 Dette er en skinnet kopi av barnetrygdsøknaden (kopiert 2.8.22): https://github.com/navikt/familie-ba-soknad
 ADR-dokument: https://github.com/navikt/familie/blob/master/doc/adr/0008-KS-lager-egen-søknadsdialog-app.md
 
+# Lokal utvikling
+
 ## Avhengigheter
 1. Node versjon >=16
 2. familie-baks-soknad-api (https://github.com/navikt/familie-baks-soknad-api)
@@ -29,6 +31,9 @@ For å kjøre med mellomlagring må du ha familie-dokument kjørende (https://gi
 
 # Bygg og deploy
 Appen bygges hos github actions, og gir beskjed til nais deploy om å deployere appen i gcp. Alle commits til brancher går til dev miljøet, appen er ikke satt opp i produksjon enda.
+
+# Tekster
+Tekster hentes fra Sanity. Se [repo](https://github.com/navikt/familie-baks-soknad-sanity) og [Sanity studio](https://familie-baks-soknad.sanity.studio/production/structure)
 
 # Feature toggles (Unleash)
 
