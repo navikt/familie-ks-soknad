@@ -1,13 +1,11 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 
 import { LOG_LEVEL } from '@navikt/familie-logging';
+import { requestOboToken, validateToken } from '@navikt/oasis';
 
 import { erLokalt } from '../../shared-utils/Miljø';
 import { logRequest } from '../logger';
-import TokenXClient from '../tokenx';
 import { ApplicationName } from '../types';
-
-const { exchangeToken } = new TokenXClient();
 
 export const AUTHORIZATION_HEADER = 'authorization';
 const WONDERWALL_ID_TOKEN_HEADER = 'x-wonderwall-id-token';
@@ -55,11 +53,23 @@ const prepareSecuredRequest = async (req: Request, applicationName: ApplicationN
         };
     }
     logRequest(req, 'IdPorten-token found: ' + (token.length > 1), LOG_LEVEL.INFO);
-    const accessToken = await exchangeToken(token, applicationName).then(
-        accessToken => accessToken
+
+    const validation = await validateToken(token);
+    if (!validation.ok) {
+        // TODO: handle validation error
+        throw validation.error;
+    }
+
+    const obo = await requestOboToken(
+        token,
+        `${process.env.NAIS_CLUSTER_NAME}:teamfamilie:${applicationName}`
     );
+    if (!obo.ok) {
+        // TODO: handle obo error
+        throw obo.error;
+    }
     return {
-        authorization: `Bearer ${accessToken}`,
+        authorization: `Bearer ${obo.token}`,
     };
 };
 
