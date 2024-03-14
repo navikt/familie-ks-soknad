@@ -291,6 +291,8 @@ export const plainTekstHof =
                         ? pipe(node => node, ...transformedMarks)(child).text
                         : pipe(node => node)(child).text;
                     previousElementIsNonSpan = false;
+                } else if (child._type == 'flettefelt') {
+                    tekst += flettefeltTilTekst(child.flettefelt, flettefelter, spesifikkLocale);
                 } else {
                     previousElementIsNonSpan = true;
                 }
