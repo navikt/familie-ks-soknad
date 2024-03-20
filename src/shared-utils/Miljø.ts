@@ -67,8 +67,7 @@ const Miljø = (): MiljøProps => {
             dokumentProxyUrl: `http://localhost:3000/dokument`,
             dokumentUrl: `http://localhost:8082/familie/dokument/api`,
             modellVersjon: modellVersjon,
-            wonderwallUrl:
-                'http://localhost:8080/local/cookie?issuerId=tokenx&audience=familie-app&cookiename=localhost-idtoken&subject=12345678901&redirect=',
+            wonderwallUrl: '',
             oauthCallbackUri: 'http://localhost:3000/',
             port: 55554,
         };
