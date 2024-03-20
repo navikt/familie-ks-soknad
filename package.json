@@ -43,8 +43,6 @@
     ],
     "moduleNameMapper": {
       "\\.(css)$": "<rootDir>/src/mockStyle.js",
-      "nav-(.*)-style": "<rootDir>/src/mockStyle.js",
-      "nav-frontend-core": "<rootDir>/src/mockStyle.js",
       "styled-components/macro": "styled-components",
       "^uuid$": "uuid"
     },
@@ -68,10 +66,9 @@
     ]
   },
   "resolutions": {
-    "styled-components": "^5",
+    "styled-components": "^6",
     "browserslist": "^4.16.5",
     "ansi-regex": "^5.0.1",
-    "webpack-plugin-ramdisk": "^0.2.0",
     "got": "^11.8.5",
     "@types/react": "^18.2.17",
     "tough-cookie": "^4.1.3",
@@ -208,7 +205,6 @@
     "webpack": "^5.89.0",
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
-    "webpack-merge": "^5.10.0",
-    "webpack-plugin-serve": "^1.6.0"
+    "webpack-merge": "^5.10.0"
   }
 }
