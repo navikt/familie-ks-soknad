@@ -96,7 +96,7 @@
     "@navikt/familie-skjema": "^7.0.8",
     "@navikt/familie-sprakvelger": "^10.0.0",
     "@navikt/familie-typer": "^8.0.0",
-    "@navikt/fnrvalidator": "^1.3.3",
+    "@navikt/fnrvalidator": "^2.0.7",
     "@navikt/nav-dekoratoren-moduler": "^1.9.0",
     "@portabletext/react": "^3.0.7",
     "@portabletext/toolkit": "^2.0.8",
