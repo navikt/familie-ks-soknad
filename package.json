@@ -87,9 +87,9 @@
     ]
   },
   "dependencies": {
-    "@navikt/aksel-icons": "5.11.4",
-    "@navikt/ds-css": "^5.11.4",
-    "@navikt/ds-react": "^5.11.4",
+    "@navikt/aksel-icons": "6.3.3",
+    "@navikt/ds-css": "^6.3.3",
+    "@navikt/ds-react": "^6.3.3",
     "@navikt/familie-form-elements": "^15.0.0",
     "@navikt/familie-logging": "^7.0.0",
     "@navikt/familie-skjema": "^8.0.9",
@@ -108,7 +108,7 @@
     "constate": "^3.3.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "date-fns": "^2.30.0",
+    "date-fns": "^3.6.0",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "http-proxy-middleware": "^2.0.6",
