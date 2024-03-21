@@ -15,6 +15,23 @@ updates:
     ignore:
     - dependency-name: "*"
       update-types: ["version-update:semver-patch"]
+    groups:
+      typescript-eslint:
+        patterns:
+          - "@typescript-eslint/eslint-plugin"
+          - "@typescript-eslint/parser"
+      react:
+        patterns:
+          - "react"
+          - "@types/react"
+          - "react-dom"
+      babel:
+        patterns:
+          - "@babel/*"
+      aksel:
+        patterns:
+          - "@navikt/aksel-icons"
+          - "@navikt/ds-*"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:

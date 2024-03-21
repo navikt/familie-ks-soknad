@@ -15,8 +15,8 @@ const WONDERWALL_ID_TOKEN_HEADER = 'x-wonderwall-id-token';
 const attachToken = (applicationName: ApplicationName): RequestHandler => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const authenticationHeader = await prepareSecuredRequest(req, applicationName);
-            req.headers[AUTHORIZATION_HEADER] = authenticationHeader.authorization;
+            const token = await prepareSecuredRequest(req, applicationName);
+            req.headers[AUTHORIZATION_HEADER] = token;
             req.headers[WONDERWALL_ID_TOKEN_HEADER] = '';
             next();
         } catch (error) {
@@ -35,9 +35,9 @@ const harBearerToken = (authorization: string) => {
     return authorization.includes('Bearer ');
 };
 
-const utledToken = (req: Request, authorization: string | undefined): string => {
+const utledToken = (authorization: string | undefined): string => {
     if (erLokalt()) {
-        return req.cookies['localhost-idtoken'];
+        throw Error('Lokal profil kan bruke fakedings direkte');
     } else if (authorization && harBearerToken(authorization)) {
         return authorization.split(' ')[1];
     } else {
@@ -45,22 +45,31 @@ const utledToken = (req: Request, authorization: string | undefined): string => 
     }
 };
 
-const prepareSecuredRequest = async (req: Request, applicationName: ApplicationName) => {
+const prepareSecuredRequest = async (
+    req: Request,
+    applicationName: ApplicationName
+): Promise<string> => {
     logRequest(req, 'PrepareSecuredRequest', LOG_LEVEL.INFO);
     const { authorization } = req.headers;
-    const token = utledToken(req, authorization);
     if (erLokalt()) {
-        return {
-            authorization: `Bearer ${token}`,
-        };
+        return await getFakedingsToken(applicationName);
     }
+    const token = utledToken(authorization);
     logRequest(req, 'IdPorten-token found: ' + (token.length > 1), LOG_LEVEL.INFO);
     const accessToken = await exchangeToken(token, applicationName).then(
         accessToken => accessToken
     );
-    return {
-        authorization: `Bearer ${accessToken}`,
-    };
+    return `Bearer ${accessToken}`;
+};
+
+const getFakedingsToken = async (applicationName: string): Promise<string> => {
+    const clientId = 'dev-gcp:teamfamilie:familie-ks-soknad';
+    const audience = `dev-gcp:teamfamilie:${applicationName}`;
+    const url = `http://fakedings.intern.dev.nav.no/fake/tokenx?client_id=${clientId}&aud=${audience}&acr=Level4&pid=31458931375`;
+    const token = await fetch(url).then(function (body) {
+        return body.text();
+    });
+    return `Bearer ${token}`;
 };
 
 export default attachToken;
