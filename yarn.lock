@@ -1718,73 +1718,54 @@
   resolved "https://npm.pkg.github.com/download/@navikt/ds-tokens/5.11.4/3394f559aa4ca0676b7e902aab971863d06cff73#3394f559aa4ca0676b7e902aab971863d06cff73"
   integrity sha512-tPItY1DAhtPA35/geBAza2I8Nw9kAgVvT220K+dI0ejWSuMdGTkwBwmtRCfi7O9JJ2hHMnVtAWQJ/TyjtwBKJg==
 
-"@navikt/familie-form-elements@^12.0.0":
+"@navikt/familie-form-elements@^15.0.0":
+  version "15.0.0"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-form-elements/15.0.0/e57b16e473f85e3bddaf809644c1412be886ed6e#e57b16e473f85e3bddaf809644c1412be886ed6e"
+  integrity sha512-NGcIgqJL4/mARhHMUI2VENh9xyPzJfzzw8gP/7t85I7kAFaWbREZYqIOWXdCb4tr630Jo7Lp0f+HP+qkzI10DQ==
+  dependencies:
+    classnames "^2.5.1"
+    react-select "^5.8.0"
+
+"@navikt/familie-http@^7.0.4":
+  version "7.0.4"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-http/7.0.4/5571e27ba967246c103dd9434bc1023a1add6cc7#5571e27ba967246c103dd9434bc1023a1add6cc7"
+  integrity sha512-GLLsntg/ez6b70dxIovReHz3xG6DXoFJhbwLn1NXWtgONX0GAnZv8TXeYM97DrnPfBETn0ujHwRRHGzdC9Hk5w==
+  dependencies:
+    "@navikt/familie-typer" "^8.0.2"
+    "@sentry/core" "^7.104.0"
+    constate "^3.3.2"
+
+"@navikt/familie-logging@^7.0.0":
+  version "7.0.0"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-logging/7.0.0/04cf21c20ff7617168fa6cac2e7bab884f33e660#04cf21c20ff7617168fa6cac2e7bab884f33e660"
+  integrity sha512-GbQT+UyhUA0vj1SmDhZobk0bXBaoIl7QaFvTzAAaD6fSkudqp5CGstOha4U0v4+idUHORBJg16FArwx1Odf/qA==
+  dependencies:
+    winston "^3.11.0"
+
+"@navikt/familie-skjema@^8.0.9":
+  version "8.0.9"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-skjema/8.0.9/397526aa4bca15d52c15bc86f75a74a4caafe47d#397526aa4bca15d52c15bc86f75a74a4caafe47d"
+  integrity sha512-nFr5HgabV4ogrUS67VeljDnzCk5R8XkPGdKNYoHu+tnDnAFXqqbzHc73vR7UDjYFpA6Y3KYB/cIOkm9/tR3UIA==
+  dependencies:
+    "@navikt/familie-http" "^7.0.4"
+    "@navikt/familie-typer" "^8.0.2"
+    "@types/deep-equal" "^1.0.4"
+    deep-equal "^2.2.3"
+    hashids "^2.3.0"
+
+"@navikt/familie-sprakvelger@^12.0.0":
   version "12.0.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-form-elements/12.0.0/a333e46e08a5bff4d30c92f1ce990a2b58fe1cb7#a333e46e08a5bff4d30c92f1ce990a2b58fe1cb7"
-  integrity sha512-6k8XoBzgAEfOIaACVDSyWvYEYgXqOskUc1VvY41o8zpDKqgbQ636fw0H1kFaVN2Qq+yKjZUxTRIH5ryhSlcgSA==
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-sprakvelger/12.0.0/9bccb72a790024e0a7f624de29bca428538ab63f#9bccb72a790024e0a7f624de29bca428538ab63f"
+  integrity sha512-HEWTgNjMrRIC3PvuNzsKyRaSKNJPFyjcDAUQgOXF1QmY9jF14a2idP3RUFDRN8mjRh07WHdzJR9LWkBEiyvu0w==
   dependencies:
-    "@types/classnames" "^2.3.1"
-    classnames "^2.3.2"
-    react-select "^5.7.0"
-
-"@navikt/familie-form-elements@^13.0.0":
-  version "13.0.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-form-elements/13.0.0/c3ec85621cb87c35cece49ce4a0d59d17ab0ad7c#c3ec85621cb87c35cece49ce4a0d59d17ab0ad7c"
-  integrity sha512-C7Co3jFGad7TdS7P2QM1l58rb4T82lE31Gx6gOC7MXRaBKTDnd9MJCf8AXazUyjmxUASmWepdSoGo/bgZjtJdA==
-  dependencies:
-    "@types/classnames" "^2.3.1"
-    classnames "^2.3.2"
-    react-select "^5.7.0"
-
-"@navikt/familie-http@6.0.2":
-  version "6.0.2"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-http/6.0.2/98c92e337b3638a76e43b76ad8b2cd74b62855f9#98c92e337b3638a76e43b76ad8b2cd74b62855f9"
-  integrity sha512-eaID3VB2MvGRBNxq7MqZEcikwdDGy7kAgnybzvfP2TVa2LBTJcQLjW/fNYFZ2n2+YG42rIZI1Fu6Kf9nHDj5hQ==
-  dependencies:
-    "@navikt/familie-typer" "^8.0.0"
-    "@sentry/core" "^7.48.0"
-    constate "^3.3.2"
-
-"@navikt/familie-http@^6.0.3":
-  version "6.0.3"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-http/6.0.3/8d3febb968924d03e63ec8f2525a18da1092be8d#8d3febb968924d03e63ec8f2525a18da1092be8d"
-  integrity sha512-BS9F77ykIoBBh+mutFRjTn85I2fgl5Tb6A1wWjH8K6s9oFwGcvweQA0NfW/MnRpV4uxGF7nWV1RREJOFQRxRog==
-  dependencies:
-    "@navikt/familie-typer" "^8.0.1"
-    "@sentry/core" "^7.48.0"
-    constate "^3.3.2"
-
-"@navikt/familie-logging@^6.0.0":
-  version "6.0.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-logging/6.0.0/f7e5d02fd4804328235af51c7376af0592ffbe90#f7e5d02fd4804328235af51c7376af0592ffbe90"
-  integrity sha512-Gx+i1BkxXnupRJyzT/N7cNHnoKYS716V9biArqMbL4q5w8ae5MADMsbLBFWXR/Qw74U1Sc3QI6xEHfzPASTpXQ==
-  dependencies:
-    winston "^3.8.1"
-
-"@navikt/familie-skjema@^7.0.8":
-  version "7.0.10"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-skjema/7.0.10/e632bcde07c8d7f69d8411dd33eac1d75fb20990#e632bcde07c8d7f69d8411dd33eac1d75fb20990"
-  integrity sha512-y9U3cNbk0itoGa7kwD4ILGHV02mEh1K3PAEcvgH2rvm5UDvv6f5BZVgLICoQxVDXo6PtcOGdR0qMY7U8/l9Lpw==
-  dependencies:
-    "@navikt/familie-http" "^6.0.3"
-    "@navikt/familie-typer" "^8.0.1"
-    "@types/deep-equal" "^1.0.1"
-    deep-equal "^2.2.0"
-    hashids "^2.2.10"
-
-"@navikt/familie-sprakvelger@^10.0.0":
-  version "10.0.1"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-sprakvelger/10.0.1/e8948eb8b38481f489c9fb4beb43e2f504367d39#e8948eb8b38481f489c9fb4beb43e2f504367d39"
-  integrity sha512-6cAjRdfyyXGW2jO1YrzyUWyPXb7Gg9A6Aa9PRo3uQRZdmgSGqZC66xmheeZ1Y3Tx/78DFLPpUJbDmWYzei6zJQ==
-  dependencies:
-    "@navikt/familie-form-elements" "^13.0.0"
+    "@navikt/familie-form-elements" "^15.0.0"
     "@types/react-aria-menubutton" "^6.2.9"
     react-aria-menubutton "^7.0.3"
 
-"@navikt/familie-typer@^8.0.0", "@navikt/familie-typer@^8.0.1":
-  version "8.0.1"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-typer/8.0.1/75574867acea945c485ce14faaa3d1d8a6232f02#75574867acea945c485ce14faaa3d1d8a6232f02"
-  integrity sha512-zlOxNLT3fVW9EmQq4n0CtIAdCRMDfJUwhhXuYWkxnFvaa61MCBnMBC52W6+kv+MUwo8DN/8jNkKZkjvWPVxdpA==
+"@navikt/familie-typer@^8.0.2":
+  version "8.0.2"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-typer/8.0.2/21bcc780c35b6a8699d1c52b54e61d83580736f7#21bcc780c35b6a8699d1c52b54e61d83580736f7"
+  integrity sha512-pKSpCzryJE6eiN/Ssox1oLLKPW5ezsT+/gTHbhgxOtM/frFSZLguSjwhgiDp2kovckJ84nxhnQurK6igw8GEHw==
 
 "@navikt/fnrvalidator@^2.0.7":
   version "2.0.7"
@@ -2191,13 +2172,13 @@
     "@sentry/types" "7.102.0"
     "@sentry/utils" "7.102.0"
 
-"@sentry/core@^7.48.0":
-  version "7.93.0"
-  resolved "https://registry.npmjs.org/@sentry/core/-/core-7.93.0.tgz#50a14bf305130dfef51810e4c97fcba4972a57ef"
-  integrity sha512-vZQSUiDn73n+yu2fEcH+Wpm4GbRmtxmnXnYCPgM6IjnXqkVm3awWAkzrheADblx3kmxrRiOlTXYHw9NTWs56fg==
+"@sentry/core@^7.104.0":
+  version "7.107.0"
+  resolved "https://registry.npmjs.org/@sentry/core/-/core-7.107.0.tgz#926838ba2c2861d6bd2bced0232e1f9d1ead6c75"
+  integrity sha512-C7ogye6+KPyBi8NVL0P8Rxx3Ur7Td8ufnjxosVy678lqY+dcYPk/HONROrzUFYW5fMKWL4/KYnwP+x9uHnkDmw==
   dependencies:
-    "@sentry/types" "7.93.0"
-    "@sentry/utils" "7.93.0"
+    "@sentry/types" "7.107.0"
+    "@sentry/utils" "7.107.0"
 
 "@sentry/react@^7.101.1":
   version "7.102.0"
@@ -2225,10 +2206,10 @@
   resolved "https://registry.npmjs.org/@sentry/types/-/types-7.102.0.tgz#b31e9faa54036053ab82c09c3c855035a4889c59"
   integrity sha512-FPfFBP0x3LkPARw1/6cWySLq1djIo8ao3Qo2KNBeE9CHdq8bsS1a8zzjJLuWG4Ww+wieLP8/lY3WTgrCz4jowg==
 
-"@sentry/types@7.93.0":
-  version "7.93.0"
-  resolved "https://registry.npmjs.org/@sentry/types/-/types-7.93.0.tgz#d76d26259b40cd0688e1d634462fbff31476c1ec"
-  integrity sha512-UnzUccNakhFRA/esWBWP+0v7cjNg+RilFBQC03Mv9OEMaZaS29zSbcOGtRzuFOXXLBdbr44BWADqpz3VW0XaNw==
+"@sentry/types@7.107.0":
+  version "7.107.0"
+  resolved "https://registry.npmjs.org/@sentry/types/-/types-7.107.0.tgz#5ba4b472be6ccad9aecd58dbc0141a09dafb68c1"
+  integrity sha512-H7qcPjPSUWHE/Zf5bR1EE24G0pGVuJgrSx8Tvvl5nKEepswMYlbXHRVSDN0gTk/E5Z7cqf+hUBOpkQgZyps77w==
 
 "@sentry/utils@7.102.0":
   version "7.102.0"
@@ -2237,12 +2218,12 @@
   dependencies:
     "@sentry/types" "7.102.0"
 
-"@sentry/utils@7.93.0":
-  version "7.93.0"
-  resolved "https://registry.npmjs.org/@sentry/utils/-/utils-7.93.0.tgz#36225038661fe977baf01e4695ef84794d591e45"
-  integrity sha512-Iovj7tUnbgSkh/WrAaMrd5UuYjW7AzyzZlFDIUrwidsyIdUficjCG2OIxYzh76H6nYIx9SxewW0R54Q6XoB4uA==
+"@sentry/utils@7.107.0":
+  version "7.107.0"
+  resolved "https://registry.npmjs.org/@sentry/utils/-/utils-7.107.0.tgz#b8524539d052a40f9c5f34a8347501f0f81a0751"
+  integrity sha512-C6PbN5gHh73MRHohnReeQ60N8rrLYa9LciHue3Ru2290eSThg4CzsPnx4SzkGpkSeVlhhptKtKZ+hp/ha3iVuw==
   dependencies:
-    "@sentry/types" "7.93.0"
+    "@sentry/types" "7.107.0"
 
 "@sentry/webpack-plugin@^2.14.1":
   version "2.14.2"
@@ -2424,13 +2405,6 @@
     "@types/node" "*"
     "@types/responselike" "^1.0.0"
 
-"@types/classnames@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.npmjs.org/@types/classnames/-/classnames-2.3.1.tgz#3c2467aa0f1a93f1f021e3b9bcf938bd5dfdc0dd"
-  integrity sha512-zeOWb0JGBoVmlQoznvqXbE0tEC/HONsnoUNH19Hc96NFsTAwTXbTqb8FMYkru1F/iqp7a18Ws3nWJvtA1sHD1A==
-  dependencies:
-    classnames "*"
-
 "@types/connect-history-api-fallback@^1.3.5":
   version "1.5.4"
   resolved "https://registry.npmjs.org/@types/connect-history-api-fallback/-/connect-history-api-fallback-1.5.4.tgz#7de71645a103056b48ac3ce07b3520b819c1d5b3"
@@ -2465,7 +2439,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/deep-equal@^1.0.1":
+"@types/deep-equal@^1.0.4":
   version "1.0.4"
   resolved "https://registry.npmjs.org/@types/deep-equal/-/deep-equal-1.0.4.tgz#c0a854be62d6b9fae665137a6639aab53389a147"
   integrity sha512-tqdiS4otQP4KmY0PR3u6KbZ5EWvhNdUoS/jc93UuK23C220lOZ/9TvjfxdPcKvqwwDVtmtSCrnr0p/2dirAxkA==
@@ -4077,10 +4051,15 @@ cjs-module-lexer@^1.0.0:
   resolved "https://registry.npmjs.org/cjs-module-lexer/-/cjs-module-lexer-1.2.3.tgz#6c370ab19f8a3394e318fe682686ec0ac684d107"
   integrity sha512-0TNiGstbQmCFwt4akjjBg5pLRTSyj/PkWQ1ZoO2zntmg9yLqSRxwEa4iCfQLGjqhiqBfOJa7W/E8wfGrTDmlZQ==
 
-classnames@*, classnames@^2.3.2:
+classnames@^2.3.2:
   version "2.3.2"
   resolved "https://registry.npmjs.org/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
   integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
+
+classnames@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.npmjs.org/classnames/-/classnames-2.5.1.tgz#ba774c614be0f016da105c858e7159eae8e7687b"
+  integrity sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==
 
 clean-css@^5.2.2:
   version "5.3.3"
@@ -4854,7 +4833,7 @@ dedent@^1.0.0:
   resolved "https://registry.npmjs.org/dedent/-/dedent-1.5.1.tgz#4f3fc94c8b711e9bb2800d185cd6ad20f2a90aff"
   integrity sha512-+LxW+KLWxu3HW3M2w2ympwtqPrqYRzU8fqi6Fhd18fBALe15blJPI/I4+UHveMVG6lJqB4JNd4UG0S5cnVHwIg==
 
-deep-equal@^2.0.5, deep-equal@^2.2.0:
+deep-equal@^2.0.5, deep-equal@^2.2.3:
   version "2.2.3"
   resolved "https://registry.npmjs.org/deep-equal/-/deep-equal-2.2.3.tgz#af89dafb23a396c7da3e862abc0be27cf51d56e1"
   integrity sha512-ZIwpnevOurS8bpT4192sqAowWM76JDKSHYzMLty3BZGSswgq6pBaH3DhCSW5xVAZICZyKdOBPjwww5wfgT/6PA==
@@ -6378,7 +6357,7 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
-hashids@^2.2.10:
+hashids@^2.3.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/hashids/-/hashids-2.3.0.tgz#af92c9cdb093c0ed3542cf0dcbd6c289125df387"
   integrity sha512-ljM73TE/avEhNnazxaj0Dw3BbEUuLC5yYCQ9RSkSUcT4ZSU6ZebdKCIBJ+xT/DnSYW36E9k82GH1Q6MydSIosQ==
@@ -9588,7 +9567,7 @@ react-router@6.20.1:
   dependencies:
     "@remix-run/router" "1.13.1"
 
-react-select@^5.7.0:
+react-select@^5.8.0:
   version "5.8.0"
   resolved "https://registry.npmjs.org/react-select/-/react-select-5.8.0.tgz#bd5c467a4df223f079dd720be9498076a3f085b5"
   integrity sha512-TfjLDo58XrhP6VG5M/Mi56Us0Yt8X7xD6cDybC7yoRMUNm7BGO7qk8J0TLQOua/prb8vUOtsfnXZwfm30HGsAA==
@@ -11465,19 +11444,19 @@ wildcard@^2.0.0:
   resolved "https://registry.npmjs.org/wildcard/-/wildcard-2.0.1.tgz#5ab10d02487198954836b6349f74fff961e10f67"
   integrity sha512-CC1bOL87PIWSBhDcTrdeLo6eGT7mCFtrg0uIJtqJUFyK+eJnzl8A1niH56uu7KMa5XFrtiV+AQuHO3n7DsHnLQ==
 
-winston-transport@^4.5.0:
-  version "4.6.0"
-  resolved "https://registry.npmjs.org/winston-transport/-/winston-transport-4.6.0.tgz#f1c1a665ad1b366df72199e27892721832a19e1b"
-  integrity sha512-wbBA9PbPAHxKiygo7ub7BYRiKxms0tpfU2ljtWzb3SjRjv5yl6Ozuy/TkXf00HTAt+Uylo3gSkNwzc4ME0wiIg==
+winston-transport@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.npmjs.org/winston-transport/-/winston-transport-4.7.0.tgz#e302e6889e6ccb7f383b926df6936a5b781bd1f0"
+  integrity sha512-ajBj65K5I7denzer2IYW6+2bNIVqLGDHqDw3Ow8Ohh+vdW+rv4MZ6eiDvHoKhfJFZ2auyN8byXieDDJ96ViONg==
   dependencies:
     logform "^2.3.2"
     readable-stream "^3.6.0"
     triple-beam "^1.3.0"
 
-winston@^3.8.1:
-  version "3.11.0"
-  resolved "https://registry.npmjs.org/winston/-/winston-3.11.0.tgz#2d50b0a695a2758bb1c95279f0a88e858163ed91"
-  integrity sha512-L3yR6/MzZAOl0DsysUXHVjOwv8mKZ71TrA/41EIduGpOOV5LQVodqN+QdQ6BS6PJ/RdIshZhq84P/fStEZkk7g==
+winston@^3.11.0:
+  version "3.12.0"
+  resolved "https://registry.npmjs.org/winston/-/winston-3.12.0.tgz#a5d965a41d3dc31be5408f8c66e927958846c0d0"
+  integrity sha512-OwbxKaOlESDi01mC9rkM0dQqQt2I8DAUMRLZ/HpbwvDXm85IryEHgoogy5fziQy38PntgZsLlhAYHz//UPHZ5w==
   dependencies:
     "@colors/colors" "^1.6.0"
     "@dabh/diagnostics" "^2.0.2"
@@ -11489,7 +11468,7 @@ winston@^3.8.1:
     safe-stable-stringify "^2.3.1"
     stack-trace "0.0.x"
     triple-beam "^1.3.0"
-    winston-transport "^4.5.0"
+    winston-transport "^4.7.0"
 
 wrap-ansi@^6.2.0:
   version "6.2.0"
