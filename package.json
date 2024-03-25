@@ -142,7 +142,7 @@
     "@portabletext/types": "^2.0.6",
     "@sentry/webpack-plugin": "^2.14.1",
     "@testing-library/jest-dom": "^6.1.5",
-    "@testing-library/react": "^14.1.2",
+    "@testing-library/react": "^14.2.2",
     "@types/amplitude-js": "^8.16.5",
     "@types/cookie-parser": "^1.4.6",
     "@types/cors": "^2.8.17",
