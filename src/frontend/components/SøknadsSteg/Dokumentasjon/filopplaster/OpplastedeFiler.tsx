@@ -62,7 +62,7 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
                         <Button
                             variant={'tertiary'}
                             onClick={() => slettVedlegg(fil)}
-                            icon={<TrashFillIcon focusable={false} />}
+                            icon={<TrashFillIcon focusable={false} aria-hidden />}
                             iconPosition={'right'}
                         >
                             {plainTekst(tekster().DOKUMENTASJON.slett)}

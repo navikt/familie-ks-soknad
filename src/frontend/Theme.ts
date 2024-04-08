@@ -19,8 +19,8 @@ export const GlobalStyle = createGlobalStyle`
     p,
     li,
     h2 {
-      font-size: 18px;
-      line-height: 26px;
+      font-size: 1.125rem;
+      line-height: 1.625rem;
     }
   }
 

@@ -29,7 +29,7 @@ export function LeggTilKnapp({ onClick, feilmelding, id, children }: Props) {
                 type={'button'}
                 onClick={onClick}
                 $feilmelding={!!feilmelding}
-                icon={<PlusCircleIcon />}
+                icon={<PlusCircleIcon aria-hidden />}
             >
                 {children}
             </StyledButton>

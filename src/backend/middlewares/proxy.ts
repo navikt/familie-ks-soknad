@@ -6,6 +6,10 @@ import { v4 as uuid } from 'uuid';
 
 import { logError, logSecure } from '@navikt/familie-logging';
 
+import { erLokalt } from '../../shared-utils/Miljø';
+
+import { AUTHORIZATION_HEADER } from './tokenProxy';
+
 const restream = (proxyReq: ClientRequest, req: Request, _res: Response) => {
     if (req.body) {
         const bodyData = JSON.stringify(req.body);
@@ -28,7 +32,6 @@ export const doProxy = (targetUrl: string, context: string): RequestHandler => {
         onError: (err: Error, req: Request, res: Response) => {
             logError('Feil under proxy til apiet, se i securelog');
             logSecure('Feil under proxy til apiet', { err, req, res });
-            throw err;
         },
     });
 };
@@ -36,6 +39,15 @@ export const doProxy = (targetUrl: string, context: string): RequestHandler => {
 export const addCallId = (): RequestHandler => {
     return (req: Request, _res: Response, next: NextFunction) => {
         req.headers['nav-call-id'] = req.headers['x-correlation-id'] ?? uuid();
+        next();
+    };
+};
+
+export const fjernAutentiseringHeaderHvisLokalt = (): RequestHandler => {
+    return async (req: Request, _res: Response, next: NextFunction) => {
+        if (erLokalt()) {
+            req.headers[AUTHORIZATION_HEADER] = '';
+        }
         next();
     };
 };

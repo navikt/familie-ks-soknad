@@ -46,7 +46,7 @@ function PeriodeOppsummering({
                     type={'button'}
                     variant={'tertiary'}
                     onClick={() => fjernPeriodeCallback()}
-                    icon={<TrashFillIcon />}
+                    icon={<TrashFillIcon aria-hidden />}
                 >
                     {<TekstBlock block={fjernKnappTekst} />}
                 </StyledButton>

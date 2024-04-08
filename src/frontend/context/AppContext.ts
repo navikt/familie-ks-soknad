@@ -286,7 +286,9 @@ const [AppProvider, useApp] = createUseContext(() => {
                 if (!flettefelter?.land) {
                     throw Error('Flettefeltet land ikke sendt med');
                 }
-                return getName(flettefelter.land, spesifikkLocale ?? valgtLocale);
+                return (
+                    getName(flettefelter.land, spesifikkLocale ?? valgtLocale) ?? flettefelter.land
+                );
         }
     };
 

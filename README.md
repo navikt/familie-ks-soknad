@@ -4,17 +4,23 @@ Frontend - søknad for kontantstøtte.
 Dette er en skinnet kopi av barnetrygdsøknaden (kopiert 2.8.22): https://github.com/navikt/familie-ba-soknad
 ADR-dokument: https://github.com/navikt/familie/blob/master/doc/adr/0008-KS-lager-egen-søknadsdialog-app.md
 
+# Lokal utvikling
+
 ## Avhengigheter
 1. Node versjon >=16
 2. familie-baks-soknad-api (https://github.com/navikt/familie-baks-soknad-api)
 
-## Log in på https://npm.pkg.github.com
-På github -> Settings -> Developer Settings -> Generate New Token
-Select scopes `repo` og `read:packages`
+## Logg inn på https://npm.pkg.github.com
+1. På github -> Settings -> Developer Settings -> Generate New Token
+   Select scopes `repo` og `read:packages`
+2. Eksporter miljøvariabel NPM_TOKEN, f.eks ved å legge til
+   `export NPM_TOKEN=<ditt token>` i ~/.zshrc
 
-eksporter miljøvariabel NPM_TOKEN, f eks ved å legge til
-`export NPM_TOKEN=<ditt token>` i ~/.zshrc
--
+## Legg til token for unleash for lokalmiljø
+1. Generer personlig token på [unleash](https://teamfamilie-unleash-web.nav.cloud.nais.io/profile/personal-api-tokens?sort=createdAt)
+2. Eksporter miljøvariabel UNLEASH_SERVER_API_TOKEN, f.eks ved å legge til
+   `export UNLEASH_SERVER_API_TOKEN=<ditt token>` i ~/.zshrc
+
 ## Kjør lokalt
 1. `yarn install`
 2. `yarn start:dev`
@@ -25,6 +31,9 @@ For å kjøre med mellomlagring må du ha familie-dokument kjørende (https://gi
 
 # Bygg og deploy
 Appen bygges hos github actions, og gir beskjed til nais deploy om å deployere appen i gcp. Alle commits til brancher går til dev miljøet, appen er ikke satt opp i produksjon enda.
+
+# Tekster
+Tekster hentes fra Sanity. Se [repo](https://github.com/navikt/familie-baks-soknad-sanity) og [Sanity studio](https://familie-baks-soknad.sanity.studio/production/structure)
 
 # Feature toggles (Unleash)
 
@@ -67,7 +76,7 @@ export const defaultFeatureToggleValues: EAllFeatureToggles = {
 };
 ```
 
-Toggelen kan derettes tas ibruk på følgende måte:
+Toggelen kan deretter tas ibruk på følgende måte:
 
 ```ts
 const { toggles } = useFeatureToggles();
