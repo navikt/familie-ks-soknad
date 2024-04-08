@@ -1,10 +1,7 @@
-FROM gcr.io/distroless/nodejs:18
-USER root
-USER apprunner
+FROM gcr.io/distroless/nodejs20-debian12
 
 WORKDIR /var/server
 
-COPY src/backend/dist ./dist
 COPY dist ./dist
 
-CMD ["dist/server.js"]
+CMD ["dist/server.cjs"]

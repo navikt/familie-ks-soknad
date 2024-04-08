@@ -3,7 +3,7 @@ import path from 'path';
 import { Configuration } from 'webpack';
 
 const serverConfig: Configuration = {
-    entry: './server.ts',
+    entry: './src/backend/server.ts',
     target: 'node',
     module: {
         rules: [
@@ -24,8 +24,8 @@ const serverConfig: Configuration = {
         extensions: ['.tsx', '.ts', '.js'],
     },
     output: {
-        filename: 'server.js',
-        path: path.resolve(__dirname, 'dist'),
+        filename: 'server.cjs',
+        path: path.resolve(process.cwd(), 'dist'),
     },
 };
 

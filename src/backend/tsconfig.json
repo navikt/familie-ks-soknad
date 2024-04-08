@@ -7,9 +7,4 @@
     "module": "ESNext",
     "moduleResolution": "Node",
   },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  }
 }
