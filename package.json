@@ -13,11 +13,10 @@
     "build:frontend": "yarn set-node-options TS_NODE_PROJECT=src/webpack/tsconfig.json NODE_ENV=production webpack -c src/webpack/webpack.production.config.ts",
     "build:backend": "yarn set-node-options TS_NODE_PROJECT=src/backend/tsconfig.json NODE_ENV=production webpack -c src/backend/webpack.config.ts",
     "build:backend:dev": "yarn set-node-options TS_NODE_PROJECT=src/backend/tsconfig.json NODE_ENV=development webpack -c src/backend/webpack.config.ts",
-    "build:analysis": "yarn set-node-options TS_NODE_PROJECT=src/webpack/tsconfig.json NODE_ENV=production webpack -c src/webpack/webpack.analysis.config.ts",
     "set-node-options": "NODE_OPTIONS='--import=./registerESMLoader.js --es-module-specifier-resolution=node'",
     "test-ci": "CI=true build",
     "test": "jest",
-    "clean": "rm -rf dist src/backend/dist",
+    "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit -p src/frontend/tsconfig.json",
     "prepare": "husky install"
   },
