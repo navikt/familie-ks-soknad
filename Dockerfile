@@ -1,6 +1,6 @@
-FROM gcr.io/distroless/nodejs20-debian12
+FROM gcr.io/distroless/nodejs20-debian12:nonroot
 
-WORKDIR /var/server
+WORKDIR /app
 
 COPY dist ./dist
 
