@@ -97,7 +97,7 @@
     "@portabletext/react": "^3.0.7",
     "@portabletext/toolkit": "^2.0.8",
     "@sanity/client": "^6.15.7",
-    "@sentry/react": "^7.101.1",
+    "@sentry/react": "^7.109.0",
     "amplitude-js": "^8.21.9",
     "axios": "1.6.1",
     "classnames": "^2.5.1",
