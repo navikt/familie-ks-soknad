@@ -129,7 +129,7 @@
     "xss": "^1.0.14"
   },
   "devDependencies": {
-    "@axe-core/react": "^4.8.2",
+    "@axe-core/react": "^4.9.0",
     "@babel/core": "^7.24.3",
     "@babel/plugin-syntax-import-assertions": "^7.24.1",
     "@babel/preset-env": "^7.24.3",
