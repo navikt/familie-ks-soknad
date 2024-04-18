@@ -7,7 +7,7 @@ ADR-dokument: https://github.com/navikt/familie/blob/master/doc/adr/0008-KS-lage
 # Lokal utvikling
 
 ## Avhengigheter
-1. Node versjon >=16
+1. Node versjon >=20
 2. familie-baks-soknad-api (https://github.com/navikt/familie-baks-soknad-api)
 
 ## Logg inn på https://npm.pkg.github.com
