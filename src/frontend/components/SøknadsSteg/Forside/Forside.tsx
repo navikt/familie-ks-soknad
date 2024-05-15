@@ -21,7 +21,7 @@ import FortsettPåSøknad from './FortsettPåSøknad';
 
 const TittelContainer = styled.div`
     && {
-        margin: 4rem 0 2.3rem 0;
+        margin-top: 4rem;
     }
 `;
 
