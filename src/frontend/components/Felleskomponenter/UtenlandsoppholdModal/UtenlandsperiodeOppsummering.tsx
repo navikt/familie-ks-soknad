@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { useSprakContext } from '@navikt/familie-sprakvelger';
-
 import { useApp } from '../../../context/AppContext';
 import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
@@ -12,6 +10,7 @@ import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
+import { useSpråk } from '../Dekoratøren/SpråkContext';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import TekstBlock from '../TekstBlock';
 
@@ -37,7 +36,7 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
     personType,
     barn,
 }) => {
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const { plainTekst, tekster } = useApp();
     const {
         oppholdsland,

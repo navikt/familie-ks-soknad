@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { useSprakContext } from '@navikt/familie-sprakvelger';
-
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
@@ -9,6 +7,7 @@ import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barne
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
+import { useSpråk } from '../Dekoratøren/SpråkContext';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import TekstBlock from '../TekstBlock';
 
@@ -36,7 +35,7 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
         slutterIBarnehagen,
     } = barnehageplassPeriode;
 
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const { tekster, plainTekst } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster().FELLES.modaler.barnehageplass;

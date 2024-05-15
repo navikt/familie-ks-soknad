@@ -4,11 +4,12 @@ import { PortableText } from '@portabletext/react';
 import styled from 'styled-components';
 
 import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds-react';
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../context/AppContext';
 import { LocaleRecordBlock, Typografi } from '../../typer/common';
 import { FlettefeltVerdier } from '../../typer/kontrakt/generelle';
+
+import { useSpråk } from './Dekoratøren/SpråkContext';
 
 const StyledLabel = styled(Label)`
     display: block;
@@ -76,7 +77,7 @@ const TekstBlock: React.FC<{
     flettefelter?: FlettefeltVerdier;
     typografi?: Typografi;
 }> = ({ block, flettefelter, typografi }) => {
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const { flettefeltTilTekst } = useApp();
 
     return block ? (

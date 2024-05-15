@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
@@ -11,6 +10,7 @@ import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtels
 import { formaterDato } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
+import { useSpråk } from '../Dekoratøren/SpråkContext';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import TekstBlock from '../TekstBlock';
 
@@ -52,7 +52,7 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
     const periodenErAvsluttet =
         mottarEøsKontantstøtteNå.svar === ESvar.NEI ||
         (personType === PersonType.andreForelder && erDød);
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
 
     return (
         <PeriodeOppsummering

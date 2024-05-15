@@ -1,10 +1,10 @@
 import { AxiosError } from 'axios';
 
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 import { Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import Miljø from '../../shared-utils/Miljø';
 import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon';
+import { useSpråk } from '../components/Felleskomponenter/Dekoratøren/SpråkContext';
 import { useApp } from '../context/AppContext';
 import { ISøknadKontrakt } from '../typer/kontrakt/søknadKontrakt';
 import { IKvittering } from '../typer/kvittering';
@@ -23,12 +23,12 @@ export const useSendInnSkjema = (): {
         tilRestLocaleRecord,
     } = useApp();
     const { soknadApiProxyUrl } = Miljø();
-    const [valgtSpråk] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const sendInnSkjema = async (): Promise<[boolean, ISøknadKontrakt]> => {
         settInnsendingStatus({ status: RessursStatus.HENTER });
 
         const formatert: ISøknadKontrakt = dataISøknadKontraktFormat(
-            valgtSpråk,
+            valgtLocale,
             søknad,
             tekster(),
             tilRestLocaleRecord

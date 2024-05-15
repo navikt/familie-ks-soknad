@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
@@ -11,6 +10,7 @@ import { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/an
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
+import { useSpråk } from '../Dekoratøren/SpråkContext';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import TekstBlock from '../TekstBlock';
 
@@ -31,7 +31,7 @@ export const UtbetalingsperiodeOppsummering: React.FC<UtbetalingsperiodeOppsumme
     barn = undefined,
 }) => {
     const { tekster, plainTekst } = useApp();
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const { fårUtbetalingNå, utbetalingLand, utbetalingFraDato, utbetalingTilDato } =
         utbetalingsperiode;
 

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
@@ -10,6 +9,7 @@ import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/person
 import { formaterDato } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
+import { useSpråk } from '../Dekoratøren/SpråkContext';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import TekstBlock from '../TekstBlock';
 
@@ -31,7 +31,7 @@ export const PensjonsperiodeOppsummering: React.FC<PensjonsperiodeOppsummeringPr
     erDød = false,
     barn = undefined,
 }) => {
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const { tekster } = useApp();
     const teksterForModal = tekster().FELLES.modaler.pensjonsperiode[personType];
 

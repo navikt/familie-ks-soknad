@@ -9,7 +9,6 @@ import { RessursStatus } from '@navikt/familie-typer';
 import { useLastRessurserContext } from '../../context/LastRessurserContext';
 import { useSanity } from '../../context/SanityContext';
 import { Typografi } from '../../typer/common';
-import { DekoratørenSpråkHandler } from '../Felleskomponenter/Dekoratøren/DekoratørenSpråkHandler';
 import { Feilside } from '../Felleskomponenter/Feilside/Feilside';
 import InnholdContainer from '../Felleskomponenter/InnholdContainer/InnholdContainer';
 import SystemetLaster from '../Felleskomponenter/SystemetLaster/SystemetLaster';
@@ -42,7 +41,6 @@ export const DisabledApp: React.FC = () => {
 
     return (
         <main>
-            <DekoratørenSpråkHandler />
             <InnholdContainer>
                 {
                     // TODO: Dekoratøren språk-handling fra PR: #265

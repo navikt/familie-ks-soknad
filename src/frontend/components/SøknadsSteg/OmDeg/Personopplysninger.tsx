@@ -3,7 +3,6 @@ import React from 'react';
 import { Alpha3Code } from 'i18n-iso-countries';
 
 import { BodyShort, Label } from '@navikt/ds-react';
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
@@ -11,11 +10,12 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { genererAdresseVisning } from '../../../utils/adresse';
 import { landkodeTilSpråk, sivilstandTilSanitySivilstandApiKey } from '../../../utils/språk';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
+import { useSpråk } from '../../Felleskomponenter/Dekoratøren/SpråkContext';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 export const Personopplysninger: React.FC = () => {
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
 
     const { søknad, tekster, plainTekst } = useApp();
     const søker = søknad.søker;

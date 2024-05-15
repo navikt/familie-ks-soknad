@@ -3,8 +3,8 @@ import React, { ReactNode } from 'react';
 import * as Sentry from '@sentry/react';
 
 import { HttpProvider } from '@navikt/familie-http';
-import { LocaleType, SprakProvider } from '@navikt/familie-sprakvelger';
 
+import { SpråkProvider } from './components/Felleskomponenter/Dekoratøren/SpråkContext';
 import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
 import { LastRessurserProvider } from './context/LastRessurserContext';
 import { SanityProvider } from './context/SanityContext';
@@ -18,7 +18,7 @@ interface Props {
 function FellesWrapper({ children }: Props) {
     return (
         <React.StrictMode>
-            <SprakProvider defaultLocale={LocaleType.nb}>
+            <SpråkProvider>
                 <HttpProvider>
                     <Sentry.ErrorBoundary
                         fallback={() => <Feilside />}
@@ -33,7 +33,7 @@ function FellesWrapper({ children }: Props) {
                         </LastRessurserProvider>
                     </Sentry.ErrorBoundary>
                 </HttpProvider>
-            </SprakProvider>
+            </SpråkProvider>
         </React.StrictMode>
     );
 }

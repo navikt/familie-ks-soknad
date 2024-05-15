@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
 import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
@@ -11,6 +10,7 @@ import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbei
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
+import { useSpråk } from '../Dekoratøren/SpråkContext';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import TekstBlock from '../TekstBlock';
 
@@ -33,7 +33,7 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
     barn,
 }) => {
     const { tekster, plainTekst } = useApp();
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const {
         arbeidsperiodeAvsluttet,
         arbeidsperiodeland,

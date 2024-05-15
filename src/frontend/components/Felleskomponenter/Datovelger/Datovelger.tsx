@@ -4,7 +4,6 @@ import { formatISO, isAfter, startOfDay } from 'date-fns';
 
 import { BodyShort, ErrorMessage, DatePicker, useDatepicker } from '@navikt/ds-react';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
 import { ISODateString } from '../../../typer/common';
@@ -17,6 +16,7 @@ import {
     tidenesEnde,
     tidenesMorgen,
 } from '../../../utils/dato';
+import { useSpråk } from '../Dekoratøren/SpråkContext';
 
 interface DatoVelgerProps {
     felt: Felt<ISODateString>;
@@ -43,7 +43,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     dynamisk = false,
     strategy = 'fixed',
 }) => {
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const { tekster, plainTekst } = useApp();
     const { datoformatHjelpetekst, datoformatPlaceholder } = tekster().FELLES.hjelpeteksterForInput;
 

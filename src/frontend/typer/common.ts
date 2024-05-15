@@ -1,7 +1,5 @@
 import { PortableTextBlock } from '@portabletext/types';
 
-import { LocaleType } from '@navikt/familie-sprakvelger';
-
 export type ISODateString = string;
 
 export enum AlternativtSvarForInput {
@@ -35,4 +33,10 @@ export enum Typografi {
     Label = 'Label',
     Detail = 'Detail',
     HeadingH2 = 'HeadingH2',
+}
+
+export enum LocaleType {
+    en = 'en',
+    nb = 'nb',
+    nn = 'nn',
 }

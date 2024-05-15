@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../../../context/AppContext';
 import { useSteg } from '../../../../../context/StegContext';
@@ -10,6 +9,7 @@ import { FlettefeltVerdier } from '../../../../../typer/kontrakt/generelle';
 import { PersonType } from '../../../../../typer/personType';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
 import { BarnehageplassPeriodeOppsummering } from '../../../../Felleskomponenter/Barnehagemodal/BarnehageplassPeriodeOppsummering';
+import { useSpråk } from '../../../../Felleskomponenter/Dekoratøren/SpråkContext';
 import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
 import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
 import { useOmBarnet } from '../../../OmBarnet/useOmBarnet';
@@ -29,7 +29,7 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
     const { hentStegObjektForBarn } = useSteg();
     const { tekster } = useApp();
     const omBarnetTekster = tekster().OM_BARNET;
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const omBarnetHook = useOmBarnet(barn.id);
 
     const flettefelter: FlettefeltVerdier = { barnetsNavn: barn.navn };

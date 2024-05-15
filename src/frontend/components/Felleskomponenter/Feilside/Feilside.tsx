@@ -1,15 +1,16 @@
 import React from 'react';
 
 import { BodyShort } from '@navikt/ds-react';
-import { LocaleType, useSprakContext } from '@navikt/familie-sprakvelger';
+import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import AlertStripe from '../AlertStripe/AlertStripe';
+import { useSpråk } from '../Dekoratøren/SpråkContext';
 
 export const Feilside: React.FC = () => {
-    const [valgtSpråk] = useSprakContext();
+    const { valgtLocale } = useSpråk();
 
     const feilsidetekstPåRiktigSpråk = () => {
-        switch (valgtSpråk) {
+        switch (valgtLocale) {
             case LocaleType.nb:
                 return 'En feil har oppstått! Vennligst prøv igjen. Hvis det fremdeles er problem må du bruke PDF/papir-skjema for å søke.';
             case LocaleType.nn:
