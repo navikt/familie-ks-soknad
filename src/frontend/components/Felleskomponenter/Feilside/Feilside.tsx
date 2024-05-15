@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { BodyShort } from '@navikt/ds-react';
-import { LocaleType } from '@navikt/familie-sprakvelger';
 
+import { LocaleType } from '../../../typer/common';
 import AlertStripe from '../AlertStripe/AlertStripe';
 import { useSpråk } from '../Dekoratøren/SpråkContext';
 

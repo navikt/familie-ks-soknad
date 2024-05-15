@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import createUseContext from 'constate';
 import { Alpha3Code, getName } from 'i18n-iso-countries';
 
-import { LocaleType } from '@navikt/familie-sprakvelger';
 import {
     byggHenterRessurs,
     byggTomRessurs,
@@ -13,6 +12,7 @@ import {
 
 import Miljø, { basePath } from '../../shared-utils/Miljø';
 import { useSpråk } from '../components/Felleskomponenter/Dekoratøren/SpråkContext';
+import { LocaleType } from '../typer/common';
 import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { IMellomlagretKontantstøtte } from '../typer/mellomlager';
