@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { GuidePanel } from '@navikt/ds-react';
-import { LocaleType, Sprakvelger } from '@navikt/familie-sprakvelger';
+import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import Miljø from '../../../../shared-utils/Miljø';
 import { useApp } from '../../../context/AppContext';
@@ -25,10 +25,6 @@ const TittelContainer = styled.div`
     }
 `;
 
-const StyledSpråkvelger = styled(Sprakvelger)`
-    margin: auto;
-`;
-
 const Forside: React.FC = () => {
     const { mellomlagretVerdi, settNåværendeRoute, tekster } = useApp();
 
@@ -45,7 +41,16 @@ const Forside: React.FC = () => {
 
     useEffect(() => {
         settNåværendeRoute(RouteEnum.Forside);
+        visSpråkvelger();
     }, []);
+
+    const visSpråkvelger = () => {
+        setAvailableLanguages([
+            { locale: 'nb', handleInApp: true },
+            { locale: 'nn', handleInApp: true },
+            { locale: 'en', handleInApp: true },
+        ]).then();
+    };
 
     const kanFortsettePåSøknad =
         mellomlagretVerdi && mellomlagretVerdi.modellVersjon === Miljø().modellVersjon;
@@ -59,8 +64,6 @@ const Forside: React.FC = () => {
             <TittelContainer>
                 <TekstBlock block={soeknadstittel} typografi={Typografi.ForsideHeadingH1} />
             </TittelContainer>
-
-            <StyledSpråkvelger støttedeSprak={[LocaleType.nn, LocaleType.nb, LocaleType.en]} />
 
             <Informasjonsbolk>
                 <TekstBlock block={punktliste} />
