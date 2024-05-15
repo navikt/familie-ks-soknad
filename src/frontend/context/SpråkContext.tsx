@@ -20,7 +20,7 @@ export const [SpråkProvider, useSpråk] = createUseContext(() => {
     useEffect(() => {
         // Bryr oss egenlig ikke om hva som skjer etterpå men intellij klager på ignorert promise
         setParams({ language: defaultSpråk }).then();
-    }, [valgtLocale]);
+    }, []);
 
     onLanguageSelect(language => {
         settValgtLocale(language.locale as LocaleType);
