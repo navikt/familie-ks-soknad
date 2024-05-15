@@ -5,12 +5,12 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { BodyShort, Label } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
+import { useSpråk } from '../../../context/SpråkContext';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { genererAdresseVisning } from '../../../utils/adresse';
 import { landkodeTilSpråk, sivilstandTilSanitySivilstandApiKey } from '../../../utils/språk';
 import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
-import { useSpråk } from '../../Felleskomponenter/Dekoratøren/SpråkContext';
 import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 

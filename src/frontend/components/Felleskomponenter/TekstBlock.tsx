@@ -6,10 +6,9 @@ import styled from 'styled-components';
 import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds-react';
 
 import { useApp } from '../../context/AppContext';
+import { useSpråk } from '../../context/SpråkContext';
 import { LocaleRecordBlock, Typografi } from '../../typer/common';
 import { FlettefeltVerdier } from '../../typer/kontrakt/generelle';
-
-import { useSpråk } from './Dekoratøren/SpråkContext';
 
 const StyledLabel = styled(Label)`
     display: block;

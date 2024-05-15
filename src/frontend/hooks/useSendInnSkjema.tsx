@@ -4,8 +4,8 @@ import { Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import Miljø from '../../shared-utils/Miljø';
 import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon';
-import { useSpråk } from '../components/Felleskomponenter/Dekoratøren/SpråkContext';
 import { useApp } from '../context/AppContext';
+import { useSpråk } from '../context/SpråkContext';
 import { ISøknadKontrakt } from '../typer/kontrakt/søknadKontrakt';
 import { IKvittering } from '../typer/kvittering';
 import { dataISøknadKontraktFormat } from '../utils/mappingTilKontrakt/søknad';

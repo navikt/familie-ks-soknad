@@ -3,13 +3,13 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../../../context/AppContext';
+import { useSpråk } from '../../../../../context/SpråkContext';
 import { useSteg } from '../../../../../context/StegContext';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../../typer/barn';
 import { FlettefeltVerdier } from '../../../../../typer/kontrakt/generelle';
 import { PersonType } from '../../../../../typer/personType';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
 import { BarnehageplassPeriodeOppsummering } from '../../../../Felleskomponenter/Barnehagemodal/BarnehageplassPeriodeOppsummering';
-import { useSpråk } from '../../../../Felleskomponenter/Dekoratøren/SpråkContext';
 import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
 import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
 import { useOmBarnet } from '../../../OmBarnet/useOmBarnet';

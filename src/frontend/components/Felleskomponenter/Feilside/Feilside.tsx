@@ -2,9 +2,9 @@ import React from 'react';
 
 import { BodyShort } from '@navikt/ds-react';
 
+import { useSpråk } from '../../../context/SpråkContext';
 import { LocaleType } from '../../../typer/common';
 import AlertStripe from '../AlertStripe/AlertStripe';
-import { useSpråk } from '../Dekoratøren/SpråkContext';
 
 export const Feilside: React.FC = () => {
     const { valgtLocale } = useSpråk();

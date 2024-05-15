@@ -6,8 +6,8 @@ import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
+import { useSpråk } from '../../../context/SpråkContext';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
-import { useSpråk } from '../Dekoratøren/SpråkContext';
 
 import StyledDropdown from './StyledDropdown';
 

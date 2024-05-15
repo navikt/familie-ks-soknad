@@ -6,7 +6,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { HttpProvider } from '@navikt/familie-http';
 import { Ressurs, RessursStatus } from '@navikt/familie-typer';
 
-import { SpråkProvider } from '../components/Felleskomponenter/Dekoratøren/SpråkContext';
 import { DinLivssituasjonSpørsmålId } from '../components/SøknadsSteg/DinLivssituasjon/spørsmål';
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
 import * as appContext from '../context/AppContext';
@@ -23,6 +22,7 @@ import * as routesContext from '../context/RoutesContext';
 import { getRoutes, RoutesProvider } from '../context/RoutesContext';
 import * as sanityContext from '../context/SanityContext';
 import { SanityProvider } from '../context/SanityContext';
+import { SpråkProvider } from '../context/SpråkContext';
 import { StegProvider } from '../context/StegContext';
 import { LocaleType } from '../typer/common';
 import { ESivilstand } from '../typer/kontrakt/generelle';
