@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 
 import { onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
 
-import { LocaleType } from '../typer/common';
+import { erGyldigSpråk, LocaleType } from '../typer/common';
 
 const dekoratorLanguageCookieName = 'decorator-language';
 
@@ -13,7 +13,7 @@ export const [SpråkProvider, useSpråk] = createUseContext(() => {
     const [cookies] = useCookies([dekoratorLanguageCookieName]);
     const { [dekoratorLanguageCookieName]: dekoratørSpråk } = cookies;
 
-    const defaultSpråk = (dekoratørSpråk as LocaleType) ?? LocaleType.nb;
+    const defaultSpråk = erGyldigSpråk(dekoratørSpråk) ? dekoratørSpråk : LocaleType.nb;
 
     const [valgtLocale, settValgtLocale] = useState<LocaleType>(defaultSpråk);
 

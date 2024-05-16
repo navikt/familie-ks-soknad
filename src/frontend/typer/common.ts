@@ -40,3 +40,6 @@ export enum LocaleType {
     nb = 'nb',
     nn = 'nn',
 }
+
+export const erGyldigSpråk = (språk: string): språk is LocaleType =>
+    Object.values(LocaleType).includes(språk as LocaleType);
