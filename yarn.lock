@@ -1712,15 +1712,6 @@
     deep-equal "^2.2.3"
     hashids "^2.3.0"
 
-"@navikt/familie-sprakvelger@^12.0.0":
-  version "12.0.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-sprakvelger/12.0.0/9bccb72a790024e0a7f624de29bca428538ab63f#9bccb72a790024e0a7f624de29bca428538ab63f"
-  integrity sha512-HEWTgNjMrRIC3PvuNzsKyRaSKNJPFyjcDAUQgOXF1QmY9jF14a2idP3RUFDRN8mjRh07WHdzJR9LWkBEiyvu0w==
-  dependencies:
-    "@navikt/familie-form-elements" "^15.0.0"
-    "@types/react-aria-menubutton" "^6.2.9"
-    react-aria-menubutton "^7.0.3"
-
 "@navikt/familie-typer@^8.0.2":
   version "8.0.2"
   resolved "https://npm.pkg.github.com/download/@navikt/familie-typer/8.0.2/21bcc780c35b6a8699d1c52b54e61d83580736f7#21bcc780c35b6a8699d1c52b54e61d83580736f7"
@@ -2603,13 +2594,6 @@
   version "1.2.7"
   resolved "https://registry.npmjs.org/@types/range-parser/-/range-parser-1.2.7.tgz#50ae4353eaaddc04044279812f52c8c65857dbcb"
   integrity sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==
-
-"@types/react-aria-menubutton@^6.2.9":
-  version "6.2.13"
-  resolved "https://registry.npmjs.org/@types/react-aria-menubutton/-/react-aria-menubutton-6.2.13.tgz#31ebcb4fc356066dbc8a5ab273a652f6f0ff50c1"
-  integrity sha512-olSjeIzNzn0KrbShOmBwchHS++khDXBYFTO2U802o8LDHANLms7zUsJhdecfqFpwdFMHxFiMMlCn2nJNCEHWlQ==
-  dependencies:
-    "@types/react" "*"
 
 "@types/react-collapse@^5.0.4":
   version "5.0.4"
@@ -5928,11 +5912,6 @@ fn.name@1.x.x:
   version "1.1.0"
   resolved "https://registry.npmjs.org/fn.name/-/fn.name-1.1.0.tgz#26cad8017967aea8731bc42961d04a3d5988accc"
   integrity sha512-GRnmB5gPyJpAhTQdSZTSp9uaPSvl09KoYcMQtsB9rQoOmzs9dH6ffeccH+Z+cv6P68Hu5bC6JjRh4Ah/mHSNRw==
-
-focus-group@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.npmjs.org/focus-group/-/focus-group-0.3.1.tgz#e0f32ed86b0dabdd6ffcebdf898ecb32e47fedce"
-  integrity sha512-IA01dzk2cStQso/qnt2rWhXCFBZlBfjZmohB9mXUx9feEaJcORAK0FQGvwaApsNNGwzEnqrp/2qTR4lq8PXfnQ==
 
 follow-redirects@^1.0.0, follow-redirects@^1.15.0, follow-redirects@^1.15.6:
   version "1.15.6"
@@ -9519,15 +9498,6 @@ raw-body@2.5.2:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-aria-menubutton@^7.0.3:
-  version "7.0.3"
-  resolved "https://registry.npmjs.org/react-aria-menubutton/-/react-aria-menubutton-7.0.3.tgz#9f3c96e8f0b9469dc1d5dab7cf244b73069f2882"
-  integrity sha512-Ql4W3rNiZmuVJ1wQ0UUeV4OZX3IZq2evsfEqJGefSMdfkK6o8X/6Ufxrzu0wL+/Dr7JUY3xnrnIQimSCFghlCQ==
-  dependencies:
-    focus-group "^0.3.1"
-    prop-types "^15.6.0"
-    teeny-tap "^0.2.0"
-
 react-collapse@^5.1.1:
   version "5.1.1"
   resolved "https://registry.npmjs.org/react-collapse/-/react-collapse-5.1.1.tgz#a2fa08ef13f372141b02e6a7d49ef72427bcbc2b"
@@ -10719,11 +10689,6 @@ tar@^6.1.11:
     minizlib "^2.1.1"
     mkdirp "^1.0.3"
     yallist "^4.0.0"
-
-teeny-tap@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.npmjs.org/teeny-tap/-/teeny-tap-0.2.0.tgz#167e645182d06ac222d62bb2ab67947a70a58a68"
-  integrity sha512-HnA3I2sxRQe/SZgQTQgQvvA17DhfzhBJ1LfSOXZ5VUTbxGLvnAqUef84ZGNNSEbk1ZMEIDeghTHZagJ7LifAgg==
 
 terser-webpack-plugin@^5.3.10, terser-webpack-plugin@^5.3.9:
   version "5.3.10"

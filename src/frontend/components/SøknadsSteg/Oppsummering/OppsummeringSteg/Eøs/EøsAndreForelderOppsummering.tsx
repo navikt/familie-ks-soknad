@@ -2,9 +2,9 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../../../context/AppContext';
+import { useSpråk } from '../../../../../context/SpråkContext';
 import {
     andreForelderDataKeySpørsmål,
     barnDataKeySpørsmål,
@@ -43,7 +43,7 @@ const EøsAndreForelderOppsummering: React.FC<{
         ytelseFraAnnetLandAndreForelder,
         ytelseFraAnnetLandAndreForelderGjenlevende,
     } = tekster().EØS_FOR_BARN;
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
 
     const andreForelderErDød = barn[barnDataKeySpørsmål.andreForelderErDød].svar === ESvar.JA;
 

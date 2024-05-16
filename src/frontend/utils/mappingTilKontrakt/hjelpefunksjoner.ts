@@ -1,7 +1,11 @@
 import { ESvar } from '@navikt/familie-form-elements';
-import { LocaleType } from '@navikt/familie-sprakvelger';
 
-import { AlternativtSvarForInput, LocaleRecordBlock, LocaleRecordString } from '../../typer/common';
+import {
+    AlternativtSvarForInput,
+    LocaleRecordBlock,
+    LocaleRecordString,
+    LocaleType,
+} from '../../typer/common';
 import {
     FlettefeltVerdier,
     ISøknadsfelt,

@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components';
 
 import { Stepper } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
+import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import { useApp } from '../../../context/AppContext';
 import { useAppNavigation } from '../../../context/AppNavigationContext';
@@ -123,11 +124,16 @@ function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
                 felt.validerOgSettFelt(felt.verdi);
             });
         }
+        skjulSpråkvelger();
     }, []);
 
     useEffect(() => {
         modellVersjonOppdatert && !erModellVersjonModalÅpen && åpneModellVersjonModal();
     }, [modellVersjonOppdatert]);
+
+    const skjulSpråkvelger = () => {
+        setAvailableLanguages([]).then();
+    };
 
     const håndterAvbryt = () => {
         gåTilbakeTilStart();

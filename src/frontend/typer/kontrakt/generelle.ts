@@ -1,8 +1,6 @@
 import { Alpha3Code } from 'i18n-iso-countries';
 
-import { LocaleType } from '@navikt/familie-sprakvelger';
-
-import { LocaleRecordBlock, LocaleRecordString } from '../common';
+import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../common';
 
 export interface ISøknadsfelt<T> {
     label: Record<LocaleType, string>;
