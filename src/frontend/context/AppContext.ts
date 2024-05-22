@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import createUseContext from 'constate';
 import { Alpha3Code, getName } from 'i18n-iso-countries';
 
-import { LocaleType, useSprakContext } from '@navikt/familie-sprakvelger';
 import {
     byggHenterRessurs,
     byggTomRessurs,
@@ -12,6 +11,7 @@ import {
 } from '@navikt/familie-typer';
 
 import Miljø, { basePath } from '../../shared-utils/Miljø';
+import { LocaleType } from '../typer/common';
 import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { IMellomlagretKontantstøtte } from '../typer/mellomlager';
@@ -29,9 +29,10 @@ import { useInnloggetContext } from './InnloggetContext';
 import { useLastRessurserContext } from './LastRessurserContext';
 import { hentSluttbrukerFraPdl } from './pdl';
 import { useSanity } from './SanityContext';
+import { useSpråk } from './SpråkContext';
 
 const [AppProvider, useApp] = createUseContext(() => {
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const { axiosRequest, lasterRessurser } = useLastRessurserContext();
     const { innloggetStatus } = useInnloggetContext();
     const [sluttbruker, settSluttbruker] = useState(byggTomRessurs<ISøkerRespons>());

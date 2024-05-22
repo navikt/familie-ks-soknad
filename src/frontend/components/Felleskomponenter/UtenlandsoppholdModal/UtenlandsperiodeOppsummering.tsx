@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { useSprakContext } from '@navikt/familie-sprakvelger';
-
 import { useApp } from '../../../context/AppContext';
+import { useSpråk } from '../../../context/SpråkContext';
 import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps } from '../../../typer/personType';
@@ -37,7 +36,7 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
     personType,
     barn,
 }) => {
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const { plainTekst, tekster } = useApp();
     const {
         oppholdsland,

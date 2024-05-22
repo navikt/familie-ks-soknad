@@ -62,13 +62,13 @@ const Miljø = (): MiljøProps => {
     } else {
         return {
             sanityDataset: 'test',
-            soknadApiProxyUrl: `http://localhost:3000/api`,
+            soknadApiProxyUrl: `http://localhost:3000${basePath}api`,
             soknadApiUrl: 'http://localhost:8080/api',
-            dokumentProxyUrl: `http://localhost:3000/dokument`,
+            dokumentProxyUrl: `http://localhost:3000${basePath}dokument`,
             dokumentUrl: `http://localhost:8082/familie/dokument/api`,
             modellVersjon: modellVersjon,
             wonderwallUrl: '',
-            oauthCallbackUri: 'http://localhost:3000/',
+            oauthCallbackUri: `http://localhost:3000${basePath}`,
             port: 55554,
         };
     }

@@ -1,9 +1,8 @@
 import { ESvar } from '@navikt/familie-form-elements';
-import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { IBarnMedISøknad } from '../../typer/barn';
-import { LocaleRecordBlock, LocaleRecordString } from '../../typer/common';
+import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../typer/common';
 import { ESivilstand, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { ISøknadKontrakt } from '../../typer/kontrakt/søknadKontrakt';
 import { ISøker } from '../../typer/person';

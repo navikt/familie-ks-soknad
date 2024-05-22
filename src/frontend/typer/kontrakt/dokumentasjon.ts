@@ -1,4 +1,4 @@
-import { LocaleType } from '@navikt/familie-sprakvelger';
+import { LocaleType } from '../common';
 
 export enum Dokumentasjonsbehov {
     AVTALE_DELT_BOSTED = 'AVTALE_DELT_BOSTED',

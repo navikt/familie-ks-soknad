@@ -1,7 +1,5 @@
 import { PortableTextBlock } from '@portabletext/types';
 
-import { LocaleType } from '@navikt/familie-sprakvelger';
-
 export type ISODateString = string;
 
 export enum AlternativtSvarForInput {
@@ -36,3 +34,12 @@ export enum Typografi {
     Detail = 'Detail',
     HeadingH2 = 'HeadingH2',
 }
+
+export enum LocaleType {
+    en = 'en',
+    nb = 'nb',
+    nn = 'nn',
+}
+
+export const erGyldigSpråk = (språk: string): språk is LocaleType =>
+    Object.values(LocaleType).includes(språk as LocaleType);

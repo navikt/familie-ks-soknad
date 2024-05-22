@@ -3,7 +3,6 @@ import React from 'react';
 import classNames from 'classnames';
 import { Route, Routes, useParams } from 'react-router-dom';
 
-import { DekoratørenSpråkHandler } from './components/Felleskomponenter/Dekoratøren/DekoratørenSpråkHandler';
 import RedirectTilStart from './components/Felleskomponenter/RedirectTilStart/RedirectTilStart';
 import Helse from './components/Helse/Helse';
 import DinLivssituasjon from './components/SøknadsSteg/DinLivssituasjon/DinLivssituasjon';
@@ -77,7 +76,6 @@ const Søknad = () => {
 
     return (
         <div className={classNames(systemetLaster() && 'blur')}>
-            <DekoratørenSpråkHandler />
             <Routes>
                 <Route path={'/helse'} element={<Helse />} />
                 <Route path={'/'} element={<Forside />} />

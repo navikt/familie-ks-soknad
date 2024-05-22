@@ -16,8 +16,12 @@ import { konfigurerAllFeatureTogglesEndpoint } from './routes/feature-toggles';
 import { konfigurerModellVersjonEndpoint } from './routes/modellversjon';
 import { konfigurerNais } from './routes/nais';
 import { konfigurerStatic } from './routes/static';
+import { initializeUnleash } from './utils/unleash';
 
 dotenv.config();
+
+initializeUnleash();
+
 const app = express();
 
 app.disable('x-powered-by');
