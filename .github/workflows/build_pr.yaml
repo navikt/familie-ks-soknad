@@ -2,6 +2,8 @@ name: Build, push, and deploy app to dev
 
 on:
   workflow_dispatch:
+  pull_request:
+    types: [ opened, synchronize, reopened, ready_for_review ]
 
 env:
   BASE_PATH: /familie/kontantstotte/soknad/
@@ -89,22 +91,3 @@ jobs:
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
     outputs:
       image: ${{ steps.docker-push.outputs.image }}
-
-  deploy:
-    name: Deploy til dev gcp
-    runs-on: ubuntu-latest
-    permissions:
-      contents: "read"
-      id-token: "write"
-    needs:
-      - bygg
-      - test
-    steps:
-      - uses: actions/checkout@v4
-      - uses: nais/deploy/actions/deploy@v2
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: dev-gcp
-          RESOURCE: build_n_deploy/naiserator/naiserator_dev.yaml
-          VAR: base_path=${{ env.BASE_PATH }}
-          IMAGE: ${{ needs.bygg.outputs.image }}
