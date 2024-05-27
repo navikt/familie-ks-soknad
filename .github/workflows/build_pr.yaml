@@ -1,4 +1,4 @@
-name: Build, push, and deploy app to dev
+name: Build PR
 
 on:
   workflow_dispatch:
@@ -58,7 +58,7 @@ jobs:
     
 
   bygg:
-    name: Bygg app/image og push til GitHub
+    name: Bygg app
     if: ${{ github.actor != 'dependabot[bot]' }}
     runs-on: ubuntu-latest
     permissions:
@@ -80,14 +80,3 @@ jobs:
         run: |
           yarn --prefer-offline --frozen-lockfile
           yarn build
-      - uses: nais/docker-build-push@v0
-        id: docker-push
-        with:
-          team: teamfamilie
-          push_image: true
-          dockerfile: Dockerfile
-          docker_context: .
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-    outputs:
-      image: ${{ steps.docker-push.outputs.image }}
