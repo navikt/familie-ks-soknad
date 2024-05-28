@@ -2,9 +2,6 @@ name: Build, push, and deploy app to dev
 
 on:
   workflow_dispatch:
-  push:
-    branches-ignore:
-      - 'main'
 
 env:
   BASE_PATH: /familie/kontantstotte/soknad/
