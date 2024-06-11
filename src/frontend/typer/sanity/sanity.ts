@@ -35,7 +35,7 @@ export enum ESanitySteg {
     FELLES = 'FELLES',
 }
 
-export type SanityDataSet = 'production' | 'test';
+export type SanityDataSet = 'production'| 'production-v2' | 'test';
 
 export const frittståendeOrdPrefix = 'FRITTSTAENDEORD';
 export const modalPrefix = 'MODAL';
