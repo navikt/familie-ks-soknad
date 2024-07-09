@@ -84,9 +84,9 @@
     ]
   },
   "dependencies": {
-    "@navikt/aksel-icons": "6.3.3",
-    "@navikt/ds-css": "^6.3.3",
-    "@navikt/ds-react": "^6.3.3",
+    "@navikt/aksel-icons": "^6.1.3",
+    "@navikt/ds-css": "^6.1.3",
+    "@navikt/ds-react": "^6.1.3",
     "@navikt/familie-form-elements": "^15.0.0",
     "@navikt/familie-logging": "^7.0.0",
     "@navikt/familie-skjema": "^8.0.9",
