@@ -61,6 +61,7 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
                 legend={
                     <>
                         <TekstBlock block={spørsmålDokument.sporsmal} flettefelter={flettefelter} />
+                        {/* TODO: Bytt Tilleggsinfowrapper med Box som har marginBlock. Først må Aksel package oppdateres */}
                         {tilleggsinfo && <TilleggsinfoWrapper>{tilleggsinfo}</TilleggsinfoWrapper>}
                     </>
                 }
