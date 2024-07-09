@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { BodyShort } from '@navikt/ds-react';
+import { Alert, BodyShort } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
@@ -81,12 +80,12 @@ const DinLivssituasjon: React.FC = () => {
                         felt={skjema.felter.utenlandsoppholdUtenArbeid}
                         spørsmålDokument={utenlandsoppholdUtenArbeid}
                         tilleggsinfo={
-                            <AlertStripe variant={'info'}>
+                            <Alert variant={'info'} inline>
                                 <TekstBlock
                                     block={utenlandsoppholdUtenArbeid.alert}
                                     typografi={Typografi.BodyShort}
                                 />
-                            </AlertStripe>
+                            </Alert>
                         }
                     />
                     {skjema.felter.utenlandsoppholdUtenArbeid.verdi === ESvar.JA && (

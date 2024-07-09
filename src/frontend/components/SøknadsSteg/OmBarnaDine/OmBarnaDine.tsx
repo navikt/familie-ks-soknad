@@ -3,14 +3,13 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { BodyShort } from '@navikt/ds-react';
+import { Alert, BodyShort } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import Steg from '../../Felleskomponenter/Steg/Steg';
@@ -85,9 +84,9 @@ const OmBarnaDine: React.FC = () => {
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
                 {skjema.felter.erNoenAvBarnaFosterbarn.verdi === ESvar.JA && (
-                    <AlertStripe variant={'warning'}>
+                    <Alert variant={'warning'} inline>
                         <TekstBlock block={fosterbarn.alert} typografi={Typografi.BodyShort} />
-                    </AlertStripe>
+                    </Alert>
                 )}
 
                 <JaNeiSpm
@@ -105,12 +104,12 @@ const OmBarnaDine: React.FC = () => {
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
                 {skjema.felter.oppholderBarnSegIInstitusjon.verdi === ESvar.JA && (
-                    <AlertStripe variant={'warning'}>
+                    <Alert variant={'warning'} inline>
                         <TekstBlock
                             block={institusjonKontantstoette.alert}
                             typografi={Typografi.BodyShort}
                         />
-                    </AlertStripe>
+                    </Alert>
                 )}
 
                 <JaNeiSpm
@@ -149,12 +148,12 @@ const OmBarnaDine: React.FC = () => {
                     felt={skjema.felter.barnOppholdtSegTolvMndSammenhengendeINorge}
                     spørsmålDokument={sammenhengendeOppholdINorge}
                     tilleggsinfo={
-                        <AlertStripe variant={'info'}>
+                        <Alert variant={'info'} inline>
                             <TekstBlock
                                 block={sammenhengendeOppholdINorge.alert}
                                 typografi={Typografi.BodyShort}
                             />
-                        </AlertStripe>
+                        </Alert>
                     }
                 />
                 <HvilkeBarnCheckboxGruppe

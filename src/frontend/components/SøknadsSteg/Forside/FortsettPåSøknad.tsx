@@ -2,11 +2,10 @@ import React, { FC } from 'react';
 
 import styled from 'styled-components';
 
-import { Button, Modal } from '@navikt/ds-react';
+import { Alert, Button, Modal } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import ModalContent from '../../Felleskomponenter/ModalContent';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
@@ -51,9 +50,9 @@ const FortsettPåSøknad: FC = () => {
     return (
         <StyledFortsettPåSøknad role={'navigation'}>
             <KomponentGruppe>
-                <AlertStripe inline={false} variant={'info'}>
+                <Alert variant={'info'}>
                     <TekstBlock block={mellomlagretAlert} typografi={Typografi.BodyShort} />
-                </AlertStripe>
+                </Alert>
             </KomponentGruppe>
             <StyledButton onClick={fortsettPåSøknaden}>{plainTekst(fortsettKnapp)}</StyledButton>
             <StyledButton variant={'secondary'} onClick={() => settVisStartPåNyttModal(true)}>

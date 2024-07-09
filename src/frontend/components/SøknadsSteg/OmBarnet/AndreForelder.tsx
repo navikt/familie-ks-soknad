@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { ISkjema } from '@navikt/familie-skjema';
 
@@ -11,7 +12,6 @@ import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import { dagensDato } from '../../../utils/dato';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
 import Datovelger from '../../Felleskomponenter/Datovelger/Datovelger';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
@@ -183,14 +183,14 @@ const AndreForelder: React.FC<{
                                         felt={skjema.felter.andreForelderUtenlandsoppholdUtenArbeid}
                                         spørsmålDokument={utenlandsoppholdUtenArbeidAndreForelder}
                                         tilleggsinfo={
-                                            <AlertStripe variant={'info'}>
+                                            <Alert variant={'info'} inline>
                                                 <TekstBlock
                                                     block={
                                                         utenlandsoppholdUtenArbeidAndreForelder.alert
                                                     }
                                                     typografi={Typografi.BodyShort}
                                                 />
-                                            </AlertStripe>
+                                            </Alert>
                                         }
                                         flettefelter={{ barnetsNavn: barn?.navn }}
                                         inkluderVetIkke

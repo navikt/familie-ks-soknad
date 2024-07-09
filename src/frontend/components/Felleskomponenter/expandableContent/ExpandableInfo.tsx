@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
+import { Alert } from '@navikt/ds-react';
+
 import { Typografi } from '../../../typer/common';
-import AlertStripe from '../AlertStripe/AlertStripe';
 import { TypografiWrapper } from '../TekstBlock';
 
 import CollapsableContainer from './CollapsableContainer';
@@ -69,13 +70,7 @@ const ExpandableInfo = ({
             </ButtonContainer>
             <InnholdContainer id={toggleContentId}>
                 <CollapsableContainer isOpen={isOpen} animated={true} ariaLive="polite">
-                    {filledBackground ? (
-                        <AlertStripe variant={'info'} inline={false}>
-                            {children}
-                        </AlertStripe>
-                    ) : (
-                        children
-                    )}
+                    {filledBackground ? <Alert variant={'info'}>{children}</Alert> : children}
                 </CollapsableContainer>
             </InnholdContainer>
         </Container>

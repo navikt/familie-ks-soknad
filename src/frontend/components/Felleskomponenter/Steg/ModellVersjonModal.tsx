@@ -2,11 +2,10 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Button, Modal } from '@navikt/ds-react';
+import { Alert, Button, Modal } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
-import AlertStripe from '../AlertStripe/AlertStripe';
 import ModalContent from '../ModalContent';
 import TekstBlock from '../TekstBlock';
 
@@ -31,8 +30,7 @@ const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
             }}
         >
             <ModalContent>
-                <AlertStripe
-                    inline={false}
+                <Alert
                     variant={'error'}
                     children={plainTekst(mistetInformasjonenDinTekster.tittel)}
                 />

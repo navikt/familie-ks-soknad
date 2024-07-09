@@ -8,7 +8,6 @@ import { Alert } from '@navikt/ds-react';
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
@@ -80,12 +79,12 @@ const VelgBarn: React.FC = () => {
                     },
                 }}
             >
-                <AlertStripe variant={'info'}>
+                <Alert variant={'info'} inline>
                     <TekstBlock
                         block={hvisOpplysningeneIkkeStemmer}
                         typografi={Typografi.BodyShort}
                     />
-                </AlertStripe>
+                </Alert>
 
                 <BarnekortContainer
                     id={VelgBarnSpørsmålId.velgBarn}
