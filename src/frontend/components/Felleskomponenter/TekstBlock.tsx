@@ -48,7 +48,13 @@ export function TypografiWrapper({ typografi, style, children }: Props) {
             );
         case Typografi.HeadingH2:
             return (
-                <Heading level={'2'} size={'xsmall'} spacing style={style}>
+                <Heading level={'2'} size={'medium'} spacing style={style}>
+                    {children}
+                </Heading>
+            );
+        case Typografi.HeadingH3:
+            return (
+                <Heading level={'3'} size={'small'} spacing style={style}>
                     {children}
                 </Heading>
             );

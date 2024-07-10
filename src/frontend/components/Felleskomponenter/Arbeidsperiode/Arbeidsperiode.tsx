@@ -16,6 +16,7 @@ import {
 } from '../../../typer/skjema';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -76,7 +77,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                 flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {arbeiderEllerArbeidetFelt.verdi === ESvar.JA && (
-                <>
+                <PerioderContainer>
                     {registrerteArbeidsperioder.verdi.map((periode, index) => (
                         <ArbeidsperiodeOppsummering
                             key={`arbeidsperiode-${index}`}
@@ -99,6 +100,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                             }}
                         />
                     )}
+
                     <LeggTilKnapp
                         onClick={åpneArbeidsmodal}
                         id={registrerteArbeidsperioder.id}
@@ -121,7 +123,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                             barn={barn}
                         />
                     )}
-                </>
+                </PerioderContainer>
             )}
         </>
     );

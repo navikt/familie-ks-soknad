@@ -9,6 +9,7 @@ import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/person
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IDinLivssituasjonFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -46,7 +47,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
     const { flerePerioder, leggTilKnapp } = utenlandsopphold[personType];
 
     return (
-        <>
+        <PerioderContainer>
             {erUtenlandsoppholdModalÅpen && (
                 <UtenlandsoppholdModal
                     erÅpen={erUtenlandsoppholdModalÅpen}
@@ -80,6 +81,6 @@ export const Utenlandsperiode: React.FC<Props> = ({
             >
                 <TekstBlock block={leggTilKnapp} />
             </LeggTilKnapp>
-        </>
+        </PerioderContainer>
     );
 };

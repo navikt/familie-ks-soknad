@@ -10,6 +10,7 @@ import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/person
 import { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -59,7 +60,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                 flettefelter={{ barnetsNavn: barnetsNavn }}
             />
             {tilhørendeJaNeiSpmFelt.verdi === ESvar.JA && (
-                <>
+                <PerioderContainer>
                     {registrerteUtbetalingsperioder.verdi.map((utbetalingsperiode, index) => (
                         <UtbetalingsperiodeOppsummering
                             key={`utbetalingsperiode-${index}`}
@@ -102,7 +103,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                             erDød={erDød}
                         />
                     )}
-                </>
+                </PerioderContainer>
             )}
         </>
     );

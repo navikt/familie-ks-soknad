@@ -15,6 +15,7 @@ import {
 } from '../../../typer/skjema';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -74,7 +75,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
                 flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {mottarEllerMottattPensjonFelt.verdi === ESvar.JA && (
-                <>
+                <PerioderContainer>
                     {registrertePensjonsperioder.verdi.map((pensjonsperiode, index) => (
                         <PensjonsperiodeOppsummering
                             key={`pensjonsperiode-${index}`}
@@ -119,7 +120,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
                             barn={barn}
                         />
                     )}
-                </>
+                </PerioderContainer>
             )}
         </>
     );

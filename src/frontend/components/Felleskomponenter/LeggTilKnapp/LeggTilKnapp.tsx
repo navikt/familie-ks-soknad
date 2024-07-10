@@ -15,7 +15,6 @@ interface Props {
 
 const StyledButton = styled(Button)`
     && {
-        margin: 0.5rem 0 0.5rem 0;
         border: ${props => (props.$feilmelding ? `2px solid ${ARed500}` : 'none')};
     }
 `;

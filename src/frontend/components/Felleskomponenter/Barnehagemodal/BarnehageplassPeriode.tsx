@@ -11,6 +11,7 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import { IOmBarnetTekstinnhold } from '../../SøknadsSteg/OmBarnet/innholdTyper';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -44,7 +45,7 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
     const barnetsNavn = barn.navn;
 
     return (
-        <>
+        <PerioderContainer>
             <TekstBlock
                 block={teksterForOmBarnetSteg.opplystBarnehageplass}
                 flettefelter={{ barnetsNavn }}
@@ -85,6 +86,6 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
                     barn={barn}
                 />
             )}
-        </>
+        </PerioderContainer>
     );
 };

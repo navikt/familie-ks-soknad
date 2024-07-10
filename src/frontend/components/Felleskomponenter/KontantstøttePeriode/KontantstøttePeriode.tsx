@@ -12,6 +12,7 @@ import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtels
 import { IEøsForBarnFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -60,7 +61,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                 flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {tilhørendeJaNeiSpmFelt.verdi === ESvar.JA && (
-                <>
+                <PerioderContainer>
                     {registrerteEøsKontantstøttePerioder.verdi.map((periode, index) => (
                         <KontantstøttePeriodeOppsummering
                             key={`eøs-kontantstøtte-periode-${index}`}
@@ -104,7 +105,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                             erDød={erDød}
                         />
                     )}
-                </>
+                </PerioderContainer>
             )}
         </>
     );
