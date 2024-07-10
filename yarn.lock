@@ -1064,7 +1064,7 @@
   resolved "https://registry.npmjs.org/@babel/regjsgen/-/regjsgen-0.8.0.tgz#f0ba69b075e1f05fb2825b7fad991e7adbb18310"
   integrity sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==
 
-"@babel/runtime@^7.12.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.18.3", "@babel/runtime@^7.21.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.12.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.18.3", "@babel/runtime@^7.21.0", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7", "@babel/runtime@^7.9.2":
   version "7.23.5"
   resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.23.5.tgz#11edb98f8aeec529b82b211028177679144242db"
   integrity sha512-NdUTHcPe4C99WxPub+K9l9tK5/lV4UXIoaHSYgzco9BCyjKAAwzdBI+wWtYqHt7LJdbo74ZjRPJgzVweq1sz0w==
@@ -1312,6 +1312,21 @@
   dependencies:
     "@floating-ui/utils" "^0.1.3"
 
+"@floating-ui/core@^1.6.0":
+  version "1.6.4"
+  resolved "https://registry.npmjs.org/@floating-ui/core/-/core-1.6.4.tgz#0140cf5091c8dee602bff9da5ab330840ff91df6"
+  integrity sha512-a4IowK4QkXl4SCWTGUR0INAfEOX3wtsYw3rKK5InQEHMGObkR8Xk44qYQD9P4r6HHw0iIfK6GUKECmY8sTkqRA==
+  dependencies:
+    "@floating-ui/utils" "^0.2.4"
+
+"@floating-ui/dom@^1.0.0":
+  version "1.6.7"
+  resolved "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.6.7.tgz#85d22f731fcc5b209db504478fb1df5116a83015"
+  integrity sha512-wmVfPG5o2xnKDU4jx/m4w5qva9FWHcnZ8BvzEe90D/RpwsJaTAVYPEPdQ8sbr/N8zZTAHlZUTQdqg8ZUbzHmng==
+  dependencies:
+    "@floating-ui/core" "^1.6.0"
+    "@floating-ui/utils" "^0.2.4"
+
 "@floating-ui/dom@^1.0.1", "@floating-ui/dom@^1.5.1":
   version "1.5.3"
   resolved "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.5.3.tgz#54e50efcb432c06c23cd33de2b575102005436fa"
@@ -1327,6 +1342,13 @@
   dependencies:
     "@floating-ui/dom" "^1.5.1"
 
+"@floating-ui/react-dom@^2.0.9":
+  version "2.1.1"
+  resolved "https://registry.npmjs.org/@floating-ui/react-dom/-/react-dom-2.1.1.tgz#cca58b6b04fc92b4c39288252e285e0422291fb0"
+  integrity sha512-4h84MJt3CHrtG18mGsXuLCHMrug49d7DFkU0RMIyshRveBeyV2hmV/pDaF2Uxtu8kgq5r46llp5E5FQiR0K2Yg==
+  dependencies:
+    "@floating-ui/dom" "^1.0.0"
+
 "@floating-ui/react@0.25.4":
   version "0.25.4"
   resolved "https://registry.npmjs.org/@floating-ui/react/-/react-0.25.4.tgz#82507e14460aee70f435ad2fd717ea182b6d5c61"
@@ -1340,6 +1362,11 @@
   version "0.1.6"
   resolved "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.1.6.tgz#22958c042e10b67463997bd6ea7115fe28cbcaf9"
   integrity sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==
+
+"@floating-ui/utils@^0.2.4":
+  version "0.2.4"
+  resolved "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.4.tgz#1d459cee5031893a08a0e064c406ad2130cced7c"
+  integrity sha512-dWO2pw8hhi+WrXq1YJy2yCuWoL20PddgGaqTgVe4cOS9Q6qklXCiA1tJEqX6BEwRNSCP84/afac9hd4MS+zEUA==
 
 "@humanwhocodes/config-array@^0.11.14":
   version "0.11.14"
@@ -1647,34 +1674,33 @@
   resolved "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz#b2ac626d6cb9c8718ab459166d4bb405b8ffa78b"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@navikt/aksel-icons@6.3.3", "@navikt/aksel-icons@^6.3.3":
-  version "6.3.3"
-  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/6.3.3/251b544c7aea1904c7d11341fbc999e6b7e6e3e1#251b544c7aea1904c7d11341fbc999e6b7e6e3e1"
-  integrity sha512-DRWDvqJCPc1kYTjJwzv6sw5Bxf6DfHortkYDUtFSriwvXRaL1DM1/LxPtpu+fkMlCIBBioGps8CHZzRpg7Q8UQ==
+"@navikt/aksel-icons@^6.12.0", "@navikt/aksel-icons@^6.13.0":
+  version "6.13.0"
+  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/6.13.0/7378bad8c8230187b30a9e0b15675f7740dc96cf#7378bad8c8230187b30a9e0b15675f7740dc96cf"
+  integrity sha512-vmH1fXIijjPTiTBu02euPdEmBQPfoVrDdfHea246D6Sblg6tMXDI6pjPGfV0ojCOMOYSH1wrCnY2pPk3zfqnGQ==
 
-"@navikt/ds-css@^6.3.3":
-  version "6.3.3"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-css/6.3.3/86285e2560cc1c06a9fdac1baf34415dcf7808dd#86285e2560cc1c06a9fdac1baf34415dcf7808dd"
-  integrity sha512-Rpm71ivCpJ5CQuItrIKCe7h/tSnjqnZh9+DS1Mq3LUXaAEdBa1wIg1wF8Eqximy3QcObcO/tRwEkMcFxKe4xLQ==
+"@navikt/ds-css@^6.13.0":
+  version "6.13.0"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-css/6.13.0/9882c3009d59c19da414477877ab27aad65f7b13#9882c3009d59c19da414477877ab27aad65f7b13"
+  integrity sha512-UOd/L0FRkZJvfs4QWaYf+b+nENG8C+EpFKZjASOrgewwxQHa/jVdB59DEZ86fdCJSdWjMK++mBNP/fGK8Fqrzw==
 
-"@navikt/ds-react@^6.3.3":
-  version "6.3.3"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-react/6.3.3/b432ae6ff3940ea88951a467923d96ff53b16b96#b432ae6ff3940ea88951a467923d96ff53b16b96"
-  integrity sha512-iOCX4zO/CB6yM5GxTBDd8yl/sFe7QP2aNMxgA2uqH6l4S+tX1T7CKnMyUhxWrYTgGYFbjAaEppj77q2Gjokvkg==
+"@navikt/ds-react@^6.13.0":
+  version "6.13.0"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-react/6.13.0/2e522bc611fbaf96128c08e6d678d622a67d39e2#2e522bc611fbaf96128c08e6d678d622a67d39e2"
+  integrity sha512-k08ne+7gquhc5c+jdLjSgaSxYcuq4d8T1s3jm96wyNgmjSLpAif8It/5yESCIhqccn7+qKnCA7t5UTgeUJ2wvQ==
   dependencies:
     "@floating-ui/react" "0.25.4"
-    "@navikt/aksel-icons" "^6.3.3"
-    "@navikt/ds-tokens" "^6.3.3"
-    "@radix-ui/react-tabs" "1.0.0"
-    "@radix-ui/react-toggle-group" "1.0.0"
+    "@floating-ui/react-dom" "^2.0.9"
+    "@navikt/aksel-icons" "^6.13.0"
+    "@navikt/ds-tokens" "^6.13.0"
     clsx "^2.1.0"
     date-fns "^3.0.0"
     react-day-picker "8.10.0"
 
-"@navikt/ds-tokens@^6.3.3":
-  version "6.3.3"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-tokens/6.3.3/d6403f08c3aa389e917b6fbb962ded0c5ce6f603#d6403f08c3aa389e917b6fbb962ded0c5ce6f603"
-  integrity sha512-EArixE4zSCbkqAYh2iQarsWtTl80yhcKrkAyPlQHrUr19EeRLJIRBQW+lnSiGFMXe+jh7ZUqsHeY1mDOr693Eg==
+"@navikt/ds-tokens@^6.13.0":
+  version "6.13.0"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-tokens/6.13.0/6704caca2fffee89abdce0207e5dfe00b875482f#6704caca2fffee89abdce0207e5dfe00b875482f"
+  integrity sha512-nbWmDIb0EYXu04JW43D0Fak+9oFbYmOKpfiymQiCmrUCZ+aveGTPCBNKex723fFfDDvaxvJTvZekhFZk17iB4Q==
 
 "@navikt/familie-form-elements@^15.0.0":
   version "15.0.0"
@@ -1821,155 +1847,6 @@
   version "2.0.8"
   resolved "https://registry.npmjs.org/@portabletext/types/-/types-2.0.8.tgz#34aec838701482f838bdd0ee07a9e31dc01a9230"
   integrity sha512-eiq9/kMX2bYezS4/kLFk3xNnruCFjCDdw6aYEv5ECHVKkYROiuLd3/AsP5d7tWF3+kPPy6tB0Wq8aqDG/URHGA==
-
-"@radix-ui/primitive@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/primitive/-/primitive-1.0.0.tgz#e1d8ef30b10ea10e69c76e896f608d9276352253"
-  integrity sha512-3e7rn8FDMin4CgeL7Z/49smCA3rFYY3Ha2rUQ7HRWFadS5iCRw08ZgVT1LaNTCNqgvrUiyczLflrVrF0SRQtNA==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-
-"@radix-ui/react-collection@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-collection/-/react-collection-1.0.0.tgz#0ec4c72fabd35a03b5787075ac799e3b17ca5710"
-  integrity sha512-8i1pf5dKjnq90Z8udnnXKzdCEV3/FYrfw0n/b6NvB6piXEn3fO1bOh7HBcpG8XrnIXzxlYu2oCcR38QpyLS/mg==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-    "@radix-ui/react-compose-refs" "1.0.0"
-    "@radix-ui/react-context" "1.0.0"
-    "@radix-ui/react-primitive" "1.0.0"
-    "@radix-ui/react-slot" "1.0.0"
-
-"@radix-ui/react-compose-refs@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-compose-refs/-/react-compose-refs-1.0.0.tgz#37595b1f16ec7f228d698590e78eeed18ff218ae"
-  integrity sha512-0KaSv6sx787/hK3eF53iOkiSLwAGlFMx5lotrqD2pTjB18KbybKoEIgkNZTKC60YECDQTKGTRcDBILwZVqVKvA==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-
-"@radix-ui/react-context@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-context/-/react-context-1.0.0.tgz#f38e30c5859a9fb5e9aa9a9da452ee3ed9e0aee0"
-  integrity sha512-1pVM9RfOQ+n/N5PJK33kRSKsr1glNxomxONs5c49MliinBY6Yw2Q995qfBUUo0/Mbg05B/sGA0gkgPI7kmSHBg==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-
-"@radix-ui/react-direction@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-direction/-/react-direction-1.0.0.tgz#a2e0b552352459ecf96342c79949dd833c1e6e45"
-  integrity sha512-2HV05lGUgYcA6xgLQ4BKPDmtL+QbIZYH5fCOTAOOcJ5O0QbWS3i9lKaurLzliYUDhORI2Qr3pyjhJh44lKA3rQ==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-
-"@radix-ui/react-id@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-id/-/react-id-1.0.0.tgz#8d43224910741870a45a8c9d092f25887bb6d11e"
-  integrity sha512-Q6iAB/U7Tq3NTolBBQbHTgclPmGWE3OlktGGqrClPozSw4vkQ1DfQAOtzgRPecKsMdJINE05iaoDUG8tRzCBjw==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-    "@radix-ui/react-use-layout-effect" "1.0.0"
-
-"@radix-ui/react-presence@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-presence/-/react-presence-1.0.0.tgz#814fe46df11f9a468808a6010e3f3ca7e0b2e84a"
-  integrity sha512-A+6XEvN01NfVWiKu38ybawfHsBjWum42MRPnEuqPsBZ4eV7e/7K321B5VgYMPv3Xx5An6o1/l9ZuDBgmcmWK3w==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-    "@radix-ui/react-compose-refs" "1.0.0"
-    "@radix-ui/react-use-layout-effect" "1.0.0"
-
-"@radix-ui/react-primitive@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-primitive/-/react-primitive-1.0.0.tgz#376cd72b0fcd5e0e04d252ed33eb1b1f025af2b0"
-  integrity sha512-EyXe6mnRlHZ8b6f4ilTDrXmkLShICIuOTTj0GX4w1rp+wSxf3+TD05u1UOITC8VsJ2a9nwHvdXtOXEOl0Cw/zQ==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-    "@radix-ui/react-slot" "1.0.0"
-
-"@radix-ui/react-roving-focus@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-roving-focus/-/react-roving-focus-1.0.0.tgz#aadeb65d5dbcdbdd037078156ae1f57c2ff754ee"
-  integrity sha512-lHvO4MhvoWpeNbiJAoyDsEtbKqP2jkkdwsMVJ3kfqbkC71J/aXE6Th6gkZA1xHEqSku+t+UgoDjvE7Z3gsBpcg==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-    "@radix-ui/primitive" "1.0.0"
-    "@radix-ui/react-collection" "1.0.0"
-    "@radix-ui/react-compose-refs" "1.0.0"
-    "@radix-ui/react-context" "1.0.0"
-    "@radix-ui/react-direction" "1.0.0"
-    "@radix-ui/react-id" "1.0.0"
-    "@radix-ui/react-primitive" "1.0.0"
-    "@radix-ui/react-use-callback-ref" "1.0.0"
-    "@radix-ui/react-use-controllable-state" "1.0.0"
-
-"@radix-ui/react-slot@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-slot/-/react-slot-1.0.0.tgz#7fa805b99891dea1e862d8f8fbe07f4d6d0fd698"
-  integrity sha512-3mrKauI/tWXo1Ll+gN5dHcxDPdm/Df1ufcDLCecn+pnCIVcdWE7CujXo8QaXOWRJyZyQWWbpB8eFwHzWXlv5mQ==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-    "@radix-ui/react-compose-refs" "1.0.0"
-
-"@radix-ui/react-tabs@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-tabs/-/react-tabs-1.0.0.tgz#135c67f1f2bd9ada69a3f6e38dd897d459af5fe5"
-  integrity sha512-oKUwEDsySVC0uuSEH7SHCVt1+ijmiDFAI9p+fHCtuZdqrRDKIFs09zp5nrmu4ggP6xqSx9lj1VSblnDH+n3IBA==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-    "@radix-ui/primitive" "1.0.0"
-    "@radix-ui/react-context" "1.0.0"
-    "@radix-ui/react-direction" "1.0.0"
-    "@radix-ui/react-id" "1.0.0"
-    "@radix-ui/react-presence" "1.0.0"
-    "@radix-ui/react-primitive" "1.0.0"
-    "@radix-ui/react-roving-focus" "1.0.0"
-    "@radix-ui/react-use-controllable-state" "1.0.0"
-
-"@radix-ui/react-toggle-group@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-toggle-group/-/react-toggle-group-1.0.0.tgz#6e78ffb13e0b4c1f789828930330638f4ba9c06d"
-  integrity sha512-R/5sK4/BPgOYWAsheFaFpNFh0sLPHdqsBcqO5KW2+Foy36B2KBYrGd6Hu4HnzgivawVX+mSmVNhAwHA8Yb1hLA==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-    "@radix-ui/primitive" "1.0.0"
-    "@radix-ui/react-context" "1.0.0"
-    "@radix-ui/react-direction" "1.0.0"
-    "@radix-ui/react-primitive" "1.0.0"
-    "@radix-ui/react-roving-focus" "1.0.0"
-    "@radix-ui/react-toggle" "1.0.0"
-    "@radix-ui/react-use-controllable-state" "1.0.0"
-
-"@radix-ui/react-toggle@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-toggle/-/react-toggle-1.0.0.tgz#9c8f655497b26410766b9c01aa2954159c0cb60b"
-  integrity sha512-RvY06eyDlZMC4rZdWK8jNovEDKf2jBvYFOB4rkQ/ypMOjFQuoh2QodlxlGakrZDrLnfxzyNnn/pg88CWVtAAdw==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-    "@radix-ui/primitive" "1.0.0"
-    "@radix-ui/react-primitive" "1.0.0"
-    "@radix-ui/react-use-controllable-state" "1.0.0"
-
-"@radix-ui/react-use-callback-ref@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-use-callback-ref/-/react-use-callback-ref-1.0.0.tgz#9e7b8b6b4946fe3cbe8f748c82a2cce54e7b6a90"
-  integrity sha512-GZtyzoHz95Rhs6S63D2t/eqvdFCm7I+yHMLVQheKM7nBD8mbZIt+ct1jz4536MDnaOGKIxynJ8eHTkVGVVkoTg==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-
-"@radix-ui/react-use-controllable-state@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-use-controllable-state/-/react-use-controllable-state-1.0.0.tgz#a64deaafbbc52d5d407afaa22d493d687c538b7f"
-  integrity sha512-FohDoZvk3mEXh9AWAVyRTYR4Sq7/gavuofglmiXB2g1aKyboUD4YtgWxKj8O5n+Uak52gXQ4wKz5IFST4vtJHg==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
-    "@radix-ui/react-use-callback-ref" "1.0.0"
-
-"@radix-ui/react-use-layout-effect@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/@radix-ui/react-use-layout-effect/-/react-use-layout-effect-1.0.0.tgz#2fc19e97223a81de64cd3ba1dc42ceffd82374dc"
-  integrity sha512-6Tpkq+R6LOlmQb1R5NNETLG0B4YP0wc+klfXafpUCj6JGyaUc8il7/kUZ7m59rGbXGczE9Bs+iz2qloqsZBduQ==
-  dependencies:
-    "@babel/runtime" "^7.13.10"
 
 "@remix-run/router@1.16.1":
   version "1.16.1"

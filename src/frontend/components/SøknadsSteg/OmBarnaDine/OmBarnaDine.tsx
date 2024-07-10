@@ -149,12 +149,10 @@ const OmBarnaDine: React.FC = () => {
                     felt={skjema.felter.barnOppholdtSegTolvMndSammenhengendeINorge}
                     spørsmålDokument={sammenhengendeOppholdINorge}
                     tilleggsinfo={
-                        <AlertStripe variant={'info'}>
-                            <TekstBlock
-                                block={sammenhengendeOppholdINorge.alert}
-                                typografi={Typografi.BodyShort}
-                            />
-                        </AlertStripe>
+                        <TekstBlock
+                            block={sammenhengendeOppholdINorge.alert}
+                            typografi={Typografi.BodyShort}
+                        />
                     }
                 />
                 <HvilkeBarnCheckboxGruppe
