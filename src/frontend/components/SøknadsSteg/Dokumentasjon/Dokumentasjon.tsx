@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { add, isBefore } from 'date-fns';
 
-import { BodyShort } from '@navikt/ds-react';
+import { Alert, BodyShort } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useApp } from '../../../context/AppContext';
@@ -12,7 +12,6 @@ import { Typografi } from '../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { erDokumentasjonRelevant } from '../../../utils/dokumentasjon';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { Feilside } from '../../Felleskomponenter/Feilside/Feilside';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import PictureScanningGuide from '../../Felleskomponenter/PictureScanningGuide/PictureScanningGuide';
@@ -79,7 +78,7 @@ const Dokumentasjon: React.FC = () => {
         >
             {slettaVedlegg.length > 0 && (
                 <KomponentGruppe>
-                    <AlertStripe variant={'warning'}>
+                    <Alert variant={'warning'} inline>
                         <TekstBlock
                             block={forLangTidDokumentasjon}
                             typografi={Typografi.BodyLong}
@@ -91,13 +90,13 @@ const Dokumentasjon: React.FC = () => {
                                 </li>
                             ))}
                         </ul>
-                    </AlertStripe>
+                    </Alert>
                 </KomponentGruppe>
             )}
             <KomponentGruppe>
-                <AlertStripe variant={'info'} inline={false}>
+                <Alert variant={'info'}>
                     <TekstBlock block={nudgeDokumentasjon} typografi={Typografi.BodyLong} />
-                </AlertStripe>
+                </Alert>
 
                 <TekstBlock block={dokumentasjonInfo} typografi={Typografi.BodyLong} />
                 <PictureScanningGuide />
