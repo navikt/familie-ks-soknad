@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { ISkjema } from '@navikt/familie-skjema';
 
@@ -183,14 +182,12 @@ const AndreForelder: React.FC<{
                                         felt={skjema.felter.andreForelderUtenlandsoppholdUtenArbeid}
                                         spørsmålDokument={utenlandsoppholdUtenArbeidAndreForelder}
                                         tilleggsinfo={
-                                            <Alert variant={'info'} inline>
-                                                <TekstBlock
-                                                    block={
-                                                        utenlandsoppholdUtenArbeidAndreForelder.alert
-                                                    }
-                                                    typografi={Typografi.BodyShort}
-                                                />
-                                            </Alert>
+                                            <TekstBlock
+                                                block={
+                                                    utenlandsoppholdUtenArbeidAndreForelder.alert
+                                                }
+                                                typografi={Typografi.BodyShort}
+                                            />
                                         }
                                         flettefelter={{ barnetsNavn: barn?.navn }}
                                         inkluderVetIkke

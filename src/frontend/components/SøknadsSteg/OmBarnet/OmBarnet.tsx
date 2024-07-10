@@ -142,12 +142,10 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                         flettefelter={{ barnetsNavn }}
                         tilleggsinfo={
                             harPeriodeMedGradertBarnehageplass ? (
-                                <Alert variant={'info'} inline>
-                                    <TekstBlock
-                                        block={soekerDeltKontantstoette.alert}
-                                        typografi={Typografi.BodyShort}
-                                    />
-                                </Alert>
+                                <TekstBlock
+                                    block={soekerDeltKontantstoette.alert}
+                                    typografi={Typografi.BodyShort}
+                                />
                             ) : undefined
                         }
                     />

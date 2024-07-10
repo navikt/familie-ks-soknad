@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
@@ -80,12 +80,10 @@ const DinLivssituasjon: React.FC = () => {
                         felt={skjema.felter.utenlandsoppholdUtenArbeid}
                         spørsmålDokument={utenlandsoppholdUtenArbeid}
                         tilleggsinfo={
-                            <Alert variant={'info'} inline>
-                                <TekstBlock
-                                    block={utenlandsoppholdUtenArbeid.alert}
-                                    typografi={Typografi.BodyShort}
-                                />
-                            </Alert>
+                            <TekstBlock
+                                block={utenlandsoppholdUtenArbeid.alert}
+                                typografi={Typografi.BodyShort}
+                            />
                         }
                     />
                     {skjema.felter.utenlandsoppholdUtenArbeid.verdi === ESvar.JA && (

@@ -62,12 +62,10 @@ const OmDeg: React.FC = () => {
                     felt={skjema.felter.værtINorgeITolvMåneder}
                     spørsmålDokument={oppholdtDegSammenhengende}
                     tilleggsinfo={
-                        <Alert variant={'info'} inline>
-                            <TekstBlock
-                                block={oppholdtDegSammenhengende.alert}
-                                typografi={Typografi.BodyShort}
-                            />
-                        </Alert>
+                        <TekstBlock
+                            block={oppholdtDegSammenhengende.alert}
+                            typografi={Typografi.BodyShort}
+                        />
                     }
                 />
             </KomponentGruppe>
