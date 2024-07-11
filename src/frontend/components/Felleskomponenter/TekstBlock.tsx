@@ -103,6 +103,11 @@ const TekstBlock: React.FC<{
                             {children}
                         </TypografiWrapper>
                     ),
+                    h3: ({ children }) => (
+                        <TypografiWrapper typografi={Typografi.HeadingH3}>
+                            {children}
+                        </TypografiWrapper>
+                    ),
                 },
                 marks: {
                     flettefelt: props => {

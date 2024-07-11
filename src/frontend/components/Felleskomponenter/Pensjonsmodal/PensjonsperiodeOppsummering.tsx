@@ -50,7 +50,7 @@ export const PensjonsperiodeOppsummering: React.FC<PensjonsperiodeOppsummeringPr
                 <TekstBlock
                     block={teksterForModal.oppsummeringstittel}
                     flettefelter={{ antall: nummer.toString(), gjelderUtland: gjelderUtlandet }}
-                    typografi={Typografi.Label}
+                    typografi={Typografi.HeadingH3}
                 />
             }
         >
