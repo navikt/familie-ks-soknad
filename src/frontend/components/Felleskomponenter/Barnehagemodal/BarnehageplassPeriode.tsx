@@ -38,7 +38,7 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
         lukkModal: lukkBarnehageplassModal,
         åpneModal: åpneBarnehageplassModal,
     } = useModal();
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
     const teksterForOmBarnetSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
@@ -70,6 +70,7 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
             <LeggTilKnapp
                 onClick={åpneBarnehageplassModal}
                 id={registrerteBarnehageplassPerioder.id}
+                forklaring={plainTekst(barnehageplassTekster.leggTilPeriodeForklaring)}
                 feilmelding={
                     registrerteBarnehageplassPerioder.erSynlig &&
                     skjema.visFeilmeldinger &&

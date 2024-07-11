@@ -41,7 +41,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
     barn,
     tilhørendeJaNeiSpmFelt,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const {
         erÅpen: kontantstøtteModalErÅpen,
         lukkModal: lukkKontantstøtteModal,
@@ -87,6 +87,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                     <LeggTilKnapp
                         onClick={åpneKontantstøtteModal}
                         id={registrerteEøsKontantstøttePerioder.id}
+                        forklaring={plainTekst(teksterForPersonType.leggTilPeriodeForklaring)}
                         feilmelding={
                             registrerteEøsKontantstøttePerioder.erSynlig &&
                             skjema.visFeilmeldinger &&

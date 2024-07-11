@@ -31,7 +31,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
     barn,
     personType,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const {
         erÅpen: erUtenlandsoppholdModalÅpen,
         lukkModal: lukkUtenlandsoppholdModal,
@@ -44,7 +44,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
         },
     } = tekster();
 
-    const { flerePerioder, leggTilKnapp } = utenlandsopphold[personType];
+    const { flerePerioder, leggTilKnapp, leggTilPeriodeForklaring } = utenlandsopphold[personType];
 
     return (
         <PerioderContainer>
@@ -73,6 +73,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
             <LeggTilKnapp
                 id={registrerteUtenlandsperioder.id}
                 onClick={åpneUtenlandsoppholdModal}
+                forklaring={plainTekst(leggTilPeriodeForklaring)}
                 feilmelding={
                     registrerteUtenlandsperioder.erSynlig &&
                     skjema.visFeilmeldinger &&

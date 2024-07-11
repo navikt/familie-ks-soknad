@@ -51,7 +51,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
     erDød,
     barn,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const teksterForModal = tekster().FELLES.modaler.pensjonsperiode[personType];
 
     const {
@@ -101,6 +101,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
                     <LeggTilKnapp
                         onClick={åpnePensjonsmodal}
                         id={registrertePensjonsperioder.id}
+                        forklaring={plainTekst(teksterForModal.leggTilPeriodeForklaring)}
                         feilmelding={
                             registrertePensjonsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&

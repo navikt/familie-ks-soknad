@@ -52,7 +52,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
     erDød,
     barn,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const {
         erÅpen: arbeidsmodalErÅpen,
         lukkModal: lukkArbeidsmodal,
@@ -60,7 +60,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
     } = useModal();
     const teksterForModal: IArbeidsperiodeTekstinnhold =
         tekster().FELLES.modaler.arbeidsperiode[personType];
-    const { flerePerioder, leggTilKnapp } = teksterForModal;
+    const { flerePerioder, leggTilKnapp, leggTilPeriodeForklaring } = teksterForModal;
 
     return (
         <>
@@ -104,6 +104,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                     <LeggTilKnapp
                         onClick={åpneArbeidsmodal}
                         id={registrerteArbeidsperioder.id}
+                        forklaring={plainTekst(leggTilPeriodeForklaring)}
                         feilmelding={
                             registrerteArbeidsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&

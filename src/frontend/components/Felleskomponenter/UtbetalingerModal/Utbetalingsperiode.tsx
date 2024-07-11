@@ -39,7 +39,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
     erDød,
     barn,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const {
         erÅpen: utbetalingermodalErÅpen,
         lukkModal: lukkUtbetalingsmodal,
@@ -84,6 +84,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                     <LeggTilKnapp
                         onClick={åpneUtbetalingsmodal}
                         id={registrerteUtbetalingsperioder.id}
+                        forklaring={plainTekst(teksterForPersontype.leggTilPeriodeForklaring)}
                         feilmelding={
                             registrerteUtbetalingsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&
