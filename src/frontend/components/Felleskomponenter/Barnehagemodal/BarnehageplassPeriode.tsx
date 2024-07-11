@@ -85,6 +85,7 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
                     lukkModal={lukkBarnehageplassModal}
                     onLeggTilBarnehageplassPeriode={leggTilBarnehageplassPeriode}
                     barn={barn}
+                    forklaring={plainTekst(barnehageplassTekster.leggTilPeriodeForklaring)}
                 />
             )}
         </PerioderContainer>

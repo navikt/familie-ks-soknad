@@ -104,6 +104,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                             barn={barn}
                             personType={personType}
                             erDød={erDød}
+                            forklaring={plainTekst(teksterForPersonType.leggTilPeriodeForklaring)}
                         />
                     )}
                 </PerioderContainer>

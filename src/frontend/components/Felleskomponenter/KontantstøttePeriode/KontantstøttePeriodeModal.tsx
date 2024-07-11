@@ -32,6 +32,7 @@ interface Props extends IUsePensjonsperiodeSkjemaParams {
     lukkModal: () => void;
     onLeggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
     barn: IBarnMedISøknad;
+    forklaring?: string;
 }
 const StyledAlertStripe = styled(AlertStripe)`
     margin: 1rem 0 1rem 0;
@@ -44,6 +45,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
     barn,
     personType,
     erDød = false,
+    forklaring = undefined,
 }) => {
     const { tekster } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
@@ -99,6 +101,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
         <SkjemaModal
             erÅpen={erÅpen}
             tittel={teksterForPersonType.tittel}
+            forklaring={forklaring}
             onSubmitCallback={onLeggTil}
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
             lukkModal={lukkModal}

@@ -55,6 +55,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
                     onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
                     personType={personType}
                     barn={personType !== PersonType.søker ? barn : undefined}
+                    forklaring={plainTekst(leggTilPeriodeForklaring)}
                 />
             )}
             {registrerteUtenlandsperioder.verdi.map((periode, index) => (

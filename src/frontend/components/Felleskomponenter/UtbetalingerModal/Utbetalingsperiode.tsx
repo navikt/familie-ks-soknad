@@ -102,6 +102,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                             personType={personType}
                             barn={barn}
                             erDød={erDød}
+                            forklaring={plainTekst(teksterForPersontype.leggTilPeriodeForklaring)}
                         />
                     )}
                 </PerioderContainer>
