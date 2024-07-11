@@ -31,8 +31,6 @@ export function LeggTilKnapp({
 }: Props) {
     const { toggles } = useFeatureToggles();
 
-    console.log(toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP);
-
     return (
         <>
             {toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP && forklaring && (
