@@ -3,7 +3,7 @@ import React from 'react';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -37,6 +37,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
         lukkModal: lukkUtenlandsoppholdModal,
         åpneModal: åpneUtenlandsoppholdModal,
     } = useModal();
+    const { toggles } = useFeatureToggles();
 
     const {
         [ESanitySteg.FELLES]: {
@@ -68,13 +69,18 @@ export const Utenlandsperiode: React.FC<Props> = ({
                     barn={personType !== PersonType.søker ? barn : undefined}
                 />
             ))}
-            {registrerteUtenlandsperioder.verdi.length > 0 && (
-                <TekstBlock block={flerePerioder} typografi={Typografi.Label} />
-            )}
+
             <LeggTilKnapp
                 id={registrerteUtenlandsperioder.id}
                 onClick={åpneUtenlandsoppholdModal}
-                forklaring={plainTekst(leggTilPeriodeForklaring)}
+                forklaring={
+                    registrerteUtenlandsperioder.verdi.length > 0 ? (
+                        <TekstBlock block={flerePerioder} />
+                    ) : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                      leggTilPeriodeForklaring ? (
+                        plainTekst(leggTilPeriodeForklaring)
+                    ) : undefined
+                }
                 feilmelding={
                     registrerteUtenlandsperioder.erSynlig &&
                     skjema.visFeilmeldinger &&

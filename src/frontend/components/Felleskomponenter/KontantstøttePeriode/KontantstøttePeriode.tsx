@@ -4,6 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
@@ -47,6 +48,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
         lukkModal: lukkKontantstøtteModal,
         åpneModal: åpneKontantstøtteModal,
     } = useModal();
+    const { toggles } = useFeatureToggles();
 
     const teksterForPersonType: IEøsYtelseTekstinnhold =
         tekster().FELLES.modaler.eøsYtelse[personType];
@@ -73,21 +75,23 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                             erDød={personType === PersonType.andreForelder && erDød}
                         />
                     ))}
-
-                    {registrerteEøsKontantstøttePerioder.verdi.length > 0 && (
-                        <TekstBlock
-                            block={teksterForPersonType.flerePerioder}
-                            typografi={Typografi.Label}
-                            flettefelter={{
-                                barnetsNavn: barn?.navn,
-                            }}
-                        />
-                    )}
-
                     <LeggTilKnapp
                         onClick={åpneKontantstøtteModal}
                         id={registrerteEøsKontantstøttePerioder.id}
-                        forklaring={plainTekst(teksterForPersonType.leggTilPeriodeForklaring)}
+                        forklaring={
+                            registrerteEøsKontantstøttePerioder.verdi.length > 0 ? (
+                                <TekstBlock
+                                    block={teksterForPersonType.flerePerioder}
+                                    typografi={Typografi.Label}
+                                    flettefelter={{
+                                        barnetsNavn: barn?.navn,
+                                    }}
+                                />
+                            ) : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                              teksterForPersonType.leggTilPeriodeForklaring ? (
+                                plainTekst(teksterForPersonType.leggTilPeriodeForklaring)
+                            ) : undefined
+                        }
                         feilmelding={
                             registrerteEøsKontantstøttePerioder.erSynlig &&
                             skjema.visFeilmeldinger &&

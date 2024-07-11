@@ -3,6 +3,7 @@ import React from 'react';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
@@ -39,6 +40,7 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
         åpneModal: åpneBarnehageplassModal,
     } = useModal();
     const { tekster, plainTekst } = useApp();
+    const { toggles } = useFeatureToggles();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
     const teksterForOmBarnetSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
@@ -60,17 +62,18 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
                     nummer={index + 1}
                 />
             ))}
-            {registrerteBarnehageplassPerioder.verdi.length > 0 && (
-                <TekstBlock
-                    block={barnehageplassTekster.flerePerioder}
-                    typografi={Typografi.Label}
-                />
-            )}
 
             <LeggTilKnapp
                 onClick={åpneBarnehageplassModal}
                 id={registrerteBarnehageplassPerioder.id}
-                forklaring={plainTekst(barnehageplassTekster.leggTilPeriodeForklaring)}
+                forklaring={
+                    registrerteBarnehageplassPerioder.verdi.length > 0 ? (
+                        <TekstBlock block={barnehageplassTekster.flerePerioder} />
+                    ) : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                      barnehageplassTekster.leggTilPeriodeForklaring ? (
+                        plainTekst(barnehageplassTekster.leggTilPeriodeForklaring)
+                    ) : undefined
+                }
                 feilmelding={
                     registrerteBarnehageplassPerioder.erSynlig &&
                     skjema.visFeilmeldinger &&

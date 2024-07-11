@@ -4,7 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IPensjonsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import {
@@ -59,6 +59,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
         lukkModal: lukkPensjonsmodal,
         åpneModal: åpnePensjonsmodal,
     } = useModal();
+    const { toggles } = useFeatureToggles();
 
     return (
         <>
@@ -88,20 +89,23 @@ export const Pensjonsperiode: React.FC<Props> = ({
                             barn={personType !== PersonType.søker ? barn : undefined}
                         />
                     ))}
-                    {registrertePensjonsperioder.verdi.length > 0 && (
-                        <TekstBlock
-                            block={teksterForModal.flerePerioder}
-                            typografi={Typografi.Label}
-                            flettefelter={{
-                                barnetsNavn: barn?.navn,
-                                gjelderUtland: gjelderUtlandet,
-                            }}
-                        />
-                    )}
                     <LeggTilKnapp
                         onClick={åpnePensjonsmodal}
                         id={registrertePensjonsperioder.id}
-                        forklaring={plainTekst(teksterForModal.leggTilPeriodeForklaring)}
+                        forklaring={
+                            registrertePensjonsperioder.verdi.length > 0 ? (
+                                <TekstBlock
+                                    block={teksterForModal.flerePerioder}
+                                    flettefelter={{
+                                        barnetsNavn: barn?.navn,
+                                        gjelderUtland: gjelderUtlandet,
+                                    }}
+                                />
+                            ) : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                              teksterForModal.leggTilPeriodeForklaring ? (
+                                plainTekst(teksterForModal.leggTilPeriodeForklaring)
+                            ) : undefined
+                        }
                         feilmelding={
                             registrertePensjonsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&

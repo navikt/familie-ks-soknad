@@ -4,7 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
@@ -53,6 +53,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
     barn,
 }) => {
     const { tekster, plainTekst } = useApp();
+    const { toggles } = useFeatureToggles();
     const {
         erÅpen: arbeidsmodalErÅpen,
         lukkModal: lukkArbeidsmodal,
@@ -90,21 +91,23 @@ export const Arbeidsperiode: React.FC<Props> = ({
                             barn={personType !== PersonType.søker ? barn : undefined}
                         />
                     ))}
-                    {registrerteArbeidsperioder.verdi.length > 0 && (
-                        <TekstBlock
-                            block={flerePerioder}
-                            typografi={Typografi.Label}
-                            flettefelter={{
-                                gjelderUtland: gjelderUtlandet,
-                                barnetsNavn: barn?.navn,
-                            }}
-                        />
-                    )}
-
                     <LeggTilKnapp
                         onClick={åpneArbeidsmodal}
                         id={registrerteArbeidsperioder.id}
-                        forklaring={plainTekst(leggTilPeriodeForklaring)}
+                        forklaring={
+                            registrerteArbeidsperioder.verdi.length > 0 ? (
+                                <TekstBlock
+                                    block={flerePerioder}
+                                    flettefelter={{
+                                        gjelderUtland: gjelderUtlandet,
+                                        barnetsNavn: barn?.navn,
+                                    }}
+                                />
+                            ) : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                              leggTilPeriodeForklaring ? (
+                                plainTekst(leggTilPeriodeForklaring)
+                            ) : undefined
+                        }
                         feilmelding={
                             registrerteArbeidsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&
