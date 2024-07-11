@@ -6,7 +6,6 @@ import { Felt, ISkjema } from '@navikt/familie-skjema';
 import { useApp } from '../../../context/AppContext';
 import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { Typografi } from '../../../typer/common';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PeriodePersonTypeProps, PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
@@ -82,7 +81,6 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                             registrerteEøsKontantstøttePerioder.verdi.length > 0 ? (
                                 <TekstBlock
                                     block={teksterForPersonType.flerePerioder}
-                                    typografi={Typografi.Label}
                                     flettefelter={{
                                         barnetsNavn: barn?.navn,
                                     }}
