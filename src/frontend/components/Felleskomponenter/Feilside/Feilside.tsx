@@ -1,10 +1,9 @@
 import React from 'react';
 
-import { BodyShort } from '@navikt/ds-react';
+import { Alert, BodyShort } from '@navikt/ds-react';
 
 import { useSpråk } from '../../../context/SpråkContext';
 import { LocaleType } from '../../../typer/common';
-import AlertStripe from '../AlertStripe/AlertStripe';
 
 export const Feilside: React.FC = () => {
     const { valgtLocale } = useSpråk();
@@ -22,9 +21,9 @@ export const Feilside: React.FC = () => {
 
     return (
         <div>
-            <AlertStripe variant="error" aria-live={'polite'}>
+            <Alert variant="error" inline aria-live={'polite'}>
                 <BodyShort>{feilsidetekstPåRiktigSpråk()}</BodyShort>
-            </AlertStripe>
+            </Alert>
         </div>
     );
 };

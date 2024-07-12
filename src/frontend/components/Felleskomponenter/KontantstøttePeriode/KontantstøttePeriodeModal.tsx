@@ -1,7 +1,6 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
+import { Alert, Box } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
@@ -11,7 +10,6 @@ import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { dagenEtterDato, dagensDato, gårsdagensDato, stringTilDate } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
-import AlertStripe from '../AlertStripe/AlertStripe';
 import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
@@ -34,9 +32,6 @@ interface Props extends IUsePensjonsperiodeSkjemaParams {
     barn: IBarnMedISøknad;
     forklaring?: string;
 }
-const StyledAlertStripe = styled(AlertStripe)`
-    margin: 1rem 0 1rem 0;
-`;
 
 export const KontantstøttePeriodeModal: React.FC<Props> = ({
     erÅpen,
@@ -169,9 +164,13 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                             />
                         }
                         tilleggsinfo={
-                            <StyledAlertStripe variant={'info'}>
-                                <TekstBlock block={teksterForPersonType.beloepPerMaaned.alert} />
-                            </StyledAlertStripe>
+                            <Box marginBlock="4">
+                                <Alert variant={'info'} inline>
+                                    <TekstBlock
+                                        block={teksterForPersonType.beloepPerMaaned.alert}
+                                    />
+                                </Alert>
+                            </Box>
                         }
                         htmlSize={15}
                     />
