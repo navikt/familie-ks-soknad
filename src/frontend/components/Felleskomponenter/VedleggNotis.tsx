@@ -1,41 +1,30 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
-import styled from 'styled-components';
+import { Alert, BodyShort, Box } from '@navikt/ds-react';
 
-import { FileTextIcon } from '@navikt/aksel-icons';
+import { useApp } from '../../context/AppContext';
+import { LocaleRecordBlock } from '../../typer/common';
+import { FlettefeltVerdier } from '../../typer/kontrakt/generelle';
+import { ESanitySteg } from '../../typer/sanity/sanity';
 
-const NotisWrapper = styled.div`
-    display: flex;
-    margin-top: 1rem;
-`;
-
-const StyledFileContent = styled(FileTextIcon)`
-    max-width: 1.5rem;
-    min-width: 1.5rem;
-    max-height: fit-content;
-    margin-right: 1rem;
-    font-size: 1.5rem;
-`;
-
-const NotisInnhold = styled.div`
-    ul {
-        margin: 0;
-        padding-left: 1.3rem; // For kulepunkt
-    }
-
-    p {
-        margin: 0;
-    }
-`;
+import TekstBlock from './TekstBlock';
 
 export const VedleggNotis: React.FC<{
-    children?: ReactNode;
+    block: LocaleRecordBlock;
+    flettefelter?: FlettefeltVerdier;
     dynamisk?: boolean;
-}> = ({ dynamisk = false, children }) => {
+}> = ({ block, flettefelter, dynamisk = false }) => {
+    const { tekster, plainTekst } = useApp();
+
+    const dokumentasjonTekster = tekster()[ESanitySteg.DOKUMENTASJON];
+    const { lastOppSenereISoknad } = dokumentasjonTekster;
+
     return (
-        <NotisWrapper aria-live={dynamisk ? 'polite' : 'off'}>
-            <StyledFileContent role={'img'} focusable={false} aria-label={'vedleggsikon'} />
-            <NotisInnhold>{children ? children : null}</NotisInnhold>
-        </NotisWrapper>
+        <Alert variant="info" aria-live={dynamisk ? 'polite' : 'off'}>
+            <TekstBlock block={block} flettefelter={flettefelter} />
+            <Box marginBlock="4 0">
+                <BodyShort>{plainTekst(lastOppSenereISoknad)}</BodyShort>
+            </Box>
+        </Alert>
     );
 };

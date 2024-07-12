@@ -57,6 +57,8 @@ export enum BeskrivelseSanityApiNavn {
     bekreftelsePaaAtBarnBorSammenMedDeg = 'bekreftelsePaaAtBarnBorSammenMedDeg',
     vedtakOmOppholdstillatelse = 'vedtakOmOppholdstillatelse',
     bekreftelsePaaBarnehageplass = 'bekreftelsePaaBarnehageplass',
+    bekreftelsePaaBarnehageplassEttEllerFlereBarn = 'bekreftelsePaaBarnehageplassEttEllerFlereBarn',
+    lastOppSenereISoknad = 'lastOppSenereISoknad',
 }
 
 export const dokumentasjonsbehovTilBeskrivelseSanityApiNavn = (

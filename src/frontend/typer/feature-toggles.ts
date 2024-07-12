@@ -2,9 +2,15 @@ export enum EToggle {
     KONTANTSTOTTE = 'familie-ks-soknad.disable-soknad',
 }
 
-export enum EFeatureToggle {}
+export enum EFeatureToggle {
+    // EKSEMPEL = 'EKSEMPEL',
+    NYE_VEDLEGGSTEKSTER = 'NYE_VEDLEGGSTEKSTER',
+}
 
-export const ToggleKeys: Record<EFeatureToggle, string> = {};
+export const ToggleKeys: Record<EFeatureToggle, string> = {
+    // [EFeatureToggle.EKSEMPEL]: 'familie-ks-soknad.eksempel',
+    [EFeatureToggle.NYE_VEDLEGGSTEKSTER]: 'familie-ks-soknad.nye-vedleggstekster',
+};
 
 export type EAllFeatureToggles = Record<EFeatureToggle, boolean>;
 
