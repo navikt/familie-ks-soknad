@@ -46,7 +46,6 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
             }
             fjernKnappTekst={barnehageplassTekster.fjernKnapp}
             tittel={
-                // TODO: Heading er satt til H3 i koden, men blir overskrevet av teskten (Oppsummeringstittel) fra Sanity som er satt til "Heading 2". Teksten må endres til "Normal" for at koden skal fungere som forventet.
                 <TekstBlock
                     block={barnehageplassTekster.oppsummeringstittel}
                     flettefelter={{ antall: nummer.toString() }}
