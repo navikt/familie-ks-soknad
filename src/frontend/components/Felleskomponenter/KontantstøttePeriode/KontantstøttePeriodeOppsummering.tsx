@@ -61,6 +61,7 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
             }
             fjernKnappTekst={teksterForPersonType.fjernKnapp}
             tittel={
+                // TODO: Heading er satt til H3 i koden, men blir overskrevet av teskten (Oppsummeringstittel) fra Sanity som er satt til "Heading 2". Teksten må endres til "Normal" for at koden skal fungere som forventet.
                 <TekstBlock
                     block={teksterForPersonType.oppsummeringstittelKontantstoette}
                     flettefelter={{ antall: nummer.toString() }}
