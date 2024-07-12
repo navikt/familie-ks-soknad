@@ -67,12 +67,12 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
                 onClick={åpneBarnehageplassModal}
                 id={registrerteBarnehageplassPerioder.id}
                 forklaring={
-                    registrerteBarnehageplassPerioder.verdi.length > 0 ? (
-                        <TekstBlock block={barnehageplassTekster.flerePerioder} />
-                    ) : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
-                      barnehageplassTekster.leggTilPeriodeForklaring ? (
-                        plainTekst(barnehageplassTekster.leggTilPeriodeForklaring)
-                    ) : undefined
+                    registrerteBarnehageplassPerioder.verdi.length > 0
+                        ? plainTekst(barnehageplassTekster.flerePerioder)
+                        : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                            barnehageplassTekster.leggTilPeriodeForklaring
+                          ? plainTekst(barnehageplassTekster.leggTilPeriodeForklaring)
+                          : undefined
                 }
                 feilmelding={
                     registrerteBarnehageplassPerioder.erSynlig &&

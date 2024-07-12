@@ -93,18 +93,15 @@ export const Pensjonsperiode: React.FC<Props> = ({
                         onClick={åpnePensjonsmodal}
                         id={registrertePensjonsperioder.id}
                         forklaring={
-                            registrertePensjonsperioder.verdi.length > 0 ? (
-                                <TekstBlock
-                                    block={teksterForModal.flerePerioder}
-                                    flettefelter={{
-                                        barnetsNavn: barn?.navn,
-                                        gjelderUtland: gjelderUtlandet,
-                                    }}
-                                />
-                            ) : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
-                              teksterForModal.leggTilPeriodeForklaring ? (
-                                plainTekst(teksterForModal.leggTilPeriodeForklaring)
-                            ) : undefined
+                            registrertePensjonsperioder.verdi.length > 0
+                                ? plainTekst(teksterForModal.flerePerioder, {
+                                      barnetsNavn: barn?.navn,
+                                      gjelderUtland: gjelderUtlandet,
+                                  })
+                                : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                                    teksterForModal.leggTilPeriodeForklaring
+                                  ? plainTekst(teksterForModal.leggTilPeriodeForklaring)
+                                  : undefined
                         }
                         feilmelding={
                             registrertePensjonsperioder.erSynlig &&

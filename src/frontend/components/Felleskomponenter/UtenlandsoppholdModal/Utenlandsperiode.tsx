@@ -74,12 +74,12 @@ export const Utenlandsperiode: React.FC<Props> = ({
                 id={registrerteUtenlandsperioder.id}
                 onClick={åpneUtenlandsoppholdModal}
                 forklaring={
-                    registrerteUtenlandsperioder.verdi.length > 0 ? (
-                        <TekstBlock block={flerePerioder} />
-                    ) : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
-                      leggTilPeriodeForklaring ? (
-                        plainTekst(leggTilPeriodeForklaring)
-                    ) : undefined
+                    registrerteUtenlandsperioder.verdi.length > 0
+                        ? plainTekst(flerePerioder)
+                        : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                            leggTilPeriodeForklaring
+                          ? plainTekst(leggTilPeriodeForklaring)
+                          : undefined
                 }
                 feilmelding={
                     registrerteUtenlandsperioder.erSynlig &&

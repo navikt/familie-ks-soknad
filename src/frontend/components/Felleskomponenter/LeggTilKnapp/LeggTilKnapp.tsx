@@ -6,8 +6,6 @@ import { PlusCircleIcon } from '@navikt/aksel-icons';
 import { BodyShort, Button, ErrorMessage } from '@navikt/ds-react';
 import { ARed500 } from '@navikt/ds-tokens/dist/tokens';
 
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
-
 interface Props {
     onClick: () => void | Promise<void>;
     forklaring?: ReactNode;
@@ -29,13 +27,9 @@ export function LeggTilKnapp({
     id,
     children,
 }: Props) {
-    const { toggles } = useFeatureToggles();
-
     return (
         <>
-            {toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP && forklaring && (
-                <BodyShort spacing>{forklaring}</BodyShort>
-            )}
+            {forklaring && <BodyShort spacing>{forklaring}</BodyShort>}
             <StyledButton
                 id={id}
                 variant={'tertiary'}

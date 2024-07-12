@@ -95,18 +95,15 @@ export const Arbeidsperiode: React.FC<Props> = ({
                         onClick={åpneArbeidsmodal}
                         id={registrerteArbeidsperioder.id}
                         forklaring={
-                            registrerteArbeidsperioder.verdi.length > 0 ? (
-                                <TekstBlock
-                                    block={flerePerioder}
-                                    flettefelter={{
-                                        gjelderUtland: gjelderUtlandet,
-                                        barnetsNavn: barn?.navn,
-                                    }}
-                                />
-                            ) : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
-                              leggTilPeriodeForklaring ? (
-                                plainTekst(leggTilPeriodeForklaring)
-                            ) : undefined
+                            registrerteArbeidsperioder.verdi.length > 0
+                                ? plainTekst(flerePerioder, {
+                                      gjelderUtland: gjelderUtlandet,
+                                      barnetsNavn: barn?.navn,
+                                  })
+                                : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                                    leggTilPeriodeForklaring
+                                  ? plainTekst(leggTilPeriodeForklaring)
+                                  : undefined
                         }
                         feilmelding={
                             registrerteArbeidsperioder.erSynlig &&

@@ -78,17 +78,14 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                         onClick={åpneKontantstøtteModal}
                         id={registrerteEøsKontantstøttePerioder.id}
                         forklaring={
-                            registrerteEøsKontantstøttePerioder.verdi.length > 0 ? (
-                                <TekstBlock
-                                    block={teksterForPersonType.flerePerioder}
-                                    flettefelter={{
-                                        barnetsNavn: barn?.navn,
-                                    }}
-                                />
-                            ) : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
-                              teksterForPersonType.leggTilPeriodeForklaring ? (
-                                plainTekst(teksterForPersonType.leggTilPeriodeForklaring)
-                            ) : undefined
+                            registrerteEøsKontantstøttePerioder.verdi.length > 0
+                                ? plainTekst(teksterForPersonType.flerePerioder, {
+                                      barnetsNavn: barn?.navn,
+                                  })
+                                : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                                    teksterForPersonType.leggTilPeriodeForklaring
+                                  ? plainTekst(teksterForPersonType.leggTilPeriodeForklaring)
+                                  : undefined
                         }
                         feilmelding={
                             registrerteEøsKontantstøttePerioder.erSynlig &&
