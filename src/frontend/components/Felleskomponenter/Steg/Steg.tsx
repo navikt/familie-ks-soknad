@@ -1,9 +1,9 @@
 import React, { ReactNode, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import { Stepper } from '@navikt/ds-react';
+import { Box, FormProgress } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
@@ -11,7 +11,6 @@ import { useApp } from '../../../context/AppContext';
 import { useAppNavigation } from '../../../context/AppNavigationContext';
 import { useSteg } from '../../../context/StegContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
-import { device } from '../../../Theme';
 import { RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import {
@@ -59,35 +58,6 @@ const Form = styled.form`
     width: 100%;
 `;
 
-const kompaktStepper = () => css`
-    * {
-        font-size: 0;
-        --navds-stepper-circle-size: 0.75rem;
-        --navds-stepper-border-width: 1px;
-        > li {
-            gap: 0;
-        }
-    }
-`;
-
-const StepperContainer = styled.div<{ $antallSteg: number }>`
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-  
-    @media all and ${device.mobile} {
-       ${kompaktStepper};
-    }
-
-  ${props =>
-      props.$antallSteg > 12 &&
-      css`
-          @media all and ${device.tablet} {
-              ${kompaktStepper};
-          }
-      `}
-}`;
-
 function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
     const navigate = useNavigate();
     const { erÅpen: erModellVersjonModalÅpen, åpneModal: åpneModellVersjonModal } = useModal();
@@ -99,11 +69,11 @@ function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
         modellVersjonOppdatert,
     } = useApp();
     const {
+        formProgressSteps,
         hentNesteSteg,
         hentForrigeSteg,
         hentNåværendeSteg,
         hentNåværendeStegIndex,
-        stepperObjekter,
         erPåKvitteringsside,
     } = useSteg();
     const { komFra, settKomFra } = useAppNavigation();
@@ -169,29 +139,34 @@ function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
         navigate(forrigeRoute.path);
     };
 
+    const håndterGåTilSteg = (stegIndex: number) => {
+        const steg = formProgressSteps[stegIndex];
+        navigate(steg.path);
+    };
+
     return (
         <>
             <ScrollHandler />
             <header>
                 <Banner />
                 {nyesteNåværendeRoute !== RouteEnum.Kvittering && (
-                    <StepperContainer $antallSteg={stepperObjekter.length}>
-                        <Stepper
-                            aria-label={'Søknadssteg'}
+                    <Box marginInline="8">
+                        <FormProgress
+                            totalSteps={formProgressSteps.length}
                             activeStep={hentNåværendeStegIndex()}
-                            orientation={'horizontal'}
-                            interactive={false}
+                            onStepChange={stegIndex => håndterGåTilSteg(stegIndex - 1)}
                         >
-                            {stepperObjekter.map((value, index) => (
-                                <Stepper.Step
-                                    children={''}
-                                    title={value.label}
-                                    key={value.key}
+                            {formProgressSteps.map((value, index) => (
+                                <FormProgress.Step
+                                    key={index}
                                     completed={index + 1 < hentNåværendeStegIndex()}
-                                />
+                                    interactive={index + 1 < hentNåværendeStegIndex()}
+                                >
+                                    {value.label}
+                                </FormProgress.Step>
                             ))}
-                        </Stepper>
-                    </StepperContainer>
+                        </FormProgress>
+                    </Box>
                 )}
             </header>
             <InnholdContainer>
