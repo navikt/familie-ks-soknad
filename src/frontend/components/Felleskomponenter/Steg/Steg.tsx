@@ -3,7 +3,7 @@ import React, { ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-import { Stepper } from '@navikt/ds-react';
+import { Box, GuidePanel, Stepper } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
@@ -31,6 +31,7 @@ import { ScrollHandler } from './ScrollHandler';
 
 interface ISteg {
     tittel: ReactNode;
+    guide?: ReactNode;
     skjema?: {
         validerFelterOgVisFeilmelding: () => boolean;
         valideringErOk: () => boolean;
@@ -88,7 +89,7 @@ const StepperContainer = styled.div<{ $antallSteg: number }>`
       `}
 }`;
 
-function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
+function Steg({ tittel, guide = undefined, skjema, gåVidereCallback, children }: ISteg) {
     const navigate = useNavigate();
     const { erÅpen: erModellVersjonModalÅpen, åpneModal: åpneModellVersjonModal } = useModal();
     const {
@@ -198,6 +199,15 @@ function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
                 <TittelContainer id={'stegHovedtittel'} tabIndex={-1}>
                     {tittel}
                 </TittelContainer>
+
+                {/* TODO: Legg til feature-toggle */}
+                {guide && (
+                    <Box marginBlock="0 12">
+                        <GuidePanel poster>{guide}</GuidePanel>
+                    </Box>
+                )}
+                {/*  */}
+
                 <Form onSubmit={event => håndterGåVidere(event)} autoComplete="off">
                     <ChildrenContainer>{children}</ChildrenContainer>
                     {skjema && visFeiloppsummering(skjema.skjema) && (
