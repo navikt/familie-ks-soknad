@@ -3,6 +3,7 @@ import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 
 export interface IOmBarnaTekstinnhold {
     omBarnaTittel: LocaleRecordBlock;
+    omBarnaGuide: LocaleRecordBlock;
     fosterbarn: ISanitySpørsmålDokument;
     hvemFosterbarn: ISanitySpørsmålDokument;
     institusjonKontantstoette: ISanitySpørsmålDokument;
