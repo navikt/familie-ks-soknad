@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { Alert } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
@@ -52,6 +53,7 @@ const VelgBarn: React.FC = () => {
         barnSomSkalVæreMed,
         fjernBarn,
     } = useVelgBarn();
+    const { toggles } = useFeatureToggles();
 
     const barnFraRespons = søknad.søker.barn;
     const barnManueltLagtTil = søknad.barnRegistrertManuelt;
@@ -67,6 +69,8 @@ const VelgBarn: React.FC = () => {
         kanIkkeBestemmeRettUnder1Aar,
     } = teksterForSteg;
 
+    const visGammelInfo = !toggles.VIS_GUIDE_I_STEG || !velgBarnGuide;
+
     return (
         <>
             <Steg
@@ -81,12 +85,14 @@ const VelgBarn: React.FC = () => {
                     },
                 }}
             >
-                <Alert variant={'info'} inline>
-                    <TekstBlock
-                        block={hvisOpplysningeneIkkeStemmer}
-                        typografi={Typografi.BodyShort}
-                    />
-                </Alert>
+                {visGammelInfo && (
+                    <Alert variant={'info'} inline>
+                        <TekstBlock
+                            block={hvisOpplysningeneIkkeStemmer}
+                            typografi={Typografi.BodyShort}
+                        />
+                    </Alert>
+                )}
 
                 <BarnekortContainer
                     id={VelgBarnSpørsmålId.velgBarn}

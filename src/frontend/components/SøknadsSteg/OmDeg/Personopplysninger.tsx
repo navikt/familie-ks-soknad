@@ -5,6 +5,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { Alert, BodyShort, Label } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { useSpråk } from '../../../context/SpråkContext';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -15,8 +16,9 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 export const Personopplysninger: React.FC = () => {
     const { valgtLocale } = useSpråk();
-
     const { søknad, tekster, plainTekst } = useApp();
+    const { toggles } = useFeatureToggles();
+
     const søker = søknad.søker;
 
     const {
@@ -32,9 +34,11 @@ export const Personopplysninger: React.FC = () => {
 
     return (
         <>
-            <Alert variant={'info'} inline>
-                <TekstBlock block={personopplysningerAlert} typografi={Typografi.BodyShort} />
-            </Alert>
+            {!toggles.VIS_GUIDE_I_STEG && (
+                <Alert variant={'info'} inline>
+                    <TekstBlock block={personopplysningerAlert} typografi={Typografi.BodyShort} />
+                </Alert>
+            )}
 
             <Informasjonsbolk>
                 <Label>{plainTekst(ident)}</Label>
