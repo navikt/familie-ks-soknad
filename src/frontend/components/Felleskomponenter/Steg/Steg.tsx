@@ -90,7 +90,7 @@ const StepperContainer = styled.div<{ $antallSteg: number }>`
       `}
 }`;
 
-function Steg({ tittel, guide = undefined, skjema, gåVidereCallback, children }: ISteg) {
+function Steg({ tittel, guide, skjema, gåVidereCallback, children }: ISteg) {
     const navigate = useNavigate();
     const { erÅpen: erModellVersjonModalÅpen, åpneModal: åpneModellVersjonModal } = useModal();
     const {
