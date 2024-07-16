@@ -49,7 +49,7 @@ const Forside: React.FC = () => {
 
     return (
         <InnholdContainer>
-            <Box marginBlock="0 9">
+            <Box marginBlock="0 12">
                 <Heading size="xlarge" align="center">
                     <TekstBlock block={soeknadstittel} />
                 </Heading>
