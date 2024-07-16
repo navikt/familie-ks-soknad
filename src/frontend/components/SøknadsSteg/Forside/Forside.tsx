@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 
-import styled from 'styled-components';
-
-import { GuidePanel } from '@navikt/ds-react';
+import { Box, GuidePanel, Heading } from '@navikt/ds-react';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import Miljø from '../../../../shared-utils/Miljø';
@@ -18,12 +16,6 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
 import FortsettPåSøknad from './FortsettPåSøknad';
-
-const TittelContainer = styled.div`
-    && {
-        margin-top: 4rem;
-    }
-`;
 
 const Forside: React.FC = () => {
     const { mellomlagretVerdi, settNåværendeRoute, tekster } = useApp();
@@ -57,13 +49,15 @@ const Forside: React.FC = () => {
 
     return (
         <InnholdContainer>
-            <GuidePanel>
+            <Box marginBlock="0 9">
+                <Heading size="xlarge" align="center">
+                    <TekstBlock block={soeknadstittel} />
+                </Heading>
+            </Box>
+
+            <GuidePanel poster>
                 <TekstBlock block={veilederhilsen} typografi={Typografi.BodyShort} />
             </GuidePanel>
-
-            <TittelContainer>
-                <TekstBlock block={soeknadstittel} typografi={Typografi.ForsideHeadingH1} />
-            </TittelContainer>
 
             <Informasjonsbolk>
                 <TekstBlock block={punktliste} />
