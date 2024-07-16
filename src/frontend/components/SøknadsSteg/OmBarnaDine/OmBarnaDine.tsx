@@ -36,6 +36,7 @@ const OmBarnaDine: React.FC = () => {
     const teksterForSteg: IOmBarnaTekstinnhold = tekster()[ESanitySteg.OM_BARNA];
     const {
         omBarnaTittel,
+        omBarnaGuide,
         hvemBarnehageplass,
         fosterbarn,
         institusjonKontantstoette,
@@ -63,6 +64,7 @@ const OmBarnaDine: React.FC = () => {
     return (
         <Steg
             tittel={<TekstBlock block={omBarnaTittel} typografi={Typografi.StegHeadingH1} />}
+            guide={<TekstBlock block={omBarnaGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

@@ -61,6 +61,7 @@ const VelgBarn: React.FC = () => {
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
     const {
         velgBarnTittel,
+        velgBarnGuide,
         hvisOpplysningeneIkkeStemmer,
         leseMerOmRegleneKontantstoette,
         kanIkkeBestemmeRettUnder1Aar,
@@ -70,6 +71,7 @@ const VelgBarn: React.FC = () => {
         <>
             <Steg
                 tittel={<TekstBlock block={velgBarnTittel} typografi={Typografi.StegHeadingH1} />}
+                guide={<TekstBlock block={velgBarnGuide} />}
                 skjema={{
                     validerFelterOgVisFeilmelding,
                     valideringErOk,

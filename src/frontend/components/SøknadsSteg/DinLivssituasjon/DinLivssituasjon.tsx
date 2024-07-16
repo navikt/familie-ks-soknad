@@ -36,13 +36,19 @@ const DinLivssituasjon: React.FC = () => {
 
     const teksterForSteg: IDinLivssituasjonTekstinnhold = tekster()[ESanitySteg.DIN_LIVSSITUASJON];
 
-    const { dinLivssituasjonTittel, asylsoeker, utenlandsoppholdUtenArbeid } = teksterForSteg;
+    const {
+        dinLivssituasjonTittel,
+        dinLivssituasjonGuide,
+        asylsoeker,
+        utenlandsoppholdUtenArbeid,
+    } = teksterForSteg;
 
     return (
         <Steg
             tittel={
                 <TekstBlock block={dinLivssituasjonTittel} typografi={Typografi.StegHeadingH1} />
             }
+            guide={<TekstBlock block={dinLivssituasjonGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
