@@ -9,6 +9,7 @@ import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import { useApp } from '../../../context/AppContext';
 import { useAppNavigation } from '../../../context/AppNavigationContext';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { useSteg } from '../../../context/StegContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { device } from '../../../Theme';
@@ -108,6 +109,7 @@ function Steg({ tittel, guide = undefined, skjema, gåVidereCallback, children }
         erPåKvitteringsside,
     } = useSteg();
     const { komFra, settKomFra } = useAppNavigation();
+    const { toggles } = useFeatureToggles();
 
     const nesteRoute = hentNesteSteg();
     const forrigeRoute = hentForrigeSteg();
@@ -199,15 +201,11 @@ function Steg({ tittel, guide = undefined, skjema, gåVidereCallback, children }
                 <TittelContainer id={'stegHovedtittel'} tabIndex={-1}>
                     {tittel}
                 </TittelContainer>
-
-                {/* TODO: Legg til feature-toggle */}
-                {guide && (
+                {toggles.VIS_GUIDE_I_STEG && guide && (
                     <Box marginBlock="0 12">
                         <GuidePanel poster>{guide}</GuidePanel>
                     </Box>
                 )}
-                {/*  */}
-
                 <Form onSubmit={event => håndterGåVidere(event)} autoComplete="off">
                     <ChildrenContainer>{children}</ChildrenContainer>
                     {skjema && visFeiloppsummering(skjema.skjema) && (

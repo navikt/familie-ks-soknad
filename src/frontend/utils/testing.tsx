@@ -25,6 +25,7 @@ import { SanityProvider } from '../context/SanityContext';
 import { SpråkProvider } from '../context/SpråkContext';
 import { StegProvider } from '../context/StegContext';
 import { LocaleType } from '../typer/common';
+import { EFeatureToggle } from '../typer/feature-toggles';
 import { ESivilstand } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { ISøker, ISøkerRespons } from '../typer/person';
@@ -146,7 +147,9 @@ export const mockFeatureToggle = () => {
         .spyOn(featureToggleContext, 'useFeatureToggles')
         .mockImplementation(
             jest.fn().mockReturnValue({
-                toggles: {},
+                toggles: {
+                    [EFeatureToggle.VIS_GUIDE_I_STEG]: false,
+                },
             })
         );
     return { useFeatureToggle };
