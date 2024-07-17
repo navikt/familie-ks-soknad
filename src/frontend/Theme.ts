@@ -17,8 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     legend,
     a,
     p,
-    li,
-    h2 {
+    li {
       font-size: 1.125rem;
       line-height: 1.625rem;
     }

@@ -62,7 +62,7 @@ const OmBarnaDine: React.FC = () => {
     }
     return (
         <Steg
-            tittel={<TekstBlock block={omBarnaTittel} typografi={Typografi.StegHeadingH1} />}
+            tittel={<TekstBlock block={omBarnaTittel} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

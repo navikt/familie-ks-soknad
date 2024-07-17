@@ -8,7 +8,6 @@ import { BodyShort } from '@navikt/ds-react';
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
@@ -53,7 +52,7 @@ const Oppsummering: React.FC = () => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={oppsummeringTittel} typografi={Typografi.StegHeadingH1} />}
+            tittel={<TekstBlock block={oppsummeringTittel} />}
             gåVidereCallback={gåVidereCallback}
         >
             <StyledBodyShort>{plainTekst(lesNoeye)}</StyledBodyShort>

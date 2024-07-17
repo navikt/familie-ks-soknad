@@ -70,7 +70,7 @@ const Dokumentasjon: React.FC = () => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={dokumentasjonTittel} typografi={Typografi.StegHeadingH1} />}
+            tittel={<TekstBlock block={dokumentasjonTittel} />}
             gåVidereCallback={async () => {
                 const [success, _] = await sendInnSkjema();
                 return success;

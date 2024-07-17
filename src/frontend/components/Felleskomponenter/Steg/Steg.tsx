@@ -3,7 +3,7 @@ import React, { ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-import { Stepper } from '@navikt/ds-react';
+import { Box, Heading, Stepper } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
@@ -43,16 +43,6 @@ interface ISteg {
 
 const ChildrenContainer = styled.div`
     margin-bottom: 2rem;
-`;
-
-const TittelContainer = styled.div`
-    && {
-        margin: 4rem auto 3rem auto;
-
-        :focus-visible {
-            outline: none;
-        }
-    }
 `;
 
 const Form = styled.form`
@@ -195,9 +185,11 @@ function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
                 )}
             </header>
             <InnholdContainer>
-                <TittelContainer id={'stegHovedtittel'} tabIndex={-1}>
-                    {tittel}
-                </TittelContainer>
+                <Box marginBlock="16 12" marginInline="auto" id={'stegHovedtittel'} tabIndex={-1}>
+                    <Heading level="2" size={'large'}>
+                        {tittel}
+                    </Heading>
+                </Box>
                 <Form onSubmit={event => håndterGåVidere(event)} autoComplete="off">
                     <ChildrenContainer>{children}</ChildrenContainer>
                     {skjema && visFeiloppsummering(skjema.skjema) && (
