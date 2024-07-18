@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { BarnetsId, Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
@@ -43,6 +44,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         leggTilUtenlandsperiodeAndreForelder,
         fjernUtenlandsperiodeAndreForelder,
     } = useOmBarnet(barnetsId);
+    const { toggles } = useFeatureToggles();
 
     const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
 
@@ -63,6 +65,9 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         foreldreBorSammen,
         søkerDeltKontantstøtte,
     } = skjema.felter;
+
+    const dokumentasjonTekster = tekster()[ESanitySteg.DOKUMENTASJON];
+    const { bekreftelsePaaAtBarnBorSammenMedDeg, avtaleOmDeltBosted } = dokumentasjonTekster;
 
     return barn ? (
         <Steg
@@ -115,11 +120,19 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     </Alert>
                 )}
 
-                {borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker && (
-                    <VedleggNotis dynamisk>
-                        <BodyShort>{plainTekst(borBarnFastSammenMedDeg.vedleggsnotis)}</BodyShort>
-                    </VedleggNotis>
-                )}
+                {borFastMedSøker.verdi === ESvar.JA &&
+                    !barn.borMedSøker &&
+                    (toggles.NYE_VEDLEGGSTEKSTER ? (
+                        <VedleggNotis
+                            block={bekreftelsePaaAtBarnBorSammenMedDeg}
+                            flettefelter={{ barnetsNavn }}
+                            dynamisk
+                        />
+                    ) : (
+                        borBarnFastSammenMedDeg.vedleggsnotis && (
+                            <VedleggNotis block={borBarnFastSammenMedDeg.vedleggsnotis} dynamisk />
+                        )
+                    ))}
 
                 <JaNeiSpm
                     skjema={skjema}
@@ -144,13 +157,21 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                         }
                     />
                     {søkerDeltKontantstøtte.erSynlig &&
-                        søkerDeltKontantstøtte.verdi === ESvar.JA && (
-                            <VedleggNotis dynamisk>
-                                <BodyShort>
-                                    {plainTekst(soekerDeltKontantstoette.vedleggsnotis)}
-                                </BodyShort>
-                            </VedleggNotis>
-                        )}
+                        søkerDeltKontantstøtte.verdi === ESvar.JA &&
+                        (toggles.NYE_VEDLEGGSTEKSTER ? (
+                            <VedleggNotis
+                                block={avtaleOmDeltBosted}
+                                flettefelter={{ barnetsNavn }}
+                                dynamisk
+                            />
+                        ) : (
+                            soekerDeltKontantstoette.vedleggsnotis && (
+                                <VedleggNotis
+                                    block={soekerDeltKontantstoette.vedleggsnotis}
+                                    dynamisk
+                                />
+                            )
+                        ))}
                 </>
             </SkjemaFieldset>
         </Steg>

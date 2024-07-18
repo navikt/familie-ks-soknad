@@ -49,7 +49,7 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
                 <TekstBlock
                     block={barnehageplassTekster.oppsummeringstittel}
                     flettefelter={{ antall: nummer.toString() }}
-                    typografi={Typografi.HeadingH2}
+                    typografi={Typografi.HeadingH3}
                 />
             }
         >
