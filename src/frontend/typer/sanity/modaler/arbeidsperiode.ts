@@ -1,4 +1,4 @@
-import { LocaleRecordBlock } from '../../common';
+import { LocaleRecordBlock, LocaleRecordString } from '../../common';
 import { ISanitySpørsmålDokument } from '../sanity';
 
 export interface IArbeidsperiodeTekstinnhold {
@@ -10,6 +10,7 @@ export interface IArbeidsperiodeTekstinnhold {
     sluttdatoFortid: ISanitySpørsmålDokument;
     sluttdatoFremtid: ISanitySpørsmålDokument;
     startdato: ISanitySpørsmålDokument;
+    leggTilPeriodeForklaring: LocaleRecordString;
     flerePerioder: LocaleRecordBlock;
     fjernKnapp: LocaleRecordBlock;
     leggTilKnapp: LocaleRecordBlock;

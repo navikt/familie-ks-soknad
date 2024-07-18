@@ -64,7 +64,7 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
                 <TekstBlock
                     block={teksterForPersonType.oppsummeringstittelKontantstoette}
                     flettefelter={{ antall: nummer.toString() }}
-                    typografi={Typografi.HeadingH2}
+                    typografi={Typografi.HeadingH3}
                 />
             }
         >

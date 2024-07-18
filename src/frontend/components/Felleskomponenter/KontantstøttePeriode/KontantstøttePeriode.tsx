@@ -4,14 +4,15 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { Typografi } from '../../../typer/common';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PeriodePersonTypeProps, PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { IEøsForBarnFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -40,12 +41,13 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
     barn,
     tilhørendeJaNeiSpmFelt,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const {
         erÅpen: kontantstøtteModalErÅpen,
         lukkModal: lukkKontantstøtteModal,
         åpneModal: åpneKontantstøtteModal,
     } = useModal();
+    const { toggles } = useFeatureToggles();
 
     const teksterForPersonType: IEøsYtelseTekstinnhold =
         tekster().FELLES.modaler.eøsYtelse[personType];
@@ -60,7 +62,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                 flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {tilhørendeJaNeiSpmFelt.verdi === ESvar.JA && (
-                <>
+                <PerioderContainer>
                     {registrerteEøsKontantstøttePerioder.verdi.map((periode, index) => (
                         <KontantstøttePeriodeOppsummering
                             key={`eøs-kontantstøtte-periode-${index}`}
@@ -72,20 +74,19 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                             erDød={personType === PersonType.andreForelder && erDød}
                         />
                     ))}
-
-                    {registrerteEøsKontantstøttePerioder.verdi.length > 0 && (
-                        <TekstBlock
-                            block={teksterForPersonType.flerePerioder}
-                            typografi={Typografi.Label}
-                            flettefelter={{
-                                barnetsNavn: barn?.navn,
-                            }}
-                        />
-                    )}
-
                     <LeggTilKnapp
                         onClick={åpneKontantstøtteModal}
                         id={registrerteEøsKontantstøttePerioder.id}
+                        forklaring={
+                            registrerteEøsKontantstøttePerioder.verdi.length > 0
+                                ? plainTekst(teksterForPersonType.flerePerioder, {
+                                      barnetsNavn: barn?.navn,
+                                  })
+                                : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                                    teksterForPersonType.leggTilPeriodeForklaring
+                                  ? plainTekst(teksterForPersonType.leggTilPeriodeForklaring)
+                                  : undefined
+                        }
                         feilmelding={
                             registrerteEøsKontantstøttePerioder.erSynlig &&
                             skjema.visFeilmeldinger &&
@@ -102,9 +103,10 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                             barn={barn}
                             personType={personType}
                             erDød={erDød}
+                            forklaring={plainTekst(teksterForPersonType.leggTilPeriodeForklaring)}
                         />
                     )}
-                </>
+                </PerioderContainer>
             )}
         </>
     );
