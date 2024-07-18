@@ -186,7 +186,7 @@ function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
             </header>
             <InnholdContainer>
                 <Box marginBlock="16 12" marginInline="auto" id={'stegHovedtittel'} tabIndex={-1}>
-                    <Heading level="2" size={'large'}>
+                    <Heading level="2" size={'large'} align="center">
                         {tittel}
                     </Heading>
                 </Box>
