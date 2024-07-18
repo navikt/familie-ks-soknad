@@ -4,7 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IPensjonsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import {
@@ -15,6 +15,7 @@ import {
 } from '../../../typer/skjema';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -50,7 +51,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
     erDød,
     barn,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const teksterForModal = tekster().FELLES.modaler.pensjonsperiode[personType];
 
     const {
@@ -58,6 +59,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
         lukkModal: lukkPensjonsmodal,
         åpneModal: åpnePensjonsmodal,
     } = useModal();
+    const { toggles } = useFeatureToggles();
 
     return (
         <>
@@ -74,7 +76,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
                 flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {mottarEllerMottattPensjonFelt.verdi === ESvar.JA && (
-                <>
+                <PerioderContainer>
                     {registrertePensjonsperioder.verdi.map((pensjonsperiode, index) => (
                         <PensjonsperiodeOppsummering
                             key={`pensjonsperiode-${index}`}
@@ -87,19 +89,20 @@ export const Pensjonsperiode: React.FC<Props> = ({
                             barn={personType !== PersonType.søker ? barn : undefined}
                         />
                     ))}
-                    {registrertePensjonsperioder.verdi.length > 0 && (
-                        <TekstBlock
-                            block={teksterForModal.flerePerioder}
-                            typografi={Typografi.Label}
-                            flettefelter={{
-                                barnetsNavn: barn?.navn,
-                                gjelderUtland: gjelderUtlandet,
-                            }}
-                        />
-                    )}
                     <LeggTilKnapp
                         onClick={åpnePensjonsmodal}
                         id={registrertePensjonsperioder.id}
+                        forklaring={
+                            registrertePensjonsperioder.verdi.length > 0
+                                ? plainTekst(teksterForModal.flerePerioder, {
+                                      barnetsNavn: barn?.navn,
+                                      gjelderUtland: gjelderUtlandet,
+                                  })
+                                : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                                    teksterForModal.leggTilPeriodeForklaring
+                                  ? plainTekst(teksterForModal.leggTilPeriodeForklaring)
+                                  : undefined
+                        }
                         feilmelding={
                             registrertePensjonsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&
@@ -117,9 +120,10 @@ export const Pensjonsperiode: React.FC<Props> = ({
                             personType={personType}
                             erDød={erDød}
                             barn={barn}
+                            forklaring={plainTekst(teksterForModal.leggTilPeriodeForklaring)}
                         />
                     )}
-                </>
+                </PerioderContainer>
             )}
         </>
     );

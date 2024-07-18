@@ -64,7 +64,7 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
                 <TekstBlock
                     block={teksterForModal.oppsummeringstittel}
                     flettefelter={{ antall: nummer.toString(), gjelderUtland: gjelderUtlandet }}
-                    typografi={Typografi.HeadingH2}
+                    typografi={Typografi.HeadingH3}
                 />
             }
         >

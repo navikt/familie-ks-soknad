@@ -3,12 +3,13 @@ import React from 'react';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IDinLivssituasjonFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -30,12 +31,13 @@ export const Utenlandsperiode: React.FC<Props> = ({
     barn,
     personType,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const {
         erÅpen: erUtenlandsoppholdModalÅpen,
         lukkModal: lukkUtenlandsoppholdModal,
         åpneModal: åpneUtenlandsoppholdModal,
     } = useModal();
+    const { toggles } = useFeatureToggles();
 
     const {
         [ESanitySteg.FELLES]: {
@@ -43,10 +45,10 @@ export const Utenlandsperiode: React.FC<Props> = ({
         },
     } = tekster();
 
-    const { flerePerioder, leggTilKnapp } = utenlandsopphold[personType];
+    const { flerePerioder, leggTilKnapp, leggTilPeriodeForklaring } = utenlandsopphold[personType];
 
     return (
-        <>
+        <PerioderContainer>
             {erUtenlandsoppholdModalÅpen && (
                 <UtenlandsoppholdModal
                     erÅpen={erUtenlandsoppholdModalÅpen}
@@ -54,6 +56,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
                     onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
                     personType={personType}
                     barn={personType !== PersonType.søker ? barn : undefined}
+                    forklaring={plainTekst(leggTilPeriodeForklaring)}
                 />
             )}
             {registrerteUtenlandsperioder.verdi.map((periode, index) => (
@@ -66,12 +69,18 @@ export const Utenlandsperiode: React.FC<Props> = ({
                     barn={personType !== PersonType.søker ? barn : undefined}
                 />
             ))}
-            {registrerteUtenlandsperioder.verdi.length > 0 && (
-                <TekstBlock block={flerePerioder} typografi={Typografi.Label} />
-            )}
+
             <LeggTilKnapp
                 id={registrerteUtenlandsperioder.id}
                 onClick={åpneUtenlandsoppholdModal}
+                forklaring={
+                    registrerteUtenlandsperioder.verdi.length > 0
+                        ? plainTekst(flerePerioder)
+                        : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                            leggTilPeriodeForklaring
+                          ? plainTekst(leggTilPeriodeForklaring)
+                          : undefined
+                }
                 feilmelding={
                     registrerteUtenlandsperioder.erSynlig &&
                     skjema.visFeilmeldinger &&
@@ -80,6 +89,6 @@ export const Utenlandsperiode: React.FC<Props> = ({
             >
                 <TekstBlock block={leggTilKnapp} />
             </LeggTilKnapp>
-        </>
+        </PerioderContainer>
     );
 };

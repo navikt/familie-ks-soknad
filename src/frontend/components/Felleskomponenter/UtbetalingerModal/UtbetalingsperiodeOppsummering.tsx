@@ -51,7 +51,7 @@ export const UtbetalingsperiodeOppsummering: React.FC<UtbetalingsperiodeOppsumme
                 <TekstBlock
                     block={teksterForPersontype.oppsummeringstittel}
                     flettefelter={{ antall: nummer.toString() }}
-                    typografi={Typografi.HeadingH2}
+                    typografi={Typografi.HeadingH3}
                 />
             }
         >
