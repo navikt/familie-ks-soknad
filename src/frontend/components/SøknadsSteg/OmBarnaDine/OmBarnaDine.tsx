@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -21,16 +21,14 @@ import { IOmBarnaTekstinnhold } from './innholdTyper';
 import { OmBarnaDineSpørsmålId } from './spørsmål';
 import { useOmBarnaDine } from './useOmBarnaDine';
 
-const VedleggNotisWrapper = styled.div`
-    margin: -1.5rem 0 4.5rem 0;
-`;
-
 const OmBarnaDine: React.FC = () => {
     const { skjema, validerFelterOgVisFeilmelding, valideringErOk, oppdaterSøknad } =
         useOmBarnaDine();
 
     const navigate = useNavigate();
-    const { søknad, tekster, plainTekst } = useApp();
+    const { søknad, tekster } = useApp();
+    const { toggles } = useFeatureToggles();
+
     const { barnInkludertISøknaden } = søknad;
 
     const teksterForSteg: IOmBarnaTekstinnhold = tekster()[ESanitySteg.OM_BARNA];
@@ -55,6 +53,10 @@ const OmBarnaDine: React.FC = () => {
         hvemOppholdUtenforNorge,
         hvemSoektYtelse,
     } = teksterForSteg;
+
+    const dokumentasjonTekster = tekster()[ESanitySteg.DOKUMENTASJON];
+    const { vedtakOmOppholdstillatelse, bekreftelsePaaBarnehageplassEttEllerFlereBarn } =
+        dokumentasjonTekster;
 
     if (!barnInkludertISøknaden.length) {
         navigate('/velg-barn');
@@ -136,13 +138,12 @@ const OmBarnaDine: React.FC = () => {
                     nullstillValgteBarn={skjema.felter.søktAsylForBarn.verdi === ESvar.NEI}
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
-                {skjema.felter.søktAsylForBarn.verdi === ESvar.JA && (
-                    <VedleggNotisWrapper>
-                        <VedleggNotis dynamisk>
-                            <BodyShort>{plainTekst(asyl.vedleggsnotis)}</BodyShort>
-                        </VedleggNotis>
-                    </VedleggNotisWrapper>
-                )}
+                {skjema.felter.søktAsylForBarn.verdi === ESvar.JA &&
+                    (toggles.NYE_VEDLEGGSTEKSTER ? (
+                        <VedleggNotis block={vedtakOmOppholdstillatelse} dynamisk />
+                    ) : (
+                        asyl.vedleggsnotis && <VedleggNotis block={asyl.vedleggsnotis} dynamisk />
+                    ))}
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.barnOppholdtSegTolvMndSammenhengendeINorge}
@@ -191,11 +192,16 @@ const OmBarnaDine: React.FC = () => {
                     }
                     visFeilmelding={skjema.visFeilmeldinger}
                 >
-                    {hvemBarnehageplass.vedleggsnotis ? (
-                        <VedleggNotis>
-                            <BodyShort>{plainTekst(hvemBarnehageplass.vedleggsnotis)}</BodyShort>
-                        </VedleggNotis>
-                    ) : null}
+                    {toggles.NYE_VEDLEGGSTEKSTER ? (
+                        <VedleggNotis
+                            block={bekreftelsePaaBarnehageplassEttEllerFlereBarn}
+                            dynamisk
+                        />
+                    ) : (
+                        hvemBarnehageplass.vedleggsnotis && (
+                            <VedleggNotis block={hvemBarnehageplass.vedleggsnotis} dynamisk />
+                        )
+                    )}
                 </HvilkeBarnCheckboxGruppe>
                 <JaNeiSpm
                     skjema={skjema}
