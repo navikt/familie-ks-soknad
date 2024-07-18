@@ -11,7 +11,7 @@ export const initializeUnleash = () => {
         customHeaders: {
             Authorization: process.env.UNLEASH_SERVER_API_TOKEN ?? '',
         },
-        appName: process.env.NAIS_APP_NAME ?? 'familie-ba-soknad',
+        appName: process.env.NAIS_APP_NAME ?? 'familie-ks-soknad',
     });
 };
 

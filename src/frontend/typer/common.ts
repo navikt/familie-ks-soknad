@@ -33,6 +33,7 @@ export enum Typografi {
     Label = 'Label',
     Detail = 'Detail',
     HeadingH2 = 'HeadingH2',
+    HeadingH3 = 'HeadingH3',
 }
 
 export enum LocaleType {

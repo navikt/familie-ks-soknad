@@ -4,12 +4,13 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IUtbetalingsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -38,12 +39,13 @@ export const Utbetalingsperiode: React.FC<Props> = ({
     erDød,
     barn,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const {
         erÅpen: utbetalingermodalErÅpen,
         lukkModal: lukkUtbetalingsmodal,
         åpneModal: åpneUtbetalingsmodal,
     } = useModal();
+    const { toggles } = useFeatureToggles();
 
     const teksterForPersontype = tekster().FELLES.modaler.andreUtbetalinger[personType];
 
@@ -59,7 +61,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                 flettefelter={{ barnetsNavn: barnetsNavn }}
             />
             {tilhørendeJaNeiSpmFelt.verdi === ESvar.JA && (
-                <>
+                <PerioderContainer>
                     {registrerteUtbetalingsperioder.verdi.map((utbetalingsperiode, index) => (
                         <UtbetalingsperiodeOppsummering
                             key={`utbetalingsperiode-${index}`}
@@ -71,18 +73,19 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                             barn={barn}
                         />
                     ))}
-                    {registrerteUtbetalingsperioder.verdi.length > 0 && (
-                        <TekstBlock
-                            block={teksterForPersontype.flerePerioder}
-                            typografi={Typografi.Label}
-                            flettefelter={{
-                                barnetsNavn: barn?.navn,
-                            }}
-                        />
-                    )}
                     <LeggTilKnapp
                         onClick={åpneUtbetalingsmodal}
                         id={registrerteUtbetalingsperioder.id}
+                        forklaring={
+                            registrerteUtbetalingsperioder.verdi.length > 0
+                                ? plainTekst(teksterForPersontype.flerePerioder, {
+                                      barnetsNavn: barn?.navn,
+                                  })
+                                : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                                    teksterForPersontype.leggTilPeriodeForklaring
+                                  ? plainTekst(teksterForPersontype.leggTilPeriodeForklaring)
+                                  : undefined
+                        }
                         feilmelding={
                             registrerteUtbetalingsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&
@@ -100,9 +103,10 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                             personType={personType}
                             barn={barn}
                             erDød={erDød}
+                            forklaring={plainTekst(teksterForPersontype.leggTilPeriodeForklaring)}
                         />
                     )}
-                </>
+                </PerioderContainer>
             )}
         </>
     );
