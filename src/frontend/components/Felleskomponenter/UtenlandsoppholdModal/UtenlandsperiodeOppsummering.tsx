@@ -63,7 +63,7 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
                     <TekstBlock
                         block={teksterForPersonType.oppsummeringstittel}
                         flettefelter={{ antall: nummer.toString() }}
-                        typografi={Typografi.Label}
+                        typografi={Typografi.HeadingH3}
                     />
                 }
                 fjernPeriodeCallback={fjernPeriodeCallback && (() => fjernPeriodeCallback(periode))}

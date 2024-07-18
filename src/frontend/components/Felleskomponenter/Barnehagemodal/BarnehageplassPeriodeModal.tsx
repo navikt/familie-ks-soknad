@@ -39,6 +39,7 @@ interface Props extends IUseBarnehageplassSkjemaParams {
     erÅpen: boolean;
     lukkModal: () => void;
     onLeggTilBarnehageplassPeriode: (periode: IBarnehageplassPeriode) => void;
+    forklaring?: string;
 }
 
 export const BarnehageplassPeriodeModal: React.FC<Props> = ({
@@ -46,6 +47,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
     lukkModal,
     onLeggTilBarnehageplassPeriode,
     barn,
+    forklaring = undefined,
 }) => {
     const {
         skjema,
@@ -112,6 +114,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
         <SkjemaModal
             erÅpen={erÅpen}
             tittel={barnehageplassTekster.tittel}
+            forklaring={forklaring}
             flettefelter={{ barnetsNavn }}
             onSubmitCallback={onLeggTil}
             submitKnappTekst={<TekstBlock block={barnehageplassTekster.leggTilKnapp} />}

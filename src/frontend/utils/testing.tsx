@@ -148,7 +148,10 @@ export const mockFeatureToggle = () => {
         .mockImplementation(
             jest.fn().mockReturnValue({
                 // toggles: { [EFeatureToggle.EXAMPLE]: false },
-                toggles: { [EFeatureToggle.NYE_VEDLEGGSTEKSTER]: false },
+                toggles: {
+                    [EFeatureToggle.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP]: false,
+                    [EFeatureToggle.NYE_VEDLEGGSTEKSTER]: false,
+                },
             })
         );
     return { useFeatureToggle };
