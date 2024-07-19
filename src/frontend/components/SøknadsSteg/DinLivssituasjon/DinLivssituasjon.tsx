@@ -36,7 +36,12 @@ const DinLivssituasjon: React.FC = () => {
     const { toggles } = useFeatureToggles();
 
     const teksterForSteg: IDinLivssituasjonTekstinnhold = tekster()[ESanitySteg.DIN_LIVSSITUASJON];
-    const { dinLivssituasjonTittel, asylsoeker, utenlandsoppholdUtenArbeid } = teksterForSteg;
+    const {
+        dinLivssituasjonTittel,
+        dinLivssituasjonGuide,
+        asylsoeker,
+        utenlandsoppholdUtenArbeid,
+    } = teksterForSteg;
 
     const dokumentasjonTekster = tekster()[ESanitySteg.DOKUMENTASJON];
     const { vedtakOmOppholdstillatelse } = dokumentasjonTekster;
@@ -44,6 +49,7 @@ const DinLivssituasjon: React.FC = () => {
     return (
         <Steg
             tittel={<TekstBlock block={dinLivssituasjonTittel} />}
+            guide={<TekstBlock block={dinLivssituasjonGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

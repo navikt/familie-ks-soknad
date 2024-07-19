@@ -71,6 +71,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
 
     const {
         eoesForBarnTittel,
+        eosForBarnGuide,
         valgalternativSlektsforholdPlaceholder,
         hvilkenRelasjon,
         borMedAndreForelder,
@@ -88,6 +89,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
     return (
         <Steg
             tittel={uppercaseFørsteBokstav(plainTekst(eoesForBarnTittel, { barnetsNavn }))}
+            guide={<TekstBlock block={eosForBarnGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

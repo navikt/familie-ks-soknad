@@ -3,12 +3,13 @@ import React, { ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Box, Heading, FormProgress } from '@navikt/ds-react';
+import { Box, GuidePanel, Heading, FormProgress } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import { useApp } from '../../../context/AppContext';
 import { useAppNavigation } from '../../../context/AppNavigationContext';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { useSteg } from '../../../context/StegContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { device } from '../../../Theme';
@@ -31,6 +32,7 @@ import { ScrollHandler } from './ScrollHandler';
 
 interface ISteg {
     tittel: ReactNode;
+    guide?: ReactNode;
     skjema?: {
         validerFelterOgVisFeilmelding: () => boolean;
         valideringErOk: () => boolean;
@@ -59,7 +61,7 @@ const Form = styled.form`
     width: 100%;
 `;
 
-function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
+function Steg({ tittel, guide, skjema, gåVidereCallback, children }: ISteg) {
     const navigate = useNavigate();
     const { erÅpen: erModellVersjonModalÅpen, åpneModal: åpneModellVersjonModal } = useModal();
     const {
@@ -78,6 +80,7 @@ function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
         erPåKvitteringsside,
     } = useSteg();
     const { komFra, settKomFra } = useAppNavigation();
+    const { toggles } = useFeatureToggles();
 
     const nesteRoute = hentNesteSteg();
     const forrigeRoute = hentForrigeSteg();
@@ -176,6 +179,11 @@ function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
                         {tittel}
                     </Heading>
                 </Box>
+                {toggles.VIS_GUIDE_I_STEG && guide && (
+                    <Box marginBlock="0 12">
+                        <GuidePanel poster>{guide}</GuidePanel>
+                    </Box>
+                )}
                 <Form onSubmit={event => håndterGåVidere(event)} autoComplete="off">
                     <ChildrenContainer>{children}</ChildrenContainer>
                     {skjema && visFeiloppsummering(skjema.skjema) && (

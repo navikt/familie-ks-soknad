@@ -3,6 +3,7 @@ import { BeskrivelseSanityApiNavn, TittelSanityApiNavn } from '../../../typer/do
 
 export type IDokumentasjonTekstinnhold = {
     dokumentasjonTittel: LocaleRecordBlock;
+    dokumentasjonGuide: LocaleRecordBlock;
     sendtInnTidligere: LocaleRecordBlock;
     vedleggXavY: LocaleRecordBlock;
     slippFilenHer: LocaleRecordBlock;

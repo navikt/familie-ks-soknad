@@ -151,6 +151,7 @@ export const mockFeatureToggle = () => {
                 toggles: {
                     [EFeatureToggle.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP]: false,
                     [EFeatureToggle.NYE_VEDLEGGSTEKSTER]: false,
+                    [EFeatureToggle.VIS_GUIDE_I_STEG]: false,
                 },
             })
         );
