@@ -32,7 +32,7 @@ const EøsForSøker: React.FC = () => {
         settIdNummerFelter,
     } = useEøsForSøker();
 
-    const { eoesForSoekerTittel, hvorBor } = tekster().EØS_FOR_SØKER;
+    const { eoesForSoekerTittel, eosForSokerGuide, hvorBor } = tekster().EØS_FOR_SØKER;
 
     return (
         <Steg
@@ -41,6 +41,7 @@ const EøsForSøker: React.FC = () => {
                     {uppercaseFørsteBokstav(plainTekst(eoesForSoekerTittel))}
                 </Heading>
             }
+            guide={<TekstBlock block={eosForSokerGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

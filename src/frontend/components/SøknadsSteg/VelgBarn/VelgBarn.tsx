@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Alert, VStack } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
@@ -42,6 +43,7 @@ const VelgBarn: React.FC = () => {
         barnSomSkalVæreMed,
         fjernBarn,
     } = useVelgBarn();
+    const { toggles } = useFeatureToggles();
 
     const barnFraRespons = søknad.søker.barn;
     const barnManueltLagtTil = søknad.barnRegistrertManuelt;
@@ -51,15 +53,19 @@ const VelgBarn: React.FC = () => {
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
     const {
         velgBarnTittel,
+        velgBarnGuide,
         hvisOpplysningeneIkkeStemmer,
         leseMerOmRegleneKontantstoette,
         kanIkkeBestemmeRettUnder1Aar,
     } = teksterForSteg;
 
+    const visGammelInfo = !toggles.VIS_GUIDE_I_STEG || !velgBarnGuide;
+
     return (
         <>
             <Steg
                 tittel={<TekstBlock block={velgBarnTittel} typografi={Typografi.StegHeadingH1} />}
+                guide={<TekstBlock block={velgBarnGuide} />}
                 skjema={{
                     validerFelterOgVisFeilmelding,
                     valideringErOk,
@@ -69,12 +75,14 @@ const VelgBarn: React.FC = () => {
                     },
                 }}
             >
-                <Alert variant={'info'} inline>
-                    <TekstBlock
-                        block={hvisOpplysningeneIkkeStemmer}
-                        typografi={Typografi.BodyShort}
-                    />
-                </Alert>
+                {visGammelInfo && (
+                    <Alert variant={'info'} inline>
+                        <TekstBlock
+                            block={hvisOpplysningeneIkkeStemmer}
+                            typografi={Typografi.BodyShort}
+                        />
+                    </Alert>
+                )}
 
                 <VStack
                     id={VelgBarnSpørsmålId.velgBarn}

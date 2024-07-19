@@ -22,6 +22,7 @@ const OmDeg: React.FC = () => {
     const {
         [ESanitySteg.OM_DEG]: {
             omDegTittel,
+            omDegGuide,
             borPaaAdressen,
             oppholdtDegSammenhengende,
             planleggerAaBoSammenhengende,
@@ -32,6 +33,7 @@ const OmDeg: React.FC = () => {
     return (
         <Steg
             tittel={<TekstBlock block={omDegTittel} typografi={Typografi.StegHeadingH1} />}
+            guide={<TekstBlock block={omDegGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
