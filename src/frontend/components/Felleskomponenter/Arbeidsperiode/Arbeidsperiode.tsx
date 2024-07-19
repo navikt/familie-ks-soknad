@@ -4,7 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
@@ -16,6 +16,7 @@ import {
 } from '../../../typer/skjema';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -51,7 +52,8 @@ export const Arbeidsperiode: React.FC<Props> = ({
     erDød,
     barn,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
+    const { toggles } = useFeatureToggles();
     const {
         erÅpen: arbeidsmodalErÅpen,
         lukkModal: lukkArbeidsmodal,
@@ -59,7 +61,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
     } = useModal();
     const teksterForModal: IArbeidsperiodeTekstinnhold =
         tekster().FELLES.modaler.arbeidsperiode[personType];
-    const { flerePerioder, leggTilKnapp } = teksterForModal;
+    const { flerePerioder, leggTilKnapp, leggTilPeriodeForklaring } = teksterForModal;
 
     return (
         <>
@@ -76,7 +78,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                 flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {arbeiderEllerArbeidetFelt.verdi === ESvar.JA && (
-                <>
+                <PerioderContainer>
                     {registrerteArbeidsperioder.verdi.map((periode, index) => (
                         <ArbeidsperiodeOppsummering
                             key={`arbeidsperiode-${index}`}
@@ -89,19 +91,20 @@ export const Arbeidsperiode: React.FC<Props> = ({
                             barn={personType !== PersonType.søker ? barn : undefined}
                         />
                     ))}
-                    {registrerteArbeidsperioder.verdi.length > 0 && (
-                        <TekstBlock
-                            block={flerePerioder}
-                            typografi={Typografi.Label}
-                            flettefelter={{
-                                gjelderUtland: gjelderUtlandet,
-                                barnetsNavn: barn?.navn,
-                            }}
-                        />
-                    )}
                     <LeggTilKnapp
                         onClick={åpneArbeidsmodal}
                         id={registrerteArbeidsperioder.id}
+                        forklaring={
+                            registrerteArbeidsperioder.verdi.length > 0
+                                ? plainTekst(flerePerioder, {
+                                      gjelderUtland: gjelderUtlandet,
+                                      barnetsNavn: barn?.navn,
+                                  })
+                                : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
+                                    leggTilPeriodeForklaring
+                                  ? plainTekst(leggTilPeriodeForklaring)
+                                  : undefined
+                        }
                         feilmelding={
                             registrerteArbeidsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&
@@ -119,9 +122,10 @@ export const Arbeidsperiode: React.FC<Props> = ({
                             personType={personType}
                             erDød={erDød}
                             barn={barn}
+                            forklaring={plainTekst(leggTilPeriodeForklaring)}
                         />
                     )}
-                </>
+                </PerioderContainer>
             )}
         </>
     );
