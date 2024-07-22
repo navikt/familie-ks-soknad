@@ -3,7 +3,7 @@ import React, { ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { Box, GuidePanel, FormProgress } from '@navikt/ds-react';
+import { Box, GuidePanel, Heading, FormProgress } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
@@ -55,16 +55,6 @@ const FormProgressContainer = styled.div`
 
 const ChildrenContainer = styled.div`
     margin-bottom: 2rem;
-`;
-
-const TittelContainer = styled.div`
-    && {
-        margin: 4rem auto 3rem auto;
-
-        :focus-visible {
-            outline: none;
-        }
-    }
 `;
 
 const Form = styled.form`
@@ -184,9 +174,11 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, children }: ISteg) {
                 )}
             </header>
             <InnholdContainer>
-                <TittelContainer id={'stegHovedtittel'} tabIndex={-1}>
-                    {tittel}
-                </TittelContainer>
+                <Box marginBlock="16 12" marginInline="auto" id={'stegHovedtittel'} tabIndex={-1}>
+                    <Heading level="2" size={'large'} align="center">
+                        {tittel}
+                    </Heading>
+                </Box>
                 {toggles.VIS_GUIDE_I_STEG && guide && (
                     <Box marginBlock="0 12">
                         <GuidePanel poster>{guide}</GuidePanel>

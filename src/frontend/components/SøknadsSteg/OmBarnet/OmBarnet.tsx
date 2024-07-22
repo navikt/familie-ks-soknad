@@ -71,13 +71,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
 
     return barn ? (
         <Steg
-            tittel={
-                <TekstBlock
-                    block={omBarnetTittel}
-                    flettefelter={{ barnetsNavn }}
-                    typografi={Typografi.StegHeadingH1}
-                />
-            }
+            tittel={<TekstBlock block={omBarnetTittel} flettefelter={{ barnetsNavn }} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,

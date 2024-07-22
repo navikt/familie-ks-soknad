@@ -64,7 +64,7 @@ const VelgBarn: React.FC = () => {
     return (
         <>
             <Steg
-                tittel={<TekstBlock block={velgBarnTittel} typografi={Typografi.StegHeadingH1} />}
+                tittel={<TekstBlock block={velgBarnTittel} />}
                 guide={<TekstBlock block={velgBarnGuide} />}
                 skjema={{
                     validerFelterOgVisFeilmelding,

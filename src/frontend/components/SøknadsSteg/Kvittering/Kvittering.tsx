@@ -50,14 +50,7 @@ const Kvittering: React.FC = () => {
     }, []);
 
     return (
-        <Steg
-            tittel={
-                <TekstBlock
-                    block={kvitteringTekster.kvitteringTittel}
-                    typografi={Typografi.StegHeadingH1}
-                />
-            }
-        >
+        <Steg tittel={<TekstBlock block={kvitteringTekster.kvitteringTittel} />}>
             <KomponentGruppe>
                 <Alert variant="success">
                     <TekstBlock

@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Heading } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../../context/AppContext';
@@ -89,11 +88,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
 
     return (
         <Steg
-            tittel={
-                <Heading level={'1'} size={'xsmall'}>
-                    {uppercaseFørsteBokstav(plainTekst(eoesForBarnTittel, { barnetsNavn }))}
-                </Heading>
-            }
+            tittel={uppercaseFørsteBokstav(plainTekst(eoesForBarnTittel, { barnetsNavn }))}
             guide={<TekstBlock block={eosForBarnGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,

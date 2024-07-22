@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Heading } from '@navikt/ds-react';
-
 import { useApp } from '../../../../context/AppContext';
 import { PersonType } from '../../../../typer/personType';
 import { uppercaseFørsteBokstav } from '../../../../utils/visning';
@@ -36,11 +34,7 @@ const EøsForSøker: React.FC = () => {
 
     return (
         <Steg
-            tittel={
-                <Heading level={'1'} size={'xsmall'}>
-                    {uppercaseFørsteBokstav(plainTekst(eoesForSoekerTittel))}
-                </Heading>
-            }
+            tittel={uppercaseFørsteBokstav(plainTekst(eoesForSoekerTittel))}
             guide={<TekstBlock block={eosForSokerGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,

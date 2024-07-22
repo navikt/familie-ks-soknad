@@ -48,9 +48,7 @@ const DinLivssituasjon: React.FC = () => {
 
     return (
         <Steg
-            tittel={
-                <TekstBlock block={dinLivssituasjonTittel} typografi={Typografi.StegHeadingH1} />
-            }
+            tittel={<TekstBlock block={dinLivssituasjonTittel} />}
             guide={<TekstBlock block={dinLivssituasjonGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
