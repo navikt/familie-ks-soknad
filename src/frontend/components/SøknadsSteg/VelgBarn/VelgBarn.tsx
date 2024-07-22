@@ -1,9 +1,8 @@
 import React from 'react';
 
-import Masonry from 'react-masonry-css';
 import styled from 'styled-components';
 
-import { Alert } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { useFeatureToggles } from '../../../context/FeatureToggleContext';
@@ -20,15 +19,6 @@ import { NyttBarnKort } from './LeggTilBarn/NyttBarnKort';
 import { VelgBarnSpørsmålId } from './spørsmål';
 import { useVelgBarn } from './useVelgBarn';
 
-/**
- * Vi har prøvd mye for å få til masonry, men før denne teknologien blir implementert
- * av nettlesere ser det ut til at javascript må til for å få godt pakka barnekortkontainer.
- * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Masonry_Layout
- */
-const BarnekortContainer = styled(Masonry)`
-    display: flex;
-    margin-top: 5rem;
-`;
 const LenkeContainer = styled.div`
     margin-top: 1.5rem;
 `;
@@ -94,13 +84,11 @@ const VelgBarn: React.FC = () => {
                     </Alert>
                 )}
 
-                <BarnekortContainer
+                <VStack
                     id={VelgBarnSpørsmålId.velgBarn}
-                    className={'BarnekortContainer'}
-                    breakpointCols={{
-                        default: 2,
-                        480: 1,
-                    }}
+                    className={'BarnekortStack'}
+                    marginBlock="12"
+                    gap="12"
                 >
                     {barn.map(barnet => (
                         <Barnekort
@@ -112,7 +100,7 @@ const VelgBarn: React.FC = () => {
                         />
                     ))}
                     <NyttBarnKort onLeggTilBarn={åpneLeggTilBarnModal} />
-                </BarnekortContainer>
+                </VStack>
 
                 {finnesBarnUnder1År && (
                     <StyledWarningAlert inline variant={'warning'}>
