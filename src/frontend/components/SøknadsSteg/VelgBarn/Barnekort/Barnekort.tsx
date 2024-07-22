@@ -2,21 +2,29 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { Alert, Checkbox, Heading } from '@navikt/ds-react';
-import { AGray100, APurple400, APurple800 } from '@navikt/ds-tokens/dist/tokens';
+import { TrashFillIcon } from '@navikt/aksel-icons';
+import { Checkbox, Heading, Box, VStack, Button, Bleed, HGrid, Alert } from '@navikt/ds-react';
+import {
+    APurple400,
+    APurple800,
+    ABorderRadiusMedium,
+    ASpacing32,
+    ASpacing05,
+    AGrayalpha200,
+} from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../../context/AppContext';
-import { device } from '../../../../Theme';
+import { LocaleRecordBlock } from '../../../../typer/common';
 import { IBarn } from '../../../../typer/person';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { hentBostedSpråkId } from '../../../../utils/språk';
-import { formaterFnr } from '../../../../utils/visning';
+import { formaterFnr, uppercaseFørsteBokstav } from '../../../../utils/visning';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { TilfeldigBarnIkon } from '../../../Felleskomponenter/TilfeldigBarnIkon/TilfeldigBarnIkon';
-import { OppsummeringFelt } from '../../Oppsummering/OppsummeringFelt';
 import { IVelgBarnTekstinnhold } from '../innholdTyper';
 
-import { FjernBarnKnapp } from './FjernBarnKnapp';
+import { BarnekortContainer } from './BarnekortContainer';
+import { BarnekortInfo } from './BarnekortInfo';
 
 interface IBarnekortProps {
     velgBarnCallback: (barn: IBarn, barnMedISøknad: boolean) => void;
@@ -25,52 +33,22 @@ interface IBarnekortProps {
     fjernBarnCallback: (ident: string) => void;
 }
 
-export const StyledBarnekort = styled.div`
-    position: relative;
-    border-radius: 0.3rem;
-    max-width: calc(16.3rem - 0.3rem * 2);
-    padding: 2rem;
-    margin: 0 0.3125rem 0.625rem;
-    background-color: ${AGray100};
-    @media all and ${device.mobile} {
-        width: 100%;
-        max-width: none;
-        margin: 0 0 0.625rem;
-    }
-`;
-
-const StyledCheckbox = styled(Checkbox)`
-    margin-top: 1.75rem;
-`;
-
-const InformasjonsboksInnhold = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    margin-top: 8rem;
-`;
-
 const BarnekortHeader = styled.div`
-    height: 8rem;
+    height: ${ASpacing32};
     background-color: ${APurple800};
     border-bottom: 0.25rem solid ${APurple400};
-    border-radius: 0.3rem 0.3rem 0 0;
+    border-radius: ${ABorderRadiusMedium} ${ABorderRadiusMedium} 0 0;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    position: absolute;
-    left: 0;
-    top: 0;
     width: 100%;
 `;
 
-const StyledHeading = styled(Heading)`
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-`;
-
-const StyledWarningAlert = styled(Alert)`
-    margin-top: 1.5rem;
+const Divider = styled.hr`
+    height: ${ASpacing05};
+    width: 100%;
+    border: none;
+    background-color: ${AGrayalpha200};
 `;
 
 const Barnekort: React.FC<IBarnekortProps> = ({
@@ -102,56 +80,75 @@ const Barnekort: React.FC<IBarnekortProps> = ({
         manueltRegistrertBarn => manueltRegistrertBarn.id === barn.id
     );
 
+    const fødselsnummerTekst = !barn.adressebeskyttelse
+        ? formaterFnr(barn.ident)
+        : uppercaseFørsteBokstav(plainTekst(tekster()[ESanitySteg.FELLES].frittståendeOrd.skjult));
+
+    const knappetekst: LocaleRecordBlock =
+        tekster()[ESanitySteg.FELLES].modaler.leggTilBarn.fjernKnapp;
+
     return (
-        <StyledBarnekort>
-            <BarnekortHeader>
-                <TilfeldigBarnIkon />
-            </BarnekortHeader>
-            <InformasjonsboksInnhold>
-                <StyledHeading size={'xsmall'} level={'2'}>
+        <BarnekortContainer>
+            <VStack gap="6">
+                <Bleed marginInline="6" marginBlock="6 0" asChild>
+                    <Box>
+                        <BarnekortHeader>
+                            <TilfeldigBarnIkon />
+                        </BarnekortHeader>
+                    </Box>
+                </Bleed>
+                <Heading level="3" size="medium">
                     {barn.adressebeskyttelse ? (
                         <TekstBlock block={navnErstatterForAdressesperre} />
                     ) : (
                         barn.navn
                     )}
-                </StyledHeading>
-                {!barn.adressebeskyttelse && (
-                    <OppsummeringFelt
-                        spørsmålstekst={foedselsnummerLabel}
-                        søknadsvar={formaterFnr(barn.ident)}
+                </Heading>
+                <HGrid gap="6" columns={{ sm: 1, md: '2fr 1fr 3fr' }}>
+                    <BarnekortInfo
+                        label={<TekstBlock block={foedselsnummerLabel} />}
+                        verdi={fødselsnummerTekst}
                     />
-                )}
-                {barn.alder && ( // Barn med undefined fødselsdato i pdl eller som søker har lagt inn selv har alder -null-
-                    <OppsummeringFelt
-                        spørsmålstekst={alderLabel}
-                        søknadsvar={`${barn.alder} ${plainTekst(aar)}`}
-                    />
-                )}
-
-                {!erRegistrertManuelt && (
-                    <OppsummeringFelt
-                        spørsmålstekst={registrertBostedLabel}
-                        søknadsvar={<TekstBlock block={hentBostedSpråkId(barn, teksterForSteg)} />}
-                    />
-                )}
-                <StyledCheckbox
+                    {barn.alder && ( // Barn med undefined fødselsdato i pdl eller som søker har lagt inn selv har alder -null-
+                        <BarnekortInfo
+                            label={<TekstBlock block={alderLabel} />}
+                            verdi={`${barn.alder} ${plainTekst(aar)}`}
+                        />
+                    )}
+                    {!erRegistrertManuelt && (
+                        <BarnekortInfo
+                            label={<TekstBlock block={registrertBostedLabel} />}
+                            verdi={<TekstBlock block={hentBostedSpråkId(barn, teksterForSteg)} />}
+                        />
+                    )}
+                </HGrid>
+                <Divider />
+                <Checkbox
                     checked={erMedISøknad}
                     aria-label={`${plainTekst(soekOmYtelseForBarnetSjekkboks)} ${barn.navn}`}
                     onChange={() => velgBarnCallback(barn, erMedISøknad)}
                     data-testid={'velg-barn-checkbox'}
                 >
                     <TekstBlock block={soekOmYtelseForBarnetSjekkboks} />
-                </StyledCheckbox>
-                {erMedISøknad && barn.erUnder11Mnd && (
-                    <StyledWarningAlert inline variant={'warning'}>
-                        <TekstBlock block={under1Aar} />
-                    </StyledWarningAlert>
+                </Checkbox>
+                {erRegistrertManuelt && (
+                    <Button
+                        type={'button'}
+                        variant="tertiary"
+                        onClick={() => fjernBarnCallback(barn.id)}
+                        data-testid={'fjern-barn-knapp'}
+                        icon={<TrashFillIcon aria-hidden />}
+                    >
+                        <TekstBlock block={knappetekst} />
+                    </Button>
                 )}
-            </InformasjonsboksInnhold>
-            {erRegistrertManuelt && (
-                <FjernBarnKnapp barnId={barn.id} fjernBarnCallback={fjernBarnCallback} />
-            )}
-        </StyledBarnekort>
+                {erMedISøknad && barn.erUnder11Mnd && (
+                    <Alert variant="warning">
+                        <TekstBlock block={under1Aar} />
+                    </Alert>
+                )}
+            </VStack>
+        </BarnekortContainer>
     );
 };
 
