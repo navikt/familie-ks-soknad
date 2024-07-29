@@ -1,27 +1,14 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
-import { Button, ConfirmationPanel } from '@navikt/ds-react';
+import { ArrowRightIcon } from '@navikt/aksel-icons';
+import { Box, Button, ConfirmationPanel, Heading, VStack } from '@navikt/ds-react';
 import { AGreen500, ANavRed, AOrange500 } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
-import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import { BekreftelseStatus, useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
-
-const FormContainer = styled.form`
-    display: flex;
-    flex-direction: column;
-`;
-
-const StyledButton = styled(Button)`
-    && {
-        margin: 2.3rem auto 0 auto;
-    }
-`;
 
 export const bekreftelseBoksBorderFarge = (status: BekreftelseStatus) => {
     switch (status) {
@@ -49,11 +36,8 @@ const BekreftelseOgStartSoknad: React.FC = () => {
     } = tekster();
 
     return (
-        <FormContainer onSubmit={event => onStartSøknad(event)}>
-            <Informasjonsbolk
-                tittel={plainTekst(bekreftelsesboksTittel)}
-                data-testid={'bekreftelsesboks-container'}
-            >
+        <form onSubmit={event => onStartSøknad(event)}>
+            <VStack gap="12">
                 <ConfirmationPanel
                     label={plainTekst(bekreftelsesboksErklaering)}
                     onChange={bekreftelseOnChange}
@@ -64,20 +48,29 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                         )
                     }
                 >
+                    <Heading level="2" size="xsmall" spacing>
+                        {plainTekst(bekreftelsesboksTittel)}
+                    </Heading>
                     <TekstBlock block={bekreftelsesboksBroedtekst} typografi={Typografi.BodyLong} />
                 </ConfirmationPanel>
-            </Informasjonsbolk>
 
-            <StyledButton
-                variant={
-                    bekreftelseStatus === BekreftelseStatus.BEKREFTET ? 'primary' : 'secondary'
-                }
-                type={'submit'}
-                data-testid={'start-søknad-knapp'}
-            >
-                {plainTekst(navigasjon.startKnapp)}
-            </StyledButton>
-        </FormContainer>
+                <Box marginInline="auto">
+                    <Button
+                        variant={
+                            bekreftelseStatus === BekreftelseStatus.BEKREFTET
+                                ? 'primary'
+                                : 'secondary'
+                        }
+                        type={'submit'}
+                        icon={<ArrowRightIcon aria-hidden />}
+                        iconPosition="right"
+                        data-testid={'start-søknad-knapp'}
+                    >
+                        {plainTekst(navigasjon.startKnapp)}
+                    </Button>
+                </Box>
+            </VStack>
+        </form>
     );
 };
 

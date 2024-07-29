@@ -1,31 +1,46 @@
 import React, { useEffect } from 'react';
 
-import { Box, GuidePanel, Heading } from '@navikt/ds-react';
+import styled from 'styled-components';
+
+import { Accordion, BodyLong, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import Miljø from '../../../../shared-utils/Miljø';
 import { useApp } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
-import { Typografi } from '../../../typer/common';
+import { device } from '../../../Theme';
 import { RouteEnum } from '../../../typer/routes';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
-import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
-import InnholdContainer from '../../Felleskomponenter/InnholdContainer/InnholdContainer';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
 import FortsettPåSøknad from './FortsettPåSøknad';
 
+const Layout = styled.div`
+    max-width: var(--innhold-bredde);
+    margin: 2rem auto 4rem auto;
+
+    @media all and ${device.tablet} {
+        max-width: 100%;
+        margin: 2rem 2rem 4rem 2rem;
+    }
+`;
+
 const Forside: React.FC = () => {
-    const { mellomlagretVerdi, settNåværendeRoute, tekster } = useApp();
+    const { mellomlagretVerdi, settNåværendeRoute, tekster, plainTekst } = useApp();
 
     const {
         [ESanitySteg.FORSIDE]: {
-            punktliste,
+            veilederHei,
             veilederhilsen,
             soeknadstittel,
-            personopplysningslenke,
+            foerDuSoekerTittel,
+            foerDuSoeker,
+            informasjonOmPlikterTittel,
+            informasjonOmPlikter,
+            informasjonOmPersonopplysningerTittel,
+            informasjonOmPersonopplysninger,
         },
     } = tekster();
 
@@ -48,27 +63,50 @@ const Forside: React.FC = () => {
         mellomlagretVerdi && mellomlagretVerdi.modellVersjon === Miljø().modellVersjon;
 
     return (
-        <InnholdContainer>
-            <Box marginBlock="0 12">
-                <Heading size="xlarge" align="center">
+        <Layout>
+            <VStack gap="12">
+                <Heading level="1" size="large" align="center">
                     <TekstBlock block={soeknadstittel} />
                 </Heading>
-            </Box>
 
-            <GuidePanel poster>
-                <TekstBlock block={veilederhilsen} typografi={Typografi.BodyShort} />
-            </GuidePanel>
+                <GuidePanel poster>
+                    <Heading level="2" size="medium" spacing>
+                        {plainTekst(veilederHei)}
+                    </Heading>
+                    <BodyLong>{plainTekst(veilederhilsen)}</BodyLong>
+                </GuidePanel>
 
-            <Informasjonsbolk>
-                <TekstBlock block={punktliste} />
-            </Informasjonsbolk>
+                <div>
+                    <Heading level="2" size="large" spacing>
+                        {plainTekst(foerDuSoekerTittel)}
+                    </Heading>
+                    <BodyLong>
+                        <TekstBlock block={foerDuSoeker} />
+                    </BodyLong>
+                </div>
 
-            {kanFortsettePåSøknad ? <FortsettPåSøknad /> : <BekreftelseOgStartSoknad />}
+                <Accordion>
+                    <Accordion.Item>
+                        <Accordion.Header>
+                            {plainTekst(informasjonOmPlikterTittel)}
+                        </Accordion.Header>
+                        <Accordion.Content>
+                            <TekstBlock block={informasjonOmPlikter} />
+                        </Accordion.Content>
+                    </Accordion.Item>
+                    <Accordion.Item>
+                        <Accordion.Header>
+                            {plainTekst(informasjonOmPersonopplysningerTittel)}
+                        </Accordion.Header>
+                        <Accordion.Content>
+                            <TekstBlock block={informasjonOmPersonopplysninger} />
+                        </Accordion.Content>
+                    </Accordion.Item>
+                </Accordion>
 
-            <Informasjonsbolk>
-                <TekstBlock block={personopplysningslenke} />
-            </Informasjonsbolk>
-        </InnholdContainer>
+                {kanFortsettePåSøknad ? <FortsettPåSøknad /> : <BekreftelseOgStartSoknad />}
+            </VStack>
+        </Layout>
     );
 };
 

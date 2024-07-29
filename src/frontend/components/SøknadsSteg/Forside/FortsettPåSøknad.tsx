@@ -1,31 +1,13 @@
 import React, { FC } from 'react';
 
-import styled from 'styled-components';
-
-import { Alert, Button, Modal } from '@navikt/ds-react';
+import { Alert, Box, Button, Modal, VStack } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
-import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import ModalContent from '../../Felleskomponenter/ModalContent';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import { useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
-
-const StyledButton = styled(Button)`
-    && {
-        margin: 0 auto 2rem auto;
-        padding: 1rem 3rem 1rem 3rem;
-    }
-`;
-
-const StyledFortsettPåSøknad = styled.div`
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-`;
 
 const FortsettPåSøknad: FC = () => {
     const { tekster, plainTekst } = useApp();
@@ -48,16 +30,18 @@ const FortsettPåSøknad: FC = () => {
     } = tekster();
 
     return (
-        <StyledFortsettPåSøknad role={'navigation'}>
-            <KomponentGruppe>
-                <Alert variant={'info'}>
-                    <TekstBlock block={mellomlagretAlert} typografi={Typografi.BodyShort} />
-                </Alert>
-            </KomponentGruppe>
-            <StyledButton onClick={fortsettPåSøknaden}>{plainTekst(fortsettKnapp)}</StyledButton>
-            <StyledButton variant={'secondary'} onClick={() => settVisStartPåNyttModal(true)}>
-                {plainTekst(startPaaNyttKnapp)}
-            </StyledButton>
+        <VStack role={'navigation'} gap="6">
+            <Alert variant={'info'}>
+                <TekstBlock block={mellomlagretAlert} typografi={Typografi.BodyShort} />
+            </Alert>
+            <Box marginInline="auto">
+                <Button onClick={fortsettPåSøknaden}>{plainTekst(fortsettKnapp)}</Button>
+            </Box>
+            <Box marginInline="auto">
+                <Button variant={'secondary'} onClick={() => settVisStartPåNyttModal(true)}>
+                    {plainTekst(startPaaNyttKnapp)}
+                </Button>
+            </Box>
             <Modal
                 open={visStartPåNyttModal}
                 onClose={() => {
@@ -80,7 +64,7 @@ const FortsettPåSøknad: FC = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </StyledFortsettPåSøknad>
+        </VStack>
     );
 };
 export default FortsettPåSøknad;
