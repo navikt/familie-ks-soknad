@@ -31,7 +31,7 @@ const [SanityProvider, useSanity] = createUseContext(() => {
         settTeksterRessurs(byggHenterRessurs());
 
         sanityKlient
-            .fetch<SanityDokument[]>('*["KONTANTSTØTTE" in ytelse]')
+            .fetch<SanityDokument[]>('*')
             .then(dokumenter => {
                 fjernRessursSomLaster(ressursId);
                 settTeksterRessurs({
