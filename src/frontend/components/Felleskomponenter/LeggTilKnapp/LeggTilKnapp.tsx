@@ -8,7 +8,7 @@ import { ARed500 } from '@navikt/ds-tokens/dist/tokens';
 
 interface Props {
     onClick: () => void | Promise<void>;
-    forklaring?: ReactNode;
+    leggTilFlereTekst?: ReactNode;
     feilmelding: ReactNode;
     id?: string;
     children?: ReactNode;
@@ -22,14 +22,14 @@ const StyledButton = styled(Button)`
 
 export function LeggTilKnapp({
     onClick,
-    forklaring = undefined,
+    leggTilFlereTekst = undefined,
     feilmelding,
     id,
     children,
 }: Props) {
     return (
         <>
-            {forklaring && <BodyShort spacing>{forklaring}</BodyShort>}
+            {leggTilFlereTekst && <BodyShort spacing>{leggTilFlereTekst}</BodyShort>}
             <StyledButton
                 id={id}
                 variant={'tertiary'}

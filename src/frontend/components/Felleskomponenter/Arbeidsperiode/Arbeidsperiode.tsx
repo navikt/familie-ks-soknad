@@ -4,7 +4,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
@@ -53,7 +52,6 @@ export const Arbeidsperiode: React.FC<Props> = ({
     barn,
 }) => {
     const { tekster, plainTekst } = useApp();
-    const { toggles } = useFeatureToggles();
     const {
         erÅpen: arbeidsmodalErÅpen,
         lukkModal: lukkArbeidsmodal,
@@ -94,16 +92,12 @@ export const Arbeidsperiode: React.FC<Props> = ({
                     <LeggTilKnapp
                         onClick={åpneArbeidsmodal}
                         id={registrerteArbeidsperioder.id}
-                        forklaring={
-                            registrerteArbeidsperioder.verdi.length > 0
-                                ? plainTekst(flerePerioder, {
-                                      gjelderUtland: gjelderUtlandet,
-                                      barnetsNavn: barn?.navn,
-                                  })
-                                : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
-                                    leggTilPeriodeForklaring
-                                  ? plainTekst(leggTilPeriodeForklaring)
-                                  : undefined
+                        leggTilFlereTekst={
+                            registrerteArbeidsperioder.verdi.length > 0 &&
+                            plainTekst(flerePerioder, {
+                                gjelderUtland: gjelderUtlandet,
+                                barnetsNavn: barn?.navn,
+                            })
                         }
                         feilmelding={
                             registrerteArbeidsperioder.erSynlig &&
