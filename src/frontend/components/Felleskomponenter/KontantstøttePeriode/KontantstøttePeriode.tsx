@@ -4,7 +4,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PeriodePersonTypeProps, PersonType } from '../../../typer/personType';
@@ -47,7 +46,6 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
         lukkModal: lukkKontantstøtteModal,
         åpneModal: åpneKontantstøtteModal,
     } = useModal();
-    const { toggles } = useFeatureToggles();
 
     const teksterForPersonType: IEøsYtelseTekstinnhold =
         tekster().FELLES.modaler.eøsYtelse[personType];
@@ -77,15 +75,11 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                     <LeggTilKnapp
                         onClick={åpneKontantstøtteModal}
                         id={registrerteEøsKontantstøttePerioder.id}
-                        forklaring={
-                            registrerteEøsKontantstøttePerioder.verdi.length > 0
-                                ? plainTekst(teksterForPersonType.flerePerioder, {
-                                      barnetsNavn: barn?.navn,
-                                  })
-                                : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
-                                    teksterForPersonType.leggTilPeriodeForklaring
-                                  ? plainTekst(teksterForPersonType.leggTilPeriodeForklaring)
-                                  : undefined
+                        leggTilFlereTekst={
+                            registrerteEøsKontantstøttePerioder.verdi.length > 0 &&
+                            plainTekst(teksterForPersonType.flerePerioder, {
+                                barnetsNavn: barn?.navn,
+                            })
                         }
                         feilmelding={
                             registrerteEøsKontantstøttePerioder.erSynlig &&

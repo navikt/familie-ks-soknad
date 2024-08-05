@@ -4,7 +4,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IUtbetalingsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
@@ -45,7 +44,6 @@ export const Utbetalingsperiode: React.FC<Props> = ({
         lukkModal: lukkUtbetalingsmodal,
         åpneModal: åpneUtbetalingsmodal,
     } = useModal();
-    const { toggles } = useFeatureToggles();
 
     const teksterForPersontype = tekster().FELLES.modaler.andreUtbetalinger[personType];
 
@@ -76,15 +74,11 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                     <LeggTilKnapp
                         onClick={åpneUtbetalingsmodal}
                         id={registrerteUtbetalingsperioder.id}
-                        forklaring={
-                            registrerteUtbetalingsperioder.verdi.length > 0
-                                ? plainTekst(teksterForPersontype.flerePerioder, {
-                                      barnetsNavn: barn?.navn,
-                                  })
-                                : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
-                                    teksterForPersontype.leggTilPeriodeForklaring
-                                  ? plainTekst(teksterForPersontype.leggTilPeriodeForklaring)
-                                  : undefined
+                        leggTilFlereTekst={
+                            registrerteUtbetalingsperioder.verdi.length > 0 &&
+                            plainTekst(teksterForPersontype.flerePerioder, {
+                                barnetsNavn: barn?.navn,
+                            })
                         }
                         feilmelding={
                             registrerteUtbetalingsperioder.erSynlig &&
