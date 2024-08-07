@@ -1,8 +1,7 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
-import { Button, ConfirmationPanel } from '@navikt/ds-react';
+import { ArrowRightIcon } from '@navikt/aksel-icons';
+import { Button, ConfirmationPanel, VStack } from '@navikt/ds-react';
 import { AGreen500, ANavRed, AOrange500 } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../context/AppContext';
@@ -11,17 +10,6 @@ import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasj
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import { BekreftelseStatus, useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
-
-const FormContainer = styled.form`
-    display: flex;
-    flex-direction: column;
-`;
-
-const StyledButton = styled(Button)`
-    && {
-        margin: 2.3rem auto 0 auto;
-    }
-`;
 
 export const bekreftelseBoksBorderFarge = (status: BekreftelseStatus) => {
     switch (status) {
@@ -49,35 +37,47 @@ const BekreftelseOgStartSoknad: React.FC = () => {
     } = tekster();
 
     return (
-        <FormContainer onSubmit={event => onStartSøknad(event)}>
-            <Informasjonsbolk
-                tittel={plainTekst(bekreftelsesboksTittel)}
-                data-testid={'bekreftelsesboks-container'}
-            >
-                <ConfirmationPanel
-                    label={plainTekst(bekreftelsesboksErklaering)}
-                    onChange={bekreftelseOnChange}
-                    checked={bekreftelseStatus === BekreftelseStatus.BEKREFTET}
-                    error={
-                        bekreftelseStatus === BekreftelseStatus.FEIL && (
-                            <span role={'alert'}>{plainTekst(bekreftelsesboksFeilmelding)}</span>
-                        )
-                    }
+        <form onSubmit={event => onStartSøknad(event)}>
+            <VStack gap="12">
+                <Informasjonsbolk
+                    tittel={plainTekst(bekreftelsesboksTittel)}
+                    data-testid={'bekreftelsesboks-container'}
                 >
-                    <TekstBlock block={bekreftelsesboksBroedtekst} typografi={Typografi.BodyLong} />
-                </ConfirmationPanel>
-            </Informasjonsbolk>
+                    <ConfirmationPanel
+                        label={plainTekst(bekreftelsesboksErklaering)}
+                        onChange={bekreftelseOnChange}
+                        checked={bekreftelseStatus === BekreftelseStatus.BEKREFTET}
+                        error={
+                            bekreftelseStatus === BekreftelseStatus.FEIL && (
+                                <span role={'alert'}>
+                                    {plainTekst(bekreftelsesboksFeilmelding)}
+                                </span>
+                            )
+                        }
+                    >
+                        <TekstBlock
+                            block={bekreftelsesboksBroedtekst}
+                            typografi={Typografi.BodyLong}
+                        />
+                    </ConfirmationPanel>
+                </Informasjonsbolk>
 
-            <StyledButton
-                variant={
-                    bekreftelseStatus === BekreftelseStatus.BEKREFTET ? 'primary' : 'secondary'
-                }
-                type={'submit'}
-                data-testid={'start-søknad-knapp'}
-            >
-                {plainTekst(navigasjon.startKnapp)}
-            </StyledButton>
-        </FormContainer>
+                <div>
+                    <Button
+                        variant={
+                            bekreftelseStatus === BekreftelseStatus.BEKREFTET
+                                ? 'primary'
+                                : 'secondary'
+                        }
+                        type={'submit'}
+                        icon={<ArrowRightIcon aria-hidden />}
+                        iconPosition="right"
+                    >
+                        {plainTekst(navigasjon.startKnapp)}
+                    </Button>
+                </div>
+            </VStack>
+        </form>
     );
 };
 

@@ -1,86 +1,45 @@
 import React, { FC } from 'react';
 
-import styled from 'styled-components';
-
-import { Alert, Button, Modal } from '@navikt/ds-react';
+import { Alert, Button, VStack } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
-import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
-import ModalContent from '../../Felleskomponenter/ModalContent';
+import { SlettSøknadenModal } from '../../Felleskomponenter/Steg/SlettSøknadenModal';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import { useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 
-const StyledButton = styled(Button)`
-    && {
-        margin: 0 auto 2rem auto;
-        padding: 1rem 3rem 1rem 3rem;
-    }
-`;
-
-const StyledFortsettPåSøknad = styled.div`
-    margin-top: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-`;
-
-const FortsettPåSøknad: FC = () => {
+export const FortsettPåSøknad: FC = () => {
     const { tekster, plainTekst } = useApp();
-    const { fortsettPåSøknaden, startPåNytt, visStartPåNyttModal, settVisStartPåNyttModal } =
+    const { fortsettPåSøknaden, visStartPåNyttModal, settVisStartPåNyttModal, startPåNytt } =
         useBekreftelseOgStartSoknad();
 
-    const {
-        FORSIDE: { mellomlagretAlert },
-        FELLES: {
-            navigasjon: { fortsettKnapp, startPaaNyttKnapp },
-            modaler: {
-                startPåNytt: {
-                    startNySoeknadKnapp,
-                    startPaaNyttInfo,
-                    startPaaNyttTittel,
-                    startPaaNyttAvbryt,
-                },
-            },
-        },
-    } = tekster();
+    const forsideTekster = tekster().FORSIDE;
+    const navigasjonTekster = tekster().FELLES.navigasjon;
 
     return (
-        <StyledFortsettPåSøknad role={'navigation'}>
-            <KomponentGruppe>
+        <>
+            <VStack role={'navigation'} gap="8">
                 <Alert variant={'info'}>
-                    <TekstBlock block={mellomlagretAlert} typografi={Typografi.BodyShort} />
+                    <TekstBlock
+                        block={forsideTekster.mellomlagretAlert}
+                        typografi={Typografi.BodyLong}
+                    />
                 </Alert>
-            </KomponentGruppe>
-            <StyledButton onClick={fortsettPåSøknaden}>{plainTekst(fortsettKnapp)}</StyledButton>
-            <StyledButton variant={'secondary'} onClick={() => settVisStartPåNyttModal(true)}>
-                {plainTekst(startPaaNyttKnapp)}
-            </StyledButton>
-            <Modal
+                <VStack gap="8" width={{ sm: 'fit-content' }}>
+                    <Button onClick={fortsettPåSøknaden}>
+                        {plainTekst(navigasjonTekster.fortsettKnapp)}
+                    </Button>
+                    <Button variant={'secondary'} onClick={() => settVisStartPåNyttModal(true)}>
+                        {plainTekst(navigasjonTekster.startPaaNyttKnapp)}
+                    </Button>
+                </VStack>
+            </VStack>
+            <SlettSøknadenModal
                 open={visStartPåNyttModal}
-                onClose={() => {
-                    settVisStartPåNyttModal(false);
-                }}
-                header={{
-                    heading: plainTekst(startPaaNyttTittel),
-                    size: 'medium',
-                }}
-            >
-                <ModalContent>
-                    <TekstBlock block={startPaaNyttInfo} typografi={Typografi.BodyShort} />
-                </ModalContent>
-                <Modal.Footer>
-                    <Button variant={'primary'} onClick={startPåNytt}>
-                        <TekstBlock block={startNySoeknadKnapp} />
-                    </Button>
-                    <Button variant={'secondary'} onClick={() => settVisStartPåNyttModal(false)}>
-                        <TekstBlock block={startPaaNyttAvbryt} />
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </StyledFortsettPåSøknad>
+                avbryt={() => settVisStartPåNyttModal(false)}
+                startPåNytt={() => startPåNytt()}
+            />
+        </>
     );
 };
-export default FortsettPåSøknad;
