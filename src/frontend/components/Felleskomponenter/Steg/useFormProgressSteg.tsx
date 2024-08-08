@@ -26,7 +26,9 @@ export const useFormProgressSteg = (): IStegMedTittel[] => {
         KVITTERING,
     } = tekster();
 
-    let antallBarnCounter = 0;
+    let antallBarnCounterOmBarnet = 0;
+    let antallBarnCounterEøsForBarnet = 0;
+
     return steg
         .map(steg => {
             let tittelBlock: LocaleRecordBlock;
@@ -54,16 +56,24 @@ export const useFormProgressSteg = (): IStegMedTittel[] => {
                     } else {
                         tittelBlock = OM_BARNET.omBarnetTittel;
                         tittelFlettefeltVerider = {
-                            barnetsNavn: barnForSteg[antallBarnCounter].navn,
+                            barnetsNavn: barnForSteg[antallBarnCounterOmBarnet].navn,
                         };
-                        antallBarnCounter++;
+                        antallBarnCounterOmBarnet++;
                     }
                     break;
                 case RouteEnum.EøsForSøker:
                     tittelBlock = EØS_FOR_SØKER.eoesForSoekerTittel;
                     break;
                 case RouteEnum.EøsForBarn:
-                    tittelBlock = EØS_FOR_BARN.eoesForBarnTittel;
+                    if (barnForSteg.length === 0) {
+                        tittelBlock = EØS_FOR_BARN.eoesForBarnTittelUtenFlettefelt;
+                    } else {
+                        tittelBlock = EØS_FOR_BARN.eoesForBarnTittel;
+                        tittelFlettefeltVerider = {
+                            barnetsNavn: barnForSteg[antallBarnCounterEøsForBarnet].navn,
+                        };
+                        antallBarnCounterEøsForBarnet++;
+                    }
                     break;
                 case RouteEnum.Oppsummering:
                     tittelBlock = OPPSUMMERING.oppsummeringTittel;
