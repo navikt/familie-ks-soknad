@@ -26,10 +26,8 @@ export const useFormProgressSteg = (): IStegMedTittel[] => {
         KVITTERING,
     } = tekster();
 
-    const antallBarnTellere = {
-        omBarnet: 0,
-        EøsForBarnet: 0,
-    };
+    let antallBarnTellerOmBarnet = 0;
+    let antallBarnTellerEøsForBarnet = 0;
 
     return steg
         .map(steg => {
@@ -58,9 +56,9 @@ export const useFormProgressSteg = (): IStegMedTittel[] => {
                     } else {
                         tittelBlock = OM_BARNET.omBarnetTittel;
                         tittelFlettefeltVerider = {
-                            barnetsNavn: barnForSteg[antallBarnTellere.omBarnet].navn,
+                            barnetsNavn: barnForSteg[antallBarnTellerOmBarnet].navn,
                         };
-                        antallBarnTellere.omBarnet++;
+                        antallBarnTellerOmBarnet++;
                     }
                     break;
                 case RouteEnum.EøsForSøker:
@@ -72,9 +70,9 @@ export const useFormProgressSteg = (): IStegMedTittel[] => {
                     } else {
                         tittelBlock = EØS_FOR_BARN.eoesForBarnTittel;
                         tittelFlettefeltVerider = {
-                            barnetsNavn: barnForSteg[antallBarnTellere.EøsForBarnet].navn,
+                            barnetsNavn: barnForSteg[antallBarnTellerEøsForBarnet].navn,
                         };
-                        antallBarnTellere.EøsForBarnet++;
+                        antallBarnTellerEøsForBarnet++;
                     }
                     break;
                 case RouteEnum.Oppsummering:
