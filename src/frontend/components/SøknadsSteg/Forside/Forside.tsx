@@ -15,7 +15,7 @@ import InnholdContainer from '../../Felleskomponenter/InnholdContainer/InnholdCo
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
-import FortsettPåSøknad from './FortsettPåSøknad';
+import { FortsettPåSøknad } from './FortsettPåSøknad';
 
 const Forside: React.FC = () => {
     const { mellomlagretVerdi, settNåværendeRoute, tekster } = useApp();

@@ -92,7 +92,7 @@ describe('VelgBarn', () => {
 
         act(() => fjernBarnKnapp?.click());
 
-        const gåVidere = queryByTestId('gå-videre-knapp');
+        const gåVidere = queryByTestId('neste-steg');
         act(() => gåVidere?.click());
 
         // Først blir barnet fjernet fra manuelt registrerte barn
@@ -119,6 +119,7 @@ describe('VelgBarn', () => {
             erEøs: false,
         });
     });
+
     test('Rendrer ikke navn eller fnr på barnekort dersom det har adressebeskyttelse', () => {
         const søknad = mockDeep<ISøknad>({
             søker: {
