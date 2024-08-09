@@ -26,7 +26,7 @@ export const FortsettPåSøknad: FC = () => {
                         typografi={Typografi.BodyLong}
                     />
                 </Alert>
-                <VStack gap="8" width={{ sm: 'fit-content' }}>
+                <VStack gap="8" width={{ sm: 'fit-content' }} marginInline={{ sm: 'auto' }}>
                     <Button onClick={fortsettPåSøknaden}>
                         {plainTekst(navigasjonTekster.fortsettKnapp)}
                     </Button>

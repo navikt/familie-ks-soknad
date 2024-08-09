@@ -61,8 +61,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                         />
                     </ConfirmationPanel>
                 </Informasjonsbolk>
-
-                <div>
+                <VStack gap="8" width={{ sm: 'fit-content' }} marginInline={{ sm: 'auto' }}>
                     <Button
                         variant={
                             bekreftelseStatus === BekreftelseStatus.BEKREFTET
@@ -75,7 +74,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                     >
                         {plainTekst(navigasjon.startKnapp)}
                     </Button>
-                </div>
+                </VStack>
             </VStack>
         </form>
     );
