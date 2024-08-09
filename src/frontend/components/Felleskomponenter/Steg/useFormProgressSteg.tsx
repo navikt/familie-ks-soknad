@@ -3,6 +3,7 @@ import { useSteg } from '../../../context/StegContext';
 import { LocaleRecordBlock } from '../../../typer/common';
 import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import { ISteg, RouteEnum } from '../../../typer/routes';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 
 interface IStegMedTittel extends ISteg {
     tittel: string;
@@ -92,7 +93,7 @@ export const useFormProgressSteg = (): IStegMedTittel[] => {
 
             return {
                 ...steg,
-                tittel: plainTekst(tittelBlock, tittelFlettefeltVerider),
+                tittel: uppercaseFørsteBokstav(plainTekst(tittelBlock, tittelFlettefeltVerider)),
             };
         })
         .filter(steg => steg.route !== RouteEnum.Forside && steg.route !== RouteEnum.Kvittering);
