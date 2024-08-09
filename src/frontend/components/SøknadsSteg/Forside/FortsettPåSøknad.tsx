@@ -19,7 +19,7 @@ export const FortsettPåSøknad: FC = () => {
 
     return (
         <>
-            <VStack role={'navigation'} gap="8">
+            <VStack role={'navigation'} gap="8" marginBlock="8 0">
                 <Alert variant={'info'}>
                     <TekstBlock
                         block={forsideTekster.mellomlagretAlert}
