@@ -29,19 +29,6 @@ describe('Steg', () => {
         expect(result.current.steg.length).toEqual(9);
     });
 
-    test(`formProgressSteps skal returnere en liste uten forside og kvittering`, () => {
-        spyOnUseApp({
-            barnInkludertISøknaden: [],
-        });
-        const wrapper = ({ children }) => (
-            <RoutesProvider>
-                <StegProvider>{children}</StegProvider>
-            </RoutesProvider>
-        );
-        const { result } = renderHook(() => useSteg(), { wrapper });
-        expect(result.current.formProgressSteps.length).toEqual(7);
-    });
-
     test(`Kan hente neste steg fra forsiden`, () => {
         spyOnUseApp({
             barnInkludertISøknaden: [

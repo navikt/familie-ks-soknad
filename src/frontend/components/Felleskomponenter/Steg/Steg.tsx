@@ -30,6 +30,7 @@ import useModal from '../SkjemaModal/useModal';
 import ModellVersjonModal from './ModellVersjonModal';
 import Navigeringspanel from './Navigeringspanel';
 import { ScrollHandler } from './ScrollHandler';
+import { useFormProgressSteg } from './useFormProgressSteg';
 
 interface ISteg {
     tittel: ReactNode;
@@ -66,16 +67,15 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, children }: ISteg) {
     const navigate = useNavigate();
     const { erÅpen: erModellVersjonModalÅpen, åpneModal: åpneModellVersjonModal } = useModal();
     const {
+        tekster,
+        plainTekst,
         settSisteUtfylteStegIndex,
         erStegUtfyltFrafør,
         gåTilbakeTilStart,
         settNåværendeRoute,
         modellVersjonOppdatert,
-        tekster,
-        plainTekst,
     } = useApp();
     const {
-        formProgressSteps,
         hentNesteSteg,
         hentForrigeSteg,
         hentNåværendeSteg,
@@ -88,6 +88,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, children }: ISteg) {
     const nesteRoute = hentNesteSteg();
     const forrigeRoute = hentForrigeSteg();
     const nåværendeStegIndex = hentNåværendeStegIndex();
+    const formProgressSteg = useFormProgressSteg();
 
     const nyesteNåværendeRoute: RouteEnum = hentNåværendeSteg().route;
     useFørsteRender(() => logSidevisningKontantstøtte(nyesteNåværendeRoute));
@@ -147,11 +148,15 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, children }: ISteg) {
     };
 
     const håndterGåTilSteg = (stegIndex: number) => {
-        const steg = formProgressSteps[stegIndex];
+        const steg = formProgressSteg[stegIndex];
         navigate(steg.path);
     };
 
     const { tilbakeKnapp } = tekster().FELLES.navigasjon;
+
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
+
+    const formProgressStegOppsummeringTekst = `${plainTekst(frittståendeOrdTekster.steg)} ${hentNåværendeStegIndex()} ${plainTekst(frittståendeOrdTekster.av)} ${formProgressSteg.length}`;
 
     return (
         <>
@@ -175,17 +180,22 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, children }: ISteg) {
                                 </Link>
                             </div>
                             <FormProgress
-                                totalSteps={formProgressSteps.length}
+                                translations={{
+                                    step: formProgressStegOppsummeringTekst,
+                                    showAllSteps: plainTekst(frittståendeOrdTekster.visAlleSteg),
+                                    hideAllSteps: plainTekst(frittståendeOrdTekster.skjulAlleSteg),
+                                }}
+                                totalSteps={formProgressSteg.length}
                                 activeStep={hentNåværendeStegIndex()}
                                 onStepChange={stegIndex => håndterGåTilSteg(stegIndex - 1)}
                             >
-                                {formProgressSteps.map((value, index) => (
+                                {formProgressSteg.map((value, index) => (
                                     <FormProgress.Step
                                         key={index}
                                         completed={index + 1 < hentNåværendeStegIndex()}
                                         interactive={index + 1 < hentNåværendeStegIndex()}
                                     >
-                                        {value.label}
+                                        {value.tittel}
                                     </FormProgress.Step>
                                 ))}
                             </FormProgress>

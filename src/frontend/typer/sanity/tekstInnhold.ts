@@ -128,6 +128,9 @@ export interface IFrittståendeOrdTekstinnhold {
     barn: LocaleRecordString;
     soeker: LocaleRecordString;
     skjult: LocaleRecordString;
+    steg: LocaleRecordString;
+    visAlleSteg: LocaleRecordString;
+    skjulAlleSteg: LocaleRecordString;
 }
 
 export interface INavigasjonTekstinnhold {
