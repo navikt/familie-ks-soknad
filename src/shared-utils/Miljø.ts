@@ -61,7 +61,7 @@ const Miljø = (): MiljøProps => {
         };
     } else {
         return {
-            sanityDataset: 'test',
+            sanityDataset: 'production',
             soknadApiProxyUrl: `http://localhost:3000${basePath}api`,
             soknadApiUrl: 'http://localhost:8080/api',
             dokumentProxyUrl: `http://localhost:3000${basePath}dokument`,
