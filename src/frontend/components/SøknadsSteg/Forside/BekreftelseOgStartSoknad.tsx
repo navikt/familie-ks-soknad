@@ -25,33 +25,31 @@ const BekreftelseOgStartSoknad: React.FC = () => {
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
     const { plainTekst, tekster } = useApp();
 
-    const {
-        FORSIDE: {
-            bekreftelsesboksFeilmelding,
-            bekreftelsesboksBroedtekst,
-            bekreftelsesboksErklaering,
-            bekreftelsesboksTittel,
-        },
-        FELLES: { navigasjon },
-    } = tekster();
+    const forsidetekster = tekster().FORSIDE;
+    const fellestekster = tekster().FELLES;
 
     return (
         <form onSubmit={event => onStartSøknad(event)}>
             <VStack gap="12">
                 <ConfirmationPanel
-                    label={plainTekst(bekreftelsesboksErklaering)}
+                    label={plainTekst(forsidetekster.bekreftelsesboksErklaering)}
                     onChange={bekreftelseOnChange}
                     checked={bekreftelseStatus === BekreftelseStatus.BEKREFTET}
                     error={
                         bekreftelseStatus === BekreftelseStatus.FEIL && (
-                            <span role={'alert'}>{plainTekst(bekreftelsesboksFeilmelding)}</span>
+                            <span role={'alert'}>
+                                {plainTekst(forsidetekster.bekreftelsesboksFeilmelding)}
+                            </span>
                         )
                     }
                 >
                     <Heading level="2" size="xsmall" spacing>
-                        {plainTekst(bekreftelsesboksTittel)}
+                        {plainTekst(forsidetekster.bekreftelsesboksTittel)}
                     </Heading>
-                    <TekstBlock block={bekreftelsesboksBroedtekst} typografi={Typografi.BodyLong} />
+                    <TekstBlock
+                        block={forsidetekster.bekreftelsesboksBroedtekst}
+                        typografi={Typografi.BodyLong}
+                    />
                 </ConfirmationPanel>
 
                 <Box marginInline="auto">
@@ -66,7 +64,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                         iconPosition="right"
                         data-testid={'start-søknad-knapp'}
                     >
-                        {plainTekst(navigasjon.startKnapp)}
+                        {plainTekst(fellestekster.navigasjon.startKnapp)}
                     </Button>
                 </Box>
             </VStack>

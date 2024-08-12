@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 
 import styled from 'styled-components';
 
-import { Accordion, BodyLong, GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { Accordion, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import Miljø from '../../../../shared-utils/Miljø';
 import { useApp } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { device } from '../../../Theme';
+import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
@@ -66,25 +67,20 @@ const Forside: React.FC = () => {
         <Layout>
             <VStack gap="12">
                 <Heading level="1" size="large" align="center">
-                    <TekstBlock block={soeknadstittel} />
+                    {plainTekst(soeknadstittel)}
                 </Heading>
-
                 <GuidePanel poster>
                     <Heading level="2" size="medium" spacing>
                         {plainTekst(veilederHei)}
                     </Heading>
-                    <BodyLong>{plainTekst(veilederhilsen)}</BodyLong>
+                    <TekstBlock block={veilederhilsen} typografi={Typografi.BodyLong} />
                 </GuidePanel>
-
                 <div>
                     <Heading level="2" size="large" spacing>
                         {plainTekst(foerDuSoekerTittel)}
                     </Heading>
-                    <BodyLong>
-                        <TekstBlock block={foerDuSoeker} />
-                    </BodyLong>
+                    <TekstBlock block={foerDuSoeker} typografi={Typografi.BodyLong} />
                 </div>
-
                 <Accordion>
                     <Accordion.Item>
                         <Accordion.Header>
@@ -100,6 +96,16 @@ const Forside: React.FC = () => {
                         </Accordion.Header>
                         <Accordion.Content>
                             <TekstBlock block={informasjonOmPersonopplysninger} />
+                        </Accordion.Content>
+                    </Accordion.Item>
+                    <Accordion.Item>
+                        <Accordion.Header>
+                            {/* {plainTekst(informasjonOmLagringAvSvarTittel)} */}
+                            informasjonOmLagringAvSvarTittel
+                        </Accordion.Header>
+                        <Accordion.Content>
+                            {/* <TekstBlock block={informasjonOmLagringAvSvar} /> */}
+                            informasjonOmLagringAvSvar
                         </Accordion.Content>
                     </Accordion.Item>
                 </Accordion>
