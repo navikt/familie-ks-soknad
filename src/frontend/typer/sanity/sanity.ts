@@ -45,6 +45,7 @@ export const bannerPrefix = 'BANNER';
 export const vedlikeholdsarbeidPrefix = 'VEDLIKEHOLDSARBEID';
 export const kanIkkeBrukeSoeknadPrefix = 'KAN_IKKE_BRUKE_SOKNAD';
 export const hjelpeteksterForInputPrefix = 'HJELPETEKSTER_FOR_INPUT';
+export const midlertidigeTeksterPrefix = 'MIDLERTIDIGE_TEKSTER';
 export const alternativeTeksterPrefix = 'ALTERNATIVE_TEKSTER';
 
 export enum ESanityFlettefeltverdi {

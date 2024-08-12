@@ -68,6 +68,7 @@ export interface IFellesTekstInnhold {
     kanIkkeBrukeSoeknad: IKanIkkeBrukeSoeknadTekstinnhold;
     hjelpeteksterForInput: IHjelpeteksterForInputTekstInnhold;
     alternativeTekster: IAlternativeTeksterTekstinnhold;
+    midlertidigeTekster: IMidlertidigeTeksterTekstInnhold;
 }
 
 export interface IModalerTekstinnhold {
@@ -177,3 +178,5 @@ export interface IHjelpeteksterForInputTekstInnhold {
 export interface IAlternativeTeksterTekstinnhold {
     barneillustrajonAltTekst: LocaleRecordBlock;
 }
+
+export interface IMidlertidigeTeksterTekstInnhold {}
