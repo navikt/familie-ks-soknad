@@ -25,29 +25,34 @@ const BekreftelseOgStartSoknad: React.FC = () => {
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
     const { plainTekst, tekster } = useApp();
 
-    const forsidetekster = tekster().FORSIDE;
+    // const forsidetekster = tekster().FORSIDE;
+    const midlertidigeTekster = tekster().FELLES.midlertidigeTekster;
     const navigasjonTekster = tekster().FELLES.navigasjon;
 
     return (
         <form onSubmit={event => onStartSøknad(event)}>
             <VStack gap="12">
                 <ConfirmationPanel
-                    label={plainTekst(forsidetekster.bekreftelsesboksErklaering)}
+                    // label={plainTekst(forsidetekster.bekreftelsesboksErklaering)}
+                    label={plainTekst(midlertidigeTekster.forsideBekreftelsesboksErklaering)}
                     onChange={bekreftelseOnChange}
                     checked={bekreftelseStatus === BekreftelseStatus.BEKREFTET}
                     error={
                         bekreftelseStatus === BekreftelseStatus.FEIL && (
                             <span role={'alert'}>
-                                {plainTekst(forsidetekster.bekreftelsesboksFeilmelding)}
+                                {/* {plainTekst(forsidetekster.bekreftelsesboksFeilmelding)} */}
+                                {plainTekst(midlertidigeTekster.forsideBekreftelsesboksFeilmelding)}
                             </span>
                         )
                     }
                 >
                     <Heading level="2" size="xsmall" spacing>
-                        {plainTekst(forsidetekster.bekreftelsesboksTittel)}
+                        {/* {plainTekst(forsidetekster.bekreftelsesboksTittel)} */}
+                        {plainTekst(midlertidigeTekster.forsideBekreftelsesboksTittel)}
                     </Heading>
                     <TekstBlock
-                        block={forsidetekster.bekreftelsesboksBroedtekst}
+                        // block={forsidetekster.bekreftelsesboksBroedtekst}
+                        block={midlertidigeTekster.forsideBekreftelsesboksBroedtekst}
                         typografi={Typografi.BodyLong}
                     />
                 </ConfirmationPanel>

@@ -191,4 +191,8 @@ export interface IMidlertidigeTeksterTekstInnhold {
     forsideInformasjonOmPersonopplysninger: LocaleRecordBlock;
     forsideInformasjonOmLagringAvSvarTittel: LocaleRecordBlock;
     forsideInformasjonOmLagringAvSvar: LocaleRecordBlock;
+    forsideBekreftelsesboksErklaering: LocaleRecordBlock;
+    forsideBekreftelsesboksFeilmelding: LocaleRecordBlock;
+    forsideBekreftelsesboksTittel: LocaleRecordBlock;
+    forsideBekreftelsesboksBroedtekst: LocaleRecordBlock;
 }
