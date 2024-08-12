@@ -3,7 +3,6 @@ import React from 'react';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
@@ -40,7 +39,6 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
         åpneModal: åpneBarnehageplassModal,
     } = useModal();
     const { tekster, plainTekst } = useApp();
-    const { toggles } = useFeatureToggles();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
     const teksterForOmBarnetSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
@@ -66,13 +64,9 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
             <LeggTilKnapp
                 onClick={åpneBarnehageplassModal}
                 id={registrerteBarnehageplassPerioder.id}
-                forklaring={
-                    registrerteBarnehageplassPerioder.verdi.length > 0
-                        ? plainTekst(barnehageplassTekster.flerePerioder)
-                        : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
-                            barnehageplassTekster.leggTilPeriodeForklaring
-                          ? plainTekst(barnehageplassTekster.leggTilPeriodeForklaring)
-                          : undefined
+                leggTilFlereTekst={
+                    registrerteBarnehageplassPerioder.verdi.length > 0 &&
+                    plainTekst(barnehageplassTekster.flerePerioder)
                 }
                 feilmelding={
                     registrerteBarnehageplassPerioder.erSynlig &&

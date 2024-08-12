@@ -3,7 +3,6 @@ import React from 'react';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -37,7 +36,6 @@ export const Utenlandsperiode: React.FC<Props> = ({
         lukkModal: lukkUtenlandsoppholdModal,
         åpneModal: åpneUtenlandsoppholdModal,
     } = useModal();
-    const { toggles } = useFeatureToggles();
 
     const {
         [ESanitySteg.FELLES]: {
@@ -73,13 +71,8 @@ export const Utenlandsperiode: React.FC<Props> = ({
             <LeggTilKnapp
                 id={registrerteUtenlandsperioder.id}
                 onClick={åpneUtenlandsoppholdModal}
-                forklaring={
-                    registrerteUtenlandsperioder.verdi.length > 0
-                        ? plainTekst(flerePerioder)
-                        : toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP &&
-                            leggTilPeriodeForklaring
-                          ? plainTekst(leggTilPeriodeForklaring)
-                          : undefined
+                leggTilFlereTekst={
+                    registrerteUtenlandsperioder.verdi.length > 0 && plainTekst(flerePerioder)
                 }
                 feilmelding={
                     registrerteUtenlandsperioder.erSynlig &&

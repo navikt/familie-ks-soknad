@@ -3,6 +3,7 @@ import { ISanitySpørsmålDokument } from '../../../../typer/sanity/sanity';
 
 export interface IEøsForBarnTekstinnhold {
     eoesForBarnTittel: LocaleRecordBlock;
+    eoesForBarnTittelUtenFlettefelt: LocaleRecordBlock;
     eosForBarnGuide: LocaleRecordBlock;
     idNummerBarn: ISanitySpørsmålDokument;
     slektsforhold: ISanitySpørsmålDokument;
