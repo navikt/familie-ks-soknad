@@ -26,7 +26,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
     const { plainTekst, tekster } = useApp();
 
     const forsidetekster = tekster().FORSIDE;
-    const fellestekster = tekster().FELLES;
+    const navigasjonTekster = tekster().FELLES.navigasjon;
 
     return (
         <form onSubmit={event => onStartSøknad(event)}>
@@ -64,7 +64,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                         iconPosition="right"
                         data-testid={'start-søknad-knapp'}
                     >
-                        {plainTekst(fellestekster.navigasjon.startKnapp)}
+                        {plainTekst(navigasjonTekster.startKnapp)}
                     </Button>
                 </Box>
             </VStack>
