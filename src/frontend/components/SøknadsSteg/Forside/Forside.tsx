@@ -11,7 +11,6 @@ import useFørsteRender from '../../../hooks/useFørsteRender';
 import { device } from '../../../Theme';
 import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
@@ -31,19 +30,7 @@ const Layout = styled.div`
 const Forside: React.FC = () => {
     const { mellomlagretVerdi, settNåværendeRoute, tekster, plainTekst } = useApp();
 
-    const {
-        [ESanitySteg.FORSIDE]: {
-            veilederHei,
-            veilederhilsen,
-            soeknadstittel,
-            foerDuSoekerTittel,
-            foerDuSoeker,
-            informasjonOmPlikterTittel,
-            informasjonOmPlikter,
-            informasjonOmPersonopplysningerTittel,
-            informasjonOmPersonopplysninger,
-        },
-    } = tekster();
+    const forsidetekster = tekster().FORSIDE;
 
     useFørsteRender(() => logSidevisningKontantstøtte(`${RouteEnum.Forside}`));
 
@@ -67,44 +54,50 @@ const Forside: React.FC = () => {
         <Layout>
             <VStack gap="12">
                 <Heading level="1" size="large" align="center">
-                    {plainTekst(soeknadstittel)}
+                    {plainTekst(forsidetekster.soeknadstittel)}
                 </Heading>
                 <GuidePanel poster>
                     <Heading level="2" size="medium" spacing>
-                        {plainTekst(veilederHei)}
+                        {plainTekst(forsidetekster.veilederHei)}
                     </Heading>
-                    <TekstBlock block={veilederhilsen} typografi={Typografi.BodyLong} />
+                    <TekstBlock
+                        block={forsidetekster.veilederhilsen}
+                        typografi={Typografi.BodyLong}
+                    />
                 </GuidePanel>
                 <div>
                     <Heading level="2" size="large" spacing>
-                        {plainTekst(foerDuSoekerTittel)}
+                        {plainTekst(forsidetekster.foerDuSoekerTittel)}
                     </Heading>
-                    <TekstBlock block={foerDuSoeker} typografi={Typografi.BodyLong} />
+                    <TekstBlock
+                        block={forsidetekster.foerDuSoeker}
+                        typografi={Typografi.BodyLong}
+                    />
                 </div>
                 <Accordion>
                     <Accordion.Item>
                         <Accordion.Header>
-                            {plainTekst(informasjonOmPlikterTittel)}
+                            {plainTekst(forsidetekster.informasjonOmPlikterTittel)}
                         </Accordion.Header>
                         <Accordion.Content>
-                            <TekstBlock block={informasjonOmPlikter} />
+                            <TekstBlock block={forsidetekster.informasjonOmPlikter} />
                         </Accordion.Content>
                     </Accordion.Item>
                     <Accordion.Item>
                         <Accordion.Header>
-                            {plainTekst(informasjonOmPersonopplysningerTittel)}
+                            {plainTekst(forsidetekster.informasjonOmPersonopplysningerTittel)}
                         </Accordion.Header>
                         <Accordion.Content>
-                            <TekstBlock block={informasjonOmPersonopplysninger} />
+                            <TekstBlock block={forsidetekster.informasjonOmPersonopplysninger} />
                         </Accordion.Content>
                     </Accordion.Item>
                     <Accordion.Item>
                         <Accordion.Header>
-                            {/* {plainTekst(informasjonOmLagringAvSvarTittel)} */}
+                            {/* {plainTekst(forsidetekster.informasjonOmLagringAvSvarTittel)} */}
                             informasjonOmLagringAvSvarTittel
                         </Accordion.Header>
                         <Accordion.Content>
-                            {/* <TekstBlock block={informasjonOmLagringAvSvar} /> */}
+                            {/* <TekstBlock block={forsidetekster.informasjonOmLagringAvSvar} /> */}
                             informasjonOmLagringAvSvar
                         </Accordion.Content>
                     </Accordion.Item>
