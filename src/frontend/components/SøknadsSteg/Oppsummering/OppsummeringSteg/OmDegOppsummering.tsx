@@ -27,6 +27,12 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
     const { hentRouteObjektForRouteEnum } = useRoutes();
     const omDegHook = useOmdeg();
 
+    /* 
+    Vi oppretter midlertidige tekster som inneholder nye forside-tekster. 
+    Når dette er ute i prod vil vi endre de eksisterende forsideteksene i Sanity (de som nå er utkommentert) slik at de blir likt det som ligger i de midlertidige tekstene. 
+    Når dette er gjort lages en ny PR for å bytte koden tilbake til å bruke forsidetekstene. 
+    */
+
     return (
         <Oppsummeringsbolk
             steg={hentRouteObjektForRouteEnum(RouteEnum.OmDeg)}
@@ -39,7 +45,8 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                     spørsmålstekst={forsideTekster.bekreftelsesboksBroedtekst}
                     søknadsvar={plainTekst(
                         søknad.lestOgForståttBekreftelse
-                            ? tekster().FORSIDE.bekreftelsesboksErklaering
+                            ? // ? tekster().FORSIDE.bekreftelsesboksErklaering
+                              tekster().FELLES.midlertidigeTekster.forsideBekreftelsesboksErklaering
                             : jaNeiSvarTilSpråkId(ESvar.NEI, tekster().FELLES.frittståendeOrd)
                     )}
                 />

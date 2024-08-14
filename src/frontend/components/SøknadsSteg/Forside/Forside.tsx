@@ -18,6 +18,12 @@ import { FortsettPåSøknad } from './FortsettPåSøknad';
 const Forside: React.FC = () => {
     const { mellomlagretVerdi, settNåværendeRoute, tekster, plainTekst } = useApp();
 
+    /* 
+    Vi oppretter midlertidige tekster som inneholder nye forside-tekster. 
+    Når dette er ute i prod vil vi endre de eksisterende forsideteksene i Sanity (de som nå er utkommentert) slik at de blir likt det som ligger i de midlertidige tekstene. 
+    Når dette er gjort lages en ny PR for å bytte koden tilbake til å bruke forsidetekstene. 
+    */
+
     // const forsidetekster = tekster().FORSIDE;
     const midlertidigeTekster = tekster().FELLES.midlertidigeTekster;
 
