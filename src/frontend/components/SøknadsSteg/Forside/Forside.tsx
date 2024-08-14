@@ -1,31 +1,19 @@
 import React, { useEffect } from 'react';
 
-import styled from 'styled-components';
-
 import { Accordion, GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import Miljø from '../../../../shared-utils/Miljø';
 import { useApp } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
-import { device } from '../../../Theme';
 import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
 import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
+import InnholdContainer from '../../Felleskomponenter/InnholdContainer/InnholdContainer';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
 import { FortsettPåSøknad } from './FortsettPåSøknad';
-
-const Layout = styled.div`
-    max-width: var(--innhold-bredde);
-    margin: 2rem auto 4rem auto;
-
-    @media all and ${device.tablet} {
-        max-width: 100%;
-        margin: 2rem 2rem 4rem 2rem;
-    }
-`;
 
 const Forside: React.FC = () => {
     const { mellomlagretVerdi, settNåværendeRoute, tekster, plainTekst } = useApp();
@@ -52,7 +40,7 @@ const Forside: React.FC = () => {
         mellomlagretVerdi && mellomlagretVerdi.modellVersjon === Miljø().modellVersjon;
 
     return (
-        <Layout>
+        <InnholdContainer>
             <VStack gap="12">
                 <Heading level="1" size="large" align="center">
                     {/* {plainTekst(forsidetekster.soeknadstittel)} */}
@@ -128,7 +116,7 @@ const Forside: React.FC = () => {
 
                 {kanFortsettePåSøknad ? <FortsettPåSøknad /> : <BekreftelseOgStartSoknad />}
             </VStack>
-        </Layout>
+        </InnholdContainer>
     );
 };
 
