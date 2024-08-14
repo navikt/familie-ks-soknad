@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ArrowRightIcon } from '@navikt/aksel-icons';
-import { Box, Button, ConfirmationPanel, Heading, VStack } from '@navikt/ds-react';
+import { Button, ConfirmationPanel, Heading, VStack } from '@navikt/ds-react';
 import { AGreen500, ANavRed, AOrange500 } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../context/AppContext';
@@ -57,7 +57,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                     />
                 </ConfirmationPanel>
 
-                <Box marginInline="auto">
+                <VStack gap="8" width={{ sm: 'fit-content' }} marginInline={{ sm: 'auto' }}>
                     <Button
                         variant={
                             bekreftelseStatus === BekreftelseStatus.BEKREFTET
@@ -71,7 +71,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                     >
                         {plainTekst(navigasjonTekster.startKnapp)}
                     </Button>
-                </Box>
+                </VStack>
             </VStack>
         </form>
     );

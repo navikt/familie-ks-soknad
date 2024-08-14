@@ -143,6 +143,8 @@ export interface INavigasjonTekstinnhold {
     tilbakeKnapp: LocaleRecordString;
     gaaVidereKnapp: LocaleRecordString;
     sendSoeknadKnapp: LocaleRecordString;
+    slettSoeknadKnapp: LocaleRecordString;
+    fortsettSenereKnapp: LocaleRecordString;
 }
 
 export interface IFormateringsfeilmeldingerTekstinnhold {

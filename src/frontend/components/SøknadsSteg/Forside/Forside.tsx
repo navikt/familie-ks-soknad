@@ -15,7 +15,7 @@ import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
-import FortsettPåSøknad from './FortsettPåSøknad';
+import { FortsettPåSøknad } from './FortsettPåSøknad';
 
 const Layout = styled.div`
     max-width: var(--innhold-bredde);
