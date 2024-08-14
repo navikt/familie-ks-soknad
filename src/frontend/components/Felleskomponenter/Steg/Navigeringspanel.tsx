@@ -51,7 +51,6 @@ const Navigeringspanel: React.FC<{
                             onClick={onTilbakeCallback}
                             icon={<ArrowLeftIcon aria-hidden />}
                             iconPosition="left"
-                            data-testid="forrige-steg"
                         >
                             {plainTekst(tilbakeKnapp)}
                         </Button>
