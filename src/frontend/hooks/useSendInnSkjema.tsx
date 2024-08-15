@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/react';
 import { AxiosError } from 'axios';
 
+import { logError, logSecure } from '@navikt/familie-logging';
 import { Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import Miljø from '../../shared-utils/Miljø';
@@ -49,6 +50,8 @@ export const useSendInnSkjema = (): {
                         Sentry.captureException(
                             new Error('Klarte ikke sende inn søknaden', { cause: res.message })
                         );
+                        logError('Klarte ikke sende inn søknaden, se i securelog');
+                        logSecure('Klarte ikke sende inn søknaden', { formatert, res });
                     }
                 }
             );
