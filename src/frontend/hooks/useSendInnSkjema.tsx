@@ -56,8 +56,8 @@ export const useSendInnSkjema = (): {
             settInnsendingStatus(res);
 
             return [res.status === RessursStatus.SUKSESS, formatert];
-        } catch (e) {
-            throw new Error('Søknaden feilet på innsending', { cause: e });
+        } catch (error) {
+            throw new Error('Søknaden feilet på innsending', { cause: error });
         }
     };
 
