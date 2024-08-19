@@ -24,8 +24,8 @@ const Forside: React.FC = () => {
     Når dette er gjort lages en ny PR for å bytte koden tilbake til å bruke forsidetekstene. 
     */
 
-    // const forsidetekster = tekster().FORSIDE;
-    const midlertidigeTekster = tekster().FELLES.midlertidigeTekster;
+    const forsidetekster = tekster().FORSIDE;
+    // const midlertidigeTekster = tekster().FELLES.midlertidigeTekster;
 
     useFørsteRender(() => logSidevisningKontantstøtte(`${RouteEnum.Forside}`));
 
@@ -49,71 +49,71 @@ const Forside: React.FC = () => {
         <InnholdContainer>
             <VStack gap="12">
                 <Heading level="1" size="large" align="center">
-                    {/* {plainTekst(forsidetekster.soeknadstittel)} */}
-                    {plainTekst(midlertidigeTekster.forsideSoeknadstittel)}
+                    {plainTekst(forsidetekster.soeknadstittel)}
+                    {/* {plainTekst(midlertidigeTekster.forsideSoeknadstittel)} */}
                 </Heading>
                 <GuidePanel poster>
                     <Heading level="2" size="medium" spacing>
-                        {/* {plainTekst(forsidetekster.veilederHei)} */}
-                        {plainTekst(midlertidigeTekster.forsideVeilederHei)}
+                        {plainTekst(forsidetekster.veilederHei)}
+                        {/* {plainTekst(midlertidigeTekster.forsideVeilederHei)}*/}
                     </Heading>
                     <TekstBlock
-                        // block={forsidetekster.veilederIntro}
-                        block={midlertidigeTekster.forsideVeilederIntro}
+                        block={forsidetekster.veilederIntro}
+                        // block={midlertidigeTekster.forsideVeilederIntro}
                         typografi={Typografi.BodyLong}
                     />
                 </GuidePanel>
                 <div>
                     <Heading level="2" size="large" spacing>
-                        {/* {plainTekst(forsidetekster.foerDuSoekerTittel)} */}
-                        {plainTekst(midlertidigeTekster.forsideFoerDuSoekerTittel)}
+                        {plainTekst(forsidetekster.foerDuSoekerTittel)}
+                        {/* {plainTekst(midlertidigeTekster.forsideFoerDuSoekerTittel)} */}
                     </Heading>
                     <TekstBlock
-                        // block={forsidetekster.foerDuSoeker}
-                        block={midlertidigeTekster.forsideFoerDuSoeker}
+                        block={forsidetekster.foerDuSoeker}
+                        // block={midlertidigeTekster.forsideFoerDuSoeker}
                         typografi={Typografi.BodyLong}
                     />
                 </div>
                 <Accordion>
                     <Accordion.Item>
                         <Accordion.Header>
-                            {/* {plainTekst(forsidetekster.informasjonOmPlikterTittel)} */}
-                            {plainTekst(midlertidigeTekster.forsideInformasjonOmPlikterTittel)}
+                            {plainTekst(forsidetekster.informasjonOmPlikterTittel)}
+                            {/* {plainTekst(midlertidigeTekster.forsideInformasjonOmPlikterTittel)} */}
                         </Accordion.Header>
                         <Accordion.Content>
-                            {/* <TekstBlock block={forsidetekster.informasjonOmPlikter} /> */}
                             <TekstBlock
-                                block={midlertidigeTekster.forsideInformasjonOmPlikter}
+                                block={forsidetekster.informasjonOmPlikter}
+                                // block={midlertidigeTekster.forsideInformasjonOmPlikter}
                                 typografi={Typografi.BodyLong}
                             />
                         </Accordion.Content>
                     </Accordion.Item>
                     <Accordion.Item>
                         <Accordion.Header>
-                            {/* {plainTekst(forsidetekster.informasjonOmPersonopplysningerTittel)} */}
-                            {plainTekst(
+                            {plainTekst(forsidetekster.informasjonOmPersonopplysningerTittel)}
+                            {/* {plainTekst(
                                 midlertidigeTekster.forsideInformasjonOmPersonopplysningerTittel
-                            )}
+                            )} */}
                         </Accordion.Header>
                         <Accordion.Content>
-                            {/* <TekstBlock block={forsidetekster.informasjonOmPersonopplysninger} /> */}
                             <TekstBlock
-                                block={midlertidigeTekster.forsideInformasjonOmPersonopplysninger}
+                                block={forsidetekster.informasjonOmPersonopplysninger}
+                                // block={midlertidigeTekster.forsideInformasjonOmPersonopplysninger}
                                 typografi={Typografi.BodyLong}
                             />
                         </Accordion.Content>
                     </Accordion.Item>
                     <Accordion.Item>
                         <Accordion.Header>
-                            {/* {plainTekst(forsidetekster.informasjonOmLagringAvSvarTittel)} */}
-                            {plainTekst(
+                            {plainTekst(forsidetekster.informasjonOmLagringAvSvarTittel)}
+                            {/* {plainTekst(
                                 midlertidigeTekster.forsideInformasjonOmLagringAvSvarTittel
-                            )}
+                            )} */}
                         </Accordion.Header>
                         <Accordion.Content>
-                            {/* <TekstBlock block={forsidetekster.informasjonOmLagringAvSvar} /> */}
                             <TekstBlock
-                                block={midlertidigeTekster.forsideInformasjonOmLagringAvSvar}
+                                block={forsidetekster.informasjonOmLagringAvSvar}
+                                // block={midlertidigeTekster.forsideInformasjonOmLagringAvSvar}
                                 typografi={Typografi.BodyLong}
                             />
                         </Accordion.Content>

@@ -23,11 +23,7 @@ interface Props {
 
 const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
     const { søknad, tekster, plainTekst } = useApp();
-    const {
-        OM_DEG: omDegTekster,
-        // FORSIDE: forsideTekster,
-        FELLES: fellesTekster,
-    } = tekster();
+    const { OM_DEG: omDegTekster, FORSIDE: forsideTekster, FELLES: fellesTekster } = tekster();
     const { valgtLocale } = useSpråk();
     const { hentRouteObjektForRouteEnum } = useRoutes();
     const omDegHook = useOmdeg();
@@ -47,19 +43,19 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
         >
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    // spørsmålstekst={forsideTekster.bekreftelsesboksBroedtekst}
                     tittel={
                         <TekstBlock
                             block={
-                                fellesTekster.midlertidigeTekster.forsideBekreftelsesboksBroedtekst
+                                forsideTekster.bekreftelsesboksBroedtekst
+                                // fellesTekster.midlertidigeTekster.forsideBekreftelsesboksBroedtekst
                             }
                         />
                     }
                     søknadsvar={plainTekst(
                         søknad.lestOgForståttBekreftelse
-                            ? // ? tekster().FORSIDE.bekreftelsesboksErklaering
-                              fellesTekster.midlertidigeTekster.forsideBekreftelsesboksErklaering
-                            : jaNeiSvarTilSpråkId(ESvar.NEI, tekster().FELLES.frittståendeOrd)
+                            ? forsideTekster.bekreftelsesboksErklaering
+                            : // fellesTekster.midlertidigeTekster.forsideBekreftelsesboksErklaering
+                              jaNeiSvarTilSpråkId(ESvar.NEI, fellesTekster.frittståendeOrd)
                     )}
                 />
             </StyledOppsummeringsFeltGruppe>
