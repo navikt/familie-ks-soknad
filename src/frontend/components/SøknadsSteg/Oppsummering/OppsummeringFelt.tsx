@@ -14,13 +14,19 @@ const StyledOppsummeringsFelt = styled.div`
 `;
 
 interface IOppsummeringsFeltProps {
-    spørsmålstekst: LocaleRecordBlock | LocaleRecordString;
+    /*
+    Tittel brukes istedenfor spørsmålstekst dersom man ønsker å vise tittel/spørsmål på en annen måte enn ved bruk av plainTekst, for eksempel ved å passere inn en <TekstBlock> komponent.
+    I oppgaven om Oppsummering iht Aksel (lenke) så skal OppsummeringsFelt endres, da vil også problemet med å ha to props (spørsmålstekst og tittel) løses slik at vil fungere likt som det nå er i BA.
+    */
+    tittel?: ReactNode;
+    spørsmålstekst?: LocaleRecordBlock | LocaleRecordString;
     søknadsvar?: ReactNode | null;
     flettefelter?: FlettefeltVerdier;
     children?: ReactNode;
 }
 
 export function OppsummeringFelt({
+    tittel,
     søknadsvar,
     spørsmålstekst,
     flettefelter,
@@ -30,7 +36,11 @@ export function OppsummeringFelt({
 
     return (
         <StyledOppsummeringsFelt>
-            {spørsmålstekst && <Label>{plainTekst(spørsmålstekst, flettefelter)}</Label>}
+            {tittel ? (
+                <Label>{tittel}</Label>
+            ) : (
+                spørsmålstekst && <Label>{plainTekst(spørsmålstekst, flettefelter)}</Label>
+            )}
             {søknadsvar ? (
                 <BodyLong>
                     {formaterSøknadsvar(søknadsvar, plainTekst, tekster().FELLES.frittståendeOrd)}

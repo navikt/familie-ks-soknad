@@ -11,6 +11,7 @@ import { RouteEnum } from '../../../../typer/routes';
 import { genererAdresseVisning } from '../../../../utils/adresse';
 import { landkodeTilSpråk, sivilstandTilSanitySivilstandApiKey } from '../../../../utils/språk';
 import { jaNeiSvarTilSpråkId } from '../../../../utils/spørsmål';
+import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { useOmdeg } from '../../OmDeg/useOmdeg';
 import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';
@@ -22,10 +23,20 @@ interface Props {
 
 const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
     const { søknad, tekster, plainTekst } = useApp();
-    const { OM_DEG: omDegTekster, FORSIDE: forsideTekster, FELLES: fellesTekster } = tekster();
+    const {
+        OM_DEG: omDegTekster,
+        // FORSIDE: forsideTekster,
+        FELLES: fellesTekster,
+    } = tekster();
     const { valgtLocale } = useSpråk();
     const { hentRouteObjektForRouteEnum } = useRoutes();
     const omDegHook = useOmdeg();
+
+    /* 
+    Vi oppretter midlertidige tekster som inneholder nye forside-tekster. 
+    Når dette er ute i prod vil vi endre de eksisterende forsideteksene i Sanity (de som nå er utkommentert) slik at de blir likt det som ligger i de midlertidige tekstene. 
+    Når dette er gjort lages en ny PR for å bytte koden tilbake til å bruke forsidetekstene. 
+    */
 
     return (
         <Oppsummeringsbolk
@@ -36,10 +47,18 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
         >
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    spørsmålstekst={forsideTekster.bekreftelsesboksBroedtekst}
+                    // spørsmålstekst={forsideTekster.bekreftelsesboksBroedtekst}
+                    tittel={
+                        <TekstBlock
+                            block={
+                                fellesTekster.midlertidigeTekster.forsideBekreftelsesboksBroedtekst
+                            }
+                        />
+                    }
                     søknadsvar={plainTekst(
                         søknad.lestOgForståttBekreftelse
-                            ? tekster().FORSIDE.bekreftelsesboksErklaering
+                            ? // ? tekster().FORSIDE.bekreftelsesboksErklaering
+                              fellesTekster.midlertidigeTekster.forsideBekreftelsesboksErklaering
                             : jaNeiSvarTilSpråkId(ESvar.NEI, tekster().FELLES.frittståendeOrd)
                     )}
                 />

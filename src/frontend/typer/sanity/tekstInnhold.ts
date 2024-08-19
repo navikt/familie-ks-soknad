@@ -68,6 +68,7 @@ export interface IFellesTekstInnhold {
     kanIkkeBrukeSoeknad: IKanIkkeBrukeSoeknadTekstinnhold;
     hjelpeteksterForInput: IHjelpeteksterForInputTekstInnhold;
     alternativeTekster: IAlternativeTeksterTekstinnhold;
+    midlertidigeTekster: IMidlertidigeTeksterTekstInnhold;
 }
 
 export interface IModalerTekstinnhold {
@@ -178,4 +179,22 @@ export interface IHjelpeteksterForInputTekstInnhold {
 
 export interface IAlternativeTeksterTekstinnhold {
     barneillustrajonAltTekst: LocaleRecordBlock;
+}
+
+export interface IMidlertidigeTeksterTekstInnhold {
+    forsideSoeknadstittel: LocaleRecordBlock;
+    forsideVeilederHei: LocaleRecordBlock;
+    forsideVeilederIntro: LocaleRecordBlock;
+    forsideFoerDuSoekerTittel: LocaleRecordBlock;
+    forsideFoerDuSoeker: LocaleRecordBlock;
+    forsideInformasjonOmPlikterTittel: LocaleRecordBlock;
+    forsideInformasjonOmPlikter: LocaleRecordBlock;
+    forsideInformasjonOmPersonopplysningerTittel: LocaleRecordBlock;
+    forsideInformasjonOmPersonopplysninger: LocaleRecordBlock;
+    forsideInformasjonOmLagringAvSvarTittel: LocaleRecordBlock;
+    forsideInformasjonOmLagringAvSvar: LocaleRecordBlock;
+    forsideBekreftelsesboksErklaering: LocaleRecordBlock;
+    forsideBekreftelsesboksFeilmelding: LocaleRecordBlock;
+    forsideBekreftelsesboksTittel: LocaleRecordBlock;
+    forsideBekreftelsesboksBroedtekst: LocaleRecordBlock;
 }
