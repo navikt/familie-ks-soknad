@@ -1,11 +1,22 @@
 import React, { ReactNode } from 'react';
 
-import { Box } from '@navikt/ds-react';
+import { Box, FormSummary } from '@navikt/ds-react';
 
-const PerioderContainer: React.FC<{ children?: ReactNode }> = ({ children }) => {
+interface IPerioderContainer {
+    // tittel: ReactNode;
+    children?: ReactNode;
+}
+
+const PerioderContainer: React.FC<IPerioderContainer> = ({
+    // tittel,
+    children,
+}) => {
     return (
-        <Box padding="4" marginBlock="2 0" background="surface-subtle" borderRadius="medium">
-            {children}
+        <Box marginBlock="4 0">
+            <FormSummary>
+                {/* <FormSummary.Header>{tittel}</FormSummary.Header> */}
+                <FormSummary.Answers>{children}</FormSummary.Answers>
+            </FormSummary>
         </Box>
     );
 };

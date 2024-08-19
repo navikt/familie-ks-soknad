@@ -1,17 +1,11 @@
 import React, { ReactNode } from 'react';
 
-import styled from 'styled-components';
-
-import { BodyLong, Label } from '@navikt/ds-react';
+import { FormSummary } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
 import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import { formaterSøknadsvar } from '../../../utils/språk';
-
-const StyledOppsummeringsFelt = styled.div`
-    margin-bottom: 1rem;
-`;
 
 interface IOppsummeringsFeltProps {
     /*
@@ -35,19 +29,15 @@ export function OppsummeringFelt({
     const { plainTekst, tekster } = useApp();
 
     return (
-        <StyledOppsummeringsFelt>
-            {tittel ? (
-                <Label>{tittel}</Label>
-            ) : (
-                spørsmålstekst && <Label>{plainTekst(spørsmålstekst, flettefelter)}</Label>
-            )}
-            {søknadsvar ? (
-                <BodyLong>
-                    {formaterSøknadsvar(søknadsvar, plainTekst, tekster().FELLES.frittståendeOrd)}
-                </BodyLong>
-            ) : (
-                children
-            )}
-        </StyledOppsummeringsFelt>
+        <FormSummary.Answer>
+            <FormSummary.Label>
+                {tittel ? tittel : spørsmålstekst && plainTekst(spørsmålstekst, flettefelter)}
+            </FormSummary.Label>
+            <FormSummary.Value>
+                {søknadsvar
+                    ? formaterSøknadsvar(søknadsvar, plainTekst, tekster().FELLES.frittståendeOrd)
+                    : children}
+            </FormSummary.Value>
+        </FormSummary.Answer>
     );
 }

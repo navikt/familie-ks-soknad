@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, VStack } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
@@ -56,36 +56,38 @@ const Oppsummering: React.FC = () => {
             guide={<TekstBlock block={oppsummeringGuide} />}
             gåVidereCallback={gåVidereCallback}
         >
-            <StyledBodyShort>{plainTekst(lesNoeye)}</StyledBodyShort>
+            <VStack gap="12">
+                <StyledBodyShort>{plainTekst(lesNoeye)}</StyledBodyShort>
 
-            <OmDegOppsummering settFeilAnchors={settFeilAnchors} />
-            <DinLivssituasjonOppsummering settFeilAnchors={settFeilAnchors} />
-            <VelgBarnOppsummering settFeilAnchors={settFeilAnchors} />
-            <OmBarnaOppsummering settFeilAnchors={settFeilAnchors} />
+                <OmDegOppsummering settFeilAnchors={settFeilAnchors} />
+                <DinLivssituasjonOppsummering settFeilAnchors={settFeilAnchors} />
+                <VelgBarnOppsummering settFeilAnchors={settFeilAnchors} />
+                <OmBarnaOppsummering settFeilAnchors={settFeilAnchors} />
 
-            {søknad.barnInkludertISøknaden.map((barn, index) => {
-                return (
-                    <OmBarnetOppsummering
-                        key={`om-barnet-${index}`}
-                        barn={barn}
-                        settFeilAnchors={settFeilAnchors}
-                        index={index}
-                    />
-                );
-            })}
-
-            <>
-                {søkerHarEøsSteg && <EøsSøkerOppsummering settFeilAnchors={settFeilAnchors} />}
-                {barnSomHarEøsSteg.map((barn, index) => {
+                {søknad.barnInkludertISøknaden.map((barn, index) => {
                     return (
-                        <EøsBarnOppsummering
-                            key={`om-barnet-eøs-${index}`}
-                            settFeilAnchors={settFeilAnchors}
+                        <OmBarnetOppsummering
+                            key={`om-barnet-${index}`}
                             barn={barn}
+                            settFeilAnchors={settFeilAnchors}
+                            index={index}
                         />
                     );
                 })}
-            </>
+
+                <>
+                    {søkerHarEøsSteg && <EøsSøkerOppsummering settFeilAnchors={settFeilAnchors} />}
+                    {barnSomHarEøsSteg.map((barn, index) => {
+                        return (
+                            <EøsBarnOppsummering
+                                key={`om-barnet-eøs-${index}`}
+                                settFeilAnchors={settFeilAnchors}
+                                barn={barn}
+                            />
+                        );
+                    })}
+                </>
+            </VStack>
         </Steg>
     );
 };
