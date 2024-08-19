@@ -25,14 +25,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
     const { plainTekst, tekster } = useApp();
 
-    /* 
-    Vi oppretter midlertidige tekster som inneholder nye forside-tekster. 
-    Når dette er ute i prod vil vi endre de eksisterende forsideteksene i Sanity (de som nå er utkommentert) slik at de blir likt det som ligger i de midlertidige tekstene. 
-    Når dette er gjort lages en ny PR for å bytte koden tilbake til å bruke forsidetekstene. 
-    */
-
     const forsidetekster = tekster().FORSIDE;
-    // const midlertidigeTekster = tekster().FELLES.midlertidigeTekster;
     const navigasjonTekster = tekster().FELLES.navigasjon;
 
     return (
@@ -40,25 +33,21 @@ const BekreftelseOgStartSoknad: React.FC = () => {
             <VStack gap="12">
                 <ConfirmationPanel
                     label={plainTekst(forsidetekster.bekreftelsesboksErklaering)}
-                    // label={plainTekst(midlertidigeTekster.forsideBekreftelsesboksErklaering)}
                     onChange={bekreftelseOnChange}
                     checked={bekreftelseStatus === BekreftelseStatus.BEKREFTET}
                     error={
                         bekreftelseStatus === BekreftelseStatus.FEIL && (
                             <span role={'alert'}>
                                 {plainTekst(forsidetekster.bekreftelsesboksFeilmelding)}
-                                {/* {plainTekst(midlertidigeTekster.forsideBekreftelsesboksFeilmelding)} */}
                             </span>
                         )
                     }
                 >
                     <Heading level="2" size="xsmall" spacing>
                         {plainTekst(forsidetekster.bekreftelsesboksTittel)}
-                        {/* {plainTekst(midlertidigeTekster.forsideBekreftelsesboksTittel)} */}
                     </Heading>
                     <TekstBlock
                         block={forsidetekster.bekreftelsesboksBroedtekst}
-                        // block={midlertidigeTekster.forsideBekreftelsesboksBroedtekst}
                         typografi={Typografi.BodyLong}
                     />
                 </ConfirmationPanel>

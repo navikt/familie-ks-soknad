@@ -18,14 +18,7 @@ import { FortsettPåSøknad } from './FortsettPåSøknad';
 const Forside: React.FC = () => {
     const { mellomlagretVerdi, settNåværendeRoute, tekster, plainTekst } = useApp();
 
-    /* 
-    Vi oppretter midlertidige tekster som inneholder nye forside-tekster. 
-    Når dette er ute i prod vil vi endre de eksisterende forsideteksene i Sanity (de som nå er utkommentert) slik at de blir likt det som ligger i de midlertidige tekstene. 
-    Når dette er gjort lages en ny PR for å bytte koden tilbake til å bruke forsidetekstene. 
-    */
-
     const forsidetekster = tekster().FORSIDE;
-    // const midlertidigeTekster = tekster().FELLES.midlertidigeTekster;
 
     useFørsteRender(() => logSidevisningKontantstøtte(`${RouteEnum.Forside}`));
 
@@ -50,27 +43,22 @@ const Forside: React.FC = () => {
             <VStack gap="12">
                 <Heading level="1" size="large" align="center">
                     {plainTekst(forsidetekster.soeknadstittel)}
-                    {/* {plainTekst(midlertidigeTekster.forsideSoeknadstittel)} */}
                 </Heading>
                 <GuidePanel poster>
                     <Heading level="2" size="medium" spacing>
                         {plainTekst(forsidetekster.veilederHei)}
-                        {/* {plainTekst(midlertidigeTekster.forsideVeilederHei)}*/}
                     </Heading>
                     <TekstBlock
                         block={forsidetekster.veilederIntro}
-                        // block={midlertidigeTekster.forsideVeilederIntro}
                         typografi={Typografi.BodyLong}
                     />
                 </GuidePanel>
                 <div>
                     <Heading level="2" size="large" spacing>
                         {plainTekst(forsidetekster.foerDuSoekerTittel)}
-                        {/* {plainTekst(midlertidigeTekster.forsideFoerDuSoekerTittel)} */}
                     </Heading>
                     <TekstBlock
                         block={forsidetekster.foerDuSoeker}
-                        // block={midlertidigeTekster.forsideFoerDuSoeker}
                         typografi={Typografi.BodyLong}
                     />
                 </div>
@@ -78,12 +66,10 @@ const Forside: React.FC = () => {
                     <Accordion.Item>
                         <Accordion.Header>
                             {plainTekst(forsidetekster.informasjonOmPlikterTittel)}
-                            {/* {plainTekst(midlertidigeTekster.forsideInformasjonOmPlikterTittel)} */}
                         </Accordion.Header>
                         <Accordion.Content>
                             <TekstBlock
                                 block={forsidetekster.informasjonOmPlikter}
-                                // block={midlertidigeTekster.forsideInformasjonOmPlikter}
                                 typografi={Typografi.BodyLong}
                             />
                         </Accordion.Content>
@@ -91,14 +77,10 @@ const Forside: React.FC = () => {
                     <Accordion.Item>
                         <Accordion.Header>
                             {plainTekst(forsidetekster.informasjonOmPersonopplysningerTittel)}
-                            {/* {plainTekst(
-                                midlertidigeTekster.forsideInformasjonOmPersonopplysningerTittel
-                            )} */}
                         </Accordion.Header>
                         <Accordion.Content>
                             <TekstBlock
                                 block={forsidetekster.informasjonOmPersonopplysninger}
-                                // block={midlertidigeTekster.forsideInformasjonOmPersonopplysninger}
                                 typografi={Typografi.BodyLong}
                             />
                         </Accordion.Content>
@@ -106,14 +88,10 @@ const Forside: React.FC = () => {
                     <Accordion.Item>
                         <Accordion.Header>
                             {plainTekst(forsidetekster.informasjonOmLagringAvSvarTittel)}
-                            {/* {plainTekst(
-                                midlertidigeTekster.forsideInformasjonOmLagringAvSvarTittel
-                            )} */}
                         </Accordion.Header>
                         <Accordion.Content>
                             <TekstBlock
                                 block={forsidetekster.informasjonOmLagringAvSvar}
-                                // block={midlertidigeTekster.forsideInformasjonOmLagringAvSvar}
                                 typografi={Typografi.BodyLong}
                             />
                         </Accordion.Content>

@@ -27,8 +27,6 @@ export const useFormProgressSteg = (): IStegMedTittel[] => {
         KVITTERING,
     } = tekster();
 
-    // const midlertidigeTekster = tekster().FELLES.midlertidigeTekster;
-
     let antallBarnTellerOmBarnet = 0;
     let antallBarnTellerEøsForBarnet = 0;
 
@@ -40,7 +38,6 @@ export const useFormProgressSteg = (): IStegMedTittel[] => {
             switch (steg.route) {
                 case RouteEnum.Forside:
                     tittelBlock = FORSIDE.soeknadstittel;
-                    // tittelBlock = midlertidigeTekster.forsideSoeknadstittel;
                     break;
                 case RouteEnum.OmDeg:
                     tittelBlock = OM_DEG.omDegTittel;
