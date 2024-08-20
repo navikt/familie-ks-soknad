@@ -10,7 +10,6 @@ import SamletIdNummerForBarn from '../../../EøsSteg/Barn/SamletIdNummerForBarn'
 import { useEøsForBarn } from '../../../EøsSteg/Barn/useEøsForBarn';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 import Oppsummeringsbolk from '../../Oppsummeringsbolk';
-import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
 
 import EøsAndreForelderOppsummering from './EøsAndreForelderOppsummering';
 import EøsOmsorgspersonOppsummering from './EøsOmsorgspersonOppsummering';
@@ -44,7 +43,7 @@ const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
                 lesevisning={true}
             />
             {barn.søkersSlektsforhold.svar && (
-                <StyledOppsummeringsFeltGruppe>
+                <>
                     <OppsummeringFelt
                         tittel={
                             <TekstBlock
@@ -67,7 +66,7 @@ const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
                             søknadsvar={barn.søkersSlektsforholdSpesifisering.svar}
                         />
                     )}
-                </StyledOppsummeringsFeltGruppe>
+                </>
             )}
 
             {barn.borMedAndreForelder.svar && (

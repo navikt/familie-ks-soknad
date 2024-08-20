@@ -11,7 +11,6 @@ import { OmBarnaDineSpørsmålId } from '../../OmBarnaDine/spørsmål';
 import { useOmBarnaDine } from '../../OmBarnaDine/useOmBarnaDine';
 import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';
-import { StyledOppsummeringsFeltGruppe } from '../OppsummeringsFeltGruppe';
 
 interface Props {
     settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
@@ -36,112 +35,87 @@ const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             skjemaHook={omBarnaDineHook}
             settFeilAnchors={settFeilAnchors}
         >
-            <StyledOppsummeringsFeltGruppe>
+            <OppsummeringFelt
+                tittel={<TekstBlock block={omBarnaTekster.fosterbarn.sporsmal} />}
+                søknadsvar={søknad.erNoenAvBarnaFosterbarn.svar}
+            />
+            {søknad.erNoenAvBarnaFosterbarn.svar === ESvar.JA && (
                 <OppsummeringFelt
-                    tittel={<TekstBlock block={omBarnaTekster.fosterbarn.sporsmal} />}
-                    søknadsvar={søknad.erNoenAvBarnaFosterbarn.svar}
+                    tittel={<TekstBlock block={omBarnaTekster.hvemFosterbarn.sporsmal} />}
+                    søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.erFosterbarn)}
                 />
-                {søknad.erNoenAvBarnaFosterbarn.svar === ESvar.JA && (
-                    <OppsummeringFelt
-                        tittel={<TekstBlock block={omBarnaTekster.hvemFosterbarn.sporsmal} />}
-                        søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.erFosterbarn)}
-                    />
-                )}
-            </StyledOppsummeringsFeltGruppe>
-            <StyledOppsummeringsFeltGruppe>
+            )}
+            <OppsummeringFelt
+                tittel={<TekstBlock block={omBarnaTekster.institusjonKontantstoette.sporsmal} />}
+                søknadsvar={søknad.oppholderBarnSegIInstitusjon.svar}
+            />
+
+            {søknad.oppholderBarnSegIInstitusjon.svar === ESvar.JA && (
+                <OppsummeringFelt
+                    tittel={<TekstBlock block={omBarnaTekster.hvemInstitusjon.sporsmal} />}
+                    søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.oppholderSegIInstitusjon)}
+                />
+            )}
+            <OppsummeringFelt
+                tittel={<TekstBlock block={omBarnaTekster.adoptertKontantstoette.sporsmal} />}
+                søknadsvar={søknad.erBarnAdoptert.svar}
+            />
+            {søknad.erBarnAdoptert.svar === ESvar.JA && (
                 <OppsummeringFelt
                     tittel={
-                        <TekstBlock block={omBarnaTekster.institusjonKontantstoette.sporsmal} />
+                        <TekstBlock block={omBarnaTekster.hvemAdoptertKontantstoette.sporsmal} />
                     }
-                    søknadsvar={søknad.oppholderBarnSegIInstitusjon.svar}
+                    søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.erAdoptert)}
                 />
+            )}
+            <OppsummeringFelt
+                tittel={<TekstBlock block={omBarnaTekster.asyl.sporsmal} />}
+                søknadsvar={søknad.søktAsylForBarn.svar}
+            />
+            {søknad.søktAsylForBarn.svar === ESvar.JA && (
+                <OppsummeringFelt
+                    tittel={<TekstBlock block={omBarnaTekster.hvemAsyl.sporsmal} />}
+                    søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.erAsylsøker)}
+                />
+            )}
+            <OppsummeringFelt
+                tittel={<TekstBlock block={omBarnaTekster.sammenhengendeOppholdINorge.sporsmal} />}
+                søknadsvar={søknad.barnOppholdtSegTolvMndSammenhengendeINorge.svar}
+            />
 
-                {søknad.oppholderBarnSegIInstitusjon.svar === ESvar.JA && (
-                    <OppsummeringFelt
-                        tittel={<TekstBlock block={omBarnaTekster.hvemInstitusjon.sporsmal} />}
-                        søknadsvar={genererListeMedBarn(
-                            barnDataKeySpørsmål.oppholderSegIInstitusjon
-                        )}
-                    />
-                )}
-            </StyledOppsummeringsFeltGruppe>
-            <StyledOppsummeringsFeltGruppe>
+            {søknad.barnOppholdtSegTolvMndSammenhengendeINorge.svar === ESvar.NEI && (
                 <OppsummeringFelt
-                    tittel={<TekstBlock block={omBarnaTekster.adoptertKontantstoette.sporsmal} />}
-                    søknadsvar={søknad.erBarnAdoptert.svar}
+                    tittel={<TekstBlock block={omBarnaTekster.hvemOppholdUtenforNorge.sporsmal} />}
+                    søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.boddMindreEnn12MndINorge)}
                 />
-                {søknad.erBarnAdoptert.svar === ESvar.JA && (
-                    <OppsummeringFelt
-                        tittel={
-                            <TekstBlock
-                                block={omBarnaTekster.hvemAdoptertKontantstoette.sporsmal}
-                            />
-                        }
-                        søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.erAdoptert)}
-                    />
-                )}
-            </StyledOppsummeringsFeltGruppe>
-            <StyledOppsummeringsFeltGruppe>
-                <OppsummeringFelt
-                    tittel={<TekstBlock block={omBarnaTekster.asyl.sporsmal} />}
-                    søknadsvar={søknad.søktAsylForBarn.svar}
-                />
-                {søknad.søktAsylForBarn.svar === ESvar.JA && (
-                    <OppsummeringFelt
-                        tittel={<TekstBlock block={omBarnaTekster.hvemAsyl.sporsmal} />}
-                        søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.erAsylsøker)}
-                    />
-                )}
-            </StyledOppsummeringsFeltGruppe>
-            <StyledOppsummeringsFeltGruppe>
-                <OppsummeringFelt
-                    tittel={
-                        <TekstBlock block={omBarnaTekster.sammenhengendeOppholdINorge.sporsmal} />
-                    }
-                    søknadsvar={søknad.barnOppholdtSegTolvMndSammenhengendeINorge.svar}
-                />
+            )}
+            <OppsummeringFelt
+                tittel={<TekstBlock block={omBarnaTekster.soektYtelseEuEoes.sporsmal} />}
+                søknadsvar={søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar}
+            />
 
-                {søknad.barnOppholdtSegTolvMndSammenhengendeINorge.svar === ESvar.NEI && (
-                    <OppsummeringFelt
-                        tittel={
-                            <TekstBlock block={omBarnaTekster.hvemOppholdUtenforNorge.sporsmal} />
-                        }
-                        søknadsvar={genererListeMedBarn(
-                            barnDataKeySpørsmål.boddMindreEnn12MndINorge
-                        )}
-                    />
-                )}
-            </StyledOppsummeringsFeltGruppe>
-            <StyledOppsummeringsFeltGruppe>
+            {søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar === ESvar.JA && (
                 <OppsummeringFelt
-                    tittel={<TekstBlock block={omBarnaTekster.soektYtelseEuEoes.sporsmal} />}
-                    søknadsvar={søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar}
+                    tittel={<TekstBlock block={omBarnaTekster.hvemSoektYtelse.sporsmal} />}
+                    søknadsvar={genererListeMedBarn(
+                        barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland
+                    )}
                 />
+            )}
 
-                {søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar === ESvar.JA && (
-                    <OppsummeringFelt
-                        tittel={<TekstBlock block={omBarnaTekster.hvemSoektYtelse.sporsmal} />}
-                        søknadsvar={genererListeMedBarn(
-                            barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland
-                        )}
-                    />
-                )}
-            </StyledOppsummeringsFeltGruppe>
-            <StyledOppsummeringsFeltGruppe>
+            <OppsummeringFelt
+                tittel={<TekstBlock block={omBarnaTekster.barnehageplass.sporsmal} />}
+                søknadsvar={søknad.harEllerTildeltBarnehageplass.svar}
+            />
+
+            {søknad.harEllerTildeltBarnehageplass.svar === ESvar.JA && (
                 <OppsummeringFelt
-                    tittel={<TekstBlock block={omBarnaTekster.barnehageplass.sporsmal} />}
-                    søknadsvar={søknad.harEllerTildeltBarnehageplass.svar}
+                    tittel={<TekstBlock block={omBarnaTekster.hvemBarnehageplass.sporsmal} />}
+                    søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.harBarnehageplass)}
                 />
-
-                {søknad.harEllerTildeltBarnehageplass.svar === ESvar.JA && (
-                    <OppsummeringFelt
-                        tittel={<TekstBlock block={omBarnaTekster.hvemBarnehageplass.sporsmal} />}
-                        søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.harBarnehageplass)}
-                    />
-                )}
-            </StyledOppsummeringsFeltGruppe>
+            )}
             {søknad.erAvdødPartnerForelder.svar && (
-                <StyledOppsummeringsFeltGruppe>
+                <>
                     <OppsummeringFelt
                         tittel={
                             <TekstBlock
@@ -171,7 +145,7 @@ const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                             søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.andreForelderErDød)}
                         />
                     )}
-                </StyledOppsummeringsFeltGruppe>
+                </>
             )}
         </Oppsummeringsbolk>
     );

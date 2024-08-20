@@ -10,7 +10,6 @@ import { IVelgBarnTekstinnhold } from '../../VelgBarn/innholdTyper';
 import { useVelgBarn } from '../../VelgBarn/useVelgBarn';
 import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';
-import { StyledOppsummeringsFeltGruppe } from '../OppsummeringsFeltGruppe';
 
 interface Props {
     settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
@@ -31,8 +30,8 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             skjemaHook={velgBarnHook}
             settFeilAnchors={settFeilAnchors}
         >
-            {søknad.barnInkludertISøknaden.map((barn, index) => (
-                <StyledOppsummeringsFeltGruppe key={index}>
+            {søknad.barnInkludertISøknaden.map(barn => (
+                <>
                     <OppsummeringFelt
                         tittel={<TekstBlock block={leggTilBarnModalTekster.barnetsNavnSubtittel} />}
                         søknadsvar={
@@ -55,7 +54,7 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                             søknadsvar={plainTekst(hentBostedSpråkId(barn, teksterForSteg))}
                         />
                     )}
-                </StyledOppsummeringsFeltGruppe>
+                </>
             ))}
         </Oppsummeringsbolk>
     );

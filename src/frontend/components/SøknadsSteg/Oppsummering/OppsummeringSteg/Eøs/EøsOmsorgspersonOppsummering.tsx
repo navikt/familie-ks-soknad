@@ -13,7 +13,6 @@ import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensj
 import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
 import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
-import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
 
 const EøsOmsorgspersonOppsummering: React.FC<{
     omsorgsperson: IOmsorgsperson;
@@ -26,7 +25,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
 
     const flettefelter = { barnetsNavn: barn.navn };
     return (
-        <StyledOppsummeringsFeltGruppe>
+        <>
             {omsorgsperson.navn.svar && (
                 <OppsummeringFelt
                     tittel={<TekstBlock block={eøsBarnTekster.hvaHeterOmsorgspersonen.sporsmal} />}
@@ -187,7 +186,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                 />
             ))}
             {omsorgsperson.pågåendeSøknadFraAnnetEøsLand.svar && (
-                <StyledOppsummeringsFeltGruppe>
+                <>
                     <OppsummeringFelt
                         tittel={
                             <TekstBlock
@@ -213,7 +212,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                             )}
                         />
                     )}
-                </StyledOppsummeringsFeltGruppe>
+                </>
             )}
             {omsorgsperson.kontantstøtteFraEøs.svar && (
                 <OppsummeringFelt
@@ -235,7 +234,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                     personType={PersonType.omsorgsperson}
                 />
             ))}
-        </StyledOppsummeringsFeltGruppe>
+        </>
     );
 };
 

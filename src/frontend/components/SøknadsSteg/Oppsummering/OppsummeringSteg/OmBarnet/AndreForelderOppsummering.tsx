@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, FormSummary } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../../../context/AppContext';
@@ -20,7 +20,6 @@ import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
 import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
 import { IOmBarnetTekstinnhold } from '../../../OmBarnet/innholdTyper';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
-import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
 
 const AndreForelderOppsummering: React.FC<{
     barn: IBarnMedISøknad;
@@ -32,10 +31,10 @@ const AndreForelderOppsummering: React.FC<{
 
     const flettefelter = { barnetsNavn: barn.navn };
     return (
-        <>
+        <FormSummary.Answers>
             {andreForelder[andreForelderDataKeySpørsmål.kanIkkeGiOpplysninger].svar ===
             ESvar.NEI ? (
-                <StyledOppsummeringsFeltGruppe>
+                <>
                     {andreForelder[andreForelderDataKeySpørsmål.navn].svar && (
                         <OppsummeringFelt
                             tittel={
@@ -185,15 +184,11 @@ const AndreForelderOppsummering: React.FC<{
                             barn={barn}
                         />
                     ))}
-                </StyledOppsummeringsFeltGruppe>
+                </>
             ) : (
-                <StyledOppsummeringsFeltGruppe>
-                    <BodyShort>
-                        {plainTekst(omBarnetTekster.navnAndreForelder.checkboxLabel)}
-                    </BodyShort>
-                </StyledOppsummeringsFeltGruppe>
+                <BodyShort>{plainTekst(omBarnetTekster.navnAndreForelder.checkboxLabel)}</BodyShort>
             )}
-        </>
+        </FormSummary.Answers>
     );
 };
 

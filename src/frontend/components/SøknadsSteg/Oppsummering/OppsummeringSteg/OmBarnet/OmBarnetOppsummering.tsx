@@ -16,7 +16,6 @@ import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/Uten
 import { useOmBarnet } from '../../../OmBarnet/useOmBarnet';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 import Oppsummeringsbolk from '../../Oppsummeringsbolk';
-import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
 
 import AndreForelderOppsummering from './AndreForelderOppsummering';
 
@@ -45,23 +44,20 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
             barn={barn}
         >
             {barn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad].svar && (
-                <StyledOppsummeringsFeltGruppe>
-                    <OppsummeringFelt
-                        tittel={
-                            <TekstBlock
-                                block={
-                                    omBarnetTekster.utbetaltForeldrepengerEllerEngangsstoenad
-                                        .sporsmal
-                                }
-                            />
-                        }
-                        søknadsvar={barn.utbetaltForeldrepengerEllerEngangsstønad.svar}
-                    />
-                </StyledOppsummeringsFeltGruppe>
+                <OppsummeringFelt
+                    tittel={
+                        <TekstBlock
+                            block={
+                                omBarnetTekster.utbetaltForeldrepengerEllerEngangsstoenad.sporsmal
+                            }
+                        />
+                    }
+                    søknadsvar={barn.utbetaltForeldrepengerEllerEngangsstønad.svar}
+                />
             )}
 
             {barn[barnDataKeySpørsmål.boddMindreEnn12MndINorge].svar === ESvar.JA && (
-                <StyledOppsummeringsFeltGruppe>
+                <>
                     <OppsummeringFelt
                         tittel={
                             <TekstBlock
@@ -89,11 +85,11 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
                             søknadsvar={barn[barnDataKeySpørsmål.planleggerÅBoINorge12Mnd].svar}
                         />
                     )}
-                </StyledOppsummeringsFeltGruppe>
+                </>
             )}
 
             {barn[barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland].svar === ESvar.JA && (
-                <StyledOppsummeringsFeltGruppe>
+                <>
                     <OppsummeringFelt
                         tittel={
                             <TekstBlock
@@ -148,10 +144,10 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
                             personType={PersonType.søker}
                         />
                     ))}
-                </StyledOppsummeringsFeltGruppe>
+                </>
             )}
             {barn[barnDataKeySpørsmål.harBarnehageplass].svar === ESvar.JA && (
-                <StyledOppsummeringsFeltGruppe>
+                <>
                     <OppsummeringFelt
                         tittel={
                             <TekstBlock
@@ -167,50 +163,46 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
                             nummer={index + 1}
                         />
                     ))}
-                </StyledOppsummeringsFeltGruppe>
+                </>
             )}
 
             {barn.andreForelder && (
-                <>
-                    <OppsummeringFelt tittel={plainTekst(omBarnetTekster.barnetsAndreForelder)} />
+                <OppsummeringFelt tittel={plainTekst(omBarnetTekster.barnetsAndreForelder)}>
                     <AndreForelderOppsummering andreForelder={barn.andreForelder} barn={barn} />
-                </>
+                </OppsummeringFelt>
             )}
-            <StyledOppsummeringsFeltGruppe>
-                <OppsummeringFelt tittel={plainTekst(omBarnetTekster.bosted)} />
 
+            <OppsummeringFelt
+                tittel={
+                    <TekstBlock
+                        block={omBarnetTekster.borBarnFastSammenMedDeg.sporsmal}
+                        flettefelter={flettefelter}
+                    />
+                }
+                søknadsvar={barn[barnDataKeySpørsmål.borFastMedSøker].svar}
+            />
+            {barn[barnDataKeySpørsmål.foreldreBorSammen].svar && (
                 <OppsummeringFelt
                     tittel={
                         <TekstBlock
-                            block={omBarnetTekster.borBarnFastSammenMedDeg.sporsmal}
+                            block={omBarnetTekster.borForeldreSammen.sporsmal}
                             flettefelter={flettefelter}
                         />
                     }
-                    søknadsvar={barn[barnDataKeySpørsmål.borFastMedSøker].svar}
+                    søknadsvar={barn[barnDataKeySpørsmål.foreldreBorSammen].svar}
                 />
-                {barn[barnDataKeySpørsmål.foreldreBorSammen].svar && (
-                    <OppsummeringFelt
-                        tittel={
-                            <TekstBlock
-                                block={omBarnetTekster.borForeldreSammen.sporsmal}
-                                flettefelter={flettefelter}
-                            />
-                        }
-                        søknadsvar={barn[barnDataKeySpørsmål.foreldreBorSammen].svar}
-                    />
-                )}
-                {barn[barnDataKeySpørsmål.søkerDeltKontantstøtte].svar && (
-                    <OppsummeringFelt
-                        tittel={
-                            <TekstBlock
-                                block={omBarnetTekster.soekerDeltKontantstoette.sporsmal}
-                                flettefelter={flettefelter}
-                            />
-                        }
-                        søknadsvar={barn[barnDataKeySpørsmål.søkerDeltKontantstøtte].svar}
-                    />
-                )}
-            </StyledOppsummeringsFeltGruppe>
+            )}
+            {barn[barnDataKeySpørsmål.søkerDeltKontantstøtte].svar && (
+                <OppsummeringFelt
+                    tittel={
+                        <TekstBlock
+                            block={omBarnetTekster.soekerDeltKontantstoette.sporsmal}
+                            flettefelter={flettefelter}
+                        />
+                    }
+                    søknadsvar={barn[barnDataKeySpørsmål.søkerDeltKontantstøtte].svar}
+                />
+            )}
         </Oppsummeringsbolk>
     );
 };
