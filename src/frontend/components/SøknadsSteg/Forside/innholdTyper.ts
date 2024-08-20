@@ -7,6 +7,7 @@ export interface IForsideTekstinnhold {
     bekreftelsesboksFeilmelding: LocaleRecordString;
     punktliste: LocaleRecordBlock;
     veilederHei: LocaleRecordBlock;
+    veilederIntro: LocaleRecordBlock;
     veilederhilsen: LocaleRecordBlock;
     soeknadstittel: LocaleRecordBlock;
     personopplysningslenke: LocaleRecordBlock;
@@ -17,4 +18,6 @@ export interface IForsideTekstinnhold {
     informasjonOmPlikter: LocaleRecordBlock;
     informasjonOmPersonopplysningerTittel: LocaleRecordBlock;
     informasjonOmPersonopplysninger: LocaleRecordBlock;
+    informasjonOmLagringAvSvarTittel: LocaleRecordBlock;
+    informasjonOmLagringAvSvar: LocaleRecordBlock;
 }
