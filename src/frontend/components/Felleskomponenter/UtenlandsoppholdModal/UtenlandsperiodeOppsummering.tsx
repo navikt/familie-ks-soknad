@@ -69,26 +69,34 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
                 fjernPeriodeCallback={fjernPeriodeCallback && (() => fjernPeriodeCallback(periode))}
             >
                 <OppsummeringFelt
-                    spørsmålstekst={teksterForPersonType.periodeBeskrivelse.sporsmal}
+                    tittel={<TekstBlock block={teksterForPersonType.periodeBeskrivelse.sporsmal} />}
                     søknadsvar={plainTekst(hentUtenlandsoppholdÅrsak(årsak, teksterForPersonType))}
                 />
 
                 <OppsummeringFelt
-                    spørsmålstekst={hentLandSpørsmål(årsak, teksterForPersonType)}
+                    tittel={
+                        <TekstBlock
+                            block={hentLandSpørsmål(årsak, teksterForPersonType)}
+                            flettefelter={{ barnetsNavn: barn?.navn }}
+                        />
+                    }
                     søknadsvar={landkodeTilSpråk(oppholdsland.svar, valgtLocale)}
-                    flettefelter={{ barnetsNavn: barn?.navn }}
                 />
 
                 {oppholdslandFraDato.svar && (
                     <OppsummeringFelt
-                        spørsmålstekst={hentFraDatoSpørsmål(årsak, teksterForPersonType)}
+                        tittel={
+                            <TekstBlock block={hentFraDatoSpørsmål(årsak, teksterForPersonType)} />
+                        }
                         søknadsvar={formaterDato(oppholdslandFraDato.svar)}
                     />
                 )}
 
                 {oppholdslandTilDato.svar && (
                     <OppsummeringFelt
-                        spørsmålstekst={hentTilDatoSpørsmål(årsak, teksterForPersonType)}
+                        tittel={
+                            <TekstBlock block={hentTilDatoSpørsmål(årsak, teksterForPersonType)} />
+                        }
                         søknadsvar={formaterDatoMedUkjent(
                             oppholdslandTilDato.svar,
                             plainTekst(teksterForPersonType.sluttdatoFremtid.checkboxLabel)
@@ -98,7 +106,7 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
 
                 {adresse.svar && (
                     <OppsummeringFelt
-                        spørsmålstekst={adresseTekst?.sporsmal}
+                        tittel={<TekstBlock block={adresseTekst?.sporsmal} />}
                         søknadsvar={
                             adresse.svar === AlternativtSvarForInput.UKJENT
                                 ? plainTekst(adresseTekst?.checkboxLabel)

@@ -57,29 +57,41 @@ export const UtbetalingsperiodeOppsummering: React.FC<UtbetalingsperiodeOppsumme
         >
             {fårUtbetalingNå.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={teksterForPersontype.faarUtbetalingerNaa.sporsmal}
+                    tittel={
+                        <TekstBlock
+                            block={teksterForPersontype.faarUtbetalingerNaa.sporsmal}
+                            flettefelter={{ barnetsNavn: barn?.navn }}
+                        />
+                    }
                     søknadsvar={fårUtbetalingNå.svar}
-                    flettefelter={{ barnetsNavn: barn?.navn }}
                 />
             )}
             <OppsummeringFelt
-                spørsmålstekst={
-                    periodenErAvsluttet
-                        ? teksterForPersontype.utbetalingLandFortid.sporsmal
-                        : teksterForPersontype.utbetalingLandNaatid.sporsmal
+                tittel={
+                    <TekstBlock
+                        block={
+                            periodenErAvsluttet
+                                ? teksterForPersontype.utbetalingLandFortid.sporsmal
+                                : teksterForPersontype.utbetalingLandNaatid.sporsmal
+                        }
+                        flettefelter={{ barnetsNavn: barn?.navn }}
+                    />
                 }
-                flettefelter={{ barnetsNavn: barn?.navn }}
                 søknadsvar={landkodeTilSpråk(utbetalingLand.svar, valgtLocale)}
             />
             <OppsummeringFelt
-                spørsmålstekst={teksterForPersontype.startdato.sporsmal}
+                tittel={<TekstBlock block={teksterForPersontype.startdato.sporsmal} />}
                 søknadsvar={formaterDato(utbetalingFraDato.svar)}
             />
             <OppsummeringFelt
-                spørsmålstekst={
-                    periodenErAvsluttet
-                        ? teksterForPersontype.sluttdatoFortid.sporsmal
-                        : teksterForPersontype.sluttdatoFremtid.sporsmal
+                tittel={
+                    <TekstBlock
+                        block={
+                            periodenErAvsluttet
+                                ? teksterForPersontype.sluttdatoFortid.sporsmal
+                                : teksterForPersontype.sluttdatoFremtid.sporsmal
+                        }
+                    />
                 }
                 søknadsvar={formaterDatoMedUkjent(
                     utbetalingTilDato.svar,

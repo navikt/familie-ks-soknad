@@ -18,6 +18,7 @@ import { landkodeTilSpråk } from '../../../../../utils/språk';
 import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
 import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
+import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
 import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
 import IdNummerForAndreForelder from '../../../EøsSteg/Barn/IdNummerForAndreForelder';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
@@ -58,8 +59,7 @@ const EøsAndreForelderOppsummering: React.FC<{
     }) => {
         return barn.andreForelder && barn.andreForelder[andreForelderDataKeySpm].svar ? (
             <OppsummeringFelt
-                spørsmålstekst={spørsmålstekst}
-                flettefelter={flettefelter}
+                tittel={<TekstBlock block={spørsmålstekst} flettefelter={flettefelter} />}
                 søknadsvar={barn.andreForelder[andreForelderDataKeySpm].svar}
             />
         ) : null;
@@ -76,8 +76,12 @@ const EøsAndreForelderOppsummering: React.FC<{
             {andreForelder.adresse.svar && (
                 <StyledOppsummeringsFeltGruppe>
                     <OppsummeringFelt
-                        spørsmålstekst={hvorBorAndreForelder.sporsmal}
-                        flettefelter={flettefelter}
+                        tittel={
+                            <TekstBlock
+                                block={hvorBorAndreForelder.sporsmal}
+                                flettefelter={flettefelter}
+                            />
+                        }
                         søknadsvar={
                             andreForelder.adresse.svar === AlternativtSvarForInput.UKJENT
                                 ? plainTekst(hvorBorAndreForelder.checkboxLabel)
@@ -145,8 +149,12 @@ const EøsAndreForelderOppsummering: React.FC<{
                 })}
                 {andreForelder.pågåendeSøknadHvilketLand.svar && (
                     <OppsummeringFelt
-                        spørsmålstekst={hvilketLandSoektYtelseAndreForelder.sporsmal}
-                        flettefelter={flettefelter}
+                        tittel={
+                            <TekstBlock
+                                block={hvilketLandSoektYtelseAndreForelder.sporsmal}
+                                flettefelter={flettefelter}
+                            />
+                        }
                         søknadsvar={landkodeTilSpråk(
                             andreForelder.pågåendeSøknadHvilketLand.svar,
                             valgtLocale

@@ -56,31 +56,39 @@ export const PensjonsperiodeOppsummering: React.FC<PensjonsperiodeOppsummeringPr
         >
             {mottarPensjonNå.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={teksterForModal.faarPensjonNaa.sporsmal}
+                    tittel={
+                        <TekstBlock
+                            block={teksterForModal.faarPensjonNaa.sporsmal}
+                            flettefelter={{ barnetsNavn: barn?.navn }}
+                        />
+                    }
                     søknadsvar={mottarPensjonNå.svar}
-                    flettefelter={{ barnetsNavn: barn?.navn }}
                 />
             )}
             {pensjonsland.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={
-                        periodenErAvsluttet
-                            ? teksterForModal.pensjonLandFortid.sporsmal
-                            : teksterForModal.pensjonLandNaatid.sporsmal
+                    tittel={
+                        <TekstBlock
+                            block={
+                                periodenErAvsluttet
+                                    ? teksterForModal.pensjonLandFortid.sporsmal
+                                    : teksterForModal.pensjonLandNaatid.sporsmal
+                            }
+                            flettefelter={{ barnetsNavn: barn?.navn }}
+                        />
                     }
                     søknadsvar={landkodeTilSpråk(pensjonsland.svar, valgtLocale)}
-                    flettefelter={{ barnetsNavn: barn?.navn }}
                 />
             )}
             {pensjonFra.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={teksterForModal.startdato.sporsmal}
+                    tittel={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
                     søknadsvar={formaterDato(pensjonFra.svar)}
                 />
             )}
             {pensjonTil.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={teksterForModal.sluttdato.sporsmal}
+                    tittel={<TekstBlock block={teksterForModal.sluttdato.sporsmal} />}
                     søknadsvar={formaterDato(pensjonTil.svar)}
                 />
             )}

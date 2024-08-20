@@ -5,6 +5,7 @@ import { useRoutes } from '../../../../context/RoutesContext';
 import { RouteEnum } from '../../../../typer/routes';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { hentBostedSpråkId } from '../../../../utils/språk';
+import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { IVelgBarnTekstinnhold } from '../../VelgBarn/innholdTyper';
 import { useVelgBarn } from '../../VelgBarn/useVelgBarn';
 import { OppsummeringFelt } from '../OppsummeringFelt';
@@ -33,7 +34,7 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             {søknad.barnInkludertISøknaden.map((barn, index) => (
                 <StyledOppsummeringsFeltGruppe key={index}>
                     <OppsummeringFelt
-                        spørsmålstekst={leggTilBarnModalTekster.barnetsNavnSubtittel}
+                        tittel={<TekstBlock block={leggTilBarnModalTekster.barnetsNavnSubtittel} />}
                         søknadsvar={
                             barn.adressebeskyttelse
                                 ? plainTekst(velgBarnTekster.registrertMedAdressesperre)
@@ -42,7 +43,7 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                     />
 
                     <OppsummeringFelt
-                        spørsmålstekst={velgBarnTekster.foedselsnummerLabel}
+                        tittel={<TekstBlock block={velgBarnTekster.foedselsnummerLabel} />}
                         søknadsvar={barn.ident}
                     />
 
@@ -50,7 +51,7 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         barnRegistrertManuelt => barnRegistrertManuelt.ident === barn.ident
                     ) && (
                         <OppsummeringFelt
-                            spørsmålstekst={velgBarnTekster.registrertBostedLabel}
+                            tittel={<TekstBlock block={velgBarnTekster.registrertBostedLabel} />}
                             søknadsvar={plainTekst(hentBostedSpråkId(barn, teksterForSteg))}
                         />
                     )}

@@ -70,33 +70,45 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
         >
             {mottarEøsKontantstøtteNå.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={teksterForPersonType.faarYtelserNaa.sporsmal}
-                    flettefelter={{ barnetsNavn }}
+                    tittel={
+                        <TekstBlock
+                            block={teksterForPersonType.faarYtelserNaa.sporsmal}
+                            flettefelter={{ barnetsNavn }}
+                        />
+                    }
                     søknadsvar={mottarEøsKontantstøtteNå.svar}
                 />
             )}
             <OppsummeringFelt
-                spørsmålstekst={
-                    periodenErAvsluttet
-                        ? teksterForPersonType.ytelseLandFortid.sporsmal
-                        : teksterForPersonType.ytelseLandNaatid.sporsmal
+                tittel={
+                    <TekstBlock
+                        block={
+                            periodenErAvsluttet
+                                ? teksterForPersonType.ytelseLandFortid.sporsmal
+                                : teksterForPersonType.ytelseLandNaatid.sporsmal
+                        }
+                        flettefelter={{ barnetsNavn }}
+                    />
                 }
-                flettefelter={{ barnetsNavn }}
                 søknadsvar={landkodeTilSpråk(kontantstøtteLand.svar, valgtLocale)}
             />
             <OppsummeringFelt
-                spørsmålstekst={teksterForPersonType.startdato.sporsmal}
+                tittel={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
                 søknadsvar={formaterDato(fraDatoKontantstøttePeriode.svar)}
             />
             {tilDatoKontantstøttePeriode.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={teksterForPersonType.sluttdato.sporsmal}
+                    tittel={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
                     søknadsvar={formaterDato(tilDatoKontantstøttePeriode.svar)}
                 />
             )}
             <OppsummeringFelt
-                spørsmålstekst={teksterForPersonType.beloepPerMaaned.sporsmal}
-                flettefelter={{ barnetsNavn }}
+                tittel={
+                    <TekstBlock
+                        block={teksterForPersonType.beloepPerMaaned.sporsmal}
+                        flettefelter={{ barnetsNavn }}
+                    />
+                }
                 søknadsvar={månedligBeløp.svar}
             />
         </PeriodeOppsummering>

@@ -15,7 +15,6 @@ import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { useOmdeg } from '../../OmDeg/useOmdeg';
 import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';
-import { StyledOppsummeringsFeltGruppe } from '../OppsummeringsFeltGruppe';
 
 interface Props {
     settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
@@ -45,72 +44,65 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             skjemaHook={omDegHook}
             settFeilAnchors={settFeilAnchors}
         >
-            <StyledOppsummeringsFeltGruppe>
-                <OppsummeringFelt
-                    // spørsmålstekst={forsideTekster.bekreftelsesboksBroedtekst}
-                    tittel={
-                        <TekstBlock
-                            block={
-                                fellesTekster.midlertidigeTekster.forsideBekreftelsesboksBroedtekst
-                            }
-                        />
-                    }
-                    søknadsvar={plainTekst(
-                        søknad.lestOgForståttBekreftelse
-                            ? // ? tekster().FORSIDE.bekreftelsesboksErklaering
-                              fellesTekster.midlertidigeTekster.forsideBekreftelsesboksErklaering
-                            : jaNeiSvarTilSpråkId(ESvar.NEI, tekster().FELLES.frittståendeOrd)
-                    )}
-                />
-            </StyledOppsummeringsFeltGruppe>
-            <StyledOppsummeringsFeltGruppe>
-                <OppsummeringFelt
-                    spørsmålstekst={omDegTekster.ident}
-                    søknadsvar={søknad.søker.ident}
-                />
-                <OppsummeringFelt
-                    spørsmålstekst={omDegTekster.statsborgerskap}
-                    søknadsvar={søknad.søker.statsborgerskap
-                        .map((statsborgerskap: { landkode: Alpha3Code }) =>
-                            landkodeTilSpråk(statsborgerskap.landkode, valgtLocale)
-                        )
-                        .join(', ')}
-                />
-                <OppsummeringFelt
-                    spørsmålstekst={omDegTekster.sivilstatus}
-                    søknadsvar={plainTekst(
-                        fellesTekster.frittståendeOrd[
-                            sivilstandTilSanitySivilstandApiKey(søknad.søker.sivilstand.type)
-                        ]
-                    )}
-                />
-
-                <OppsummeringFelt
-                    spørsmålstekst={omDegTekster.adresse}
-                    children={genererAdresseVisning(søknad.søker, omDegTekster, plainTekst)}
-                />
-                {søknad.søker.borPåRegistrertAdresse.svar && (
-                    <OppsummeringFelt
-                        spørsmålstekst={omDegTekster.borPaaAdressen.sporsmal}
-                        søknadsvar={søknad.søker.borPåRegistrertAdresse.svar}
+            <OppsummeringFelt
+                // tittel={forsideTekster.bekreftelsesboksBroedtekst}
+                tittel={
+                    <TekstBlock
+                        block={fellesTekster.midlertidigeTekster.forsideBekreftelsesboksBroedtekst}
                     />
+                }
+                søknadsvar={plainTekst(
+                    søknad.lestOgForståttBekreftelse
+                        ? // ? tekster().FORSIDE.bekreftelsesboksErklaering
+                          fellesTekster.midlertidigeTekster.forsideBekreftelsesboksErklaering
+                        : jaNeiSvarTilSpråkId(ESvar.NEI, tekster().FELLES.frittståendeOrd)
                 )}
-            </StyledOppsummeringsFeltGruppe>
+            />
 
-            <StyledOppsummeringsFeltGruppe>
+            <OppsummeringFelt
+                tittel={plainTekst(omDegTekster.ident)}
+                søknadsvar={søknad.søker.ident}
+            />
+            <OppsummeringFelt
+                tittel={plainTekst(omDegTekster.statsborgerskap)}
+                søknadsvar={søknad.søker.statsborgerskap
+                    .map((statsborgerskap: { landkode: Alpha3Code }) =>
+                        landkodeTilSpråk(statsborgerskap.landkode, valgtLocale)
+                    )
+                    .join(', ')}
+            />
+            <OppsummeringFelt
+                tittel={plainTekst(omDegTekster.sivilstatus)}
+                søknadsvar={plainTekst(
+                    fellesTekster.frittståendeOrd[
+                        sivilstandTilSanitySivilstandApiKey(søknad.søker.sivilstand.type)
+                    ]
+                )}
+            />
+
+            <OppsummeringFelt
+                tittel={plainTekst(omDegTekster.adresse)}
+                children={genererAdresseVisning(søknad.søker, omDegTekster, plainTekst)}
+            />
+            {søknad.søker.borPåRegistrertAdresse.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={omDegTekster.oppholdtDegSammenhengende.sporsmal}
-                    søknadsvar={søknad.søker.værtINorgeITolvMåneder.svar}
+                    tittel={<TekstBlock block={omDegTekster.borPaaAdressen.sporsmal} />}
+                    søknadsvar={søknad.søker.borPåRegistrertAdresse.svar}
                 />
-                <OppsummeringFelt
-                    spørsmålstekst={omDegTekster.planleggerAaBoSammenhengende.sporsmal}
-                    søknadsvar={søknad.søker.planleggerÅBoINorgeTolvMnd.svar}
-                />
-                <OppsummeringFelt
-                    spørsmålstekst={omDegTekster.medlemAvFolketrygden.sporsmal}
-                    søknadsvar={søknad.søker.yrkesaktivFemÅr.svar}
-                />
-            </StyledOppsummeringsFeltGruppe>
+            )}
+
+            <OppsummeringFelt
+                tittel={<TekstBlock block={omDegTekster.oppholdtDegSammenhengende.sporsmal} />}
+                søknadsvar={søknad.søker.værtINorgeITolvMåneder.svar}
+            />
+            <OppsummeringFelt
+                tittel={<TekstBlock block={omDegTekster.planleggerAaBoSammenhengende.sporsmal} />}
+                søknadsvar={søknad.søker.planleggerÅBoINorgeTolvMnd.svar}
+            />
+            <OppsummeringFelt
+                tittel={<TekstBlock block={omDegTekster.medlemAvFolketrygden.sporsmal} />}
+                søknadsvar={søknad.søker.yrkesaktivFemÅr.svar}
+            />
         </Oppsummeringsbolk>
     );
 };
