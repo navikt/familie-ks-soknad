@@ -4,7 +4,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { useSpråk } from '../../../context/SpråkContext';
-import { Typografi } from '../../../typer/common';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
@@ -64,7 +63,6 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
                 <TekstBlock
                     block={teksterForPersonType.oppsummeringstittelKontantstoette}
                     flettefelter={{ antall: nummer.toString() }}
-                    typografi={Typografi.HeadingH3}
                 />
             }
         >

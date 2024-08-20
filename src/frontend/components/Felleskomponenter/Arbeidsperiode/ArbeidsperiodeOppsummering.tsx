@@ -4,7 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { useSpråk } from '../../../context/SpråkContext';
-import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
+import { AlternativtSvarForInput } from '../../../typer/common';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
@@ -64,7 +64,6 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
                 <TekstBlock
                     block={teksterForModal.oppsummeringstittel}
                     flettefelter={{ antall: nummer.toString(), gjelderUtland: gjelderUtlandet }}
-                    typografi={Typografi.HeadingH3}
                 />
             }
         >

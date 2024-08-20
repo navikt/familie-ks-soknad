@@ -2,7 +2,6 @@ import React from 'react';
 
 import { useApp } from '../../../context/AppContext';
 import { useSpråk } from '../../../context/SpråkContext';
-import { Typografi } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
@@ -49,7 +48,6 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
                 <TekstBlock
                     block={barnehageplassTekster.oppsummeringstittel}
                     flettefelter={{ antall: nummer.toString() }}
-                    typografi={Typografi.HeadingH3}
                 />
             }
         >

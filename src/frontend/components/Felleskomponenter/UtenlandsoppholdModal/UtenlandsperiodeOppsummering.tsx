@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useApp } from '../../../context/AppContext';
 import { useSpråk } from '../../../context/SpråkContext';
-import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
+import { AlternativtSvarForInput } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps } from '../../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
@@ -63,7 +63,6 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
                     <TekstBlock
                         block={teksterForPersonType.oppsummeringstittel}
                         flettefelter={{ antall: nummer.toString() }}
-                        typografi={Typografi.HeadingH3}
                     />
                 }
                 fjernPeriodeCallback={fjernPeriodeCallback && (() => fjernPeriodeCallback(periode))}

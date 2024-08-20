@@ -4,7 +4,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { useSpråk } from '../../../context/SpråkContext';
-import { Typografi } from '../../../typer/common';
 import { IPensjonsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { formaterDato } from '../../../utils/dato';
@@ -50,7 +49,6 @@ export const PensjonsperiodeOppsummering: React.FC<PensjonsperiodeOppsummeringPr
                 <TekstBlock
                     block={teksterForModal.oppsummeringstittel}
                     flettefelter={{ antall: nummer.toString(), gjelderUtland: gjelderUtlandet }}
-                    typografi={Typografi.HeadingH3}
                 />
             }
         >
