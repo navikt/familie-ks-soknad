@@ -9,6 +9,7 @@ import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetFeltTyper } from '../../../typer/skjema';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import { IOmBarnetTekstinnhold } from '../../SøknadsSteg/OmBarnet/innholdTyper';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import PerioderContainer from '../PerioderContainer';
@@ -44,8 +45,14 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
     const teksterForOmBarnetSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     const barnetsNavn = barn.navn;
 
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
+
     return (
-        <PerioderContainer>
+        <PerioderContainer
+            tittel={uppercaseFørsteBokstav(
+                plainTekst(frittståendeOrdTekster.barnehageplassperioder)
+            )}
+        >
             <TekstBlock
                 block={teksterForOmBarnetSteg.opplystBarnehageplass}
                 flettefelter={{ barnetsNavn }}
