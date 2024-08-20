@@ -22,20 +22,10 @@ interface Props {
 
 const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
     const { søknad, tekster, plainTekst } = useApp();
-    const {
-        OM_DEG: omDegTekster,
-        // FORSIDE: forsideTekster,
-        FELLES: fellesTekster,
-    } = tekster();
+    const { OM_DEG: omDegTekster, FORSIDE: forsideTekster, FELLES: fellesTekster } = tekster();
     const { valgtLocale } = useSpråk();
     const { hentRouteObjektForRouteEnum } = useRoutes();
     const omDegHook = useOmdeg();
-
-    /* 
-    Vi oppretter midlertidige tekster som inneholder nye forside-tekster. 
-    Når dette er ute i prod vil vi endre de eksisterende forsideteksene i Sanity (de som nå er utkommentert) slik at de blir likt det som ligger i de midlertidige tekstene. 
-    Når dette er gjort lages en ny PR for å bytte koden tilbake til å bruke forsidetekstene. 
-    */
 
     return (
         <Oppsummeringsbolk
@@ -45,20 +35,13 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             settFeilAnchors={settFeilAnchors}
         >
             <OppsummeringFelt
-                // tittel={forsideTekster.bekreftelsesboksBroedtekst}
-                tittel={
-                    <TekstBlock
-                        block={fellesTekster.midlertidigeTekster.forsideBekreftelsesboksBroedtekst}
-                    />
-                }
+                tittel={<TekstBlock block={forsideTekster.bekreftelsesboksBroedtekst} />}
                 søknadsvar={plainTekst(
                     søknad.lestOgForståttBekreftelse
-                        ? // ? tekster().FORSIDE.bekreftelsesboksErklaering
-                          fellesTekster.midlertidigeTekster.forsideBekreftelsesboksErklaering
-                        : jaNeiSvarTilSpråkId(ESvar.NEI, tekster().FELLES.frittståendeOrd)
+                        ? forsideTekster.bekreftelsesboksErklaering
+                        : jaNeiSvarTilSpråkId(ESvar.NEI, fellesTekster.frittståendeOrd)
                 )}
             />
-
             <OppsummeringFelt
                 tittel={plainTekst(omDegTekster.ident)}
                 søknadsvar={søknad.søker.ident}
