@@ -11,6 +11,7 @@ import { RouteEnum } from '../../../../typer/routes';
 import { genererAdresseVisning } from '../../../../utils/adresse';
 import { landkodeTilSpråk, sivilstandTilSanitySivilstandApiKey } from '../../../../utils/språk';
 import { jaNeiSvarTilSpråkId } from '../../../../utils/spørsmål';
+import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { useOmdeg } from '../../OmDeg/useOmdeg';
 import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';
@@ -36,11 +37,11 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
         >
             <StyledOppsummeringsFeltGruppe>
                 <OppsummeringFelt
-                    spørsmålstekst={forsideTekster.bekreftelsesboksBroedtekst}
+                    tittel={<TekstBlock block={forsideTekster.bekreftelsesboksBroedtekst} />}
                     søknadsvar={plainTekst(
                         søknad.lestOgForståttBekreftelse
-                            ? tekster().FORSIDE.bekreftelsesboksErklaering
-                            : jaNeiSvarTilSpråkId(ESvar.NEI, tekster().FELLES.frittståendeOrd)
+                            ? forsideTekster.bekreftelsesboksErklaering
+                            : jaNeiSvarTilSpråkId(ESvar.NEI, fellesTekster.frittståendeOrd)
                     )}
                 />
             </StyledOppsummeringsFeltGruppe>

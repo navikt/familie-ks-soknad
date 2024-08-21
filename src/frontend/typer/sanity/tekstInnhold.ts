@@ -68,6 +68,7 @@ export interface IFellesTekstInnhold {
     kanIkkeBrukeSoeknad: IKanIkkeBrukeSoeknadTekstinnhold;
     hjelpeteksterForInput: IHjelpeteksterForInputTekstInnhold;
     alternativeTekster: IAlternativeTeksterTekstinnhold;
+    midlertidigeTekster: IMidlertidigeTeksterTekstInnhold;
 }
 
 export interface IModalerTekstinnhold {
@@ -142,6 +143,8 @@ export interface INavigasjonTekstinnhold {
     tilbakeKnapp: LocaleRecordString;
     gaaVidereKnapp: LocaleRecordString;
     sendSoeknadKnapp: LocaleRecordString;
+    slettSoeknadKnapp: LocaleRecordString;
+    fortsettSenereKnapp: LocaleRecordString;
 }
 
 export interface IFormateringsfeilmeldingerTekstinnhold {
@@ -177,3 +180,5 @@ export interface IHjelpeteksterForInputTekstInnhold {
 export interface IAlternativeTeksterTekstinnhold {
     barneillustrajonAltTekst: LocaleRecordBlock;
 }
+
+export interface IMidlertidigeTeksterTekstInnhold {}

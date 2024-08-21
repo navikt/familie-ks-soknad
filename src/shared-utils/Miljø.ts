@@ -35,7 +35,7 @@ export const erLokalt = () => !erProd() && !erDev();
 const Miljø = (): MiljøProps => {
     if (erDev()) {
         return {
-            sanityDataset: 'production-v2',
+            sanityDataset: 'production',
             soknadApiProxyUrl: `https://familie-ks-soknad.ekstern.dev.nav.no${basePath}api`,
             soknadApiUrl: `http://familie-baks-soknad-api/api`,
             dokumentProxyUrl: `https://familie-ks-soknad.ekstern.dev.nav.no${basePath}dokument`,
@@ -61,7 +61,7 @@ const Miljø = (): MiljøProps => {
         };
     } else {
         return {
-            sanityDataset: 'test',
+            sanityDataset: 'production',
             soknadApiProxyUrl: `http://localhost:3000${basePath}api`,
             soknadApiUrl: 'http://localhost:8080/api',
             dokumentProxyUrl: `http://localhost:3000${basePath}dokument`,

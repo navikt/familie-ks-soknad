@@ -27,6 +27,7 @@ import {
     formateringsfeilmeldingerPrefix,
     frittståendeOrdPrefix,
     hjelpeteksterForInputPrefix,
+    midlertidigeTeksterPrefix,
     kanIkkeBrukeSoeknadPrefix,
     modalPrefix,
     navigasjonPrefix,
@@ -40,6 +41,7 @@ import {
     IFrittståendeOrdTekstinnhold,
     IHjelpeteksterForInputTekstInnhold,
     IKanIkkeBrukeSoeknadTekstinnhold,
+    IMidlertidigeTeksterTekstInnhold,
     IModalerTekstinnhold,
     INavigasjonTekstinnhold,
     ITekstinnhold,
@@ -192,6 +194,9 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
         alternativeTekster: struktrerInnholdForFelles(
             dokumenterFiltrertPåPrefix(fellesDokumenter, alternativeTeksterPrefix)
         ) as IAlternativeTeksterTekstinnhold,
+        midlertidigeTekster: struktrerInnholdForFelles(
+            dokumenterFiltrertPåPrefix(fellesDokumenter, midlertidigeTeksterPrefix)
+        ) as IMidlertidigeTeksterTekstInnhold,
     };
     return tekstInnhold as ITekstinnhold;
 };
