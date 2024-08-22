@@ -89,7 +89,7 @@ export const FeilsideInnhold: FC = () => {
                     </List>
                     <BodyShort>
                         If the problem persists, you can{' '}
-                        <Link href="https://nav.no/kontaktoss" target="_blank">
+                        <Link href="https://www.nav.no/kontaktoss/en" target="_blank">
                             contact us (opens in a new tab)
                         </Link>
                         .
