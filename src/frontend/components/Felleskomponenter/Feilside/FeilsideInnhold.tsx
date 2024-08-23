@@ -62,7 +62,7 @@ export const FeilsideInnhold: FC = () => {
                     <BodyShort>
                         Viss problemet held fram, kan du{' '}
                         <Link href="https://nav.no/kontaktoss" target="_blank">
-                            kontakte oss (opnast i ny fane)
+                            kontakte oss (blir opna i ny fane)
                         </Link>
                         .
                     </BodyShort>
