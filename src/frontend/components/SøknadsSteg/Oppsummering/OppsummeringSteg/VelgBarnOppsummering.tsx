@@ -30,8 +30,8 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             skjemaHook={velgBarnHook}
             settFeilAnchors={settFeilAnchors}
         >
-            {søknad.barnInkludertISøknaden.map(barn => (
-                <>
+            {søknad.barnInkludertISøknaden.map((barn, index) => (
+                <React.Fragment key={index}>
                     <OppsummeringFelt
                         tittel={<TekstBlock block={leggTilBarnModalTekster.barnetsNavnSubtittel} />}
                         søknadsvar={
@@ -54,7 +54,7 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                             søknadsvar={plainTekst(hentBostedSpråkId(barn, teksterForSteg))}
                         />
                     )}
-                </>
+                </React.Fragment>
             ))}
         </Oppsummeringsbolk>
     );
