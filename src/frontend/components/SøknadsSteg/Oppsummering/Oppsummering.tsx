@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
 import { BodyShort, VStack } from '@navikt/ds-react';
 
@@ -19,10 +18,6 @@ import OmBarnaOppsummering from './OppsummeringSteg/OmBarnaOppsummering';
 import OmBarnetOppsummering from './OppsummeringSteg/OmBarnet/OmBarnetOppsummering';
 import OmDegOppsummering from './OppsummeringSteg/OmDegOppsummering';
 import VelgBarnOppsummering from './OppsummeringSteg/VelgBarnOppsummering';
-
-const StyledBodyShort = styled(BodyShort)`
-    padding-bottom: 4rem;
-`;
 
 const Oppsummering: React.FC = () => {
     const { søknad, tekster, plainTekst } = useApp();
@@ -57,7 +52,7 @@ const Oppsummering: React.FC = () => {
             gåVidereCallback={gåVidereCallback}
         >
             <VStack gap="12">
-                <StyledBodyShort>{plainTekst(lesNoeye)}</StyledBodyShort>
+                <BodyShort>{plainTekst(lesNoeye)}</BodyShort>
 
                 <OmDegOppsummering settFeilAnchors={settFeilAnchors} />
                 <DinLivssituasjonOppsummering settFeilAnchors={settFeilAnchors} />
