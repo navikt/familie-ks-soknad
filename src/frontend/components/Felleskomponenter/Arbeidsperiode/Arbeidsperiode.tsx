@@ -13,6 +13,7 @@ import {
     IEøsForSøkerFeltTyper,
     IOmBarnetFeltTyper,
 } from '../../../typer/skjema';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import PerioderContainer from '../PerioderContainer';
@@ -61,6 +62,13 @@ export const Arbeidsperiode: React.FC<Props> = ({
         tekster().FELLES.modaler.arbeidsperiode[personType];
     const { flerePerioder, leggTilKnapp, leggTilPeriodeForklaring } = teksterForModal;
 
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
+    const { arbeidsperioder, utenfor, i, norge } = frittståendeOrdTekster;
+
+    const perioderContainerTittel = uppercaseFørsteBokstav(
+        `${plainTekst(arbeidsperioder)} ${plainTekst(gjelderUtlandet ? utenfor : i)} ${plainTekst(norge)}`
+    );
+
     return (
         <>
             <JaNeiSpm
@@ -76,7 +84,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
                 flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {arbeiderEllerArbeidetFelt.verdi === ESvar.JA && (
-                <PerioderContainer>
+                <PerioderContainer tittel={perioderContainerTittel}>
                     {registrerteArbeidsperioder.verdi.map((periode, index) => (
                         <ArbeidsperiodeOppsummering
                             key={`arbeidsperiode-${index}`}

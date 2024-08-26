@@ -7,6 +7,7 @@ import { useApp } from '../../../context/AppContext';
 import { IUtbetalingsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import PerioderContainer from '../PerioderContainer';
@@ -46,6 +47,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
     } = useModal();
 
     const teksterForPersontype = tekster().FELLES.modaler.andreUtbetalinger[personType];
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
 
     const barnetsNavn = barn && barn.navn;
 
@@ -59,7 +61,11 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                 flettefelter={{ barnetsNavn: barnetsNavn }}
             />
             {tilhørendeJaNeiSpmFelt.verdi === ESvar.JA && (
-                <PerioderContainer>
+                <PerioderContainer
+                    tittel={uppercaseFørsteBokstav(
+                        plainTekst(frittståendeOrdTekster.utbetalingsperioder)
+                    )}
+                >
                     {registrerteUtbetalingsperioder.verdi.map((utbetalingsperiode, index) => (
                         <UtbetalingsperiodeOppsummering
                             key={`utbetalingsperiode-${index}`}
@@ -88,7 +94,6 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                     >
                         <TekstBlock block={teksterForPersontype.leggTilKnapp} />
                     </LeggTilKnapp>
-
                     {utbetalingermodalErÅpen && (
                         <UtbetalingerModal
                             erÅpen={utbetalingermodalErÅpen}

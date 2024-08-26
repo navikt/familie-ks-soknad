@@ -12,6 +12,7 @@ import {
     IEøsForSøkerFeltTyper,
     IOmBarnetFeltTyper,
 } from '../../../typer/skjema';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import PerioderContainer from '../PerioderContainer';
@@ -51,13 +52,21 @@ export const Pensjonsperiode: React.FC<Props> = ({
     barn,
 }) => {
     const { tekster, plainTekst } = useApp();
-    const teksterForModal = tekster().FELLES.modaler.pensjonsperiode[personType];
 
     const {
         erÅpen: pensjonsmodalErÅpen,
         lukkModal: lukkPensjonsmodal,
         åpneModal: åpnePensjonsmodal,
     } = useModal();
+
+    const teksterForModal = tekster().FELLES.modaler.pensjonsperiode[personType];
+
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
+    const { pensjonsperioder, fra, utlandet, norge } = frittståendeOrdTekster;
+
+    const perioderContainerTittel = uppercaseFørsteBokstav(
+        `${plainTekst(pensjonsperioder)} ${plainTekst(fra)} ${plainTekst(gjelderUtlandet ? utlandet : norge)}`
+    );
 
     return (
         <>
@@ -74,7 +83,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
                 flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {mottarEllerMottattPensjonFelt.verdi === ESvar.JA && (
-                <PerioderContainer>
+                <PerioderContainer tittel={perioderContainerTittel}>
                     {registrertePensjonsperioder.verdi.map((pensjonsperiode, index) => (
                         <PensjonsperiodeOppsummering
                             key={`pensjonsperiode-${index}`}

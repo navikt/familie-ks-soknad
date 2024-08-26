@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
 import { Alpha3Code } from 'i18n-iso-countries';
-import styled from 'styled-components';
 
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
@@ -45,10 +44,6 @@ const IdNummerForBarn: React.FC<{
     );
 };
 
-const SamleIdNummerContainer = styled.div<{ $lesevisning: boolean }>`
-    margin-bottom: ${props => (props.$lesevisning ? '2.5rem' : '4rem')};
-`;
-
 const SamletIdNummerForBarn: React.FC<{
     skjema: ISkjema<IEøsForBarnFeltTyper, string>;
     barn: IBarnMedISøknad;
@@ -70,7 +65,7 @@ const SamletIdNummerForBarn: React.FC<{
     );
 
     return skalSpørreOmIdNummerForPågåendeSøknad || idNummerSomMåOppgisFraPerioder.length ? (
-        <SamleIdNummerContainer $lesevisning={lesevisning}>
+        <>
             {idNummerSomMåOppgisFraPerioder.map((landMedPeriodeType, index) => {
                 return (
                     !!landMedPeriodeType.land && (
@@ -95,7 +90,7 @@ const SamletIdNummerForBarn: React.FC<{
                     barn={barn}
                 />
             )}
-        </SamleIdNummerContainer>
+        </>
     ) : null;
 };
 

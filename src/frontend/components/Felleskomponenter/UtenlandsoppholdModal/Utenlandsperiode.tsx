@@ -7,6 +7,7 @@ import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IDinLivssituasjonFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
@@ -45,8 +46,12 @@ export const Utenlandsperiode: React.FC<Props> = ({
 
     const { flerePerioder, leggTilKnapp, leggTilPeriodeForklaring } = utenlandsopphold[personType];
 
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
+
     return (
-        <PerioderContainer>
+        <PerioderContainer
+            tittel={uppercaseFørsteBokstav(plainTekst(frittståendeOrdTekster.utenlandsopphold))}
+        >
             {erUtenlandsoppholdModalÅpen && (
                 <UtenlandsoppholdModal
                     erÅpen={erUtenlandsoppholdModalÅpen}
@@ -67,7 +72,6 @@ export const Utenlandsperiode: React.FC<Props> = ({
                     barn={personType !== PersonType.søker ? barn : undefined}
                 />
             ))}
-
             <LeggTilKnapp
                 id={registrerteUtenlandsperioder.id}
                 onClick={åpneUtenlandsoppholdModal}
