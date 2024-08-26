@@ -9,6 +9,7 @@ import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PeriodePersonTypeProps, PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { IEøsForBarnFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import PerioderContainer from '../PerioderContainer';
@@ -50,6 +51,8 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
     const teksterForPersonType: IEøsYtelseTekstinnhold =
         tekster().FELLES.modaler.eøsYtelse[personType];
 
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
+
     return (
         <>
             <JaNeiSpm
@@ -60,7 +63,11 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                 flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {tilhørendeJaNeiSpmFelt.verdi === ESvar.JA && (
-                <PerioderContainer>
+                <PerioderContainer
+                    tittel={uppercaseFørsteBokstav(
+                        plainTekst(frittståendeOrdTekster.kontantstoetteperioder)
+                    )}
+                >
                     {registrerteEøsKontantstøttePerioder.verdi.map((periode, index) => (
                         <KontantstøttePeriodeOppsummering
                             key={`eøs-kontantstøtte-periode-${index}`}
