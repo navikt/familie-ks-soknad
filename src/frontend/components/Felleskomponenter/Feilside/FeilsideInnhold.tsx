@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { BodyShort, Link, List } from '@navikt/ds-react';
+import { BodyShort, Heading, Link, List } from '@navikt/ds-react';
 
 import { useSpråk } from '../../../context/SpråkContext';
 import { LocaleType } from '../../../typer/common';
@@ -15,6 +15,9 @@ export const FeilsideInnhold: FC = () => {
         <>
             {valgtLocale === LocaleType.nb && (
                 <>
+                    <Heading level="1" size="large" spacing>
+                        Beklager, noe gikk galt.
+                    </Heading>
                     <BodyShort spacing>
                         En teknisk feil på våre servere gjør at siden er utilgjengelig. Dette
                         skyldes ikke noe du gjorde.
@@ -33,8 +36,8 @@ export const FeilsideInnhold: FC = () => {
                     </List>
                     <BodyShort>
                         Hvis problemet vedvarer, kan du{' '}
-                        <Link href="https://nav.no/kontaktoss" target="_blank">
-                            kontakte oss (åpnes i ny fane)
+                        <Link href="https://www.nav.no/start/soknad-kontantstotte" target="_blank">
+                            laste ned og sende papirsøknad (åpnes i nytt vindu)
                         </Link>
                         .
                     </BodyShort>
@@ -43,6 +46,9 @@ export const FeilsideInnhold: FC = () => {
 
             {valgtLocale === LocaleType.nn && (
                 <>
+                    <Heading level="1" size="large" spacing>
+                        Beklager, noe gikk galt.
+                    </Heading>
                     <BodyShort spacing>
                         Ein teknisk feil på våre servere gjer at sida er utilgjengeleg. Dette
                         skuldast ikkje noko du gjorde.
@@ -61,8 +67,11 @@ export const FeilsideInnhold: FC = () => {
                     </List>
                     <BodyShort>
                         Viss problemet held fram, kan du{' '}
-                        <Link href="https://nav.no/kontaktoss" target="_blank">
-                            kontakte oss (blir opna i ny fane)
+                        <Link
+                            href="https://www.nav.no/start/soknad-kontantstotte/nn"
+                            target="_blank"
+                        >
+                            lasta ned og senda papirsøknad (blir opna i nytt vindauge)
                         </Link>
                         .
                     </BodyShort>
@@ -71,6 +80,9 @@ export const FeilsideInnhold: FC = () => {
 
             {valgtLocale === LocaleType.en && (
                 <>
+                    <Heading level="1" size="large" spacing>
+                        Something went wrong
+                    </Heading>
                     <BodyShort spacing>
                         A technical error on our servers has made the page unavailable. This is not
                         your fault.
@@ -89,8 +101,11 @@ export const FeilsideInnhold: FC = () => {
                     </List>
                     <BodyShort>
                         If the problem persists, you can{' '}
-                        <Link href="https://www.nav.no/kontaktoss/en" target="_blank">
-                            contact us (opens in a new tab)
+                        <Link
+                            href="https://www.nav.no/start/soknad-kontantstotte/en"
+                            target="_blank"
+                        >
+                            download and send a paper form (opens in a new window)
                         </Link>
                         .
                     </BodyShort>

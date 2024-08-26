@@ -5,9 +5,7 @@ import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import InnholdContainer from '../InnholdContainer/InnholdContainer';
 
-import { FeilsideHeading } from './FeilsideHeading';
 import { FeilsideInnhold } from './FeilsideInnhold';
-import { FeilsideStatuskode } from './FeilsideStatuskode';
 
 export const Feilside: FC = () => {
     useEffect(() => {
@@ -22,14 +20,9 @@ export const Feilside: FC = () => {
         ]).then();
     };
 
-    // TODO: Er det mulig å få andre statuskoder enn 500? Hvis ja, hvordan finner vi dem og viser det her på feilsiden?
-    const statuskode = '500';
-
     return (
         <InnholdContainer>
             <Box marginBlock="32">
-                <FeilsideStatuskode statuskode={statuskode} />
-                <FeilsideHeading />
                 <FeilsideInnhold />
             </Box>
         </InnholdContainer>
