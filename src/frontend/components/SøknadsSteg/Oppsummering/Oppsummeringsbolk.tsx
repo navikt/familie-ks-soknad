@@ -78,7 +78,7 @@ function Oppsummeringsbolk({
     return (
         <FormSummary>
             <FormSummary.Header>
-                <FormSummary.Heading level="2">
+                <FormSummary.Heading level="3">
                     {`${stegnummer}. ${uppercaseFørsteBokstav(plainTekst(tittel, flettefelter))}`}
                 </FormSummary.Heading>
                 {steg && !visFeil && (
