@@ -5,7 +5,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { BarnetsId, Typografi } from '../../../typer/common';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -13,7 +12,6 @@ import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
 import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import AndreForelder from './AndreForelder';
@@ -46,7 +44,6 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         leggTilUtenlandsperiodeAndreForelder,
         fjernUtenlandsperiodeAndreForelder,
     } = useOmBarnet(barnetsId);
-    const { toggles } = useFeatureToggles();
 
     const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
 
@@ -67,9 +64,6 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
         foreldreBorSammen,
         søkerDeltKontantstøtte,
     } = skjema.felter;
-
-    const dokumentasjonTekster = tekster()[ESanitySteg.DOKUMENTASJON];
-    const { bekreftelsePaaAtBarnBorSammenMedDeg, avtaleOmDeltBosted } = dokumentasjonTekster;
 
     return barn ? (
         <Steg
@@ -122,20 +116,6 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     </Alert>
                 )}
 
-                {borFastMedSøker.verdi === ESvar.JA &&
-                    !barn.borMedSøker &&
-                    (toggles.NYE_VEDLEGGSTEKSTER ? (
-                        <VedleggNotis
-                            block={bekreftelsePaaAtBarnBorSammenMedDeg}
-                            flettefelter={{ barnetsNavn }}
-                            dynamisk
-                        />
-                    ) : (
-                        borBarnFastSammenMedDeg.vedleggsnotis && (
-                            <VedleggNotis block={borBarnFastSammenMedDeg.vedleggsnotis} dynamisk />
-                        )
-                    ))}
-
                 <JaNeiSpm
                     skjema={skjema}
                     felt={foreldreBorSammen}
@@ -143,38 +123,20 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     flettefelter={{ barnetsNavn }}
                 />
 
-                <>
-                    <JaNeiSpm
-                        skjema={skjema}
-                        felt={søkerDeltKontantstøtte}
-                        spørsmålDokument={soekerDeltKontantstoette}
-                        flettefelter={{ barnetsNavn }}
-                        tilleggsinfo={
-                            harPeriodeMedGradertBarnehageplass ? (
-                                <TekstBlock
-                                    block={soekerDeltKontantstoette.alert}
-                                    typografi={Typografi.BodyShort}
-                                />
-                            ) : undefined
-                        }
-                    />
-                    {søkerDeltKontantstøtte.erSynlig &&
-                        søkerDeltKontantstøtte.verdi === ESvar.JA &&
-                        (toggles.NYE_VEDLEGGSTEKSTER ? (
-                            <VedleggNotis
-                                block={avtaleOmDeltBosted}
-                                flettefelter={{ barnetsNavn }}
-                                dynamisk
+                <JaNeiSpm
+                    skjema={skjema}
+                    felt={søkerDeltKontantstøtte}
+                    spørsmålDokument={soekerDeltKontantstoette}
+                    flettefelter={{ barnetsNavn }}
+                    tilleggsinfo={
+                        harPeriodeMedGradertBarnehageplass ? (
+                            <TekstBlock
+                                block={soekerDeltKontantstoette.alert}
+                                typografi={Typografi.BodyShort}
                             />
-                        ) : (
-                            soekerDeltKontantstoette.vedleggsnotis && (
-                                <VedleggNotis
-                                    block={soekerDeltKontantstoette.vedleggsnotis}
-                                    dynamisk
-                                />
-                            )
-                        ))}
-                </>
+                        ) : undefined
+                    }
+                />
             </SkjemaFieldset>
 
             <VedleggOppsummering

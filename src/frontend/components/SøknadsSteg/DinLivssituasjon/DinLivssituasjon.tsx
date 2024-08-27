@@ -3,7 +3,6 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { Typografi } from '../../../typer/common';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { PersonType } from '../../../typer/personType';
@@ -15,7 +14,6 @@ import { Pensjonsperiode } from '../../Felleskomponenter/Pensjonsmodal/Pensjonsp
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
-import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
 import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import { IDinLivssituasjonTekstinnhold } from './innholdTyper';
@@ -35,7 +33,6 @@ const DinLivssituasjon: React.FC = () => {
         leggTilUtenlandsperiode,
         fjernUtenlandsperiode,
     } = useDinLivssituasjon();
-    const { toggles } = useFeatureToggles();
 
     const teksterForSteg: IDinLivssituasjonTekstinnhold = tekster()[ESanitySteg.DIN_LIVSSITUASJON];
     const {
@@ -44,9 +41,6 @@ const DinLivssituasjon: React.FC = () => {
         asylsoeker,
         utenlandsoppholdUtenArbeid,
     } = teksterForSteg;
-
-    const dokumentasjonTekster = tekster()[ESanitySteg.DOKUMENTASJON];
-    const { vedtakOmOppholdstillatelse } = dokumentasjonTekster;
 
     return (
         <Steg
@@ -65,14 +59,6 @@ const DinLivssituasjon: React.FC = () => {
                     felt={skjema.felter.erAsylsøker}
                     spørsmålDokument={asylsoeker}
                 />
-                {skjema.felter.erAsylsøker.verdi === ESvar.JA &&
-                    (toggles.NYE_VEDLEGGSTEKSTER ? (
-                        <VedleggNotis block={vedtakOmOppholdstillatelse} dynamisk />
-                    ) : (
-                        asylsoeker.vedleggsnotis && (
-                            <VedleggNotis block={asylsoeker.vedleggsnotis} dynamisk />
-                        )
-                    ))}
 
                 <Arbeidsperiode
                     skjema={skjema}
