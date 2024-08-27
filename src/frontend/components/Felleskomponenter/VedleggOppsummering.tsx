@@ -5,11 +5,13 @@ import { Alert, List } from '@navikt/ds-react';
 import { useApp } from '../../context/AppContext';
 import { dokumentasjonsbehovTilTittelSanityApiNavn } from '../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../typer/kontrakt/dokumentasjon';
+import { FlettefeltVerdier } from '../../typer/kontrakt/generelle';
 
 interface IVedleggOppsummeringProps {
     vedlegg: {
         skalVises: boolean;
         dokumentasjonsbehov: Dokumentasjonsbehov;
+        flettefeltVerdier?: FlettefeltVerdier;
     }[];
 }
 
@@ -33,7 +35,8 @@ export const VedleggOppsummering: FC<IVedleggOppsummeringProps> = ({ vedlegg }) 
                                         dokumentasjonsbehovTilTittelSanityApiNavn(
                                             vedlegg.dokumentasjonsbehov
                                         )
-                                    ]
+                                    ],
+                                    vedlegg.flettefeltVerdier
                                 )}
                             </List.Item>
                         ))}

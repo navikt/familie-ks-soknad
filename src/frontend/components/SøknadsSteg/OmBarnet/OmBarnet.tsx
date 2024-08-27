@@ -182,6 +182,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     {
                         skalVises: borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker,
                         dokumentasjonsbehov: Dokumentasjonsbehov.BOR_FAST_MED_SØKER,
+                        flettefeltVerdier: { barnetsNavn },
                     },
                     {
                         skalVises:
