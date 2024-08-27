@@ -5,6 +5,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { useApp } from '../../../context/AppContext';
 import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { Typografi } from '../../../typer/common';
+import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
@@ -15,6 +16,7 @@ import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
+import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import { IDinLivssituasjonTekstinnhold } from './innholdTyper';
 import { useDinLivssituasjon } from './useDinLivssituasjon';
@@ -117,6 +119,15 @@ const DinLivssituasjon: React.FC = () => {
                     personType={PersonType.søker}
                 />
             </KomponentGruppe>
+
+            <VedleggOppsummering
+                vedlegg={[
+                    {
+                        skalVises: skjema.felter.erAsylsøker.verdi === ESvar.JA,
+                        dokumentasjonsbehov: Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE,
+                    },
+                ]}
+            />
         </Steg>
     );
 };

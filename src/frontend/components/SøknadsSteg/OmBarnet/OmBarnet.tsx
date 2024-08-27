@@ -7,12 +7,14 @@ import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { BarnetsId, Typografi } from '../../../typer/common';
+import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
+import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import AndreForelder from './AndreForelder';
 import { IOmBarnetTekstinnhold } from './innholdTyper';
@@ -174,6 +176,21 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                         ))}
                 </>
             </SkjemaFieldset>
+
+            <VedleggOppsummering
+                vedlegg={[
+                    {
+                        skalVises: borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker,
+                        dokumentasjonsbehov: Dokumentasjonsbehov.BOR_FAST_MED_SØKER,
+                    },
+                    {
+                        skalVises:
+                            søkerDeltKontantstøtte.erSynlig &&
+                            søkerDeltKontantstøtte.verdi === ESvar.JA,
+                        dokumentasjonsbehov: Dokumentasjonsbehov.AVTALE_DELT_BOSTED,
+                    },
+                ]}
+            />
         </Steg>
     ) : null;
 };

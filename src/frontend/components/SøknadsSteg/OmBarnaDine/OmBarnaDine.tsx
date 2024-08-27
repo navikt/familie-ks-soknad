@@ -9,12 +9,14 @@ import { useApp } from '../../../context/AppContext';
 import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
+import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
+import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import HvilkeBarnCheckboxGruppe from './HvilkeBarnCheckboxGruppe';
 import { IOmBarnaTekstinnhold } from './innholdTyper';
@@ -232,6 +234,19 @@ const OmBarnaDine: React.FC = () => {
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
             </KomponentGruppe>
+
+            <VedleggOppsummering
+                vedlegg={[
+                    {
+                        skalVises: skjema.felter.søktAsylForBarn.verdi === ESvar.JA,
+                        dokumentasjonsbehov: Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE,
+                    },
+                    {
+                        skalVises: skjema.felter.hvemHarBarnehageplass.erSynlig,
+                        dokumentasjonsbehov: Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS,
+                    },
+                ]}
+            />
         </Steg>
     );
 };
