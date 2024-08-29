@@ -97,11 +97,13 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                 settSøknadsdataCallback: oppdaterSøknad,
             }}
         >
-            <SamletIdNummerForBarn
-                barn={barn}
-                settIdNummerFelter={settIdNummerFelterForBarn}
-                skjema={skjema}
-            />
+            <KomponentGruppe>
+                <SamletIdNummerForBarn
+                    barn={barn}
+                    settIdNummerFelter={settIdNummerFelterForBarn}
+                    skjema={skjema}
+                />
+            </KomponentGruppe>
 
             {skjema.felter.søkersSlektsforhold.erSynlig && (
                 <KomponentGruppe>

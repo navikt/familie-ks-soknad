@@ -10,7 +10,7 @@ import { erGyldigSpråk, LocaleType } from '../typer/common';
 const dekoratorLanguageCookieName = 'decorator-language';
 
 export const [SpråkProvider, useSpråk] = createUseContext(() => {
-    const [cookies] = useCookies([dekoratorLanguageCookieName]);
+    const [cookies, setCookie] = useCookies([dekoratorLanguageCookieName]);
     const { [dekoratorLanguageCookieName]: dekoratørSpråk } = cookies;
 
     const defaultSpråk = erGyldigSpråk(dekoratørSpråk) ? dekoratørSpråk : LocaleType.nb;
@@ -25,6 +25,7 @@ export const [SpråkProvider, useSpråk] = createUseContext(() => {
     onLanguageSelect(language => {
         settValgtLocale(language.locale as LocaleType);
         document.documentElement.lang = language.locale;
+        setCookie(dekoratorLanguageCookieName, language.locale);
     });
 
     return { valgtLocale };
