@@ -6,15 +6,15 @@ import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
+import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
+import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import HvilkeBarnCheckboxGruppe from './HvilkeBarnCheckboxGruppe';
 import { IOmBarnaTekstinnhold } from './innholdTyper';
@@ -27,7 +27,6 @@ const OmBarnaDine: React.FC = () => {
 
     const navigate = useNavigate();
     const { søknad, tekster } = useApp();
-    const { toggles } = useFeatureToggles();
 
     const { barnInkludertISøknaden } = søknad;
 
@@ -54,10 +53,6 @@ const OmBarnaDine: React.FC = () => {
         hvemOppholdUtenforNorge,
         hvemSoektYtelse,
     } = teksterForSteg;
-
-    const dokumentasjonTekster = tekster()[ESanitySteg.DOKUMENTASJON];
-    const { vedtakOmOppholdstillatelse, bekreftelsePaaBarnehageplassEttEllerFlereBarn } =
-        dokumentasjonTekster;
 
     if (!barnInkludertISøknaden.length) {
         navigate('/velg-barn');
@@ -140,12 +135,6 @@ const OmBarnaDine: React.FC = () => {
                     nullstillValgteBarn={skjema.felter.søktAsylForBarn.verdi === ESvar.NEI}
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
-                {skjema.felter.søktAsylForBarn.verdi === ESvar.JA &&
-                    (toggles.NYE_VEDLEGGSTEKSTER ? (
-                        <VedleggNotis block={vedtakOmOppholdstillatelse} dynamisk />
-                    ) : (
-                        asyl.vedleggsnotis && <VedleggNotis block={asyl.vedleggsnotis} dynamisk />
-                    ))}
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.barnOppholdtSegTolvMndSammenhengendeINorge}
@@ -193,18 +182,7 @@ const OmBarnaDine: React.FC = () => {
                         skjema.felter.harEllerTildeltBarnehageplass.verdi === ESvar.NEI
                     }
                     visFeilmelding={skjema.visFeilmeldinger}
-                >
-                    {toggles.NYE_VEDLEGGSTEKSTER ? (
-                        <VedleggNotis
-                            block={bekreftelsePaaBarnehageplassEttEllerFlereBarn}
-                            dynamisk
-                        />
-                    ) : (
-                        hvemBarnehageplass.vedleggsnotis && (
-                            <VedleggNotis block={hvemBarnehageplass.vedleggsnotis} dynamisk />
-                        )
-                    )}
-                </HvilkeBarnCheckboxGruppe>
+                />
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.erAvdødPartnerForelder}
@@ -232,6 +210,19 @@ const OmBarnaDine: React.FC = () => {
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
             </KomponentGruppe>
+
+            <VedleggOppsummering
+                vedlegg={[
+                    {
+                        skalVises: skjema.felter.søktAsylForBarn.verdi === ESvar.JA,
+                        dokumentasjonsbehov: Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE,
+                    },
+                    {
+                        skalVises: skjema.felter.hvemHarBarnehageplass.erSynlig,
+                        dokumentasjonsbehov: Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS,
+                    },
+                ]}
+            />
         </Steg>
     );
 };

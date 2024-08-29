@@ -95,7 +95,7 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
 
     return (
         <Container>
-            <Heading level={'2'} size={'small'}>
+            <Heading level={'3'} size={'small'}>
                 {vedleggtittel}
             </Heading>
             {dokumentasjonsbeskrivelse && skalViseAnnenDokumentasjonsBeskrivelse() && (

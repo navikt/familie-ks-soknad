@@ -10,7 +10,6 @@ interface Props {
     fjernPeriodeCallback?: () => void;
     fjernKnappTekst: LocaleRecordBlock;
     tittel: ReactNode;
-    vedleggNotis?: ReactNode;
     children?: ReactNode;
 }
 
@@ -18,7 +17,6 @@ function PeriodeOppsummering({
     fjernPeriodeCallback = undefined,
     fjernKnappTekst,
     tittel,
-    vedleggNotis,
     children,
 }: Props) {
     return (
@@ -39,7 +37,6 @@ function PeriodeOppsummering({
                     )}
                 </FormSummary.Answers>
             </FormSummary.Value>
-            {vedleggNotis}
         </FormSummary.Answer>
     );
 }
