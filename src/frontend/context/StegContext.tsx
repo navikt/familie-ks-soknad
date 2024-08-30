@@ -10,12 +10,6 @@ import { useApp } from './AppContext';
 import { useEøs } from './EøsContext';
 import { useRoutes } from './RoutesContext';
 
-interface StepperStegProps {
-    label: string;
-    index: number;
-    key: number;
-}
-
 const [StegProvider, useSteg] = createUseContext(() => {
     const { søknad } = useApp();
     const { barnInkludertISøknaden } = søknad;
@@ -72,14 +66,6 @@ const [StegProvider, useSteg] = createUseContext(() => {
         })
         .flat();
 
-    const stepperObjekter: StepperStegProps[] = steg
-        .filter(steg => steg.route !== RouteEnum.Forside)
-        .map((steg, index) => ({
-            label: steg.label,
-            index: index,
-            key: index,
-        }));
-
     const hentSteg = (pathname: string): ISteg => {
         const index = steg.findIndex(steg => matchPath(steg.path, decodeURIComponent(pathname)));
         return steg[index] ?? steg[0];
@@ -131,7 +117,7 @@ const [StegProvider, useSteg] = createUseContext(() => {
 
     return {
         steg,
-        stepperObjekter,
+        barnForSteg,
         hentStegNummer,
         hentStegObjektForBarn,
         hentNesteSteg,

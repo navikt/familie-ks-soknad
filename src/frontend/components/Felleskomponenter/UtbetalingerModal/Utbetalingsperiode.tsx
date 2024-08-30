@@ -4,12 +4,13 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
 import { IUtbetalingsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -38,7 +39,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
     erDød,
     barn,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const {
         erÅpen: utbetalingermodalErÅpen,
         lukkModal: lukkUtbetalingsmodal,
@@ -46,6 +47,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
     } = useModal();
 
     const teksterForPersontype = tekster().FELLES.modaler.andreUtbetalinger[personType];
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
 
     const barnetsNavn = barn && barn.navn;
 
@@ -59,7 +61,11 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                 flettefelter={{ barnetsNavn: barnetsNavn }}
             />
             {tilhørendeJaNeiSpmFelt.verdi === ESvar.JA && (
-                <>
+                <PerioderContainer
+                    tittel={uppercaseFørsteBokstav(
+                        plainTekst(frittståendeOrdTekster.utbetalingsperioder)
+                    )}
+                >
                     {registrerteUtbetalingsperioder.verdi.map((utbetalingsperiode, index) => (
                         <UtbetalingsperiodeOppsummering
                             key={`utbetalingsperiode-${index}`}
@@ -71,18 +77,15 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                             barn={barn}
                         />
                     ))}
-                    {registrerteUtbetalingsperioder.verdi.length > 0 && (
-                        <TekstBlock
-                            block={teksterForPersontype.flerePerioder}
-                            typografi={Typografi.Label}
-                            flettefelter={{
-                                barnetsNavn: barn?.navn,
-                            }}
-                        />
-                    )}
                     <LeggTilKnapp
                         onClick={åpneUtbetalingsmodal}
                         id={registrerteUtbetalingsperioder.id}
+                        leggTilFlereTekst={
+                            registrerteUtbetalingsperioder.verdi.length > 0 &&
+                            plainTekst(teksterForPersontype.flerePerioder, {
+                                barnetsNavn: barn?.navn,
+                            })
+                        }
                         feilmelding={
                             registrerteUtbetalingsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&
@@ -91,7 +94,6 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                     >
                         <TekstBlock block={teksterForPersontype.leggTilKnapp} />
                     </LeggTilKnapp>
-
                     {utbetalingermodalErÅpen && (
                         <UtbetalingerModal
                             erÅpen={utbetalingermodalErÅpen}
@@ -100,9 +102,10 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                             personType={personType}
                             barn={barn}
                             erDød={erDød}
+                            forklaring={plainTekst(teksterForPersontype.leggTilPeriodeForklaring)}
                         />
                     )}
-                </>
+                </PerioderContainer>
             )}
         </>
     );

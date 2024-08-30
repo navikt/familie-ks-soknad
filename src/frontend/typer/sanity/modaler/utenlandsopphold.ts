@@ -13,6 +13,7 @@ export interface IUtenlandsoppholdTekstinnhold {
     startdato: ISanitySpørsmålDokument;
     tidligereOpphold: ISanitySpørsmålDokument;
     fjernKnapp: LocaleRecordBlock;
+    leggTilPeriodeForklaring: LocaleRecordString;
     flerePerioder: LocaleRecordBlock;
     leggTilFeilmelding: LocaleRecordBlock;
     leggTilKnapp: LocaleRecordBlock;

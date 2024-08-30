@@ -3,6 +3,7 @@ import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 
 export interface IOmBarnetTekstinnhold {
     omBarnetTittel: LocaleRecordBlock;
+    omBarnetTittelUtenFlettefelt: LocaleRecordBlock;
     borBarnFastSammenMedDeg: ISanitySpørsmålDokument;
     paagaaendeSoeknadYtelse: ISanitySpørsmålDokument;
     hvilketLandYtelse: ISanitySpørsmålDokument;

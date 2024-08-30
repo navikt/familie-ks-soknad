@@ -3,6 +3,7 @@ import { BeskrivelseSanityApiNavn, TittelSanityApiNavn } from '../../../typer/do
 
 export type IDokumentasjonTekstinnhold = {
     dokumentasjonTittel: LocaleRecordBlock;
+    dokumentasjonGuide: LocaleRecordBlock;
     sendtInnTidligere: LocaleRecordBlock;
     vedleggXavY: LocaleRecordBlock;
     slippFilenHer: LocaleRecordBlock;
@@ -42,4 +43,6 @@ export type IDokumentasjonTekstinnhold = {
     [BeskrivelseSanityApiNavn.bekreftelsePaaAtBarnBorSammenMedDeg]: LocaleRecordBlock;
     [BeskrivelseSanityApiNavn.vedtakOmOppholdstillatelse]: LocaleRecordBlock;
     [BeskrivelseSanityApiNavn.bekreftelsePaaBarnehageplass]: LocaleRecordBlock;
+    [BeskrivelseSanityApiNavn.bekreftelsePaaBarnehageplassEttEllerFlereBarn]: LocaleRecordBlock;
+    [BeskrivelseSanityApiNavn.lastOppSenereISoknad]: LocaleRecordBlock;
 };

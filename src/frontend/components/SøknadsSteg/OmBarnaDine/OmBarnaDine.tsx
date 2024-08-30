@@ -1,42 +1,39 @@
 import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
-import { BodyShort } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
+import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
+import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import HvilkeBarnCheckboxGruppe from './HvilkeBarnCheckboxGruppe';
 import { IOmBarnaTekstinnhold } from './innholdTyper';
 import { OmBarnaDineSpørsmålId } from './spørsmål';
 import { useOmBarnaDine } from './useOmBarnaDine';
 
-const VedleggNotisWrapper = styled.div`
-    margin: -1.5rem 0 4.5rem 0;
-`;
-
 const OmBarnaDine: React.FC = () => {
     const { skjema, validerFelterOgVisFeilmelding, valideringErOk, oppdaterSøknad } =
         useOmBarnaDine();
 
     const navigate = useNavigate();
-    const { søknad, tekster, plainTekst } = useApp();
+    const { søknad, tekster } = useApp();
+
     const { barnInkludertISøknaden } = søknad;
 
     const teksterForSteg: IOmBarnaTekstinnhold = tekster()[ESanitySteg.OM_BARNA];
     const {
         omBarnaTittel,
+        omBarnaGuide,
         hvemBarnehageplass,
         fosterbarn,
         institusjonKontantstoette,
@@ -63,7 +60,8 @@ const OmBarnaDine: React.FC = () => {
     }
     return (
         <Steg
-            tittel={<TekstBlock block={omBarnaTittel} typografi={Typografi.StegHeadingH1} />}
+            tittel={<TekstBlock block={omBarnaTittel} />}
+            guide={<TekstBlock block={omBarnaGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
@@ -85,9 +83,9 @@ const OmBarnaDine: React.FC = () => {
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
                 {skjema.felter.erNoenAvBarnaFosterbarn.verdi === ESvar.JA && (
-                    <AlertStripe variant={'warning'}>
+                    <Alert variant={'warning'} inline>
                         <TekstBlock block={fosterbarn.alert} typografi={Typografi.BodyShort} />
-                    </AlertStripe>
+                    </Alert>
                 )}
 
                 <JaNeiSpm
@@ -105,12 +103,12 @@ const OmBarnaDine: React.FC = () => {
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
                 {skjema.felter.oppholderBarnSegIInstitusjon.verdi === ESvar.JA && (
-                    <AlertStripe variant={'warning'}>
+                    <Alert variant={'warning'} inline>
                         <TekstBlock
                             block={institusjonKontantstoette.alert}
                             typografi={Typografi.BodyShort}
                         />
-                    </AlertStripe>
+                    </Alert>
                 )}
 
                 <JaNeiSpm
@@ -137,24 +135,15 @@ const OmBarnaDine: React.FC = () => {
                     nullstillValgteBarn={skjema.felter.søktAsylForBarn.verdi === ESvar.NEI}
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
-                {skjema.felter.søktAsylForBarn.verdi === ESvar.JA && (
-                    <VedleggNotisWrapper>
-                        <VedleggNotis dynamisk>
-                            <BodyShort>{plainTekst(asyl.vedleggsnotis)}</BodyShort>
-                        </VedleggNotis>
-                    </VedleggNotisWrapper>
-                )}
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.barnOppholdtSegTolvMndSammenhengendeINorge}
                     spørsmålDokument={sammenhengendeOppholdINorge}
                     tilleggsinfo={
-                        <AlertStripe variant={'info'}>
-                            <TekstBlock
-                                block={sammenhengendeOppholdINorge.alert}
-                                typografi={Typografi.BodyShort}
-                            />
-                        </AlertStripe>
+                        <TekstBlock
+                            block={sammenhengendeOppholdINorge.alert}
+                            typografi={Typografi.BodyShort}
+                        />
                     }
                 />
                 <HvilkeBarnCheckboxGruppe
@@ -193,13 +182,7 @@ const OmBarnaDine: React.FC = () => {
                         skjema.felter.harEllerTildeltBarnehageplass.verdi === ESvar.NEI
                     }
                     visFeilmelding={skjema.visFeilmeldinger}
-                >
-                    {hvemBarnehageplass.vedleggsnotis ? (
-                        <VedleggNotis>
-                            <BodyShort>{plainTekst(hvemBarnehageplass.vedleggsnotis)}</BodyShort>
-                        </VedleggNotis>
-                    ) : null}
-                </HvilkeBarnCheckboxGruppe>
+                />
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.erAvdødPartnerForelder}
@@ -227,6 +210,19 @@ const OmBarnaDine: React.FC = () => {
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
             </KomponentGruppe>
+
+            <VedleggOppsummering
+                vedlegg={[
+                    {
+                        skalVises: skjema.felter.søktAsylForBarn.verdi === ESvar.JA,
+                        dokumentasjonsbehov: Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE,
+                    },
+                    {
+                        skalVises: skjema.felter.hvemHarBarnehageplass.erSynlig,
+                        dokumentasjonsbehov: Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS,
+                    },
+                ]}
+            />
         </Steg>
     );
 };

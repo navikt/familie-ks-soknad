@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
@@ -14,7 +15,6 @@ import {
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetFeltTyper } from '../../../typer/skjema';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { BarnehageplassPeriode } from '../../Felleskomponenter/Barnehagemodal/BarnehageplassPeriode';
 import { LandDropdown } from '../../Felleskomponenter/Dropdowns/LandDropdown';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
@@ -99,12 +99,12 @@ const Oppfølgningsspørsmål: React.FC<{
                                 flettefelter={{ barnetsNavn }}
                             />
                             {skjema.felter.planleggerÅBoINorge12Mnd.verdi === ESvar.NEI && (
-                                <AlertStripe variant={'warning'} dynamisk>
+                                <Alert variant={'warning'} aria-live="polite">
                                     <TekstBlock
                                         block={planlagtBoSammenhengendeINorge.alert}
                                         typografi={Typografi.BodyLong}
                                     />
-                                </AlertStripe>
+                                </Alert>
                             )}
                         </KomponentGruppe>
                     )}

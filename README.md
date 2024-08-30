@@ -17,9 +17,8 @@ ADR-dokument: https://github.com/navikt/familie/blob/master/doc/adr/0008-KS-lage
    `export NPM_TOKEN=<ditt token>` i ~/.zshrc
 
 ## Legg til token for unleash for lokalmiljø
-1. Generer personlig token på [unleash](https://teamfamilie-unleash-web.nav.cloud.nais.io/profile/personal-api-tokens?sort=createdAt)
-2. Eksporter miljøvariabel UNLEASH_SERVER_API_TOKEN, f.eks ved å legge til
-   `export UNLEASH_SERVER_API_TOKEN=<ditt token>` i ~/.zshrc
+1. Hent development token fra [unleash](https://teamfamilie-unleash-web.iap.nav.cloud.nais.io/admin/api)
+2. Legg til variabelen UNLEASH_SERVER_API_TOKEN i `.env`: `UNLEASH_SERVER_API_TOKEN=<ditt token>`
 
 ## Kjør lokalt
 1. `yarn install`

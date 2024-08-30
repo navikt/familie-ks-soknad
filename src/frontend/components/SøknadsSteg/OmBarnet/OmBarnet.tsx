@@ -1,18 +1,18 @@
 import React from 'react';
 
-import { BodyShort } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { BarnetsId, Typografi } from '../../../typer/common';
+import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
+import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import AndreForelder from './AndreForelder';
 import { IOmBarnetTekstinnhold } from './innholdTyper';
@@ -67,13 +67,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
 
     return barn ? (
         <Steg
-            tittel={
-                <TekstBlock
-                    block={omBarnetTittel}
-                    flettefelter={{ barnetsNavn }}
-                    typografi={Typografi.StegHeadingH1}
-                />
-            }
+            tittel={<TekstBlock block={omBarnetTittel} flettefelter={{ barnetsNavn }} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
@@ -117,15 +111,9 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                 />
 
                 {borFastMedSøker.verdi === ESvar.NEI && !erEøsTrigget() && (
-                    <AlertStripe variant={'warning'}>
+                    <Alert variant={'warning'} inline>
                         <TekstBlock block={borBarnFastSammenMedDeg.alert} />
-                    </AlertStripe>
-                )}
-
-                {borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker && (
-                    <VedleggNotis dynamisk>
-                        <BodyShort>{plainTekst(borBarnFastSammenMedDeg.vedleggsnotis)}</BodyShort>
-                    </VedleggNotis>
+                    </Alert>
                 )}
 
                 <JaNeiSpm
@@ -135,33 +123,37 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     flettefelter={{ barnetsNavn }}
                 />
 
-                <>
-                    <JaNeiSpm
-                        skjema={skjema}
-                        felt={søkerDeltKontantstøtte}
-                        spørsmålDokument={soekerDeltKontantstoette}
-                        flettefelter={{ barnetsNavn }}
-                        tilleggsinfo={
-                            harPeriodeMedGradertBarnehageplass ? (
-                                <AlertStripe variant={'info'}>
-                                    <TekstBlock
-                                        block={soekerDeltKontantstoette.alert}
-                                        typografi={Typografi.BodyShort}
-                                    />
-                                </AlertStripe>
-                            ) : undefined
-                        }
-                    />
-                    {søkerDeltKontantstøtte.erSynlig &&
-                        søkerDeltKontantstøtte.verdi === ESvar.JA && (
-                            <VedleggNotis dynamisk>
-                                <BodyShort>
-                                    {plainTekst(soekerDeltKontantstoette.vedleggsnotis)}
-                                </BodyShort>
-                            </VedleggNotis>
-                        )}
-                </>
+                <JaNeiSpm
+                    skjema={skjema}
+                    felt={søkerDeltKontantstøtte}
+                    spørsmålDokument={soekerDeltKontantstoette}
+                    flettefelter={{ barnetsNavn }}
+                    tilleggsinfo={
+                        harPeriodeMedGradertBarnehageplass ? (
+                            <TekstBlock
+                                block={soekerDeltKontantstoette.alert}
+                                typografi={Typografi.BodyShort}
+                            />
+                        ) : undefined
+                    }
+                />
             </SkjemaFieldset>
+
+            <VedleggOppsummering
+                vedlegg={[
+                    {
+                        skalVises: borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker,
+                        dokumentasjonsbehov: Dokumentasjonsbehov.BOR_FAST_MED_SØKER,
+                        flettefeltVerdier: { barnetsNavn },
+                    },
+                    {
+                        skalVises:
+                            søkerDeltKontantstøtte.erSynlig &&
+                            søkerDeltKontantstøtte.verdi === ESvar.JA,
+                        dokumentasjonsbehov: Dokumentasjonsbehov.AVTALE_DELT_BOSTED,
+                    },
+                ]}
+            />
         </Steg>
     ) : null;
 };

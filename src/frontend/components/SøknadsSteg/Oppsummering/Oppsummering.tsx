@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, VStack } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
@@ -21,10 +19,6 @@ import OmBarnetOppsummering from './OppsummeringSteg/OmBarnet/OmBarnetOppsummeri
 import OmDegOppsummering from './OppsummeringSteg/OmDegOppsummering';
 import VelgBarnOppsummering from './OppsummeringSteg/VelgBarnOppsummering';
 
-const StyledBodyShort = styled(BodyShort)`
-    padding-bottom: 4rem;
-`;
-
 const Oppsummering: React.FC = () => {
     const { søknad, tekster, plainTekst } = useApp();
     const navigate = useNavigate();
@@ -36,7 +30,7 @@ const Oppsummering: React.FC = () => {
         : søknad.barnInkludertISøknaden.filter(barn => barn.triggetEøs);
 
     const {
-        [ESanitySteg.OPPSUMMERING]: { oppsummeringTittel, lesNoeye },
+        [ESanitySteg.OPPSUMMERING]: { oppsummeringTittel, oppsummeringGuide, lesNoeye },
     } = tekster();
 
     const scrollTilFeil = (elementId: string) => {
@@ -53,39 +47,42 @@ const Oppsummering: React.FC = () => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={oppsummeringTittel} typografi={Typografi.StegHeadingH1} />}
+            tittel={<TekstBlock block={oppsummeringTittel} />}
+            guide={<TekstBlock block={oppsummeringGuide} />}
             gåVidereCallback={gåVidereCallback}
         >
-            <StyledBodyShort>{plainTekst(lesNoeye)}</StyledBodyShort>
+            <VStack gap="12">
+                <BodyShort>{plainTekst(lesNoeye)}</BodyShort>
 
-            <OmDegOppsummering settFeilAnchors={settFeilAnchors} />
-            <DinLivssituasjonOppsummering settFeilAnchors={settFeilAnchors} />
-            <VelgBarnOppsummering settFeilAnchors={settFeilAnchors} />
-            <OmBarnaOppsummering settFeilAnchors={settFeilAnchors} />
+                <OmDegOppsummering settFeilAnchors={settFeilAnchors} />
+                <DinLivssituasjonOppsummering settFeilAnchors={settFeilAnchors} />
+                <VelgBarnOppsummering settFeilAnchors={settFeilAnchors} />
+                <OmBarnaOppsummering settFeilAnchors={settFeilAnchors} />
 
-            {søknad.barnInkludertISøknaden.map((barn, index) => {
-                return (
-                    <OmBarnetOppsummering
-                        key={`om-barnet-${index}`}
-                        barn={barn}
-                        settFeilAnchors={settFeilAnchors}
-                        index={index}
-                    />
-                );
-            })}
-
-            <>
-                {søkerHarEøsSteg && <EøsSøkerOppsummering settFeilAnchors={settFeilAnchors} />}
-                {barnSomHarEøsSteg.map((barn, index) => {
+                {søknad.barnInkludertISøknaden.map((barn, index) => {
                     return (
-                        <EøsBarnOppsummering
-                            key={`om-barnet-eøs-${index}`}
-                            settFeilAnchors={settFeilAnchors}
+                        <OmBarnetOppsummering
+                            key={`om-barnet-${index}`}
                             barn={barn}
+                            settFeilAnchors={settFeilAnchors}
+                            index={index}
                         />
                     );
                 })}
-            </>
+
+                <>
+                    {søkerHarEøsSteg && <EøsSøkerOppsummering settFeilAnchors={settFeilAnchors} />}
+                    {barnSomHarEøsSteg.map((barn, index) => {
+                        return (
+                            <EøsBarnOppsummering
+                                key={`om-barnet-eøs-${index}`}
+                                settFeilAnchors={settFeilAnchors}
+                                barn={barn}
+                            />
+                        );
+                    })}
+                </>
+            </VStack>
         </Steg>
     );
 };
