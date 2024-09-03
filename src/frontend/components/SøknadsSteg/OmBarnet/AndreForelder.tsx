@@ -11,7 +11,6 @@ import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import { dagensDato } from '../../../utils/dato';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
 import Datovelger from '../../Felleskomponenter/Datovelger/Datovelger';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
@@ -183,14 +182,12 @@ const AndreForelder: React.FC<{
                                         felt={skjema.felter.andreForelderUtenlandsoppholdUtenArbeid}
                                         spørsmålDokument={utenlandsoppholdUtenArbeidAndreForelder}
                                         tilleggsinfo={
-                                            <AlertStripe variant={'info'}>
-                                                <TekstBlock
-                                                    block={
-                                                        utenlandsoppholdUtenArbeidAndreForelder.alert
-                                                    }
-                                                    typografi={Typografi.BodyShort}
-                                                />
-                                            </AlertStripe>
+                                            <TekstBlock
+                                                block={
+                                                    utenlandsoppholdUtenArbeidAndreForelder.alert
+                                                }
+                                                typografi={Typografi.BodyShort}
+                                            />
                                         }
                                         flettefelter={{ barnetsNavn: barn?.navn }}
                                         inkluderVetIkke

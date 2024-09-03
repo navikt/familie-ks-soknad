@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Heading } from '@navikt/ds-react';
-
 import { useApp } from '../../../../context/AppContext';
 import { PersonType } from '../../../../typer/personType';
 import { uppercaseFørsteBokstav } from '../../../../utils/visning';
@@ -32,15 +30,12 @@ const EøsForSøker: React.FC = () => {
         settIdNummerFelter,
     } = useEøsForSøker();
 
-    const { eoesForSoekerTittel, hvorBor } = tekster().EØS_FOR_SØKER;
+    const { eoesForSoekerTittel, eosForSokerGuide, hvorBor } = tekster().EØS_FOR_SØKER;
 
     return (
         <Steg
-            tittel={
-                <Heading level={'1'} size={'xsmall'}>
-                    {uppercaseFørsteBokstav(plainTekst(eoesForSoekerTittel))}
-                </Heading>
-            }
+            tittel={uppercaseFørsteBokstav(plainTekst(eoesForSoekerTittel))}
+            guide={<TekstBlock block={eosForSokerGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
@@ -48,7 +43,10 @@ const EøsForSøker: React.FC = () => {
                 settSøknadsdataCallback: oppdaterSøknad,
             }}
         >
-            <IdNummerForSøker skjema={skjema} settIdNummerFelter={settIdNummerFelter} />
+            <KomponentGruppe>
+                <IdNummerForSøker skjema={skjema} settIdNummerFelter={settIdNummerFelter} />
+            </KomponentGruppe>
+
             {skjema.felter.adresseISøkeperiode.erSynlig && (
                 <KomponentGruppe>
                     <SkjemaFeltInput

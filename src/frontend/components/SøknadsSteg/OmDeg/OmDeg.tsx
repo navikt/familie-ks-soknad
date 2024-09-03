@@ -1,11 +1,11 @@
 import React from 'react';
 
+import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import Steg from '../../Felleskomponenter/Steg/Steg';
@@ -22,6 +22,7 @@ const OmDeg: React.FC = () => {
     const {
         [ESanitySteg.OM_DEG]: {
             omDegTittel,
+            omDegGuide,
             borPaaAdressen,
             oppholdtDegSammenhengende,
             planleggerAaBoSammenhengende,
@@ -31,7 +32,8 @@ const OmDeg: React.FC = () => {
 
     return (
         <Steg
-            tittel={<TekstBlock block={omDegTittel} typografi={Typografi.StegHeadingH1} />}
+            tittel={<TekstBlock block={omDegTittel} />}
+            guide={<TekstBlock block={omDegGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
@@ -51,9 +53,9 @@ const OmDeg: React.FC = () => {
                 />
 
                 {skjema.felter.borPåRegistrertAdresse.verdi === ESvar.NEI && (
-                    <AlertStripe variant={'warning'}>
+                    <Alert variant={'warning'} inline>
                         <TekstBlock block={borPaaAdressen.alert} typografi={Typografi.BodyShort} />
-                    </AlertStripe>
+                    </Alert>
                 )}
             </KomponentGruppe>
             <KomponentGruppe>
@@ -62,12 +64,10 @@ const OmDeg: React.FC = () => {
                     felt={skjema.felter.værtINorgeITolvMåneder}
                     spørsmålDokument={oppholdtDegSammenhengende}
                     tilleggsinfo={
-                        <AlertStripe variant={'info'}>
-                            <TekstBlock
-                                block={oppholdtDegSammenhengende.alert}
-                                typografi={Typografi.BodyShort}
-                            />
-                        </AlertStripe>
+                        <TekstBlock
+                            block={oppholdtDegSammenhengende.alert}
+                            typografi={Typografi.BodyShort}
+                        />
                     }
                 />
             </KomponentGruppe>
@@ -78,12 +78,12 @@ const OmDeg: React.FC = () => {
                     spørsmålDokument={planleggerAaBoSammenhengende}
                 />
                 {skjema.felter.planleggerÅBoINorgeTolvMnd.verdi === ESvar.NEI && (
-                    <AlertStripe variant={'warning'} dynamisk>
+                    <Alert variant={'warning'} inline aria-live="polite">
                         <TekstBlock
                             block={planleggerAaBoSammenhengende.alert}
                             typografi={Typografi.BodyLong}
                         />
-                    </AlertStripe>
+                    </Alert>
                 )}
             </KomponentGruppe>
             <KomponentGruppe>
@@ -93,12 +93,12 @@ const OmDeg: React.FC = () => {
                     spørsmålDokument={medlemAvFolketrygden}
                 />
                 {skjema.felter.yrkesaktivFemÅr.verdi === ESvar.NEI && (
-                    <AlertStripe variant={'warning'} dynamisk>
+                    <Alert variant={'warning'} inline aria-live="polite">
                         <TekstBlock
                             block={medlemAvFolketrygden.alert}
                             typografi={Typografi.BodyShort}
                         />
-                    </AlertStripe>
+                    </Alert>
                 )}
             </KomponentGruppe>
         </Steg>

@@ -38,6 +38,7 @@ type Props = PeriodePersonTypeMedBarnProps & {
     erÅpen: boolean;
     lukkModal: () => void;
     onLeggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;
+    forklaring?: string;
 };
 
 export const UtenlandsoppholdModal: React.FC<Props> = ({
@@ -46,6 +47,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
     onLeggTilUtenlandsperiode,
     personType,
     barn,
+    forklaring = undefined,
 }) => {
     const { tekster, plainTekst } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
@@ -105,6 +107,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
         <SkjemaModal
             erÅpen={erÅpen}
             tittel={teksterForPersonType.tittel}
+            forklaring={forklaring}
             flettefelter={{ barnetsNavn: barn?.navn }}
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
             onSubmitCallback={onLeggTil}

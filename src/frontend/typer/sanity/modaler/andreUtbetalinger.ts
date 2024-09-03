@@ -1,4 +1,4 @@
-import { LocaleRecordBlock } from '../../common';
+import { LocaleRecordBlock, LocaleRecordString } from '../../common';
 import { ISanitySpørsmålDokument } from '../sanity';
 
 export interface IAndreUtbetalingerTekstinnhold {
@@ -11,6 +11,7 @@ export interface IAndreUtbetalingerTekstinnhold {
     faarUtbetalingerNaa: ISanitySpørsmålDokument;
     leggTilKnapp: LocaleRecordBlock;
     leggTilFeilmelding: LocaleRecordBlock;
+    leggTilPeriodeForklaring: LocaleRecordString;
     flerePerioder: LocaleRecordBlock;
     LocaleRecordBlock;
     fjernKnapp: LocaleRecordBlock;

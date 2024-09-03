@@ -1,0 +1,56 @@
+name: Build PR
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [ opened, synchronize, reopened, ready_for_review ]
+
+env:
+  BASE_PATH: /familie/kontantstotte/soknad/
+
+jobs:
+  test:
+    name: Kjør typecheck og tester
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: "https://npm.pkg.github.com"
+      - name: Installer node-pakker
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+        run: yarn --prefer-offline --frozen-lockfile
+      - name: Kjør typecheck
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+        run: yarn typecheck
+      - name: Kjør tester
+        env:
+          CI: true
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+        run: yarn test
+
+  bygg:
+    name: Bygg app
+    runs-on: ubuntu-latest
+    permissions:
+      contents: "read"
+      id-token: "write"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://npm.pkg.github.com"
+      - name: Yarn install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_RELEASE: ${{ github.sha }}
+          BASE_PATH: ${{ env.BASE_PATH }}
+        run: |
+          yarn --prefer-offline --frozen-lockfile
+          yarn build

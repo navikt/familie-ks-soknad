@@ -4,6 +4,7 @@ import { ISanitySpørsmålDokument } from '../sanity';
 export interface IBarnehageplassTekstinnhold {
     antallTimer: ISanitySpørsmålDokument;
     fjernKnapp: LocaleRecordBlock;
+    leggTilPeriodeForklaring: LocaleRecordString;
     flerePerioder: LocaleRecordBlock;
     hvilketLand: ISanitySpørsmålDokument;
     leggTilFeilmelding: LocaleRecordBlock;

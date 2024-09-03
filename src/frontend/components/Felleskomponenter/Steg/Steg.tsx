@@ -1,14 +1,16 @@
 import React, { ReactNode, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import { Stepper } from '@navikt/ds-react';
+import { ArrowLeftIcon } from '@navikt/aksel-icons';
+import { Box, FormProgress, GuidePanel, Heading, Link, VStack } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import { useApp } from '../../../context/AppContext';
 import { useAppNavigation } from '../../../context/AppNavigationContext';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { useSteg } from '../../../context/StegContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { device } from '../../../Theme';
@@ -28,9 +30,11 @@ import useModal from '../SkjemaModal/useModal';
 import ModellVersjonModal from './ModellVersjonModal';
 import Navigeringspanel from './Navigeringspanel';
 import { ScrollHandler } from './ScrollHandler';
+import { useFormProgressSteg } from './useFormProgressSteg';
 
 interface ISteg {
     tittel: ReactNode;
+    guide?: ReactNode;
     skjema?: {
         validerFelterOgVisFeilmelding: () => boolean;
         valideringErOk: () => boolean;
@@ -41,57 +45,30 @@ interface ISteg {
     children?: ReactNode;
 }
 
-const ChildrenContainer = styled.div`
-    margin-bottom: 2rem;
+const TopNavigasjonContainer = styled.div`
+    max-width: var(--innhold-bredde);
+    margin: 0 auto;
+
+    @media all and ${device.tablet} {
+        max-width: 100%;
+        margin: 0 var(--a-spacing-8);
+    }
 `;
 
-const TittelContainer = styled.div`
-    && {
-        margin: 4rem auto 3rem auto;
-
-        :focus-visible {
-            outline: none;
-        }
-    }
+const ChildrenContainer = styled.div`
+    margin-bottom: 2rem;
 `;
 
 const Form = styled.form`
     width: 100%;
 `;
 
-const kompaktStepper = () => css`
-    * {
-        font-size: 0;
-        --navds-stepper-circle-size: 0.75rem;
-        --navds-stepper-border-width: 1px;
-        > li {
-            gap: 0;
-        }
-    }
-`;
-
-const StepperContainer = styled.div<{ $antallSteg: number }>`
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-  
-    @media all and ${device.mobile} {
-       ${kompaktStepper};
-    }
-
-  ${props =>
-      props.$antallSteg > 12 &&
-      css`
-          @media all and ${device.tablet} {
-              ${kompaktStepper};
-          }
-      `}
-}`;
-
-function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
+function Steg({ tittel, guide, skjema, gåVidereCallback, children }: ISteg) {
     const navigate = useNavigate();
     const { erÅpen: erModellVersjonModalÅpen, åpneModal: åpneModellVersjonModal } = useModal();
     const {
+        tekster,
+        plainTekst,
         settSisteUtfylteStegIndex,
         erStegUtfyltFrafør,
         gåTilbakeTilStart,
@@ -103,14 +80,15 @@ function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
         hentForrigeSteg,
         hentNåværendeSteg,
         hentNåværendeStegIndex,
-        stepperObjekter,
         erPåKvitteringsside,
     } = useSteg();
     const { komFra, settKomFra } = useAppNavigation();
+    const { toggles } = useFeatureToggles();
 
     const nesteRoute = hentNesteSteg();
     const forrigeRoute = hentForrigeSteg();
     const nåværendeStegIndex = hentNåværendeStegIndex();
+    const formProgressSteg = useFormProgressSteg();
 
     const nyesteNåværendeRoute: RouteEnum = hentNåværendeSteg().route;
     useFørsteRender(() => logSidevisningKontantstøtte(nyesteNåværendeRoute));
@@ -169,35 +147,73 @@ function Steg({ tittel, skjema, gåVidereCallback, children }: ISteg) {
         navigate(forrigeRoute.path);
     };
 
+    const håndterGåTilSteg = (stegIndex: number) => {
+        const steg = formProgressSteg[stegIndex];
+        navigate(steg.path);
+    };
+
+    const { tilbakeKnapp } = tekster().FELLES.navigasjon;
+
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
+
+    const formProgressStegOppsummeringTekst = `${plainTekst(frittståendeOrdTekster.steg)} ${hentNåværendeStegIndex()} ${plainTekst(frittståendeOrdTekster.av)} ${formProgressSteg.length}`;
+
     return (
         <>
             <ScrollHandler />
             <header>
                 <Banner />
                 {nyesteNåværendeRoute !== RouteEnum.Kvittering && (
-                    <StepperContainer $antallSteg={stepperObjekter.length}>
-                        <Stepper
-                            aria-label={'Søknadssteg'}
-                            activeStep={hentNåværendeStegIndex()}
-                            orientation={'horizontal'}
-                            interactive={false}
-                        >
-                            {stepperObjekter.map((value, index) => (
-                                <Stepper.Step
-                                    children={''}
-                                    title={value.label}
-                                    key={value.key}
-                                    completed={index + 1 < hentNåværendeStegIndex()}
-                                />
-                            ))}
-                        </Stepper>
-                    </StepperContainer>
+                    <TopNavigasjonContainer>
+                        <VStack gap="4">
+                            <div>
+                                <Link
+                                    href={forrigeRoute.path}
+                                    variant="action"
+                                    onClick={event => {
+                                        event.preventDefault();
+                                        håndterTilbake();
+                                    }}
+                                >
+                                    <ArrowLeftIcon aria-hidden />
+                                    {plainTekst(tilbakeKnapp)}
+                                </Link>
+                            </div>
+                            <FormProgress
+                                translations={{
+                                    step: formProgressStegOppsummeringTekst,
+                                    showAllSteps: plainTekst(frittståendeOrdTekster.visAlleSteg),
+                                    hideAllSteps: plainTekst(frittståendeOrdTekster.skjulAlleSteg),
+                                }}
+                                totalSteps={formProgressSteg.length}
+                                activeStep={hentNåværendeStegIndex()}
+                                onStepChange={stegIndex => håndterGåTilSteg(stegIndex - 1)}
+                            >
+                                {formProgressSteg.map((value, index) => (
+                                    <FormProgress.Step
+                                        key={index}
+                                        completed={index + 1 < hentNåværendeStegIndex()}
+                                        interactive={index + 1 < hentNåværendeStegIndex()}
+                                    >
+                                        {value.tittel}
+                                    </FormProgress.Step>
+                                ))}
+                            </FormProgress>
+                        </VStack>
+                    </TopNavigasjonContainer>
                 )}
             </header>
             <InnholdContainer>
-                <TittelContainer id={'stegHovedtittel'} tabIndex={-1}>
-                    {tittel}
-                </TittelContainer>
+                <Box marginBlock="16 12" marginInline="auto">
+                    <Heading level="2" size={'large'} align="center">
+                        {tittel}
+                    </Heading>
+                </Box>
+                {toggles.VIS_GUIDE_I_STEG && guide && (
+                    <Box marginBlock="0 12">
+                        <GuidePanel poster>{guide}</GuidePanel>
+                    </Box>
+                )}
                 <Form onSubmit={event => håndterGåVidere(event)} autoComplete="off">
                     <ChildrenContainer>{children}</ChildrenContainer>
                     {skjema && visFeiloppsummering(skjema.skjema) && (

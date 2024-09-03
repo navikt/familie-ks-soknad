@@ -1,13 +1,12 @@
 import React from 'react';
 
-import { BodyShort } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
+import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
@@ -15,13 +14,13 @@ import { Pensjonsperiode } from '../../Felleskomponenter/Pensjonsmodal/Pensjonsp
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
-import { VedleggNotis } from '../../Felleskomponenter/VedleggNotis';
+import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import { IDinLivssituasjonTekstinnhold } from './innholdTyper';
 import { useDinLivssituasjon } from './useDinLivssituasjon';
 
 const DinLivssituasjon: React.FC = () => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster } = useApp();
     const {
         skjema,
         validerFelterOgVisFeilmelding,
@@ -36,14 +35,17 @@ const DinLivssituasjon: React.FC = () => {
     } = useDinLivssituasjon();
 
     const teksterForSteg: IDinLivssituasjonTekstinnhold = tekster()[ESanitySteg.DIN_LIVSSITUASJON];
-
-    const { dinLivssituasjonTittel, asylsoeker, utenlandsoppholdUtenArbeid } = teksterForSteg;
+    const {
+        dinLivssituasjonTittel,
+        dinLivssituasjonGuide,
+        asylsoeker,
+        utenlandsoppholdUtenArbeid,
+    } = teksterForSteg;
 
     return (
         <Steg
-            tittel={
-                <TekstBlock block={dinLivssituasjonTittel} typografi={Typografi.StegHeadingH1} />
-            }
+            tittel={<TekstBlock block={dinLivssituasjonTittel} />}
+            guide={<TekstBlock block={dinLivssituasjonGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
@@ -57,13 +59,6 @@ const DinLivssituasjon: React.FC = () => {
                     felt={skjema.felter.erAsylsøker}
                     spørsmålDokument={asylsoeker}
                 />
-                {skjema.felter.erAsylsøker.verdi === ESvar.JA && (
-                    <VedleggNotis dynamisk>
-                        <BodyShort size={'medium'}>
-                            {plainTekst(asylsoeker.vedleggsnotis)}
-                        </BodyShort>
-                    </VedleggNotis>
-                )}
 
                 <Arbeidsperiode
                     skjema={skjema}
@@ -81,12 +76,10 @@ const DinLivssituasjon: React.FC = () => {
                         felt={skjema.felter.utenlandsoppholdUtenArbeid}
                         spørsmålDokument={utenlandsoppholdUtenArbeid}
                         tilleggsinfo={
-                            <AlertStripe variant={'info'}>
-                                <TekstBlock
-                                    block={utenlandsoppholdUtenArbeid.alert}
-                                    typografi={Typografi.BodyShort}
-                                />
-                            </AlertStripe>
+                            <TekstBlock
+                                block={utenlandsoppholdUtenArbeid.alert}
+                                typografi={Typografi.BodyShort}
+                            />
                         }
                     />
                     {skjema.felter.utenlandsoppholdUtenArbeid.verdi === ESvar.JA && (
@@ -112,6 +105,15 @@ const DinLivssituasjon: React.FC = () => {
                     personType={PersonType.søker}
                 />
             </KomponentGruppe>
+
+            <VedleggOppsummering
+                vedlegg={[
+                    {
+                        skalVises: skjema.felter.erAsylsøker.verdi === ESvar.JA,
+                        dokumentasjonsbehov: Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE,
+                    },
+                ]}
+            />
         </Steg>
     );
 };

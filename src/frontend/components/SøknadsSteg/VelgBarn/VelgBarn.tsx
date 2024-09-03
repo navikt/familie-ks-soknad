@@ -1,14 +1,13 @@
 import React from 'react';
 
-import Masonry from 'react-masonry-css';
 import styled from 'styled-components';
 
-import { Alert } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
@@ -20,15 +19,6 @@ import { NyttBarnKort } from './LeggTilBarn/NyttBarnKort';
 import { VelgBarnSpørsmålId } from './spørsmål';
 import { useVelgBarn } from './useVelgBarn';
 
-/**
- * Vi har prøvd mye for å få til masonry, men før denne teknologien blir implementert
- * av nettlesere ser det ut til at javascript må til for å få godt pakka barnekortkontainer.
- * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Masonry_Layout
- */
-const BarnekortContainer = styled(Masonry)`
-    display: flex;
-    margin-top: 5rem;
-`;
 const LenkeContainer = styled.div`
     margin-top: 1.5rem;
 `;
@@ -53,6 +43,7 @@ const VelgBarn: React.FC = () => {
         barnSomSkalVæreMed,
         fjernBarn,
     } = useVelgBarn();
+    const { toggles } = useFeatureToggles();
 
     const barnFraRespons = søknad.søker.barn;
     const barnManueltLagtTil = søknad.barnRegistrertManuelt;
@@ -62,15 +53,19 @@ const VelgBarn: React.FC = () => {
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
     const {
         velgBarnTittel,
+        velgBarnGuide,
         hvisOpplysningeneIkkeStemmer,
         leseMerOmRegleneKontantstoette,
         kanIkkeBestemmeRettUnder1Aar,
     } = teksterForSteg;
 
+    const visGammelInfo = !toggles.VIS_GUIDE_I_STEG || !velgBarnGuide;
+
     return (
         <>
             <Steg
-                tittel={<TekstBlock block={velgBarnTittel} typografi={Typografi.StegHeadingH1} />}
+                tittel={<TekstBlock block={velgBarnTittel} />}
+                guide={<TekstBlock block={velgBarnGuide} />}
                 skjema={{
                     validerFelterOgVisFeilmelding,
                     valideringErOk,
@@ -80,20 +75,20 @@ const VelgBarn: React.FC = () => {
                     },
                 }}
             >
-                <AlertStripe variant={'info'}>
-                    <TekstBlock
-                        block={hvisOpplysningeneIkkeStemmer}
-                        typografi={Typografi.BodyShort}
-                    />
-                </AlertStripe>
+                {visGammelInfo && (
+                    <Alert variant={'info'} inline>
+                        <TekstBlock
+                            block={hvisOpplysningeneIkkeStemmer}
+                            typografi={Typografi.BodyShort}
+                        />
+                    </Alert>
+                )}
 
-                <BarnekortContainer
+                <VStack
                     id={VelgBarnSpørsmålId.velgBarn}
-                    className={'BarnekortContainer'}
-                    breakpointCols={{
-                        default: 2,
-                        480: 1,
-                    }}
+                    className={'BarnekortStack'}
+                    marginBlock="12"
+                    gap="12"
                 >
                     {barn.map(barnet => (
                         <Barnekort
@@ -105,7 +100,7 @@ const VelgBarn: React.FC = () => {
                         />
                     ))}
                     <NyttBarnKort onLeggTilBarn={åpneLeggTilBarnModal} />
-                </BarnekortContainer>
+                </VStack>
 
                 {finnesBarnUnder1År && (
                     <StyledWarningAlert inline variant={'warning'}>

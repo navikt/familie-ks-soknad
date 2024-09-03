@@ -4,7 +4,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
 import { useSpråk } from '../../../context/SpråkContext';
-import { Typografi } from '../../../typer/common';
 import { IUtbetalingsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
@@ -51,35 +50,46 @@ export const UtbetalingsperiodeOppsummering: React.FC<UtbetalingsperiodeOppsumme
                 <TekstBlock
                     block={teksterForPersontype.oppsummeringstittel}
                     flettefelter={{ antall: nummer.toString() }}
-                    typografi={Typografi.HeadingH2}
                 />
             }
         >
             {fårUtbetalingNå.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={teksterForPersontype.faarUtbetalingerNaa.sporsmal}
+                    tittel={
+                        <TekstBlock
+                            block={teksterForPersontype.faarUtbetalingerNaa.sporsmal}
+                            flettefelter={{ barnetsNavn: barn?.navn }}
+                        />
+                    }
                     søknadsvar={fårUtbetalingNå.svar}
-                    flettefelter={{ barnetsNavn: barn?.navn }}
                 />
             )}
             <OppsummeringFelt
-                spørsmålstekst={
-                    periodenErAvsluttet
-                        ? teksterForPersontype.utbetalingLandFortid.sporsmal
-                        : teksterForPersontype.utbetalingLandNaatid.sporsmal
+                tittel={
+                    <TekstBlock
+                        block={
+                            periodenErAvsluttet
+                                ? teksterForPersontype.utbetalingLandFortid.sporsmal
+                                : teksterForPersontype.utbetalingLandNaatid.sporsmal
+                        }
+                        flettefelter={{ barnetsNavn: barn?.navn }}
+                    />
                 }
-                flettefelter={{ barnetsNavn: barn?.navn }}
                 søknadsvar={landkodeTilSpråk(utbetalingLand.svar, valgtLocale)}
             />
             <OppsummeringFelt
-                spørsmålstekst={teksterForPersontype.startdato.sporsmal}
+                tittel={<TekstBlock block={teksterForPersontype.startdato.sporsmal} />}
                 søknadsvar={formaterDato(utbetalingFraDato.svar)}
             />
             <OppsummeringFelt
-                spørsmålstekst={
-                    periodenErAvsluttet
-                        ? teksterForPersontype.sluttdatoFortid.sporsmal
-                        : teksterForPersontype.sluttdatoFremtid.sporsmal
+                tittel={
+                    <TekstBlock
+                        block={
+                            periodenErAvsluttet
+                                ? teksterForPersontype.sluttdatoFortid.sporsmal
+                                : teksterForPersontype.sluttdatoFremtid.sporsmal
+                        }
+                    />
                 }
                 søknadsvar={formaterDatoMedUkjent(
                     utbetalingTilDato.svar,

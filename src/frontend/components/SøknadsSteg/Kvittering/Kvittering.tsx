@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { format } from 'date-fns';
 
+import { Alert } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useApp } from '../../../context/AppContext';
@@ -9,7 +10,6 @@ import { useSteg } from '../../../context/StegContext';
 import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
 import { setUserProperty, UserProperty } from '../../../utils/amplitude';
-import AlertStripe from '../../Felleskomponenter/AlertStripe/AlertStripe';
 import BlokkerTilbakeKnappModal from '../../Felleskomponenter/BlokkerTilbakeKnappModal/BlokkerTilbakeKnappModal';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import Steg from '../../Felleskomponenter/Steg/Steg';
@@ -50,21 +50,14 @@ const Kvittering: React.FC = () => {
     }, []);
 
     return (
-        <Steg
-            tittel={
-                <TekstBlock
-                    block={kvitteringTekster.kvitteringTittel}
-                    typografi={Typografi.StegHeadingH1}
-                />
-            }
-        >
+        <Steg tittel={<TekstBlock block={kvitteringTekster.kvitteringTittel} />}>
             <KomponentGruppe>
-                <AlertStripe variant="success" inline={false}>
+                <Alert variant="success">
                     <TekstBlock
                         block={kvitteringTekster.soeknadMottatt}
                         flettefelter={{ dato, klokkeslett }}
                     />
-                </AlertStripe>
+                </Alert>
             </KomponentGruppe>
             <KomponentGruppe>
                 <TekstBlock

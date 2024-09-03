@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Heading } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../../context/AppContext';
@@ -72,6 +71,7 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
 
     const {
         eoesForBarnTittel,
+        eosForBarnGuide,
         valgalternativSlektsforholdPlaceholder,
         hvilkenRelasjon,
         borMedAndreForelder,
@@ -88,11 +88,8 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
 
     return (
         <Steg
-            tittel={
-                <Heading level={'1'} size={'xsmall'}>
-                    {uppercaseFørsteBokstav(plainTekst(eoesForBarnTittel, { barnetsNavn }))}
-                </Heading>
-            }
+            tittel={uppercaseFørsteBokstav(plainTekst(eoesForBarnTittel, { barnetsNavn }))}
+            guide={<TekstBlock block={eosForBarnGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
@@ -100,11 +97,13 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                 settSøknadsdataCallback: oppdaterSøknad,
             }}
         >
-            <SamletIdNummerForBarn
-                barn={barn}
-                settIdNummerFelter={settIdNummerFelterForBarn}
-                skjema={skjema}
-            />
+            <KomponentGruppe>
+                <SamletIdNummerForBarn
+                    barn={barn}
+                    settIdNummerFelter={settIdNummerFelterForBarn}
+                    skjema={skjema}
+                />
+            </KomponentGruppe>
 
             {skjema.felter.søkersSlektsforhold.erSynlig && (
                 <KomponentGruppe>

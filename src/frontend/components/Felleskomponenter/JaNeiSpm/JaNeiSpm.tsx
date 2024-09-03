@@ -1,8 +1,8 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 
-import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
+import { Box } from '@navikt/ds-react';
 import { ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
@@ -22,10 +22,6 @@ interface IJaNeiSpmProps {
     spørsmålDokument: ISanitySpørsmålDokument;
     flettefelter?: FlettefeltVerdier;
 }
-
-const TilleggsinfoWrapper = styled.div`
-    margin-top: 0.5rem;
-`;
 
 const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
     skjema,
@@ -61,7 +57,7 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
                 legend={
                     <>
                         <TekstBlock block={spørsmålDokument.sporsmal} flettefelter={flettefelter} />
-                        {tilleggsinfo && <TilleggsinfoWrapper>{tilleggsinfo}</TilleggsinfoWrapper>}
+                        {tilleggsinfo && <Box marginBlock="2 0">{tilleggsinfo}</Box>}
                     </>
                 }
                 labelTekstForRadios={{

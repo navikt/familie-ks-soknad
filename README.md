@@ -17,9 +17,8 @@ ADR-dokument: https://github.com/navikt/familie/blob/master/doc/adr/0008-KS-lage
    `export NPM_TOKEN=<ditt token>` i ~/.zshrc
 
 ## Legg til token for unleash for lokalmiljø
-1. Generer personlig token på [unleash](https://teamfamilie-unleash-web.nav.cloud.nais.io/profile/personal-api-tokens?sort=createdAt)
-2. Eksporter miljøvariabel UNLEASH_SERVER_API_TOKEN, f.eks ved å legge til
-   `export UNLEASH_SERVER_API_TOKEN=<ditt token>` i ~/.zshrc
+1. Hent development token fra [unleash](https://teamfamilie-unleash-web.iap.nav.cloud.nais.io/admin/api)
+2. Legg til variabelen UNLEASH_SERVER_API_TOKEN i `.env`: `UNLEASH_SERVER_API_TOKEN=<ditt token>`
 
 ## Kjør lokalt
 1. `yarn install`
@@ -87,14 +86,13 @@ if (toggles.NY_TOGGLE) {
 ```
 
 # Test av PDF
-Etter at søknaden er sendt inn, vil det genereres en PDF basert på svarene som er gitt. Søknaden går først til `familie-baks-soknad-api` før den sendes over til `familie-baks-mottak` som forbereder og trigger PDF-generering i appen `familie-baks-dokgen`. For å teste hele dette løpet trenger man derfor å kjøre opp alle disse applikasjonene:
+Etter at søknaden er sendt inn, vil det genereres en PDF basert på svarene som er gitt. Søknaden går først til `familie-baks-soknad-api` før den sendes over til `familie-baks-mottak` som forbereder og trigger PDF-generering i `familie-dokument`. For å teste hele dette løpet trenger man derfor å kjøre opp alle disse applikasjonene:
 * `familie-ks-soknad` (`yarn start:dev`)
 * `familie-baks-soknad-api` (Kjør `LokalLauncher.kt`, se `README.md`)
-* `familie-dokument` (Kjør `ApplicationLocalSoknad.kt`, Valgfri)
+* `familie-dokument` (Kjør `ApplicationLocalSoknad.kt`)
 * `familie-baks-mottak` (Kjør `DevLauncherPostgress.kt`, se `README.md`)
-* `familie-baks-dokgen` (Se `README.md`)
 
-I dev og prod kan man se den genererte PDF'en inne i Gosys, men når man jobber lokalt har vi ingen kobling dit. For å generere og se PDF'en, bruker vi istedenfor Swagger i `familie-baks-dokgen` og debug-breakpoint eller logging i `familie-baks-mottak`.
+I dev og prod kan man se den genererte PDF'en inne i Gosys, men når man jobber lokalt har vi ingen kobling dit. For å generere og se PDF'en, bruker vi istedenfor debug-breakpoint eller logging i `familie-baks-mottak`.
 
 ## Hent input til PDF-generering fra baks-mottak
 
