@@ -39,7 +39,7 @@ export const useSendInnSkjema = (): {
             const res = await sendInn<ISøknadKontrakt>(
                 formatert,
                 axiosRequest,
-                `${soknadApiProxyUrl}/soknad/kontantstotte/v5`,
+                `${soknadApiProxyUrl}/soknad/kontantstotte/v4`,
                 (res: AxiosError) => {
                     const responseData = res.response?.data as Ressurs<IKvittering>;
                     if (responseData && erModellMismatchResponsRessurs(responseData)) {

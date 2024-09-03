@@ -17,5 +17,4 @@ export interface IOmDegTekstinnhold {
     ikkeRegistrertAdresse: LocaleRecordString;
     ukjentAdresse: LocaleRecordString;
     soekerAdressesperre: LocaleRecordString;
-    skjermetAdresse: LocaleRecordString;
 }

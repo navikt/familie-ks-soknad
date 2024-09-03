@@ -44,7 +44,7 @@ export const dataISøknadKontraktFormat = (
     const søknadsfeltForESvar = søknadsfeltForESvarHof(tilRestLocaleRecord);
 
     return {
-        kontraktVersjon: 5,
+        kontraktVersjon: 4,
         antallEøsSteg: antallEøsSteg(søker, barnInkludertISøknaden),
         søker: søkerIKontraktFormat(søknad, tekster, tilRestLocaleRecord),
         barn: barnInkludertISøknaden.map(barn =>
@@ -106,7 +106,6 @@ export const dataISøknadKontraktFormat = (
                 tekster.FORSIDE.bekreftelsesboksErklaering,
                 tekster.OM_DEG.soekerAdressesperre,
                 tekster.OM_DEG.ikkeRegistrertAdresse,
-                tekster.OM_DEG.skjermetAdresse,
                 tekster.OM_DEG.omDegTittel,
                 tekster.DIN_LIVSSITUASJON.dinLivssituasjonTittel,
                 tekster.VELG_BARN.registrertMedAdressesperre,

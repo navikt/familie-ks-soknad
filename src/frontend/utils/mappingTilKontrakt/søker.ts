@@ -23,7 +23,7 @@ export const søkerIKontraktFormat = (
     tekster: ITekstinnhold,
     tilRestLocaleRecord: TilRestLocaleRecord
 ): ISøknadKontraktSøker => {
-    const { søker, barnInkludertISøknaden } = søknad;
+    const { søker } = søknad;
     const {
         navn,
         ident,
@@ -52,6 +52,7 @@ export const søkerIKontraktFormat = (
         triggetEøs,
         utenlandsoppholdUtenArbeid,
     } = søker;
+    const { barnInkludertISøknaden } = søknad;
     const fellesTekster = tekster.FELLES;
     const omDegTekster = tekster.OM_DEG;
     const dinLivssituasjonTekster = tekster.DIN_LIVSSITUASJON;
