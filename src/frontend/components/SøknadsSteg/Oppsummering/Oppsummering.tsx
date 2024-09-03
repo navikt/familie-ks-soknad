@@ -6,6 +6,7 @@ import { BodyShort, VStack } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
+import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import Steg from '../../Felleskomponenter/Steg/Steg';
@@ -21,6 +22,7 @@ import VelgBarnOppsummering from './OppsummeringSteg/VelgBarnOppsummering';
 
 const Oppsummering: React.FC = () => {
     const { søknad, tekster, plainTekst } = useApp();
+    const { toggles } = useFeatureToggles();
     const navigate = useNavigate();
     const [feilAnchors, settFeilAnchors] = useState<string[]>([]);
     const { barnSomTriggerEøs, søkerTriggerEøs } = useEøs();
@@ -52,7 +54,7 @@ const Oppsummering: React.FC = () => {
             gåVidereCallback={gåVidereCallback}
         >
             <VStack gap="12">
-                <BodyShort>{plainTekst(lesNoeye)}</BodyShort>
+                {!toggles.VIS_GUIDE_I_STEG && <BodyShort>{plainTekst(lesNoeye)}</BodyShort>}
 
                 <OmDegOppsummering settFeilAnchors={settFeilAnchors} />
                 <DinLivssituasjonOppsummering settFeilAnchors={settFeilAnchors} />
