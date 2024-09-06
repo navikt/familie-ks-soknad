@@ -23,7 +23,6 @@ interface Props {
     ) => void;
     dokumentasjon: IDokumentasjon;
     tillatteFiltyper: { [key: string]: string[] };
-    maxFilstørrelse: number;
 }
 
 interface FilopplastningBoksProps {
@@ -68,10 +67,8 @@ const Filopplaster: React.FC<Props> = ({
     oppdaterDokumentasjon,
     dokumentasjon,
     tillatteFiltyper,
-    maxFilstørrelse,
 }) => {
     const { onDrop, harFeil, feilmeldinger, slettVedlegg } = useFilopplaster(
-        maxFilstørrelse,
         dokumentasjon,
         oppdaterDokumentasjon
     );
