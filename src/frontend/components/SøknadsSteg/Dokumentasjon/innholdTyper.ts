@@ -29,6 +29,7 @@ export type IDokumentasjonTekstinnhold = {
     sendSoeknad: LocaleRecordString;
     noeGikkFeil: LocaleRecordString;
     slett: LocaleRecordString;
+    forMange: LocaleRecordString;
 } & {
     [TittelSanityApiNavn.avtaleOmDeltBostedTittel]: LocaleRecordBlock;
     [TittelSanityApiNavn.annenDokumentasjon]: LocaleRecordBlock;
