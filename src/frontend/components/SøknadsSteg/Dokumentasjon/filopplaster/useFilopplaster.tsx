@@ -72,12 +72,12 @@ export const useFilopplaster = (
             const nyeVedlegg: IVedlegg[] = [];
             const feilmeldingMap: Map<LocaleRecordString, File[]> = new Map();
 
-            const pushFeilmelding = (feilmelding: LocaleRecordString, fil: File | null) => {
+            const pushFeilmelding = (feilmelding: LocaleRecordString, fil: File) => {
                 if (!feilmeldingMap.has(feilmelding)) {
                     feilmeldingMap.set(feilmelding, []);
                 }
                 const filer = feilmeldingMap.get(feilmelding);
-                if (filer && fil) {
+                if (filer) {
                     filer.push(fil);
                     feilmeldingMap.set(feilmelding, filer);
                 }
