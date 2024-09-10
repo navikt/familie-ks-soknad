@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { format } from 'date-fns';
 
@@ -25,7 +25,7 @@ const Kvittering: React.FC = () => {
         søknad,
         tekster,
     } = useApp();
-    const { barnInkludertISøknaden, erEøs } = søknad;
+    const { barnInkludertISøknaden } = søknad;
     const { hentStegNummer } = useSteg();
 
     const { innsendingStatus } = useApp();
@@ -36,7 +36,6 @@ const Kvittering: React.FC = () => {
 
     const klokkeslett = format(innsendtDato, 'HH:mm');
     const dato = format(innsendtDato, 'dd.MM.yy');
-    const [varEøsSøknad] = useState(erEøs);
 
     const alleRelevanteVedleggErSendtInn = useRef(
         søknad.dokumentasjon.filter(
@@ -88,15 +87,6 @@ const Kvittering: React.FC = () => {
                 </VStack>
 
                 <Kontoinformasjon />
-
-                {varEøsSøknad && (
-                    <div>
-                        <TekstBlock
-                            block={kvitteringTekster.kontonummerEOES}
-                            typografi={Typografi.BodyLong}
-                        />
-                    </div>
-                )}
             </VStack>
             <BlokkerTilbakeKnappModal />
         </Steg>
