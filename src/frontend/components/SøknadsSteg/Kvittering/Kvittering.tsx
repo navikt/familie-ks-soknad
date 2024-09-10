@@ -81,6 +81,8 @@ const Kvittering: React.FC = () => {
                         </Alert>
                     )}
                     <TekstBlock
+                        // TODO: Endre infoTilSoker i Sanity til å inneholde samme tekst som infoTilSokerMidlertidigTekst.
+                        // Deretter, bytt koden under til å ta i bruk infoTilSoker.
                         block={kvitteringTekster.infoTilSokerMidlertidigTekst}
                         typografi={Typografi.BodyLong}
                     />
