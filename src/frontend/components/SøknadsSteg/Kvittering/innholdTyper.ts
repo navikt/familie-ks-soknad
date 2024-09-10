@@ -9,4 +9,10 @@ export interface IKvitteringTekstinnhold {
     infoTilSokerMidlertidigTekst: LocaleRecordBlock;
     kontonummerEOES: LocaleRecordBlock;
     ettersendelseKontantstotte: LocaleRecordBlock;
+    manglerKontonummerTittel: LocaleRecordBlock;
+    kontonummerTittel: LocaleRecordBlock;
+    redigerKontonummerLenke: LocaleRecordBlock;
+    henterKontonummer: LocaleRecordBlock;
+    finnerIngenKontonummerAdvarsel: LocaleRecordBlock;
+    finnerIngenKontonummerBeskrivelse: LocaleRecordBlock;
 }

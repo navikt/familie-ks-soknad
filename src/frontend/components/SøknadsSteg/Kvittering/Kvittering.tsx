@@ -15,6 +15,7 @@ import { erDokumentasjonRelevant } from '../../../utils/dokumentasjon';
 import BlokkerTilbakeKnappModal from '../../Felleskomponenter/BlokkerTilbakeKnappModal/BlokkerTilbakeKnappModal';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+import Kontoinformasjon from '../../Kontoinformasjon/Kontoinformasjon';
 
 const Kvittering: React.FC = () => {
     const {
@@ -85,6 +86,8 @@ const Kvittering: React.FC = () => {
                         typografi={Typografi.BodyLong}
                     />
                 </VStack>
+
+                <Kontoinformasjon />
 
                 {varEøsSøknad && (
                     <div>
