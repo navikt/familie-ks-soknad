@@ -19,10 +19,6 @@ import { NyttBarnKort } from './LeggTilBarn/NyttBarnKort';
 import { VelgBarnSpørsmålId } from './spørsmål';
 import { useVelgBarn } from './useVelgBarn';
 
-const LenkeContainer = styled.div`
-    margin-top: 1.5rem;
-`;
-
 const StyledWarningAlert = styled(Alert)`
     margin-top: 1.5rem;
 `;
@@ -55,7 +51,6 @@ const VelgBarn: React.FC = () => {
         velgBarnTittel,
         velgBarnGuide,
         hvisOpplysningeneIkkeStemmer,
-        leseMerOmRegleneKontantstoette,
         kanIkkeBestemmeRettUnder1Aar,
     } = teksterForSteg;
 
@@ -107,10 +102,6 @@ const VelgBarn: React.FC = () => {
                         <TekstBlock block={kanIkkeBestemmeRettUnder1Aar} />
                     </StyledWarningAlert>
                 )}
-
-                <LenkeContainer>
-                    <TekstBlock block={leseMerOmRegleneKontantstoette} />
-                </LenkeContainer>
             </Steg>
             {erLeggTilBarnModalÅpen && (
                 <LeggTilBarnModal
