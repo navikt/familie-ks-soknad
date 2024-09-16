@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { format } from 'date-fns';
 
-import { Alert } from '@navikt/ds-react';
+import { Alert, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useApp } from '../../../context/AppContext';
 import { useSteg } from '../../../context/StegContext';
 import { Typografi } from '../../../typer/common';
+import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { RouteEnum } from '../../../typer/routes';
 import { setUserProperty, UserProperty } from '../../../utils/amplitude';
+import { erDokumentasjonRelevant } from '../../../utils/dokumentasjon';
 import BlokkerTilbakeKnappModal from '../../Felleskomponenter/BlokkerTilbakeKnappModal/BlokkerTilbakeKnappModal';
-import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+import Kontoinformasjon from '../../Kontoinformasjon/Kontoinformasjon';
 
 const Kvittering: React.FC = () => {
     const {
@@ -23,7 +25,7 @@ const Kvittering: React.FC = () => {
         søknad,
         tekster,
     } = useApp();
-    const { barnInkludertISøknaden, erEøs } = søknad;
+    const { barnInkludertISøknaden } = søknad;
     const { hentStegNummer } = useSteg();
 
     const { innsendingStatus } = useApp();
@@ -34,9 +36,15 @@ const Kvittering: React.FC = () => {
 
     const klokkeslett = format(innsendtDato, 'HH:mm');
     const dato = format(innsendtDato, 'dd.MM.yy');
-    const [varEøsSøknad] = useState(erEøs);
 
-    const kvitteringTekster = tekster().KVITTERING;
+    const alleRelevanteVedleggErSendtInn = useRef(
+        søknad.dokumentasjon.filter(
+            dokumentasjon =>
+                dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON &&
+                erDokumentasjonRelevant(dokumentasjon) &&
+                !dokumentasjon.harSendtInn
+        ).length === 0
+    );
 
     useEffect(() => {
         if (sisteUtfylteStegIndex === hentStegNummer(RouteEnum.Dokumentasjon)) {
@@ -49,30 +57,39 @@ const Kvittering: React.FC = () => {
         }
     }, []);
 
+    const kvitteringTekster = tekster().KVITTERING;
+
     return (
         <Steg tittel={<TekstBlock block={kvitteringTekster.kvitteringTittel} />}>
-            <KomponentGruppe>
+            <VStack gap="12">
                 <Alert variant="success">
                     <TekstBlock
                         block={kvitteringTekster.soeknadMottatt}
                         flettefelter={{ dato, klokkeslett }}
                     />
                 </Alert>
-            </KomponentGruppe>
-            <KomponentGruppe>
-                <TekstBlock
-                    block={kvitteringTekster.infoTilSoker}
-                    typografi={Typografi.BodyShort}
-                />
-            </KomponentGruppe>
 
-            {varEøsSøknad && (
-                <KomponentGruppe>
-                    <TekstBlock block={kvitteringTekster.kontonummerEOES} />
-                </KomponentGruppe>
-            )}
+                <VStack gap="6">
+                    {alleRelevanteVedleggErSendtInn.current ? (
+                        <TekstBlock
+                            block={kvitteringTekster.trengerIkkeEttersendeVedlegg}
+                            typografi={Typografi.BodyLong}
+                        />
+                    ) : (
+                        <Alert variant="warning">
+                            <TekstBlock block={kvitteringTekster.maaEttersendeVedleggAlert} />
+                        </Alert>
+                    )}
+                    <TekstBlock
+                        // TODO: Endre infoTilSoker i Sanity til å inneholde samme tekst som infoTilSokerMidlertidigTekst.
+                        // Deretter, bytt koden under til å ta i bruk infoTilSoker.
+                        block={kvitteringTekster.infoTilSokerMidlertidigTekst}
+                        typografi={Typografi.BodyLong}
+                    />
+                </VStack>
 
-            <TekstBlock block={kvitteringTekster.ettersendelseKontantstotte} />
+                <Kontoinformasjon />
+            </VStack>
             <BlokkerTilbakeKnappModal />
         </Steg>
     );
