@@ -2,96 +2,92 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { ExpansionCard, Heading, HGrid, VStack } from '@navikt/ds-react';
+
 import { useApp } from '../../../context/AppContext';
-import ExpandableInfo from '../expandableContent/ExpandableInfo';
 import TekstBlock from '../TekstBlock';
 
 import PictureScanningExample from './PictureScanningExample';
 import ScanningIcon from './ScanningIcon';
 
-const Container = styled.div`
-    svg {
-        pointer-events: none;
-    }
-
-    ul {
-        margin: 0 0 1rem 0;
+const StyledVStack = styled(VStack)`
+    && ul {
+        margin: 0;
         li {
             margin-bottom: 0.5rem;
         }
     }
 `;
 
-const EksempelBilderWrapper = styled.div`
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-`;
-
-const BildeContainer = styled.div`
-    flex: 1 1 50%;
-    height: auto;
-    padding: 0.5rem 0.5rem 1.5rem 0.5rem;
-    &:first-child {
-        padding-left: 0;
-    }
-    &:last-child {
-        padding-right: 0;
-    }
-    @media screen and (min-width: 768px) {
-        max-width: 25%;
-    }
-`;
-
 const PictureScanningGuide = () => {
     const { tekster, plainTekst } = useApp();
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
-    const svgIconHeight = 100;
-    return (
-        <ExpandableInfo title={plainTekst(dokumentasjonTekster.slikTarDuEtGodtBildeExpand)}>
-            <Container>
-                <TekstBlock block={dokumentasjonTekster.slikTarDuEtGodtBilde} />
-                <TekstBlock block={dokumentasjonTekster.etterDuHarTattBildet} />
+    const svgIconHeight = 112;
 
-                <div>
-                    <TekstBlock block={dokumentasjonTekster.braOgDaarligeTittel} />
-                    <EksempelBilderWrapper>
-                        <BildeContainer>
+    return (
+        <ExpansionCard
+            size="small"
+            aria-label={plainTekst(dokumentasjonTekster.slikTarDuEtGodtBildeExpand)}
+        >
+            <ExpansionCard.Header>
+                <ExpansionCard.Title as="h3" size="medium">
+                    {plainTekst(dokumentasjonTekster.slikTarDuEtGodtBildeExpand)}
+                </ExpansionCard.Title>
+            </ExpansionCard.Header>
+            <ExpansionCard.Content>
+                <StyledVStack gap="8">
+                    <div>
+                        <Heading level="4" size="xsmall" spacing>
+                            {plainTekst(dokumentasjonTekster.slikTarDuEtGodtBildeTittel)}
+                        </Heading>
+                        <TekstBlock block={dokumentasjonTekster.slikTarDuEtGodtBilde} />
+                    </div>
+                    <div>
+                        <Heading level="4" size="xsmall" spacing>
+                            {plainTekst(dokumentasjonTekster.etterDuHarTattBildetTittel)}
+                        </Heading>
+                        <TekstBlock block={dokumentasjonTekster.etterDuHarTattBildet} />
+                    </div>
+                    <div>
+                        <Heading level="4" size="xsmall" spacing>
+                            {plainTekst(dokumentasjonTekster.braOgDaarligeTittel)}
+                        </Heading>
+                        <HGrid gap="4" columns={{ xs: 1, sm: 2 }}>
                             <PictureScanningExample
                                 image={<ScanningIcon status="good" height={svgIconHeight} />}
-                                status="suksess"
+                                variant="success"
                                 statusText={plainTekst(dokumentasjonTekster.bra)}
                                 description={plainTekst(dokumentasjonTekster.fyllerHeleBildet)}
                             />
-                        </BildeContainer>
-                        <BildeContainer>
                             <PictureScanningExample
                                 image={<ScanningIcon status="keystone" height={svgIconHeight} />}
-                                status="feil"
+                                variant="error"
                                 statusText={plainTekst(dokumentasjonTekster.daarlig)}
                                 description={plainTekst(dokumentasjonTekster.ikkeTattOvenfra)}
                             />
-                        </BildeContainer>
-                        <BildeContainer>
                             <PictureScanningExample
                                 image={<ScanningIcon status="horizontal" height={svgIconHeight} />}
-                                status="feil"
+                                variant="error"
                                 statusText={plainTekst(dokumentasjonTekster.daarlig)}
                                 description={plainTekst(dokumentasjonTekster.ikkeRiktigRetning)}
                             />
-                        </BildeContainer>
-                        <BildeContainer>
                             <PictureScanningExample
                                 image={<ScanningIcon status="shadow" height={svgIconHeight} />}
-                                status="feil"
+                                variant="error"
                                 statusText={plainTekst(dokumentasjonTekster.daarlig)}
                                 description={plainTekst(dokumentasjonTekster.skyggePaaDokumentet)}
                             />
-                        </BildeContainer>
-                    </EksempelBilderWrapper>
-                </div>
-            </Container>
-        </ExpandableInfo>
+                        </HGrid>
+                    </div>
+                    <div>
+                        <Heading level="4" size="xsmall" spacing>
+                            {plainTekst(dokumentasjonTekster.vaerTryggNaarDuTarBildeTittel)}
+                        </Heading>
+                        <TekstBlock block={dokumentasjonTekster.vaerTryggNaarDuTarBilde} />
+                    </div>
+                </StyledVStack>
+            </ExpansionCard.Content>
+        </ExpansionCard>
     );
 };
 export default PictureScanningGuide;
