@@ -12,7 +12,6 @@ import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import AndreForelder from './AndreForelder';
 import { IOmBarnetTekstinnhold } from './innholdTyper';
@@ -76,6 +75,19 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                 skjema,
                 settSøknadsdataCallback: oppdaterSøknad,
             }}
+            vedleggOppsummering={[
+                {
+                    skalVises: borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker,
+                    dokumentasjonsbehov: Dokumentasjonsbehov.BOR_FAST_MED_SØKER,
+                    flettefeltVerdier: { barnetsNavn },
+                },
+                {
+                    skalVises:
+                        søkerDeltKontantstøtte.erSynlig &&
+                        søkerDeltKontantstøtte.verdi === ESvar.JA,
+                    dokumentasjonsbehov: Dokumentasjonsbehov.AVTALE_DELT_BOSTED,
+                },
+            ]}
         >
             <OmBarnetHeader barn={barn} />
             <Oppfølgningsspørsmål
@@ -140,22 +152,6 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     }
                 />
             </SkjemaFieldset>
-
-            <VedleggOppsummering
-                vedlegg={[
-                    {
-                        skalVises: borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker,
-                        dokumentasjonsbehov: Dokumentasjonsbehov.BOR_FAST_MED_SØKER,
-                        flettefeltVerdier: { barnetsNavn },
-                    },
-                    {
-                        skalVises:
-                            søkerDeltKontantstøtte.erSynlig &&
-                            søkerDeltKontantstøtte.verdi === ESvar.JA,
-                        dokumentasjonsbehov: Dokumentasjonsbehov.AVTALE_DELT_BOSTED,
-                    },
-                ]}
-            />
         </Steg>
     ) : null;
 };

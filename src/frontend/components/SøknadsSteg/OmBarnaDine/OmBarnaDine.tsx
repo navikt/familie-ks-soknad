@@ -14,7 +14,6 @@ import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import HvilkeBarnCheckboxGruppe from './HvilkeBarnCheckboxGruppe';
 import { IOmBarnaTekstinnhold } from './innholdTyper';
@@ -68,6 +67,16 @@ const OmBarnaDine: React.FC = () => {
                 skjema,
                 settSøknadsdataCallback: oppdaterSøknad,
             }}
+            vedleggOppsummering={[
+                {
+                    skalVises: skjema.felter.søktAsylForBarn.verdi === ESvar.JA,
+                    dokumentasjonsbehov: Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE,
+                },
+                {
+                    skalVises: skjema.felter.hvemHarBarnehageplass.erSynlig,
+                    dokumentasjonsbehov: Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS,
+                },
+            ]}
         >
             <KomponentGruppe>
                 <JaNeiSpm
@@ -210,19 +219,6 @@ const OmBarnaDine: React.FC = () => {
                     visFeilmelding={skjema.visFeilmeldinger}
                 />
             </KomponentGruppe>
-
-            <VedleggOppsummering
-                vedlegg={[
-                    {
-                        skalVises: skjema.felter.søktAsylForBarn.verdi === ESvar.JA,
-                        dokumentasjonsbehov: Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE,
-                    },
-                    {
-                        skalVises: skjema.felter.hvemHarBarnehageplass.erSynlig,
-                        dokumentasjonsbehov: Dokumentasjonsbehov.BEKREFTELESE_PÅ_BARNEHAGEPLASS,
-                    },
-                ]}
-            />
         </Steg>
     );
 };

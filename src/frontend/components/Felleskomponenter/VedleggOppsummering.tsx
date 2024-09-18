@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { Alert, List } from '@navikt/ds-react';
+import { List } from '@navikt/ds-react';
 
 import { useApp } from '../../context/AppContext';
 import { dokumentasjonsbehovTilTittelSanityApiNavn } from '../../typer/dokumentasjon';
@@ -25,23 +25,20 @@ export const VedleggOppsummering: FC<IVedleggOppsummeringProps> = ({ vedlegg }) 
     return (
         <>
             {vedleggSomSkalVises.length > 0 && (
-                <Alert variant="info">
-                    {plainTekst(dokumentasjonTekster.lastOppSenereISoknad)}
-                    <List>
-                        {vedleggSomSkalVises.map((vedlegg, index) => (
-                            <List.Item key={index}>
-                                {plainTekst(
-                                    dokumentasjonTekster[
-                                        dokumentasjonsbehovTilTittelSanityApiNavn(
-                                            vedlegg.dokumentasjonsbehov
-                                        )
-                                    ],
-                                    vedlegg.flettefeltVerdier
-                                )}
-                            </List.Item>
-                        ))}
-                    </List>
-                </Alert>
+                <List>
+                    {vedleggSomSkalVises.map((vedlegg, index) => (
+                        <List.Item key={index}>
+                            {plainTekst(
+                                dokumentasjonTekster[
+                                    dokumentasjonsbehovTilTittelSanityApiNavn(
+                                        vedlegg.dokumentasjonsbehov
+                                    )
+                                ],
+                                vedlegg.flettefeltVerdier
+                            )}
+                        </List.Item>
+                    ))}
+                </List>
             )}
         </>
     );
