@@ -116,7 +116,7 @@ const Dokumentasjon: React.FC = () => {
         >
             <VStack gap="12">
                 {slettaVedlegg.length > 0 && (
-                    <Alert variant={'warning'} inline>
+                    <Alert variant={'warning'}>
                         <TekstBlock
                             block={stegTekster.forLangTidDokumentasjon}
                             typografi={Typografi.BodyLong}

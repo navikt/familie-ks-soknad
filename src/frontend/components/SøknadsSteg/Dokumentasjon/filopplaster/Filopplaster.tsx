@@ -74,6 +74,7 @@ const Filopplaster: React.FC<Props> = ({
         onDrop,
         accept: tillatteFiltyper,
     });
+
     const { tekster, plainTekst } = useApp();
     const { lastOppKnapp, slippFilenHer } = tekster().DOKUMENTASJON;
 
