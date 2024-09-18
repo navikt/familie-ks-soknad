@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 
 import { add, isBefore } from 'date-fns';
 
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useApp } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { useSendInnSkjema } from '../../../hooks/useSendInnSkjema';
 import { Typografi } from '../../../typer/common';
@@ -14,11 +13,15 @@ import { IDokumentasjon, IVedlegg } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { erDokumentasjonRelevant } from '../../../utils/dokumentasjon';
+import { slåSammen } from '../../../utils/slåSammen';
 import { Feilside } from '../../Felleskomponenter/Feilside/Feilside';
-import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import PictureScanningGuide from '../../Felleskomponenter/PictureScanningGuide/PictureScanningGuide';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
+import {
+    IVedleggOppsummeringProps,
+    VedleggOppsummering,
+} from '../../Felleskomponenter/VedleggOppsummering';
 
 import LastOppVedlegg from './LastOppVedlegg';
 
@@ -29,13 +32,9 @@ export const erVedleggstidspunktGyldig = (vedleggTidspunkt: string): boolean => 
 };
 
 const Dokumentasjon: React.FC = () => {
-    const { søknad, settSøknad, innsendingStatus, tekster } = useApp();
+    const { søknad, settSøknad, innsendingStatus, tekster, plainTekst } = useApp();
     const { sendInnSkjema } = useSendInnSkjema();
-    const { toggles } = useFeatureToggles();
     const [slettaVedlegg, settSlettaVedlegg] = useState<IVedlegg[]>([]);
-
-    const { dokumentasjonInfo, dokumentasjonTittel, forLangTidDokumentasjon, nudgeDokumentasjon } =
-        tekster().DOKUMENTASJON;
 
     const oppdaterDokumentasjon = (
         dokumentasjonsbehov: Dokumentasjonsbehov,
@@ -71,25 +70,55 @@ const Dokumentasjon: React.FC = () => {
         });
     });
 
-    const stegTekster = tekster()[ESanitySteg.DOKUMENTASJON];
-    const { dokumentasjonGuide } = stegTekster;
+    const relevateDokumentasjoner = søknad.dokumentasjon.filter(dokumentasjon =>
+        erDokumentasjonRelevant(dokumentasjon)
+    );
 
-    const visNyGuide = toggles.VIS_GUIDE_I_STEG && dokumentasjonGuide;
+    const relevateDokumentasjonerUtenAnnenDokumentasjon = relevateDokumentasjoner.filter(
+        dokumentasjon =>
+            dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON
+    );
+
+    const brukerHarVedleggskrav = relevateDokumentasjonerUtenAnnenDokumentasjon.length > 0;
+
+    const vedleggOppsummering: IVedleggOppsummeringProps['vedlegg'] =
+        relevateDokumentasjonerUtenAnnenDokumentasjon.map(dokumentasjon => {
+            const barnDokGjelderFor = søknad.barnInkludertISøknaden.filter(barn =>
+                dokumentasjon.gjelderForBarnId.find(id => id === barn.id)
+            );
+            const barnasNavn = slåSammen(barnDokGjelderFor.map(barn => barn.navn));
+
+            return {
+                skalVises: true,
+                dokumentasjonsbehov: dokumentasjon.dokumentasjonsbehov,
+                flettefeltVerdier: { barnetsNavn: barnasNavn },
+            };
+        });
+
+    const stegTekster = tekster()[ESanitySteg.DOKUMENTASJON];
 
     return (
         <Steg
-            tittel={<TekstBlock block={dokumentasjonTittel} />}
-            guide={<TekstBlock block={dokumentasjonGuide} />}
+            tittel={<TekstBlock block={stegTekster.dokumentasjonTittel} />}
+            guide={
+                <TekstBlock
+                    block={
+                        brukerHarVedleggskrav
+                            ? stegTekster.dokumentasjonGuideVedleggskrav
+                            : stegTekster.dokumentasjonGuideIngenVedleggskrav
+                    }
+                />
+            }
             gåVidereCallback={async () => {
                 const [success, _] = await sendInnSkjema();
                 return success;
             }}
         >
-            {slettaVedlegg.length > 0 && (
-                <KomponentGruppe>
+            <VStack gap="12">
+                {slettaVedlegg.length > 0 && (
                     <Alert variant={'warning'} inline>
                         <TekstBlock
-                            block={forLangTidDokumentasjon}
+                            block={stegTekster.forLangTidDokumentasjon}
                             typografi={Typografi.BodyLong}
                         />
                         <ul>
@@ -100,25 +129,45 @@ const Dokumentasjon: React.FC = () => {
                             ))}
                         </ul>
                     </Alert>
-                </KomponentGruppe>
-            )}
-            {visNyGuide ? (
-                <KomponentGruppe>
-                    <PictureScanningGuide />
-                </KomponentGruppe>
-            ) : (
-                <KomponentGruppe>
-                    <Alert variant={'info'}>
-                        <TekstBlock block={nudgeDokumentasjon} typografi={Typografi.BodyLong} />
-                    </Alert>
-
-                    <TekstBlock block={dokumentasjonInfo} typografi={Typografi.BodyLong} />
-                    <PictureScanningGuide />
-                </KomponentGruppe>
-            )}
-            {søknad.dokumentasjon
-                .filter(dokumentasjon => erDokumentasjonRelevant(dokumentasjon))
-                .map((dokumentasjon, index) => (
+                )}
+                {brukerHarVedleggskrav ? (
+                    <>
+                        <div>
+                            <Heading level="3" size="medium" spacing>
+                                {plainTekst(stegTekster.vedleggskravTittel)}
+                            </Heading>
+                            <VedleggOppsummering vedlegg={vedleggOppsummering} />
+                            <TekstBlock
+                                block={stegTekster.vedleggskrav}
+                                typografi={Typografi.BodyLong}
+                            />
+                        </div>
+                        <PictureScanningGuide />
+                        <div>
+                            <Heading level="3" size="medium" spacing>
+                                {plainTekst(stegTekster.manglerDokumentasjonSpoersmaalTittel)}
+                            </Heading>
+                            <TekstBlock
+                                block={stegTekster.manglerDokumentasjonSpoersmaal}
+                                typografi={Typografi.BodyLong}
+                            />
+                        </div>
+                    </>
+                ) : (
+                    <>
+                        <div>
+                            <Heading level="3" size="medium" spacing>
+                                {plainTekst(stegTekster.ingenVedleggskravTittel)}
+                            </Heading>
+                            <TekstBlock
+                                block={stegTekster.ingenVedleggskrav}
+                                typografi={Typografi.BodyLong}
+                            />
+                        </div>
+                        <PictureScanningGuide />
+                    </>
+                )}
+                {relevateDokumentasjoner.map((dokumentasjon, index) => (
                     <LastOppVedlegg
                         key={index}
                         vedleggNr={index + 1}
@@ -126,7 +175,8 @@ const Dokumentasjon: React.FC = () => {
                         oppdaterDokumentasjon={oppdaterDokumentasjon}
                     />
                 ))}
-            {innsendingStatus.status === RessursStatus.FEILET && <Feilside />}
+                {innsendingStatus.status === RessursStatus.FEILET && <Feilside />}
+            </VStack>
         </Steg>
     );
 };

@@ -89,7 +89,6 @@ const PictureScanningGuide = () => {
                             />
                         </BildeContainer>
                     </EksempelBilderWrapper>
-                    <TekstBlock block={dokumentasjonTekster.merHjelpLenke} />
                 </div>
             </Container>
         </ExpandableInfo>
