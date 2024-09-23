@@ -18,10 +18,8 @@ import { Feilside } from '../../Felleskomponenter/Feilside/Feilside';
 import PictureScanningGuide from '../../Felleskomponenter/PictureScanningGuide/PictureScanningGuide';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import {
-    IVedleggOppsummeringProps,
-    VedleggOppsummering,
-} from '../../Felleskomponenter/VedleggOppsummering';
+import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering/VedleggOppsummering';
+import { IVedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering/vedleggOppsummering.types';
 
 import LastOppVedlegg from './LastOppVedlegg';
 
@@ -81,7 +79,7 @@ const Dokumentasjon: React.FC = () => {
 
     const brukerHarVedleggskrav = relevateDokumentasjonerUtenAnnenDokumentasjon.length > 0;
 
-    const vedleggOppsummering: IVedleggOppsummeringProps['vedlegg'] =
+    const vedleggOppsummering: IVedleggOppsummering[] =
         relevateDokumentasjonerUtenAnnenDokumentasjon.map(dokumentasjon => {
             const barnDokGjelderFor = søknad.barnInkludertISøknaden.filter(barn =>
                 dokumentasjon.gjelderForBarnId.find(id => id === barn.id)
@@ -133,7 +131,7 @@ const Dokumentasjon: React.FC = () => {
                 {brukerHarVedleggskrav ? (
                     <>
                         <div>
-                            <Heading level="3" size="medium" spacing>
+                            <Heading level="3" size="small" spacing>
                                 {plainTekst(stegTekster.vedleggskravTittel)}
                             </Heading>
                             <VedleggOppsummering vedlegg={vedleggOppsummering} />
@@ -144,7 +142,7 @@ const Dokumentasjon: React.FC = () => {
                         </div>
                         <PictureScanningGuide />
                         <div>
-                            <Heading level="3" size="medium" spacing>
+                            <Heading level="3" size="small" spacing>
                                 {plainTekst(stegTekster.manglerDokumentasjonSpoersmaalTittel)}
                             </Heading>
                             <TekstBlock
@@ -156,7 +154,7 @@ const Dokumentasjon: React.FC = () => {
                 ) : (
                     <>
                         <div>
-                            <Heading level="3" size="medium" spacing>
+                            <Heading level="3" size="small" spacing>
                                 {plainTekst(stegTekster.ingenVedleggskravTittel)}
                             </Heading>
                             <TekstBlock
@@ -170,7 +168,6 @@ const Dokumentasjon: React.FC = () => {
                 {relevateDokumentasjoner.map((dokumentasjon, index) => (
                     <LastOppVedlegg
                         key={index}
-                        vedleggNr={index + 1}
                         dokumentasjon={dokumentasjon}
                         oppdaterDokumentasjon={oppdaterDokumentasjon}
                     />

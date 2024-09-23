@@ -19,6 +19,7 @@ interface Props {
 
 const FilListe = styled.ul`
     padding: 0;
+    margin: 0;
 `;
 
 const FilRad = styled.li<{ $skillelinje: boolean }>`

@@ -2,25 +2,20 @@ import React, { FC } from 'react';
 
 import { List } from '@navikt/ds-react';
 
-import { useApp } from '../../context/AppContext';
-import { dokumentasjonsbehovTilTittelSanityApiNavn } from '../../typer/dokumentasjon';
-import { Dokumentasjonsbehov } from '../../typer/kontrakt/dokumentasjon';
-import { FlettefeltVerdier } from '../../typer/kontrakt/generelle';
+import { useApp } from '../../../context/AppContext';
+import { dokumentasjonsbehovTilTittelSanityApiNavn } from '../../../typer/dokumentasjon';
 
-export interface IVedleggOppsummeringProps {
-    vedlegg: {
-        skalVises: boolean;
-        dokumentasjonsbehov: Dokumentasjonsbehov;
-        flettefeltVerdier?: FlettefeltVerdier;
-    }[];
+import { hentVedleggSomSkalVises } from './vedleggOppsummering.domene';
+import { IVedleggOppsummering } from './vedleggOppsummering.types';
+
+interface IVedleggOppsummeringProps {
+    vedlegg: IVedleggOppsummering[];
 }
 
 export const VedleggOppsummering: FC<IVedleggOppsummeringProps> = ({ vedlegg }) => {
     const { tekster, plainTekst } = useApp();
-
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
-
-    const vedleggSomSkalVises = vedlegg.filter(vedlegg => vedlegg.skalVises);
+    const vedleggSomSkalVises = hentVedleggSomSkalVises(vedlegg);
 
     return (
         <>

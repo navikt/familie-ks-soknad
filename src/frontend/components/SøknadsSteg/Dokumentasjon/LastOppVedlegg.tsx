@@ -19,7 +19,6 @@ import Filopplaster from './filopplaster/Filopplaster';
 
 interface Props {
     dokumentasjon: IDokumentasjon;
-    vedleggNr: number;
     oppdaterDokumentasjon: (
         dokumentasjonsbehov: Dokumentasjonsbehov,
         opplastedeVedlegg: IVedlegg[],
@@ -27,7 +26,7 @@ interface Props {
     ) => void;
 }
 
-const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDokumentasjon }) => {
+const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
     const { søknad, tekster, plainTekst } = useApp();
     const dokumentasjonstekster = tekster().DOKUMENTASJON;
     const settHarSendtInnTidligere = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,30 +40,6 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
     );
     const barnasNavn = slåSammen(barnDokGjelderFor.map(barn => barn.navn));
 
-    const antallVedlegg = () => {
-        const dokSomKrevesForBarn = søknad.dokumentasjon.filter(dok => dok.gjelderForBarnId.length);
-        let antallVedlegg = dokSomKrevesForBarn.length;
-
-        const erOppholdtillatelseKravForSøkerMenIkkeBarn = søknad.dokumentasjon.find(
-            dok =>
-                dok.dokumentasjonsbehov === Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE &&
-                !dok.gjelderForBarnId.length &&
-                dok.gjelderForSøker
-        );
-
-        if (erOppholdtillatelseKravForSøkerMenIkkeBarn) {
-            antallVedlegg++;
-        }
-
-        søknad.dokumentasjon.forEach(dok => {
-            if (dok.gjelderForSøker) {
-                antallVedlegg++;
-            }
-        });
-
-        return antallVedlegg;
-    };
-
     const tittelBlock =
         dokumentasjonstekster[
             dokumentasjonsbehovTilTittelSanityApiNavn(dokumentasjon.dokumentasjonsbehov)
@@ -74,21 +49,12 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
         dokumentasjon.dokumentasjonsbehov
     );
 
-    const vedleggXAvY = plainTekst(dokumentasjonstekster.vedleggXavY, {
-        antall: vedleggNr.toString(),
-        totalAntall: antallVedlegg().toString(),
-    });
-    const vedleggtittel =
-        (dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON
-            ? vedleggXAvY
-            : '') +
-        ' ' +
-        plainTekst(tittelBlock, { barnetsNavn: barnasNavn });
-
     return (
         <FormSummary>
             <FormSummary.Header>
-                <FormSummary.Heading level={'3'}>{vedleggtittel}</FormSummary.Heading>
+                <FormSummary.Heading level={'3'}>
+                    {plainTekst(tittelBlock, { barnetsNavn: barnasNavn })}
+                </FormSummary.Heading>
             </FormSummary.Header>
             <VStack gap="6" paddingInline="6" paddingBlock="5 6">
                 {dokumentasjonsbeskrivelse && (

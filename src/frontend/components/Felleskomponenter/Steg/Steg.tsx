@@ -26,7 +26,9 @@ import Banner from '../Banner/Banner';
 import InnholdContainer from '../InnholdContainer/InnholdContainer';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import useModal from '../SkjemaModal/useModal';
-import { IVedleggOppsummeringProps, VedleggOppsummering } from '../VedleggOppsummering';
+import { VedleggOppsummering } from '../VedleggOppsummering/VedleggOppsummering';
+import { skalVedleggOppsummeringVises } from '../VedleggOppsummering/vedleggOppsummering.domene';
+import { IVedleggOppsummering } from '../VedleggOppsummering/vedleggOppsummering.types';
 
 import ModellVersjonModal from './ModellVersjonModal';
 import Navigeringspanel from './Navigeringspanel';
@@ -43,7 +45,7 @@ interface ISteg {
         settSøknadsdataCallback: () => void;
     };
     gåVidereCallback?: () => Promise<boolean>;
-    vedleggOppsummering?: IVedleggOppsummeringProps['vedlegg'];
+    vedleggOppsummering?: IVedleggOppsummering[];
     children?: ReactNode;
 }
 
@@ -161,8 +163,8 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
 
     const formProgressStegOppsummeringTekst = `${plainTekst(frittståendeOrdTekster.steg)} ${hentNåværendeStegIndex()} ${plainTekst(frittståendeOrdTekster.av)} ${formProgressSteg.length}`;
 
-    const skalVedleggOppsummeringVises =
-        vedleggOppsummering && vedleggOppsummering.filter(vedlegg => vedlegg.skalVises).length > 0;
+    const visVedleggOppsummering =
+        vedleggOppsummering && skalVedleggOppsummeringVises(vedleggOppsummering);
 
     return (
         <>
@@ -225,7 +227,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
                     {skjema && visFeiloppsummering(skjema.skjema) && (
                         <SkjemaFeiloppsummering skjema={skjema.skjema} />
                     )}
-                    {skalVedleggOppsummeringVises && (
+                    {visVedleggOppsummering && (
                         <Alert variant="info">
                             {plainTekst(dokumentasjonTekster.lastOppSenereISoknad)}
                             <VedleggOppsummering vedlegg={vedleggOppsummering} />

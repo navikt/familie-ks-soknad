@@ -19,18 +19,16 @@ const StyledVStack = styled(VStack)`
     }
 `;
 
+const svgIconHeight = 112;
+
 const PictureScanningGuide = () => {
     const { tekster, plainTekst } = useApp();
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
-    const svgIconHeight = 112;
 
     return (
-        <ExpansionCard
-            size="small"
-            aria-label={plainTekst(dokumentasjonTekster.slikTarDuEtGodtBildeExpand)}
-        >
+        <ExpansionCard aria-label={plainTekst(dokumentasjonTekster.slikTarDuEtGodtBildeExpand)}>
             <ExpansionCard.Header>
-                <ExpansionCard.Title as="h3" size="medium">
+                <ExpansionCard.Title as="h3" size="small">
                     {plainTekst(dokumentasjonTekster.slikTarDuEtGodtBildeExpand)}
                 </ExpansionCard.Title>
             </ExpansionCard.Header>
