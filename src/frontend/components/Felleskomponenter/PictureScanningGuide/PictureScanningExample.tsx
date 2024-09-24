@@ -1,45 +1,20 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
-import { Label } from '@navikt/ds-react';
-
-import StatusIkon, { StatusIconStatusKey } from './StatusIcon';
+import { Alert, AlertProps, BodyShort, Label } from '@navikt/ds-react';
 
 interface Props {
     image: React.ReactNode;
-    status: StatusIconStatusKey;
+    variant: AlertProps['variant'];
     statusText: string;
     description: string;
 }
 
-const ImageContainer = styled.div`
-    padding-left: 1rem;
-    margin-bottom: 0.75rem;
-`;
-
-const StyledLabel = styled(Label)`
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.5rem;
-`;
-
-const StatusIkonContainer = styled.span`
-    padding-right: 0.5rem;
-    line-height: 0;
-`;
-
-const PictureScanningExample = ({ image, status, statusText, description }: Props) => (
-    <div>
-        <ImageContainer>{image}</ImageContainer>
-        <StyledLabel size={'small'}>
-            <StatusIkonContainer role="presentation">
-                <StatusIkon status={status} />
-            </StatusIkonContainer>
-            {statusText}
-        </StyledLabel>
-        <div>{description}</div>
-    </div>
+const PictureScanningExample = ({ image, variant, statusText, description }: Props) => (
+    <Alert variant={variant}>
+        <Label as="div">{statusText}</Label>
+        <BodyShort spacing>{description}</BodyShort>
+        {image}
+    </Alert>
 );
 
 export default PictureScanningExample;

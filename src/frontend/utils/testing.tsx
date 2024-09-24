@@ -86,6 +86,7 @@ export const spyOnUseApp = søknad => {
         sluttbruker,
         settEøsLand,
         eøsLand,
+        relevateDokumentasjoner: [],
         systemetLaster: jest.fn().mockReturnValue(false),
         systemetOK: () => jest.fn().mockReturnValue(true),
         systemetFeiler: jest.fn().mockReturnValue(false),

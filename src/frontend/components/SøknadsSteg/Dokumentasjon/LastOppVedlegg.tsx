@@ -1,8 +1,6 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
-import { Checkbox, Heading } from '@navikt/ds-react';
+import { Checkbox, FormSummary, VStack } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
@@ -14,7 +12,6 @@ import {
     IVedlegg,
 } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
-import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { slåSammen } from '../../../utils/slåSammen';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
@@ -22,7 +19,6 @@ import Filopplaster from './filopplaster/Filopplaster';
 
 interface Props {
     dokumentasjon: IDokumentasjon;
-    vedleggNr: number;
     oppdaterDokumentasjon: (
         dokumentasjonsbehov: Dokumentasjonsbehov,
         opplastedeVedlegg: IVedlegg[],
@@ -30,11 +26,7 @@ interface Props {
     ) => void;
 }
 
-const Container = styled.div`
-    margin-bottom: 4rem;
-`;
-
-const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDokumentasjon }) => {
+const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
     const { søknad, tekster, plainTekst } = useApp();
     const dokumentasjonstekster = tekster().DOKUMENTASJON;
     const settHarSendtInnTidligere = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,90 +40,61 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, vedleggNr, oppdaterDok
     );
     const barnasNavn = slåSammen(barnDokGjelderFor.map(barn => barn.navn));
 
-    const antallVedlegg = () => {
-        const dokSomKrevesForBarn = søknad.dokumentasjon.filter(dok => dok.gjelderForBarnId.length);
-        let antallVedlegg = dokSomKrevesForBarn.length;
-
-        const erOppholdtillatelseKravForSøkerMenIkkeBarn = søknad.dokumentasjon.find(
-            dok =>
-                dok.dokumentasjonsbehov === Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE &&
-                !dok.gjelderForBarnId.length &&
-                dok.gjelderForSøker
-        );
-
-        if (erOppholdtillatelseKravForSøkerMenIkkeBarn) {
-            antallVedlegg++;
-        }
-
-        return antallVedlegg;
-    };
-
     const tittelBlock =
         dokumentasjonstekster[
             dokumentasjonsbehovTilTittelSanityApiNavn(dokumentasjon.dokumentasjonsbehov)
         ];
 
-    const skalViseAnnenDokumentasjonsBeskrivelse = () => {
-        return (
-            dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON ||
-            søknad.søker.sivilstand.type === ESivilstand.SKILT
-        );
-    };
-
     const dokumentasjonsbeskrivelse = dokumentasjonsbehovTilBeskrivelseSanityApiNavn(
         dokumentasjon.dokumentasjonsbehov
     );
 
-    const vedleggXAvY = plainTekst(dokumentasjonstekster.vedleggXavY, {
-        antall: vedleggNr.toString(),
-        totalAntall: antallVedlegg().toString(),
-    });
-    const vedleggtittel =
-        (dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON
-            ? vedleggXAvY
-            : '') +
-        ' ' +
-        plainTekst(tittelBlock, { barnetsNavn: barnasNavn });
-
     return (
-        <Container>
-            <Heading level={'3'} size={'small'}>
-                {vedleggtittel}
-            </Heading>
-            {dokumentasjonsbeskrivelse && skalViseAnnenDokumentasjonsBeskrivelse() && (
-                <TekstBlock
-                    data-testid={'dokumentasjonsbeskrivelse'}
-                    block={dokumentasjonstekster[dokumentasjonsbeskrivelse]}
-                    flettefelter={{ barnetsNavn: barnasNavn }}
-                    typografi={Typografi.BodyLong}
-                />
-            )}
-            {!dokumentasjon.harSendtInn && (
-                <div data-testid={'dokumentopplaster'}>
-                    <Filopplaster
-                        oppdaterDokumentasjon={oppdaterDokumentasjon}
-                        dokumentasjon={dokumentasjon}
-                        tillatteFiltyper={{
-                            'image/*': [EFiltyper.PNG, EFiltyper.JPG, EFiltyper.JPEG],
-                            'application/pdf': [EFiltyper.PDF],
-                        }}
-                    />
-                </div>
-            )}
-            <br />
-            {dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON && (
-                <Checkbox
-                    data-testid={'dokumentasjon-er-sendt-inn-checkboks'}
-                    aria-label={`${plainTekst(
-                        dokumentasjonstekster.sendtInnTidligere
-                    )} (${plainTekst(tittelBlock, { barnetsNavn: barnasNavn })})`}
-                    checked={dokumentasjon.harSendtInn}
-                    onChange={settHarSendtInnTidligere}
-                >
-                    {plainTekst(dokumentasjonstekster.sendtInnTidligere)}
-                </Checkbox>
-            )}
-        </Container>
+        <FormSummary>
+            <FormSummary.Header>
+                <FormSummary.Heading level={'3'}>
+                    {plainTekst(tittelBlock, { barnetsNavn: barnasNavn })}
+                </FormSummary.Heading>
+            </FormSummary.Header>
+            <VStack gap="6" paddingInline="6" paddingBlock="5 6">
+                {dokumentasjonsbeskrivelse && (
+                    <div>
+                        <TekstBlock
+                            data-testid={'dokumentasjonsbeskrivelse'}
+                            block={dokumentasjonstekster[dokumentasjonsbeskrivelse]}
+                            flettefelter={{ barnetsNavn: barnasNavn }}
+                            typografi={Typografi.BodyLong}
+                        />
+                    </div>
+                )}
+
+                {dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON && (
+                    <Checkbox
+                        data-testid={'dokumentasjon-er-sendt-inn-checkboks'}
+                        aria-label={`${plainTekst(
+                            dokumentasjonstekster.sendtInnTidligere
+                        )} (${plainTekst(tittelBlock, { barnetsNavn: barnasNavn })})`}
+                        checked={dokumentasjon.harSendtInn}
+                        onChange={settHarSendtInnTidligere}
+                    >
+                        {plainTekst(dokumentasjonstekster.sendtInnTidligere)}
+                    </Checkbox>
+                )}
+
+                {!dokumentasjon.harSendtInn && (
+                    <div data-testid={'dokumentopplaster'}>
+                        <Filopplaster
+                            oppdaterDokumentasjon={oppdaterDokumentasjon}
+                            dokumentasjon={dokumentasjon}
+                            tillatteFiltyper={{
+                                'image/*': [EFiltyper.PNG, EFiltyper.JPG, EFiltyper.JPEG],
+                                'application/pdf': [EFiltyper.PDF],
+                            }}
+                        />
+                    </div>
+                )}
+            </VStack>
+        </FormSummary>
     );
 };
 

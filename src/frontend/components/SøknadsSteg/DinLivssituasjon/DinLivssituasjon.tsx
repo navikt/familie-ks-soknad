@@ -14,7 +14,6 @@ import { Pensjonsperiode } from '../../Felleskomponenter/Pensjonsmodal/Pensjonsp
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
-import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import { IDinLivssituasjonTekstinnhold } from './innholdTyper';
 import { useDinLivssituasjon } from './useDinLivssituasjon';
@@ -52,6 +51,12 @@ const DinLivssituasjon: React.FC = () => {
                 skjema,
                 settSøknadsdataCallback: oppdaterSøknad,
             }}
+            vedleggOppsummering={[
+                {
+                    skalVises: skjema.felter.erAsylsøker.verdi === ESvar.JA,
+                    dokumentasjonsbehov: Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE,
+                },
+            ]}
         >
             <KomponentGruppe>
                 <JaNeiSpm
@@ -105,15 +110,6 @@ const DinLivssituasjon: React.FC = () => {
                     personType={PersonType.søker}
                 />
             </KomponentGruppe>
-
-            <VedleggOppsummering
-                vedlegg={[
-                    {
-                        skalVises: skjema.felter.erAsylsøker.verdi === ESvar.JA,
-                        dokumentasjonsbehov: Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE,
-                    },
-                ]}
-            />
         </Steg>
     );
 };
