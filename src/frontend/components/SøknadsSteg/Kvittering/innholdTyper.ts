@@ -6,7 +6,6 @@ export interface IKvitteringTekstinnhold {
     trengerIkkeEttersendeVedlegg: LocaleRecordBlock;
     maaEttersendeVedleggAlert: LocaleRecordBlock;
     infoTilSoker: LocaleRecordBlock;
-    infoTilSokerMidlertidigTekst: LocaleRecordBlock;
     kontonummerEOES: LocaleRecordBlock;
     ettersendelseKontantstotte: LocaleRecordBlock;
     manglerKontonummerTittel: LocaleRecordBlock;
