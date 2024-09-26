@@ -10,7 +10,6 @@ import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import { useApp } from '../../../context/AppContext';
 import { useAppNavigation } from '../../../context/AppNavigationContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { useSteg } from '../../../context/StegContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { device } from '../../../Theme';
@@ -87,7 +86,6 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         erPåKvitteringsside,
     } = useSteg();
     const { komFra, settKomFra } = useAppNavigation();
-    const { toggles } = useFeatureToggles();
 
     const nesteRoute = hentNesteSteg();
     const forrigeRoute = hentForrigeSteg();
@@ -217,7 +215,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
                         {tittel}
                     </Heading>
                 </Box>
-                {toggles.VIS_GUIDE_I_STEG && guide && (
+                {guide && (
                     <Box marginBlock="0 12">
                         <GuidePanel poster>{guide}</GuidePanel>
                     </Box>
