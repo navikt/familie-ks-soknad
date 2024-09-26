@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { Accordion, GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { Accordion, GuidePanel, Heading } from '@navikt/ds-react';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import Miljø from '../../../../shared-utils/Miljø';
@@ -40,66 +40,58 @@ const Forside: React.FC = () => {
 
     return (
         <InnholdContainer>
-            <VStack gap="12">
-                <Heading level="1" size="large" align="center">
-                    {plainTekst(forsidetekster.soeknadstittel)}
+            <Heading level="1" size="large" align="center">
+                {plainTekst(forsidetekster.soeknadstittel)}
+            </Heading>
+            <GuidePanel poster>
+                <Heading level="2" size="medium" spacing>
+                    {plainTekst(forsidetekster.veilederHei)}
                 </Heading>
-                <GuidePanel poster>
-                    <Heading level="2" size="medium" spacing>
-                        {plainTekst(forsidetekster.veilederHei)}
-                    </Heading>
-                    <TekstBlock
-                        block={forsidetekster.veilederIntro}
-                        typografi={Typografi.BodyLong}
-                    />
-                </GuidePanel>
-                <div>
-                    <Heading level="2" size="large" spacing>
-                        {plainTekst(forsidetekster.foerDuSoekerTittel)}
-                    </Heading>
-                    <TekstBlock
-                        block={forsidetekster.foerDuSoeker}
-                        typografi={Typografi.BodyLong}
-                    />
-                </div>
-                <Accordion>
-                    <Accordion.Item>
-                        <Accordion.Header>
-                            {plainTekst(forsidetekster.informasjonOmPlikterTittel)}
-                        </Accordion.Header>
-                        <Accordion.Content>
-                            <TekstBlock
-                                block={forsidetekster.informasjonOmPlikter}
-                                typografi={Typografi.BodyLong}
-                            />
-                        </Accordion.Content>
-                    </Accordion.Item>
-                    <Accordion.Item>
-                        <Accordion.Header>
-                            {plainTekst(forsidetekster.informasjonOmPersonopplysningerTittel)}
-                        </Accordion.Header>
-                        <Accordion.Content>
-                            <TekstBlock
-                                block={forsidetekster.informasjonOmPersonopplysninger}
-                                typografi={Typografi.BodyLong}
-                            />
-                        </Accordion.Content>
-                    </Accordion.Item>
-                    <Accordion.Item>
-                        <Accordion.Header>
-                            {plainTekst(forsidetekster.informasjonOmLagringAvSvarTittel)}
-                        </Accordion.Header>
-                        <Accordion.Content>
-                            <TekstBlock
-                                block={forsidetekster.informasjonOmLagringAvSvar}
-                                typografi={Typografi.BodyLong}
-                            />
-                        </Accordion.Content>
-                    </Accordion.Item>
-                </Accordion>
+                <TekstBlock block={forsidetekster.veilederIntro} typografi={Typografi.BodyLong} />
+            </GuidePanel>
+            <div>
+                <Heading level="2" size="large" spacing>
+                    {plainTekst(forsidetekster.foerDuSoekerTittel)}
+                </Heading>
+                <TekstBlock block={forsidetekster.foerDuSoeker} typografi={Typografi.BodyLong} />
+            </div>
+            <Accordion>
+                <Accordion.Item>
+                    <Accordion.Header>
+                        {plainTekst(forsidetekster.informasjonOmPlikterTittel)}
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        <TekstBlock
+                            block={forsidetekster.informasjonOmPlikter}
+                            typografi={Typografi.BodyLong}
+                        />
+                    </Accordion.Content>
+                </Accordion.Item>
+                <Accordion.Item>
+                    <Accordion.Header>
+                        {plainTekst(forsidetekster.informasjonOmPersonopplysningerTittel)}
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        <TekstBlock
+                            block={forsidetekster.informasjonOmPersonopplysninger}
+                            typografi={Typografi.BodyLong}
+                        />
+                    </Accordion.Content>
+                </Accordion.Item>
+                <Accordion.Item>
+                    <Accordion.Header>
+                        {plainTekst(forsidetekster.informasjonOmLagringAvSvarTittel)}
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        <TekstBlock
+                            block={forsidetekster.informasjonOmLagringAvSvar}
+                            typografi={Typografi.BodyLong}
+                        />
+                    </Accordion.Content>
+                </Accordion.Item>
+            </Accordion>
 
-                {kanFortsettePåSøknad ? <FortsettPåSøknad /> : <BekreftelseOgStartSoknad />}
-            </VStack>
+            {kanFortsettePåSøknad ? <FortsettPåSøknad /> : <BekreftelseOgStartSoknad />}
         </InnholdContainer>
     );
 };

@@ -14,7 +14,6 @@ const Section = styled.section`
     background-color: ${APurple200};
     border-bottom: 4px solid ${APurple400};
     text-align: center;
-    margin-bottom: 1rem;
 `;
 
 const Banner: React.FC = () => {

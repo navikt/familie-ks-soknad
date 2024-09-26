@@ -13,7 +13,6 @@ import { useAppNavigation } from '../../../context/AppNavigationContext';
 import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { useSteg } from '../../../context/StegContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
-import { device } from '../../../Theme';
 import { RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import {
@@ -49,22 +48,8 @@ interface ISteg {
     children?: ReactNode;
 }
 
-const TopNavigasjonContainer = styled.div`
-    max-width: var(--innhold-bredde);
-    margin: 0 auto;
-
-    @media all and ${device.tablet} {
-        max-width: 100%;
-        margin: 0 var(--a-spacing-8);
-    }
-`;
-
 const ChildrenContainer = styled.div`
     margin-bottom: 2rem;
-`;
-
-const Form = styled.form`
-    width: 100%;
 `;
 
 function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, children }: ISteg) {
@@ -169,60 +154,52 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
     return (
         <>
             <ScrollHandler />
-            <header>
-                <Banner />
-                {nyesteNåværendeRoute !== RouteEnum.Kvittering && (
-                    <TopNavigasjonContainer>
-                        <VStack gap="4">
-                            <div>
-                                <Link
-                                    href={forrigeRoute.path}
-                                    variant="action"
-                                    onClick={event => {
-                                        event.preventDefault();
-                                        håndterTilbake();
-                                    }}
-                                >
-                                    <ArrowLeftIcon aria-hidden />
-                                    {plainTekst(tilbakeKnapp)}
-                                </Link>
-                            </div>
-                            <FormProgress
-                                translations={{
-                                    step: formProgressStegOppsummeringTekst,
-                                    showAllSteps: plainTekst(frittståendeOrdTekster.visAlleSteg),
-                                    hideAllSteps: plainTekst(frittståendeOrdTekster.skjulAlleSteg),
-                                }}
-                                totalSteps={formProgressSteg.length}
-                                activeStep={hentNåværendeStegIndex()}
-                                onStepChange={stegIndex => håndterGåTilSteg(stegIndex - 1)}
-                            >
-                                {formProgressSteg.map((value, index) => (
-                                    <FormProgress.Step
-                                        key={index}
-                                        completed={index + 1 < hentNåværendeStegIndex()}
-                                        interactive={index + 1 < hentNåværendeStegIndex()}
-                                    >
-                                        {value.tittel}
-                                    </FormProgress.Step>
-                                ))}
-                            </FormProgress>
-                        </VStack>
-                    </TopNavigasjonContainer>
-                )}
-            </header>
+            <Banner />
             <InnholdContainer>
-                <Box marginBlock="16 12" marginInline="auto">
+                {nyesteNåværendeRoute !== RouteEnum.Kvittering && (
+                    <VStack gap="4">
+                        <div>
+                            <Link
+                                href={forrigeRoute.path}
+                                variant="action"
+                                onClick={event => {
+                                    event.preventDefault();
+                                    håndterTilbake();
+                                }}
+                            >
+                                <ArrowLeftIcon aria-hidden />
+                                {plainTekst(tilbakeKnapp)}
+                            </Link>
+                        </div>
+                        <FormProgress
+                            translations={{
+                                step: formProgressStegOppsummeringTekst,
+                                showAllSteps: plainTekst(frittståendeOrdTekster.visAlleSteg),
+                                hideAllSteps: plainTekst(frittståendeOrdTekster.skjulAlleSteg),
+                            }}
+                            totalSteps={formProgressSteg.length}
+                            activeStep={hentNåværendeStegIndex()}
+                            onStepChange={stegIndex => håndterGåTilSteg(stegIndex - 1)}
+                        >
+                            {formProgressSteg.map((value, index) => (
+                                <FormProgress.Step
+                                    key={index}
+                                    completed={index + 1 < hentNåværendeStegIndex()}
+                                    interactive={index + 1 < hentNåværendeStegIndex()}
+                                >
+                                    {value.tittel}
+                                </FormProgress.Step>
+                            ))}
+                        </FormProgress>
+                    </VStack>
+                )}
+                <Box marginBlock="12 0">
                     <Heading level="2" size={'large'} align="center">
                         {tittel}
                     </Heading>
                 </Box>
-                {toggles.VIS_GUIDE_I_STEG && guide && (
-                    <Box marginBlock="0 12">
-                        <GuidePanel poster>{guide}</GuidePanel>
-                    </Box>
-                )}
-                <Form onSubmit={event => håndterGåVidere(event)} autoComplete="off">
+                {toggles.VIS_GUIDE_I_STEG && guide && <GuidePanel poster>{guide}</GuidePanel>}
+                <form onSubmit={event => håndterGåVidere(event)} autoComplete="off">
                     <ChildrenContainer>{children}</ChildrenContainer>
                     {skjema && visFeiloppsummering(skjema.skjema) && (
                         <SkjemaFeiloppsummering skjema={skjema.skjema} />
@@ -240,7 +217,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
                             valideringErOk={skjema && skjema.valideringErOk}
                         />
                     )}
-                </Form>
+                </form>
                 {erModellVersjonModalÅpen && (
                     <ModellVersjonModal erÅpen={erModellVersjonModalÅpen} />
                 )}
