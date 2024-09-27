@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { ArrowLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Box, FormProgress, GuidePanel, Heading, Link, VStack } from '@navikt/ds-react';
+import { Alert, Box, FormProgress, GuidePanel, Heading, Link } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
@@ -21,7 +21,6 @@ import {
     logSkjemaStegFullført,
 } from '../../../utils/amplitude';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
-import Banner from '../Banner/Banner';
 import InnholdContainer from '../InnholdContainer/InnholdContainer';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import useModal from '../SkjemaModal/useModal';
@@ -154,10 +153,9 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
     return (
         <>
             <ScrollHandler />
-            <Banner />
             <InnholdContainer>
                 {nyesteNåværendeRoute !== RouteEnum.Kvittering && (
-                    <VStack gap="4">
+                    <div>
                         <div>
                             <Link
                                 href={forrigeRoute.path}
@@ -171,6 +169,11 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
                                 {plainTekst(tilbakeKnapp)}
                             </Link>
                         </div>
+                        <Box paddingBlock="6 5">
+                            <Heading level="2" size={'large'}>
+                                {tittel}
+                            </Heading>
+                        </Box>
                         <FormProgress
                             translations={{
                                 step: formProgressStegOppsummeringTekst,
@@ -191,13 +194,13 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
                                 </FormProgress.Step>
                             ))}
                         </FormProgress>
-                    </VStack>
+                    </div>
                 )}
-                <Box marginBlock="12 0">
+                {/* <Box marginBlock="12 0">
                     <Heading level="2" size={'large'} align="center">
                         {tittel}
                     </Heading>
-                </Box>
+                </Box> */}
                 {toggles.VIS_GUIDE_I_STEG && guide && <GuidePanel poster>{guide}</GuidePanel>}
                 <form onSubmit={event => håndterGåVidere(event)} autoComplete="off">
                     <ChildrenContainer>{children}</ChildrenContainer>

@@ -1,26 +1,18 @@
 import React, { useEffect } from 'react';
 
-import styled from 'styled-components';
-
-import { GuidePanel } from '@navikt/ds-react';
+import { GuidePanel, Heading, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
+import { useApp } from '../../context/AppContext';
 import { useLastRessurserContext } from '../../context/LastRessurserContext';
 import { useSanity } from '../../context/SanityContext';
-import { Typografi } from '../../typer/common';
 import { Feilside } from '../Felleskomponenter/Feilside/Feilside';
-import InnholdContainer from '../Felleskomponenter/InnholdContainer/InnholdContainer';
 import SystemetLaster from '../Felleskomponenter/SystemetLaster/SystemetLaster';
 import TekstBlock from '../Felleskomponenter/TekstBlock';
 
-const TittelContainer = styled.div`
-    && {
-        margin: 4rem 0 2.3rem 0;
-    }
-`;
-
 export const DisabledApp: React.FC = () => {
+    const { tekster, plainTekst } = useApp();
     const { teksterRessurs } = useSanity();
     const { lasterRessurser } = useLastRessurserContext();
 
@@ -45,19 +37,19 @@ export const DisabledApp: React.FC = () => {
     };
 
     const { vedlikeholdTittel, vedlikeholdBroedtekst, vedlikeholdVeileder } =
-        teksterRessurs.data.FELLES.vedlikeholdsarbeid;
+        tekster().FELLES.vedlikeholdsarbeid;
 
     return (
-        <main>
-            <InnholdContainer>
-                <GuidePanel>
-                    <TekstBlock block={vedlikeholdVeileder} />
-                </GuidePanel>
-                <TittelContainer>
-                    <TekstBlock block={vedlikeholdTittel} typografi={Typografi.ForsideHeadingH1} />
-                </TittelContainer>
+        <VStack gap="12" marginBlock="32">
+            <GuidePanel>
+                <TekstBlock block={vedlikeholdVeileder} />
+            </GuidePanel>
+            <div>
+                <Heading level="1" size="large" spacing>
+                    {plainTekst(vedlikeholdTittel)}
+                </Heading>
                 <TekstBlock block={vedlikeholdBroedtekst} />
-            </InnholdContainer>
-        </main>
+            </div>
+        </VStack>
     );
 };

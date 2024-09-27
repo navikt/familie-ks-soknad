@@ -40,9 +40,6 @@ const Forside: React.FC = () => {
 
     return (
         <InnholdContainer>
-            <Heading level="1" size="large" align="center">
-                {plainTekst(forsidetekster.soeknadstittel)}
-            </Heading>
             <GuidePanel poster>
                 <Heading level="2" size="medium" spacing>
                     {plainTekst(forsidetekster.veilederHei)}
