@@ -11,7 +11,6 @@ import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { genererAdresseVisning } from '../../../utils/adresse';
 import { landkodeTilSpråk, sivilstandTilSanitySivilstandApiKey } from '../../../utils/språk';
-import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 export const Personopplysninger: React.FC = () => {
@@ -40,12 +39,12 @@ export const Personopplysninger: React.FC = () => {
                 </Alert>
             )}
 
-            <Informasjonsbolk>
+            <div>
                 <Label>{plainTekst(ident)}</Label>
                 <BodyShort>{søker.ident}</BodyShort>
-            </Informasjonsbolk>
+            </div>
 
-            <Informasjonsbolk>
+            <div>
                 <Label>{plainTekst(statsborgerskap)}</Label>
                 <BodyShort>
                     {søker.statsborgerskap
@@ -54,21 +53,21 @@ export const Personopplysninger: React.FC = () => {
                         )
                         .join(', ')}
                 </BodyShort>
-            </Informasjonsbolk>
+            </div>
 
-            <Informasjonsbolk>
+            <div>
                 <Label>{plainTekst(sivilstatus)}</Label>
                 <BodyShort>
                     {plainTekst(
                         frittståendeOrd[sivilstandTilSanitySivilstandApiKey(søker.sivilstand.type)]
                     )}
                 </BodyShort>
-            </Informasjonsbolk>
+            </div>
 
-            <Informasjonsbolk>
+            <div>
                 <Label>{plainTekst(adresse)}</Label>
                 {genererAdresseVisning(søker, tekster().OM_DEG, plainTekst)}
-            </Informasjonsbolk>
+            </div>
         </>
     );
 };

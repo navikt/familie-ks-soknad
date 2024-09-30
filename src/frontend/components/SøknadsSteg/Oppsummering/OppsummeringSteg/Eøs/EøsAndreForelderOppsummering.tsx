@@ -23,6 +23,7 @@ import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/Ut
 import IdNummerForAndreForelder from '../../../EøsSteg/Barn/IdNummerForAndreForelder';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 
+// TODO: Finn ut hvordan komponenten triggres og sjekk at spacing er riktig.
 const EøsAndreForelderOppsummering: React.FC<{
     barn: IBarnMedISøknad;
     andreForelder: IAndreForelder;

@@ -41,36 +41,30 @@ const OmDeg: React.FC = () => {
                 settSøknadsdataCallback: oppdaterSøknad,
             }}
         >
-            <KomponentGruppe>
-                <Personopplysninger />
-            </KomponentGruppe>
-
+            <Personopplysninger />
             <KomponentGruppe>
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.borPåRegistrertAdresse}
                     spørsmålDokument={borPaaAdressen}
                 />
-
                 {skjema.felter.borPåRegistrertAdresse.verdi === ESvar.NEI && (
-                    <Alert variant={'warning'} inline>
+                    <Alert variant={'warning'}>
                         <TekstBlock block={borPaaAdressen.alert} typografi={Typografi.BodyShort} />
                     </Alert>
                 )}
             </KomponentGruppe>
-            <KomponentGruppe>
-                <JaNeiSpm
-                    skjema={skjema}
-                    felt={skjema.felter.værtINorgeITolvMåneder}
-                    spørsmålDokument={oppholdtDegSammenhengende}
-                    tilleggsinfo={
-                        <TekstBlock
-                            block={oppholdtDegSammenhengende.alert}
-                            typografi={Typografi.BodyShort}
-                        />
-                    }
-                />
-            </KomponentGruppe>
+            <JaNeiSpm
+                skjema={skjema}
+                felt={skjema.felter.værtINorgeITolvMåneder}
+                spørsmålDokument={oppholdtDegSammenhengende}
+                tilleggsinfo={
+                    <TekstBlock
+                        block={oppholdtDegSammenhengende.alert}
+                        typografi={Typografi.BodyShort}
+                    />
+                }
+            />
             <KomponentGruppe>
                 <JaNeiSpm
                     skjema={skjema}
@@ -78,7 +72,7 @@ const OmDeg: React.FC = () => {
                     spørsmålDokument={planleggerAaBoSammenhengende}
                 />
                 {skjema.felter.planleggerÅBoINorgeTolvMnd.verdi === ESvar.NEI && (
-                    <Alert variant={'warning'} inline aria-live="polite">
+                    <Alert variant={'warning'} aria-live="polite">
                         <TekstBlock
                             block={planleggerAaBoSammenhengende.alert}
                             typografi={Typografi.BodyLong}
@@ -93,7 +87,7 @@ const OmDeg: React.FC = () => {
                     spørsmålDokument={medlemAvFolketrygden}
                 />
                 {skjema.felter.yrkesaktivFemÅr.verdi === ESvar.NEI && (
-                    <Alert variant={'warning'} inline aria-live="polite">
+                    <Alert variant={'warning'} aria-live="polite">
                         <TekstBlock
                             block={medlemAvFolketrygden.alert}
                             typografi={Typografi.BodyShort}

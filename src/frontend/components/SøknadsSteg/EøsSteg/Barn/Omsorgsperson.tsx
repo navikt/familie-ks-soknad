@@ -44,7 +44,7 @@ interface OmsorgspersonProps {
         fjernKontantstøttePeriodeOmsorgsperson: (periode: IEøsKontantstøttePeriode) => void;
     };
 }
-
+// TODO: Finn ut hvordan komponenten triggres og sjekk at spacing er riktig.
 const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunksjoner }) => {
     const { plainTekst, tekster } = useApp();
     const eøsForBarnTekster = tekster().EØS_FOR_BARN;

@@ -1,10 +1,9 @@
 import React, { ReactNode, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
 import { ArrowLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Box, FormProgress, GuidePanel, Heading, Link } from '@navikt/ds-react';
+import { Alert, Box, FormProgress, GuidePanel, Heading, Link, VStack } from '@navikt/ds-react';
 import { ISkjema } from '@navikt/familie-skjema';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
@@ -46,10 +45,6 @@ interface ISteg {
     vedleggOppsummering?: IVedleggOppsummering[];
     children?: ReactNode;
 }
-
-const ChildrenContainer = styled.div`
-    margin-bottom: 2rem;
-`;
 
 function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, children }: ISteg) {
     const navigate = useNavigate();
@@ -196,30 +191,27 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
                         </FormProgress>
                     </div>
                 )}
-                {/* <Box marginBlock="12 0">
-                    <Heading level="2" size={'large'} align="center">
-                        {tittel}
-                    </Heading>
-                </Box> */}
                 {toggles.VIS_GUIDE_I_STEG && guide && <GuidePanel poster>{guide}</GuidePanel>}
                 <form onSubmit={event => håndterGåVidere(event)} autoComplete="off">
-                    <ChildrenContainer>{children}</ChildrenContainer>
-                    {skjema && visFeiloppsummering(skjema.skjema) && (
-                        <SkjemaFeiloppsummering skjema={skjema.skjema} />
-                    )}
-                    {visVedleggOppsummering && (
-                        <Alert variant="info">
-                            {plainTekst(dokumentasjonTekster.lastOppSenereISoknad)}
-                            <VedleggOppsummering vedlegg={vedleggOppsummering} />
-                        </Alert>
-                    )}
-                    {!erPåKvitteringsside() && (
-                        <Navigeringspanel
-                            onTilbakeCallback={håndterTilbake}
-                            onAvbrytCallback={håndterAvbryt}
-                            valideringErOk={skjema && skjema.valideringErOk}
-                        />
-                    )}
+                    <VStack gap="10">
+                        {children}
+                        {skjema && visFeiloppsummering(skjema.skjema) && (
+                            <SkjemaFeiloppsummering skjema={skjema.skjema} />
+                        )}
+                        {visVedleggOppsummering && (
+                            <Alert variant="info">
+                                {plainTekst(dokumentasjonTekster.lastOppSenereISoknad)}
+                                <VedleggOppsummering vedlegg={vedleggOppsummering} />
+                            </Alert>
+                        )}
+                        {!erPåKvitteringsside() && (
+                            <Navigeringspanel
+                                onTilbakeCallback={håndterTilbake}
+                                onAvbrytCallback={håndterAvbryt}
+                                valideringErOk={skjema && skjema.valideringErOk}
+                            />
+                        )}
+                    </VStack>
                 </form>
                 {erModellVersjonModalÅpen && (
                     <ModellVersjonModal erÅpen={erModellVersjonModalÅpen} />

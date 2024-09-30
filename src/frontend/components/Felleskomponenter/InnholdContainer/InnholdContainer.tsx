@@ -14,8 +14,8 @@ function InnholdContainer({ className, children }: Props) {
     const forsidetekster = tekster().FORSIDE;
 
     return (
-        <Box marginBlock="4 16" className={className}>
-            <VStack gap="8">
+        <Box marginBlock="10 16" className={className}>
+            <VStack gap="10">
                 <Heading level="1" size="xlarge">
                     {plainTekst(forsidetekster.soeknadstittel)}
                 </Heading>
