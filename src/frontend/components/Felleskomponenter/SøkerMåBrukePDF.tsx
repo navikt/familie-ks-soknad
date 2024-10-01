@@ -16,9 +16,7 @@ export const SøkerMåBrukePDF: FC<Props> = ({ advarselTekst }) => {
     const { brukPDFKontantstoette } = tekster().FELLES.kanIkkeBrukeSoeknad;
     return (
         <KomponentGruppe dynamisk>
-            <Alert variant={'warning'} inline>
-                {advarselTekst}
-            </Alert>
+            <Alert variant={'warning'}>{advarselTekst}</Alert>
             <TekstBlock block={brukPDFKontantstoette} />
         </KomponentGruppe>
     );
