@@ -3,8 +3,6 @@ import React from 'react';
 import { Alert } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
-import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
 import Steg from '../../Felleskomponenter/Steg/Steg';
@@ -32,7 +30,6 @@ const VelgBarn: React.FC = () => {
         barnSomSkalVæreMed,
         fjernBarn,
     } = useVelgBarn();
-    const { toggles } = useFeatureToggles();
 
     const barnFraRespons = søknad.søker.barn;
     const barnManueltLagtTil = søknad.barnRegistrertManuelt;
@@ -40,14 +37,7 @@ const VelgBarn: React.FC = () => {
     const finnesBarnUnder1År = barnSomSkalVæreMed.some(barn => barn.erUnder11Mnd);
 
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
-    const {
-        velgBarnTittel,
-        velgBarnGuide,
-        hvisOpplysningeneIkkeStemmer,
-        kanIkkeBestemmeRettUnder1Aar,
-    } = teksterForSteg;
-
-    const visGammelInfo = !toggles.VIS_GUIDE_I_STEG || !velgBarnGuide;
+    const { velgBarnTittel, velgBarnGuide, kanIkkeBestemmeRettUnder1Aar } = teksterForSteg;
 
     return (
         <>
@@ -63,14 +53,6 @@ const VelgBarn: React.FC = () => {
                     },
                 }}
             >
-                {visGammelInfo && (
-                    <Alert variant={'info'} inline>
-                        <TekstBlock
-                            block={hvisOpplysningeneIkkeStemmer}
-                            typografi={Typografi.BodyShort}
-                        />
-                    </Alert>
-                )}
                 {barn.map(barnet => (
                     <Barnekort
                         key={barnet.id}

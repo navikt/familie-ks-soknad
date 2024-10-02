@@ -9,7 +9,6 @@ import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import { useApp } from '../../../context/AppContext';
 import { useAppNavigation } from '../../../context/AppNavigationContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
 import { useSteg } from '../../../context/StegContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { RouteEnum } from '../../../typer/routes';
@@ -66,7 +65,6 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         erPåKvitteringsside,
     } = useSteg();
     const { komFra, settKomFra } = useAppNavigation();
-    const { toggles } = useFeatureToggles();
 
     const nesteRoute = hentNesteSteg();
     const forrigeRoute = hentForrigeSteg();
@@ -191,7 +189,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
                         </FormProgress>
                     </div>
                 )}
-                {toggles.VIS_GUIDE_I_STEG && guide && <GuidePanel poster>{guide}</GuidePanel>}
+                {guide && <GuidePanel poster>{guide}</GuidePanel>}
                 <form onSubmit={event => håndterGåVidere(event)} autoComplete="off">
                     <VStack gap="10">
                         {children}
