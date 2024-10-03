@@ -103,7 +103,6 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     skjema={skjema}
                 />
             </div>
-
             {skjema.felter.søkersSlektsforhold.erSynlig && (
                 <>
                     <SlektsforholdDropdown
@@ -132,7 +131,6 @@ const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     )}
                 </>
             )}
-
             {(skjema.felter.borMedAndreForelder.erSynlig ||
                 skjema.felter.borMedOmsorgsperson.erSynlig) && (
                 <>

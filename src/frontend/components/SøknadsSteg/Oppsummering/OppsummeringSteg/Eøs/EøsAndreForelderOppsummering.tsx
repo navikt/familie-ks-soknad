@@ -23,7 +23,6 @@ import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/Ut
 import IdNummerForAndreForelder from '../../../EøsSteg/Barn/IdNummerForAndreForelder';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 
-// TODO: Finn ut hvordan komponenten triggres og sjekk at spacing er riktig.
 const EøsAndreForelderOppsummering: React.FC<{
     barn: IBarnMedISøknad;
     andreForelder: IAndreForelder;
@@ -88,7 +87,6 @@ const EøsAndreForelderOppsummering: React.FC<{
                     }
                 />
             )}
-
             {jaNeiSpmOppsummering({
                 andreForelderDataKeySpm: andreForelderDataKeySpørsmål.arbeidNorge,
                 spørsmålstekst: andreForelderErDød
@@ -139,7 +137,6 @@ const EøsAndreForelderOppsummering: React.FC<{
                     barn={barn}
                 />
             ))}
-
             {jaNeiSpmOppsummering({
                 andreForelderDataKeySpm: andreForelderDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand,
                 spørsmålstekst: paagaaendeSoeknadYtelseAndreForelder.sporsmal,
@@ -158,7 +155,6 @@ const EøsAndreForelderOppsummering: React.FC<{
                     )}
                 />
             )}
-
             {jaNeiSpmOppsummering({
                 andreForelderDataKeySpm: andreForelderDataKeySpørsmål.kontantstøtteFraEøs,
                 spørsmålstekst: andreForelderErDød
