@@ -90,7 +90,7 @@ const OmBarnaDine: React.FC = () => {
                 visFeilmelding={skjema.visFeilmeldinger}
             >
                 {skjema.felter.erNoenAvBarnaFosterbarn.verdi === ESvar.JA && (
-                    <Alert variant={'warning'}>
+                    <Alert variant={'warning'} inline>
                         <TekstBlock block={fosterbarn.alert} typografi={Typografi.BodyShort} />
                     </Alert>
                 )}
@@ -108,7 +108,7 @@ const OmBarnaDine: React.FC = () => {
                 visFeilmelding={skjema.visFeilmeldinger}
             >
                 {skjema.felter.oppholderBarnSegIInstitusjon.verdi === ESvar.JA && (
-                    <Alert variant={'warning'}>
+                    <Alert variant={'warning'} inline>
                         <TekstBlock
                             block={institusjonKontantstoette.alert}
                             typografi={Typografi.BodyShort}

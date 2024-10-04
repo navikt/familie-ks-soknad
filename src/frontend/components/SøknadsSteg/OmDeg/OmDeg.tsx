@@ -49,7 +49,7 @@ const OmDeg: React.FC = () => {
                     spørsmålDokument={borPaaAdressen}
                 />
                 {skjema.felter.borPåRegistrertAdresse.verdi === ESvar.NEI && (
-                    <Alert variant={'warning'}>
+                    <Alert variant={'warning'} inline>
                         <TekstBlock block={borPaaAdressen.alert} typografi={Typografi.BodyShort} />
                     </Alert>
                 )}
@@ -72,7 +72,7 @@ const OmDeg: React.FC = () => {
                     spørsmålDokument={planleggerAaBoSammenhengende}
                 />
                 {skjema.felter.planleggerÅBoINorgeTolvMnd.verdi === ESvar.NEI && (
-                    <Alert variant={'warning'} aria-live="polite">
+                    <Alert variant={'warning'} inline aria-live="polite">
                         <TekstBlock
                             block={planleggerAaBoSammenhengende.alert}
                             typografi={Typografi.BodyLong}
@@ -87,7 +87,7 @@ const OmDeg: React.FC = () => {
                     spørsmålDokument={medlemAvFolketrygden}
                 />
                 {skjema.felter.yrkesaktivFemÅr.verdi === ESvar.NEI && (
-                    <Alert variant={'warning'} aria-live="polite">
+                    <Alert variant={'warning'} inline aria-live="polite">
                         <TekstBlock
                             block={medlemAvFolketrygden.alert}
                             typografi={Typografi.BodyShort}

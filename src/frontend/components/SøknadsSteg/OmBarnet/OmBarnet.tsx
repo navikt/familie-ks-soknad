@@ -125,7 +125,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                         flettefelter={{ barnetsNavn }}
                     />
                     {borFastMedSøker.verdi === ESvar.NEI && !erEøsTrigget() && (
-                        <Alert variant={'warning'}>
+                        <Alert variant={'warning'} inline>
                             <TekstBlock block={borBarnFastSammenMedDeg.alert} />
                         </Alert>
                     )}

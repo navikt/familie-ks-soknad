@@ -64,7 +64,7 @@ const VelgBarn: React.FC = () => {
                 ))}
                 <NyttBarnKort onLeggTilBarn={åpneLeggTilBarnModal} />
                 {finnesBarnUnder1År && (
-                    <Alert variant={'warning'}>
+                    <Alert variant={'warning'} inline>
                         <TekstBlock block={kanIkkeBestemmeRettUnder1Aar} />
                     </Alert>
                 )}
