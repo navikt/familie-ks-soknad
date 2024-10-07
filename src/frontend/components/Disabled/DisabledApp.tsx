@@ -40,16 +40,18 @@ export const DisabledApp: React.FC = () => {
         tekster().FELLES.vedlikeholdsarbeid;
 
     return (
-        <VStack gap="12" marginBlock="32">
-            <GuidePanel>
-                <TekstBlock block={vedlikeholdVeileder} />
-            </GuidePanel>
-            <div>
-                <Heading level="1" size="large" spacing>
-                    {plainTekst(vedlikeholdTittel)}
-                </Heading>
-                <TekstBlock block={vedlikeholdBroedtekst} />
-            </div>
-        </VStack>
+        <main>
+            <VStack gap="12" marginBlock="32">
+                <GuidePanel>
+                    <TekstBlock block={vedlikeholdVeileder} />
+                </GuidePanel>
+                <div>
+                    <Heading level="1" size="large" spacing>
+                        {plainTekst(vedlikeholdTittel)}
+                    </Heading>
+                    <TekstBlock block={vedlikeholdBroedtekst} />
+                </div>
+            </VStack>
+        </main>
     );
 };
