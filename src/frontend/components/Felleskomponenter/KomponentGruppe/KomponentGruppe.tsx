@@ -9,12 +9,13 @@ interface Props {
 }
 
 function KomponentGruppe({ dynamisk = false, children }: Props) {
+    if (!children) {
+        return null;
+    }
     return (
-        children && (
-            <VStack gap="4" aria-live={dynamisk ? 'polite' : 'off'}>
-                {children}
-            </VStack>
-        )
+        <VStack gap="4" aria-live={dynamisk ? 'polite' : 'off'}>
+            {children}
+        </VStack>
     );
 }
 
