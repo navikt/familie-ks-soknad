@@ -149,19 +149,17 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
             <InnholdContainer>
                 {nyesteNåværendeRoute !== RouteEnum.Kvittering && (
                     <div>
-                        <div>
-                            <Link
-                                href={forrigeRoute.path}
-                                variant="action"
-                                onClick={event => {
-                                    event.preventDefault();
-                                    håndterTilbake();
-                                }}
-                            >
-                                <ArrowLeftIcon aria-hidden />
-                                {plainTekst(tilbakeKnapp)}
-                            </Link>
-                        </div>
+                        <Link
+                            href={forrigeRoute.path}
+                            variant="action"
+                            onClick={event => {
+                                event.preventDefault();
+                                håndterTilbake();
+                            }}
+                        >
+                            <ArrowLeftIcon aria-hidden />
+                            {plainTekst(tilbakeKnapp)}
+                        </Link>
                         <Box paddingBlock="6 5">
                             <Heading level="2" size={'large'}>
                                 {tittel}
