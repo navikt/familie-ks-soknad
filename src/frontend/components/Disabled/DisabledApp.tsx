@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { GuidePanel, Heading, VStack } from '@navikt/ds-react';
+import { GuidePanel, Heading, Page, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
@@ -49,17 +49,19 @@ export const DisabledApp: React.FC = () => {
 
     return (
         <main>
-            <VStack gap="12" marginBlock="32">
-                <GuidePanel>
-                    <TekstBlock block={vedlikeholdVeileder} />
-                </GuidePanel>
-                <div>
-                    <Heading level="1" size="large" spacing>
-                        {plainTekst(vedlikeholdTittel)}
-                    </Heading>
-                    <TekstBlock block={vedlikeholdBroedtekst} />
-                </div>
-            </VStack>
+            <Page.Block width="text" gutters>
+                <VStack gap="12" marginBlock="32">
+                    <GuidePanel>
+                        <TekstBlock block={vedlikeholdVeileder} />
+                    </GuidePanel>
+                    <div>
+                        <Heading level="1" size="large" spacing>
+                            {plainTekst(vedlikeholdTittel)}
+                        </Heading>
+                        <TekstBlock block={vedlikeholdBroedtekst} />
+                    </div>
+                </VStack>
+            </Page.Block>
         </main>
     );
 };
