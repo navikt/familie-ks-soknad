@@ -89,7 +89,7 @@ const Oppfølgningsspørsmål: React.FC<{
                         barn={barn}
                     />
                     {skjema.felter.planleggerÅBoINorge12Mnd.erSynlig && (
-                        <KomponentGruppe>
+                        <KomponentGruppe dynamisk>
                             <JaNeiSpm
                                 skjema={skjema}
                                 felt={skjema.felter.planleggerÅBoINorge12Mnd}
