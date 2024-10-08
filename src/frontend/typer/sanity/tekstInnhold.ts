@@ -63,7 +63,6 @@ export interface IFellesTekstInnhold {
     frittståendeOrd: IFrittståendeOrdTekstinnhold;
     navigasjon: INavigasjonTekstinnhold;
     formateringsfeilmeldinger: IFormateringsfeilmeldingerTekstinnhold;
-    banner: LocaleRecordBlock;
     vedlikeholdsarbeid: IVedlikeholdsarbeidTekstinnhold;
     kanIkkeBrukeSoeknad: IKanIkkeBrukeSoeknadTekstinnhold;
     hjelpeteksterForInput: IHjelpeteksterForInputTekstInnhold;

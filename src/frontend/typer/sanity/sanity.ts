@@ -41,7 +41,6 @@ export const frittståendeOrdPrefix = 'FRITTSTAENDEORD';
 export const modalPrefix = 'MODAL';
 export const navigasjonPrefix = 'NAVIGASJON';
 export const formateringsfeilmeldingerPrefix = 'FORMATERINGSFEILMELDINGER';
-export const bannerPrefix = 'BANNER';
 export const vedlikeholdsarbeidPrefix = 'VEDLIKEHOLDSARBEID';
 export const kanIkkeBrukeSoeknadPrefix = 'KAN_IKKE_BRUKE_SOKNAD';
 export const hjelpeteksterForInputPrefix = 'HJELPETEKSTER_FOR_INPUT';
