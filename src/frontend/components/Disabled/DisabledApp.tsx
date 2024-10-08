@@ -17,11 +17,19 @@ export const DisabledApp: React.FC = () => {
     const { lasterRessurser } = useLastRessurserContext();
 
     if (lasterRessurser()) {
-        return <SystemetLaster />;
+        return (
+            <main>
+                <SystemetLaster />
+            </main>
+        );
     }
 
     if (teksterRessurs.status !== RessursStatus.SUKSESS) {
-        return <Feilside />;
+        return (
+            <main>
+                <Feilside />
+            </main>
+        );
     }
 
     useEffect(() => {
