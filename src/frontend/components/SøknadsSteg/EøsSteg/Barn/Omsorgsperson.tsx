@@ -43,6 +43,7 @@ interface OmsorgspersonProps {
         fjernKontantstøttePeriodeOmsorgsperson: (periode: IEøsKontantstøttePeriode) => void;
     };
 }
+
 const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunksjoner }) => {
     const { plainTekst, tekster } = useApp();
     const eøsForBarnTekster = tekster().EØS_FOR_BARN;
@@ -60,8 +61,8 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
         leggTilKontantstøttePeriodeOmsorgsperson,
         fjernKontantstøttePeriodeOmsorgsperson,
     } = periodeFunksjoner;
-
     const flettefelter = { barnetsNavn: barn.navn };
+
     return (
         <SkjemaFieldset
             legend={plainTekst(eøsForBarnTekster.oppgittIkkeBorFastSammenMedDeg, flettefelter)}
