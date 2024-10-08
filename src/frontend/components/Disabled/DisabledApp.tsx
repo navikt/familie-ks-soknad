@@ -27,7 +27,9 @@ export const DisabledApp: React.FC = () => {
     if (teksterRessurs.status !== RessursStatus.SUKSESS) {
         return (
             <main>
-                <Feilside />
+                <Page.Block width="text" gutters>
+                    <Feilside />
+                </Page.Block>
             </main>
         );
     }
