@@ -18,7 +18,6 @@ import {
 import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
 import StyledDropdown from '../Dropdowns/StyledDropdown';
-import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { SkjemaCheckbox } from '../SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
@@ -115,61 +114,55 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
         >
-            <KomponentGruppe inline>
-                <div>
-                    <StyledDropdown<EUtenlandsoppholdÅrsak | ''>
-                        {...utenlandsoppholdÅrsak.hentNavInputProps(skjema.visFeilmeldinger)}
-                        felt={utenlandsoppholdÅrsak}
-                        label={
-                            <TekstBlock block={teksterForPersonType.periodeBeskrivelse.sporsmal} />
-                        }
-                        skjema={skjema}
-                        placeholder={plainTekst(teksterForPersonType.valgalternativPlaceholder)}
-                    >
-                        {Object.keys(EUtenlandsoppholdÅrsak).map((årsak, number) => (
-                            <option key={number} value={årsak}>
-                                {plainTekst(
-                                    hentUtenlandsoppholdÅrsak(
-                                        årsak as EUtenlandsoppholdÅrsak,
-                                        teksterForPersonType
-                                    )
-                                )}
-                            </option>
-                        ))}
-                    </StyledDropdown>
-                </div>
-                <LandDropdown
-                    felt={oppholdsland}
+            <div>
+                <StyledDropdown<EUtenlandsoppholdÅrsak | ''>
+                    {...utenlandsoppholdÅrsak.hentNavInputProps(skjema.visFeilmeldinger)}
+                    felt={utenlandsoppholdÅrsak}
+                    label={<TekstBlock block={teksterForPersonType.periodeBeskrivelse.sporsmal} />}
                     skjema={skjema}
+                    placeholder={plainTekst(teksterForPersonType.valgalternativPlaceholder)}
+                >
+                    {Object.keys(EUtenlandsoppholdÅrsak).map((årsak, number) => (
+                        <option key={number} value={årsak}>
+                            {plainTekst(
+                                hentUtenlandsoppholdÅrsak(
+                                    årsak as EUtenlandsoppholdÅrsak,
+                                    teksterForPersonType
+                                )
+                            )}
+                        </option>
+                    ))}
+                </StyledDropdown>
+            </div>
+            <LandDropdown
+                felt={oppholdsland}
+                skjema={skjema}
+                label={
+                    <TekstBlock
+                        block={hentLandSpørsmål(utenlandsoppholdÅrsak.verdi, teksterForPersonType)}
+                        flettefelter={{ barnetsNavn: barn?.navn }}
+                    />
+                }
+                dynamisk
+                ekskluderNorge
+            />
+            {oppholdslandFraDato.erSynlig && (
+                <Datovelger
+                    felt={oppholdslandFraDato}
                     label={
                         <TekstBlock
-                            block={hentLandSpørsmål(
+                            block={hentFraDatoSpørsmål(
                                 utenlandsoppholdÅrsak.verdi,
                                 teksterForPersonType
                             )}
-                            flettefelter={{ barnetsNavn: barn?.navn }}
                         />
                     }
-                    dynamisk
-                    ekskluderNorge
+                    skjema={skjema}
+                    avgrensMaxDato={hentMaxAvgrensningPåFraDato(utenlandsoppholdÅrsak.verdi)}
                 />
-
-                {oppholdslandFraDato.erSynlig && (
-                    <Datovelger
-                        felt={oppholdslandFraDato}
-                        label={
-                            <TekstBlock
-                                block={hentFraDatoSpørsmål(
-                                    utenlandsoppholdÅrsak.verdi,
-                                    teksterForPersonType
-                                )}
-                            />
-                        }
-                        skjema={skjema}
-                        avgrensMaxDato={hentMaxAvgrensningPåFraDato(utenlandsoppholdÅrsak.verdi)}
-                    />
-                )}
-                <>
+            )}
+            {(oppholdslandTilDato.erSynlig || oppholdslandTilDatoUkjent.erSynlig) && (
+                <div>
                     {oppholdslandTilDato.erSynlig && (
                         <Datovelger
                             felt={oppholdslandTilDato}
@@ -202,24 +195,23 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                             label={plainTekst(teksterForPersonType.sluttdatoFremtid.checkboxLabel)}
                         />
                     )}
-                </>
-                {adresse.erSynlig && (
-                    <>
-                        <SkjemaFeltInput
-                            felt={adresse}
-                            visFeilmeldinger={skjema.visFeilmeldinger}
-                            label={plainTekst(adresseTekst?.sporsmal)}
-                            disabled={adresseUkjent.verdi === ESvar.JA}
-                            description={plainTekst(adresseTekst?.beskrivelse)}
-                        />
-
-                        <SkjemaCheckbox
-                            felt={adresseUkjent}
-                            label={plainTekst(adresseTekst?.checkboxLabel)}
-                        />
-                    </>
-                )}
-            </KomponentGruppe>
+                </div>
+            )}
+            {adresse.erSynlig && (
+                <div>
+                    <SkjemaFeltInput
+                        felt={adresse}
+                        visFeilmeldinger={skjema.visFeilmeldinger}
+                        label={plainTekst(adresseTekst?.sporsmal)}
+                        disabled={adresseUkjent.verdi === ESvar.JA}
+                        description={plainTekst(adresseTekst?.beskrivelse)}
+                    />
+                    <SkjemaCheckbox
+                        felt={adresseUkjent}
+                        label={plainTekst(adresseTekst?.checkboxLabel)}
+                    />
+                </div>
+            )}
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>
     );

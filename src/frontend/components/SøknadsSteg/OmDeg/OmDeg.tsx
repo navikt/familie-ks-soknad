@@ -41,36 +41,30 @@ const OmDeg: React.FC = () => {
                 settSøknadsdataCallback: oppdaterSøknad,
             }}
         >
-            <KomponentGruppe>
-                <Personopplysninger />
-            </KomponentGruppe>
-
+            <Personopplysninger />
             <KomponentGruppe>
                 <JaNeiSpm
                     skjema={skjema}
                     felt={skjema.felter.borPåRegistrertAdresse}
                     spørsmålDokument={borPaaAdressen}
                 />
-
                 {skjema.felter.borPåRegistrertAdresse.verdi === ESvar.NEI && (
                     <Alert variant={'warning'} inline>
                         <TekstBlock block={borPaaAdressen.alert} typografi={Typografi.BodyShort} />
                     </Alert>
                 )}
             </KomponentGruppe>
-            <KomponentGruppe>
-                <JaNeiSpm
-                    skjema={skjema}
-                    felt={skjema.felter.værtINorgeITolvMåneder}
-                    spørsmålDokument={oppholdtDegSammenhengende}
-                    tilleggsinfo={
-                        <TekstBlock
-                            block={oppholdtDegSammenhengende.alert}
-                            typografi={Typografi.BodyShort}
-                        />
-                    }
-                />
-            </KomponentGruppe>
+            <JaNeiSpm
+                skjema={skjema}
+                felt={skjema.felter.værtINorgeITolvMåneder}
+                spørsmålDokument={oppholdtDegSammenhengende}
+                tilleggsinfo={
+                    <TekstBlock
+                        block={oppholdtDegSammenhengende.alert}
+                        typografi={Typografi.BodyShort}
+                    />
+                }
+            />
             <KomponentGruppe>
                 <JaNeiSpm
                     skjema={skjema}

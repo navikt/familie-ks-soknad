@@ -1,29 +1,28 @@
 import React, { ReactNode } from 'react';
 
-import styled from 'styled-components';
+import { Box, Heading, VStack } from '@navikt/ds-react';
 
-import { device } from '../../../Theme';
+import { useApp } from '../../../context/AppContext';
 
 interface Props {
     className?: string;
     children?: ReactNode;
 }
 
-const Container = styled.div`
-    max-width: var(--innhold-bredde);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 2rem auto 4rem auto;
-
-    @media all and ${device.tablet} {
-        max-width: 100%;
-        margin: 2rem 2rem 4rem 2rem;
-    }
-`;
-
 function InnholdContainer({ className, children }: Props) {
-    return <Container className={className}>{children}</Container>;
+    const { tekster, plainTekst } = useApp();
+    const forsidetekster = tekster().FORSIDE;
+
+    return (
+        <Box marginBlock="10 16" className={className}>
+            <VStack gap="10">
+                <Heading level="1" size="xlarge">
+                    {plainTekst(forsidetekster.soeknadstittel)}
+                </Heading>
+                {children}
+            </VStack>
+        </Box>
+    );
 }
 
 export default InnholdContainer;

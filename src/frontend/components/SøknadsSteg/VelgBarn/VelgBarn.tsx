@@ -1,8 +1,6 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
-import { Alert, VStack } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -14,12 +12,7 @@ import Barnekort from './Barnekort/Barnekort';
 import { IVelgBarnTekstinnhold } from './innholdTyper';
 import LeggTilBarnModal from './LeggTilBarn/LeggTilBarnModal';
 import { NyttBarnKort } from './LeggTilBarn/NyttBarnKort';
-import { VelgBarnSpørsmålId } from './spørsmål';
 import { useVelgBarn } from './useVelgBarn';
-
-const StyledWarningAlert = styled(Alert)`
-    margin-top: 1.5rem;
-`;
 
 const VelgBarn: React.FC = () => {
     const { søknad, tekster } = useApp();
@@ -60,23 +53,20 @@ const VelgBarn: React.FC = () => {
                     },
                 }}
             >
-                <VStack id={VelgBarnSpørsmålId.velgBarn} className={'BarnekortStack'} gap="12">
-                    {barn.map(barnet => (
-                        <Barnekort
-                            key={barnet.id}
-                            barn={barnet}
-                            velgBarnCallback={håndterVelgBarnToggle}
-                            barnSomSkalVæreMed={barnSomSkalVæreMed}
-                            fjernBarnCallback={fjernBarn}
-                        />
-                    ))}
-                    <NyttBarnKort onLeggTilBarn={åpneLeggTilBarnModal} />
-                </VStack>
-
+                {barn.map(barnet => (
+                    <Barnekort
+                        key={barnet.id}
+                        barn={barnet}
+                        velgBarnCallback={håndterVelgBarnToggle}
+                        barnSomSkalVæreMed={barnSomSkalVæreMed}
+                        fjernBarnCallback={fjernBarn}
+                    />
+                ))}
+                <NyttBarnKort onLeggTilBarn={åpneLeggTilBarnModal} />
                 {finnesBarnUnder1År && (
-                    <StyledWarningAlert inline variant={'warning'}>
+                    <Alert variant={'warning'} inline>
                         <TekstBlock block={kanIkkeBestemmeRettUnder1Aar} />
-                    </StyledWarningAlert>
+                    </Alert>
                 )}
             </Steg>
             {erLeggTilBarnModalÅpen && (

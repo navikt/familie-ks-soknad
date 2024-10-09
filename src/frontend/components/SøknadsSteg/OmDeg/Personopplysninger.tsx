@@ -9,7 +9,6 @@ import { useSpråk } from '../../../context/SpråkContext';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { genererAdresseVisning } from '../../../utils/adresse';
 import { landkodeTilSpråk, sivilstandTilSanitySivilstandApiKey } from '../../../utils/språk';
-import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 
 export const Personopplysninger: React.FC = () => {
     const { valgtLocale } = useSpråk();
@@ -24,12 +23,12 @@ export const Personopplysninger: React.FC = () => {
 
     return (
         <>
-            <Informasjonsbolk>
+            <div>
                 <Label>{plainTekst(ident)}</Label>
                 <BodyShort>{søker.ident}</BodyShort>
-            </Informasjonsbolk>
+            </div>
 
-            <Informasjonsbolk>
+            <div>
                 <Label>{plainTekst(statsborgerskap)}</Label>
                 <BodyShort>
                     {søker.statsborgerskap
@@ -38,21 +37,21 @@ export const Personopplysninger: React.FC = () => {
                         )
                         .join(', ')}
                 </BodyShort>
-            </Informasjonsbolk>
+            </div>
 
-            <Informasjonsbolk>
+            <div>
                 <Label>{plainTekst(sivilstatus)}</Label>
                 <BodyShort>
                     {plainTekst(
                         frittståendeOrd[sivilstandTilSanitySivilstandApiKey(søker.sivilstand.type)]
                     )}
                 </BodyShort>
-            </Informasjonsbolk>
+            </div>
 
-            <Informasjonsbolk>
+            <div>
                 <Label>{plainTekst(adresse)}</Label>
                 {genererAdresseVisning(søker, tekster().OM_DEG, plainTekst)}
-            </Informasjonsbolk>
+            </div>
         </>
     );
 };

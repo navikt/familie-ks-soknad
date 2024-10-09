@@ -58,58 +58,51 @@ const DinLivssituasjon: React.FC = () => {
                 },
             ]}
         >
+            <JaNeiSpm
+                skjema={skjema}
+                felt={skjema.felter.erAsylsøker}
+                spørsmålDokument={asylsoeker}
+            />
+            <Arbeidsperiode
+                skjema={skjema}
+                leggTilArbeidsperiode={leggTilArbeidsperiode}
+                fjernArbeidsperiode={fjernArbeidsperiode}
+                gjelderUtlandet={true}
+                arbeiderEllerArbeidetFelt={skjema.felter.arbeidIUtlandet}
+                registrerteArbeidsperioder={skjema.felter.registrerteArbeidsperioder}
+                personType={PersonType.søker}
+            />
             <KomponentGruppe>
                 <JaNeiSpm
                     skjema={skjema}
-                    felt={skjema.felter.erAsylsøker}
-                    spørsmålDokument={asylsoeker}
-                />
-
-                <Arbeidsperiode
-                    skjema={skjema}
-                    leggTilArbeidsperiode={leggTilArbeidsperiode}
-                    fjernArbeidsperiode={fjernArbeidsperiode}
-                    gjelderUtlandet={true}
-                    arbeiderEllerArbeidetFelt={skjema.felter.arbeidIUtlandet}
-                    registrerteArbeidsperioder={skjema.felter.registrerteArbeidsperioder}
-                    personType={PersonType.søker}
-                />
-
-                <>
-                    <JaNeiSpm
-                        skjema={skjema}
-                        felt={skjema.felter.utenlandsoppholdUtenArbeid}
-                        spørsmålDokument={utenlandsoppholdUtenArbeid}
-                        tilleggsinfo={
-                            <TekstBlock
-                                block={utenlandsoppholdUtenArbeid.alert}
-                                typografi={Typografi.BodyShort}
-                            />
-                        }
-                    />
-                    {skjema.felter.utenlandsoppholdUtenArbeid.verdi === ESvar.JA && (
-                        <Utenlandsperiode
-                            personType={PersonType.søker}
-                            skjema={skjema}
-                            leggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                            fjernUtenlandsperiode={fjernUtenlandsperiode}
-                            registrerteUtenlandsperioder={
-                                skjema.felter.registrerteUtenlandsperioder
-                            }
+                    felt={skjema.felter.utenlandsoppholdUtenArbeid}
+                    spørsmålDokument={utenlandsoppholdUtenArbeid}
+                    tilleggsinfo={
+                        <TekstBlock
+                            block={utenlandsoppholdUtenArbeid.alert}
+                            typografi={Typografi.BodyShort}
                         />
-                    )}
-                </>
-
-                <Pensjonsperiode
-                    skjema={skjema}
-                    mottarEllerMottattPensjonFelt={skjema.felter.mottarUtenlandspensjon}
-                    registrertePensjonsperioder={skjema.felter.registrertePensjonsperioder}
-                    leggTilPensjonsperiode={leggTilPensjonsperiode}
-                    fjernPensjonsperiode={fjernPensjonsperiode}
-                    gjelderUtlandet={true}
-                    personType={PersonType.søker}
+                    }
                 />
+                {skjema.felter.utenlandsoppholdUtenArbeid.verdi === ESvar.JA && (
+                    <Utenlandsperiode
+                        personType={PersonType.søker}
+                        skjema={skjema}
+                        leggTilUtenlandsperiode={leggTilUtenlandsperiode}
+                        fjernUtenlandsperiode={fjernUtenlandsperiode}
+                        registrerteUtenlandsperioder={skjema.felter.registrerteUtenlandsperioder}
+                    />
+                )}
             </KomponentGruppe>
+            <Pensjonsperiode
+                skjema={skjema}
+                mottarEllerMottattPensjonFelt={skjema.felter.mottarUtenlandspensjon}
+                registrertePensjonsperioder={skjema.felter.registrertePensjonsperioder}
+                leggTilPensjonsperiode={leggTilPensjonsperiode}
+                fjernPensjonsperiode={fjernPensjonsperiode}
+                gjelderUtlandet={true}
+                personType={PersonType.søker}
+            />
         </Steg>
     );
 };

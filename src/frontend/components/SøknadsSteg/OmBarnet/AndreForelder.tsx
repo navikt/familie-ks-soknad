@@ -65,175 +65,146 @@ const AndreForelder: React.FC<{
 
     return (
         <SkjemaFieldset legend={plainTekst(barnetsAndreForelder)}>
-            <KomponentGruppe>
-                {skjema.felter.sammeForelderSomAnnetBarn.erSynlig && (
-                    <SammeSomAnnetBarnRadio
-                        andreBarnSomErFyltUt={andreBarnSomErFyltUt}
-                        skjema={skjema}
-                        barnetsNavn={barn.navn}
-                    />
-                )}
-                {!skjema.felter.sammeForelderSomAnnetBarn.erSynlig ||
-                skjema.felter.sammeForelderSomAnnetBarn.verdi ===
-                    AlternativtSvarForInput.ANNEN_FORELDER ? (
-                    <>
-                        <KomponentGruppe>
-                            <div>
-                                <SkjemaFeltInput
-                                    felt={skjema.felter.andreForelderNavn}
-                                    visFeilmeldinger={skjema.visFeilmeldinger}
-                                    label={<TekstBlock block={navnAndreForelder.sporsmal} />}
-                                    disabled={
-                                        skjema.felter.andreForelderKanIkkeGiOpplysninger.verdi ===
-                                        ESvar.JA
-                                    }
-                                />
-                                <SkjemaCheckbox
-                                    label={plainTekst(navnAndreForelder.checkboxLabel)}
-                                    felt={skjema.felter.andreForelderKanIkkeGiOpplysninger}
-                                />
-                            </div>
-                            {skjema.felter.andreForelderFnr.erSynlig && (
-                                <KomponentGruppe inline dynamisk>
-                                    <>
-                                        <SkjemaFeltInput
-                                            felt={skjema.felter.andreForelderFnr}
-                                            visFeilmeldinger={skjema.visFeilmeldinger}
-                                            label={
-                                                <TekstBlock
-                                                    block={
-                                                        foedselsnummerDnummerAndreForelder.sporsmal
-                                                    }
-                                                />
-                                            }
-                                            disabled={
-                                                skjema.felter.andreForelderFnrUkjent.verdi ===
-                                                ESvar.JA
-                                            }
-                                        />
-                                        <SkjemaCheckbox
-                                            label={plainTekst(
-                                                foedselsnummerDnummerAndreForelder.checkboxLabel
-                                            )}
-                                            felt={skjema.felter.andreForelderFnrUkjent}
-                                        />
-                                    </>
-                                </KomponentGruppe>
-                            )}
-                            {skjema.felter.andreForelderFødselsdato.erSynlig && (
-                                <KomponentGruppe inline dynamisk>
-                                    <>
-                                        <Datovelger
-                                            felt={skjema.felter.andreForelderFødselsdato}
-                                            skjema={skjema}
-                                            label={
-                                                <TekstBlock
-                                                    block={foedselsdatoAndreForelder.sporsmal}
-                                                />
-                                            }
-                                            avgrensMaxDato={dagensDato()}
-                                            disabled={
-                                                skjema.felter.andreForelderFødselsdatoUkjent
-                                                    .verdi === ESvar.JA
-                                            }
-                                            strategy={'absolute'}
-                                        />
-                                        <SkjemaCheckbox
-                                            label={plainTekst(
-                                                foedselsdatoAndreForelder.checkboxLabel
-                                            )}
-                                            felt={skjema.felter.andreForelderFødselsdatoUkjent}
-                                        />
-                                    </>
-                                </KomponentGruppe>
-                            )}
-                        </KomponentGruppe>
-                        {skjema.felter.andreForelderYrkesaktivFemÅr.erSynlig && (
+            {skjema.felter.sammeForelderSomAnnetBarn.erSynlig && (
+                <SammeSomAnnetBarnRadio
+                    andreBarnSomErFyltUt={andreBarnSomErFyltUt}
+                    skjema={skjema}
+                    barnetsNavn={barn.navn}
+                />
+            )}
+            {!skjema.felter.sammeForelderSomAnnetBarn.erSynlig ||
+            skjema.felter.sammeForelderSomAnnetBarn.verdi ===
+                AlternativtSvarForInput.ANNEN_FORELDER ? (
+                <>
+                    <div>
+                        <SkjemaFeltInput
+                            felt={skjema.felter.andreForelderNavn}
+                            visFeilmeldinger={skjema.visFeilmeldinger}
+                            label={<TekstBlock block={navnAndreForelder.sporsmal} />}
+                            disabled={
+                                skjema.felter.andreForelderKanIkkeGiOpplysninger.verdi === ESvar.JA
+                            }
+                        />
+                        <SkjemaCheckbox
+                            label={plainTekst(navnAndreForelder.checkboxLabel)}
+                            felt={skjema.felter.andreForelderKanIkkeGiOpplysninger}
+                        />
+                    </div>
+                    {skjema.felter.andreForelderFnr.erSynlig && (
+                        <div>
+                            <SkjemaFeltInput
+                                felt={skjema.felter.andreForelderFnr}
+                                visFeilmeldinger={skjema.visFeilmeldinger}
+                                label={
+                                    <TekstBlock
+                                        block={foedselsnummerDnummerAndreForelder.sporsmal}
+                                    />
+                                }
+                                disabled={skjema.felter.andreForelderFnrUkjent.verdi === ESvar.JA}
+                            />
+                            <SkjemaCheckbox
+                                label={plainTekst(foedselsnummerDnummerAndreForelder.checkboxLabel)}
+                                felt={skjema.felter.andreForelderFnrUkjent}
+                            />
+                        </div>
+                    )}
+                    {skjema.felter.andreForelderFødselsdato.erSynlig && (
+                        <div>
+                            <Datovelger
+                                felt={skjema.felter.andreForelderFødselsdato}
+                                skjema={skjema}
+                                label={<TekstBlock block={foedselsdatoAndreForelder.sporsmal} />}
+                                avgrensMaxDato={dagensDato()}
+                                disabled={
+                                    skjema.felter.andreForelderFødselsdatoUkjent.verdi === ESvar.JA
+                                }
+                                strategy={'absolute'}
+                            />
+                            <SkjemaCheckbox
+                                label={plainTekst(foedselsdatoAndreForelder.checkboxLabel)}
+                                felt={skjema.felter.andreForelderFødselsdatoUkjent}
+                            />
+                        </div>
+                    )}
+                    {skjema.felter.andreForelderYrkesaktivFemÅr.erSynlig && (
+                        <JaNeiSpm
+                            skjema={skjema}
+                            felt={skjema.felter.andreForelderYrkesaktivFemÅr}
+                            spørsmålDokument={medlemAvFolktetrygdenAndreForelder}
+                            flettefelter={{ barnetsNavn: barn.navn }}
+                        />
+                    )}
+                    {skjema.felter.andreForelderArbeidUtlandet.erSynlig && (
+                        <>
+                            <Arbeidsperiode
+                                skjema={skjema}
+                                arbeiderEllerArbeidetFelt={
+                                    skjema.felter.andreForelderArbeidUtlandet
+                                }
+                                leggTilArbeidsperiode={leggTilArbeidsperiode}
+                                fjernArbeidsperiode={fjernArbeidsperiode}
+                                gjelderUtlandet
+                                personType={PersonType.andreForelder}
+                                barn={barn}
+                                erDød={andreForelderErDød}
+                                registrerteArbeidsperioder={
+                                    skjema.felter.andreForelderArbeidsperioderUtland
+                                }
+                            />
                             <KomponentGruppe>
                                 <JaNeiSpm
                                     skjema={skjema}
-                                    felt={skjema.felter.andreForelderYrkesaktivFemÅr}
-                                    spørsmålDokument={medlemAvFolktetrygdenAndreForelder}
-                                    flettefelter={{ barnetsNavn: barn.navn }}
-                                />
-                            </KomponentGruppe>
-                        )}
-                        {skjema.felter.andreForelderArbeidUtlandet.erSynlig && (
-                            <KomponentGruppe>
-                                <Arbeidsperiode
-                                    skjema={skjema}
-                                    arbeiderEllerArbeidetFelt={
-                                        skjema.felter.andreForelderArbeidUtlandet
-                                    }
-                                    leggTilArbeidsperiode={leggTilArbeidsperiode}
-                                    fjernArbeidsperiode={fjernArbeidsperiode}
-                                    gjelderUtlandet
-                                    personType={PersonType.andreForelder}
-                                    barn={barn}
-                                    erDød={andreForelderErDød}
-                                    registrerteArbeidsperioder={
-                                        skjema.felter.andreForelderArbeidsperioderUtland
-                                    }
-                                />
-
-                                <>
-                                    <JaNeiSpm
-                                        skjema={skjema}
-                                        felt={skjema.felter.andreForelderUtenlandsoppholdUtenArbeid}
-                                        spørsmålDokument={utenlandsoppholdUtenArbeidAndreForelder}
-                                        tilleggsinfo={
-                                            <TekstBlock
-                                                block={
-                                                    utenlandsoppholdUtenArbeidAndreForelder.alert
-                                                }
-                                                typografi={Typografi.BodyShort}
-                                            />
-                                        }
-                                        flettefelter={{ barnetsNavn: barn?.navn }}
-                                        inkluderVetIkke
-                                    />
-                                    {skjema.felter.andreForelderUtenlandsoppholdUtenArbeid.verdi ===
-                                        ESvar.JA && (
-                                        <Utenlandsperiode
-                                            personType={PersonType.andreForelder}
-                                            skjema={skjema}
-                                            leggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                                            fjernUtenlandsperiode={fjernUtenlandsperiode}
-                                            registrerteUtenlandsperioder={
-                                                skjema.felter.andreForelderUtenlandsperioder
-                                            }
-                                            barn={barn}
+                                    felt={skjema.felter.andreForelderUtenlandsoppholdUtenArbeid}
+                                    spørsmålDokument={utenlandsoppholdUtenArbeidAndreForelder}
+                                    tilleggsinfo={
+                                        <TekstBlock
+                                            block={utenlandsoppholdUtenArbeidAndreForelder.alert}
+                                            typografi={Typografi.BodyShort}
                                         />
-                                    )}
-                                </>
-
-                                <Pensjonsperiode
-                                    skjema={skjema}
-                                    mottarEllerMottattPensjonFelt={
-                                        skjema.felter.andreForelderPensjonUtland
                                     }
-                                    leggTilPensjonsperiode={leggTilPensjonsperiode}
-                                    fjernPensjonsperiode={fjernPensjonsperiode}
-                                    gjelderUtlandet={true}
-                                    personType={PersonType.andreForelder}
-                                    erDød={andreForelderErDød}
-                                    barn={barn}
-                                    registrertePensjonsperioder={
-                                        skjema.felter.andreForelderPensjonsperioderUtland
-                                    }
+                                    flettefelter={{ barnetsNavn: barn?.navn }}
+                                    inkluderVetIkke
                                 />
+                                {skjema.felter.andreForelderUtenlandsoppholdUtenArbeid.verdi ===
+                                    ESvar.JA && (
+                                    <Utenlandsperiode
+                                        personType={PersonType.andreForelder}
+                                        skjema={skjema}
+                                        leggTilUtenlandsperiode={leggTilUtenlandsperiode}
+                                        fjernUtenlandsperiode={fjernUtenlandsperiode}
+                                        registrerteUtenlandsperioder={
+                                            skjema.felter.andreForelderUtenlandsperioder
+                                        }
+                                        barn={barn}
+                                    />
+                                )}
                             </KomponentGruppe>
-                        )}
-                    </>
-                ) : (
-                    barnMedSammeForelder?.andreForelder && (
-                        <AndreForelderOppsummering
-                            barn={barn}
-                            andreForelder={barnMedSammeForelder.andreForelder}
-                        />
-                    )
-                )}
-            </KomponentGruppe>
+                            <Pensjonsperiode
+                                skjema={skjema}
+                                mottarEllerMottattPensjonFelt={
+                                    skjema.felter.andreForelderPensjonUtland
+                                }
+                                leggTilPensjonsperiode={leggTilPensjonsperiode}
+                                fjernPensjonsperiode={fjernPensjonsperiode}
+                                gjelderUtlandet={true}
+                                personType={PersonType.andreForelder}
+                                erDød={andreForelderErDød}
+                                barn={barn}
+                                registrertePensjonsperioder={
+                                    skjema.felter.andreForelderPensjonsperioderUtland
+                                }
+                            />
+                        </>
+                    )}
+                </>
+            ) : (
+                barnMedSammeForelder?.andreForelder && (
+                    <AndreForelderOppsummering
+                        barn={barn}
+                        andreForelder={barnMedSammeForelder.andreForelder}
+                    />
+                )
+            )}
         </SkjemaFieldset>
     );
 };
