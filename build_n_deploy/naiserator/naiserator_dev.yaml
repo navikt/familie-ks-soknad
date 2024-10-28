@@ -24,7 +24,8 @@ spec:
     path: /internal/isReady
     initialDelay: 5
   ingresses:
-    - "https://familie-ks-soknad.ekstern.dev.nav.no/familie/kontantstotte/soknad"
+    - "https://familie-ks-soknad.intern.dev.nav.no/familie/kontantstotte/soknad"
+    - "https://familie-ks-soknad.ansatt.dev.nav.no/familie/kontantstotte/soknad"
   accessPolicy:
     outbound:
       rules:
