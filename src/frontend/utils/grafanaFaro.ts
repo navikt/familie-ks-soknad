@@ -2,21 +2,22 @@ import { getWebInstrumentations, initializeFaro } from '@grafana/faro-web-sdk';
 
 import { erDev, erProd } from '../../shared-utils/Miljø';
 
-type TelemetryCollectorURL =
-    | 'https://telemetry.nav.no/collect'
-    | 'https://telemetry.ekstern.dev.nav.no/collect'
-    | 'http://localhost:12347';
+enum TelemetryCollectorURL {
+    prod = 'https://telemetry.nav.no/collect',
+    dev = 'https://telemetry.ekstern.dev.nav.no/collect',
+    lokalt = 'http://localhost:12347/collect',
+}
 
 const getTelemetryCollectorURL = (): TelemetryCollectorURL => {
     if (erProd()) {
-        return 'https://telemetry.nav.no/collect';
+        return TelemetryCollectorURL.prod;
     }
 
     if (erDev()) {
-        return 'https://telemetry.ekstern.dev.nav.no/collect';
+        return TelemetryCollectorURL.dev;
     }
 
-    return 'http://localhost:12347';
+    return TelemetryCollectorURL.lokalt;
 };
 
 export function initGrafanaFaro() {
