@@ -99,7 +99,7 @@
     "@sanity/client": "^6.22.4",
     "@sentry/react": "^7.110.1",
     "amplitude-js": "^8.21.9",
-    "axios": "1.6.1",
+    "axios": "1.7.7",
     "classnames": "^2.5.1",
     "compression": "^1.7.4",
     "constate": "^3.3.2",
