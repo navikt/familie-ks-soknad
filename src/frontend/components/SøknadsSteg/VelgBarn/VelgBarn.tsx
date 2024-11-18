@@ -1,12 +1,8 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
-import { Alert, VStack } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
-import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
 import Steg from '../../Felleskomponenter/Steg/Steg';
@@ -16,16 +12,7 @@ import Barnekort from './Barnekort/Barnekort';
 import { IVelgBarnTekstinnhold } from './innholdTyper';
 import LeggTilBarnModal from './LeggTilBarn/LeggTilBarnModal';
 import { NyttBarnKort } from './LeggTilBarn/NyttBarnKort';
-import { VelgBarnSpørsmålId } from './spørsmål';
 import { useVelgBarn } from './useVelgBarn';
-
-const LenkeContainer = styled.div`
-    margin-top: 1.5rem;
-`;
-
-const StyledWarningAlert = styled(Alert)`
-    margin-top: 1.5rem;
-`;
 
 const VelgBarn: React.FC = () => {
     const { søknad, tekster } = useApp();
@@ -43,7 +30,6 @@ const VelgBarn: React.FC = () => {
         barnSomSkalVæreMed,
         fjernBarn,
     } = useVelgBarn();
-    const { toggles } = useFeatureToggles();
 
     const barnFraRespons = søknad.søker.barn;
     const barnManueltLagtTil = søknad.barnRegistrertManuelt;
@@ -51,15 +37,7 @@ const VelgBarn: React.FC = () => {
     const finnesBarnUnder1År = barnSomSkalVæreMed.some(barn => barn.erUnder11Mnd);
 
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
-    const {
-        velgBarnTittel,
-        velgBarnGuide,
-        hvisOpplysningeneIkkeStemmer,
-        leseMerOmRegleneKontantstoette,
-        kanIkkeBestemmeRettUnder1Aar,
-    } = teksterForSteg;
-
-    const visGammelInfo = !toggles.VIS_GUIDE_I_STEG || !velgBarnGuide;
+    const { velgBarnTittel, velgBarnGuide, kanIkkeBestemmeRettUnder1Aar } = teksterForSteg;
 
     return (
         <>
@@ -75,42 +53,21 @@ const VelgBarn: React.FC = () => {
                     },
                 }}
             >
-                {visGammelInfo && (
-                    <Alert variant={'info'} inline>
-                        <TekstBlock
-                            block={hvisOpplysningeneIkkeStemmer}
-                            typografi={Typografi.BodyShort}
-                        />
+                {barn.map(barnet => (
+                    <Barnekort
+                        key={barnet.id}
+                        barn={barnet}
+                        velgBarnCallback={håndterVelgBarnToggle}
+                        barnSomSkalVæreMed={barnSomSkalVæreMed}
+                        fjernBarnCallback={fjernBarn}
+                    />
+                ))}
+                <NyttBarnKort onLeggTilBarn={åpneLeggTilBarnModal} />
+                {finnesBarnUnder1År && (
+                    <Alert variant={'warning'} inline>
+                        <TekstBlock block={kanIkkeBestemmeRettUnder1Aar} />
                     </Alert>
                 )}
-
-                <VStack
-                    id={VelgBarnSpørsmålId.velgBarn}
-                    className={'BarnekortStack'}
-                    marginBlock="12"
-                    gap="12"
-                >
-                    {barn.map(barnet => (
-                        <Barnekort
-                            key={barnet.id}
-                            barn={barnet}
-                            velgBarnCallback={håndterVelgBarnToggle}
-                            barnSomSkalVæreMed={barnSomSkalVæreMed}
-                            fjernBarnCallback={fjernBarn}
-                        />
-                    ))}
-                    <NyttBarnKort onLeggTilBarn={åpneLeggTilBarnModal} />
-                </VStack>
-
-                {finnesBarnUnder1År && (
-                    <StyledWarningAlert inline variant={'warning'}>
-                        <TekstBlock block={kanIkkeBestemmeRettUnder1Aar} />
-                    </StyledWarningAlert>
-                )}
-
-                <LenkeContainer>
-                    <TekstBlock block={leseMerOmRegleneKontantstoette} />
-                </LenkeContainer>
             </Steg>
             {erLeggTilBarnModalÅpen && (
                 <LeggTilBarnModal

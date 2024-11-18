@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { BodyShort, VStack } from '@navikt/ds-react';
+import { VStack } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
@@ -20,7 +20,7 @@ import OmDegOppsummering from './OppsummeringSteg/OmDegOppsummering';
 import VelgBarnOppsummering from './OppsummeringSteg/VelgBarnOppsummering';
 
 const Oppsummering: React.FC = () => {
-    const { søknad, tekster, plainTekst } = useApp();
+    const { søknad, tekster } = useApp();
     const navigate = useNavigate();
     const [feilAnchors, settFeilAnchors] = useState<string[]>([]);
     const { barnSomTriggerEøs, søkerTriggerEøs } = useEøs();
@@ -30,7 +30,7 @@ const Oppsummering: React.FC = () => {
         : søknad.barnInkludertISøknaden.filter(barn => barn.triggetEøs);
 
     const {
-        [ESanitySteg.OPPSUMMERING]: { oppsummeringTittel, oppsummeringGuide, lesNoeye },
+        [ESanitySteg.OPPSUMMERING]: { oppsummeringTittel, oppsummeringGuide },
     } = tekster();
 
     const scrollTilFeil = (elementId: string) => {
@@ -52,8 +52,6 @@ const Oppsummering: React.FC = () => {
             gåVidereCallback={gåVidereCallback}
         >
             <VStack gap="12">
-                <BodyShort>{plainTekst(lesNoeye)}</BodyShort>
-
                 <OmDegOppsummering settFeilAnchors={settFeilAnchors} />
                 <DinLivssituasjonOppsummering settFeilAnchors={settFeilAnchors} />
                 <VelgBarnOppsummering settFeilAnchors={settFeilAnchors} />

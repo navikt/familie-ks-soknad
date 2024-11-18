@@ -9,6 +9,7 @@ import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/person
 import { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
+import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
@@ -52,7 +53,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
     const barnetsNavn = barn && barn.navn;
 
     return (
-        <>
+        <KomponentGruppe>
             <JaNeiSpm
                 skjema={skjema}
                 felt={tilhørendeJaNeiSpmFelt}
@@ -107,6 +108,6 @@ export const Utbetalingsperiode: React.FC<Props> = ({
                     )}
                 </PerioderContainer>
             )}
-        </>
+        </KomponentGruppe>
     );
 };

@@ -6,6 +6,7 @@ import { Ressurs, RessursStatus } from '@navikt/familie-typer';
 import Miljø from '../../shared-utils/Miljø';
 import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon';
 import { useApp } from '../context/AppContext';
+import { useFeatureToggles } from '../context/FeatureToggleContext';
 import { useSpråk } from '../context/SpråkContext';
 import { ISøknadKontrakt } from '../typer/kontrakt/søknadKontrakt';
 import { IKvittering } from '../typer/kvittering';
@@ -25,21 +26,25 @@ export const useSendInnSkjema = (): {
     } = useApp();
     const { soknadApiProxyUrl } = Miljø();
     const { valgtLocale } = useSpråk();
+    const { toggles } = useFeatureToggles();
     const sendInnSkjema = async (): Promise<[boolean, ISøknadKontrakt]> => {
         settInnsendingStatus({ status: RessursStatus.HENTER });
+
+        const kontraktVersjon = toggles.BRUK_NYTT_ENDEPUNKT_FOR_INNSENDING_AV_SOKNAD ? 5 : 4;
 
         try {
             const formatert: ISøknadKontrakt = dataISøknadKontraktFormat(
                 valgtLocale,
                 søknad,
                 tekster(),
-                tilRestLocaleRecord
+                tilRestLocaleRecord,
+                kontraktVersjon
             );
 
             const res = await sendInn<ISøknadKontrakt>(
                 formatert,
                 axiosRequest,
-                `${soknadApiProxyUrl}/soknad/kontantstotte/v4`,
+                `${soknadApiProxyUrl}/soknad/kontantstotte/v${kontraktVersjon}`,
                 (res: AxiosError) => {
                     const responseData = res.response?.data as Ressurs<IKvittering>;
                     if (responseData && erModellMismatchResponsRessurs(responseData)) {

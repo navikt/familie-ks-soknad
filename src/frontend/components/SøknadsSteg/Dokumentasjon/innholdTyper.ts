@@ -4,32 +4,47 @@ import { BeskrivelseSanityApiNavn, TittelSanityApiNavn } from '../../../typer/do
 export type IDokumentasjonTekstinnhold = {
     dokumentasjonTittel: LocaleRecordBlock;
     dokumentasjonGuide: LocaleRecordBlock;
-    sendtInnTidligere: LocaleRecordBlock;
-    vedleggXavY: LocaleRecordBlock;
-    slippFilenHer: LocaleRecordBlock;
-    lastOppKnapp: LocaleRecordBlock;
-    nudgeDokumentasjon: LocaleRecordBlock;
+    dokumentasjonGuideVedleggskrav: LocaleRecordBlock;
+    dokumentasjonGuideIngenVedleggskrav: LocaleRecordBlock;
+} & {
+    // Info innledning
     forLangTidDokumentasjon: LocaleRecordBlock;
-    dokumentasjonInfo: LocaleRecordBlock;
+    vedleggskravTittel: LocaleRecordBlock;
+    vedleggskrav: LocaleRecordBlock;
+    ingenVedleggskravTittel: LocaleRecordBlock;
+    ingenVedleggskrav: LocaleRecordBlock;
+    manglerDokumentasjonSpoersmaalTittel: LocaleRecordBlock;
+    manglerDokumentasjonSpoersmaal: LocaleRecordBlock;
+} & {
+    // Bilde scanning guide
+    slikTarDuEtGodtBildeExpand: LocaleRecordString;
+    slikTarDuEtGodtBildeTittel: LocaleRecordBlock;
     slikTarDuEtGodtBilde: LocaleRecordBlock;
+    etterDuHarTattBildetTittel: LocaleRecordBlock;
     etterDuHarTattBildet: LocaleRecordBlock;
+    vaerTryggNaarDuTarBildeTittel: LocaleRecordBlock;
+    vaerTryggNaarDuTarBilde: LocaleRecordBlock;
+    // Bra og dårlige eksempler
     braOgDaarligeTittel: LocaleRecordBlock;
-    merHjelpLenke: LocaleRecordBlock;
     bra: LocaleRecordBlock;
     daarlig: LocaleRecordBlock;
+    fyllerHeleBildet: LocaleRecordBlock;
     ikkeTattOvenfra: LocaleRecordBlock;
     ikkeRiktigRetning: LocaleRecordBlock;
-    fyllerHeleBildet: LocaleRecordBlock;
     skyggePaaDokumentet: LocaleRecordBlock;
-    slikTarDuEtGodtBildeExpand: LocaleRecordString;
+} & {
+    // Knapper og checkbox
+    sendtInnTidligere: LocaleRecordBlock;
+    forMange: LocaleRecordString;
     feilFiltype: LocaleRecordString;
-    fil: LocaleRecordString;
-    bildetForLite: LocaleRecordString;
     forStor: LocaleRecordString;
-    sendSoeknad: LocaleRecordString;
+    bildetForLite: LocaleRecordString;
     noeGikkFeil: LocaleRecordString;
+    lastOppKnapp: LocaleRecordString;
+    slippFilenHer: LocaleRecordString;
     slett: LocaleRecordString;
 } & {
+    // Vedlegg - titler
     [TittelSanityApiNavn.avtaleOmDeltBostedTittel]: LocaleRecordBlock;
     [TittelSanityApiNavn.annenDokumentasjon]: LocaleRecordBlock;
     [TittelSanityApiNavn.bekreftelseFraBarnevernetTittel]: LocaleRecordBlock;
@@ -38,6 +53,7 @@ export type IDokumentasjonTekstinnhold = {
     [TittelSanityApiNavn.vedtakOmOppholdstillatelseTittel]: LocaleRecordBlock;
     [TittelSanityApiNavn.bekreftelsePaaBarnehageplassTittel]: LocaleRecordBlock;
 } & {
+    // Vedlegg - beskrivelser
     [BeskrivelseSanityApiNavn.bekreftelsePaaAdopsjonKontantstoette]: LocaleRecordBlock;
     [BeskrivelseSanityApiNavn.avtaleOmDeltBosted]: LocaleRecordBlock;
     [BeskrivelseSanityApiNavn.bekreftelsePaaAtBarnBorSammenMedDeg]: LocaleRecordBlock;
@@ -45,4 +61,5 @@ export type IDokumentasjonTekstinnhold = {
     [BeskrivelseSanityApiNavn.bekreftelsePaaBarnehageplass]: LocaleRecordBlock;
     [BeskrivelseSanityApiNavn.bekreftelsePaaBarnehageplassEttEllerFlereBarn]: LocaleRecordBlock;
     [BeskrivelseSanityApiNavn.lastOppSenereISoknad]: LocaleRecordBlock;
+    [BeskrivelseSanityApiNavn.annenDokumentasjonBeskrivelse]: LocaleRecordBlock;
 };

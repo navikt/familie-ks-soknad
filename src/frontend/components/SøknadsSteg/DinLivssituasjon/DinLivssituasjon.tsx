@@ -14,7 +14,6 @@ import { Pensjonsperiode } from '../../Felleskomponenter/Pensjonsmodal/Pensjonsp
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
-import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import { IDinLivssituasjonTekstinnhold } from './innholdTyper';
 import { useDinLivssituasjon } from './useDinLivssituasjon';
@@ -52,67 +51,57 @@ const DinLivssituasjon: React.FC = () => {
                 skjema,
                 settSøknadsdataCallback: oppdaterSøknad,
             }}
+            vedleggOppsummering={[
+                {
+                    skalVises: skjema.felter.erAsylsøker.verdi === ESvar.JA,
+                    dokumentasjonsbehov: Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE,
+                },
+            ]}
         >
+            <JaNeiSpm
+                skjema={skjema}
+                felt={skjema.felter.erAsylsøker}
+                spørsmålDokument={asylsoeker}
+            />
+            <Arbeidsperiode
+                skjema={skjema}
+                leggTilArbeidsperiode={leggTilArbeidsperiode}
+                fjernArbeidsperiode={fjernArbeidsperiode}
+                gjelderUtlandet={true}
+                arbeiderEllerArbeidetFelt={skjema.felter.arbeidIUtlandet}
+                registrerteArbeidsperioder={skjema.felter.registrerteArbeidsperioder}
+                personType={PersonType.søker}
+            />
             <KomponentGruppe>
                 <JaNeiSpm
                     skjema={skjema}
-                    felt={skjema.felter.erAsylsøker}
-                    spørsmålDokument={asylsoeker}
-                />
-
-                <Arbeidsperiode
-                    skjema={skjema}
-                    leggTilArbeidsperiode={leggTilArbeidsperiode}
-                    fjernArbeidsperiode={fjernArbeidsperiode}
-                    gjelderUtlandet={true}
-                    arbeiderEllerArbeidetFelt={skjema.felter.arbeidIUtlandet}
-                    registrerteArbeidsperioder={skjema.felter.registrerteArbeidsperioder}
-                    personType={PersonType.søker}
-                />
-
-                <>
-                    <JaNeiSpm
-                        skjema={skjema}
-                        felt={skjema.felter.utenlandsoppholdUtenArbeid}
-                        spørsmålDokument={utenlandsoppholdUtenArbeid}
-                        tilleggsinfo={
-                            <TekstBlock
-                                block={utenlandsoppholdUtenArbeid.alert}
-                                typografi={Typografi.BodyShort}
-                            />
-                        }
-                    />
-                    {skjema.felter.utenlandsoppholdUtenArbeid.verdi === ESvar.JA && (
-                        <Utenlandsperiode
-                            personType={PersonType.søker}
-                            skjema={skjema}
-                            leggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                            fjernUtenlandsperiode={fjernUtenlandsperiode}
-                            registrerteUtenlandsperioder={
-                                skjema.felter.registrerteUtenlandsperioder
-                            }
+                    felt={skjema.felter.utenlandsoppholdUtenArbeid}
+                    spørsmålDokument={utenlandsoppholdUtenArbeid}
+                    tilleggsinfo={
+                        <TekstBlock
+                            block={utenlandsoppholdUtenArbeid.alert}
+                            typografi={Typografi.BodyShort}
                         />
-                    )}
-                </>
-
-                <Pensjonsperiode
-                    skjema={skjema}
-                    mottarEllerMottattPensjonFelt={skjema.felter.mottarUtenlandspensjon}
-                    registrertePensjonsperioder={skjema.felter.registrertePensjonsperioder}
-                    leggTilPensjonsperiode={leggTilPensjonsperiode}
-                    fjernPensjonsperiode={fjernPensjonsperiode}
-                    gjelderUtlandet={true}
-                    personType={PersonType.søker}
+                    }
                 />
+                {skjema.felter.utenlandsoppholdUtenArbeid.verdi === ESvar.JA && (
+                    <Utenlandsperiode
+                        personType={PersonType.søker}
+                        skjema={skjema}
+                        leggTilUtenlandsperiode={leggTilUtenlandsperiode}
+                        fjernUtenlandsperiode={fjernUtenlandsperiode}
+                        registrerteUtenlandsperioder={skjema.felter.registrerteUtenlandsperioder}
+                    />
+                )}
             </KomponentGruppe>
-
-            <VedleggOppsummering
-                vedlegg={[
-                    {
-                        skalVises: skjema.felter.erAsylsøker.verdi === ESvar.JA,
-                        dokumentasjonsbehov: Dokumentasjonsbehov.VEDTAK_OPPHOLDSTILLATELSE,
-                    },
-                ]}
+            <Pensjonsperiode
+                skjema={skjema}
+                mottarEllerMottattPensjonFelt={skjema.felter.mottarUtenlandspensjon}
+                registrertePensjonsperioder={skjema.felter.registrertePensjonsperioder}
+                leggTilPensjonsperiode={leggTilPensjonsperiode}
+                fjernPensjonsperiode={fjernPensjonsperiode}
+                gjelderUtlandet={true}
+                personType={PersonType.søker}
             />
         </Steg>
     );

@@ -13,7 +13,6 @@ import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksj
 import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
-import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
@@ -103,79 +102,74 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
         >
-            <KomponentGruppe inline>
-                <JaNeiSpm
+            <JaNeiSpm
+                skjema={skjema}
+                felt={skjema.felter.mottarEøsKontantstøtteNå}
+                spørsmålDokument={teksterForPersonType.faarYtelserNaa}
+                flettefelter={{ barnetsNavn: barn.navn }}
+            />
+            {kontantstøtteLand.erSynlig && (
+                <LandDropdown
+                    felt={skjema.felter.kontantstøtteLand}
                     skjema={skjema}
-                    felt={skjema.felter.mottarEøsKontantstøtteNå}
-                    spørsmålDokument={teksterForPersonType.faarYtelserNaa}
-                    flettefelter={{ barnetsNavn: barn.navn }}
+                    label={
+                        <TekstBlock
+                            block={
+                                periodenErAvsluttet
+                                    ? teksterForPersonType.ytelseLandFortid.sporsmal
+                                    : teksterForPersonType.ytelseLandNaatid.sporsmal
+                            }
+                            flettefelter={{ barnetsNavn: barn.navn }}
+                        />
+                    }
+                    kunEøs={true}
+                    dynamisk
+                    ekskluderNorge
                 />
-
-                {kontantstøtteLand.erSynlig && (
-                    <LandDropdown
-                        felt={skjema.felter.kontantstøtteLand}
-                        skjema={skjema}
-                        label={
-                            <TekstBlock
-                                block={
-                                    periodenErAvsluttet
-                                        ? teksterForPersonType.ytelseLandFortid.sporsmal
-                                        : teksterForPersonType.ytelseLandNaatid.sporsmal
-                                }
-                                flettefelter={{ barnetsNavn: barn.navn }}
-                            />
-                        }
-                        kunEøs={true}
-                        dynamisk
-                        ekskluderNorge
-                    />
-                )}
-                {fraDatoKontantstøttePeriode.erSynlig && (
-                    <Datovelger
-                        felt={skjema.felter.fraDatoKontantstøttePeriode}
-                        skjema={skjema}
-                        label={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
-                        avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
-                    />
-                )}
-                {tilDatoKontantstøttePeriode.erSynlig && (
-                    <Datovelger
-                        felt={skjema.felter.tilDatoKontantstøttePeriode}
-                        skjema={skjema}
-                        label={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
-                        avgrensMinDato={
-                            skjema.felter.fraDatoKontantstøttePeriode.verdi
-                                ? dagenEtterDato(
-                                      stringTilDate(skjema.felter.fraDatoKontantstøttePeriode.verdi)
-                                  )
-                                : undefined
-                        }
-                        avgrensMaxDato={dagensDato()}
-                    />
-                )}
-                {månedligBeløp.erSynlig && (
-                    <SkjemaFeltInput
-                        felt={skjema.felter.månedligBeløp}
-                        visFeilmeldinger={skjema.visFeilmeldinger}
-                        label={
-                            <TekstBlock
-                                block={teksterForPersonType.beloepPerMaaned.sporsmal}
-                                flettefelter={{ barnetsNavn: barn.navn }}
-                            />
-                        }
-                        tilleggsinfo={
-                            <Box marginBlock="4">
-                                <Alert variant={'info'} inline>
-                                    <TekstBlock
-                                        block={teksterForPersonType.beloepPerMaaned.alert}
-                                    />
-                                </Alert>
-                            </Box>
-                        }
-                        htmlSize={15}
-                    />
-                )}
-            </KomponentGruppe>
+            )}
+            {fraDatoKontantstøttePeriode.erSynlig && (
+                <Datovelger
+                    felt={skjema.felter.fraDatoKontantstøttePeriode}
+                    skjema={skjema}
+                    label={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
+                    avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
+                />
+            )}
+            {tilDatoKontantstøttePeriode.erSynlig && (
+                <Datovelger
+                    felt={skjema.felter.tilDatoKontantstøttePeriode}
+                    skjema={skjema}
+                    label={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
+                    avgrensMinDato={
+                        skjema.felter.fraDatoKontantstøttePeriode.verdi
+                            ? dagenEtterDato(
+                                  stringTilDate(skjema.felter.fraDatoKontantstøttePeriode.verdi)
+                              )
+                            : undefined
+                    }
+                    avgrensMaxDato={dagensDato()}
+                />
+            )}
+            {månedligBeløp.erSynlig && (
+                <SkjemaFeltInput
+                    felt={skjema.felter.månedligBeløp}
+                    visFeilmeldinger={skjema.visFeilmeldinger}
+                    label={
+                        <TekstBlock
+                            block={teksterForPersonType.beloepPerMaaned.sporsmal}
+                            flettefelter={{ barnetsNavn: barn.navn }}
+                        />
+                    }
+                    tilleggsinfo={
+                        <Box marginBlock="2">
+                            <Alert variant={'info'} inline>
+                                <TekstBlock block={teksterForPersonType.beloepPerMaaned.alert} />
+                            </Alert>
+                        </Box>
+                    }
+                    htmlSize={15}
+                />
+            )}
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>
     );

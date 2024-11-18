@@ -103,7 +103,7 @@ export const IdNummer: React.FC<{
                     }
                 />
             ) : (
-                <>
+                <div>
                     <SkjemaFeltInput
                         felt={idNummerFelt}
                         visFeilmeldinger={skjema.visFeilmeldinger}
@@ -126,7 +126,7 @@ export const IdNummer: React.FC<{
                             felt={idNummerUkjent}
                         />
                     )}
-                </>
+                </div>
             )}
         </>
     );

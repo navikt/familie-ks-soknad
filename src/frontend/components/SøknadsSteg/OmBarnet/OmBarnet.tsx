@@ -9,10 +9,10 @@ import { BarnetsId, Typografi } from '../../../typer/common';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
+import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering';
 
 import AndreForelder from './AndreForelder';
 import { IOmBarnetTekstinnhold } from './innholdTyper';
@@ -49,6 +49,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
 
     const {
         omBarnetTittel,
+        omBarnetGuide,
         bosted,
         borBarnFastSammenMedDeg,
         borForeldreSammen,
@@ -68,12 +69,26 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
     return barn ? (
         <Steg
             tittel={<TekstBlock block={omBarnetTittel} flettefelter={{ barnetsNavn }} />}
+            guide={<TekstBlock block={omBarnetGuide} />}
             skjema={{
                 validerFelterOgVisFeilmelding,
                 valideringErOk,
                 skjema,
                 settSøknadsdataCallback: oppdaterSøknad,
             }}
+            vedleggOppsummering={[
+                {
+                    skalVises: borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker,
+                    dokumentasjonsbehov: Dokumentasjonsbehov.BOR_FAST_MED_SØKER,
+                    flettefeltVerdier: { barnetsNavn },
+                },
+                {
+                    skalVises:
+                        søkerDeltKontantstøtte.erSynlig &&
+                        søkerDeltKontantstøtte.verdi === ESvar.JA,
+                    dokumentasjonsbehov: Dokumentasjonsbehov.AVTALE_DELT_BOSTED,
+                },
+            ]}
         >
             <OmBarnetHeader barn={barn} />
             <Oppfølgningsspørsmål
@@ -101,28 +116,26 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     fjernUtenlandsperiode={fjernUtenlandsperiodeAndreForelder}
                 />
             )}
-
             <SkjemaFieldset legend={plainTekst(bosted)} dynamisk>
-                <JaNeiSpm
-                    skjema={skjema}
-                    felt={borFastMedSøker}
-                    spørsmålDokument={borBarnFastSammenMedDeg}
-                    flettefelter={{ barnetsNavn }}
-                />
-
-                {borFastMedSøker.verdi === ESvar.NEI && !erEøsTrigget() && (
-                    <Alert variant={'warning'} inline>
-                        <TekstBlock block={borBarnFastSammenMedDeg.alert} />
-                    </Alert>
-                )}
-
+                <KomponentGruppe>
+                    <JaNeiSpm
+                        skjema={skjema}
+                        felt={borFastMedSøker}
+                        spørsmålDokument={borBarnFastSammenMedDeg}
+                        flettefelter={{ barnetsNavn }}
+                    />
+                    {borFastMedSøker.verdi === ESvar.NEI && !erEøsTrigget() && (
+                        <Alert variant={'warning'} inline>
+                            <TekstBlock block={borBarnFastSammenMedDeg.alert} />
+                        </Alert>
+                    )}
+                </KomponentGruppe>
                 <JaNeiSpm
                     skjema={skjema}
                     felt={foreldreBorSammen}
                     spørsmålDokument={borForeldreSammen}
                     flettefelter={{ barnetsNavn }}
                 />
-
                 <JaNeiSpm
                     skjema={skjema}
                     felt={søkerDeltKontantstøtte}
@@ -138,22 +151,6 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     }
                 />
             </SkjemaFieldset>
-
-            <VedleggOppsummering
-                vedlegg={[
-                    {
-                        skalVises: borFastMedSøker.verdi === ESvar.JA && !barn.borMedSøker,
-                        dokumentasjonsbehov: Dokumentasjonsbehov.BOR_FAST_MED_SØKER,
-                        flettefeltVerdier: { barnetsNavn },
-                    },
-                    {
-                        skalVises:
-                            søkerDeltKontantstøtte.erSynlig &&
-                            søkerDeltKontantstøtte.verdi === ESvar.JA,
-                        dokumentasjonsbehov: Dokumentasjonsbehov.AVTALE_DELT_BOSTED,
-                    },
-                ]}
-            />
         </Steg>
     ) : null;
 };

@@ -86,6 +86,7 @@ export const spyOnUseApp = søknad => {
         sluttbruker,
         settEøsLand,
         eøsLand,
+        relevateDokumentasjoner: [],
         systemetLaster: jest.fn().mockReturnValue(false),
         systemetOK: () => jest.fn().mockReturnValue(true),
         systemetFeiler: jest.fn().mockReturnValue(false),
@@ -150,7 +151,6 @@ export const mockFeatureToggle = () => {
                 // toggles: { [EFeatureToggle.EXAMPLE]: false },
                 toggles: {
                     [EFeatureToggle.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP]: false,
-                    [EFeatureToggle.VIS_GUIDE_I_STEG]: false,
                 },
             })
         );
