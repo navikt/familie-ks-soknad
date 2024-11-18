@@ -20,16 +20,6 @@ describe('OmDeg', () => {
         mockEøs();
     });
 
-    test('Skal rendre 2 alertstriper i OmDeg', async () => {
-        spyOnUseApp({ søker: mockDeep<ISøker>({ statsborgerskap: [] }) });
-        const { container } = render(
-            <TestProvidere>
-                <OmDeg />
-            </TestProvidere>
-        );
-        expect(container.getElementsByClassName('navds-alert')).toHaveLength(2);
-    });
-
     test('Kan gå videre i søknad ved adresse som er ukjent, får ikke spm om bosted, men opphold i norge', async () => {
         spyOnUseApp({
             søker: mockDeep<ISøker>({

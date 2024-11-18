@@ -63,11 +63,11 @@ export interface IFellesTekstInnhold {
     frittståendeOrd: IFrittståendeOrdTekstinnhold;
     navigasjon: INavigasjonTekstinnhold;
     formateringsfeilmeldinger: IFormateringsfeilmeldingerTekstinnhold;
-    banner: LocaleRecordBlock;
     vedlikeholdsarbeid: IVedlikeholdsarbeidTekstinnhold;
     kanIkkeBrukeSoeknad: IKanIkkeBrukeSoeknadTekstinnhold;
     hjelpeteksterForInput: IHjelpeteksterForInputTekstInnhold;
     alternativeTekster: IAlternativeTeksterTekstinnhold;
+    midlertidigeTekster: IMidlertidigeTeksterTekstInnhold;
 }
 
 export interface IModalerTekstinnhold {
@@ -127,6 +127,17 @@ export interface IFrittståendeOrdTekstinnhold {
     vedlegg: LocaleRecordString;
     barn: LocaleRecordString;
     soeker: LocaleRecordString;
+    skjult: LocaleRecordString;
+    steg: LocaleRecordString;
+    visAlleSteg: LocaleRecordString;
+    skjulAlleSteg: LocaleRecordString;
+    fra: LocaleRecordString;
+    utenlandsopphold: LocaleRecordString;
+    arbeidsperioder: LocaleRecordString;
+    pensjonsperioder: LocaleRecordString;
+    utbetalingsperioder: LocaleRecordString;
+    kontantstoetteperioder: LocaleRecordString;
+    barnehageplassperioder: LocaleRecordString;
 }
 
 export interface INavigasjonTekstinnhold {
@@ -138,6 +149,8 @@ export interface INavigasjonTekstinnhold {
     tilbakeKnapp: LocaleRecordString;
     gaaVidereKnapp: LocaleRecordString;
     sendSoeknadKnapp: LocaleRecordString;
+    slettSoeknadKnapp: LocaleRecordString;
+    fortsettSenereKnapp: LocaleRecordString;
 }
 
 export interface IFormateringsfeilmeldingerTekstinnhold {
@@ -173,3 +186,5 @@ export interface IHjelpeteksterForInputTekstInnhold {
 export interface IAlternativeTeksterTekstinnhold {
     barneillustrajonAltTekst: LocaleRecordBlock;
 }
+
+export interface IMidlertidigeTeksterTekstInnhold {}

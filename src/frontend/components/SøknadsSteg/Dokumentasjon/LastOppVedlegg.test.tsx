@@ -37,7 +37,6 @@ describe('LastOppVedlegg', () => {
             <TestProvidere>
                 <LastOppVedlegg
                     dokumentasjon={dokumentasjon}
-                    vedleggNr={1}
                     oppdaterDokumentasjon={oppdaterDokumentasjon}
                 />
             </TestProvidere>

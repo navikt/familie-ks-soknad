@@ -3,12 +3,13 @@ import React from 'react';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IDinLivssituasjonFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -30,7 +31,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
     barn,
     personType,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const {
         erÅpen: erUtenlandsoppholdModalÅpen,
         lukkModal: lukkUtenlandsoppholdModal,
@@ -43,10 +44,14 @@ export const Utenlandsperiode: React.FC<Props> = ({
         },
     } = tekster();
 
-    const { flerePerioder, leggTilKnapp } = utenlandsopphold[personType];
+    const { flerePerioder, leggTilKnapp, leggTilPeriodeForklaring } = utenlandsopphold[personType];
+
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
 
     return (
-        <>
+        <PerioderContainer
+            tittel={uppercaseFørsteBokstav(plainTekst(frittståendeOrdTekster.utenlandsopphold))}
+        >
             {erUtenlandsoppholdModalÅpen && (
                 <UtenlandsoppholdModal
                     erÅpen={erUtenlandsoppholdModalÅpen}
@@ -54,6 +59,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
                     onLeggTilUtenlandsperiode={leggTilUtenlandsperiode}
                     personType={personType}
                     barn={personType !== PersonType.søker ? barn : undefined}
+                    forklaring={plainTekst(leggTilPeriodeForklaring)}
                 />
             )}
             {registrerteUtenlandsperioder.verdi.map((periode, index) => (
@@ -66,12 +72,12 @@ export const Utenlandsperiode: React.FC<Props> = ({
                     barn={personType !== PersonType.søker ? barn : undefined}
                 />
             ))}
-            {registrerteUtenlandsperioder.verdi.length > 0 && (
-                <TekstBlock block={flerePerioder} typografi={Typografi.Label} />
-            )}
             <LeggTilKnapp
                 id={registrerteUtenlandsperioder.id}
                 onClick={åpneUtenlandsoppholdModal}
+                leggTilFlereTekst={
+                    registrerteUtenlandsperioder.verdi.length > 0 && plainTekst(flerePerioder)
+                }
                 feilmelding={
                     registrerteUtenlandsperioder.erSynlig &&
                     skjema.visFeilmeldinger &&
@@ -80,6 +86,6 @@ export const Utenlandsperiode: React.FC<Props> = ({
             >
                 <TekstBlock block={leggTilKnapp} />
             </LeggTilKnapp>
-        </>
+        </PerioderContainer>
     );
 };

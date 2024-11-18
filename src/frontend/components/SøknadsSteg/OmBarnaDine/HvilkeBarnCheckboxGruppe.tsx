@@ -7,6 +7,7 @@ import { Felt } from '@navikt/familie-skjema';
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { BarnetsId } from '../../../typer/common';
+import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 
 interface Props {
     legend: ReactNode;
@@ -41,7 +42,7 @@ function HvilkeBarnCheckboxGruppe({
     }, [nullstillValgteBarn]);
 
     return skjemafelt.erSynlig ? (
-        <>
+        <KomponentGruppe>
             <CheckboxGroup
                 aria-live={'polite'}
                 legend={legend}
@@ -58,7 +59,7 @@ function HvilkeBarnCheckboxGruppe({
                 })}
             </CheckboxGroup>
             {children}
-        </>
+        </KomponentGruppe>
     ) : null;
 }
 

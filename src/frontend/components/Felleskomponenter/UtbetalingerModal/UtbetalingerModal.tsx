@@ -14,7 +14,6 @@ import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
 import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
-import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { SkjemaCheckbox } from '../SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
@@ -27,6 +26,7 @@ interface UtbetalingerModalProps extends IUseUtbetalingerSkjemaParams {
     erÅpen: boolean;
     lukkModal: () => void;
     onLeggTilUtbetalinger: (utbetalingsperiode: IUtbetalingsperiode) => void;
+    forklaring?: string;
 }
 
 export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
@@ -36,6 +36,7 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
     personType,
     barn,
     erDød,
+    forklaring = undefined,
 }) => {
     const { tekster, plainTekst } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
@@ -91,18 +92,17 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
             tittel={teksterForPersonType.tittel}
+            forklaring={forklaring}
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
         >
-            <KomponentGruppe inline>
-                <JaNeiSpm
-                    skjema={skjema}
-                    felt={fårUtbetalingNå}
-                    spørsmålDokument={teksterForPersonType.faarUtbetalingerNaa}
-                    flettefelter={{ barnetsNavn: barn?.navn }}
-                />
-            </KomponentGruppe>
+            <JaNeiSpm
+                skjema={skjema}
+                felt={fårUtbetalingNå}
+                spørsmålDokument={teksterForPersonType.faarUtbetalingerNaa}
+                flettefelter={{ barnetsNavn: barn?.navn }}
+            />
             {(fårUtbetalingNå.valideringsstatus === Valideringsstatus.OK || andreForelderErDød) && (
-                <KomponentGruppe inline dynamisk>
+                <>
                     <LandDropdown
                         felt={utbetalingLand}
                         skjema={skjema}
@@ -124,7 +124,7 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
                         label={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
                         avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
                     />
-                    <>
+                    <div>
                         <Datovelger
                             skjema={skjema}
                             felt={utbetalingTilDato}
@@ -148,8 +148,8 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
                             label={plainTekst(teksterForPersonType.sluttdatoFremtid.checkboxLabel)}
                             felt={utbetalingTilDatoUkjent}
                         />
-                    </>
-                </KomponentGruppe>
+                    </div>
+                </>
             )}
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>

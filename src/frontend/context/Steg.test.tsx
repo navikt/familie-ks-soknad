@@ -29,19 +29,6 @@ describe('Steg', () => {
         expect(result.current.steg.length).toEqual(9);
     });
 
-    test(`stepperObjekter skal returnere en liste uten forside`, () => {
-        spyOnUseApp({
-            barnInkludertISøknaden: [],
-        });
-        const wrapper = ({ children }) => (
-            <RoutesProvider>
-                <StegProvider>{children}</StegProvider>
-            </RoutesProvider>
-        );
-        const { result } = renderHook(() => useSteg(), { wrapper });
-        expect(result.current.stepperObjekter.length).toEqual(8);
-    });
-
     test(`Kan hente neste steg fra forsiden`, () => {
         spyOnUseApp({
             barnInkludertISøknaden: [

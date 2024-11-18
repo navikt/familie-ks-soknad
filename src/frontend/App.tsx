@@ -2,10 +2,11 @@ import React from 'react';
 
 import { BrowserRouter as Router } from 'react-router-dom';
 
+import { Alert } from '@navikt/ds-react';
+
 import { basePath } from '../shared-utils/Miljø';
 
 import AppContainer from './AppContainer';
-import AlertStripe from './components/Felleskomponenter/AlertStripe/AlertStripe';
 import { AppProvider } from './context/AppContext';
 import { AppNavigationProvider } from './context/AppNavigationContext';
 import { EøsProvider } from './context/EøsContext';
@@ -24,12 +25,12 @@ const App = () => {
                             <Router basename={basePath}>
                                 <StegProvider>
                                     {process.env.NODE_ENV !== 'production' && (
-                                        <AlertStripe variant="warning" inline={false}>
+                                        <Alert variant="warning">
                                             {`Denne siden er under utvikling. `}
                                             <a href="https://www.nav.no/kontantstotte">
                                                 Klikk her for å gå til våre sider for kontantstøtte
                                             </a>
-                                        </AlertStripe>
+                                        </Alert>
                                     )}
                                     <AppNavigationProvider>
                                         <AppContainer />

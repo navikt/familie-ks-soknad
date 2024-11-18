@@ -3,6 +3,7 @@ import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 
 export interface IOmDegTekstinnhold {
     omDegTittel: LocaleRecordBlock;
+    omDegGuide: LocaleRecordBlock;
     personopplysningerAlert: LocaleRecordBlock;
     navn: LocaleRecordString;
     adresse: LocaleRecordString;
@@ -16,4 +17,5 @@ export interface IOmDegTekstinnhold {
     ikkeRegistrertAdresse: LocaleRecordString;
     ukjentAdresse: LocaleRecordString;
     soekerAdressesperre: LocaleRecordString;
+    skjermetAdresse: LocaleRecordString;
 }

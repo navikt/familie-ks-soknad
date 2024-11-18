@@ -6,8 +6,18 @@ export interface IForsideTekstinnhold {
     bekreftelsesboksErklaering: LocaleRecordString;
     bekreftelsesboksFeilmelding: LocaleRecordString;
     punktliste: LocaleRecordBlock;
+    veilederHei: LocaleRecordBlock;
+    veilederIntro: LocaleRecordBlock;
     veilederhilsen: LocaleRecordBlock;
     soeknadstittel: LocaleRecordBlock;
     personopplysningslenke: LocaleRecordBlock;
     mellomlagretAlert: LocaleRecordBlock;
+    foerDuSoekerTittel: LocaleRecordBlock;
+    foerDuSoeker: LocaleRecordBlock;
+    informasjonOmPlikterTittel: LocaleRecordBlock;
+    informasjonOmPlikter: LocaleRecordBlock;
+    informasjonOmPersonopplysningerTittel: LocaleRecordBlock;
+    informasjonOmPersonopplysninger: LocaleRecordBlock;
+    informasjonOmLagringAvSvarTittel: LocaleRecordBlock;
+    informasjonOmLagringAvSvar: LocaleRecordBlock;
 }

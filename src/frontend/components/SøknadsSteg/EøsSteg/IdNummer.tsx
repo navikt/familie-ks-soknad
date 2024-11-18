@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, useEffect } from 'react';
 
 import { Alpha3Code } from 'i18n-iso-countries';
-import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ESvar } from '@navikt/familie-form-elements';
@@ -20,10 +19,6 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { OppsummeringFelt } from '../Oppsummering/OppsummeringFelt';
 
 import { idNummerKeyPrefix, PeriodeType } from './idnummerUtils';
-
-export const IdNummerContainer = styled.div<{ $lesevisning: boolean }>`
-    margin-bottom: ${props => (props.$lesevisning ? '1rem' : '2rem')};
-`;
 
 export const IdNummer: React.FC<{
     skjema: ISkjema<IEøsForSøkerFeltTyper | IEøsForBarnFeltTyper, string>;
@@ -90,10 +85,15 @@ export const IdNummer: React.FC<{
     }, [idNummerFelt.verdi, idNummerFelt.valideringsstatus]);
 
     return (
-        <IdNummerContainer $lesevisning={lesevisning}>
+        <>
             {lesevisning ? (
                 <OppsummeringFelt
-                    spørsmålstekst={spørsmålDokument.sporsmal}
+                    tittel={
+                        <TekstBlock
+                            block={spørsmålDokument.sporsmal}
+                            flettefelter={{ land: landAlphaCode, barnetsNavn: barn?.navn }}
+                        />
+                    }
                     søknadsvar={
                         idNummerVerdiFraSøknad === AlternativtSvarForInput.UKJENT
                             ? plainTekst(spørsmålDokument.checkboxLabel, {
@@ -101,10 +101,9 @@ export const IdNummer: React.FC<{
                               })
                             : idNummerVerdiFraSøknad
                     }
-                    flettefelter={{ land: landAlphaCode, barnetsNavn: barn?.navn }}
                 />
             ) : (
-                <>
+                <div>
                     <SkjemaFeltInput
                         felt={idNummerFelt}
                         visFeilmeldinger={skjema.visFeilmeldinger}
@@ -127,8 +126,8 @@ export const IdNummer: React.FC<{
                             felt={idNummerUkjent}
                         />
                     )}
-                </>
+                </div>
             )}
-        </IdNummerContainer>
+        </>
     );
 };

@@ -5,13 +5,15 @@ import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { Typografi } from '../../../typer/common';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PeriodePersonTypeProps, PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { IEøsForBarnFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
+import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -40,7 +42,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
     barn,
     tilhørendeJaNeiSpmFelt,
 }) => {
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const {
         erÅpen: kontantstøtteModalErÅpen,
         lukkModal: lukkKontantstøtteModal,
@@ -50,8 +52,10 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
     const teksterForPersonType: IEøsYtelseTekstinnhold =
         tekster().FELLES.modaler.eøsYtelse[personType];
 
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
+
     return (
-        <>
+        <KomponentGruppe>
             <JaNeiSpm
                 skjema={skjema}
                 felt={tilhørendeJaNeiSpmFelt}
@@ -60,7 +64,11 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                 flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {tilhørendeJaNeiSpmFelt.verdi === ESvar.JA && (
-                <>
+                <PerioderContainer
+                    tittel={uppercaseFørsteBokstav(
+                        plainTekst(frittståendeOrdTekster.kontantstoetteperioder)
+                    )}
+                >
                     {registrerteEøsKontantstøttePerioder.verdi.map((periode, index) => (
                         <KontantstøttePeriodeOppsummering
                             key={`eøs-kontantstøtte-periode-${index}`}
@@ -72,20 +80,15 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                             erDød={personType === PersonType.andreForelder && erDød}
                         />
                     ))}
-
-                    {registrerteEøsKontantstøttePerioder.verdi.length > 0 && (
-                        <TekstBlock
-                            block={teksterForPersonType.flerePerioder}
-                            typografi={Typografi.Label}
-                            flettefelter={{
-                                barnetsNavn: barn?.navn,
-                            }}
-                        />
-                    )}
-
                     <LeggTilKnapp
                         onClick={åpneKontantstøtteModal}
                         id={registrerteEøsKontantstøttePerioder.id}
+                        leggTilFlereTekst={
+                            registrerteEøsKontantstøttePerioder.verdi.length > 0 &&
+                            plainTekst(teksterForPersonType.flerePerioder, {
+                                barnetsNavn: barn?.navn,
+                            })
+                        }
                         feilmelding={
                             registrerteEøsKontantstøttePerioder.erSynlig &&
                             skjema.visFeilmeldinger &&
@@ -102,10 +105,11 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                             barn={barn}
                             personType={personType}
                             erDød={erDød}
+                            forklaring={plainTekst(teksterForPersonType.leggTilPeriodeForklaring)}
                         />
                     )}
-                </>
+                </PerioderContainer>
             )}
-        </>
+        </KomponentGruppe>
     );
 };

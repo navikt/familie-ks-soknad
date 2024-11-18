@@ -25,6 +25,7 @@ import { SanityProvider } from '../context/SanityContext';
 import { SpråkProvider } from '../context/SpråkContext';
 import { StegProvider } from '../context/StegContext';
 import { LocaleType } from '../typer/common';
+import { EFeatureToggle } from '../typer/feature-toggles';
 import { ESivilstand } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { ISøker, ISøkerRespons } from '../typer/person';
@@ -85,6 +86,7 @@ export const spyOnUseApp = søknad => {
         sluttbruker,
         settEøsLand,
         eøsLand,
+        relevateDokumentasjoner: [],
         systemetLaster: jest.fn().mockReturnValue(false),
         systemetOK: () => jest.fn().mockReturnValue(true),
         systemetFeiler: jest.fn().mockReturnValue(false),
@@ -146,7 +148,10 @@ export const mockFeatureToggle = () => {
         .spyOn(featureToggleContext, 'useFeatureToggles')
         .mockImplementation(
             jest.fn().mockReturnValue({
-                toggles: {},
+                // toggles: { [EFeatureToggle.EXAMPLE]: false },
+                toggles: {
+                    [EFeatureToggle.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP]: false,
+                },
             })
         );
     return { useFeatureToggle };

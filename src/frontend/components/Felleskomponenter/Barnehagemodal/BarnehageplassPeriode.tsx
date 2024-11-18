@@ -9,8 +9,10 @@ import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetFeltTyper } from '../../../typer/skjema';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import { IOmBarnetTekstinnhold } from '../../SøknadsSteg/OmBarnet/innholdTyper';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -37,14 +39,20 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
         lukkModal: lukkBarnehageplassModal,
         åpneModal: åpneBarnehageplassModal,
     } = useModal();
-    const { tekster } = useApp();
+    const { tekster, plainTekst } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
     const teksterForOmBarnetSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     const barnetsNavn = barn.navn;
 
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
+
     return (
-        <>
+        <PerioderContainer
+            tittel={uppercaseFørsteBokstav(
+                plainTekst(frittståendeOrdTekster.barnehageplassperioder)
+            )}
+        >
             <TekstBlock
                 block={teksterForOmBarnetSteg.opplystBarnehageplass}
                 flettefelter={{ barnetsNavn }}
@@ -59,16 +67,14 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
                     nummer={index + 1}
                 />
             ))}
-            {registrerteBarnehageplassPerioder.verdi.length > 0 && (
-                <TekstBlock
-                    block={barnehageplassTekster.flerePerioder}
-                    typografi={Typografi.Label}
-                />
-            )}
 
             <LeggTilKnapp
                 onClick={åpneBarnehageplassModal}
                 id={registrerteBarnehageplassPerioder.id}
+                leggTilFlereTekst={
+                    registrerteBarnehageplassPerioder.verdi.length > 0 &&
+                    plainTekst(barnehageplassTekster.flerePerioder)
+                }
                 feilmelding={
                     registrerteBarnehageplassPerioder.erSynlig &&
                     skjema.visFeilmeldinger &&
@@ -83,8 +89,9 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
                     lukkModal={lukkBarnehageplassModal}
                     onLeggTilBarnehageplassPeriode={leggTilBarnehageplassPeriode}
                     barn={barn}
+                    forklaring={plainTekst(barnehageplassTekster.leggTilPeriodeForklaring)}
                 />
             )}
-        </>
+        </PerioderContainer>
     );
 };
