@@ -87,7 +87,6 @@ const EøsAndreForelderOppsummering: React.FC<{
                     }
                 />
             )}
-
             {jaNeiSpmOppsummering({
                 andreForelderDataKeySpm: andreForelderDataKeySpørsmål.arbeidNorge,
                 spørsmålstekst: andreForelderErDød
@@ -138,7 +137,6 @@ const EøsAndreForelderOppsummering: React.FC<{
                     barn={barn}
                 />
             ))}
-
             {jaNeiSpmOppsummering({
                 andreForelderDataKeySpm: andreForelderDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand,
                 spørsmålstekst: paagaaendeSoeknadYtelseAndreForelder.sporsmal,
@@ -157,7 +155,6 @@ const EøsAndreForelderOppsummering: React.FC<{
                     )}
                 />
             )}
-
             {jaNeiSpmOppsummering({
                 andreForelderDataKeySpm: andreForelderDataKeySpørsmål.kontantstøtteFraEøs,
                 spørsmålstekst: andreForelderErDød

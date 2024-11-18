@@ -15,6 +15,7 @@ import {
 } from '../../../typer/skjema';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
+import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
@@ -70,7 +71,7 @@ export const Arbeidsperiode: React.FC<Props> = ({
     );
 
     return (
-        <>
+        <KomponentGruppe>
             <JaNeiSpm
                 skjema={skjema}
                 felt={arbeiderEllerArbeidetFelt}
@@ -129,6 +130,6 @@ export const Arbeidsperiode: React.FC<Props> = ({
                     )}
                 </PerioderContainer>
             )}
-        </>
+        </KomponentGruppe>
     );
 };

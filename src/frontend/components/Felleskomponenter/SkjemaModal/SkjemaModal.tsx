@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { BodyShort, Button, Modal } from '@navikt/ds-react';
+import { BodyShort, Button, Modal, VStack } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
 import { useFeatureToggles } from '../../../context/FeatureToggleContext';
@@ -56,7 +56,9 @@ function SkjemaModal({
                 {toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP && forklaring && (
                     <BodyShort spacing>{forklaring}</BodyShort>
                 )}
-                <form id="skjema">{children}</form>
+                <form id="skjema">
+                    <VStack gap="10">{children}</VStack>
+                </form>
             </ModalContent>
             <Modal.Footer>
                 <Button

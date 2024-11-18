@@ -78,20 +78,18 @@ const Oppfølgningsspørsmål: React.FC<{
                 <SkjemaFieldset
                     legend={plainTekst(opplystBarnOppholdUtenforNorge, { barnetsNavn })}
                 >
-                    <>
-                        <Utenlandsperiode
-                            personType={PersonType.barn}
-                            skjema={skjema}
-                            leggTilUtenlandsperiode={leggTilUtenlandsperiode}
-                            fjernUtenlandsperiode={fjernUtenlandsperiode}
-                            registrerteUtenlandsperioder={
-                                skjema.felter.barnRegistrerteUtenlandsperioder
-                            }
-                            barn={barn}
-                        />
-                    </>
+                    <Utenlandsperiode
+                        personType={PersonType.barn}
+                        skjema={skjema}
+                        leggTilUtenlandsperiode={leggTilUtenlandsperiode}
+                        fjernUtenlandsperiode={fjernUtenlandsperiode}
+                        registrerteUtenlandsperioder={
+                            skjema.felter.barnRegistrerteUtenlandsperioder
+                        }
+                        barn={barn}
+                    />
                     {skjema.felter.planleggerÅBoINorge12Mnd.erSynlig && (
-                        <KomponentGruppe inline dynamisk>
+                        <KomponentGruppe dynamisk>
                             <JaNeiSpm
                                 skjema={skjema}
                                 felt={skjema.felter.planleggerÅBoINorge12Mnd}
@@ -114,45 +112,39 @@ const Oppfølgningsspørsmål: React.FC<{
                 <SkjemaFieldset
                     legend={plainTekst(opplystFaarHarFaattEllerSoektYtelse, { barnetsNavn })}
                 >
-                    <KomponentGruppe>
-                        <JaNeiSpm
+                    <JaNeiSpm
+                        skjema={skjema}
+                        felt={skjema.felter.pågåendeSøknadFraAnnetEøsLand}
+                        spørsmålDokument={paagaaendeSoeknadYtelse}
+                    />
+                    {skjema.felter.pågåendeSøknadHvilketLand.erSynlig && (
+                        <LandDropdown
+                            felt={skjema.felter.pågåendeSøknadHvilketLand}
                             skjema={skjema}
-                            felt={skjema.felter.pågåendeSøknadFraAnnetEøsLand}
-                            spørsmålDokument={paagaaendeSoeknadYtelse}
+                            kunEøs={true}
+                            ekskluderNorge
+                            label={<TekstBlock block={hvilketLandYtelse.sporsmal} />}
                         />
-                        {skjema.felter.pågåendeSøknadHvilketLand.erSynlig && (
-                            <LandDropdown
-                                felt={skjema.felter.pågåendeSøknadHvilketLand}
-                                skjema={skjema}
-                                kunEøs={true}
-                                ekskluderNorge
-                                label={<TekstBlock block={hvilketLandYtelse.sporsmal} />}
-                            />
-                        )}
-                        <KontantstøttePeriode
-                            skjema={skjema}
-                            registrerteEøsKontantstøttePerioder={
-                                registrerteEøsKontantstøttePerioder
-                            }
-                            tilhørendeJaNeiSpmFelt={skjema.felter.mottarEllerMottokEøsKontantstøtte}
-                            leggTilKontantstøttePeriode={leggTilKontantstøttePeriode}
-                            fjernKontantstøttePeriode={fjernKontantstøttePeriode}
-                            barn={barn}
-                            personType={PersonType.søker}
-                        />
-                    </KomponentGruppe>
+                    )}
+                    <KontantstøttePeriode
+                        skjema={skjema}
+                        registrerteEøsKontantstøttePerioder={registrerteEøsKontantstøttePerioder}
+                        tilhørendeJaNeiSpmFelt={skjema.felter.mottarEllerMottokEøsKontantstøtte}
+                        leggTilKontantstøttePeriode={leggTilKontantstøttePeriode}
+                        fjernKontantstøttePeriode={fjernKontantstøttePeriode}
+                        barn={barn}
+                        personType={PersonType.søker}
+                    />
                 </SkjemaFieldset>
             )}
             {barn[barnDataKeySpørsmål.harBarnehageplass].svar === ESvar.JA && (
-                <KomponentGruppe>
-                    <BarnehageplassPeriode
-                        skjema={skjema}
-                        registrerteBarnehageplassPerioder={registrerteBarnehageplassPerioder}
-                        leggTilBarnehageplassPeriode={leggTilBarnehageplassPeriode}
-                        fjernBarnehageplassPeriode={fjernBarnehageplassPeriode}
-                        barn={barn}
-                    />
-                </KomponentGruppe>
+                <BarnehageplassPeriode
+                    skjema={skjema}
+                    registrerteBarnehageplassPerioder={registrerteBarnehageplassPerioder}
+                    leggTilBarnehageplassPeriode={leggTilBarnehageplassPeriode}
+                    fjernBarnehageplassPeriode={fjernBarnehageplassPeriode}
+                    barn={barn}
+                />
             )}
         </>
     );

@@ -61,35 +61,28 @@ const Kvittering: React.FC = () => {
 
     return (
         <Steg tittel={<TekstBlock block={kvitteringTekster.kvitteringTittel} />}>
-            <VStack gap="12">
-                <Alert variant="success">
-                    <TekstBlock
-                        block={kvitteringTekster.soeknadMottatt}
-                        flettefelter={{ dato, klokkeslett }}
-                    />
-                </Alert>
+            <Alert variant="success">
+                <TekstBlock
+                    block={kvitteringTekster.soeknadMottatt}
+                    flettefelter={{ dato, klokkeslett }}
+                />
+            </Alert>
 
-                <VStack gap="6">
-                    {alleRelevanteVedleggErSendtInn.current ? (
-                        <TekstBlock
-                            block={kvitteringTekster.trengerIkkeEttersendeVedlegg}
-                            typografi={Typografi.BodyLong}
-                        />
-                    ) : (
-                        <Alert variant="warning">
-                            <TekstBlock block={kvitteringTekster.maaEttersendeVedleggAlert} />
-                        </Alert>
-                    )}
+            <VStack gap="6">
+                {alleRelevanteVedleggErSendtInn.current ? (
                     <TekstBlock
-                        // TODO: Endre infoTilSoker i Sanity til å inneholde samme tekst som infoTilSokerMidlertidigTekst.
-                        // Deretter, bytt koden under til å ta i bruk infoTilSoker.
-                        block={kvitteringTekster.infoTilSokerMidlertidigTekst}
+                        block={kvitteringTekster.trengerIkkeEttersendeVedlegg}
                         typografi={Typografi.BodyLong}
                     />
-                </VStack>
-
-                <Kontoinformasjon />
+                ) : (
+                    <Alert variant="warning">
+                        <TekstBlock block={kvitteringTekster.maaEttersendeVedleggAlert} />
+                    </Alert>
+                )}
+                <TekstBlock block={kvitteringTekster.infoTilSoker} typografi={Typografi.BodyLong} />
             </VStack>
+
+            <Kontoinformasjon />
             <BlokkerTilbakeKnappModal />
         </Steg>
     );

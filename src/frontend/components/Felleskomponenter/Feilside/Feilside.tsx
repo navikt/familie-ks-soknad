@@ -3,8 +3,6 @@ import React, { FC, useEffect } from 'react';
 import { Box } from '@navikt/ds-react';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
-import InnholdContainer from '../InnholdContainer/InnholdContainer';
-
 import { FeilsideInnhold } from './FeilsideInnhold';
 
 export const Feilside: FC = () => {
@@ -21,10 +19,8 @@ export const Feilside: FC = () => {
     };
 
     return (
-        <InnholdContainer>
-            <Box marginBlock="32">
-                <FeilsideInnhold />
-            </Box>
-        </InnholdContainer>
+        <Box marginBlock="32">
+            <FeilsideInnhold />
+        </Box>
     );
 };
