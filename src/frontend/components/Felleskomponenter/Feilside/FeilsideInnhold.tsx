@@ -1,15 +1,20 @@
 import React, { FC } from 'react';
 
-import { BodyShort, Heading, Link, List } from '@navikt/ds-react';
+import { BodyShort, Button, Heading, Link } from '@navikt/ds-react';
 
 import { useSpråk } from '../../../context/SpråkContext';
 import { LocaleType } from '../../../typer/common';
 
-import { GåTilBakeTilForrigeSideLenke } from './GåTilbakeTilForrigeSideLenke';
-import { LastInnSidenPåNyttLenke } from './LastInnSidenPåNyttLenke';
-
 export const FeilsideInnhold: FC = () => {
     const { valgtLocale } = useSpråk();
+
+    const lastInnSidenPåNytt = () => {
+        window.location.reload();
+    };
+
+    const gåTilbakeTilForrigeSide = () => {
+        history.back();
+    };
 
     return (
         <>
@@ -22,18 +27,17 @@ export const FeilsideInnhold: FC = () => {
                         En teknisk feil på våre servere gjør at siden er utilgjengelig. Dette
                         skyldes ikke noe du gjorde.
                     </BodyShort>
-                    <BodyShort>Du kan prøve å</BodyShort>
-                    <List>
-                        <List.Item>
-                            vente noen minutter og{' '}
-                            <LastInnSidenPåNyttLenke>laste siden på nytt</LastInnSidenPåNyttLenke>
-                        </List.Item>
-                        <List.Item>
-                            <GåTilBakeTilForrigeSideLenke>
-                                gå tilbake til forrige side
-                            </GåTilBakeTilForrigeSideLenke>
-                        </List.Item>
-                    </List>
+                    <BodyShort spacing>
+                        Du kan prøve å vente noen minutter og{' '}
+                        <Button variant="secondary" size="small" onClick={lastInnSidenPåNytt}>
+                            laste inn siden på nytt
+                        </Button>{' '}
+                        eller{' '}
+                        <Button variant="secondary" size="small" onClick={gåTilbakeTilForrigeSide}>
+                            gå tilbake til forrige side
+                        </Button>
+                        .
+                    </BodyShort>
                     <BodyShort>
                         Hvis problemet vedvarer, kan du{' '}
                         <Link href="https://www.nav.no/start/soknad-kontantstotte" target="_blank">
@@ -53,18 +57,17 @@ export const FeilsideInnhold: FC = () => {
                         Ein teknisk feil på våre servere gjer at sida er utilgjengeleg. Dette
                         skuldast ikkje noko du gjorde.
                     </BodyShort>
-                    <BodyShort>Du kan prøve å</BodyShort>
-                    <List>
-                        <List.Item>
-                            vente nokre minutt og{' '}
-                            <LastInnSidenPåNyttLenke>laste sida på nytt</LastInnSidenPåNyttLenke>
-                        </List.Item>
-                        <List.Item>
-                            <GåTilBakeTilForrigeSideLenke>
-                                gå tilbake til førre side
-                            </GåTilBakeTilForrigeSideLenke>
-                        </List.Item>
-                    </List>
+                    <BodyShort spacing>
+                        Du kan prøve å vente nokre minutt og{' '}
+                        <Button variant="secondary" size="small" onClick={lastInnSidenPåNytt}>
+                            laste sida på nytt
+                        </Button>{' '}
+                        eller{' '}
+                        <Button variant="secondary" size="small" onClick={gåTilbakeTilForrigeSide}>
+                            gå tilbake til førre side
+                        </Button>
+                        .
+                    </BodyShort>
                     <BodyShort>
                         Viss problemet held fram, kan du{' '}
                         <Link
@@ -87,18 +90,17 @@ export const FeilsideInnhold: FC = () => {
                         A technical error on our servers has made the page unavailable. This is not
                         your fault.
                     </BodyShort>
-                    <BodyShort>You can try to</BodyShort>
-                    <List>
-                        <List.Item>
-                            wait a few minutes and{' '}
-                            <LastInnSidenPåNyttLenke>reload the page</LastInnSidenPåNyttLenke>
-                        </List.Item>
-                        <List.Item>
-                            <GåTilBakeTilForrigeSideLenke>
-                                go back to the previous page
-                            </GåTilBakeTilForrigeSideLenke>
-                        </List.Item>
-                    </List>
+                    <BodyShort spacing>
+                        You can try to wait a few minutes and{' '}
+                        <Button variant="secondary" size="small" onClick={lastInnSidenPåNytt}>
+                            reload the page
+                        </Button>{' '}
+                        or{' '}
+                        <Button variant="secondary" size="small" onClick={gåTilbakeTilForrigeSide}>
+                            go back to the previous page
+                        </Button>
+                        .
+                    </BodyShort>
                     <BodyShort>
                         If the problem persists, you can{' '}
                         <Link
