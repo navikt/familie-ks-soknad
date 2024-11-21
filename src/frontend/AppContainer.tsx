@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Alert } from '@navikt/ds-react';
+import { Alert, Box, Page } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
@@ -13,19 +13,21 @@ const AppContainer = () => {
 
     return (
         <main>
-            {systemetLaster() && <SystemetLaster />}
-            {sluttbruker.status === RessursStatus.IKKE_TILGANG && (
-                <div>
-                    <Alert variant="warning" inline>
-                        {'Du må søke på papir. '}
-                        <a href="https://www.nav.no/kontantstotte">
-                            Klikk her for å gå til våre sider for kontantstøtte
-                        </a>
-                    </Alert>
-                </div>
-            )}
-            {systemetOK() && <Søknad />}
-            {systemetFeiler() && !systemetLaster() && <Feilside />}
+            <Page.Block width="text" gutters>
+                {systemetLaster() && <SystemetLaster />}
+                {sluttbruker.status === RessursStatus.IKKE_TILGANG && (
+                    <Box marginBlock="32">
+                        <Alert variant="warning">
+                            {'Du må søke på papir.'}
+                            <a href="https://www.nav.no/kontantstotte">
+                                Klikk her for å gå til våre sider for kontantstøtte
+                            </a>
+                        </Alert>
+                    </Box>
+                )}
+                {systemetOK() && <Søknad />}
+                {systemetFeiler() && !systemetLaster() && <Feilside />}
+            </Page.Block>
         </main>
     );
 };

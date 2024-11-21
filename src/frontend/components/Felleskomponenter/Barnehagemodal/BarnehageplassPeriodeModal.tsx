@@ -122,132 +122,121 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
         >
-            <KomponentGruppe inline>
-                <div>
-                    <StyledDropdown<EBarnehageplassPeriodeBeskrivelse | ''>
-                        {...barnehageplassPeriodeBeskrivelse.hentNavInputProps(
-                            skjema.visFeilmeldinger
-                        )}
-                        felt={barnehageplassPeriodeBeskrivelse}
-                        label={
-                            <TekstBlock block={barnehageplassTekster.periodebeskrivelse.sporsmal} />
-                        }
-                        skjema={skjema}
-                        placeholder={plainTekst(barnehageplassTekster.valgalternativPlaceholder)}
-                    >
-                        {Object.keys(EBarnehageplassPeriodeBeskrivelse).map(
-                            (beskrivelse, number) => (
-                                <option key={number} value={beskrivelse}>
-                                    {plainTekst(
-                                        hentBarnehageplassBeskrivelse(
-                                            beskrivelse as EBarnehageplassPeriodeBeskrivelse,
-                                            barnehageplassTekster
-                                        )
-                                    )}
-                                </option>
-                            )
-                        )}
-                    </StyledDropdown>
-                </div>
+            <div>
+                <StyledDropdown<EBarnehageplassPeriodeBeskrivelse | ''>
+                    {...barnehageplassPeriodeBeskrivelse.hentNavInputProps(skjema.visFeilmeldinger)}
+                    felt={barnehageplassPeriodeBeskrivelse}
+                    label={<TekstBlock block={barnehageplassTekster.periodebeskrivelse.sporsmal} />}
+                    skjema={skjema}
+                    placeholder={plainTekst(barnehageplassTekster.valgalternativPlaceholder)}
+                >
+                    {Object.keys(EBarnehageplassPeriodeBeskrivelse).map((beskrivelse, number) => (
+                        <option key={number} value={beskrivelse}>
+                            {plainTekst(
+                                hentBarnehageplassBeskrivelse(
+                                    beskrivelse as EBarnehageplassPeriodeBeskrivelse,
+                                    barnehageplassTekster
+                                )
+                            )}
+                        </option>
+                    ))}
+                </StyledDropdown>
+            </div>
+            {barnehageplassUtlandet.erSynlig && (
+                <JaNeiSpm
+                    skjema={skjema}
+                    felt={barnehageplassUtlandet}
+                    spørsmålDokument={barnehageplassTekster.utland}
+                />
+            )}
+            {barnehageplassLand.erSynlig && (
+                <LandDropdown
+                    felt={barnehageplassLand}
+                    skjema={skjema}
+                    label={<TekstBlock block={barnehageplassTekster.hvilketLand.sporsmal} />}
+                    dynamisk
+                    ekskluderNorge
+                />
+            )}
+            {offentligStøtte.erSynlig && (
+                <JaNeiSpm
+                    skjema={skjema}
+                    felt={offentligStøtte}
+                    spørsmålDokument={barnehageplassTekster.offentligStoette}
+                />
+            )}
+            {antallTimer.erSynlig && (
+                <KomponentGruppe>
+                    <SkjemaFeltInput
+                        felt={antallTimer}
+                        visFeilmeldinger={skjema.visFeilmeldinger}
+                        label={<TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />}
+                        htmlSize={15}
+                    />
 
-                {barnehageplassUtlandet.erSynlig && (
-                    <JaNeiSpm
-                        skjema={skjema}
-                        felt={barnehageplassUtlandet}
-                        spørsmålDokument={barnehageplassTekster.utland}
-                    />
-                )}
-                {barnehageplassLand.erSynlig && (
-                    <LandDropdown
-                        felt={barnehageplassLand}
-                        skjema={skjema}
-                        label={<TekstBlock block={barnehageplassTekster.hvilketLand.sporsmal} />}
-                        dynamisk
-                        ekskluderNorge
-                    />
-                )}
-                {offentligStøtte.erSynlig && (
-                    <JaNeiSpm
-                        skjema={skjema}
-                        felt={offentligStøtte}
-                        spørsmålDokument={barnehageplassTekster.offentligStoette}
-                    />
-                )}
-                {antallTimer.erSynlig && (
-                    <KomponentGruppe inline>
-                        <SkjemaFeltInput
-                            felt={antallTimer}
-                            visFeilmeldinger={skjema.visFeilmeldinger}
-                            label={
-                                <TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />
-                            }
-                            htmlSize={15}
+                    <Alert variant={'info'} inline>
+                        {plainTekst(barnehageplassTekster.antallTimer.alert)}
+                    </Alert>
+                </KomponentGruppe>
+            )}
+            {startetIBarnehagen.erSynlig && (
+                <Datovelger
+                    felt={startetIBarnehagen}
+                    skjema={skjema}
+                    label={
+                        <TekstBlock
+                            block={hentFraDatoSpørsmål(
+                                barnehageplassPeriodeBeskrivelse.verdi,
+                                barnehageplassTekster
+                            )}
                         />
-
-                        <Alert variant={'info'} inline>
-                            {plainTekst(barnehageplassTekster.antallTimer.alert)}
-                        </Alert>
-                    </KomponentGruppe>
-                )}
-                {startetIBarnehagen.erSynlig && (
+                    }
+                    avgrensMinDato={
+                        barnehageplassPeriodeBeskrivelse.verdi ===
+                        EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
+                            ? dagensDato()
+                            : undefined
+                    }
+                    avgrensMaxDato={
+                        barnehageplassPeriodeBeskrivelse.verdi ===
+                        EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
+                            ? dagensDato()
+                            : barnehageplassPeriodeBeskrivelse.verdi ===
+                                EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                              ? gårsdagensDato()
+                              : undefined
+                    }
+                />
+            )}
+            {slutterIBarnehagen.erSynlig && (
+                <div>
                     <Datovelger
-                        felt={startetIBarnehagen}
+                        felt={slutterIBarnehagen}
                         skjema={skjema}
                         label={
                             <TekstBlock
-                                block={hentFraDatoSpørsmål(
+                                block={hentTilDatoSpørsmål(
                                     barnehageplassPeriodeBeskrivelse.verdi,
                                     barnehageplassTekster
                                 )}
                             />
                         }
-                        avgrensMinDato={
+                        avgrensMinDato={slutterIBarnehagenMinDato()}
+                        avgrensMaxDato={
                             barnehageplassPeriodeBeskrivelse.verdi ===
-                            EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
+                            EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
                                 ? dagensDato()
                                 : undefined
                         }
-                        avgrensMaxDato={
-                            barnehageplassPeriodeBeskrivelse.verdi ===
-                            EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
-                                ? dagensDato()
-                                : barnehageplassPeriodeBeskrivelse.verdi ===
-                                    EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                                  ? gårsdagensDato()
-                                  : undefined
-                        }
+                        tilhørendeFraOgMedFelt={startetIBarnehagen}
+                        disabled={slutterIBarnehagenVetIkke.verdi === ESvar.JA}
                     />
-                )}
-                {slutterIBarnehagen.erSynlig && (
-                    <>
-                        <Datovelger
-                            felt={slutterIBarnehagen}
-                            skjema={skjema}
-                            label={
-                                <TekstBlock
-                                    block={hentTilDatoSpørsmål(
-                                        barnehageplassPeriodeBeskrivelse.verdi,
-                                        barnehageplassTekster
-                                    )}
-                                />
-                            }
-                            avgrensMinDato={slutterIBarnehagenMinDato()}
-                            avgrensMaxDato={
-                                barnehageplassPeriodeBeskrivelse.verdi ===
-                                EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                                    ? dagensDato()
-                                    : undefined
-                            }
-                            tilhørendeFraOgMedFelt={startetIBarnehagen}
-                            disabled={slutterIBarnehagenVetIkke.verdi === ESvar.JA}
-                        />
-                        <SkjemaCheckbox
-                            felt={slutterIBarnehagenVetIkke}
-                            label={plainTekst(barnehageplassTekster.sluttdatoFremtid.checkboxLabel)}
-                        />
-                    </>
-                )}
-            </KomponentGruppe>
+                    <SkjemaCheckbox
+                        felt={slutterIBarnehagenVetIkke}
+                        label={plainTekst(barnehageplassTekster.sluttdatoFremtid.checkboxLabel)}
+                    />
+                </div>
+            )}
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>
     );

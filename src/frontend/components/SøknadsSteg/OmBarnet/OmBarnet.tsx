@@ -9,6 +9,7 @@ import { BarnetsId, Typografi } from '../../../typer/common';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
+import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
@@ -115,28 +116,26 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     fjernUtenlandsperiode={fjernUtenlandsperiodeAndreForelder}
                 />
             )}
-
             <SkjemaFieldset legend={plainTekst(bosted)} dynamisk>
-                <JaNeiSpm
-                    skjema={skjema}
-                    felt={borFastMedSøker}
-                    spørsmålDokument={borBarnFastSammenMedDeg}
-                    flettefelter={{ barnetsNavn }}
-                />
-
-                {borFastMedSøker.verdi === ESvar.NEI && !erEøsTrigget() && (
-                    <Alert variant={'warning'} inline>
-                        <TekstBlock block={borBarnFastSammenMedDeg.alert} />
-                    </Alert>
-                )}
-
+                <KomponentGruppe>
+                    <JaNeiSpm
+                        skjema={skjema}
+                        felt={borFastMedSøker}
+                        spørsmålDokument={borBarnFastSammenMedDeg}
+                        flettefelter={{ barnetsNavn }}
+                    />
+                    {borFastMedSøker.verdi === ESvar.NEI && !erEøsTrigget() && (
+                        <Alert variant={'warning'} inline>
+                            <TekstBlock block={borBarnFastSammenMedDeg.alert} />
+                        </Alert>
+                    )}
+                </KomponentGruppe>
                 <JaNeiSpm
                     skjema={skjema}
                     felt={foreldreBorSammen}
                     spørsmålDokument={borForeldreSammen}
                     flettefelter={{ barnetsNavn }}
                 />
-
                 <JaNeiSpm
                     skjema={skjema}
                     felt={søkerDeltKontantstøtte}

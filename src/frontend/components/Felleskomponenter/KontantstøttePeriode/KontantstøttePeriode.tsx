@@ -11,6 +11,7 @@ import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtels
 import { IEøsForBarnFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
+import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
@@ -54,7 +55,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
     const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
 
     return (
-        <>
+        <KomponentGruppe>
             <JaNeiSpm
                 skjema={skjema}
                 felt={tilhørendeJaNeiSpmFelt}
@@ -109,6 +110,6 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
                     )}
                 </PerioderContainer>
             )}
-        </>
+        </KomponentGruppe>
     );
 };

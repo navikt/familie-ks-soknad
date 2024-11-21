@@ -64,17 +64,6 @@ export const logKlikkGåVidere = (steg: number) => {
     });
 };
 
-export const logSpørsmålBesvart = (spørsmålApiNavn: string, svar: string) => {
-    spørsmålApiNavn &&
-        logEvent('skjemaspørsmål besvart', {
-            skjemanavn: søknadstype.navn,
-            skjemaId: søknadstype.id,
-            team_id: 'familie',
-            spørsmål: spørsmålApiNavn,
-            svar,
-        });
-};
-
 export const logError = (error: Error) => {
     logEvent('logg feil', {
         skjemanavn: søknadstype.navn,
