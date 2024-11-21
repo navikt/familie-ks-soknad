@@ -18,7 +18,7 @@
     "test": "jest",
     "clean": "rm -rf dist",
     "typecheck": "tsc --noEmit -p src/frontend/tsconfig.json",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "jest": {
     "roots": [
