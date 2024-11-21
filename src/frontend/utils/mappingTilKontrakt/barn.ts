@@ -33,7 +33,6 @@ export const barnISøknadsFormat = (
     tekster: ITekstinnhold,
     tilRestLocaleRecord: TilRestLocaleRecord
 ): ISøknadIKontraktBarn => {
-    /* eslint-disable @typescript-eslint/no-unused-vars */
     const {
         ident,
         navn,
