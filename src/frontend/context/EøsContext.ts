@@ -36,6 +36,7 @@ const [EøsProvider, useEøs] = createUseContext(() => {
                 });
 
                 settEøsLand(eøsLandResponse);
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
             } catch (_) {
                 // do nothing
             }
