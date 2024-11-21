@@ -7,9 +7,7 @@ import {
 } from '@portabletext/types';
 import { pipe } from 'ramda';
 
-import { LocaleType } from '@navikt/familie-sprakvelger';
-
-import { LocaleRecordBlock, LocaleRecordString } from '../typer/common';
+import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../typer/common';
 import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
 import { IAndreUtbetalingerTekstinnhold } from '../typer/sanity/modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from '../typer/sanity/modaler/arbeidsperiode';
@@ -23,12 +21,12 @@ import { IStartPåNyttModal } from '../typer/sanity/modaler/startPåNytt';
 import { IUtenlandsoppholdTekstinnhold } from '../typer/sanity/modaler/utenlandsopphold';
 import {
     alternativeTeksterPrefix,
-    bannerPrefix,
     ESanityFlettefeltverdi,
     ESanitySteg,
     formateringsfeilmeldingerPrefix,
     frittståendeOrdPrefix,
     hjelpeteksterForInputPrefix,
+    midlertidigeTeksterPrefix,
     kanIkkeBrukeSoeknadPrefix,
     modalPrefix,
     navigasjonPrefix,
@@ -42,6 +40,7 @@ import {
     IFrittståendeOrdTekstinnhold,
     IHjelpeteksterForInputTekstInnhold,
     IKanIkkeBrukeSoeknadTekstinnhold,
+    IMidlertidigeTeksterTekstInnhold,
     IModalerTekstinnhold,
     INavigasjonTekstinnhold,
     ITekstinnhold,
@@ -179,9 +178,6 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
         formateringsfeilmeldinger: struktrerInnholdForFelles(
             dokumenterFiltrertPåPrefix(fellesDokumenter, formateringsfeilmeldingerPrefix)
         ) as IFormateringsfeilmeldingerTekstinnhold,
-        banner: {
-            ...fellesDokumenter.find(dok => dok._type.includes(bannerPrefix)),
-        } as LocaleRecordBlock,
         vedlikeholdsarbeid: struktrerInnholdForFelles(
             dokumenterFiltrertPåPrefix(fellesDokumenter, vedlikeholdsarbeidPrefix)
         ) as IVedlikeholdsarbeidTekstinnhold,
@@ -194,6 +190,9 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
         alternativeTekster: struktrerInnholdForFelles(
             dokumenterFiltrertPåPrefix(fellesDokumenter, alternativeTeksterPrefix)
         ) as IAlternativeTeksterTekstinnhold,
+        midlertidigeTekster: struktrerInnholdForFelles(
+            dokumenterFiltrertPåPrefix(fellesDokumenter, midlertidigeTeksterPrefix)
+        ) as IMidlertidigeTeksterTekstInnhold,
     };
     return tekstInnhold as ITekstinnhold;
 };

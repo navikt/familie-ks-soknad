@@ -10,7 +10,6 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { TilfeldigBarnIkon } from '../../Felleskomponenter/TilfeldigBarnIkon/TilfeldigBarnIkon';
 
 const HeaderWrapper = styled.div`
-    margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
+import { useSpråk } from '../../../context/SpråkContext';
 import { IPensjonsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { formaterDato } from '../../../utils/dato';
@@ -31,7 +30,7 @@ export const PensjonsperiodeOppsummering: React.FC<PensjonsperiodeOppsummeringPr
     erDød = false,
     barn = undefined,
 }) => {
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const { tekster } = useApp();
     const teksterForModal = tekster().FELLES.modaler.pensjonsperiode[personType];
 
@@ -50,37 +49,44 @@ export const PensjonsperiodeOppsummering: React.FC<PensjonsperiodeOppsummeringPr
                 <TekstBlock
                     block={teksterForModal.oppsummeringstittel}
                     flettefelter={{ antall: nummer.toString(), gjelderUtland: gjelderUtlandet }}
-                    typografi={Typografi.Label}
                 />
             }
         >
             {mottarPensjonNå.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={teksterForModal.faarPensjonNaa.sporsmal}
+                    tittel={
+                        <TekstBlock
+                            block={teksterForModal.faarPensjonNaa.sporsmal}
+                            flettefelter={{ barnetsNavn: barn?.navn }}
+                        />
+                    }
                     søknadsvar={mottarPensjonNå.svar}
-                    flettefelter={{ barnetsNavn: barn?.navn }}
                 />
             )}
             {pensjonsland.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={
-                        periodenErAvsluttet
-                            ? teksterForModal.pensjonLandFortid.sporsmal
-                            : teksterForModal.pensjonLandNaatid.sporsmal
+                    tittel={
+                        <TekstBlock
+                            block={
+                                periodenErAvsluttet
+                                    ? teksterForModal.pensjonLandFortid.sporsmal
+                                    : teksterForModal.pensjonLandNaatid.sporsmal
+                            }
+                            flettefelter={{ barnetsNavn: barn?.navn }}
+                        />
                     }
                     søknadsvar={landkodeTilSpråk(pensjonsland.svar, valgtLocale)}
-                    flettefelter={{ barnetsNavn: barn?.navn }}
                 />
             )}
             {pensjonFra.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={teksterForModal.startdato.sporsmal}
+                    tittel={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
                     søknadsvar={formaterDato(pensjonFra.svar)}
                 />
             )}
             {pensjonTil.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={teksterForModal.sluttdato.sporsmal}
+                    tittel={<TekstBlock block={teksterForModal.sluttdato.sporsmal} />}
                     søknadsvar={formaterDato(pensjonTil.svar)}
                 />
             )}

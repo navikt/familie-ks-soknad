@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { useSprakContext } from '@navikt/familie-sprakvelger';
-
 import { useApp } from '../../../context/AppContext';
-import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
+import { useSpråk } from '../../../context/SpråkContext';
+import { AlternativtSvarForInput } from '../../../typer/common';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps } from '../../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
@@ -37,7 +36,7 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
     personType,
     barn,
 }) => {
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const { plainTekst, tekster } = useApp();
     const {
         oppholdsland,
@@ -64,32 +63,39 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
                     <TekstBlock
                         block={teksterForPersonType.oppsummeringstittel}
                         flettefelter={{ antall: nummer.toString() }}
-                        typografi={Typografi.Label}
                     />
                 }
                 fjernPeriodeCallback={fjernPeriodeCallback && (() => fjernPeriodeCallback(periode))}
             >
                 <OppsummeringFelt
-                    spørsmålstekst={teksterForPersonType.periodeBeskrivelse.sporsmal}
+                    tittel={<TekstBlock block={teksterForPersonType.periodeBeskrivelse.sporsmal} />}
                     søknadsvar={plainTekst(hentUtenlandsoppholdÅrsak(årsak, teksterForPersonType))}
                 />
 
                 <OppsummeringFelt
-                    spørsmålstekst={hentLandSpørsmål(årsak, teksterForPersonType)}
+                    tittel={
+                        <TekstBlock
+                            block={hentLandSpørsmål(årsak, teksterForPersonType)}
+                            flettefelter={{ barnetsNavn: barn?.navn }}
+                        />
+                    }
                     søknadsvar={landkodeTilSpråk(oppholdsland.svar, valgtLocale)}
-                    flettefelter={{ barnetsNavn: barn?.navn }}
                 />
 
                 {oppholdslandFraDato.svar && (
                     <OppsummeringFelt
-                        spørsmålstekst={hentFraDatoSpørsmål(årsak, teksterForPersonType)}
+                        tittel={
+                            <TekstBlock block={hentFraDatoSpørsmål(årsak, teksterForPersonType)} />
+                        }
                         søknadsvar={formaterDato(oppholdslandFraDato.svar)}
                     />
                 )}
 
                 {oppholdslandTilDato.svar && (
                     <OppsummeringFelt
-                        spørsmålstekst={hentTilDatoSpørsmål(årsak, teksterForPersonType)}
+                        tittel={
+                            <TekstBlock block={hentTilDatoSpørsmål(årsak, teksterForPersonType)} />
+                        }
                         søknadsvar={formaterDatoMedUkjent(
                             oppholdslandTilDato.svar,
                             plainTekst(teksterForPersonType.sluttdatoFremtid.checkboxLabel)
@@ -99,7 +105,7 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
 
                 {adresse.svar && (
                     <OppsummeringFelt
-                        spørsmålstekst={adresseTekst?.sporsmal}
+                        tittel={<TekstBlock block={adresseTekst?.sporsmal} />}
                         søknadsvar={
                             adresse.svar === AlternativtSvarForInput.UKJENT
                                 ? plainTekst(adresseTekst?.checkboxLabel)

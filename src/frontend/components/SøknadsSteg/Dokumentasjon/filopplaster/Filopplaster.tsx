@@ -4,13 +4,12 @@ import { useDropzone } from 'react-dropzone';
 import styled from 'styled-components';
 
 import { UploadIcon } from '@navikt/aksel-icons';
+import { BodyShort, VStack } from '@navikt/ds-react';
 import { ABlue500, ABorderDefault } from '@navikt/ds-tokens/dist/tokens';
 
 import { useApp } from '../../../../context/AppContext';
-import { Typografi } from '../../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
-import { TypografiWrapper } from '../../../Felleskomponenter/TekstBlock';
 
 import OpplastedeFiler from './OpplastedeFiler';
 import { useFilopplaster } from './useFilopplaster';
@@ -23,7 +22,6 @@ interface Props {
     ) => void;
     dokumentasjon: IDokumentasjon;
     tillatteFiltyper: { [key: string]: string[] };
-    maxFilstørrelse: number;
 }
 
 interface FilopplastningBoksProps {
@@ -39,7 +37,6 @@ const FilopplastningBoks = styled.button<FilopplastningBoksProps>`
     background-color: rgba(204, 222, 230, 0.5);
     width: 100%;
     padding: 1rem;
-    margin: 2rem 0 1rem 0;
     color: ${ABlue500};
     box-sizing: border-box;
 
@@ -68,10 +65,8 @@ const Filopplaster: React.FC<Props> = ({
     oppdaterDokumentasjon,
     dokumentasjon,
     tillatteFiltyper,
-    maxFilstørrelse,
 }) => {
     const { onDrop, harFeil, feilmeldinger, slettVedlegg } = useFilopplaster(
-        maxFilstørrelse,
         dokumentasjon,
         oppdaterDokumentasjon
     );
@@ -79,22 +74,25 @@ const Filopplaster: React.FC<Props> = ({
         onDrop,
         accept: tillatteFiltyper,
     });
+
     const { tekster, plainTekst } = useApp();
     const { lastOppKnapp, slippFilenHer } = tekster().DOKUMENTASJON;
 
     return (
-        <>
+        <VStack gap="4">
             <FilopplastningBoks type={'button'} {...getRootProps()} $harFeil={harFeil}>
                 <input {...getInputProps()} />
                 <StyledUpload focusable={false} aria-hidden />
-                <TypografiWrapper typografi={Typografi.BodyShort}>
-                    {plainTekst(isDragActive ? slippFilenHer : lastOppKnapp)}
-                </TypografiWrapper>
+                <BodyShort>{plainTekst(isDragActive ? slippFilenHer : lastOppKnapp)}</BodyShort>
             </FilopplastningBoks>
-            <OpplastedeFiler
-                filliste={dokumentasjon.opplastedeVedlegg}
-                slettVedlegg={slettVedlegg}
-            />
+
+            {dokumentasjon.opplastedeVedlegg.length > 0 && (
+                <OpplastedeFiler
+                    filliste={dokumentasjon.opplastedeVedlegg}
+                    slettVedlegg={slettVedlegg}
+                />
+            )}
+
             {harFeil && (
                 <StyledFeilmeldingList>
                     {Array.from(feilmeldinger).map(([key, value], index) => (
@@ -111,7 +109,7 @@ const Filopplaster: React.FC<Props> = ({
                     ))}
                 </StyledFeilmeldingList>
             )}
-        </>
+        </VStack>
     );
 };
 

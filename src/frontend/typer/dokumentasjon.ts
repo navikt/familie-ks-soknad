@@ -57,6 +57,9 @@ export enum BeskrivelseSanityApiNavn {
     bekreftelsePaaAtBarnBorSammenMedDeg = 'bekreftelsePaaAtBarnBorSammenMedDeg',
     vedtakOmOppholdstillatelse = 'vedtakOmOppholdstillatelse',
     bekreftelsePaaBarnehageplass = 'bekreftelsePaaBarnehageplass',
+    bekreftelsePaaBarnehageplassEttEllerFlereBarn = 'bekreftelsePaaBarnehageplassEttEllerFlereBarn',
+    lastOppSenereISoknad = 'lastOppSenereISoknad',
+    annenDokumentasjonBeskrivelse = 'annenDokumentasjonBeskrivelse',
 }
 
 export const dokumentasjonsbehovTilBeskrivelseSanityApiNavn = (
@@ -66,7 +69,7 @@ export const dokumentasjonsbehovTilBeskrivelseSanityApiNavn = (
         case Dokumentasjonsbehov.ADOPSJON_DATO:
             return BeskrivelseSanityApiNavn.bekreftelsePaaAdopsjonKontantstoette;
         case Dokumentasjonsbehov.ANNEN_DOKUMENTASJON:
-            return null;
+            return BeskrivelseSanityApiNavn.annenDokumentasjonBeskrivelse;
         case Dokumentasjonsbehov.AVTALE_DELT_BOSTED:
             return BeskrivelseSanityApiNavn.avtaleOmDeltBosted;
         case Dokumentasjonsbehov.BOR_FAST_MED_SØKER:

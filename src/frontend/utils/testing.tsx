@@ -4,7 +4,6 @@ import { mockDeep } from 'jest-mock-extended';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { HttpProvider } from '@navikt/familie-http';
-import { LocaleType, SprakProvider } from '@navikt/familie-sprakvelger';
 import { Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import { DinLivssituasjonSpørsmålId } from '../components/SøknadsSteg/DinLivssituasjon/spørsmål';
@@ -23,7 +22,10 @@ import * as routesContext from '../context/RoutesContext';
 import { getRoutes, RoutesProvider } from '../context/RoutesContext';
 import * as sanityContext from '../context/SanityContext';
 import { SanityProvider } from '../context/SanityContext';
+import { SpråkProvider } from '../context/SpråkContext';
 import { StegProvider } from '../context/StegContext';
+import { LocaleType } from '../typer/common';
+import { EFeatureToggle } from '../typer/feature-toggles';
 import { ESivilstand } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { ISøker, ISøkerRespons } from '../typer/person';
@@ -84,6 +86,7 @@ export const spyOnUseApp = søknad => {
         sluttbruker,
         settEøsLand,
         eøsLand,
+        relevateDokumentasjoner: [],
         systemetLaster: jest.fn().mockReturnValue(false),
         systemetOK: () => jest.fn().mockReturnValue(true),
         systemetFeiler: jest.fn().mockReturnValue(false),
@@ -145,7 +148,10 @@ export const mockFeatureToggle = () => {
         .spyOn(featureToggleContext, 'useFeatureToggles')
         .mockImplementation(
             jest.fn().mockReturnValue({
-                toggles: {},
+                // toggles: { [EFeatureToggle.EXAMPLE]: false },
+                toggles: {
+                    [EFeatureToggle.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP]: false,
+                },
             })
         );
     return { useFeatureToggle };
@@ -157,7 +163,7 @@ export const wrapMedProvidere = (
     children?: ReactNode
 ) => {
     const [Første, ...resten] = providerComponents;
-    const erSpråkprovider = Første === SprakProvider;
+    const erSpråkprovider = Første === SpråkProvider;
     return (
         <Første {...(erSpråkprovider ? { defaultLocale: LocaleType.nb } : {})}>
             {resten.length ? wrapMedProvidere(resten, children) : children}
@@ -168,7 +174,7 @@ export const wrapMedProvidere = (
 const wrapMedDefaultProvidere = (children: ReactNode) =>
     wrapMedProvidere(
         [
-            SprakProvider,
+            SpråkProvider,
             HttpProvider,
             LastRessurserProvider,
             SanityProvider,

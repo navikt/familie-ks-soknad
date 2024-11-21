@@ -14,7 +14,6 @@ import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
 import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
-import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { SkjemaCheckbox } from '../SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
@@ -30,6 +29,7 @@ interface ArbeidsperiodeModalProps extends IUseArbeidsperiodeSkjemaParams {
     onLeggTilArbeidsperiode: (periode: IArbeidsperiode) => void;
     gjelderUtlandet: boolean;
     barn?: IBarnMedISøknad;
+    forklaring?: string;
 }
 
 export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
@@ -40,6 +40,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
     personType,
     erDød = false,
     barn,
+    forklaring = undefined,
 }) => {
     const { tekster, plainTekst } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
@@ -106,6 +107,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
         <SkjemaModal
             erÅpen={erÅpen}
             tittel={teksterForModal.tittel}
+            forklaring={forklaring}
             flettefelter={{ gjelderUtland: gjelderUtlandet }}
             onSubmitCallback={onLeggTil}
             submitKnappTekst={<TekstBlock block={teksterForModal.leggTilKnapp} />}
@@ -113,92 +115,87 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
         >
-            <KomponentGruppe inline>
-                {arbeidsperiodeAvsluttet.erSynlig && (
-                    <JaNeiSpm
-                        skjema={skjema}
-                        felt={skjema.felter.arbeidsperiodeAvsluttet}
-                        spørsmålDokument={teksterForModal.arbeidsperiodenAvsluttet}
-                    />
-                )}
-                {arbeidsperiodeLand.erSynlig && (
-                    <KomponentGruppe inline>
-                        <LandDropdown
-                            felt={skjema.felter.arbeidsperiodeLand}
-                            skjema={skjema}
-                            label={
-                                <TekstBlock
-                                    block={
-                                        periodenErAvsluttet
-                                            ? teksterForModal.hvilketLandFortid.sporsmal
-                                            : teksterForModal.hvilketLandNaatid.sporsmal
-                                    }
-                                    flettefelter={{ barnetsNavn: barn?.navn }}
-                                />
+            {arbeidsperiodeAvsluttet.erSynlig && (
+                <JaNeiSpm
+                    skjema={skjema}
+                    felt={skjema.felter.arbeidsperiodeAvsluttet}
+                    spørsmålDokument={teksterForModal.arbeidsperiodenAvsluttet}
+                />
+            )}
+            {arbeidsperiodeLand.erSynlig && (
+                <LandDropdown
+                    felt={skjema.felter.arbeidsperiodeLand}
+                    skjema={skjema}
+                    label={
+                        <TekstBlock
+                            block={
+                                periodenErAvsluttet
+                                    ? teksterForModal.hvilketLandFortid.sporsmal
+                                    : teksterForModal.hvilketLandNaatid.sporsmal
                             }
-                            dynamisk
-                            ekskluderNorge
+                            flettefelter={{ barnetsNavn: barn?.navn }}
                         />
-                    </KomponentGruppe>
-                )}
-                {arbeidsgiver.erSynlig && (
-                    <SkjemaFeltInput
-                        felt={skjema.felter.arbeidsgiver}
-                        visFeilmeldinger={skjema.visFeilmeldinger}
-                        label={<TekstBlock block={teksterForModal.arbeidsgiver.sporsmal} />}
-                    />
-                )}
-                {fraDatoArbeidsperiode.erSynlig && (
-                    <Datovelger
-                        felt={skjema.felter.fraDatoArbeidsperiode}
-                        skjema={skjema}
-                        label={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
-                        avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
-                    />
-                )}
-                {tilDatoArbeidsperiode.erSynlig && (
-                    <>
-                        <Datovelger
-                            felt={skjema.felter.tilDatoArbeidsperiode}
-                            skjema={skjema}
-                            label={
-                                <TekstBlock
-                                    block={
-                                        periodenErAvsluttet
-                                            ? teksterForModal.sluttdatoFortid.sporsmal
-                                            : teksterForModal.sluttdatoFremtid.sporsmal
-                                    }
-                                />
-                            }
-                            avgrensMinDato={minTilDatoForUtbetalingEllerArbeidsperiode(
-                                periodenErAvsluttet,
-                                skjema.felter.fraDatoArbeidsperiode.verdi
-                            )}
-                            avgrensMaxDato={periodenErAvsluttet ? dagensDato() : undefined}
-                            disabled={skjema.felter.tilDatoArbeidsperiodeUkjent.verdi === ESvar.JA}
-                        />
-
-                        <SkjemaCheckbox
-                            felt={skjema.felter.tilDatoArbeidsperiodeUkjent}
-                            label={plainTekst(teksterForModal.sluttdatoFremtid.checkboxLabel)}
-                        />
-                    </>
-                )}
+                    }
+                    dynamisk
+                    ekskluderNorge
+                />
+            )}
+            {arbeidsgiver.erSynlig && (
+                <SkjemaFeltInput
+                    felt={skjema.felter.arbeidsgiver}
+                    visFeilmeldinger={skjema.visFeilmeldinger}
+                    label={<TekstBlock block={teksterForModal.arbeidsgiver.sporsmal} />}
+                />
+            )}
+            {fraDatoArbeidsperiode.erSynlig && (
+                <Datovelger
+                    felt={skjema.felter.fraDatoArbeidsperiode}
+                    skjema={skjema}
+                    label={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
+                    avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
+                />
+            )}
+            {tilDatoArbeidsperiode.erSynlig && (
                 <>
-                    <SkjemaFeltInput
-                        felt={skjema.felter.adresse}
-                        visFeilmeldinger={skjema.visFeilmeldinger}
-                        label={plainTekst(adresseTekst.sporsmal)}
-                        disabled={skjema.felter.adresseUkjent.verdi === ESvar.JA}
-                        description={plainTekst(adresseTekst.beskrivelse)}
+                    <Datovelger
+                        felt={skjema.felter.tilDatoArbeidsperiode}
+                        skjema={skjema}
+                        label={
+                            <TekstBlock
+                                block={
+                                    periodenErAvsluttet
+                                        ? teksterForModal.sluttdatoFortid.sporsmal
+                                        : teksterForModal.sluttdatoFremtid.sporsmal
+                                }
+                            />
+                        }
+                        avgrensMinDato={minTilDatoForUtbetalingEllerArbeidsperiode(
+                            periodenErAvsluttet,
+                            skjema.felter.fraDatoArbeidsperiode.verdi
+                        )}
+                        avgrensMaxDato={periodenErAvsluttet ? dagensDato() : undefined}
+                        disabled={skjema.felter.tilDatoArbeidsperiodeUkjent.verdi === ESvar.JA}
                     />
 
                     <SkjemaCheckbox
-                        felt={skjema.felter.adresseUkjent}
-                        label={plainTekst(adresseTekst.checkboxLabel)}
+                        felt={skjema.felter.tilDatoArbeidsperiodeUkjent}
+                        label={plainTekst(teksterForModal.sluttdatoFremtid.checkboxLabel)}
                     />
                 </>
-            </KomponentGruppe>
+            )}
+            <div>
+                <SkjemaFeltInput
+                    felt={skjema.felter.adresse}
+                    visFeilmeldinger={skjema.visFeilmeldinger}
+                    label={plainTekst(adresseTekst.sporsmal)}
+                    disabled={skjema.felter.adresseUkjent.verdi === ESvar.JA}
+                    description={plainTekst(adresseTekst.beskrivelse)}
+                />
+                <SkjemaCheckbox
+                    felt={skjema.felter.adresseUkjent}
+                    label={plainTekst(adresseTekst.checkboxLabel)}
+                />
+            </div>
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>
     );

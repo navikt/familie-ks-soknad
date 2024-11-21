@@ -4,9 +4,9 @@ import { PortableText } from '@portabletext/react';
 import styled from 'styled-components';
 
 import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds-react';
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../context/AppContext';
+import { useSpråk } from '../../context/SpråkContext';
 import { LocaleRecordBlock, Typografi } from '../../typer/common';
 import { FlettefeltVerdier } from '../../typer/kontrakt/generelle';
 
@@ -48,7 +48,13 @@ export function TypografiWrapper({ typografi, style, children }: Props) {
             );
         case Typografi.HeadingH2:
             return (
-                <Heading level={'2'} size={'xsmall'} spacing style={style}>
+                <Heading level={'2'} size={'medium'} spacing style={style}>
+                    {children}
+                </Heading>
+            );
+        case Typografi.HeadingH3:
+            return (
+                <Heading level={'3'} size={'small'} spacing style={style}>
                     {children}
                 </Heading>
             );
@@ -76,7 +82,7 @@ const TekstBlock: React.FC<{
     flettefelter?: FlettefeltVerdier;
     typografi?: Typografi;
 }> = ({ block, flettefelter, typografi }) => {
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const { flettefeltTilTekst } = useApp();
 
     return block ? (
@@ -94,6 +100,11 @@ const TekstBlock: React.FC<{
                     ),
                     h2: ({ children }) => (
                         <TypografiWrapper typografi={Typografi.HeadingH2}>
+                            {children}
+                        </TypografiWrapper>
+                    ),
+                    h3: ({ children }) => (
+                        <TypografiWrapper typografi={Typografi.HeadingH3}>
                             {children}
                         </TypografiWrapper>
                     ),

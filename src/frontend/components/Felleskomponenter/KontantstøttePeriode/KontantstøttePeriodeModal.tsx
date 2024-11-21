@@ -1,7 +1,6 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
+import { Alert, Box } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
@@ -11,11 +10,9 @@ import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { dagenEtterDato, dagensDato, gårsdagensDato, stringTilDate } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
-import AlertStripe from '../AlertStripe/AlertStripe';
 import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
-import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
@@ -32,10 +29,8 @@ interface Props extends IUsePensjonsperiodeSkjemaParams {
     lukkModal: () => void;
     onLeggTilKontantstøttePeriode: (periode: IEøsKontantstøttePeriode) => void;
     barn: IBarnMedISøknad;
+    forklaring?: string;
 }
-const StyledAlertStripe = styled(AlertStripe)`
-    margin: 1rem 0 1rem 0;
-`;
 
 export const KontantstøttePeriodeModal: React.FC<Props> = ({
     erÅpen,
@@ -44,6 +39,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
     barn,
     personType,
     erDød = false,
+    forklaring = undefined,
 }) => {
     const { tekster } = useApp();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
@@ -99,81 +95,81 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
         <SkjemaModal
             erÅpen={erÅpen}
             tittel={teksterForPersonType.tittel}
+            forklaring={forklaring}
             onSubmitCallback={onLeggTil}
             submitKnappTekst={<TekstBlock block={teksterForPersonType.leggTilKnapp} />}
             lukkModal={lukkModal}
             valideringErOk={valideringErOk}
             onAvbrytCallback={nullstillSkjema}
         >
-            <KomponentGruppe inline>
-                <JaNeiSpm
+            <JaNeiSpm
+                skjema={skjema}
+                felt={skjema.felter.mottarEøsKontantstøtteNå}
+                spørsmålDokument={teksterForPersonType.faarYtelserNaa}
+                flettefelter={{ barnetsNavn: barn.navn }}
+            />
+            {kontantstøtteLand.erSynlig && (
+                <LandDropdown
+                    felt={skjema.felter.kontantstøtteLand}
                     skjema={skjema}
-                    felt={skjema.felter.mottarEøsKontantstøtteNå}
-                    spørsmålDokument={teksterForPersonType.faarYtelserNaa}
-                    flettefelter={{ barnetsNavn: barn.navn }}
+                    label={
+                        <TekstBlock
+                            block={
+                                periodenErAvsluttet
+                                    ? teksterForPersonType.ytelseLandFortid.sporsmal
+                                    : teksterForPersonType.ytelseLandNaatid.sporsmal
+                            }
+                            flettefelter={{ barnetsNavn: barn.navn }}
+                        />
+                    }
+                    kunEøs={true}
+                    dynamisk
+                    ekskluderNorge
                 />
-
-                {kontantstøtteLand.erSynlig && (
-                    <LandDropdown
-                        felt={skjema.felter.kontantstøtteLand}
-                        skjema={skjema}
-                        label={
-                            <TekstBlock
-                                block={
-                                    periodenErAvsluttet
-                                        ? teksterForPersonType.ytelseLandFortid.sporsmal
-                                        : teksterForPersonType.ytelseLandNaatid.sporsmal
-                                }
-                                flettefelter={{ barnetsNavn: barn.navn }}
-                            />
-                        }
-                        kunEøs={true}
-                        dynamisk
-                        ekskluderNorge
-                    />
-                )}
-                {fraDatoKontantstøttePeriode.erSynlig && (
-                    <Datovelger
-                        felt={skjema.felter.fraDatoKontantstøttePeriode}
-                        skjema={skjema}
-                        label={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
-                        avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
-                    />
-                )}
-                {tilDatoKontantstøttePeriode.erSynlig && (
-                    <Datovelger
-                        felt={skjema.felter.tilDatoKontantstøttePeriode}
-                        skjema={skjema}
-                        label={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
-                        avgrensMinDato={
-                            skjema.felter.fraDatoKontantstøttePeriode.verdi
-                                ? dagenEtterDato(
-                                      stringTilDate(skjema.felter.fraDatoKontantstøttePeriode.verdi)
-                                  )
-                                : undefined
-                        }
-                        avgrensMaxDato={dagensDato()}
-                    />
-                )}
-                {månedligBeløp.erSynlig && (
-                    <SkjemaFeltInput
-                        felt={skjema.felter.månedligBeløp}
-                        visFeilmeldinger={skjema.visFeilmeldinger}
-                        label={
-                            <TekstBlock
-                                block={teksterForPersonType.beloepPerMaaned.sporsmal}
-                                flettefelter={{ barnetsNavn: barn.navn }}
-                            />
-                        }
-                        tilleggsinfo={
-                            <StyledAlertStripe variant={'info'}>
+            )}
+            {fraDatoKontantstøttePeriode.erSynlig && (
+                <Datovelger
+                    felt={skjema.felter.fraDatoKontantstøttePeriode}
+                    skjema={skjema}
+                    label={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
+                    avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
+                />
+            )}
+            {tilDatoKontantstøttePeriode.erSynlig && (
+                <Datovelger
+                    felt={skjema.felter.tilDatoKontantstøttePeriode}
+                    skjema={skjema}
+                    label={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
+                    avgrensMinDato={
+                        skjema.felter.fraDatoKontantstøttePeriode.verdi
+                            ? dagenEtterDato(
+                                  stringTilDate(skjema.felter.fraDatoKontantstøttePeriode.verdi)
+                              )
+                            : undefined
+                    }
+                    avgrensMaxDato={dagensDato()}
+                />
+            )}
+            {månedligBeløp.erSynlig && (
+                <SkjemaFeltInput
+                    felt={skjema.felter.månedligBeløp}
+                    visFeilmeldinger={skjema.visFeilmeldinger}
+                    label={
+                        <TekstBlock
+                            block={teksterForPersonType.beloepPerMaaned.sporsmal}
+                            flettefelter={{ barnetsNavn: barn.navn }}
+                        />
+                    }
+                    tilleggsinfo={
+                        <Box marginBlock="2">
+                            <Alert variant={'info'} inline>
                                 <TekstBlock block={teksterForPersonType.beloepPerMaaned.alert} />
-                            </StyledAlertStripe>
-                        }
-                        htmlSize={15}
-                    />
-                )}
-            </KomponentGruppe>
+                            </Alert>
+                        </Box>
+                    }
+                    htmlSize={15}
+                />
+            )}
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>
     );

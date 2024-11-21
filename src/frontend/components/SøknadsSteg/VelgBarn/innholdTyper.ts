@@ -2,8 +2,8 @@ import { LocaleRecordBlock } from '../../../typer/common';
 
 export interface IVelgBarnTekstinnhold {
     velgBarnTittel: LocaleRecordBlock;
+    velgBarnGuide: LocaleRecordBlock;
     hvisOpplysningeneIkkeStemmer: LocaleRecordBlock;
-    leseMerOmRegleneKontantstoette: LocaleRecordBlock;
     soekeForUregistrerteBarn: LocaleRecordBlock;
     alderLabel: LocaleRecordBlock;
     aar: LocaleRecordBlock;

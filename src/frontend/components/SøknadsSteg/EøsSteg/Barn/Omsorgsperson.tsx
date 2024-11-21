@@ -17,7 +17,6 @@ import { Arbeidsperiode } from '../../../Felleskomponenter/Arbeidsperiode/Arbeid
 import { LandDropdown } from '../../../Felleskomponenter/Dropdowns/LandDropdown';
 import SlektsforholdDropdown from '../../../Felleskomponenter/Dropdowns/SlektsforholdDropdown';
 import JaNeiSpm from '../../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
-import KomponentGruppe from '../../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
 import { KontantstøttePeriode } from '../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriode';
 import { Pensjonsperiode } from '../../../Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
 import { SkjemaCheckbox } from '../../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
@@ -62,8 +61,8 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
         leggTilKontantstøttePeriodeOmsorgsperson,
         fjernKontantstøttePeriodeOmsorgsperson,
     } = periodeFunksjoner;
-
     const flettefelter = { barnetsNavn: barn.navn };
+
     return (
         <SkjemaFieldset
             legend={plainTekst(eøsForBarnTekster.oppgittIkkeBorFastSammenMedDeg, flettefelter)}
@@ -101,37 +100,31 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                     }
                 />
             )}
-            <>
+            <div>
                 <SkjemaFeltInput
                     felt={skjema.felter.omsorgspersonIdNummer}
                     visFeilmeldinger={skjema.visFeilmeldinger}
                     label={<TekstBlock block={eøsForBarnTekster.idNummerOmsorgsperson.sporsmal} />}
                     disabled={skjema.felter.omsorgspersonIdNummerVetIkke.verdi === ESvar.JA}
                 />
-
                 <SkjemaCheckbox
                     felt={skjema.felter.omsorgspersonIdNummerVetIkke}
                     label={plainTekst(eøsForBarnTekster.idNummerOmsorgsperson.checkboxLabel)}
                 />
-            </>
-            <KomponentGruppe>
-                <>
-                    <SkjemaFeltInput
-                        felt={skjema.felter.omsorgspersonAdresse}
-                        visFeilmeldinger={skjema.visFeilmeldinger}
-                        label={
-                            <TekstBlock block={eøsForBarnTekster.hvorBorOmsorgsperson.sporsmal} />
-                        }
-                        description={plainTekst(eøsForBarnTekster.hvorBorOmsorgsperson.beskrivelse)}
-                        disabled={skjema.felter.omsorgspersonAdresseVetIkke.verdi === ESvar.JA}
-                    />
-                    <SkjemaCheckbox
-                        felt={skjema.felter.omsorgspersonAdresseVetIkke}
-                        label={plainTekst(eøsForBarnTekster.hvorBorOmsorgsperson.checkboxLabel)}
-                    />
-                </>
-            </KomponentGruppe>
-
+            </div>
+            <div>
+                <SkjemaFeltInput
+                    felt={skjema.felter.omsorgspersonAdresse}
+                    visFeilmeldinger={skjema.visFeilmeldinger}
+                    label={<TekstBlock block={eøsForBarnTekster.hvorBorOmsorgsperson.sporsmal} />}
+                    description={plainTekst(eøsForBarnTekster.hvorBorOmsorgsperson.beskrivelse)}
+                    disabled={skjema.felter.omsorgspersonAdresseVetIkke.verdi === ESvar.JA}
+                />
+                <SkjemaCheckbox
+                    felt={skjema.felter.omsorgspersonAdresseVetIkke}
+                    label={plainTekst(eøsForBarnTekster.hvorBorOmsorgsperson.checkboxLabel)}
+                />
+            </div>
             <Arbeidsperiode
                 skjema={skjema}
                 leggTilArbeidsperiode={leggTilArbeidsperiodeUtlandOmsorgsperson}
@@ -181,7 +174,6 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                 barn={barn}
                 registrerteUtbetalingsperioder={skjema.felter.omsorgspersonAndreUtbetalingsperioder}
             />
-
             <JaNeiSpm
                 skjema={skjema}
                 felt={skjema.felter.omsorgspersonPågåendeSøknadFraAnnetEøsLand}
@@ -203,7 +195,6 @@ const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunk
                     }
                 />
             )}
-
             <KontantstøttePeriode
                 skjema={skjema}
                 tilhørendeJaNeiSpmFelt={skjema.felter.omsorgspersonKontantstøtteFraEøs}

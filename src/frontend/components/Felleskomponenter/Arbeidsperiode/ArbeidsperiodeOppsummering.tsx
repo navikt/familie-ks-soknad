@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { useSprakContext } from '@navikt/familie-sprakvelger';
 
 import { useApp } from '../../../context/AppContext';
-import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
+import { useSpråk } from '../../../context/SpråkContext';
+import { AlternativtSvarForInput } from '../../../typer/common';
 import { IArbeidsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
@@ -33,7 +33,7 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
     barn,
 }) => {
     const { tekster, plainTekst } = useApp();
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const {
         arbeidsperiodeAvsluttet,
         arbeidsperiodeland,
@@ -64,40 +64,49 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
                 <TekstBlock
                     block={teksterForModal.oppsummeringstittel}
                     flettefelter={{ antall: nummer.toString(), gjelderUtland: gjelderUtlandet }}
-                    typografi={Typografi.HeadingH2}
                 />
             }
         >
             {arbeidsperiodeAvsluttet.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={teksterForModal.arbeidsperiodenAvsluttet.sporsmal}
+                    tittel={
+                        <TekstBlock block={teksterForModal.arbeidsperiodenAvsluttet.sporsmal} />
+                    }
                     søknadsvar={arbeidsperiodeAvsluttet.svar}
                 />
             )}
             {arbeidsperiodeland.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={
-                        periodenErAvsluttet
-                            ? teksterForModal.hvilketLandFortid.sporsmal
-                            : teksterForModal.hvilketLandNaatid.sporsmal
+                    tittel={
+                        <TekstBlock
+                            block={
+                                periodenErAvsluttet
+                                    ? teksterForModal.hvilketLandFortid.sporsmal
+                                    : teksterForModal.hvilketLandNaatid.sporsmal
+                            }
+                            flettefelter={{ barnetsNavn: barn?.navn }}
+                        />
                     }
-                    flettefelter={{ barnetsNavn: barn?.navn }}
                     søknadsvar={landkodeTilSpråk(arbeidsperiodeland.svar, valgtLocale)}
                 />
             )}
             <OppsummeringFelt
-                spørsmålstekst={teksterForModal.arbeidsgiver.sporsmal}
+                tittel={<TekstBlock block={teksterForModal.arbeidsgiver.sporsmal} />}
                 søknadsvar={arbeidsgiver.svar}
             />
             <OppsummeringFelt
-                spørsmålstekst={teksterForModal.startdato.sporsmal}
+                tittel={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
                 søknadsvar={formaterDato(fraDatoArbeidsperiode.svar)}
             />
             <OppsummeringFelt
-                spørsmålstekst={
-                    periodenErAvsluttet
-                        ? teksterForModal.sluttdatoFortid.sporsmal
-                        : teksterForModal.sluttdatoFremtid.sporsmal
+                tittel={
+                    <TekstBlock
+                        block={
+                            periodenErAvsluttet
+                                ? teksterForModal.sluttdatoFortid.sporsmal
+                                : teksterForModal.sluttdatoFremtid.sporsmal
+                        }
+                    />
                 }
                 søknadsvar={formaterDatoMedUkjent(
                     tilDatoArbeidsperiode.svar,
@@ -106,7 +115,7 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
             />
             {adresse.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={adresseTekst.sporsmal}
+                    tittel={<TekstBlock block={adresseTekst.sporsmal} />}
                     søknadsvar={
                         adresse.svar === AlternativtSvarForInput.UKJENT
                             ? plainTekst(adresseTekst.checkboxLabel)

@@ -1,76 +1,94 @@
 import React, { useEffect } from 'react';
 
-import styled from 'styled-components';
-
-import { GuidePanel } from '@navikt/ds-react';
-import { LocaleType, Sprakvelger } from '@navikt/familie-sprakvelger';
+import { Accordion, GuidePanel, Heading } from '@navikt/ds-react';
+import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import Miljø from '../../../../shared-utils/Miljø';
 import { useApp } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
-import Informasjonsbolk from '../../Felleskomponenter/Informasjonsbolk/Informasjonsbolk';
 import InnholdContainer from '../../Felleskomponenter/InnholdContainer/InnholdContainer';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
-import FortsettPåSøknad from './FortsettPåSøknad';
-
-const TittelContainer = styled.div`
-    && {
-        margin: 4rem 0 2.3rem 0;
-    }
-`;
-
-const StyledSpråkvelger = styled(Sprakvelger)`
-    margin: auto;
-`;
+import { FortsettPåSøknad } from './FortsettPåSøknad';
 
 const Forside: React.FC = () => {
-    const { mellomlagretVerdi, settNåværendeRoute, tekster } = useApp();
+    const { mellomlagretVerdi, settNåværendeRoute, tekster, plainTekst } = useApp();
 
-    const {
-        [ESanitySteg.FORSIDE]: {
-            punktliste,
-            veilederhilsen,
-            soeknadstittel,
-            personopplysningslenke,
-        },
-    } = tekster();
+    const forsidetekster = tekster().FORSIDE;
 
     useFørsteRender(() => logSidevisningKontantstøtte(`${RouteEnum.Forside}`));
 
     useEffect(() => {
         settNåværendeRoute(RouteEnum.Forside);
+        visSpråkvelger();
     }, []);
+
+    const visSpråkvelger = () => {
+        setAvailableLanguages([
+            { locale: 'nb', handleInApp: true },
+            { locale: 'nn', handleInApp: true },
+            { locale: 'en', handleInApp: true },
+        ]).then();
+    };
 
     const kanFortsettePåSøknad =
         mellomlagretVerdi && mellomlagretVerdi.modellVersjon === Miljø().modellVersjon;
 
     return (
         <InnholdContainer>
-            <GuidePanel>
-                <TekstBlock block={veilederhilsen} typografi={Typografi.BodyShort} />
+            <GuidePanel poster>
+                <Heading level="2" size="medium" spacing>
+                    {plainTekst(forsidetekster.veilederHei)}
+                </Heading>
+                <TekstBlock block={forsidetekster.veilederIntro} typografi={Typografi.BodyLong} />
             </GuidePanel>
-
-            <TittelContainer>
-                <TekstBlock block={soeknadstittel} typografi={Typografi.ForsideHeadingH1} />
-            </TittelContainer>
-
-            <StyledSpråkvelger støttedeSprak={[LocaleType.nn, LocaleType.nb, LocaleType.en]} />
-
-            <Informasjonsbolk>
-                <TekstBlock block={punktliste} />
-            </Informasjonsbolk>
+            <div>
+                <Heading level="2" size="large" spacing>
+                    {plainTekst(forsidetekster.foerDuSoekerTittel)}
+                </Heading>
+                <TekstBlock block={forsidetekster.foerDuSoeker} typografi={Typografi.BodyLong} />
+            </div>
+            <Accordion>
+                <Accordion.Item>
+                    <Accordion.Header>
+                        {plainTekst(forsidetekster.informasjonOmPlikterTittel)}
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        <TekstBlock
+                            block={forsidetekster.informasjonOmPlikter}
+                            typografi={Typografi.BodyLong}
+                        />
+                    </Accordion.Content>
+                </Accordion.Item>
+                <Accordion.Item>
+                    <Accordion.Header>
+                        {plainTekst(forsidetekster.informasjonOmPersonopplysningerTittel)}
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        <TekstBlock
+                            block={forsidetekster.informasjonOmPersonopplysninger}
+                            typografi={Typografi.BodyLong}
+                        />
+                    </Accordion.Content>
+                </Accordion.Item>
+                <Accordion.Item>
+                    <Accordion.Header>
+                        {plainTekst(forsidetekster.informasjonOmLagringAvSvarTittel)}
+                    </Accordion.Header>
+                    <Accordion.Content>
+                        <TekstBlock
+                            block={forsidetekster.informasjonOmLagringAvSvar}
+                            typografi={Typografi.BodyLong}
+                        />
+                    </Accordion.Content>
+                </Accordion.Item>
+            </Accordion>
 
             {kanFortsettePåSøknad ? <FortsettPåSøknad /> : <BekreftelseOgStartSoknad />}
-
-            <Informasjonsbolk>
-                <TekstBlock block={personopplysningslenke} />
-            </Informasjonsbolk>
         </InnholdContainer>
     );
 };

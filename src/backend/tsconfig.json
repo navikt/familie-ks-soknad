@@ -1,3 +1,10 @@
 {
-  "extends": "../../tsconfig.backend.json"
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "target": "ES6",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+  },
 }

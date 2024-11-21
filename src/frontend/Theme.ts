@@ -17,8 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     legend,
     a,
     p,
-    li,
-    h2 {
+    li {
       font-size: 1.125rem;
       line-height: 1.625rem;
     }
@@ -38,23 +37,4 @@ export const GlobalStyle = createGlobalStyle`
   position: relative;
   min-height: 100vh;
 }
-
-  #familie-ks-soknad-content-wrapper {
-    padding-bottom: 5.5rem;
-  }
-  @media screen and (max-width: 950px) {
-    #familie-ks-soknad-content-wrapper {
-      padding-bottom: 6.875rem;
-    }
-  }
-  @media screen and (max-width: 768px) {
-    #familie-ks-soknad-content-wrapper {
-      padding-bottom: 12.75rem;
-    }
-  }
-
-  footer {
-    position: absolute;
-    bottom: 0;
-  }
 `;

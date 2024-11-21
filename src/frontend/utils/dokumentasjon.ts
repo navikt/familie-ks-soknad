@@ -23,7 +23,10 @@ export const genererInitiellDokumentasjon = (
     opplastedeVedlegg: [],
 });
 
-export const erDokumentasjonRelevant = (dokumentasjon: IDokumentasjon) =>
+export const erDokumentasjonRelevant = (dokumentasjon: IDokumentasjon): boolean =>
     dokumentasjon.dokumentasjonsbehov === Dokumentasjonsbehov.ANNEN_DOKUMENTASJON ||
     dokumentasjon.gjelderForSøker ||
-    dokumentasjon.gjelderForBarnId.length;
+    dokumentasjon.gjelderForBarnId.length > 0;
+
+export const hentRelevateDokumentasjoner = (dokumentasjon: IDokumentasjon[]) =>
+    dokumentasjon.filter(dokumentasjon => erDokumentasjonRelevant(dokumentasjon));

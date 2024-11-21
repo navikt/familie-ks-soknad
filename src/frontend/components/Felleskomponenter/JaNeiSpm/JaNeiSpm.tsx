@@ -1,17 +1,15 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode } from 'react';
 
-import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
 
+import { Box } from '@navikt/ds-react';
 import { ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { AlternativtSvarForInput } from '../../../typer/common';
 import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
-import { logSpørsmålBesvart } from '../../../utils/amplitude';
 import TekstBlock from '../TekstBlock';
 
 interface IJaNeiSpmProps {
@@ -23,10 +21,6 @@ interface IJaNeiSpmProps {
     flettefelter?: FlettefeltVerdier;
 }
 
-const TilleggsinfoWrapper = styled.div`
-    margin-top: 0.5rem;
-`;
-
 const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
     skjema,
     felt,
@@ -35,20 +29,8 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
     spørsmålDokument,
     flettefelter,
 }) => {
-    const [mounted, settMounted] = useState(false);
     const { tekster, plainTekst } = useApp();
     const { ja, nei, jegVetIkke } = tekster().FELLES.frittståendeOrd;
-
-    useEffect(() => {
-        if (mounted) {
-            spørsmålDokument &&
-                logSpørsmålBesvart(
-                    spørsmålDokument.api_navn,
-                    felt.verdi ?? AlternativtSvarForInput.UKJENT
-                );
-        }
-        settMounted(true);
-    }, [felt.verdi]);
 
     return felt.erSynlig ? (
         <div id={felt.id} data-testid={felt.id}>
@@ -61,7 +43,7 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
                 legend={
                     <>
                         <TekstBlock block={spørsmålDokument.sporsmal} flettefelter={flettefelter} />
-                        {tilleggsinfo && <TilleggsinfoWrapper>{tilleggsinfo}</TilleggsinfoWrapper>}
+                        {tilleggsinfo && <Box marginBlock="2 0">{tilleggsinfo}</Box>}
                     </>
                 }
                 labelTekstForRadios={{

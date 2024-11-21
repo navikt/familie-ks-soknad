@@ -3,15 +3,18 @@ import { useEffect, useState } from 'react';
 import createUseContext from 'constate';
 import { Alpha3Code, getName } from 'i18n-iso-countries';
 
-import { LocaleType, useSprakContext } from '@navikt/familie-sprakvelger';
 import {
+    byggFeiletRessurs,
     byggHenterRessurs,
     byggTomRessurs,
     hentDataFraRessurs,
+    Ressurs,
     RessursStatus,
 } from '@navikt/familie-typer';
 
 import Miljø, { basePath } from '../../shared-utils/Miljø';
+import { LocaleType } from '../typer/common';
+import { IKontoinformasjon } from '../typer/kontoinformasjon';
 import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { IMellomlagretKontantstøtte } from '../typer/mellomlager';
@@ -29,13 +32,15 @@ import { useInnloggetContext } from './InnloggetContext';
 import { useLastRessurserContext } from './LastRessurserContext';
 import { hentSluttbrukerFraPdl } from './pdl';
 import { useSanity } from './SanityContext';
+import { useSpråk } from './SpråkContext';
 
 const [AppProvider, useApp] = createUseContext(() => {
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const { axiosRequest, lasterRessurser } = useLastRessurserContext();
     const { innloggetStatus } = useInnloggetContext();
     const [sluttbruker, settSluttbruker] = useState(byggTomRessurs<ISøkerRespons>());
     const [eøsLand, settEøsLand] = useState(byggTomRessurs<Map<Alpha3Code, string>>());
+    const [kontoinformasjon, settKontoinformasjon] = useState(byggTomRessurs<IKontoinformasjon>());
     const [søknad, settSøknad] = useState<ISøknad>(initialStateSøknad);
     const [innsendingStatus, settInnsendingStatus] = useState(byggTomRessurs<IKvittering>());
     const [sisteUtfylteStegIndex, settSisteUtfylteStegIndex] = useState<number>(-1);
@@ -85,6 +90,7 @@ const [AppProvider, useApp] = createUseContext(() => {
                 settSluttbruker(ressurs);
 
                 hentOgSettMellomlagretData();
+                hentOgSettKontoinformasjon();
                 ressurs.status === RessursStatus.SUKSESS &&
                     settSøknad({
                         ...søknad,
@@ -162,6 +168,21 @@ const [AppProvider, useApp] = createUseContext(() => {
             påvirkerSystemLaster: false,
         });
         settMellomlagretVerdi(undefined);
+    };
+
+    const hentOgSettKontoinformasjon = () => {
+        preferredAxios
+            .get(`${Miljø().soknadApiProxyUrl}/kontoregister/hent-kontonr`, {
+                withCredentials: true,
+            })
+            .then((response: { data?: Ressurs<IKontoinformasjon> }) => {
+                if (response.data) {
+                    settKontoinformasjon(response.data);
+                }
+            })
+            .catch(() => {
+                settKontoinformasjon(byggFeiletRessurs('Request mot kontoregisteret feilet'));
+            });
     };
 
     const nullstillSøknadsobjekt = () => {
@@ -335,6 +356,7 @@ const [AppProvider, useApp] = createUseContext(() => {
         flettefeltTilTekst,
         plainTekst,
         tilRestLocaleRecord,
+        kontoinformasjon,
     };
 });
 

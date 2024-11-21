@@ -1,4 +1,6 @@
 // CSP eller Content-Security-Policy er en HTTP-Header som lar oss spesifisere hvor appen kan kjøre REST-kall mot og hvor den kan hente diverse innhold fra (fonter, bilder, javascript, stylesheets mm).
+import { erProd } from './shared-utils/Miljø';
+
 export const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
     return {
         'default-src': ["'self'", '*.nav.no'],
@@ -33,6 +35,7 @@ export const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
             '*.hotjar.io',
             '*.boost.ai',
             '*.taskanalytics.com',
+            erProd() ? 'telemetry.nav.no' : 'telemetry.ekstern.dev.nav.no',
         ],
         // Kan kun submitte forms til seg selv.
         'form-action': ["'self'"],

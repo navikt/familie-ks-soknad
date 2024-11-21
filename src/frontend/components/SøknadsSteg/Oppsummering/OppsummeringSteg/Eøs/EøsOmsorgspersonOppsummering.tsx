@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { useSprakContext } from '@navikt/familie-sprakvelger';
-
 import { useApp } from '../../../../../context/AppContext';
+import { useSpråk } from '../../../../../context/SpråkContext';
 import { IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
 import { IOmsorgsperson } from '../../../../../typer/omsorgsperson';
@@ -11,9 +10,9 @@ import { hentSlektsforhold, landkodeTilSpråk } from '../../../../../utils/språ
 import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
 import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
+import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
 import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
-import { StyledOppsummeringsFeltGruppe } from '../../OppsummeringsFeltGruppe';
 
 const EøsOmsorgspersonOppsummering: React.FC<{
     omsorgsperson: IOmsorgsperson;
@@ -22,22 +21,26 @@ const EøsOmsorgspersonOppsummering: React.FC<{
     const { tekster, plainTekst } = useApp();
     const eøsBarnTekster = tekster().EØS_FOR_BARN;
 
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
 
     const flettefelter = { barnetsNavn: barn.navn };
     return (
-        <StyledOppsummeringsFeltGruppe>
+        <>
             {omsorgsperson.navn.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={eøsBarnTekster.hvaHeterOmsorgspersonen.sporsmal}
+                    tittel={<TekstBlock block={eøsBarnTekster.hvaHeterOmsorgspersonen.sporsmal} />}
                     søknadsvar={omsorgsperson.navn.svar}
                 />
             )}
 
             {omsorgsperson.slektsforhold.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={eøsBarnTekster.slektsforhold.sporsmal}
-                    flettefelter={flettefelter}
+                    tittel={
+                        <TekstBlock
+                            block={eøsBarnTekster.slektsforhold.sporsmal}
+                            flettefelter={flettefelter}
+                        />
+                    }
                     søknadsvar={plainTekst(
                         hentSlektsforhold(omsorgsperson.slektsforhold.svar, eøsBarnTekster)
                     )}
@@ -46,15 +49,19 @@ const EøsOmsorgspersonOppsummering: React.FC<{
 
             {omsorgsperson.slektsforholdSpesifisering.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={eøsBarnTekster.hvilkenRelasjonOmsorgsperson.sporsmal}
-                    flettefelter={flettefelter}
+                    tittel={
+                        <TekstBlock
+                            block={eøsBarnTekster.hvilkenRelasjonOmsorgsperson.sporsmal}
+                            flettefelter={flettefelter}
+                        />
+                    }
                     søknadsvar={omsorgsperson.slektsforholdSpesifisering.svar}
                 />
             )}
 
             {omsorgsperson.idNummer.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={eøsBarnTekster.idNummerOmsorgsperson.sporsmal}
+                    tittel={<TekstBlock block={eøsBarnTekster.idNummerOmsorgsperson.sporsmal} />}
                     søknadsvar={
                         omsorgsperson.idNummer.svar === AlternativtSvarForInput.UKJENT
                             ? plainTekst(eøsBarnTekster.idNummerOmsorgsperson.checkboxLabel)
@@ -65,7 +72,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
 
             {omsorgsperson.adresse.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={eøsBarnTekster.hvorBorOmsorgsperson.sporsmal}
+                    tittel={<TekstBlock block={eøsBarnTekster.hvorBorOmsorgsperson.sporsmal} />}
                     søknadsvar={
                         omsorgsperson.adresse.svar === AlternativtSvarForInput.UKJENT
                             ? plainTekst(eøsBarnTekster.hvorBorOmsorgsperson.checkboxLabel)
@@ -76,8 +83,12 @@ const EøsOmsorgspersonOppsummering: React.FC<{
 
             {omsorgsperson.arbeidUtland.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={eøsBarnTekster.arbeidUtenforNorgeOmsorgsperson.sporsmal}
-                    flettefelter={flettefelter}
+                    tittel={
+                        <TekstBlock
+                            block={eøsBarnTekster.arbeidUtenforNorgeOmsorgsperson.sporsmal}
+                            flettefelter={flettefelter}
+                        />
+                    }
                     søknadsvar={omsorgsperson.arbeidUtland.svar}
                 />
             )}
@@ -93,8 +104,12 @@ const EøsOmsorgspersonOppsummering: React.FC<{
             ))}
             {omsorgsperson.arbeidNorge.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={eøsBarnTekster.arbeidNorgeOmsorgsperson.sporsmal}
-                    flettefelter={flettefelter}
+                    tittel={
+                        <TekstBlock
+                            block={eøsBarnTekster.arbeidNorgeOmsorgsperson.sporsmal}
+                            flettefelter={flettefelter}
+                        />
+                    }
                     søknadsvar={omsorgsperson.arbeidNorge.svar}
                 />
             )}
@@ -110,8 +125,12 @@ const EøsOmsorgspersonOppsummering: React.FC<{
             ))}
             {omsorgsperson.pensjonUtland.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={eøsBarnTekster.pensjonUtlandOmsorgsperson.sporsmal}
-                    flettefelter={flettefelter}
+                    tittel={
+                        <TekstBlock
+                            block={eøsBarnTekster.pensjonUtlandOmsorgsperson.sporsmal}
+                            flettefelter={flettefelter}
+                        />
+                    }
                     søknadsvar={omsorgsperson.pensjonUtland.svar}
                 />
             )}
@@ -127,8 +146,12 @@ const EøsOmsorgspersonOppsummering: React.FC<{
             ))}
             {omsorgsperson.pensjonNorge.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={eøsBarnTekster.pensjonNorgeOmsorgsperson.sporsmal}
-                    flettefelter={flettefelter}
+                    tittel={
+                        <TekstBlock
+                            block={eøsBarnTekster.pensjonNorgeOmsorgsperson.sporsmal}
+                            flettefelter={flettefelter}
+                        />
+                    }
                     søknadsvar={omsorgsperson.pensjonNorge.svar}
                 />
             )}
@@ -144,8 +167,12 @@ const EøsOmsorgspersonOppsummering: React.FC<{
             ))}
             {omsorgsperson.andreUtbetalinger.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={eøsBarnTekster.utbetalingerOmsorgsperson.sporsmal}
-                    flettefelter={flettefelter}
+                    tittel={
+                        <TekstBlock
+                            block={eøsBarnTekster.utbetalingerOmsorgsperson.sporsmal}
+                            flettefelter={flettefelter}
+                        />
+                    }
                     søknadsvar={omsorgsperson.andreUtbetalinger.svar}
                 />
             )}
@@ -159,32 +186,42 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                 />
             ))}
             {omsorgsperson.pågåendeSøknadFraAnnetEøsLand.svar && (
-                <StyledOppsummeringsFeltGruppe>
+                <>
                     <OppsummeringFelt
-                        spørsmålstekst={
-                            eøsBarnTekster.paagaaendeSoeknadYtelseOmsorgsperson.sporsmal
+                        tittel={
+                            <TekstBlock
+                                block={eøsBarnTekster.paagaaendeSoeknadYtelseOmsorgsperson.sporsmal}
+                                flettefelter={flettefelter}
+                            />
                         }
-                        flettefelter={flettefelter}
                         søknadsvar={omsorgsperson.pågåendeSøknadFraAnnetEøsLand.svar}
                     />
                     {omsorgsperson.pågåendeSøknadHvilketLand.svar && (
                         <OppsummeringFelt
-                            spørsmålstekst={
-                                eøsBarnTekster.hvilketLandSoektYtelseOmsorgsperson.sporsmal
+                            tittel={
+                                <TekstBlock
+                                    block={
+                                        eøsBarnTekster.hvilketLandSoektYtelseOmsorgsperson.sporsmal
+                                    }
+                                    flettefelter={flettefelter}
+                                />
                             }
-                            flettefelter={flettefelter}
                             søknadsvar={landkodeTilSpråk(
                                 omsorgsperson.pågåendeSøknadHvilketLand.svar,
                                 valgtLocale
                             )}
                         />
                     )}
-                </StyledOppsummeringsFeltGruppe>
+                </>
             )}
             {omsorgsperson.kontantstøtteFraEøs.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={eøsBarnTekster.ytelseFraAnnetLandOmsorgsperson.sporsmal}
-                    flettefelter={flettefelter}
+                    tittel={
+                        <TekstBlock
+                            block={eøsBarnTekster.ytelseFraAnnetLandOmsorgsperson.sporsmal}
+                            flettefelter={flettefelter}
+                        />
+                    }
                     søknadsvar={omsorgsperson.kontantstøtteFraEøs.svar}
                 />
             )}
@@ -197,7 +234,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
                     personType={PersonType.omsorgsperson}
                 />
             ))}
-        </StyledOppsummeringsFeltGruppe>
+        </>
     );
 };
 

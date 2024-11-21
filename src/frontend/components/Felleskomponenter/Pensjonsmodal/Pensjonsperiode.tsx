@@ -4,7 +4,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
 import { IPensjonsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import {
@@ -13,8 +12,11 @@ import {
     IEøsForSøkerFeltTyper,
     IOmBarnetFeltTyper,
 } from '../../../typer/skjema';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
+import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';
 import TekstBlock from '../TekstBlock';
 
@@ -50,8 +52,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
     erDød,
     barn,
 }) => {
-    const { tekster } = useApp();
-    const teksterForModal = tekster().FELLES.modaler.pensjonsperiode[personType];
+    const { tekster, plainTekst } = useApp();
 
     const {
         erÅpen: pensjonsmodalErÅpen,
@@ -59,8 +60,17 @@ export const Pensjonsperiode: React.FC<Props> = ({
         åpneModal: åpnePensjonsmodal,
     } = useModal();
 
+    const teksterForModal = tekster().FELLES.modaler.pensjonsperiode[personType];
+
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
+    const { pensjonsperioder, fra, utlandet, norge } = frittståendeOrdTekster;
+
+    const perioderContainerTittel = uppercaseFørsteBokstav(
+        `${plainTekst(pensjonsperioder)} ${plainTekst(fra)} ${plainTekst(gjelderUtlandet ? utlandet : norge)}`
+    );
+
     return (
-        <>
+        <KomponentGruppe>
             <JaNeiSpm
                 skjema={skjema}
                 felt={mottarEllerMottattPensjonFelt}
@@ -74,7 +84,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
                 flettefelter={{ barnetsNavn: barn?.navn }}
             />
             {mottarEllerMottattPensjonFelt.verdi === ESvar.JA && (
-                <>
+                <PerioderContainer tittel={perioderContainerTittel}>
                     {registrertePensjonsperioder.verdi.map((pensjonsperiode, index) => (
                         <PensjonsperiodeOppsummering
                             key={`pensjonsperiode-${index}`}
@@ -87,19 +97,16 @@ export const Pensjonsperiode: React.FC<Props> = ({
                             barn={personType !== PersonType.søker ? barn : undefined}
                         />
                     ))}
-                    {registrertePensjonsperioder.verdi.length > 0 && (
-                        <TekstBlock
-                            block={teksterForModal.flerePerioder}
-                            typografi={Typografi.Label}
-                            flettefelter={{
-                                barnetsNavn: barn?.navn,
-                                gjelderUtland: gjelderUtlandet,
-                            }}
-                        />
-                    )}
                     <LeggTilKnapp
                         onClick={åpnePensjonsmodal}
                         id={registrertePensjonsperioder.id}
+                        leggTilFlereTekst={
+                            registrertePensjonsperioder.verdi.length > 0 &&
+                            plainTekst(teksterForModal.flerePerioder, {
+                                barnetsNavn: barn?.navn,
+                                gjelderUtland: gjelderUtlandet,
+                            })
+                        }
                         feilmelding={
                             registrertePensjonsperioder.erSynlig &&
                             skjema.visFeilmeldinger &&
@@ -117,10 +124,11 @@ export const Pensjonsperiode: React.FC<Props> = ({
                             personType={personType}
                             erDød={erDød}
                             barn={barn}
+                            forklaring={plainTekst(teksterForModal.leggTilPeriodeForklaring)}
                         />
                     )}
-                </>
+                </PerioderContainer>
             )}
-        </>
+        </KomponentGruppe>
     );
 };

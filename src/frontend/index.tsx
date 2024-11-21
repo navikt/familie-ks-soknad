@@ -4,10 +4,10 @@ import { registerLocale } from 'i18n-iso-countries';
 import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 
-import { LocaleType } from '@navikt/familie-sprakvelger';
-
 import App from './App';
 import FellesWrapper from './FellesWrapper';
+import { LocaleType } from './typer/common';
+import { initGrafanaFaro } from './utils/grafanaFaro';
 import { initSentry } from './utils/sentry';
 import '@navikt/ds-css';
 
@@ -25,6 +25,7 @@ const polyfillLocaledata = async () => {
 
 polyfillLocaledata().then(() => {
     initSentry();
+    initGrafanaFaro();
 
     if (process.env.NODE_ENV !== 'production') {
         import('@axe-core/react').then(({ default: axe }) => {

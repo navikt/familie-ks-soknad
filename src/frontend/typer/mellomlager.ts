@@ -1,5 +1,4 @@
-import { LocaleType } from '@navikt/familie-sprakvelger';
-
+import { LocaleType } from './common';
 import { ISøknad } from './søknad';
 
 export interface IMellomlagretKontantstøtte {

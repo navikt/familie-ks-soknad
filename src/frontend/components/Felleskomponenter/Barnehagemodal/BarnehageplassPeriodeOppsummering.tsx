@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { useSprakContext } from '@navikt/familie-sprakvelger';
-
 import { useApp } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
+import { useSpråk } from '../../../context/SpråkContext';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
@@ -36,7 +34,7 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
         slutterIBarnehagen,
     } = barnehageplassPeriode;
 
-    const [valgtLocale] = useSprakContext();
+    const { valgtLocale } = useSpråk();
     const { tekster, plainTekst } = useApp();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster().FELLES.modaler.barnehageplass;
@@ -50,12 +48,11 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
                 <TekstBlock
                     block={barnehageplassTekster.oppsummeringstittel}
                     flettefelter={{ antall: nummer.toString() }}
-                    typografi={Typografi.HeadingH2}
                 />
             }
         >
             <OppsummeringFelt
-                spørsmålstekst={barnehageplassTekster.periodebeskrivelse.sporsmal}
+                tittel={<TekstBlock block={barnehageplassTekster.periodebeskrivelse.sporsmal} />}
                 søknadsvar={plainTekst(
                     hentBarnehageplassBeskrivelse(
                         barnehageplassPeriodeBeskrivelse.svar,
@@ -65,41 +62,49 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
             />
 
             <OppsummeringFelt
-                spørsmålstekst={barnehageplassTekster.utland.sporsmal}
+                tittel={<TekstBlock block={barnehageplassTekster.utland.sporsmal} />}
                 søknadsvar={barnehageplassUtlandet.svar}
             />
             {barnehageplassLand.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={barnehageplassTekster.hvilketLand.sporsmal}
+                    tittel={<TekstBlock block={barnehageplassTekster.hvilketLand.sporsmal} />}
                     søknadsvar={landkodeTilSpråk(barnehageplassLand.svar, valgtLocale)}
                 />
             )}
             {offentligStøtte.svar && (
                 <OppsummeringFelt
-                    spørsmålstekst={barnehageplassTekster.offentligStoette.sporsmal}
+                    tittel={<TekstBlock block={barnehageplassTekster.offentligStoette.sporsmal} />}
                     søknadsvar={offentligStøtte.svar}
                 />
             )}
             <OppsummeringFelt
-                spørsmålstekst={barnehageplassTekster.antallTimer.sporsmal}
+                tittel={<TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />}
                 søknadsvar={antallTimer.svar}
             />
 
             <OppsummeringFelt
-                spørsmålstekst={
-                    barnehageplassPeriodeBeskrivelse.svar ===
-                    EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
-                        ? barnehageplassTekster.startdatoFremtid.sporsmal
-                        : barnehageplassTekster.startdatoFortid.sporsmal
+                tittel={
+                    <TekstBlock
+                        block={
+                            barnehageplassPeriodeBeskrivelse.svar ===
+                            EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN
+                                ? barnehageplassTekster.startdatoFremtid.sporsmal
+                                : barnehageplassTekster.startdatoFortid.sporsmal
+                        }
+                    />
                 }
                 søknadsvar={formaterDato(startetIBarnehagen.svar)}
             />
             <OppsummeringFelt
-                spørsmålstekst={
-                    barnehageplassPeriodeBeskrivelse.svar ===
-                    EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
-                        ? barnehageplassTekster.sluttdatoFortid.sporsmal
-                        : barnehageplassTekster.sluttdatoFremtid.sporsmal
+                tittel={
+                    <TekstBlock
+                        block={
+                            barnehageplassPeriodeBeskrivelse.svar ===
+                            EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
+                                ? barnehageplassTekster.sluttdatoFortid.sporsmal
+                                : barnehageplassTekster.sluttdatoFremtid.sporsmal
+                        }
+                    />
                 }
                 søknadsvar={formaterDatoMedUkjent(
                     slutterIBarnehagen.svar,

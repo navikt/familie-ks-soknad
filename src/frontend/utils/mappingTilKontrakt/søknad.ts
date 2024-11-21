@@ -1,9 +1,8 @@
 import { ESvar } from '@navikt/familie-form-elements';
-import { LocaleType } from '@navikt/familie-sprakvelger';
 
 import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { IBarnMedISøknad } from '../../typer/barn';
-import { LocaleRecordBlock, LocaleRecordString } from '../../typer/common';
+import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../typer/common';
 import { ESivilstand, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { ISøknadKontrakt } from '../../typer/kontrakt/søknadKontrakt';
 import { ISøker } from '../../typer/person';
@@ -34,7 +33,8 @@ export const dataISøknadKontraktFormat = (
     valgtSpråk: LocaleType,
     søknad: ISøknad,
     tekster: ITekstinnhold,
-    tilRestLocaleRecord: TilRestLocaleRecord
+    tilRestLocaleRecord: TilRestLocaleRecord,
+    kontraktVersjon: number
 ): ISøknadKontrakt => {
     const { søker } = søknad;
     // Raskeste måte å få tak i alle spørsmål minus de andre feltene på søker
@@ -45,7 +45,7 @@ export const dataISøknadKontraktFormat = (
     const søknadsfeltForESvar = søknadsfeltForESvarHof(tilRestLocaleRecord);
 
     return {
-        kontraktVersjon: 4,
+        kontraktVersjon: kontraktVersjon,
         antallEøsSteg: antallEøsSteg(søker, barnInkludertISøknaden),
         søker: søkerIKontraktFormat(søknad, tekster, tilRestLocaleRecord),
         barn: barnInkludertISøknaden.map(barn =>
@@ -107,6 +107,7 @@ export const dataISøknadKontraktFormat = (
                 tekster.FORSIDE.bekreftelsesboksErklaering,
                 tekster.OM_DEG.soekerAdressesperre,
                 tekster.OM_DEG.ikkeRegistrertAdresse,
+                tekster.OM_DEG.skjermetAdresse,
                 tekster.OM_DEG.omDegTittel,
                 tekster.DIN_LIVSSITUASJON.dinLivssituasjonTittel,
                 tekster.VELG_BARN.registrertMedAdressesperre,
