@@ -124,7 +124,7 @@
     "styled-components": "^6.0.7",
     "unleash-client": "^5.5.3",
     "uuid": "^9.0.1",
-    "webpack-dev-server": "^4.15.1",
+    "webpack-dev-server": "^5.1.0",
     "xss": "^1.0.14"
   },
   "devDependencies": {
