@@ -19,19 +19,18 @@ const restream = (proxyReq: ClientRequest, req: Request, _res: Response) => {
     }
 };
 
-export const doProxy = (targetUrl: string, context: string): RequestHandler => {
-    return createProxyMiddleware(context, {
+export const doProxy = (targetUrl: string): RequestHandler => {
+    return createProxyMiddleware({
         changeOrigin: true,
-        logLevel: 'info',
+        logger: console,
         target: targetUrl,
         secure: true,
-        onProxyReq: restream,
-        pathRewrite: (path: string) => {
-            return path.replace(context, '');
-        },
-        onError: (err: Error, req: Request, res: Response) => {
-            logError('Feil under proxy til apiet, se i securelog');
-            logSecure('Feil under proxy til apiet', { err, req, res });
+        on: {
+            proxyReq: restream,
+            error: (err: Error, req: Request, res: Response) => {
+                logError('Feil under proxy til apiet, se i securelog');
+                logSecure('Feil under proxy til apiet', { err, req, res });
+            },
         },
     });
 };

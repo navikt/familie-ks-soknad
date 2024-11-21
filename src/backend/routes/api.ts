@@ -17,14 +17,14 @@ export const konfigurerApi = (app: Express): Express => {
         `${basePath}api`,
         addCallId(),
         attachToken('familie-baks-soknad-api'),
-        doProxy(Miljø().soknadApiUrl, `${basePath}api`)
+        doProxy(Miljø().soknadApiUrl)
     );
 
     app.use(
         `${basePath}dokument`,
         addCallId(),
         attachToken('familie-dokument'),
-        doProxy(Miljø().dokumentUrl, `${basePath}dokument`)
+        doProxy(Miljø().dokumentUrl)
     );
 
     return app;
