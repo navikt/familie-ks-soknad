@@ -1976,25 +1976,25 @@
   resolved "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.24.tgz#58601079e11784d20f82d0585865bb42305c4df3"
   integrity sha512-2LuNTFBIO0m7kKIQvvPHN6UE63VjpmL9rnEEaOOaiSPbZK+zUOYIzBAWcED+3XYzhYsd/0mD57VdxAEqqV52CQ==
 
-"@portabletext/react@^3.0.7":
-  version "3.0.11"
-  resolved "https://registry.npmjs.org/@portabletext/react/-/react-3.0.11.tgz#c5f31d9ea990391a3850ba4dfd685373107d9a21"
-  integrity sha512-LATQQRxvP3TlAnFayjYt7kPJcnpAtWH6XHl4RFU31pKb1G6gZlTWTB+chXXAv0uQG6Be7OEdRzCmsz9XFEVNew==
+"@portabletext/react@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/@portabletext/react/-/react-3.1.0.tgz#95d08b67e74d380705726db6762321bf926796a6"
+  integrity sha512-ZGHlvS+NvId9RSqnflN8xF2KVZgAgD399dK1GaycurnGNZGZYTd5nZmc8by1yL76Ar8n/dbVtouUDJIkO4Tupw==
   dependencies:
-    "@portabletext/toolkit" "^2.0.10"
-    "@portabletext/types" "^2.0.8"
+    "@portabletext/toolkit" "^2.0.15"
+    "@portabletext/types" "^2.0.13"
 
-"@portabletext/toolkit@^2.0.10", "@portabletext/toolkit@^2.0.8":
-  version "2.0.10"
-  resolved "https://registry.npmjs.org/@portabletext/toolkit/-/toolkit-2.0.10.tgz#ddcf88cb76b287ff9d5c94f69a6b370a9c9aba9c"
-  integrity sha512-d+F9JvpnMEx7kd6saZ9OWA4U1Iwuokh6TOht7iqkfWU+0ivh9yM4v+b0Kpu+iiPcElicoabhtXol+yTvWJ1jDw==
+"@portabletext/toolkit@^2.0.15", "@portabletext/toolkit@^2.0.8":
+  version "2.0.16"
+  resolved "https://registry.npmjs.org/@portabletext/toolkit/-/toolkit-2.0.16.tgz#dbeff7ae2d86b3b6bb0e4ea586f5f65b91e51451"
+  integrity sha512-aBvnD8MscoAlEIuZBn0Aksd+oCuoMGFOT3CtHIgRBaac0Vu4YnnMUF45xo/B/T5vmwWcnDXoJEJdn+SKDg1m+A==
   dependencies:
-    "@portabletext/types" "^2.0.8"
+    "@portabletext/types" "^2.0.13"
 
-"@portabletext/types@^2.0.6", "@portabletext/types@^2.0.8":
-  version "2.0.8"
-  resolved "https://registry.npmjs.org/@portabletext/types/-/types-2.0.8.tgz#34aec838701482f838bdd0ee07a9e31dc01a9230"
-  integrity sha512-eiq9/kMX2bYezS4/kLFk3xNnruCFjCDdw6aYEv5ECHVKkYROiuLd3/AsP5d7tWF3+kPPy6tB0Wq8aqDG/URHGA==
+"@portabletext/types@^2.0.13", "@portabletext/types@^2.0.6":
+  version "2.0.13"
+  resolved "https://registry.npmjs.org/@portabletext/types/-/types-2.0.13.tgz#7a4bf6dac30713fbe1b4bc01dc572af0af72955d"
+  integrity sha512-5xk5MSyQU9CrDho3Rsguj38jhijhD36Mk8S6mZo3huv6PM+t4M/5kJN2KFIxgvt4ONpvOEs1pVIZAV0cL0Vi+Q==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
