@@ -94,7 +94,7 @@
     "@navikt/familie-typer": "^8.0.2",
     "@navikt/fnrvalidator": "^2.0.7",
     "@navikt/nav-dekoratoren-moduler": "^1.9.0",
-    "@portabletext/react": "^3.0.7",
+    "@portabletext/react": "^3.1.0",
     "@portabletext/toolkit": "^2.0.8",
     "@sanity/client": "^6.22.4",
     "@sentry/react": "^7.110.1",
