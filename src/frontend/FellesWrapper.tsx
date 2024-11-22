@@ -9,7 +9,6 @@ import { LastRessurserProvider } from './context/LastRessurserContext';
 import { SanityProvider } from './context/SanityContext';
 import { SpråkProvider } from './context/SpråkContext';
 import { GlobalStyle } from './Theme';
-import { logError } from './utils/amplitude';
 
 interface Props {
     children?: ReactNode;
@@ -23,7 +22,6 @@ function FellesWrapper({ children }: Props) {
                     <Sentry.ErrorBoundary
                         fallback={() => <Feilside />}
                         beforeCapture={scope => scope.setTag('scope', 'familie-ks-soknad')}
-                        onError={logError}
                     >
                         <LastRessurserProvider>
                             <SanityProvider>

@@ -1,4 +1,4 @@
-import { Event } from '@sentry/react';
+import { ErrorEvent } from '@sentry/react';
 import { mockDeep, mockFn } from 'jest-mock-extended';
 
 import { fjernPersonopplysninger } from './sentry';
@@ -6,7 +6,7 @@ import { fjernPersonopplysninger } from './sentry';
 describe('sentry', () => {
     it('filtrerer fødselsnummer', () => {
         const breadcrumbData = { fnr: '123456 78901' };
-        const event = mockDeep<Event>({
+        const event = mockDeep<ErrorEvent>({
             message: '12345678901',
             breadcrumbs: [
                 {
