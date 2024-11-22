@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/react';
-import { Breadcrumb, Event, EventHint } from '@sentry/react';
+import { Breadcrumb, ErrorEvent, EventHint } from '@sentry/react';
 
 const environment = window.location.hostname;
 
@@ -11,7 +11,7 @@ const maskeringsregler = [
 ];
 
 // Exportes kun for å kunne testes
-export const fjernPersonopplysninger = (event: Event, _hint?: EventHint): Event => {
+export const fjernPersonopplysninger = (event: ErrorEvent, _hint?: EventHint): ErrorEvent => {
     const url = event.request?.url ? maskerPersonopplysninger(event.request.url) : '';
     return {
         ...event,

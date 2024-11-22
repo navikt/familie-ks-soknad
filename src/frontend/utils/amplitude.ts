@@ -64,16 +64,6 @@ export const logKlikkGåVidere = (steg: number) => {
     });
 };
 
-export const logError = (error: Error) => {
-    logEvent('logg feil', {
-        skjemanavn: søknadstype.navn,
-        skjemaId: søknadstype.id,
-        team_id: 'familie',
-        errorType: error.name,
-        errorMessage: error.message,
-    });
-};
-
 export const setUserProperty = (key: UserProperty, value: string | number) => {
     const identify = new amplitudeInstance.Identify().set(key, value);
     amplitudeInstance.identify(identify);
