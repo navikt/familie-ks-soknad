@@ -38,10 +38,15 @@ const devConfig: webpack.Configuration = mergeWithRules({
         },
         open: [basePath],
         proxy: [
-            { context: `${basePath}modellversjon`, target: `http://localhost:55554` },
-            { context: `${basePath}api`, target: `http://localhost:55554` },
-            { context: `${basePath}dokument`, target: `http://localhost:55554` },
-            { context: `${basePath}toggles`, target: `http://localhost:55554` },
+            {
+                context: [
+                    `${basePath}modellversjon`,
+                    `${basePath}api`,
+                    `${basePath}dokument`,
+                    `${basePath}toggles`,
+                ],
+                target: `http://localhost:55554`,
+            },
         ],
         static: {
             publicPath: basePath,
