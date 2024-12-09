@@ -1,7 +1,14 @@
 import { ReactNode, useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { Avhengigheter, feil, Felt, FeltState, ok, useFelt } from '@navikt/familie-skjema';
+import {
+    type Avhengigheter,
+    feil,
+    type Felt,
+    type FeltState,
+    ok,
+    useFelt,
+} from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
@@ -38,10 +45,14 @@ const useBarnCheckboxFelt = (
     useEffect(() => {
         const skalVises = skalFeltetVises(avhengighet.verdi);
 
-        skalVises && checkbox.verdi.length > 0 && checkbox.validerOgSettFelt(checkbox.verdi);
+        if (skalVises && checkbox.verdi.length > 0) {
+            checkbox.validerOgSettFelt(checkbox.verdi);
+        }
 
         return () => {
-            !skalFeltetVises(avhengighet.verdi) && checkbox.validerOgSettFelt([]);
+            if (!skalFeltetVises(avhengighet.verdi)) {
+                checkbox.validerOgSettFelt([]);
+            }
         };
     }, [avhengighet]);
 

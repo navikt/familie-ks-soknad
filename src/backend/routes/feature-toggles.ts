@@ -1,7 +1,7 @@
 import { Express, RequestHandler } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
 
-import { byggSuksessRessurs, Ressurs } from '@navikt/familie-typer';
+import { byggSuksessRessurs, type Ressurs } from '@navikt/familie-typer';
 
 import {
     EAllFeatureToggles,

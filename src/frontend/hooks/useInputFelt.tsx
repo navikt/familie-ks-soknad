@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-import { feil, FeltState, ok, useFelt } from '@navikt/familie-skjema';
+import { feil, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import { useApp } from '../context/AppContext';
 import { LocaleRecordBlock } from '../typer/common';

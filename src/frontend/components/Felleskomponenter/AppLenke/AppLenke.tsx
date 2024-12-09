@@ -22,7 +22,9 @@ export function AppLenke({ steg, hash, returnTo, children }: Props) {
 
     const clickHandler: MouseEventHandler = event => {
         event.preventDefault();
-        returnTo && settKomFra(returnTo);
+        if (returnTo) {
+            settKomFra(returnTo);
+        }
         navigate({
             pathname: steg.path,
             hash,

@@ -1,6 +1,7 @@
 import path from 'path';
 
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
+// eslint-disable-next-line import/default
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin.js';

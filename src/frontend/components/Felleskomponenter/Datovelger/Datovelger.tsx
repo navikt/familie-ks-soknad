@@ -3,7 +3,7 @@ import React, { ReactNode, useEffect } from 'react';
 import { formatISO, isAfter, startOfDay } from 'date-fns';
 
 import { BodyShort, ErrorMessage, DatePicker, useDatepicker } from '@navikt/ds-react';
-import { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { useSpråk } from '../../../context/SpråkContext';
@@ -87,7 +87,9 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     });
 
     useEffect(() => {
-        minDatoErIFremtiden() && reset();
+        if (minDatoErIFremtiden()) {
+            reset();
+        }
     }, [tilhørendeFraOgMedFelt?.verdi]);
 
     useEffect(() => {

@@ -10,12 +10,16 @@ export const ScrollHandler: React.FC = () => {
     const scrollTilFelt = (): boolean => {
         const feltId = hash.substr(hash.lastIndexOf('#') + 1);
         const element = document.getElementById(feltId);
-        element && element.scrollIntoView();
+        if (element) {
+            element.scrollIntoView();
+        }
         return !!element;
     };
 
     const clearTimer = () => {
-        timer.current && clearInterval(timer.current);
+        if (timer.current) {
+            clearInterval(timer.current);
+        }
         timer.current = null;
     };
 
@@ -27,8 +31,12 @@ export const ScrollHandler: React.FC = () => {
         return (
             timer.current ??
             setInterval(() => {
-                scrollTilFelt() && clearTimer();
-                sjekketGanger >= 5 && clearTimer();
+                if (scrollTilFelt()) {
+                    clearTimer();
+                }
+                if (sjekketGanger >= 5) {
+                    clearTimer();
+                }
                 settSjekketGanger(sjekketGanger + 1);
             }, 100)
         );

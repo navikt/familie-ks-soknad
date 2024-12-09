@@ -30,10 +30,11 @@ const createMockedHistory = () =>
         goBack: () => {
             const siste = historyHolder.browserHistory.location;
             // Jest kaller ikke window event listeners automatisk, så vi fikser det sjæl, synkront
-            listeners['popstate'] &&
+            if (listeners['popstate']) {
                 listeners['popstate'].forEach((listener: (e) => void) => {
                     listener(new PopStateEvent('POP'));
                 });
+            }
 
             historyHolder.browserHistory.goBack();
             const nå = historyHolder.browserHistory.location;
@@ -42,7 +43,9 @@ const createMockedHistory = () =>
              * Dette er ikke helt sånn browser history funker, tror egentlig man skal pushe forrige
              * state på toppen av stacken, men dette er close enough for vårt bruk nå.
              */
-            siste !== nå && mockedHistoryArray.pop();
+            if (siste !== nå) {
+                mockedHistoryArray.pop();
+            }
         },
     });
 

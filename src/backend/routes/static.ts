@@ -13,7 +13,9 @@ export const konfigurerStatic = (app: Express): Express => {
     app.engine('html', mustacheExpress());
 
     // I dev-mode vil vi ikke cache index.html, siden denne oppdateres med nye js-bundles når vi endrer ting i appen
-    process.env.NODE_ENV !== 'production' && app.set('view cache', false);
+    if (process.env.NODE_ENV !== 'production') {
+        app.set('view cache', false);
+    }
 
     // Serve alle statiske filer utenom index.html direkte fra dist-mappen
     app.use(

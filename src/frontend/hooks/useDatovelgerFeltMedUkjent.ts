@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { Avhengigheter, Felt, FeltState, ok, useFelt } from '@navikt/familie-skjema';
+import { type Avhengigheter, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import { useApp } from '../context/AppContext';
 import { ISODateString, LocaleRecordBlock } from '../typer/common';
@@ -64,17 +64,19 @@ const useDatovelgerFeltMedUkjent = ({
     });
 
     useEffect(() => {
-        vetIkkeCheckbox.verdi === ESvar.JA &&
+        if (vetIkkeCheckbox.verdi === ESvar.JA) {
             datoFelt.validerOgSettFelt(datoFelt.verdi, vetIkkeCheckbox);
+        }
     }, [vetIkkeCheckbox]);
 
     useEffect(() => {
-        skalFeltetVises &&
-            datoFelt.verdi !== '' &&
+        if (skalFeltetVises && datoFelt.verdi !== '') {
             datoFelt.validerOgSettFelt(datoFelt.verdi, vetIkkeCheckbox);
-
+        }
         return () => {
-            !skalFeltetVises && datoFelt.validerOgSettFelt('', vetIkkeCheckbox);
+            if (!skalFeltetVises) {
+                datoFelt.validerOgSettFelt('', vetIkkeCheckbox);
+            }
         };
     }, [skalFeltetVises, vetIkkeCheckbox]);
 

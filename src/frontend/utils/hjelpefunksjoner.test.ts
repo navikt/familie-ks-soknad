@@ -1,6 +1,6 @@
 import { mockDeep } from 'jest-mock-extended';
 
-import { ISkjema, Valideringsstatus } from '@navikt/familie-skjema';
+import { type ISkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
 import { IOmBarnaDineFeltTyper } from '../typer/skjema';
 

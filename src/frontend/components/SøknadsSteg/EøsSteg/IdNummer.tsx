@@ -4,7 +4,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { feil, Felt, FeltState, ISkjema, ok, useFelt } from '@navikt/familie-skjema';
+import { feil, type Felt, type FeltState, type ISkjema, ok, useFelt } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';

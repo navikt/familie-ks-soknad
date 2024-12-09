@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { IPensjonsperiode } from '../../../typer/perioder';

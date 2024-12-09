@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { ISkjema, useSkjema } from '@navikt/familie-skjema';
+import { type ISkjema, useSkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';

@@ -1,4 +1,4 @@
-import { ApiRessurs, RessursStatus } from '@navikt/familie-typer';
+import { type ApiRessurs, RessursStatus } from '@navikt/familie-typer';
 
 export const modellVersjon = 4;
 

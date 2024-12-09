@@ -15,5 +15,9 @@ export const expressToggleInterceptor: RequestHandler = (req, res, next) => {
     } else {
         skalRendreDisabledApp = isEnabled(EToggle.KONTANTSTOTTE);
     }
-    skalRendreDisabledApp ? res.render('disabled.html', { LOCALE_CODE: språk ?? 'nb' }) : next();
+    if (skalRendreDisabledApp) {
+        res.render('disabled.html', { LOCALE_CODE: språk ?? 'nb' });
+    } else {
+        next();
+    }
 };

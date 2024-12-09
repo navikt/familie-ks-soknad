@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { Box } from '@navikt/ds-react';
 import { ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
-import { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';

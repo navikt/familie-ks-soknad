@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, ReactNode } from 'react';
 
 import { Select } from '@navikt/ds-react';
-import { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 

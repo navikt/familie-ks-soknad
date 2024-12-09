@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { renderHook, RenderHookResult, act } from '@testing-library/react';
+import { renderHook, type RenderHookResult, act } from '@testing-library/react';
 import { mockDeep } from 'jest-mock-extended';
 import JestMockPromise from 'jest-mock-promise';
 

@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 import { Alpha3Code } from 'i18n-iso-countries';
 
-import { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../../context/AppContext';
 import { useEøs } from '../../../../context/EøsContext';

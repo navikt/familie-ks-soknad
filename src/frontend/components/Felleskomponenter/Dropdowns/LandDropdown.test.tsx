@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import { Alpha3Code } from 'i18n-iso-countries';
 import { mockDeep } from 'jest-mock-extended';
 
-import { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { mockEøs, spyOnUseApp, TestProvidere } from '../../../utils/testing';
