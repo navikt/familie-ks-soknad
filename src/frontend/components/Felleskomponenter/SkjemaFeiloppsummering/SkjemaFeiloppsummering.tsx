@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ErrorSummary } from '@navikt/ds-react';
-import { ISkjema, Valideringsstatus } from '@navikt/familie-skjema';
+import { type ISkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { ISteg } from '../../../typer/routes';

@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/react';
-import { Breadcrumb, ErrorEvent, EventHint } from '@sentry/react';
+import type { Breadcrumb, ErrorEvent, EventHint } from '@sentry/react';
 
 const environment = window.location.hostname;
 

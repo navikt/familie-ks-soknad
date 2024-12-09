@@ -21,7 +21,7 @@ const getTelemetryCollectorURL = (): TelemetryCollectorURL => {
 };
 
 export function initGrafanaFaro() {
-    (erDev() || erProd()) &&
+    if (erDev() || erProd()) {
         initializeFaro({
             isolate: true,
             url: getTelemetryCollectorURL(),
@@ -34,4 +34,5 @@ export function initGrafanaFaro() {
                 }),
             ],
         });
+    }
 }

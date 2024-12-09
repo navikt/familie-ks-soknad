@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
-import { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';

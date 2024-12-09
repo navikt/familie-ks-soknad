@@ -4,7 +4,14 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { Avhengigheter, feil, Felt, FeltState, ok, useFelt } from '@navikt/familie-skjema';
+import {
+    type Avhengigheter,
+    feil,
+    type Felt,
+    type FeltState,
+    ok,
+    useFelt,
+} from '@navikt/familie-skjema';
 
 import { useApp } from '../context/AppContext';
 import { LocaleRecordBlock } from '../typer/common';
@@ -54,12 +61,13 @@ const useLanddropdownFeltMedJaNeiAvhengighet = ({
     useEffect(() => {
         const skalVises = skalViseFelt(avhengighet.verdi);
 
-        skalVises &&
-            landDropdown.verdi !== '' &&
+        if (skalVises && landDropdown.verdi !== '') {
             landDropdown.validerOgSettFelt(landDropdown.verdi);
-
+        }
         return () => {
-            !skalViseFelt(avhengighet.verdi) && landDropdown.validerOgSettFelt('');
+            if (!skalViseFelt(avhengighet.verdi)) {
+                landDropdown.validerOgSettFelt('');
+            }
         };
     }, [avhengighet]);
 

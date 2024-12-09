@@ -1,4 +1,4 @@
-import { ErrorEvent } from '@sentry/react';
+import type { ErrorEvent } from '@sentry/react';
 import { mockDeep, mockFn } from 'jest-mock-extended';
 
 import { fjernPersonopplysninger } from './sentry';

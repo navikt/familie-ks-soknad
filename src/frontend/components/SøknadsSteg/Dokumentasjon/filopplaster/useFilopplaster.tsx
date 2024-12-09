@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 
 import axios from 'axios';
-import { FileRejection } from 'react-dropzone';
+import type { FileRejection } from 'react-dropzone';
 
 import Miljø from '../../../../../shared-utils/Miljø';
 import { useApp } from '../../../../context/AppContext';

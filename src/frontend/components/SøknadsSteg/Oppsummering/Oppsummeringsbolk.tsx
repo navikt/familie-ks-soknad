@@ -3,7 +3,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { FormSummary } from '@navikt/ds-react';
-import { ISkjema } from '@navikt/familie-skjema';
+import type { ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { useSteg } from '../../../context/StegContext';
@@ -60,17 +60,20 @@ function Oppsummeringsbolk({
     }, [søknad, skjema]);
 
     useEffect(() => {
-        visFeil !== !valideringErOk() && settVisFeil(!valideringErOk());
+        if (visFeil !== !valideringErOk()) {
+            settVisFeil(!valideringErOk());
+        }
     }, [skjema]);
 
     useEffect(() => {
-        settFeilAnchors &&
+        if (settFeilAnchors) {
             settFeilAnchors(prevState => {
                 const utenDetteSkjemaet = prevState.filter(anchor => {
                     return anchor !== feilOppsummeringId;
                 });
                 return visFeil ? [...utenDetteSkjemaet, feilOppsummeringId] : utenDetteSkjemaet;
             });
+        }
     }, [visFeil]);
 
     const stegnummer = hentStegNummer(steg?.route ?? RouteEnum.OmDeg, barn);

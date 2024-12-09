@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { feil, Felt, FeltState, ok, useFelt } from '@navikt/familie-skjema';
+import { feil, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 import { idnr } from '@navikt/fnrvalidator';
 
 import { useApp } from '../context/AppContext';
@@ -72,7 +72,9 @@ const useInputFeltMedUkjent = ({
         if (avhengighet.verdi === ESvar.JA) {
             inputFelt.validerOgSettFelt('', avhengighet);
         } else {
-            inputFelt.verdi && inputFelt.validerOgSettFelt(inputFelt.verdi);
+            if (inputFelt.verdi) {
+                inputFelt.validerOgSettFelt(inputFelt.verdi);
+            }
         }
     }, [avhengighet]);
 

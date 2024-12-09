@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
-import { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../../context/AppContext';
 import { useEøs } from '../../../../context/EøsContext';

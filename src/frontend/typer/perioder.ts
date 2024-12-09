@@ -1,7 +1,7 @@
 import { Alpha3Code } from 'i18n-iso-countries';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { UseSkjemaVerdi } from '@navikt/familie-skjema';
+import type { UseSkjemaVerdi } from '@navikt/familie-skjema';
 
 import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 

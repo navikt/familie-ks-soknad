@@ -8,7 +8,7 @@ import {
     byggHenterRessurs,
     byggTomRessurs,
     hentDataFraRessurs,
-    Ressurs,
+    type Ressurs,
     RessursStatus,
 } from '@navikt/familie-typer';
 
@@ -91,7 +91,7 @@ const [AppProvider, useApp] = createUseContext(() => {
 
                 hentOgSettMellomlagretData();
                 hentOgSettKontoinformasjon();
-                ressurs.status === RessursStatus.SUKSESS &&
+                if (ressurs.status === RessursStatus.SUKSESS) {
                     settSøknad({
                         ...søknad,
                         søker: {
@@ -109,6 +109,7 @@ const [AppProvider, useApp] = createUseContext(() => {
                             adressebeskyttelse: ressurs.data.adressebeskyttelse,
                         },
                     });
+                }
             });
         }
     }, [innloggetStatus, teksterRessurs]);

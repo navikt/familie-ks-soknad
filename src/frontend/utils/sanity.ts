@@ -156,11 +156,12 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
     const tekstInnhold: Partial<ITekstinnhold> = {};
 
     for (const steg in ESanitySteg) {
-        ESanitySteg[steg] !== ESanitySteg.FELLES &&
-            (tekstInnhold[ESanitySteg[steg]] = strukturerInnholdForSteg(
+        if (ESanitySteg[steg] !== ESanitySteg.FELLES) {
+            tekstInnhold[ESanitySteg[steg]] = strukturerInnholdForSteg(
                 alleDokumenter,
                 ESanitySteg[steg]
-            ));
+            );
+        }
     }
 
     tekstInnhold[ESanitySteg.FELLES] = {

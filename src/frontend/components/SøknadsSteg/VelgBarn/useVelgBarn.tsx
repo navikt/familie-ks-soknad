@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { feil, ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
+import { feil, type ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';

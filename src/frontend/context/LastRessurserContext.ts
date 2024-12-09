@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosError, type AxiosRequestConfig, type AxiosResponse } from 'axios';
 import createUseContext from 'constate';
 
-import { ApiRessurs, Ressurs, RessursStatus } from '@navikt/familie-typer';
+import { type ApiRessurs, type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import { hentUid } from '../utils/barn';
 
@@ -28,19 +28,27 @@ const [LastRessurserProvider, useLastRessurserContext] = createUseContext(() => 
         }
     ): Promise<Ressurs<T>> => {
         const ressursId = `${config.method}_${config.url}`;
-        config.påvirkerSystemLaster && settRessurserSomLaster([...ressurserSomLaster, ressursId]);
+        if (config.påvirkerSystemLaster) {
+            settRessurserSomLaster([...ressurserSomLaster, ressursId]);
+        }
 
         return preferredAxios
             .request(config)
             .then((response: AxiosResponse<ApiRessurs<T>>) => {
                 const responsRessurs: ApiRessurs<T> = response.data;
-                config.påvirkerSystemLaster && fjernRessursSomLaster(ressursId);
+                if (config.påvirkerSystemLaster) {
+                    fjernRessursSomLaster(ressursId);
+                }
 
                 return håndterApiRessurs(responsRessurs);
             })
             .catch((error: AxiosError<ApiRessurs<T>>) => {
-                config.påvirkerSystemLaster && fjernRessursSomLaster(ressursId);
-                config.rejectCallback && config.rejectCallback(error);
+                if (config.påvirkerSystemLaster) {
+                    fjernRessursSomLaster(ressursId);
+                }
+                if (config.rejectCallback) {
+                    config.rejectCallback(error);
+                }
                 loggFeil(error);
 
                 return error.response?.data

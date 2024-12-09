@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-import { Ressurs } from '@navikt/familie-typer';
+import type { Ressurs } from '@navikt/familie-typer';
 
 import { modellVersjon, modellVersjonHeaderName } from '../../shared-utils/modellversjon';
 import { AxiosRequest } from '../context/LastRessurserContext';

@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { Alpha3Code } from 'i18n-iso-countries';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { feil, Felt, ISkjema, ok, useSkjema } from '@navikt/familie-skjema';
+import { feil, type Felt, type ISkjema, ok, useSkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../../context/AppContext';
 import useInputFelt from '../../../../hooks/useInputFelt';
