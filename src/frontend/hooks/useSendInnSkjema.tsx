@@ -49,6 +49,14 @@ export const useSendInnSkjema = (): {
                     const responseData = res.response?.data as Ressurs<IKvittering>;
                     if (responseData && erModellMismatchResponsRessurs(responseData)) {
                         settSisteModellVersjon(responseData.data.modellVersjon);
+
+                        // Denne skal feile mykt, kaster dermed ingen feil
+                        Sentry.captureException(
+                            new Error(
+                                'Klarte ikke sende inn søknaden pga. kontraktsfeil. Det kan skje i overgangen til ny kontrakt, men hvis det skjer for mange over tid er det feil i løsningen.',
+                                { cause: res.message }
+                            )
+                        );
                     } else {
                         //Denne skal feile mykt, med en custom feilmelding til brukeren. Kaster dermed ingen feil her.
                         Sentry.captureException(
