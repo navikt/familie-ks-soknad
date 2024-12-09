@@ -33,18 +33,15 @@ const devConfig: webpack.Configuration = mergeWithRules({
         client: {
             overlay: true,
         },
+        historyApiFallback: {
+            index: basePath,
+        },
         open: [basePath],
         proxy: [
             { context: `${basePath}modellversjon`, target: `http://localhost:55554` },
             { context: `${basePath}api`, target: `http://localhost:55554` },
             { context: `${basePath}dokument`, target: `http://localhost:55554` },
             { context: `${basePath}toggles`, target: `http://localhost:55554` },
-            // Essentially en workaround for https://github.com/nrwl/nx/issues/3859
-            {
-                context: '*',
-                target: 'http://localhost:3000',
-                pathRewrite: () => basePath,
-            },
         ],
         static: {
             publicPath: basePath,
