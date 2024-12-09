@@ -1,41 +1,22 @@
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
-import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
-import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
-import _import from 'eslint-plugin-import';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import importPlugin from 'eslint-plugin-import';
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import prettier from 'eslint-plugin-prettier';
 import globals from 'globals';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all,
-});
+import tseslint from 'typescript-eslint';
 
 export default [
-    {
-        ignores: ['src/public/*'],
-    },
-    ...fixupConfigRules(
-        compat.extends(
-            'eslint:recommended',
-            'plugin:import/typescript',
-            'plugin:@typescript-eslint/eslint-recommended',
-            'plugin:@typescript-eslint/recommended',
-            'prettier'
-        )
-    ),
+    js.configs.recommended,
+    eslintConfigPrettier,
+    jsxA11yPlugin.flatConfigs.recommended,
+    importPlugin.flatConfigs.typescript,
+    ...tseslint.configs.recommended,
     {
         plugins: {
-            '@typescript-eslint': fixupPluginRules(typescriptEslint),
-            prettier,
-            import: fixupPluginRules(_import),
+            '@typescript-eslint': tseslint.plugin,
+            prettier: prettier,
+            import: importPlugin,
         },
 
         languageOptions: {
@@ -44,7 +25,7 @@ export default [
                 ...globals.node,
             },
 
-            parser: tsParser,
+            parser: tseslint.parser,
             ecmaVersion: 2020,
             sourceType: 'module',
 
@@ -59,8 +40,6 @@ export default [
             react: {
                 version: 'detect',
             },
-
-            'import/ignore': ['node_modules'],
         },
 
         rules: {
@@ -85,9 +64,6 @@ export default [
             '@typescript-eslint/no-var-requires': 'warn',
             '@typescript-eslint/explicit-function-return-type': 'off',
 
-            // TODO: Denne burde nok skrus på!
-            '@typescript-eslint/no-unused-expressions': 'off',
-
             '@typescript-eslint/no-unused-vars': [
                 'warn',
                 {
@@ -97,14 +73,6 @@ export default [
                     varsIgnorePattern: '^_',
                 },
             ],
-            //
-            // "@typescript-eslint/ban-types": ["error", {
-            //     types: {
-            //         object: false,
-            //     },
-            //
-            //     extendDefaults: true,
-            // }],
 
             'import/named': 'error',
             'import/namespace': 'error',
@@ -127,11 +95,6 @@ export default [
                             pattern: 'react',
                             group: 'external',
                             position: 'before',
-                        },
-                        {
-                            pattern: 'nav-**',
-                            group: 'external',
-                            position: 'after',
                         },
                         {
                             pattern: '@navikt/**',
