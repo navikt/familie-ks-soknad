@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 import { Alpha3Code, getAlpha3Codes, getName } from 'i18n-iso-countries';
 
-import { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';

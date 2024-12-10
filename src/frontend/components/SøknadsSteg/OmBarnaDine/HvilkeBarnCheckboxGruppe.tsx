@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 
 import { CheckboxGroup, Checkbox } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
-import { Felt } from '@navikt/familie-skjema';
+import type { Felt } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
@@ -38,7 +38,9 @@ function HvilkeBarnCheckboxGruppe({
     }, [valgteBarn]);
 
     useEffect(() => {
-        nullstillValgteBarn && settValgteBarn([]);
+        if (nullstillValgteBarn) {
+            settValgteBarn([]);
+        }
     }, [nullstillValgteBarn]);
 
     return skjemafelt.erSynlig ? (

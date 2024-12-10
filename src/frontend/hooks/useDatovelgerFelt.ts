@@ -1,4 +1,4 @@
-import { Avhengigheter, useFelt } from '@navikt/familie-skjema';
+import { type Avhengigheter, useFelt } from '@navikt/familie-skjema';
 
 import { useApp } from '../context/AppContext';
 import { ISODateString, LocaleRecordBlock } from '../typer/common';

@@ -1,4 +1,4 @@
-import { Ressurs } from '@navikt/familie-typer';
+import type { Ressurs } from '@navikt/familie-typer';
 
 import Miljø from '../../shared-utils/Miljø';
 import { ISøkerRespons } from '../typer/person';

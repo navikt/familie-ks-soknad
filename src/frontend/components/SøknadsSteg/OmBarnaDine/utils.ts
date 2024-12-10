@@ -1,7 +1,7 @@
 import { Alpha3Code } from 'i18n-iso-countries';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';
 import { IOmsorgsperson } from '../../../typer/omsorgsperson';

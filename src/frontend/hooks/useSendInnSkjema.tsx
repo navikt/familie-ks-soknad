@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/react';
 import { AxiosError } from 'axios';
 
-import { Ressurs, RessursStatus } from '@navikt/familie-typer';
+import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import Miljø from '../../shared-utils/Miljø';
 import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon';

@@ -1,5 +1,12 @@
 import { ESvar } from '@navikt/familie-form-elements';
-import { feil, FeltState, ok, useFelt, useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
+import {
+    feil,
+    type FeltState,
+    ok,
+    useFelt,
+    useSkjema,
+    Valideringsstatus,
+} from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';

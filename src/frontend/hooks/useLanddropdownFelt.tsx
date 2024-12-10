@@ -1,6 +1,6 @@
 import { Alpha3Code } from 'i18n-iso-countries';
 
-import { feil, FeltState, ok, useFelt } from '@navikt/familie-skjema';
+import { feil, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import { useApp } from '../context/AppContext';
 import { LocaleRecordBlock } from '../typer/common';

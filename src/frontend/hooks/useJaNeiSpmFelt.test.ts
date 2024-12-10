@@ -3,7 +3,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { mock } from 'jest-mock-extended';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { Felt, Valideringsstatus } from '@navikt/familie-skjema';
+import { type Felt, Valideringsstatus } from '@navikt/familie-skjema';
 
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
 import { ISODateString, LocaleRecordBlock } from '../typer/common';

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import createUseContext from 'constate';
 
-import { Ressurs, RessursStatus } from '@navikt/familie-typer';
+import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import { basePath } from '../../shared-utils/Miljø';
 import useFørsteRender from '../hooks/useFørsteRender';

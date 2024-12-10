@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { ISkjema, useSkjema } from '@navikt/familie-skjema';
+import { type ISkjema, useSkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
@@ -47,8 +47,9 @@ export const useOmdeg = (): {
 
     useEffect(() => {
         const oppdatertSøker = genererOppdatertSøker();
-        skalTriggeEøsForSøker(oppdatertSøker) !== søkerTriggerEøs &&
+        if (skalTriggeEøsForSøker(oppdatertSøker) !== søkerTriggerEøs) {
             settSøkerTriggerEøs(prevState => !prevState);
+        }
     }, [værtINorgeITolvMåneder]);
 
     const genererOppdatertSøker = () => ({

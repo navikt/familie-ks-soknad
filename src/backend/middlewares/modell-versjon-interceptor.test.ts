@@ -1,7 +1,7 @@
 import { Response, Request } from 'express';
 import { mockDeep } from 'jest-mock-extended';
 
-import { ApiRessurs, RessursStatus } from '@navikt/familie-typer';
+import { type ApiRessurs, RessursStatus } from '@navikt/familie-typer';
 
 import {
     modellMismatchMelding,
