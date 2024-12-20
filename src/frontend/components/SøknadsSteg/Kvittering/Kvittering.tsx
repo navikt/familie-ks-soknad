@@ -7,6 +7,7 @@ import { RessursStatus } from '@navikt/familie-typer';
 
 import { useApp } from '../../../context/AppContext';
 import { useSteg } from '../../../context/StegContext';
+import useUxSignals from '../../../hooks/useUxSignals';
 import { Typografi } from '../../../typer/common';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { RouteEnum } from '../../../typer/routes';
@@ -59,6 +60,8 @@ const Kvittering: React.FC = () => {
 
     const kvitteringTekster = tekster().KVITTERING;
 
+    useUxSignals(true);
+
     return (
         <Steg tittel={<TekstBlock block={kvitteringTekster.kvitteringTittel} />}>
             <Alert variant="success">
@@ -83,6 +86,7 @@ const Kvittering: React.FC = () => {
             </VStack>
 
             <Kontoinformasjon />
+            <div data-uxsignals-embed="panel-3p9qfalb7a" style={{ maxWidth: '620px' }}></div>
             <BlokkerTilbakeKnappModal />
         </Steg>
     );
