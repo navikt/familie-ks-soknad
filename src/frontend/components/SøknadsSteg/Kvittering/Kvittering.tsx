@@ -83,6 +83,8 @@ const Kvittering: React.FC = () => {
             </VStack>
 
             <Kontoinformasjon />
+            <div data-uxsignals-embed="panel-3p9qfalb7a" style={{ maxWidth: '620px' }}></div>
+            <script src="https://widget.uxsignals.com/embed.js"></script>
             <BlokkerTilbakeKnappModal />
         </Steg>
     );
