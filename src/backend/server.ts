@@ -38,8 +38,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+    windowMs: 5 * 60 * 1000, // 5 minutes
+    limit: 200, // Limit each IP to 100 requests per `window` (here, per 5 minutes).
     standardHeaders: 'draft-8', // draft-6: `RateLimit-*` headers; draft-7 & draft-8: combined `RateLimit` header
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
     // store: ... , // Kan sette opp redis hvis vi ønsker å dele rate-limit over flere instanser
