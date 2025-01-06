@@ -31,6 +31,7 @@ spec:
     enabled: true
     path: /internal/metrics
   ingresses:
+    - "https://familie-ks-soknad.ekstern.dev.nav.no/familie/kontantstotte/soknad"
     - "https://familie-ks-soknad.intern.dev.nav.no/familie/kontantstotte/soknad"
     - "https://familie-ks-soknad.ansatt.dev.nav.no/familie/kontantstotte/soknad"
   accessPolicy:
