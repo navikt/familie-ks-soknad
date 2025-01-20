@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
+import { rateLimit } from 'express-rate-limit';
 
 import { logInfo } from '@navikt/familie-logging';
 
@@ -34,6 +35,17 @@ if (process.env.NODE_ENV === 'development') {
             credentials: true,
         })
     );
+}
+
+// Skru på rate limiting middleware to all requests.
+if (process.env.NODE_ENV !== 'production') {
+    const limiter = rateLimit({
+        windowMs: 5 * 60 * 1000, // 5 minutter
+        limit: 200, // Limit hver IP til 200 requests per `window` (here, per 5 minutes).
+        standardHeaders: 'draft-8', // draft-6: `RateLimit-*` headers; draft-7 & draft-8: combined `RateLimit` header
+        legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+    });
+    app.use(limiter);
 }
 
 // Alltid bruk gzip-compression på alt vi server med express
