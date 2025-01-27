@@ -99,12 +99,12 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@axe-core/react@^4.9.0":
-  version "4.9.0"
-  resolved "https://registry.npmjs.org/@axe-core/react/-/react-4.9.0.tgz#51197c20a9ef72ebef0dbf3c35a1e49c0f01c00d"
-  integrity sha512-xtqnkFcdxT/T6JD9/hc5Wzv15+m0Qj6VaQCebeIBEveZBOY9nfD6/JIuYuCgWLrgjX+TFgb74nni8XMJvAhVMA==
+"@axe-core/react@^4.10.1":
+  version "4.10.1"
+  resolved "https://registry.npmjs.org/@axe-core/react/-/react-4.10.1.tgz#f9ab3012e14a399426b1f2599bfe5cae4957bc0d"
+  integrity sha512-GRGx/3Gbce9WQYXgY0iZzqOaHIRXBNGyV+zoUhJzBuDeoTL+XoeY3u/9PzdIVyH0pbNs1n1RChfsmWBy6hzKPg==
   dependencies:
-    axe-core "~4.9.0"
+    axe-core "~4.10.2"
     requestidlecallback "^0.3.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.25.9", "@babel/code-frame@^7.26.0", "@babel/code-frame@^7.8.3":
@@ -3441,15 +3441,10 @@ aws4@^1.8.0:
   resolved "https://registry.npmjs.org/aws4/-/aws4-1.12.0.tgz#ce1c9d143389679e253b314241ea9aa5cec980d3"
   integrity sha512-NmWvPnx0F1SfrQbYwOi7OeaNGokp9XhzNioJ/CSBs8Qa4vxug81mhJEAVZwxXuBmYB5KDRfMq/F3RR0BIU7sWg==
 
-axe-core@^4.10.0:
+axe-core@^4.10.0, axe-core@~4.10.2:
   version "4.10.2"
   resolved "https://registry.npmjs.org/axe-core/-/axe-core-4.10.2.tgz#85228e3e1d8b8532a27659b332e39b7fa0e022df"
   integrity sha512-RE3mdQ7P3FRSe7eqCWoeQ/Z9QXrtniSjp1wUjt5nRC3WIpz5rSCve6o3fsZ2aCpJtrZjSZgjwXAoTO5k4tEI0w==
-
-axe-core@~4.9.0:
-  version "4.9.0"
-  resolved "https://registry.npmjs.org/axe-core/-/axe-core-4.9.0.tgz#b18971494551ab39d4ff5f7d4c6411bd20cc7c2a"
-  integrity sha512-H5orY+M2Fr56DWmMFpMrq5Ge93qjNdPVqzBv5gWK3aD1OvjBEJlEzxf09z93dGVQeI0LiW+aCMIx1QtShC/zUw==
 
 axios-mock-adapter@^2.1.0:
   version "2.1.0"
