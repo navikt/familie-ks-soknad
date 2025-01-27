@@ -1,6 +1,6 @@
 import React, { MouseEventHandler, ReactNode } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import { Link } from '@navikt/ds-react';
 

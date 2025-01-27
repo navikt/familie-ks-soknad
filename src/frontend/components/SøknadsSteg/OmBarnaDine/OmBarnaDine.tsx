@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
