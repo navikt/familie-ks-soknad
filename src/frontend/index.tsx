@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 
 import App from './App';
+import { hentDekorator } from './decorator';
 import FellesWrapper from './FellesWrapper';
 import { LocaleType } from './typer/common';
 import { initGrafanaFaro } from './utils/grafanaFaro';
@@ -22,6 +23,8 @@ const polyfillLocaledata = async () => {
         ).then(result => registerLocale(result));
     }
 };
+
+hentDekorator();
 
 polyfillLocaledata().then(() => {
     initSentry();
