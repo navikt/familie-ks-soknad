@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import createUseContext from 'constate';
-import { matchPath, useLocation } from 'react-router-dom';
+import { matchPath, useLocation } from 'react-router';
 
 import { IBarnMedISøknad } from '../typer/barn';
 import { ISteg, RouteEnum } from '../typer/routes';

@@ -1,5 +1,5 @@
 import { mockedHistory } from '../frontend/utils/testing';
-const reactRouterDom = jest.requireActual('react-router-dom');
+const reactRouter = jest.requireActual('react-router');
 
 const useLocation = () => {
     return {
@@ -12,7 +12,7 @@ const useNavigate = () => (to: string) => {
 };
 
 module.exports = {
-    ...reactRouterDom,
+    ...reactRouter,
     useLocation,
     useNavigate,
 };
