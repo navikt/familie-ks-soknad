@@ -141,7 +141,7 @@
     "@portabletext/types": "^2.0.6",
     "@sentry/webpack-plugin": "^2.14.1",
     "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^15.0.7",
+    "@testing-library/react": "^16.2.0",
     "@types/cookie-parser": "^1.4.6",
     "@types/cors": "^2.8.17",
     "@types/eslint-plugin-jsx-a11y": "^6.9.0",
