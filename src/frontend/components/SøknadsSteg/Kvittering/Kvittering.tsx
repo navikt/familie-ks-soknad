@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { format } from 'date-fns';
 
@@ -38,13 +38,14 @@ const Kvittering: React.FC = () => {
     const klokkeslett = format(innsendtDato, 'HH:mm');
     const dato = format(innsendtDato, 'dd.MM.yy');
 
-    const alleRelevanteVedleggErSendtInn =
+    const alleRelevanteVedleggErSendtInn = useRef(
         søknad.dokumentasjon.filter(
             dokumentasjon =>
                 dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON &&
                 erDokumentasjonRelevant(dokumentasjon) &&
                 !dokumentasjon.harSendtInn
-        ).length === 0;
+        ).length === 0
+    );
 
     useEffect(() => {
         if (sisteUtfylteStegIndex === hentStegNummer(RouteEnum.Dokumentasjon)) {
@@ -71,7 +72,7 @@ const Kvittering: React.FC = () => {
             </Alert>
 
             <VStack gap="6">
-                {alleRelevanteVedleggErSendtInn ? (
+                {alleRelevanteVedleggErSendtInn.current ? (
                     <TekstBlock
                         block={kvitteringTekster.trengerIkkeEttersendeVedlegg}
                         typografi={Typografi.BodyLong}
