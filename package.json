@@ -140,8 +140,9 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@portabletext/types": "^2.0.6",
     "@sentry/webpack-plugin": "^2.14.1",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^15.0.7",
+    "@testing-library/react": "^16.2.0",
     "@types/cookie-parser": "^1.4.6",
     "@types/cors": "^2.8.17",
     "@types/eslint-plugin-jsx-a11y": "^6.9.0",
@@ -195,7 +196,7 @@
     "webpack": "^5.94.0",
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.1.0",
+    "webpack-dev-server": "^5.2.0",
     "webpack-merge": "^6.0.1"
   }
 }
