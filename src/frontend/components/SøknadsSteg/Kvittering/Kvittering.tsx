@@ -38,13 +38,13 @@ const Kvittering: React.FC = () => {
     const klokkeslett = format(innsendtDato, 'HH:mm');
     const dato = format(innsendtDato, 'dd.MM.yy');
 
-    const alleRelevanteVedleggErSendtInn = useRef(
-        søknad.dokumentasjon.filter(
+    const allNødvendigDokumentasjonErLastetOpp = useRef(
+        !søknad.dokumentasjon.find(
             dokumentasjon =>
                 dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON &&
                 erDokumentasjonRelevant(dokumentasjon) &&
-                !dokumentasjon.harSendtInn
-        ).length === 0
+                !(dokumentasjon.harSendtInn || dokumentasjon.opplastedeVedlegg.length > 0)
+        )
     );
 
     useEffect(() => {
@@ -72,7 +72,7 @@ const Kvittering: React.FC = () => {
             </Alert>
 
             <VStack gap="6">
-                {alleRelevanteVedleggErSendtInn.current ? (
+                {allNødvendigDokumentasjonErLastetOpp.current ? (
                     <TekstBlock
                         block={kvitteringTekster.trengerIkkeEttersendeVedlegg}
                         typografi={Typografi.BodyLong}
