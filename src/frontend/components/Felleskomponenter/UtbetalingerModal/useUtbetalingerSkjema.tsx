@@ -96,6 +96,7 @@ export const useUtbetalingerSkjema = (
                       tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
                   ),
         avhengigheter: { utbetalingFraDato },
+        nullstillVedAvhengighetEndring: false,
     });
 
     const skjema = useSkjema<IUtbetalingerFeltTyper, string>({

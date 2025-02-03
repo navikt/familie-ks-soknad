@@ -41,13 +41,14 @@ const useDatovelgerFeltMedUkjent = ({
 
             const feilmelding = avhengigheter?.feilmelding as LocaleRecordBlock;
             const customStartdatoFeilmelding = avhengigheter?.customStartdatoFeilmelding;
+            const startdatoAvgrensningOppdatert = avhengigheter?.startdatoAvgrensning;
 
             return validerDato(
                 tekster().FELLES.formateringsfeilmeldinger,
                 plainTekst,
                 felt,
                 feilmelding,
-                startdatoAvgrensning,
+                startdatoAvgrensningOppdatert,
                 sluttdatoAvgrensning,
                 customStartdatoFeilmelding
             );
@@ -57,6 +58,7 @@ const useDatovelgerFeltMedUkjent = ({
             skalFeltetVises,
             customStartdatoFeilmelding,
             feilmelding,
+            startdatoAvgrensning,
             ...avhengigheter,
         },
         nullstillVedAvhengighetEndring,

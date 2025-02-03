@@ -160,6 +160,7 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
             ? undefined
             : plainTekst(formateringsfeilmeldinger.periodeAvsluttesForTidlig),
         avhengigheter: { startetIBarnehagen },
+        nullstillVedAvhengighetEndring: false,
     });
 
     const skjema = useSkjema<IBarnehageplassPerioderFeltTyper, string>({

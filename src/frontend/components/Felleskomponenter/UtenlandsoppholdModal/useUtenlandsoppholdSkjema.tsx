@@ -116,6 +116,7 @@ export const useUtenlandsoppholdSkjema = ({
                   )
             : undefined,
         avhengigheter: { utenlandsoppholdÅrsak, oppholdslandFraDato },
+        nullstillVedAvhengighetEndring: false,
     });
 
     const adresseUkjent = useFelt<ESvar>({
