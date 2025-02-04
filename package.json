@@ -136,7 +136,7 @@
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.26.3",
     "@babel/preset-typescript": "^7.26.0",
-    "@eslint/js": "^9.15.0",
+    "@eslint/js": "^9.19.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@portabletext/types": "^2.0.6",
     "@sentry/webpack-plugin": "^2.14.1",
