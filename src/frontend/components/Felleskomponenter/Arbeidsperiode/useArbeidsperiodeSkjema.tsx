@@ -111,6 +111,7 @@ export const useArbeidsperiodeSkjema = (
                       tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
                   ),
         avhengigheter: { fraDatoArbeidsperiode },
+        nullstillVedAvhengighetEndring: false,
     });
 
     const adresseUkjent = useFelt<ESvar>({
