@@ -2072,13 +2072,13 @@
   resolved "https://registry.npmjs.org/@rtsao/scc/-/scc-1.1.0.tgz#927dd2fae9bc3361403ac2c7a00c32ddce9ad7e8"
   integrity sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==
 
-"@sanity/client@^6.22.4":
-  version "6.22.4"
-  resolved "https://registry.npmjs.org/@sanity/client/-/client-6.22.4.tgz#7c8acad8f2897be072a2b9f45bcad00a22398119"
-  integrity sha512-l807VLFs/CVrbWoqQ6C9SNqpvSvNkNnJ5RgxUSfCB2t8elkJ7fr3ahi1bbGrIMrfr/uL044WfWIQ4E3DoqpiuQ==
+"@sanity/client@^6.27.2":
+  version "6.27.2"
+  resolved "https://registry.npmjs.org/@sanity/client/-/client-6.27.2.tgz#7588595881c76c271e048e0c547208a0c5940c08"
+  integrity sha512-x5KaN5atPnEFa3GGSH3YKSAYh1MAECvEs9o+NSLd5W19imxvSxPquQBv0Q60Zdsg6iaTJPAAa79Ak5Xyg2FHvA==
   dependencies:
     "@sanity/eventsource" "^5.0.2"
-    get-it "^8.6.5"
+    get-it "^8.6.7"
     rxjs "^7.0.0"
 
 "@sanity/eventsource@^5.0.2":
@@ -5853,6 +5853,11 @@ follow-redirects@^1.0.0, follow-redirects@^1.15.6:
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.6.tgz#7f815c0cda4249c74ff09e95ef97c23b5fd0399b"
   integrity sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==
 
+follow-redirects@^1.15.9:
+  version "1.15.9"
+  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.9.tgz#a604fa10e443bf98ca94228d9eebcc2e8a2c8ee1"
+  integrity sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==
+
 for-each@^0.3.3:
   version "0.3.3"
   resolved "https://registry.npmjs.org/for-each/-/for-each-0.3.3.tgz#69b447e88a0a5d32c3e7084f3f1710034b21376e"
@@ -6006,15 +6011,15 @@ get-intrinsic@^1.2.3, get-intrinsic@^1.2.4:
     has-symbols "^1.0.3"
     hasown "^2.0.0"
 
-get-it@^8.6.5:
-  version "8.6.5"
-  resolved "https://registry.npmjs.org/get-it/-/get-it-8.6.5.tgz#69c85fa215707315861a32733738b578d0f8e640"
-  integrity sha512-o1hjPwrb/icm3WJbCweTSq8mKuDfJlqwbFauI+Pdgid99at/BFaBXFBJZE+uqvHyOVARE4z680S44vrDm8SsCw==
+get-it@^8.6.7:
+  version "8.6.7"
+  resolved "https://registry.npmjs.org/get-it/-/get-it-8.6.7.tgz#baaf3241b404ba77c61ec194ccb0155d4ca9224c"
+  integrity sha512-AMEotvykAlcEPTPmYeZPqr9w3K53Ni8z1tplo1mwNS8T4i/gr5T7mSfvaLhhIQhF+0thIH901kLdDA5d5bvDGA==
   dependencies:
     "@types/follow-redirects" "^1.14.4"
     "@types/progress-stream" "^2.0.5"
     decompress-response "^7.0.0"
-    follow-redirects "^1.15.6"
+    follow-redirects "^1.15.9"
     is-retry-allowed "^2.2.0"
     progress-stream "^2.0.0"
     tunnel-agent "^0.6.0"
