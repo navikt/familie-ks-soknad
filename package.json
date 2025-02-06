@@ -192,7 +192,7 @@
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.17.0",
+    "typescript-eslint": "^8.23.0",
     "webpack": "^5.94.0",
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
