@@ -63,7 +63,6 @@
     ]
   },
   "resolutions": {
-    "browserslist": "^4.24.2",
     "ansi-regex": "^5.0.1",
     "got": "^11.8.5",
     "@types/react": "^18.2.17",
