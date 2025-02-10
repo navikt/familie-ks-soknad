@@ -178,7 +178,7 @@
     "prop-types": "^15.8.1",
     "react-dev-utils": "^12.0.1",
     "react-masonry-css": "^1.0.16",
-    "react-refresh": "^0.14.0",
+    "react-refresh": "^0.16.0",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.9",
     "ts-essentials": "^10.0.3",
