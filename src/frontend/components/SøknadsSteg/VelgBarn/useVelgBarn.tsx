@@ -10,7 +10,6 @@ import { BarnetsId } from '../../../typer/common';
 import { IBarn } from '../../../typer/person';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IVelgBarnFeltTyper } from '../../../typer/skjema';
-import { setUserProperty, UserProperty } from '../../../utils/amplitude';
 import { genererInitialBarnMedISøknad } from '../../../utils/barn';
 
 import { IVelgBarnTekstinnhold } from './innholdTyper';
@@ -88,8 +87,6 @@ export const useVelgBarn = (): {
                 ),
             };
         });
-
-        setUserProperty(UserProperty.ANTALL_VALGTE_BARN, oppdaterteBarn.length);
 
         settSøknad({
             ...søknad,
