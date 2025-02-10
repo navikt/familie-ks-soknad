@@ -4,6 +4,8 @@ import { registerLocale } from 'i18n-iso-countries';
 import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 
+import { awaitDecoratorData } from '@navikt/nav-dekoratoren-moduler';
+
 import App from './App';
 import { hentDekorator } from './decorator';
 import FellesWrapper from './FellesWrapper';
@@ -26,7 +28,7 @@ const polyfillLocaledata = async () => {
 
 hentDekorator();
 
-polyfillLocaledata().then(() => {
+polyfillLocaledata().then(async () => {
     initSentry();
     initGrafanaFaro();
 
@@ -35,6 +37,8 @@ polyfillLocaledata().then(() => {
             axe(React, ReactDOM, 1000);
         });
     }
+
+    await awaitDecoratorData();
 
     const container = document.getElementById('root');
 
