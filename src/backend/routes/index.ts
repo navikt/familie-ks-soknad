@@ -17,7 +17,7 @@ export const konfigurerIndex = (app: Express): Express => {
 
 export const konfigurerIndexFallback = (app: Express): Express => {
     // Fallback, alt vi ikke treffer med andre handlere returnerer index.html
-    app.get('*', indexHandler);
+    app.get('*splat', indexHandler);
     return app;
 };
 
