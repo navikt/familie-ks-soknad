@@ -94,7 +94,7 @@
     "@sentry/react": "^8.54.0",
     "axios": "1.7.7",
     "classnames": "^2.5.1",
-    "compression": "^1.7.4",
+    "compression": "^1.8.0",
     "constate": "^3.3.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
