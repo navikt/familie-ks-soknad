@@ -26,7 +26,7 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
                 LOG_LEVEL.WARNING,
                 error
             );
-            return res.status(401).send('En uventet feil oppstod. Ingen gyldig token');
+            res.status(401).send('En uventet feil oppstod. Ingen gyldig token');
         }
     };
 };
