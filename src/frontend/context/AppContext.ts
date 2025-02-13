@@ -114,11 +114,12 @@ const [AppProvider, useApp] = createUseContext(() => {
         }
     }, [innloggetStatus, teksterRessurs]);
 
-    const mellomlagre = (søknadSomSkalLagres: ISøknad) => {
+    const mellomlagre = (søknadSomSkalLagres: ISøknad, nåværendeStegIndex: number) => {
         const kontantstøtte: IMellomlagretKontantstøtte = {
             søknad: søknadSomSkalLagres,
             modellVersjon: Miljø().modellVersjon,
             sisteUtfylteStegIndex: sisteUtfylteStegIndex,
+            sistePåbegynteStegIndex: nåværendeStegIndex,
             locale: valgtLocale,
         };
         axiosRequest<IMellomlagretKontantstøtte, IMellomlagretKontantstøtte>({
@@ -135,7 +136,7 @@ const [AppProvider, useApp] = createUseContext(() => {
 
     useEffect(() => {
         if (sisteUtfylteStegIndex > 0) {
-            mellomlagre(søknad);
+            mellomlagre(søknad, sisteUtfylteStegIndex);
         }
     }, [nåværendeRoute, søknad.dokumentasjon]);
 

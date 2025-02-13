@@ -129,7 +129,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         event.preventDefault();
         if (skjema) {
             const søknad = skjema.settSøknadsdataCallback();
-            mellomlagre(søknad);
+            mellomlagre(søknad, nåværendeStegIndex);
         }
 
         gåTilbakeTilStart();

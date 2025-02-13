@@ -28,7 +28,7 @@ export const useVelgBarn = (): {
 } => {
     const { søknad, settSøknad, mellomlagre, tekster, plainTekst } = useApp();
     const { barnInkludertISøknaden } = søknad;
-    const { settBarnForSteg } = useSteg();
+    const { settBarnForSteg, hentNåværendeStegIndex } = useSteg();
     const { settBarnSomTriggerEøs } = useEøs();
     const [barnSomSkalVæreMed, settBarnSomSkalVæreMed] =
         useState<IBarnMedISøknad[]>(barnInkludertISøknaden);
@@ -40,7 +40,7 @@ export const useVelgBarn = (): {
     }, [barnSomSkalVæreMed]);
 
     useEffect(() => {
-        mellomlagre(søknad);
+        mellomlagre(søknad, hentNåværendeStegIndex());
     }, [søknad.barnRegistrertManuelt]);
 
     const fjernBarn = (id: BarnetsId) => {
