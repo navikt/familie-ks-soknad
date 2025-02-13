@@ -36,6 +36,7 @@ import {
 } from '../../../../typer/perioder';
 import { PersonType } from '../../../../typer/personType';
 import { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
+import { ISøknad } from '../../../../typer/søknad';
 import { valideringAdresse } from '../../../../utils/adresse';
 import { skalSkjuleAndreForelderFelt, skalViseBorMedOmsorgsperson } from '../../../../utils/barn';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
@@ -57,7 +58,7 @@ export const useEøsForBarn = (
     validerFelterOgVisFeilmelding: () => boolean;
     valideringErOk: () => boolean;
     validerAlleSynligeFelter: () => void;
-    oppdaterSøknad: () => void;
+    oppdaterSøknad: () => ISøknad;
     leggTilPensjonsperiodeNorgeAndreForelder: (periode: IPensjonsperiode) => void;
     fjernPensjonsperiodeNorgeAndreForelder: (periode: IPensjonsperiode) => void;
     leggTilAndreUtbetalingsperiodeAndreForelder: (periode: IUtbetalingsperiode) => void;
@@ -810,10 +811,13 @@ export const useEøsForBarn = (
                 }
             });
 
-        settSøknad({
+        const oppdatertSøknad = {
             ...søknad,
             barnInkludertISøknaden: oppdatertBarnInkludertISøknaden,
-        });
+        };
+
+        settSøknad(oppdatertSøknad);
+        return oppdatertSøknad;
     };
 
     const { skjema, kanSendeSkjema, valideringErOk, validerAlleSynligeFelter } = useSkjema<

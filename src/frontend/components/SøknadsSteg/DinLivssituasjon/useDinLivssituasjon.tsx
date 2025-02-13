@@ -18,6 +18,7 @@ import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pens
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IDinLivssituasjonFeltTyper } from '../../../typer/skjema';
+import { ISøknad } from '../../../typer/søknad';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
 import { ArbeidsperiodeSpørsmålsId } from '../../Felleskomponenter/Arbeidsperiode/spørsmål';
@@ -30,7 +31,7 @@ export const useDinLivssituasjon = (): {
     skjema: ISkjema<IDinLivssituasjonFeltTyper, string>;
     validerFelterOgVisFeilmelding: () => boolean;
     valideringErOk: () => boolean;
-    oppdaterSøknad: () => void;
+    oppdaterSøknad: () => ISøknad;
     validerAlleSynligeFelter: () => void;
     leggTilArbeidsperiode: (periode: IArbeidsperiode) => void;
     fjernArbeidsperiode: (periode: IArbeidsperiode) => void;
@@ -222,8 +223,7 @@ export const useDinLivssituasjon = (): {
         const søkerTriggetEøs = skalTriggeEøsForSøker(oppdatertSøker);
         const harEøsSteg =
             søkerTriggetEøs || !!søknad.barnInkludertISøknaden.find(barn => barn.triggetEøs);
-
-        settSøknad({
+        const oppdatertSøknad = {
             ...søknad,
             erAvdødPartnerForelder: {
                 id: enkeSpørsmålId(),
@@ -254,7 +254,10 @@ export const useDinLivssituasjon = (): {
                     ...nullstilteEøsFelterForBarn(barn),
                 })),
             }),
-        });
+        };
+        settSøknad(oppdatertSøknad);
+
+        return oppdatertSøknad;
     };
 
     return {

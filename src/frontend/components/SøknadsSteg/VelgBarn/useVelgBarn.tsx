@@ -10,6 +10,7 @@ import { BarnetsId } from '../../../typer/common';
 import { IBarn } from '../../../typer/person';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IVelgBarnFeltTyper } from '../../../typer/skjema';
+import { ISøknad } from '../../../typer/søknad';
 import { genererInitialBarnMedISøknad } from '../../../utils/barn';
 
 import { IVelgBarnTekstinnhold } from './innholdTyper';
@@ -19,7 +20,7 @@ export const useVelgBarn = (): {
     skjema: ISkjema<IVelgBarnFeltTyper, string>;
     validerFelterOgVisFeilmelding: () => boolean;
     valideringErOk: () => boolean;
-    oppdaterSøknad: () => void;
+    oppdaterSøknad: () => ISøknad;
     håndterVelgBarnToggle: (barn: IBarn, erMedISøknad: boolean) => void;
     barnSomSkalVæreMed: IBarn[];
     fjernBarn: (ident: string) => void;
@@ -39,7 +40,7 @@ export const useVelgBarn = (): {
     }, [barnSomSkalVæreMed]);
 
     useEffect(() => {
-        mellomlagre();
+        mellomlagre(søknad);
     }, [søknad.barnRegistrertManuelt]);
 
     const fjernBarn = (id: BarnetsId) => {
@@ -88,11 +89,14 @@ export const useVelgBarn = (): {
             };
         });
 
-        settSøknad({
+        const oppdatertSøknad = {
             ...søknad,
             barnInkludertISøknaden: oppdaterteBarn,
             dokumentasjon: oppdatertDokumentasjon,
-        });
+        };
+
+        settSøknad(oppdatertSøknad);
+        return oppdatertSøknad;
     };
 
     const håndterVelgBarnToggle = (barn: IBarn, erMedISøknad: boolean) => {

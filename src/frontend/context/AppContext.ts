@@ -114,9 +114,9 @@ const [AppProvider, useApp] = createUseContext(() => {
         }
     }, [innloggetStatus, teksterRessurs]);
 
-    const mellomlagre = () => {
+    const mellomlagre = (søknadSomSkalLagres: ISøknad) => {
         const kontantstøtte: IMellomlagretKontantstøtte = {
-            søknad: søknad,
+            søknad: søknadSomSkalLagres,
             modellVersjon: Miljø().modellVersjon,
             sisteUtfylteStegIndex: sisteUtfylteStegIndex,
             locale: valgtLocale,
@@ -135,7 +135,7 @@ const [AppProvider, useApp] = createUseContext(() => {
 
     useEffect(() => {
         if (sisteUtfylteStegIndex > 0) {
-            mellomlagre();
+            mellomlagre(søknad);
         }
     }, [nåværendeRoute, søknad.dokumentasjon]);
 

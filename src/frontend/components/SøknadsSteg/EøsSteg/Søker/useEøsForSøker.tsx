@@ -15,6 +15,7 @@ import { ISøker } from '../../../../typer/person';
 import { PersonType } from '../../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../../typer/sanity/modaler/arbeidsperiode';
 import { IEøsForSøkerFeltTyper } from '../../../../typer/skjema';
+import { ISøknad } from '../../../../typer/søknad';
 import { valideringAdresse } from '../../../../utils/adresse';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
 import { ArbeidsperiodeSpørsmålsId } from '../../../Felleskomponenter/Arbeidsperiode/spørsmål';
@@ -29,7 +30,7 @@ export const useEøsForSøker = (): {
     validerFelterOgVisFeilmelding: () => boolean;
     validerAlleSynligeFelter: () => void;
     valideringErOk: () => boolean;
-    oppdaterSøknad: () => void;
+    oppdaterSøknad: () => ISøknad;
     leggTilArbeidsperiode: (periode: IArbeidsperiode) => void;
     fjernArbeidsperiode: (periode: IArbeidsperiode) => void;
     leggTilPensjonsperiode: (periode: IPensjonsperiode) => void;
@@ -137,10 +138,12 @@ export const useEøsForSøker = (): {
 
     const oppdaterSøknad = () => {
         const oppdatertSøker = genererOppdatertSøker();
-        settSøknad({
+        const oppdatertSøknad = {
             ...søknad,
             søker: oppdatertSøker,
-        });
+        };
+        settSøknad(oppdatertSøknad);
+        return oppdatertSøknad;
     };
     const genererOppdatertSøker = (): ISøker => ({
         ...søknad.søker,

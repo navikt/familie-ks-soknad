@@ -13,6 +13,7 @@ import { useSteg } from '../../../context/StegContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
+import { ISøknad } from '../../../typer/søknad';
 import {
     logKlikkGåVidere,
     logSidevisningKontantstøtte,
@@ -38,7 +39,7 @@ interface ISteg {
         validerFelterOgVisFeilmelding: () => boolean;
         valideringErOk: () => boolean;
         skjema: ISkjema<SkjemaFeltTyper, string>;
-        settSøknadsdataCallback: () => void;
+        settSøknadsdataCallback: () => ISøknad;
     };
     gåVidereCallback?: () => Promise<boolean>;
     vedleggOppsummering?: IVedleggOppsummering[];
@@ -56,6 +57,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         gåTilbakeTilStart,
         settNåværendeRoute,
         modellVersjonOppdatert,
+        mellomlagre,
     } = useApp();
     const {
         hentNesteSteg,
@@ -96,11 +98,6 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         setAvailableLanguages([]).then();
     };
 
-    const håndterAvbryt = () => {
-        gåTilbakeTilStart();
-        navigate('/');
-    };
-
     const gåVidere = () => {
         if (!erStegUtfyltFrafør(nåværendeStegIndex)) {
             settSisteUtfylteStegIndex(nåværendeStegIndex);
@@ -126,6 +123,17 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         } else {
             gåVidere();
         }
+    };
+
+    const håndterFortsettSenere = event => {
+        event.preventDefault();
+        if (skjema) {
+            const søknad = skjema.settSøknadsdataCallback();
+            mellomlagre(søknad);
+        }
+
+        gåTilbakeTilStart();
+        navigate('/');
     };
 
     const håndterTilbake = () => {
@@ -207,7 +215,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
                         {!erPåKvitteringsside() && (
                             <Navigeringspanel
                                 onTilbakeCallback={håndterTilbake}
-                                onAvbrytCallback={håndterAvbryt}
+                                onAvbrytCallback={håndterFortsettSenere}
                                 valideringErOk={skjema && skjema.valideringErOk}
                             />
                         )}
