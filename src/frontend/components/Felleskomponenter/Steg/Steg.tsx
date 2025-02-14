@@ -137,6 +137,10 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
     };
 
     const håndterTilbake = () => {
+        if (skjema) {
+            const søknad = skjema.settSøknadsdataCallback();
+            mellomlagre(søknad, nåværendeStegIndex);
+        }
         navigate(forrigeRoute.path);
     };
 
