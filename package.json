@@ -80,8 +80,8 @@
   "dependencies": {
     "@grafana/faro-web-sdk": "^1.13.3",
     "@navikt/aksel-icons": "^6.12.0",
-    "@navikt/ds-css": "^6.13.0",
-    "@navikt/ds-react": "^6.13.0",
+    "@navikt/ds-css": "^7.13.0",
+    "@navikt/ds-react": "^7.13.0",
     "@navikt/familie-form-elements": "^15.0.0",
     "@navikt/familie-logging": "^7.0.3",
     "@navikt/familie-skjema": "^8.0.9",
