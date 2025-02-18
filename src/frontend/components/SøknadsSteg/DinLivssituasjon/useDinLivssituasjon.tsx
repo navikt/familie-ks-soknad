@@ -216,6 +216,7 @@ export const useDinLivssituasjon = (): {
         if (skalTriggeEøsForSøker(oppdatertSøker) !== søkerTriggerEøs) {
             settSøkerTriggerEøs(prevState => !prevState);
         }
+        validerAlleSynligeFelter();
     }, [arbeidIUtlandet, mottarUtenlandspensjon]);
 
     const oppdaterSøknad = () => {
