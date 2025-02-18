@@ -80,7 +80,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         window.scrollTo(0, 0);
         document.getElementById('stegHovedtittel')?.focus();
         settNåværendeRoute(nyesteNåværendeRoute);
-        if (skjema && erStegUtfyltFrafør(nåværendeStegIndex)) {
+        if (skjema) {
             Object.values(skjema.skjema.felter).forEach(felt => {
                 felt.validerOgSettFelt(felt.verdi);
             });

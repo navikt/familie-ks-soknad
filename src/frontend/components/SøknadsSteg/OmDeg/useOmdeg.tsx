@@ -51,7 +51,6 @@ export const useOmdeg = (): {
         if (skalTriggeEøsForSøker(oppdatertSøker) !== søkerTriggerEøs) {
             settSøkerTriggerEøs(prevState => !prevState);
         }
-        validerAlleSynligeFelter();
     }, [værtINorgeITolvMåneder]);
 
     const genererOppdatertSøker = () => ({
