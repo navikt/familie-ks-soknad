@@ -24,7 +24,6 @@ import * as sanityContext from '../context/SanityContext';
 import { SanityProvider } from '../context/SanityContext';
 import { SpråkProvider } from '../context/SpråkContext';
 import { StegProvider } from '../context/StegContext';
-import { LocaleType } from '../typer/common';
 import { EFeatureToggle } from '../typer/feature-toggles';
 import { ESivilstand } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
@@ -163,12 +162,7 @@ export const wrapMedProvidere = (
     children?: ReactNode
 ) => {
     const [Første, ...resten] = providerComponents;
-    const erSpråkprovider = Første === SpråkProvider;
-    return (
-        <Første {...(erSpråkprovider ? { defaultLocale: LocaleType.nb } : {})}>
-            {resten.length ? wrapMedProvidere(resten, children) : children}
-        </Første>
-    );
+    return <Første>{resten.length ? wrapMedProvidere(resten, children) : children}</Første>;
 };
 
 const wrapMedDefaultProvidere = (children: ReactNode) =>
