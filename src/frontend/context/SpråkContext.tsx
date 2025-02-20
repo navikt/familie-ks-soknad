@@ -8,11 +8,11 @@ import { erGyldigSpråk, LocaleType } from '../typer/common';
 
 const dekoratorLanguageCookieName = 'decorator-language';
 
-interface ISpråkContext {
+interface SpråkContext {
     valgtLocale: LocaleType;
 }
 
-const SpråkContext = createContext<ISpråkContext | undefined>(undefined);
+const SpråkContext = createContext<SpråkContext | undefined>(undefined);
 
 export function SpråkProvider(props: PropsWithChildren) {
     const [cookies, setCookie] = useCookies([dekoratorLanguageCookieName]);
