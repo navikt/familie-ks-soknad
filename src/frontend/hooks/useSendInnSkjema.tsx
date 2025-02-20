@@ -7,7 +7,7 @@ import Miljø from '../../shared-utils/Miljø';
 import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon';
 import { useApp } from '../context/AppContext';
 import { useFeatureToggles } from '../context/FeatureToggleContext';
-import { useSpråk } from '../context/SpråkContext';
+import { useSpråkContext } from '../context/SpråkContext';
 import { ISøknadKontrakt } from '../typer/kontrakt/søknadKontrakt';
 import { IKvittering } from '../typer/kvittering';
 import { dataISøknadKontraktFormat } from '../utils/mappingTilKontrakt/søknad';
@@ -25,7 +25,7 @@ export const useSendInnSkjema = (): {
         tilRestLocaleRecord,
     } = useApp();
     const { soknadApiProxyUrl } = Miljø();
-    const { valgtLocale } = useSpråk();
+    const { valgtLocale } = useSpråkContext();
     const { toggles } = useFeatureToggles();
     const sendInnSkjema = async (): Promise<[boolean, ISøknadKontrakt]> => {
         settInnsendingStatus({ status: RessursStatus.HENTER });

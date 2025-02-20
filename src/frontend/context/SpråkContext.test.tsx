@@ -5,10 +5,10 @@ import { Cookies, CookiesProvider } from 'react-cookie';
 
 import '@testing-library/jest-dom';
 
-import { SpråkProvider, useSpråk } from './SpråkContext';
+import { SpråkProvider, useSpråkContext } from './SpråkContext';
 
 const Eksempelkomponent = () => {
-    const { valgtLocale } = useSpråk();
+    const { valgtLocale } = useSpråkContext();
 
     return <span>Språket er: {valgtLocale}</span>;
 };

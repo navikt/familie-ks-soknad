@@ -35,7 +35,7 @@ export function SpråkProvider(props: PropsWithChildren) {
     return <SpråkContext.Provider value={{ valgtLocale }}>{props.children}</SpråkContext.Provider>;
 }
 
-export function useSpråk() {
+export function useSpråkContext() {
     const context = useContext(SpråkContext);
 
     if (context === undefined) {

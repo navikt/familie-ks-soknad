@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useApp } from '../../../../../context/AppContext';
-import { useSpråk } from '../../../../../context/SpråkContext';
+import { useSpråkContext } from '../../../../../context/SpråkContext';
 import { IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
 import { IOmsorgsperson } from '../../../../../typer/omsorgsperson';
@@ -21,7 +21,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
     const { tekster, plainTekst } = useApp();
     const eøsBarnTekster = tekster().EØS_FOR_BARN;
 
-    const { valgtLocale } = useSpråk();
+    const { valgtLocale } = useSpråkContext();
 
     const flettefelter = { barnetsNavn: barn.navn };
     return (

@@ -6,7 +6,7 @@ import { BodyShort, ErrorMessage, DatePicker, useDatepicker } from '@navikt/ds-r
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { useSpråk } from '../../../context/SpråkContext';
+import { useSpråkContext } from '../../../context/SpråkContext';
 import { ISODateString } from '../../../typer/common';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import {
@@ -43,7 +43,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     dynamisk = false,
     strategy = 'fixed',
 }) => {
-    const { valgtLocale } = useSpråk();
+    const { valgtLocale } = useSpråkContext();
     const { tekster, plainTekst } = useApp();
     const { datoformatHjelpetekst, datoformatPlaceholder } = tekster().FELLES.hjelpeteksterForInput;
 
