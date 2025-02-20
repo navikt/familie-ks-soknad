@@ -7,12 +7,13 @@ import '@testing-library/jest-dom';
 
 import { SpråkProvider, useSpråk } from './SpråkContext';
 
-test('Kan hente ut valgt locale fra SpråkContext som defaultes til "nb" hvis dekoratøren ikke har satt en egen', () => {
-    const Eksempelkomponent = () => {
-        const { valgtLocale } = useSpråk();
+const Eksempelkomponent = () => {
+    const { valgtLocale } = useSpråk();
 
-        return <span>Språket er: {valgtLocale}</span>;
-    };
+    return <span>Språket er: {valgtLocale}</span>;
+};
+
+test('Kan hente ut valgt locale fra SpråkContext som defaultes til "nb" hvis dekoratøren ikke har satt en egen', () => {
     render(
         <SpråkProvider>
             <Eksempelkomponent />
@@ -25,11 +26,6 @@ test('Kan hente ut valgt locale fra SpråkContext når den er satt av dekoratør
     const cookies = new Cookies();
     cookies.set('decorator-language', 'en');
 
-    const Eksempelkomponent = () => {
-        const { valgtLocale } = useSpråk();
-
-        return <span>Språket er: {valgtLocale}</span>;
-    };
     render(
         <CookiesProvider cookies={cookies}>
             <SpråkProvider>
