@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router';
 
@@ -42,17 +42,8 @@ export const useBekreftelseOgStartSoknad = (): {
         søknad.lestOgForståttBekreftelse ? BekreftelseStatus.BEKREFTET : BekreftelseStatus.NORMAL
     );
 
-    const [gjenopprettetFraMellomlagring, settGjenpprettetFraMellomlagring] = useState(false);
-
     const nesteRoute: ISteg = hentNesteSteg();
     const nåværendeStegIndex = hentNåværendeStegIndex();
-
-    useEffect(() => {
-        if (gjenopprettetFraMellomlagring && mellomlagretVerdi) {
-            navigate(steg[mellomlagretVerdi.sisteUtfylteStegIndex].path);
-            settGjenpprettetFraMellomlagring(false);
-        }
-    }, [gjenopprettetFraMellomlagring]);
 
     const fortsettPåSøknaden = (): void => {
         if (mellomlagretVerdi) {
@@ -68,7 +59,11 @@ export const useBekreftelseOgStartSoknad = (): {
                     .map(barn => barn.id)
             );
             settSøkerTriggerEøs(søker.triggetEøs);
-            settGjenpprettetFraMellomlagring(true);
+            const nesteStegIndex =
+                mellomlagretVerdi.sistePåbegynteStegIndex ||
+                mellomlagretVerdi.sisteUtfylteStegIndex;
+
+            navigate(steg[nesteStegIndex].path);
         } else {
             navigate(nesteRoute.path);
         }

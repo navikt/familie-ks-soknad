@@ -7,6 +7,7 @@ import { useEøs } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmDegFeltTyper } from '../../../typer/skjema';
+import { ISøknad } from '../../../typer/søknad';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
 
@@ -16,7 +17,7 @@ export const useOmdeg = (): {
     skjema: ISkjema<IOmDegFeltTyper, string>;
     validerFelterOgVisFeilmelding: () => boolean;
     valideringErOk: () => boolean;
-    oppdaterSøknad: () => void;
+    oppdaterSøknad: () => ISøknad;
     validerAlleSynligeFelter: () => void;
 } => {
     const { søknad, settSøknad, tekster } = useApp();
@@ -78,7 +79,7 @@ export const useOmdeg = (): {
         const harEøsSteg =
             søkerTriggetEøs || !!søknad.barnInkludertISøknaden.find(barn => barn.triggetEøs);
 
-        settSøknad({
+        const oppdatertSøknad = {
             ...søknad,
             søker: {
                 ...oppdatertSøker,
@@ -91,7 +92,9 @@ export const useOmdeg = (): {
                     ...nullstilteEøsFelterForBarn(barn),
                 })),
             }),
-        });
+        };
+        settSøknad(oppdatertSøknad);
+        return oppdatertSøknad;
     };
 
     const { skjema, kanSendeSkjema, valideringErOk, validerAlleSynligeFelter } = useSkjema<

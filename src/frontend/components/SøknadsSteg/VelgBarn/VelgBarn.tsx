@@ -49,7 +49,7 @@ const VelgBarn: React.FC = () => {
                     valideringErOk,
                     skjema,
                     settSøknadsdataCallback: () => {
-                        oppdaterSøknad();
+                        return oppdaterSøknad();
                     },
                 }}
             >
