@@ -39,7 +39,7 @@ export function useSpråkContext() {
     const context = useContext(SpråkContext);
 
     if (context === undefined) {
-        throw new Error('useSpråk må brukes innenfor SpråkProvider');
+        throw new Error('useSpråkContext må brukes innenfor SpråkProvider');
     }
 
     return context;
