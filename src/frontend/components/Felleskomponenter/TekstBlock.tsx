@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds-react';
 
 import { useApp } from '../../context/AppContext';
-import { useSpråk } from '../../context/SpråkContext';
+import { useSpråkContext } from '../../context/SpråkContext';
 import { LocaleRecordBlock, Typografi } from '../../typer/common';
 import { FlettefeltVerdier } from '../../typer/kontrakt/generelle';
 
@@ -82,7 +82,7 @@ const TekstBlock: React.FC<{
     flettefelter?: FlettefeltVerdier;
     typografi?: Typografi;
 }> = ({ block, flettefelter, typografi }) => {
-    const { valgtLocale } = useSpråk();
+    const { valgtLocale } = useSpråkContext();
     const { flettefeltTilTekst } = useApp();
 
     return block ? (

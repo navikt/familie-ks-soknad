@@ -4,7 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../../../context/AppContext';
-import { useSpråk } from '../../../../../context/SpråkContext';
+import { useSpråkContext } from '../../../../../context/SpråkContext';
 import {
     andreForelderDataKeySpørsmål,
     barnDataKeySpørsmål,
@@ -43,7 +43,7 @@ const EøsAndreForelderOppsummering: React.FC<{
         ytelseFraAnnetLandAndreForelder,
         ytelseFraAnnetLandAndreForelderGjenlevende,
     } = tekster().EØS_FOR_BARN;
-    const { valgtLocale } = useSpråk();
+    const { valgtLocale } = useSpråkContext();
 
     const andreForelderErDød = barn[barnDataKeySpørsmål.andreForelderErDød].svar === ESvar.JA;
 

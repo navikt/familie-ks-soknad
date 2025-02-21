@@ -3,7 +3,7 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
-import { useSpråk } from '../../../context/SpråkContext';
+import { useSpråkContext } from '../../../context/SpråkContext';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
@@ -51,7 +51,7 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
     const periodenErAvsluttet =
         mottarEøsKontantstøtteNå.svar === ESvar.NEI ||
         (personType === PersonType.andreForelder && erDød);
-    const { valgtLocale } = useSpråk();
+    const { valgtLocale } = useSpråkContext();
 
     return (
         <PeriodeOppsummering

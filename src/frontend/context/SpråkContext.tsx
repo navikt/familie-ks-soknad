@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
-import createUseContext from 'constate';
 import { useCookies } from 'react-cookie';
 
 import { onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
@@ -9,17 +8,22 @@ import { erGyldigSpråk, LocaleType } from '../typer/common';
 
 const dekoratorLanguageCookieName = 'decorator-language';
 
-export const [SpråkProvider, useSpråk] = createUseContext(() => {
+interface SpråkContext {
+    valgtLocale: LocaleType;
+}
+
+const SpråkContext = createContext<SpråkContext | undefined>(undefined);
+
+export function SpråkProvider(props: PropsWithChildren) {
     const [cookies, setCookie] = useCookies([dekoratorLanguageCookieName]);
     const { [dekoratorLanguageCookieName]: dekoratørSpråk } = cookies;
-
     const defaultSpråk = erGyldigSpråk(dekoratørSpråk) ? dekoratørSpråk : LocaleType.nb;
-
     const [valgtLocale, settValgtLocale] = useState<LocaleType>(defaultSpråk);
 
     useEffect(() => {
-        // Bryr oss egenlig ikke om hva som skjer etterpå men intellij klager på ignorert promise
-        setParams({ language: defaultSpråk }).then();
+        if (dekoratørSpråk !== defaultSpråk) {
+            setParams({ language: defaultSpråk });
+        }
     }, []);
 
     onLanguageSelect(language => {
@@ -28,5 +32,15 @@ export const [SpråkProvider, useSpråk] = createUseContext(() => {
         setCookie(dekoratorLanguageCookieName, language.locale);
     });
 
-    return { valgtLocale };
-});
+    return <SpråkContext.Provider value={{ valgtLocale }}>{props.children}</SpråkContext.Provider>;
+}
+
+export function useSpråkContext() {
+    const context = useContext(SpråkContext);
+
+    if (context === undefined) {
+        throw new Error('useSpråkContext må brukes innenfor SpråkProvider');
+    }
+
+    return context;
+}

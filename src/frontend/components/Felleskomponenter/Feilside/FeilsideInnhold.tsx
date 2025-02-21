@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 
 import { BodyShort, Button, Heading, Link } from '@navikt/ds-react';
 
-import { useSpråk } from '../../../context/SpråkContext';
+import { useSpråkContext } from '../../../context/SpråkContext';
 import { LocaleType } from '../../../typer/common';
 
 export const FeilsideInnhold: FC = () => {
-    const { valgtLocale } = useSpråk();
+    const { valgtLocale } = useSpråkContext();
 
     const lastInnSidenPåNytt = () => {
         window.location.reload();

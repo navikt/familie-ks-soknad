@@ -3,7 +3,7 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
-import { useSpråk } from '../../../context/SpråkContext';
+import { useSpråkContext } from '../../../context/SpråkContext';
 import { IPensjonsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { formaterDato } from '../../../utils/dato';
@@ -30,7 +30,7 @@ export const PensjonsperiodeOppsummering: React.FC<PensjonsperiodeOppsummeringPr
     erDød = false,
     barn = undefined,
 }) => {
-    const { valgtLocale } = useSpråk();
+    const { valgtLocale } = useSpråkContext();
     const { tekster } = useApp();
     const teksterForModal = tekster().FELLES.modaler.pensjonsperiode[personType];
 
