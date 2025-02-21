@@ -18,7 +18,7 @@ import { useBekreftelseOgStartSoknad } from '../../SøknadsSteg/Forside/useBekre
 import { SlettSøknadenModal } from './SlettSøknadenModal';
 
 const Navigeringspanel: React.FC<{
-    onAvbrytCallback: () => void;
+    onAvbrytCallback: (event) => void;
     onTilbakeCallback: () => void;
     valideringErOk: (() => boolean) | undefined;
 }> = ({ onAvbrytCallback, onTilbakeCallback, valideringErOk }) => {

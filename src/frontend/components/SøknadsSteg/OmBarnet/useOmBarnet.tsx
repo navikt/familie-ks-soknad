@@ -31,6 +31,7 @@ import { PersonType } from '../../../typer/personType';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetFeltTyper } from '../../../typer/skjema';
+import { ISøknad } from '../../../typer/søknad';
 import {
     filtrerteRelevanteIdNummerForBarn,
     finnesPeriodeMedGradertBarnehageplass,
@@ -62,7 +63,7 @@ export const useOmBarnet = (
     validerFelterOgVisFeilmelding: () => boolean;
     valideringErOk: () => boolean;
     harPeriodeMedGradertBarnehageplass: boolean;
-    oppdaterSøknad: () => void;
+    oppdaterSøknad: () => ISøknad;
     andreBarnSomErFyltUt: IBarnMedISøknad[];
     validerAlleSynligeFelter: () => void;
     leggTilUtenlandsperiodeBarn: (periode: IUtenlandsperiode) => void;
@@ -806,7 +807,7 @@ export const useOmBarnet = (
             !søknad.søker.triggetEøs &&
             !oppdatertBarnInkludertISøknaden.find(barn => barn.triggetEøs);
 
-        settSøknad({
+        const oppdatertSøknad = {
             ...søknad,
             søker: skalNullstilleEøsForSøker
                 ? { ...søknad.søker, ...nullstilteEøsFelterForSøker(søknad.søker) }
@@ -831,7 +832,9 @@ export const useOmBarnet = (
                         return dok;
                 }
             }),
-        });
+        };
+        settSøknad(oppdatertSøknad);
+        return oppdatertSøknad;
     };
 
     return {

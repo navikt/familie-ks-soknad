@@ -13,6 +13,7 @@ import { useSteg } from '../../../context/StegContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
+import { ISøknad } from '../../../typer/søknad';
 import {
     logKlikkGåVidere,
     logSidevisningKontantstøtte,
@@ -38,7 +39,7 @@ interface ISteg {
         validerFelterOgVisFeilmelding: () => boolean;
         valideringErOk: () => boolean;
         skjema: ISkjema<SkjemaFeltTyper, string>;
-        settSøknadsdataCallback: () => void;
+        settSøknadsdataCallback: () => ISøknad;
     };
     gåVidereCallback?: () => Promise<boolean>;
     vedleggOppsummering?: IVedleggOppsummering[];
@@ -56,6 +57,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         gåTilbakeTilStart,
         settNåværendeRoute,
         modellVersjonOppdatert,
+        mellomlagre,
     } = useApp();
     const {
         hentNesteSteg,
@@ -78,7 +80,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         window.scrollTo(0, 0);
         document.getElementById('stegHovedtittel')?.focus();
         settNåværendeRoute(nyesteNåværendeRoute);
-        if (skjema && erStegUtfyltFrafør(nåværendeStegIndex)) {
+        if (skjema) {
             Object.values(skjema.skjema.felter).forEach(felt => {
                 felt.validerOgSettFelt(felt.verdi);
             });
@@ -94,11 +96,6 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
 
     const skjulSpråkvelger = () => {
         setAvailableLanguages([]).then();
-    };
-
-    const håndterAvbryt = () => {
-        gåTilbakeTilStart();
-        navigate('/');
     };
 
     const gåVidere = () => {
@@ -128,7 +125,22 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         }
     };
 
+    const håndterFortsettSenere = event => {
+        event.preventDefault();
+        if (skjema) {
+            const søknad = skjema.settSøknadsdataCallback();
+            mellomlagre(søknad, nåværendeStegIndex);
+        }
+
+        gåTilbakeTilStart();
+        navigate('/');
+    };
+
     const håndterTilbake = () => {
+        if (skjema) {
+            const søknad = skjema.settSøknadsdataCallback();
+            mellomlagre(søknad, nåværendeStegIndex);
+        }
         navigate(forrigeRoute.path);
     };
 
@@ -207,7 +219,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
                         {!erPåKvitteringsside() && (
                             <Navigeringspanel
                                 onTilbakeCallback={håndterTilbake}
-                                onAvbrytCallback={håndterAvbryt}
+                                onAvbrytCallback={håndterFortsettSenere}
                                 valideringErOk={skjema && skjema.valideringErOk}
                             />
                         )}

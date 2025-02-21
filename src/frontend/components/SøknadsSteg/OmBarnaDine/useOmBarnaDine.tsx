@@ -11,6 +11,7 @@ import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnaDineFeltTyper } from '../../../typer/skjema';
+import { ISøknad } from '../../../typer/søknad';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
 
 import { IOmBarnaTekstinnhold } from './innholdTyper';
@@ -22,7 +23,7 @@ export const useOmBarnaDine = (): {
     skjema: ISkjema<IOmBarnaDineFeltTyper, string>;
     validerFelterOgVisFeilmelding: () => boolean;
     valideringErOk: () => boolean;
-    oppdaterSøknad: () => void;
+    oppdaterSøknad: () => ISøknad;
     validerAlleSynligeFelter: () => void;
 } => {
     const { søknad, settSøknad, tekster, plainTekst } = useApp();
@@ -170,7 +171,7 @@ export const useOmBarnaDine = (): {
         const skalNullstilleEøsForSøker =
             !søknad.søker.triggetEøs && !oppdaterteBarn.find(barn => barn.triggetEøs);
 
-        settSøknad({
+        const oppdatertSøknad = {
             ...søknad,
             søker: skalNullstilleEøsForSøker
                 ? { ...søknad.søker, ...nullstilteEøsFelterForSøker(søknad.søker) }
@@ -229,7 +230,10 @@ export const useOmBarnaDine = (): {
                         return dok;
                 }
             }),
-        });
+        };
+
+        settSøknad(oppdatertSøknad);
+        return oppdatertSøknad;
     };
 
     const { skjema, kanSendeSkjema, valideringErOk, validerAlleSynligeFelter } = useSkjema<
