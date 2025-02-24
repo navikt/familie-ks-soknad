@@ -1,12 +1,7 @@
-name: Build, push, and deploy app to prod
+name: Gammel Build, push, and deploy app to prod
 
 on:
   workflow_dispatch:
-    branches:
-      - main
-  push:
-    branches:
-      - 'main'
 
 env:
   BASE_PATH: /familie/kontantstotte/soknad/
