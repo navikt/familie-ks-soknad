@@ -6,14 +6,14 @@ import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import { useApp } from '../../context/AppContext';
 import { useLastRessurserContext } from '../../context/LastRessurserContext';
-import { useSanity } from '../../context/SanityContext';
+import { useSanityContext } from '../../context/SanityContext';
 import { Feilside } from '../Felleskomponenter/Feilside/Feilside';
 import SystemetLaster from '../Felleskomponenter/SystemetLaster/SystemetLaster';
 import TekstBlock from '../Felleskomponenter/TekstBlock';
 
 export const DisabledApp: React.FC = () => {
     const { tekster, plainTekst } = useApp();
-    const { teksterRessurs } = useSanity();
+    const { teksterRessurs } = useSanityContext();
     const { lasterRessurser } = useLastRessurserContext();
 
     if (lasterRessurser()) {
