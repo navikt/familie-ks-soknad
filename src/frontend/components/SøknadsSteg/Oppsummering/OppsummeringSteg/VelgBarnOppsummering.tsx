@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useApp } from '../../../../context/AppContext';
-import { useRoutes } from '../../../../context/RoutesContext';
+import { useRoutesContext } from '../../../../context/RoutesContext';
 import { RouteEnum } from '../../../../typer/routes';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { hentBostedSpråkId } from '../../../../utils/språk';
@@ -19,7 +19,7 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
     const { søknad, tekster, plainTekst } = useApp();
     const velgBarnTekster = tekster().VELG_BARN;
     const leggTilBarnModalTekster = tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
-    const { hentRouteObjektForRouteEnum } = useRoutes();
+    const { hentRouteObjektForRouteEnum } = useRoutesContext();
     const velgBarnHook = useVelgBarn();
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
 
