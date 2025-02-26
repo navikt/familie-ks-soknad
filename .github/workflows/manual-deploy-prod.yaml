@@ -1,21 +1,15 @@
-# Full pipeline on push to main. Build, test, and deploy to dev + prod
-name: Main
+name: Manual deploy to prod (from main)
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - 'main'
-    paths-ignore:
-      - '**.md'
-      - '**.MD'
-      - '.github/*.yaml'
-      - '.gitignore'
-      - '.prettierignore'
-      - '.prettierrc'
-      - 'CODEOWNERS'
-      - 'LICENSE'
-      - 'eslint.config.mjs'
-      - '.husky/**'
+    inputs:
+      skip-tests:
+        description: 'Skip tests?'
+        default: false
+        type: boolean
+      skip-validation:
+        description: 'Skip validation? (eslint, prettier, typecheck)'
+        default: false
+        type: boolean
 
 env:
   BASE_PATH: /familie/kontantstotte/soknad/
@@ -31,24 +25,15 @@ jobs:
     with:
       build-image: true
       push-image: true
+      skip-tests: ${{ inputs.skip-tests }}
+      skip-validation: ${{ inputs.skip-validation }}
       base-path: ${{ env.BASE_PATH }}
     secrets: inherit
-  deploy-dev:
-    name: Deploy dev
+  deploy-with-new-image:
+    name: Deploy with new image
     permissions:
       id-token: write
     needs: [ build ]
-    uses: navikt/familie-baks-gha-workflows/.github/workflows/deploy.yaml@main
-    with:
-      image: ${{ needs.build.outputs.image }}
-      cluster: dev-gcp
-      resource: .nais/app-dev.yaml
-    secrets: inherit
-  deploy-prod:
-    name: Deploy prod
-    permissions:
-      id-token: write
-    needs: [ build, deploy-dev ]
     uses: navikt/familie-baks-gha-workflows/.github/workflows/deploy.yaml@main
     with:
       image: ${{ needs.build.outputs.image }}
