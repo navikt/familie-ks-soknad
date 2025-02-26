@@ -1,4 +1,4 @@
-import createUseContext from 'constate';
+import React, { createContext, PropsWithChildren, useContext } from 'react';
 
 import { RouteEnum } from '../typer/routes';
 
@@ -49,12 +49,37 @@ export const getRoutes = () => {
     ];
 };
 
-const [RoutesProvider, useRoutes] = createUseContext(() => {
+interface Route {
+    path: string;
+    label: string;
+    route: RouteEnum;
+}
+
+export interface RoutesContext {
+    routes: Array<Route>;
+    hentRouteObjektForRouteEnum: (RouteEnum) => Route;
+}
+
+const RoutesContext = createContext<RoutesContext | undefined>(undefined);
+
+export function RoutesProvider(props: PropsWithChildren) {
     const routes = getRoutes();
     const hentRouteObjektForRouteEnum = (routeEnum: RouteEnum) =>
         routes.find(route => route.route === routeEnum) ?? routes[0];
 
-    return { routes, hentRouteObjektForRouteEnum };
-});
+    return (
+        <RoutesContext.Provider value={{ routes, hentRouteObjektForRouteEnum }}>
+            {props.children}
+        </RoutesContext.Provider>
+    );
+}
 
-export { RoutesProvider, useRoutes };
+export function useRoutesContext() {
+    const context = useContext(RoutesContext);
+
+    if (context === undefined) {
+        throw new Error('useRoutesContext må brukes innenfor RoutesProvider');
+    }
+
+    return context;
+}

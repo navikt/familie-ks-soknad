@@ -123,15 +123,15 @@ export const mockEøs = (barnSomTriggerEøs = [], søkerTriggerEøs = false) => 
     return { useEøs, erEøsLand };
 };
 
-export const mockRoutes = () => {
-    const useRoutes = jest.spyOn(routesContext, 'useRoutes').mockImplementation(
+export function mockRoutes() {
+    const useRoutes = jest.spyOn(routesContext, 'useRoutesContext').mockImplementation(
         jest.fn().mockReturnValue({
             routes: getRoutes(),
             hentRouteObjektForRouteEnum: jest.fn(),
         })
     );
     return { useRoutes };
-};
+}
 
 export const mockSanity = () => {
     const useSanity = jest.spyOn(sanityContext, 'useSanity').mockImplementation(
