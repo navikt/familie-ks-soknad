@@ -6,7 +6,7 @@ import { FormSummary } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { useSteg } from '../../../context/StegContext';
+import { useStegContext } from '../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
 import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
@@ -47,7 +47,7 @@ function Oppsummeringsbolk({
     settFeilAnchors,
     barn,
 }: Props) {
-    const { hentStegNummer } = useSteg();
+    const { hentStegNummer } = useStegContext();
     const { søknad, plainTekst, tekster } = useApp();
     const { validerAlleSynligeFelter, valideringErOk, skjema } = skjemaHook;
     const [visFeil, settVisFeil] = useState(false);

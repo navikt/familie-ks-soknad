@@ -11,7 +11,7 @@ import { Box, Button, HGrid, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useApp } from '../../../context/AppContext';
-import { useSteg } from '../../../context/StegContext';
+import { useStegContext } from '../../../context/StegContext';
 import { RouteEnum } from '../../../typer/routes';
 import { useBekreftelseOgStartSoknad } from '../../SøknadsSteg/Forside/useBekreftelseOgStartSoknad';
 
@@ -22,7 +22,7 @@ const Navigeringspanel: React.FC<{
     onTilbakeCallback: () => void;
     valideringErOk: (() => boolean) | undefined;
 }> = ({ onAvbrytCallback, onTilbakeCallback, valideringErOk }) => {
-    const { hentNesteSteg } = useSteg();
+    const { hentNesteSteg } = useStegContext();
     const nesteSteg = hentNesteSteg();
     const { innsendingStatus, tekster, plainTekst } = useApp();
     const { visStartPåNyttModal, settVisStartPåNyttModal, startPåNytt } =

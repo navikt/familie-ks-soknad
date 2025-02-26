@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 
 import { useApp } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
-import { useSteg } from '../../../context/StegContext';
+import { useStegContext } from '../../../context/StegContext';
 import { ISteg } from '../../../typer/routes';
 import { logForsettPåSøknad, logSkjemaStartet } from '../../../utils/amplitude';
 
@@ -26,7 +26,7 @@ export const useBekreftelseOgStartSoknad = (): {
     const navigate = useNavigate();
     const [visStartPåNyttModal, settVisStartPåNyttModal] = useState(false);
 
-    const { steg, hentNesteSteg, hentNåværendeStegIndex, settBarnForSteg } = useSteg();
+    const { steg, hentNesteSteg, hentNåværendeStegIndex, settBarnForSteg } = useStegContext();
     const {
         søknad,
         settSøknad,
