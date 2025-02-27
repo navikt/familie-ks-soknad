@@ -6,7 +6,7 @@ import { Alert, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useApp } from '../../../context/AppContext';
-import { useSteg } from '../../../context/StegContext';
+import { useStegContext } from '../../../context/StegContext';
 import useUxSignals from '../../../hooks/useUxSignals';
 import { Typografi } from '../../../typer/common';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
@@ -25,7 +25,7 @@ const Kvittering: React.FC = () => {
         søknad,
         tekster,
     } = useApp();
-    const { hentStegNummer } = useSteg();
+    const { hentStegNummer } = useStegContext();
 
     const { innsendingStatus } = useApp();
     const innsendtDato: Date =
