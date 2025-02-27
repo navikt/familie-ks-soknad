@@ -14,14 +14,14 @@ spec:
   image: {{ image }}
   replicas:
     min: 2
-    max: 3
+    max: 2
     cpuThresholdPercentage: 50
   port: 9000
   liveness:
-    path: /isAlive
+    path: /internal/isAlive
     initialDelay: 5
   readiness:
-    path: /isReady
+    path: /internal/isReady
     initialDelay: 5
   observability:
     autoInstrumentation:
@@ -29,18 +29,20 @@ spec:
       runtime: nodejs
   prometheus:
     enabled: true
-    path: /metrics
+    path: /internal/metrics
   ingresses:
-    - "https://www.nav.no/familie/kontantstotte/soknad"
+    - "https://familie-ks-soknad.ekstern.dev.nav.no/familie/kontantstotte/soknad"
+    - "https://familie-ks-soknad.intern.dev.nav.no/familie/kontantstotte/soknad"
+    - "https://familie-ks-soknad.ansatt.dev.nav.no/familie/kontantstotte/soknad"
   accessPolicy:
     outbound:
       rules:
         - application: familie-baks-soknad-api
         - application: familie-dokument
       external:
-        - host: www.nav.no
-        - host: by26nl8j.apicdn.sanity.io
-        - host: teamfamilie-unleash-api.nav.cloud.nais.io
+         - host: www.nav.no
+         - host: by26nl8j.apicdn.sanity.io
+         - host: teamfamilie-unleash-api.nav.cloud.nais.io
   resources:
     limits:
       cpu: 2000m
@@ -60,8 +62,8 @@ spec:
     enabled: true
   env:
     - name: BASE_PATH
-      value: {{base_path}}
+      value: /familie/kontantstotte/soknad/
     - name: ENV
-      value: prod
+      value: dev
   secureLogs:
     enabled: true

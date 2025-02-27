@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useApp } from '../../../../../context/AppContext';
-import { useSteg } from '../../../../../context/StegContext';
+import { useStegContext } from '../../../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
 import { hentSlektsforhold } from '../../../../../utils/språk';
@@ -20,7 +20,7 @@ interface Props {
 }
 
 const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
-    const { hentStegObjektForBarnEøs } = useSteg();
+    const { hentStegObjektForBarnEøs } = useStegContext();
     const { tekster, plainTekst } = useApp();
     const eøsBarnTekster = tekster().EØS_FOR_BARN;
 

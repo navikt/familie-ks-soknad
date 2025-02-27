@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
-import createUseContext from 'constate';
 import { matchPath, useLocation } from 'react-router';
 
 import { IBarnMedISøknad } from '../typer/barn';
@@ -8,13 +7,29 @@ import { ISteg, RouteEnum } from '../typer/routes';
 
 import { useApp } from './AppContext';
 import { useEøs } from './EøsContext';
-import { useRoutes } from './RoutesContext';
+import { useRoutesContext } from './RoutesContext';
 
-const [StegProvider, useSteg] = createUseContext(() => {
+interface StegContext {
+    steg: ISteg[];
+    barnForSteg: IBarnMedISøknad[];
+    settBarnForSteg: (barnMedSøknad: IBarnMedISøknad[]) => void;
+    hentStegNummer: (route: RouteEnum, barn?: IBarnMedISøknad) => number;
+    hentStegObjektForBarn: (barn: IBarnMedISøknad) => ISteg;
+    hentNesteSteg: () => ISteg;
+    hentNåværendeSteg: () => ISteg;
+    hentForrigeSteg: () => ISteg;
+    hentNåværendeStegIndex: () => number;
+    erPåKvitteringsside: () => boolean;
+    hentStegObjektForBarnEøs: (barn: IBarnMedISøknad) => ISteg;
+}
+
+const StegContext = createContext<StegContext | undefined>(undefined);
+
+export function StegProvider(props: PropsWithChildren) {
     const { søknad } = useApp();
     const { barnInkludertISøknaden } = søknad;
     const { pathname } = useLocation();
-    const { routes } = useRoutes();
+    const { routes } = useRoutesContext();
 
     const [barnForSteg, settBarnForSteg] = useState<IBarnMedISøknad[]>([]);
     const { barnSomTriggerEøs, søkerTriggerEøs } = useEøs();
@@ -114,20 +129,33 @@ const [StegProvider, useSteg] = createUseContext(() => {
     };
 
     const erPåKvitteringsside = () => hentNåværendeSteg().route === RouteEnum.Kvittering;
+    return (
+        <StegContext.Provider
+            value={{
+                steg,
+                barnForSteg,
+                settBarnForSteg,
+                hentStegNummer,
+                hentStegObjektForBarn,
+                hentNesteSteg,
+                hentNåværendeSteg,
+                hentForrigeSteg,
+                hentNåværendeStegIndex,
+                erPåKvitteringsside,
+                hentStegObjektForBarnEøs,
+            }}
+        >
+            {props.children}
+        </StegContext.Provider>
+    );
+}
 
-    return {
-        steg,
-        barnForSteg,
-        hentStegNummer,
-        hentStegObjektForBarn,
-        hentNesteSteg,
-        hentNåværendeSteg,
-        hentForrigeSteg,
-        hentNåværendeStegIndex,
-        erPåKvitteringsside,
-        settBarnForSteg,
-        hentStegObjektForBarnEøs,
-    };
-});
+export function useStegContext() {
+    const context = useContext(StegContext);
 
-export { StegProvider, useSteg };
+    if (context === undefined) {
+        throw new Error('useStegContext må brukes innenfor StegContext');
+    }
+
+    return context;
+}
