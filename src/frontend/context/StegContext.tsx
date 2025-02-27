@@ -12,7 +12,7 @@ import { useRoutes } from './RoutesContext';
 interface StegContext {
     steg: ISteg[];
     barnForSteg: IBarnMedISøknad[];
-    settBarnForSteg: React.Dispatch<React.SetStateAction<IBarnMedISøknad[]>>;
+    settBarnForSteg: (barnMedSøknad: IBarnMedISøknad[]) => void;
     hentStegNummer: (route: RouteEnum, barn?: IBarnMedISøknad) => number;
     hentStegObjektForBarn: (barn: IBarnMedISøknad) => ISteg;
     hentNesteSteg: () => ISteg;
