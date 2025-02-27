@@ -62,7 +62,7 @@ spec:
     enabled: true
   env:
     - name: BASE_PATH
-      value: {{base_path}}
+      value: /familie/kontantstotte/soknad/
     - name: ENV
       value: dev
   secureLogs:
