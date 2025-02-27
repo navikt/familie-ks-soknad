@@ -28,6 +28,7 @@ jobs:
     with:
       build-image: true
       push-image: true
+      base-path: /familie/kontantstotte/soknad/
     secrets: inherit
   deploy-dev:
     name: Deploy dev
