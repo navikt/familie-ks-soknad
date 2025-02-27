@@ -31,7 +31,7 @@ jobs:
     with:
       build-image: true
       push-image: true
-      base-path: ${{ env.BASE_PATH }}
+      base-path: /familie/kontantstotte/soknad/
     secrets: inherit
   deploy-dev:
     name: Deploy dev
