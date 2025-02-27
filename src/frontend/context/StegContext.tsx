@@ -7,7 +7,7 @@ import { ISteg, RouteEnum } from '../typer/routes';
 
 import { useApp } from './AppContext';
 import { useEøs } from './EøsContext';
-import { useRoutes } from './RoutesContext';
+import { useRoutesContext } from './RoutesContext';
 
 interface StegContext {
     steg: ISteg[];
@@ -29,7 +29,7 @@ export function StegProvider(props: PropsWithChildren) {
     const { søknad } = useApp();
     const { barnInkludertISøknaden } = søknad;
     const { pathname } = useLocation();
-    const { routes } = useRoutes();
+    const { routes } = useRoutesContext();
 
     const [barnForSteg, settBarnForSteg] = useState<IBarnMedISøknad[]>([]);
     const { barnSomTriggerEøs, søkerTriggerEøs } = useEøs();
