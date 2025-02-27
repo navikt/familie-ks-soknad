@@ -11,9 +11,6 @@ on:
         default: false
         type: boolean
 
-env:
-  BASE_PATH: /familie/kontantstotte/soknad/
-
 jobs:
   build:
     name: Build
@@ -26,7 +23,6 @@ jobs:
       push-image: true
       skip-tests: ${{ inputs.skip-tests }}
       skip-validation: ${{ inputs.skip-validation }}
-      base-path: /familie/kontantstotte/soknad/
     secrets: inherit
   deploy-with-new-image:
     name: Deploy with new image
