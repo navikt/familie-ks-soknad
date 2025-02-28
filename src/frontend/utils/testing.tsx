@@ -133,14 +133,14 @@ export function mockRoutes() {
     return { useRoutes };
 }
 
-export const mockSanity = () => {
-    const useSanity = jest.spyOn(sanityContext, 'useSanity').mockImplementation(
+export function mockSanity() {
+    const useSanity = jest.spyOn(sanityContext, 'useSanityContext').mockImplementation(
         jest.fn().mockReturnValue({
             teksterRessurs: RessursStatus.SUKSESS,
         })
     );
     return { useSanity };
-};
+}
 
 export const mockFeatureToggle = () => {
     const useFeatureToggle = jest
