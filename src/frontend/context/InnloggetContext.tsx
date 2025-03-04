@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
-
-import createUseContext from 'constate';
+import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 import { RessursStatus } from '@navikt/familie-typer';
 
@@ -9,7 +7,13 @@ import { autentiseringsInterceptor, InnloggetStatus } from '../utils/autentiseri
 
 import { useLastRessurserContext } from './LastRessurserContext';
 
-const [InnloggetProvider, useInnloggetContext] = createUseContext(() => {
+interface InnloggetContext {
+    innloggetStatus: InnloggetStatus;
+}
+
+const InnloggetContext = createContext<InnloggetContext | undefined>(undefined);
+
+export function InnloggetProvider(props: PropsWithChildren) {
     const { axiosRequest } = useLastRessurserContext();
 
     const [innloggetStatus, settInnloggetStatus] = useState<InnloggetStatus>(
@@ -47,9 +51,19 @@ const [InnloggetProvider, useInnloggetContext] = createUseContext(() => {
             });
     };
 
-    return {
-        innloggetStatus,
-    };
-});
+    return (
+        <InnloggetContext.Provider value={{ innloggetStatus }}>
+            {props.children}
+        </InnloggetContext.Provider>
+    );
+}
 
-export { InnloggetProvider, useInnloggetContext };
+export function useInnloggetContext() {
+    const context = useContext(InnloggetContext);
+
+    if (context === undefined) {
+        throw new Error('useInnloggetContext må brukes innenfor InnloggetProvider');
+    }
+
+    return context;
+}
