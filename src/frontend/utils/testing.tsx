@@ -142,7 +142,7 @@ export const mockSanity = () => {
     return { useSanity };
 };
 
-export const mockFeatureToggle = () => {
+export function mockFeatureToggle() {
     const useFeatureToggle = jest
         .spyOn(featureToggleContext, 'useFeatureToggles')
         .mockImplementation(
@@ -154,7 +154,7 @@ export const mockFeatureToggle = () => {
             })
         );
     return { useFeatureToggle };
-};
+}
 
 export const wrapMedProvidere = (
     // eslint-disable-next-line
