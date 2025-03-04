@@ -8,7 +8,7 @@ import { RessursStatus } from '@navikt/familie-typer';
 import { EFeatureToggle } from '../typer/feature-toggles';
 
 import { preferredAxios } from './axios';
-import { FeatureTogglesProvider, useFeatureToggles } from './FeatureToggleContext';
+import { FeatureTogglesProvider, useFeatureToggles } from './FeatureTogglesContext';
 import { LastRessurserProvider } from './LastRessurserContext';
 
 describe('FeatureToggleContext', () => {
