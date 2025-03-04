@@ -6,7 +6,7 @@ import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 import Miljø from '../../shared-utils/Miljø';
 import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon';
 import { useApp } from '../context/AppContext';
-import { useFeatureToggles } from '../context/FeatureToggleContext';
+import { useFeatureToggles } from '../context/FeatureTogglesContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { ISøknadKontrakt } from '../typer/kontrakt/søknadKontrakt';
 import { IKvittering } from '../typer/kvittering';

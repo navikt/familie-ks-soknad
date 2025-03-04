@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useState } from 'react';
 
 import { AxiosError, type AxiosRequestConfig, type AxiosResponse } from 'axios';
-import createUseContext from 'constate';
 
 import { type ApiRessurs, type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
@@ -17,7 +16,18 @@ export type AxiosRequest = <T, D>(
     }
 ) => Promise<Ressurs<T>>;
 
-const [LastRessurserProvider, useLastRessurserContext] = createUseContext(() => {
+interface LastRessurserContext {
+    axiosRequest: AxiosRequest;
+    wrapMedSystemetLaster: <T>(callback: () => T | Promise<T>) => Promise<T>;
+    lasterRessurser: () => boolean;
+    ressurserSomLaster: string[];
+    settRessurserSomLaster: (ressurser: string[]) => void;
+    fjernRessursSomLaster: (ressursId: string) => void;
+}
+
+const LastRessurserContext = createContext<LastRessurserContext | undefined>(undefined);
+
+export function LastRessurserProvider(props: PropsWithChildren) {
     const [ressurserSomLaster, settRessurserSomLaster] = useState<string[]>([]);
 
     const axiosRequest: AxiosRequest = async <T, D>(
@@ -68,7 +78,7 @@ const [LastRessurserProvider, useLastRessurserContext] = createUseContext(() => 
         }, 300);
     };
 
-    const wrapMedSystemetLaster = async <T>(callback: () => T | Promise<T>): Promise<T> => {
+    async function wrapMedSystemetLaster<T>(callback: () => T | Promise<T>): Promise<T> {
         const nyGeneriskRessurs = hentUid();
         settRessurserSomLaster(prevState => [...prevState, nyGeneriskRessurs]);
         try {
@@ -76,18 +86,34 @@ const [LastRessurserProvider, useLastRessurserContext] = createUseContext(() => 
         } finally {
             fjernRessursSomLaster(nyGeneriskRessurs);
         }
-    };
+    }
 
-    const lasterRessurser = (): boolean => ressurserSomLaster.length > 0;
+    function lasterRessurser() {
+        return ressurserSomLaster.length > 0;
+    }
 
-    return {
-        axiosRequest,
-        wrapMedSystemetLaster,
-        lasterRessurser,
-        ressurserSomLaster,
-        settRessurserSomLaster,
-        fjernRessursSomLaster,
-    };
-});
+    return (
+        <LastRessurserContext.Provider
+            value={{
+                axiosRequest,
+                wrapMedSystemetLaster,
+                lasterRessurser,
+                ressurserSomLaster,
+                settRessurserSomLaster,
+                fjernRessursSomLaster,
+            }}
+        >
+            {props.children}
+        </LastRessurserContext.Provider>
+    );
+}
 
-export { LastRessurserProvider, useLastRessurserContext };
+export function useLastRessurserContext() {
+    const context = useContext(LastRessurserContext);
+
+    if (context === undefined) {
+        throw new Error('useLastRessurserContext må brukes innenfor LastRessurserProvider');
+    }
+
+    return context;
+}

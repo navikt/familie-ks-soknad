@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 import { BodyShort, Button, Modal, VStack } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureToggleContext';
+import { useFeatureToggles } from '../../../context/FeatureTogglesContext';
 import { LocaleRecordBlock } from '../../../typer/common';
 import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import ModalContent from '../ModalContent';

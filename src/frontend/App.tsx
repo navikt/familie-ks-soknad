@@ -10,7 +10,7 @@ import AppContainer from './AppContainer';
 import { AppProvider } from './context/AppContext';
 import { AppNavigationProvider } from './context/AppNavigationContext';
 import { EøsProvider } from './context/EøsContext';
-import { FeatureTogglesProvider } from './context/FeatureToggleContext';
+import { FeatureTogglesProvider } from './context/FeatureTogglesContext';
 import { InnloggetProvider } from './context/InnloggetContext';
 import { RoutesProvider } from './context/RoutesContext';
 import { StegProvider } from './context/StegContext';
