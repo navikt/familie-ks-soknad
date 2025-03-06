@@ -1,9 +1,13 @@
-import { useEffect, useState } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 import { createClient } from '@sanity/client';
-import createUseContext from 'constate';
 
-import { byggHenterRessurs, byggTomRessurs, RessursStatus } from '@navikt/familie-typer';
+import {
+    byggHenterRessurs,
+    byggTomRessurs,
+    type Ressurs,
+    RessursStatus,
+} from '@navikt/familie-typer';
 
 import Miljø from '../../shared-utils/Miljø';
 import { SanityDokument } from '../typer/sanity/sanity';
@@ -13,7 +17,13 @@ import { transformerTilTekstinnhold } from '../utils/sanity';
 import { loggFeil } from './axios';
 import { useLastRessurserContext } from './LastRessurserContext';
 
-const [SanityProvider, useSanity] = createUseContext(() => {
+export interface SanityContext {
+    teksterRessurs: Ressurs<ITekstinnhold>;
+}
+
+const SanityContext = createContext<SanityContext | undefined>(undefined);
+
+export function SanityProvider(props: PropsWithChildren) {
     const { settRessurserSomLaster, fjernRessursSomLaster, ressurserSomLaster } =
         useLastRessurserContext();
     const [teksterRessurs, settTeksterRessurs] = useState(byggTomRessurs<ITekstinnhold>());
@@ -49,9 +59,17 @@ const [SanityProvider, useSanity] = createUseContext(() => {
             });
     }, []);
 
-    return {
-        teksterRessurs,
-    };
-});
+    return (
+        <SanityContext.Provider value={{ teksterRessurs }}>{props.children}</SanityContext.Provider>
+    );
+}
 
-export { SanityProvider, useSanity };
+export function useSanityContext() {
+    const context = useContext(SanityContext);
+
+    if (context === undefined) {
+        throw new Error('useSanityContext må brukes innenfor SanityProvider');
+    }
+
+    return context;
+}
