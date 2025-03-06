@@ -1,6 +1,4 @@
-import { useState } from 'react';
-
-import createUseContext from 'constate';
+import React, { createContext, PropsWithChildren, useContext, useState } from 'react';
 
 import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
@@ -10,7 +8,13 @@ import { EAllFeatureToggles, defaultFeatureToggleValues } from '../typer/feature
 
 import { useLastRessurserContext } from './LastRessurserContext';
 
-const [FeatureTogglesProvider, useFeatureToggles] = createUseContext(() => {
+export interface FeatureTogglesContext {
+    toggles: EAllFeatureToggles;
+}
+
+const FeatureTogglesContext = createContext<FeatureTogglesContext | undefined>(undefined);
+
+export function FeatureTogglesProvider(props: PropsWithChildren) {
     const { axiosRequest } = useLastRessurserContext();
 
     const [toggles, setToggles] = useState<EAllFeatureToggles>(defaultFeatureToggleValues);
@@ -28,9 +32,19 @@ const [FeatureTogglesProvider, useFeatureToggles] = createUseContext(() => {
         }
     });
 
-    return {
-        toggles,
-    };
-});
+    return (
+        <FeatureTogglesContext.Provider value={{ toggles }}>
+            {props.children}
+        </FeatureTogglesContext.Provider>
+    );
+}
 
-export { FeatureTogglesProvider, useFeatureToggles };
+export function useFeatureToggles() {
+    const context = useContext(FeatureTogglesContext);
+
+    if (context === undefined) {
+        throw new Error('useFeatureToggles må brukes innenfor FeatureTogglesProvider');
+    }
+
+    return context;
+}
