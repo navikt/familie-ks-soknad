@@ -4,7 +4,7 @@ import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useApp } from '../../../context/AppContext';
-import { useEøs } from '../../../context/EøsContext';
+import { useEøsContext } from '../../../context/EøsContext';
 import { BarnetsId, Typografi } from '../../../typer/common';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -22,7 +22,7 @@ import { useOmBarnet } from './useOmBarnet';
 
 const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
     const { tekster, plainTekst } = useApp();
-    const { erEøsTrigget } = useEøs();
+    const { erEøsTrigget } = useEøsContext();
     const {
         skjema,
         validerFelterOgVisFeilmelding,

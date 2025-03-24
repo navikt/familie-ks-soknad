@@ -5,7 +5,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../../context/AppContext';
-import { useEøs } from '../../../../context/EøsContext';
+import { useEøsContext } from '../../../../context/EøsContext';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../typer/barn';
 import { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
 import { skalSpørreOmIdNummerForPågåendeSøknadEøsLand } from '../../../../utils/barn';
@@ -50,7 +50,7 @@ const SamletIdNummerForBarn: React.FC<{
     settIdNummerFelter: Dispatch<SetStateAction<Felt<string>[]>>;
     lesevisning?: boolean;
 }> = ({ barn, skjema, settIdNummerFelter, lesevisning = false }) => {
-    const { erEøsLand } = useEøs();
+    const { erEøsLand } = useEøsContext();
 
     const skalSpørreOmIdNummerForPågåendeSøknad = skalSpørreOmIdNummerForPågåendeSøknadEøsLand(
         barn,

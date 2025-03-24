@@ -6,7 +6,7 @@ import { IBarnMedISøknad } from '../typer/barn';
 import { ISteg, RouteEnum } from '../typer/routes';
 
 import { useApp } from './AppContext';
-import { useEøs } from './EøsContext';
+import { useEøsContext } from './EøsContext';
 import { useRoutesContext } from './RoutesContext';
 
 interface StegContext {
@@ -32,7 +32,7 @@ export function StegProvider(props: PropsWithChildren) {
     const { routes } = useRoutesContext();
 
     const [barnForSteg, settBarnForSteg] = useState<IBarnMedISøknad[]>([]);
-    const { barnSomTriggerEøs, søkerTriggerEøs } = useEøs();
+    const { barnSomTriggerEøs, søkerTriggerEøs } = useEøsContext();
 
     useEffect(() => {
         settBarnForSteg(søknad.barnInkludertISøknaden);

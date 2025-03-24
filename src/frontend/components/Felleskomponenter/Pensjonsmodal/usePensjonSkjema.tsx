@@ -4,7 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { useEøs } from '../../../context/EøsContext';
+import { useEøsContext } from '../../../context/EøsContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
@@ -33,7 +33,7 @@ export const usePensjonSkjema = ({
     barn,
 }: IUsePensjonSkjemaParams): IUsePeriodeSkjemaVerdi<IPensjonsperiodeFeltTyper> => {
     const { tekster } = useApp();
-    const { erEøsLand } = useEøs();
+    const { erEøsLand } = useEøsContext();
     const teksterForPersonType: IPensjonsperiodeTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.pensjonsperiode[personType];
 
