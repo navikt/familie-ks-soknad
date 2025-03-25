@@ -43,6 +43,25 @@ export type IDokumentasjonTekstinnhold = {
     lastOppKnapp: LocaleRecordString;
     slippFilenHer: LocaleRecordString;
     slett: LocaleRecordString;
+    stottedeFiltyper: LocaleRecordString;
+    maksFilstorrelse: LocaleRecordString;
+    maksAntallFiler: LocaleRecordString;
+    lastOppFiler: LocaleRecordString;
+    filtypeFeilmelding: LocaleRecordString;
+    filstorrelseFeilmelding: LocaleRecordString;
+    antallFilerFeilmelding: LocaleRecordString;
+    ukjentFeilmelding: LocaleRecordString;
+    velgFil: LocaleRecordString;
+    velgFiler: LocaleRecordString;
+    draOgSlippFilenHer: LocaleRecordString;
+    draOgSlippFilerHer: LocaleRecordString;
+    filopplastingDeaktivert: LocaleRecordString;
+    filopplastingDeaktivertFilerErUnderOpplastning: LocaleRecordString;
+    filopplastingDeaktivertMaksAntallFiler: LocaleRecordString;
+    lastOppFilenPaNytt: LocaleRecordString;
+    slettFilen: LocaleRecordString;
+    lasterNed: LocaleRecordString;
+    lasterOpp: LocaleRecordString;
 } & {
     // Vedlegg - titler
     [TittelSanityApiNavn.avtaleOmDeltBostedTittel]: LocaleRecordBlock;
