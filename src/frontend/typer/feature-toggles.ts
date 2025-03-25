@@ -16,7 +16,7 @@ export const ToggleKeys: Record<EFeatureToggle, string> = {
     [EFeatureToggle.BRUK_NYTT_ENDEPUNKT_FOR_INNSENDING_AV_SOKNAD]:
         'familie-ks-soknad.bruk_nytt_endepunkt_for_innsending_av_soknad',
     [EFeatureToggle.BRUK_NY_LAST_OPP_VEDLEGG_KOMPONENT]:
-        'familie-ba-soknad.bruk-ny-last-opp-vedlegg-komponent',
+        'familie-ks-soknad.bruk-ny-last-opp-vedlegg-komponent',
 };
 
 export type EAllFeatureToggles = Record<EFeatureToggle, boolean>;
