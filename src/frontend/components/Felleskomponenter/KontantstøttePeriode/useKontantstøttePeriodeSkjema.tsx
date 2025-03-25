@@ -8,7 +8,7 @@ import {
     Valideringsstatus,
 } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
@@ -31,7 +31,7 @@ export const useKontantstøttePeriodeSkjema = (
     personType: PersonType,
     erDød
 ): IUsePeriodeSkjemaVerdi<IKontantstøttePerioderFeltTyper> => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const teksterForPersonType: IEøsYtelseTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.eøsYtelse[personType];
 

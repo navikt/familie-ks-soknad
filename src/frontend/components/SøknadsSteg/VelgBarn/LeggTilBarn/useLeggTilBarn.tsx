@@ -1,7 +1,7 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, type FeltState, type ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import useInputFeltMedUkjent from '../../../../hooks/useInputFeltMedUkjent';
 import { LocaleRecordBlock } from '../../../../typer/common';
 import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
@@ -24,7 +24,7 @@ export const useLeggTilBarn = (): {
     nullstillSkjema: () => void;
     leggTilBarn: () => void;
 } => {
-    const { søknad, settSøknad, tekster, plainTekst } = useApp();
+    const { søknad, settSøknad, tekster, plainTekst } = useAppContext();
 
     const teksterForModal: ILeggTilBarnTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;

@@ -10,7 +10,7 @@ import {
     Valideringsstatus,
 } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
@@ -43,7 +43,7 @@ export interface IUseUtenlandsoppholdSkjemaParams {
 export const useUtenlandsoppholdSkjema = ({
     personType,
 }: IUseUtenlandsoppholdSkjemaParams): IUsePeriodeSkjemaVerdi<IUtenlandsoppholdFeltTyper> => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const teksterForPersontype: IUtenlandsoppholdTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
 

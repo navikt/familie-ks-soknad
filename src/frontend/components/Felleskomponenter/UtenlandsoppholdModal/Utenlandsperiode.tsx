@@ -2,7 +2,7 @@ import React from 'react';
 
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { IUtenlandsperiode } from '../../../typer/perioder';
 import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -31,7 +31,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
     barn,
     personType,
 }) => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const {
         erÅpen: erUtenlandsoppholdModalÅpen,
         lukkModal: lukkUtenlandsoppholdModal,

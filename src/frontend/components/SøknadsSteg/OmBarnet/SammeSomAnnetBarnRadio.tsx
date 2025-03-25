@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -26,7 +26,7 @@ const SammeSomAnnetBarnRadio: React.FC<{
     barnetsNavn: string;
 }> = ({ andreBarnSomErFyltUt, skjema, barnetsNavn }) => {
     const felt = skjema.felter.sammeForelderSomAnnetBarn;
-    const { tekster } = useApp();
+    const { tekster } = useAppContext();
     const teksterForSteg = tekster()[ESanitySteg.OM_BARNET];
 
     const radios = andreBarnSomErFyltUt

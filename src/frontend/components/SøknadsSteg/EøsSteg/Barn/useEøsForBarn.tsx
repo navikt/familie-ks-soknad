@@ -13,7 +13,7 @@ import {
     useSkjema,
 } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import useInputFelt from '../../../../hooks/useInputFelt';
 import useInputFeltMedUkjent from '../../../../hooks/useInputFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../../hooks/useJaNeiSpmFelt';
@@ -84,7 +84,7 @@ export const useEøsForBarn = (
     idNummerFelterForAndreForelder: Felt<string>[];
     settIdNummerFelterForAndreForelder: Dispatch<SetStateAction<Felt<string>[]>>;
 } => {
-    const { søknad, settSøknad, tekster, plainTekst } = useApp();
+    const { søknad, settSøknad, tekster, plainTekst } = useAppContext();
 
     const eøsForBarnTekster = tekster().EØS_FOR_BARN;
     const forLangAdresseTekst = tekster().FELLES.formateringsfeilmeldinger.forLangAdresse;

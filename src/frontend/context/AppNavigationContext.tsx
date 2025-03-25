@@ -5,14 +5,14 @@ import { useLocation, useNavigate } from 'react-router';
 
 import { ISteg, RouteEnum } from '../typer/routes';
 
-import { useApp } from './AppContext';
+import { useAppContext } from './AppContext';
 import { useStegContext } from './StegContext';
 
 const [AppNavigationProvider, useAppNavigation] = createUseContext(() => {
     const [komFra, settKomFra] = useState<ISteg>();
     const [visBlokkerTilbakeKnappModal, settVisBlokkerTilbakeKnappModal] = useState(false);
     const { hentNåværendeSteg, hentNesteSteg } = useStegContext();
-    const { fåttGyldigKvittering } = useApp();
+    const { fåttGyldigKvittering } = useAppContext();
 
     const location = useLocation();
     const navigate = useNavigate();

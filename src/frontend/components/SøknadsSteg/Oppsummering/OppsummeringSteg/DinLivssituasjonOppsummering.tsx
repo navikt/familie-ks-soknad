@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import { useRoutesContext } from '../../../../context/RoutesContext';
 import { PersonType } from '../../../../typer/personType';
 import { RouteEnum } from '../../../../typer/routes';
@@ -17,7 +17,7 @@ interface Props {
 }
 
 const DinLivssituasjonOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
-    const { søknad, tekster } = useApp();
+    const { søknad, tekster } = useAppContext();
     const dinLivssituasjonTekster = tekster().DIN_LIVSSITUASJON;
     const { hentRouteObjektForRouteEnum } = useRoutesContext();
     const dinLivsituasjonHook = useDinLivssituasjon();

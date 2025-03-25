@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
@@ -24,7 +24,7 @@ const OmBarnaDine: React.FC = () => {
         useOmBarnaDine();
 
     const navigate = useNavigate();
-    const { søknad, tekster } = useApp();
+    const { søknad, tekster } = useAppContext();
 
     const { barnInkludertISøknaden } = søknad;
 

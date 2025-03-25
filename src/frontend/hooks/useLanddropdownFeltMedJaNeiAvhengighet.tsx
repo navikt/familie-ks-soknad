@@ -13,7 +13,7 @@ import {
     useFelt,
 } from '@navikt/familie-skjema';
 
-import { useApp } from '../context/AppContext';
+import { useAppContext } from '../context/AppContext';
 import { LocaleRecordBlock } from '../typer/common';
 import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
@@ -35,7 +35,7 @@ const useLanddropdownFeltMedJaNeiAvhengighet = ({
     skalFeltetVises?: boolean;
     flettefelter?: FlettefeltVerdier;
 }) => {
-    const { plainTekst } = useApp();
+    const { plainTekst } = useAppContext();
     const skalViseFelt = jaNeiSpmVerdi => jaNeiSpmVerdi === avhengigSvarCondition;
 
     const landDropdown = useFelt<Alpha3Code | ''>({

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 import { Box, Heading, VStack } from '@navikt/ds-react';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 
 interface Props {
     className?: string;
@@ -10,7 +10,7 @@ interface Props {
 }
 
 function InnholdContainer({ className, children }: Props) {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const forsidetekster = tekster().FORSIDE;
 
     return (

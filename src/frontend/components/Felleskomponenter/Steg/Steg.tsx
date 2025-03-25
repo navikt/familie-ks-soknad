@@ -7,7 +7,7 @@ import { Alert, Box, FormProgress, GuidePanel, Heading, Link, VStack } from '@na
 import type { ISkjema } from '@navikt/familie-skjema';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useAppNavigation } from '../../../context/AppNavigationContext';
 import { useStegContext } from '../../../context/StegContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
@@ -58,7 +58,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         settNåværendeRoute,
         modellVersjonOppdatert,
         mellomlagre,
-    } = useApp();
+    } = useAppContext();
     const {
         hentNesteSteg,
         hentForrigeSteg,

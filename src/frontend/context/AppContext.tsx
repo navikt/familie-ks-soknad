@@ -33,7 +33,7 @@ import { hentSluttbrukerFraPdl } from './pdl';
 import { useSanityContext } from './SanityContext';
 import { useSpråkContext } from './SpråkContext';
 
-interface AppContext {
+export interface AppContext {
     axiosRequest: AxiosRequest;
     sluttbruker: Ressurs<ISøkerRespons>;
     søknad: ISøknad;
@@ -405,7 +405,7 @@ export function AppProvider(props: PropsWithChildren) {
     );
 }
 
-export function useApp() {
+export function useAppContext() {
     const context = useContext(AppContext);
 
     if (context === undefined) {

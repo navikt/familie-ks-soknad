@@ -11,13 +11,13 @@ import { barnDataKeySpørsmål, IBarnMedISøknad } from '../typer/barn';
 import { BarnetsId } from '../typer/common';
 import { ISøker } from '../typer/person';
 
-import { useApp } from './AppContext';
+import { useAppContext } from './AppContext';
 import { useLastRessurserContext } from './LastRessurserContext';
 
 const [EøsProvider, useEøs] = createUseContext(() => {
     const { axiosRequest } = useLastRessurserContext();
 
-    const { søknad, settSøknad, eøsLand, settEøsLand } = useApp();
+    const { søknad, settSøknad, eøsLand, settEøsLand } = useAppContext();
     const [søkerTriggerEøs, settSøkerTriggerEøs] = useState(søknad.søker.triggetEøs);
     const [barnSomTriggerEøs, settBarnSomTriggerEøs] = useState<BarnetsId[]>(
         søknad.barnInkludertISøknaden.filter(barn => barn.triggetEøs).map(barn => barn.id)

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { feil, type ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { useStegContext } from '../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
@@ -26,7 +26,7 @@ export const useVelgBarn = (): {
     fjernBarn: (ident: string) => void;
     validerAlleSynligeFelter: () => void;
 } => {
-    const { søknad, settSøknad, mellomlagre, tekster, plainTekst } = useApp();
+    const { søknad, settSøknad, mellomlagre, tekster, plainTekst } = useAppContext();
     const { barnInkludertISøknaden } = søknad;
     const { settBarnForSteg, hentNåværendeStegIndex } = useStegContext();
     const { settBarnSomTriggerEøs } = useEøs();

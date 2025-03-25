@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import { useRoutesContext } from '../../../../context/RoutesContext';
 import { barnDataKeySpørsmål } from '../../../../typer/barn';
 import { RouteEnum } from '../../../../typer/routes';
@@ -17,7 +17,7 @@ interface Props {
 }
 
 const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
-    const { søknad, tekster } = useApp();
+    const { søknad, tekster } = useAppContext();
     const { hentRouteObjektForRouteEnum } = useRoutesContext();
     const omBarnaTekster = tekster().OM_BARNA;
     const omBarnaDineHook = useOmBarnaDine();

@@ -3,7 +3,7 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { ISkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../../typer/barn';
 import {
     IArbeidsperiode,
@@ -45,7 +45,7 @@ interface OmsorgspersonProps {
 }
 
 const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunksjoner }) => {
-    const { plainTekst, tekster } = useApp();
+    const { plainTekst, tekster } = useAppContext();
     const eøsForBarnTekster = tekster().EØS_FOR_BARN;
     const {
         leggTilArbeidsperiodeUtlandOmsorgsperson,

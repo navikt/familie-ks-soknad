@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -28,7 +28,7 @@ export const OmBarnetHeader: React.FC<{ barn: IBarnMedISøknad }> = ({ barn }) =
     const {
         søknad: { barnInkludertISøknaden },
         tekster,
-    } = useApp();
+    } = useAppContext();
     const barnIndex = barnInkludertISøknaden.findIndex(b => b.id === barn.id);
 
     return (

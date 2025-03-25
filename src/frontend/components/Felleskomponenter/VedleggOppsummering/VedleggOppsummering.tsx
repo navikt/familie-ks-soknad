@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 import { List } from '@navikt/ds-react';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { dokumentasjonsbehovTilTittelSanityApiNavn } from '../../../typer/dokumentasjon';
 
 import { hentVedleggSomSkalVises } from './vedleggOppsummering.domene';
@@ -13,7 +13,7 @@ interface IVedleggOppsummeringProps {
 }
 
 export const VedleggOppsummering: FC<IVedleggOppsummeringProps> = ({ vedlegg }) => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
     const vedleggSomSkalVises = hentVedleggSomSkalVises(vedlegg);
 

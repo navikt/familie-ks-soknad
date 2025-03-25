@@ -12,7 +12,7 @@ import {
     Valideringsstatus,
 } from '@navikt/familie-skjema';
 
-import { useApp } from '../context/AppContext';
+import { useAppContext } from '../context/AppContext';
 import { LocaleRecordBlock } from '../typer/common';
 import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
@@ -63,7 +63,7 @@ const useJaNeiSpmFelt = ({
     flettefelter?: FlettefeltVerdier;
 }) => {
     const [harBlittVist, settHarBlittVist] = useState<boolean>(!avhengigheter);
-    const { plainTekst } = useApp();
+    const { plainTekst } = useAppContext();
 
     return useFelt<ESvar | null>({
         feltId: søknadsfelt ? søknadsfelt.id : uuidv4(),

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import { useStegContext } from '../../../context/StegContext';
 import { ISteg } from '../../../typer/routes';
@@ -35,7 +35,7 @@ export const useBekreftelseOgStartSoknad = (): {
         brukMellomlagretVerdi,
         avbrytOgSlettSøknad,
         mellomlagretVerdi,
-    } = useApp();
+    } = useAppContext();
     const { settBarnSomTriggerEøs, skalTriggeEøsForBarn, settSøkerTriggerEøs } = useEøs();
 
     const [bekreftelseStatus, settBekreftelseStatus] = useState<BekreftelseStatus>(

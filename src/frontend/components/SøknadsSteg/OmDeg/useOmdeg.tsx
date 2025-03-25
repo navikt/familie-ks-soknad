@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { type ISkjema, useSkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useEøs } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -20,7 +20,7 @@ export const useOmdeg = (): {
     oppdaterSøknad: () => ISøknad;
     validerAlleSynligeFelter: () => void;
 } => {
-    const { søknad, settSøknad, tekster } = useApp();
+    const { søknad, settSøknad, tekster } = useAppContext();
     const søker = søknad.søker;
     const { skalTriggeEøsForSøker, søkerTriggerEøs, settSøkerTriggerEøs } = useEøs();
     const teksterForSteg: IOmDegTekstinnhold = tekster()[ESanitySteg.OM_DEG];

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Button, Heading, Modal } from '@navikt/ds-react';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 
 const StyledHeading = styled(Heading)`
     && {
@@ -24,7 +24,7 @@ export const SlettSøknadenModal: React.FC<ISlettSøkadenModalProps> = ({
     avbryt,
     startPåNytt,
 }) => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
 
     const startPåNyttTekster = tekster().FELLES.modaler.startPåNytt;
 

@@ -7,7 +7,7 @@ import { UploadIcon } from '@navikt/aksel-icons';
 import { BodyShort, VStack } from '@navikt/ds-react';
 import { ABlue500, ABorderDefault } from '@navikt/ds-tokens/dist/tokens';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
 
@@ -75,7 +75,7 @@ const Filopplaster: React.FC<Props> = ({
         accept: tillatteFiltyper,
     });
 
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const { lastOppKnapp, slippFilenHer } = tekster().DOKUMENTASJON;
 
     return (
