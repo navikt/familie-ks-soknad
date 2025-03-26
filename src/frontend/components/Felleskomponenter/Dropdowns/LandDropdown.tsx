@@ -5,7 +5,7 @@ import { Alpha3Code, getAlpha3Codes, getName } from 'i18n-iso-countries';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
-import { useEøs } from '../../../context/EøsContext';
+import { useEøsContext } from '../../../context/EøsContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 
@@ -23,7 +23,7 @@ interface LandDropdownProps {
 export const LandDropdown: React.FC<LandDropdownProps> = props => {
     const { tekster, plainTekst } = useApp();
     const { valgtLocale } = useSpråkContext();
-    const { erEøsLand } = useEøs();
+    const { erEøsLand } = useEøsContext();
     const kunEøs = props.kunEøs ?? false;
 
     const landkoderSortertPåNavn = Object.keys(getAlpha3Codes())

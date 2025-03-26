@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import { VStack } from '@navikt/ds-react';
 
 import { useApp } from '../../../context/AppContext';
-import { useEøs } from '../../../context/EøsContext';
+import { useEøsContext } from '../../../context/EøsContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import Steg from '../../Felleskomponenter/Steg/Steg';
@@ -23,7 +23,7 @@ const Oppsummering: React.FC = () => {
     const { søknad, tekster } = useApp();
     const navigate = useNavigate();
     const [feilAnchors, settFeilAnchors] = useState<string[]>([]);
-    const { barnSomTriggerEøs, søkerTriggerEøs } = useEøs();
+    const { barnSomTriggerEøs, søkerTriggerEøs } = useEøsContext();
     const søkerHarEøsSteg = søkerTriggerEøs || !!barnSomTriggerEøs.length;
     const barnSomHarEøsSteg: IBarnMedISøknad[] = søkerTriggerEøs
         ? søknad.barnInkludertISøknaden
