@@ -165,6 +165,11 @@ export interface IFormateringsfeilmeldingerTekstinnhold {
     datoKanIkkeVaereDagensDatoEllerFremITid: LocaleRecordString;
     periodeAvsluttesForTidlig: LocaleRecordString;
     datoKanIkkeVaere12MndTilbake: LocaleRecordString;
+    ugyldigManed: LocaleRecordString;
+    datoErForForsteGyldigeTidspunkt: LocaleRecordString;
+    datoErEtterSisteGyldigeTidspunkt: LocaleRecordString;
+    datoKanIkkeVareIFortid: LocaleRecordString;
+    datoKanIkkeVareIFremtid: LocaleRecordString;
 }
 
 export interface IVedlikeholdsarbeidTekstinnhold {
@@ -181,6 +186,7 @@ export interface IHjelpeteksterForInputTekstInnhold {
     datoformatHjelpetekst: LocaleRecordBlock;
     datoformatPlaceholder: LocaleRecordBlock;
     velgLandPlaceholder: LocaleRecordBlock;
+    manedformatPlaceholder: LocaleRecordBlock;
 }
 
 export interface IAlternativeTeksterTekstinnhold {
