@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
-import createUseContext from 'constate';
 import { useLocation, useNavigate } from 'react-router';
 
 import { ISteg, RouteEnum } from '../typer/routes';
@@ -8,7 +7,16 @@ import { ISteg, RouteEnum } from '../typer/routes';
 import { useAppContext } from './AppContext';
 import { useStegContext } from './StegContext';
 
-const [AppNavigationProvider, useAppNavigation] = createUseContext(() => {
+interface AppNavigationContext {
+    komFra: ISteg | undefined;
+    settKomFra: (komFra: ISteg | undefined) => void;
+    visBlokkerTilbakeKnappModal: boolean;
+    settVisBlokkerTilbakeKnappModal: (visBlokkerTilbakeKnappModal: boolean) => void;
+}
+
+const AppNavigationContext = createContext<AppNavigationContext | undefined>(undefined);
+
+export function AppNavigationProvider(props: PropsWithChildren) {
     const [komFra, settKomFra] = useState<ISteg>();
     const [visBlokkerTilbakeKnappModal, settVisBlokkerTilbakeKnappModal] = useState(false);
     const { hentNåværendeSteg, hentNesteSteg } = useStegContext();
@@ -24,12 +32,26 @@ const [AppNavigationProvider, useAppNavigation] = createUseContext(() => {
         }
     }, [location]);
 
-    return {
-        komFra,
-        settKomFra,
-        visBlokkerTilbakeKnappModal,
-        settVisBlokkerTilbakeKnappModal,
-    };
-});
+    return (
+        <AppNavigationContext.Provider
+            value={{
+                komFra,
+                settKomFra,
+                visBlokkerTilbakeKnappModal,
+                settVisBlokkerTilbakeKnappModal,
+            }}
+        >
+            {props.children}
+        </AppNavigationContext.Provider>
+    );
+}
 
-export { AppNavigationProvider, useAppNavigation };
+export function useAppNavigation() {
+    const context = useContext(AppNavigationContext);
+
+    if (context === undefined) {
+        throw new Error('useAppNavigationContext må brukes innenfor AppNavigationProvider');
+    }
+
+    return context;
+}
