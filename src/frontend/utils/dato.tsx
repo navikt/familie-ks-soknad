@@ -1,5 +1,6 @@
 import {
     add,
+    endOfMonth,
     format,
     isAfter,
     isBefore,
@@ -48,6 +49,8 @@ export const dagenEtterDato = (dato: Date) => add(dato, { days: 1 });
 export const tidenesMorgen = () => startOfDay(new Date(1000, 0));
 
 export const tidenesEnde = () => startOfDay(new Date(3000, 0));
+
+export const sisteDagDenneMåneden = () => endOfMonth(new Date());
 
 export const stringTilDate = (dato: string) => startOfDay(new Date(dato));
 
