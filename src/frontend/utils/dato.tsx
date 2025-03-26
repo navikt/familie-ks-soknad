@@ -7,11 +7,13 @@ import {
     isFuture,
     isToday,
     isValid,
+    type Locale,
     parse,
     startOfDay,
     startOfToday,
     sub,
 } from 'date-fns';
+import { enGB, nb, nn } from 'date-fns/locale';
 
 import { feil, type FeltState, ok } from '@navikt/familie-skjema';
 
@@ -20,6 +22,7 @@ import {
     DatoMedUkjent,
     ISODateString,
     LocaleRecordBlock,
+    LocaleType,
 } from '../typer/common';
 import { PlainTekst } from '../typer/kontrakt/generelle';
 import { IFormateringsfeilmeldingerTekstinnhold } from '../typer/sanity/tekstInnhold';
@@ -100,6 +103,9 @@ export const validerDato = (
     return ok(feltState);
 };
 
+export const formaterDatostringKunMåned = (datoString: ISODateString, språk: LocaleType) =>
+    format(new Date(datoString), 'MMMM yyyy', { locale: mapSpråkvalgTilDateFnsLocale(språk) });
+
 export const formaterDato = (datoString: ISODateString) =>
     format(new Date(datoString), 'dd.MM.yyyy');
 
@@ -107,4 +113,15 @@ export const formaterDatoMedUkjent = (datoMedUkjent: DatoMedUkjent, tekstForUkje
     return datoMedUkjent === AlternativtSvarForInput.UKJENT
         ? tekstForUkjent
         : format(new Date(datoMedUkjent), 'dd.MM.yyyy');
+};
+
+const mapSpråkvalgTilDateFnsLocale = (språkvalg: LocaleType): Locale => {
+    switch (språkvalg) {
+        case LocaleType.nb:
+            return nb;
+        case LocaleType.nn:
+            return nn;
+        case LocaleType.en:
+            return enGB;
+    }
 };
