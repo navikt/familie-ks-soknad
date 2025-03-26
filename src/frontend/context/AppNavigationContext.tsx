@@ -46,7 +46,7 @@ export function AppNavigationProvider(props: PropsWithChildren) {
     );
 }
 
-export function useAppNavigation() {
+export function useAppNavigationContext() {
     const context = useContext(AppNavigationContext);
 
     if (context === undefined) {

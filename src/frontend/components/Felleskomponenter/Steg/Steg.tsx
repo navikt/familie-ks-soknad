@@ -8,7 +8,7 @@ import type { ISkjema } from '@navikt/familie-skjema';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
 import { useAppContext } from '../../../context/AppContext';
-import { useAppNavigation } from '../../../context/AppNavigationContext';
+import { useAppNavigationContext } from '../../../context/AppNavigationContext';
 import { useStegContext } from '../../../context/StegContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { RouteEnum } from '../../../typer/routes';
@@ -66,7 +66,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         hentNåværendeStegIndex,
         erPåKvitteringsside,
     } = useStegContext();
-    const { komFra, settKomFra } = useAppNavigation();
+    const { komFra, settKomFra } = useAppNavigationContext();
 
     const nesteRoute = hentNesteSteg();
     const forrigeRoute = hentForrigeSteg();

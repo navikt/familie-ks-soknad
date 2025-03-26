@@ -6,7 +6,7 @@ import { Link } from '@navikt/ds-react';
 
 import { basePath } from '../../../../shared-utils/Miljø';
 import { unslash } from '../../../../shared-utils/unslash';
-import { useAppNavigation } from '../../../context/AppNavigationContext';
+import { useAppNavigationContext } from '../../../context/AppNavigationContext';
 import { ISteg } from '../../../typer/routes';
 
 interface Props {
@@ -18,7 +18,7 @@ interface Props {
 
 export function AppLenke({ steg, hash, returnTo, children }: Props) {
     const navigate = useNavigate();
-    const { settKomFra } = useAppNavigation();
+    const { settKomFra } = useAppNavigationContext();
 
     const clickHandler: MouseEventHandler = event => {
         event.preventDefault();

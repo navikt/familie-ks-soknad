@@ -9,7 +9,7 @@ import {
     TestProvidere,
 } from '../utils/testing';
 
-import { useAppNavigation } from './AppNavigationContext';
+import { useAppNavigationContext } from './AppNavigationContext';
 
 mockHistory(['/om-barnet/barn/1']);
 
@@ -24,7 +24,7 @@ describe('AppNavigationContext', () => {
         });
 
         const wrapper = ({ children }) => TestProvidere({ children });
-        const { result } = renderHook(() => useAppNavigation(), { wrapper });
+        const { result } = renderHook(() => useAppNavigationContext(), { wrapper });
         expect(result.current.komFra).toEqual(undefined);
         const omDegSteg = { path: 'om-deg', label: 'Om deg', route: RouteEnum.OmDeg };
 
