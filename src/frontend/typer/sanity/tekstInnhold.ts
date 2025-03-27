@@ -125,6 +125,7 @@ export interface IFrittståendeOrdTekstinnhold {
     jegVetIkke: LocaleRecordString;
     av: LocaleRecordString;
     vedlegg: LocaleRecordString;
+    vedleggMedFeil: LocaleRecordString;
     barn: LocaleRecordString;
     soeker: LocaleRecordString;
     skjult: LocaleRecordString;
@@ -138,6 +139,8 @@ export interface IFrittståendeOrdTekstinnhold {
     utbetalingsperioder: LocaleRecordString;
     kontantstoetteperioder: LocaleRecordString;
     barnehageplassperioder: LocaleRecordString;
+    slipp: LocaleRecordString;
+    eller: LocaleRecordString;
 }
 
 export interface INavigasjonTekstinnhold {

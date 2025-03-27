@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../../context/AppContext';
-import { useEøs } from '../../../../context/EøsContext';
+import { useEøsContext } from '../../../../context/EøsContext';
 import { IEøsForSøkerFeltTyper } from '../../../../typer/skjema';
 import { IdNummer } from '../IdNummer';
 import { idNummerLandMedPeriodeType } from '../idnummerUtils';
@@ -18,7 +18,7 @@ const IdNummerForSøker: React.FC<Props> = ({ lesevisning = false, skjema, settI
     const { søknad, tekster } = useAppContext();
     const { søker } = søknad;
     const { arbeidsperioderUtland, pensjonsperioderUtland, utenlandsperioder } = søker;
-    const { erEøsLand } = useEøs();
+    const { erEøsLand } = useEøsContext();
 
     const idNummerSomMåOppgisFraPerioder = idNummerLandMedPeriodeType(
         {

@@ -4,7 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { feil, type ISkjema, ok, useSkjema } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
-import { useEøs } from '../../../context/EøsContext';
+import { useEøsContext } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import { usePerioder } from '../../../hooks/usePerioder';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
@@ -41,7 +41,8 @@ export const useDinLivssituasjon = (): {
     fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
 } => {
     const { søknad, settSøknad, tekster, plainTekst } = useAppContext();
-    const { skalTriggeEøsForSøker, søkerTriggerEøs, settSøkerTriggerEøs, erEøsLand } = useEøs();
+    const { skalTriggeEøsForSøker, søkerTriggerEøs, settSøkerTriggerEøs, erEøsLand } =
+        useEøsContext();
     const søker = søknad.søker;
     const teksterForSteg = tekster()[ESanitySteg.DIN_LIVSSITUASJON];
     const teksterForArbeidsperiode: IArbeidsperiodeTekstinnhold =

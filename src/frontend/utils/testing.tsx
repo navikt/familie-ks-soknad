@@ -6,6 +6,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { HttpProvider } from '@navikt/familie-http';
 import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
+import { UtenlandsoppholdSpørsmålId } from '../components/Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { DinLivssituasjonSpørsmålId } from '../components/SøknadsSteg/DinLivssituasjon/spørsmål';
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
 import * as appContext from '../context/AppContext';
@@ -27,9 +28,11 @@ import { StegProvider } from '../context/StegContext';
 import { EFeatureToggle } from '../typer/feature-toggles';
 import { ESivilstand } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
+import { IUtenlandsperiode } from '../typer/perioder';
 import { ISøker, ISøkerRespons } from '../typer/person';
 import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { initialStateSøknad } from '../typer/søknad';
+import { EUtenlandsoppholdÅrsak } from '../typer/utenlandsopphold';
 
 jest.mock('../context/pdl');
 
@@ -106,10 +109,10 @@ export const spyOnUseApp = søknad => {
     };
 };
 
-export const mockEøs = (barnSomTriggerEøs = [], søkerTriggerEøs = false) => {
+export function mockEøs(barnSomTriggerEøs = [], søkerTriggerEøs = false) {
     const erEøsLand = jest.fn();
 
-    const useEøs = jest.spyOn(eøsContext, 'useEøs').mockImplementation(
+    const useEøs = jest.spyOn(eøsContext, 'useEøsContext').mockImplementation(
         jest.fn().mockReturnValue({
             erEøsLand,
             barnSomTriggerEøs,
@@ -121,7 +124,7 @@ export const mockEøs = (barnSomTriggerEøs = [], søkerTriggerEøs = false) => 
         })
     );
     return { useEøs, erEøsLand };
-};
+}
 
 export function mockRoutes() {
     const useRoutes = jest.spyOn(routesContext, 'useRoutesContext').mockImplementation(
@@ -231,3 +234,41 @@ export const mekkGyldigSøker = (): ISøker => {
         },
     };
 };
+
+export function mekkGyldigUtenlandsoppholdEøs(): IUtenlandsperiode {
+    return {
+        utenlandsoppholdÅrsak: {
+            id: UtenlandsoppholdSpørsmålId.årsakUtenlandsopphold,
+            svar: EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE,
+        },
+        oppholdsland: { id: UtenlandsoppholdSpørsmålId.landUtenlandsopphold, svar: 'BEL' },
+        oppholdslandFraDato: {
+            id: UtenlandsoppholdSpørsmålId.fraDatoUtenlandsopphold,
+            svar: '',
+        },
+        oppholdslandTilDato: {
+            id: UtenlandsoppholdSpørsmålId.tilDatoUtenlandsopphold,
+            svar: '',
+        },
+        adresse: { id: UtenlandsoppholdSpørsmålId.adresse, svar: '' },
+    };
+}
+
+export function mekkGyldigUtenlandsoppholdIkkeEøs(): IUtenlandsperiode {
+    return {
+        utenlandsoppholdÅrsak: {
+            id: UtenlandsoppholdSpørsmålId.årsakUtenlandsopphold,
+            svar: EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE,
+        },
+        oppholdsland: { id: UtenlandsoppholdSpørsmålId.landUtenlandsopphold, svar: 'USA' },
+        oppholdslandFraDato: {
+            id: UtenlandsoppholdSpørsmålId.fraDatoUtenlandsopphold,
+            svar: '',
+        },
+        oppholdslandTilDato: {
+            id: UtenlandsoppholdSpørsmålId.tilDatoUtenlandsopphold,
+            svar: '',
+        },
+        adresse: { id: UtenlandsoppholdSpørsmålId.adresse, svar: '' },
+    };
+}

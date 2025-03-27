@@ -17,7 +17,7 @@ import OmDeg from './components/SøknadsSteg/OmDeg/OmDeg';
 import Oppsummering from './components/SøknadsSteg/Oppsummering/Oppsummering';
 import VelgBarn from './components/SøknadsSteg/VelgBarn/VelgBarn';
 import { useAppContext } from './context/AppContext';
-import { useEøs } from './context/EøsContext';
+import { useEøsContext } from './context/EøsContext';
 import { useRoutesContext } from './context/RoutesContext';
 import { IRoute, RouteEnum } from './typer/routes';
 
@@ -34,7 +34,7 @@ const OmBarnetWrapper: React.FC = () => {
 
 const EøsForBarnWrapper: React.FC = () => {
     const { number } = useParams<{ number?: string }>();
-    const { barnSomTriggerEøs } = useEøs();
+    const { barnSomTriggerEøs } = useEøsContext();
     const { søknad } = useAppContext();
     const barnSomSkalHaEøsSteg = søknad.søker.triggetEøs
         ? søknad.barnInkludertISøknaden.map(barn => barn.id)

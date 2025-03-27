@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
-import createUseContext from 'constate';
 import { Alpha3Code } from 'i18n-iso-countries';
 
 import { ESvar } from '@navikt/familie-form-elements';
@@ -14,7 +13,20 @@ import { ISøker } from '../typer/person';
 import { useAppContext } from './AppContext';
 import { useLastRessurserContext } from './LastRessurserContext';
 
-const [EøsProvider, useEøs] = createUseContext(() => {
+export interface EøsContext {
+    erEøsLand: (land: Alpha3Code | '') => boolean;
+    skalTriggeEøsForSøker: (søker: ISøker) => boolean;
+    skalTriggeEøsForBarn: (barn: IBarnMedISøknad) => boolean;
+    settSøkerTriggerEøs: React.Dispatch<React.SetStateAction<boolean>>;
+    settBarnSomTriggerEøs: React.Dispatch<React.SetStateAction<string[]>>;
+    søkerTriggerEøs: boolean;
+    barnSomTriggerEøs: BarnetsId[];
+    erEøsTrigget: () => number | true;
+}
+
+const EøsContext = createContext<EøsContext | undefined>(undefined);
+
+export function EøsProvider(props: PropsWithChildren) {
     const { axiosRequest } = useLastRessurserContext();
 
     const { søknad, settSøknad, eøsLand, settEøsLand } = useAppContext();
@@ -106,16 +118,30 @@ const [EøsProvider, useEøs] = createUseContext(() => {
 
     const erEøsTrigget = () => søkerTriggerEøs || barnSomTriggerEøs.length;
 
-    return {
-        erEøsLand,
-        skalTriggeEøsForSøker,
-        skalTriggeEøsForBarn,
-        settSøkerTriggerEøs,
-        settBarnSomTriggerEøs,
-        søkerTriggerEøs,
-        barnSomTriggerEøs,
-        erEøsTrigget,
-    };
-});
+    return (
+        <EøsContext.Provider
+            value={{
+                erEøsLand,
+                skalTriggeEøsForSøker,
+                skalTriggeEøsForBarn,
+                settSøkerTriggerEøs,
+                settBarnSomTriggerEøs,
+                søkerTriggerEøs,
+                barnSomTriggerEøs,
+                erEøsTrigget,
+            }}
+        >
+            {props.children}
+        </EøsContext.Provider>
+    );
+}
 
-export { EøsProvider, useEøs };
+export function useEøsContext() {
+    const context = useContext(EøsContext);
+
+    if (context === undefined) {
+        throw new Error('useEøsContext må brukes innenfor EøsProvider');
+    }
+
+    return context;
+}

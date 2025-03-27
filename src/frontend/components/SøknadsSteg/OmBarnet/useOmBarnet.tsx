@@ -4,7 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { feil, type FeltState, type ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
-import { useEøs } from '../../../context/EøsContext';
+import { useEøsContext } from '../../../context/EøsContext';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
@@ -80,7 +80,8 @@ export const useOmBarnet = (
     fjernUtenlandsperiodeAndreForelder: (periode: IUtenlandsperiode) => void;
 } => {
     const { søknad, settSøknad, tekster, plainTekst } = useAppContext();
-    const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } = useEøs();
+    const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } =
+        useEøsContext();
     const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     const teksterForModaler = tekster()[ESanitySteg.FELLES].modaler;
     const teksterForUtenlandsperiode: IUtenlandsoppholdTekstinnhold =
