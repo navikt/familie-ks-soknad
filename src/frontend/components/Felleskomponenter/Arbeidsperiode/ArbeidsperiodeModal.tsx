@@ -167,7 +167,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                         />
                     )}
                     {tilDatoArbeidsperiode.erSynlig && (
-                        <>
+                        <div>
                             <MånedÅrVelger
                                 felt={skjema.felter.tilDatoArbeidsperiode}
                                 label={
@@ -198,7 +198,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                                 felt={skjema.felter.tilDatoArbeidsperiodeUkjent}
                                 label={plainTekst(teksterForModal.sluttdatoFremtid.checkboxLabel)}
                             />
-                        </>
+                        </div>
                     )}
                 </>
             ) : (
@@ -212,7 +212,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                         />
                     )}
                     {tilDatoArbeidsperiode.erSynlig && (
-                        <>
+                        <div>
                             <Datovelger
                                 felt={skjema.felter.tilDatoArbeidsperiode}
                                 skjema={skjema}
@@ -239,7 +239,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                                 felt={skjema.felter.tilDatoArbeidsperiodeUkjent}
                                 label={plainTekst(teksterForModal.sluttdatoFremtid.checkboxLabel)}
                             />
-                        </>
+                        </div>
                     )}
                 </>
             )}

@@ -178,7 +178,7 @@ export const PensjonModal: React.FC<Props> = ({
                     )}
                 </>
             )}
-            ;{visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
+            {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>
     );
 };
