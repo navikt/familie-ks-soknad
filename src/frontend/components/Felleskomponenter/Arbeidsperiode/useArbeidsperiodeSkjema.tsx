@@ -2,12 +2,14 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { useFelt, useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
 import { useApp } from '../../../context/AppContext';
+import { useFeatureToggles } from '../../../context/FeatureTogglesContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useInputFelt from '../../../hooks/useInputFelt';
 import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { EFeatureToggle } from '../../../typer/feature-toggles';
 import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
@@ -16,6 +18,7 @@ import {
     dagensDato,
     erSammeDatoSomDagensDato,
     gårsdagensDato,
+    sisteDagDenneMåneden,
     stringTilDate,
 } from '../../../utils/dato';
 import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
@@ -33,6 +36,7 @@ export const useArbeidsperiodeSkjema = (
     personType: PersonType,
     erDød = false
 ): IUsePeriodeSkjemaVerdi<IArbeidsperioderFeltTyper> => {
+    const { toggles } = useFeatureToggles();
     const { tekster, plainTekst } = useApp();
     const teksterForPersonType: IArbeidsperiodeTekstinnhold =
         tekster().FELLES.modaler.arbeidsperiode[personType];
@@ -88,6 +92,10 @@ export const useArbeidsperiodeSkjema = (
         avhengigheter: { arbeidsperiodeAvsluttet },
     });
 
+    const tilArbeidsperiodeSluttdatoAvgrensning = toggles[EFeatureToggle.SPOR_OM_MANED_IKKE_DATO]
+        ? sisteDagDenneMåneden()
+        : dagensDato();
+
     const tilDatoArbeidsperiode = useDatovelgerFeltMedUkjent({
         feltId: ArbeidsperiodeSpørsmålsId.tilDatoArbeidsperiode,
         initiellVerdi: '',
@@ -98,7 +106,9 @@ export const useArbeidsperiodeSkjema = (
         skalFeltetVises:
             arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
             andreForelderErDød,
-        sluttdatoAvgrensning: periodenErAvsluttet ? dagensDato() : undefined,
+        sluttdatoAvgrensning: periodenErAvsluttet
+            ? tilArbeidsperiodeSluttdatoAvgrensning
+            : undefined,
         startdatoAvgrensning: minTilDatoForUtbetalingEllerArbeidsperiode(
             periodenErAvsluttet,
             fraDatoArbeidsperiode.verdi
