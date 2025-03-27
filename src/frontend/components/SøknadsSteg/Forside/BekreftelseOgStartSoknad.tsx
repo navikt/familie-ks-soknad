@@ -4,7 +4,7 @@ import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { Button, ConfirmationPanel, Heading, VStack } from '@navikt/ds-react';
 import { AGreen500, ANavRed, AOrange500 } from '@navikt/ds-tokens/dist/tokens';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
@@ -23,7 +23,7 @@ export const bekreftelseBoksBorderFarge = (status: BekreftelseStatus) => {
 
 const BekreftelseOgStartSoknad: React.FC = () => {
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
-    const { plainTekst, tekster } = useApp();
+    const { plainTekst, tekster } = useAppContext();
 
     const forsidetekster = tekster().FORSIDE;
     const navigasjonTekster = tekster().FELLES.navigasjon;

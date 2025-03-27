@@ -13,7 +13,7 @@ import {
     AGrayalpha200,
 } from '@navikt/ds-tokens/dist/tokens';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import { LocaleRecordBlock } from '../../../../typer/common';
 import { IBarn } from '../../../../typer/person';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
@@ -61,7 +61,7 @@ const Barnekort: React.FC<IBarnekortProps> = ({
         søknad: { barnRegistrertManuelt },
         tekster,
         plainTekst,
-    } = useApp();
+    } = useAppContext();
 
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
     const {

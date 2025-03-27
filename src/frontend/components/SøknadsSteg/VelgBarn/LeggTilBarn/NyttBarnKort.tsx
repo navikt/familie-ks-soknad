@@ -2,7 +2,7 @@ import React from 'react';
 
 import { BodyShort, Button } from '@navikt/ds-react';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
@@ -10,7 +10,7 @@ import { BarnekortContainer } from '../Barnekort/BarnekortContainer';
 import { IVelgBarnTekstinnhold } from '../innholdTyper';
 
 export const NyttBarnKort: React.FC<{ onLeggTilBarn: () => void }> = ({ onLeggTilBarn }) => {
-    const { tekster } = useApp();
+    const { tekster } = useAppContext();
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
     const teksterForLeggTilBarnModal: ILeggTilBarnTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;

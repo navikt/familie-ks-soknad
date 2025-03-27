@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 
 import { VStack } from '@navikt/ds-react';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -20,7 +20,7 @@ import OmDegOppsummering from './OppsummeringSteg/OmDegOppsummering';
 import VelgBarnOppsummering from './OppsummeringSteg/VelgBarnOppsummering';
 
 const Oppsummering: React.FC = () => {
-    const { søknad, tekster } = useApp();
+    const { søknad, tekster } = useAppContext();
     const navigate = useNavigate();
     const [feilAnchors, settFeilAnchors] = useState<string[]>([]);
     const { barnSomTriggerEøs, søkerTriggerEøs } = useEøsContext();

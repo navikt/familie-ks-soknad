@@ -3,7 +3,7 @@ import React from 'react';
 import { Alert, Box } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
@@ -41,7 +41,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
     erDød = false,
     forklaring = undefined,
 }) => {
-    const { tekster } = useApp();
+    const { tekster } = useAppContext();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
         useKontantstøttePeriodeSkjema(personType, erDød);
 

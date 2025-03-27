@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
@@ -35,7 +35,7 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
     } = barnehageplassPeriode;
 
     const { valgtLocale } = useSpråkContext();
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster().FELLES.modaler.barnehageplass;
     return (

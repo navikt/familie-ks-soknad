@@ -3,7 +3,7 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PeriodePersonTypeProps, PersonType } from '../../../typer/personType';
@@ -42,7 +42,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
     barn,
     tilhørendeJaNeiSpmFelt,
 }) => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const {
         erÅpen: kontantstøtteModalErÅpen,
         lukkModal: lukkKontantstøtteModal,

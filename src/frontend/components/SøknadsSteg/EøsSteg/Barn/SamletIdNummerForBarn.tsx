@@ -4,7 +4,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import { useEøsContext } from '../../../../context/EøsContext';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../typer/barn';
 import { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
@@ -27,7 +27,7 @@ const IdNummerForBarn: React.FC<{
     periodeType = undefined,
     lesevisning = false,
 }) => {
-    const { tekster } = useApp();
+    const { tekster } = useAppContext();
     return (
         <IdNummer
             lesevisning={lesevisning}

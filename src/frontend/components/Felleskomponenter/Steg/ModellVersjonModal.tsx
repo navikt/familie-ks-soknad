@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { Alert, Button, Modal } from '@navikt/ds-react';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import ModalContent from '../ModalContent';
 import TekstBlock from '../TekstBlock';
@@ -14,7 +14,7 @@ const HovedinnholdContainer = styled.div`
 `;
 
 const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
 
     const mistetInformasjonenDinTekster = tekster().FELLES.modaler.mistetInformasjonenDin;
 

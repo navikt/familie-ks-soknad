@@ -2,7 +2,7 @@ import React from 'react';
 
 import { FileUpload, Heading, List, VStack } from '@navikt/ds-react';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
 import { uppercaseFørsteBokstav } from '../../../../utils/visning';
@@ -19,7 +19,7 @@ interface IFilopplasterProps {
 }
 
 const Filopplaster2: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
 
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
     const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;

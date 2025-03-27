@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 
-import createUseContext from 'constate';
 import { Alpha3Code, getName } from 'i18n-iso-countries';
 
 import {
@@ -29,12 +28,51 @@ import { plainTekstHof } from '../utils/sanity';
 
 import { preferredAxios } from './axios';
 import { useInnloggetContext } from './InnloggetContext';
-import { useLastRessurserContext } from './LastRessurserContext';
+import { AxiosRequest, useLastRessurserContext } from './LastRessurserContext';
 import { hentSluttbrukerFraPdl } from './pdl';
 import { useSanityContext } from './SanityContext';
 import { useSpråkContext } from './SpråkContext';
 
-const [AppProvider, useApp] = createUseContext(() => {
+export interface AppContext {
+    axiosRequest: AxiosRequest;
+    sluttbruker: Ressurs<ISøkerRespons>;
+    søknad: ISøknad;
+    settSøknad: React.Dispatch<React.SetStateAction<ISøknad>>;
+    nullstillSøknadsobjekt: () => void;
+    innsendingStatus: Ressurs<IKvittering>;
+    settInnsendingStatus: React.Dispatch<React.SetStateAction<Ressurs<IKvittering>>>;
+    sisteUtfylteStegIndex: number;
+    settSisteUtfylteStegIndex: React.Dispatch<React.SetStateAction<number>>;
+    erStegUtfyltFrafør: (nåværendeStegIndex: number) => boolean;
+    avbrytOgSlettSøknad: () => void;
+    gåTilbakeTilStart: () => void;
+    brukMellomlagretVerdi: () => void;
+    mellomlagretVerdi: IMellomlagretKontantstøtte | undefined;
+    fåttGyldigKvittering: boolean;
+    settFåttGyldigKvittering: React.Dispatch<React.SetStateAction<boolean>>;
+    settNåværendeRoute: React.Dispatch<React.SetStateAction<RouteEnum | undefined>>;
+    systemetFeiler: () => boolean;
+    systemetOK: () => boolean;
+    systemetLaster: () => boolean;
+    mellomlagre: (søknadSomSkalLagres: ISøknad, nåværendeStegIndex: number) => void;
+    modellVersjonOppdatert: boolean;
+    settSisteModellVersjon: React.Dispatch<React.SetStateAction<number>>;
+    eøsLand: Ressurs<Map<Alpha3Code, string>>;
+    settEøsLand: React.Dispatch<React.SetStateAction<Ressurs<Map<Alpha3Code, string>>>>;
+    tekster: () => ITekstinnhold;
+    flettefeltTilTekst: (
+        sanityFlettefelt: ESanityFlettefeltverdi,
+        flettefelter?: FlettefeltVerdier,
+        spesifikkLocale?: LocaleType
+    ) => string;
+    plainTekst: PlainTekst;
+    tilRestLocaleRecord: TilRestLocaleRecord;
+    kontoinformasjon: Ressurs<IKontoinformasjon>;
+}
+
+const AppContext = createContext<AppContext | undefined>(undefined);
+
+export function AppProvider(props: PropsWithChildren) {
     const { valgtLocale } = useSpråkContext();
     const { axiosRequest, lasterRessurser } = useLastRessurserContext();
     const { innloggetStatus } = useInnloggetContext();
@@ -327,39 +365,52 @@ const [AppProvider, useApp] = createUseContext(() => {
             [LocaleType.nb]: plainTekst(sanityTekst, flettefelter, LocaleType.nb),
         };
     };
+    return (
+        <AppContext.Provider
+            value={{
+                axiosRequest,
+                sluttbruker,
+                søknad,
+                settSøknad,
+                nullstillSøknadsobjekt,
+                innsendingStatus,
+                settInnsendingStatus,
+                sisteUtfylteStegIndex,
+                settSisteUtfylteStegIndex,
+                erStegUtfyltFrafør,
+                avbrytOgSlettSøknad,
+                gåTilbakeTilStart,
+                brukMellomlagretVerdi,
+                mellomlagretVerdi,
+                fåttGyldigKvittering,
+                settFåttGyldigKvittering,
+                settNåværendeRoute,
+                systemetFeiler,
+                systemetOK,
+                systemetLaster,
+                mellomlagre,
+                modellVersjonOppdatert,
+                settSisteModellVersjon,
+                eøsLand,
+                settEøsLand,
+                tekster,
+                flettefeltTilTekst,
+                plainTekst,
+                tilRestLocaleRecord,
+                kontoinformasjon,
+            }}
+        >
+            {props.children}
+        </AppContext.Provider>
+    );
+}
 
-    return {
-        axiosRequest,
-        sluttbruker,
-        søknad,
-        settSøknad,
-        nullstillSøknadsobjekt,
-        innsendingStatus,
-        settInnsendingStatus,
-        sisteUtfylteStegIndex,
-        settSisteUtfylteStegIndex,
-        erStegUtfyltFrafør,
-        avbrytOgSlettSøknad,
-        gåTilbakeTilStart,
-        brukMellomlagretVerdi,
-        mellomlagretVerdi,
-        fåttGyldigKvittering,
-        settFåttGyldigKvittering,
-        settNåværendeRoute,
-        systemetFeiler,
-        systemetOK,
-        systemetLaster,
-        mellomlagre,
-        modellVersjonOppdatert,
-        settSisteModellVersjon,
-        eøsLand,
-        settEøsLand,
-        tekster,
-        flettefeltTilTekst,
-        plainTekst,
-        tilRestLocaleRecord,
-        kontoinformasjon,
-    };
-});
+export function useAppContext() {
+    const context = useContext(AppContext);
 
-export { AppProvider, useApp };
+    if (context === undefined) {
+        throw new Error('useAppContext må brukes innenfor AppProvider');
+    }
+
+    return context;
+}

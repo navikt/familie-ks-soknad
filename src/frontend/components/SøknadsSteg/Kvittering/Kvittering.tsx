@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import { Alert, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useStegContext } from '../../../context/StegContext';
 import useUxSignals from '../../../hooks/useUxSignals';
 import { Typografi } from '../../../typer/common';
@@ -24,10 +24,10 @@ const Kvittering: React.FC = () => {
         settFåttGyldigKvittering,
         søknad,
         tekster,
-    } = useApp();
+    } = useAppContext();
     const { hentStegNummer } = useStegContext();
 
-    const { innsendingStatus } = useApp();
+    const { innsendingStatus } = useAppContext();
     const innsendtDato: Date =
         innsendingStatus.status === RessursStatus.SUKSESS
             ? new Date(innsendingStatus.data.mottattDato)

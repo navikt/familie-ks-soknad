@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { muligeSlektsforhold } from '../../../typer/barn';
 import { Slektsforhold } from '../../../typer/kontrakt/generelle';
 import { hentSlektsforhold } from '../../../utils/språk';
@@ -15,7 +15,7 @@ const SlektsforholdDropdown: React.FC<SlektsforholdDropdownProps> = ({
     gjelderSøker = false,
     ...props
 }) => {
-    const { plainTekst, tekster } = useApp();
+    const { plainTekst, tekster } = useAppContext();
     const aktuelleSlektsforhold = gjelderSøker
         ? muligeSlektsforhold
         : muligeSlektsforhold.filter(slektsforhold => slektsforhold !== Slektsforhold.FORELDER);

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 import { FormSummary } from '@navikt/ds-react';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { formaterSøknadsvar } from '../../../utils/språk';
 
 interface IOppsummeringsFeltProps {
@@ -12,7 +12,7 @@ interface IOppsummeringsFeltProps {
 }
 
 export function OppsummeringFelt({ tittel, søknadsvar, children }: IOppsummeringsFeltProps) {
-    const { plainTekst, tekster } = useApp();
+    const { plainTekst, tekster } = useAppContext();
 
     return (
         <FormSummary.Answer>

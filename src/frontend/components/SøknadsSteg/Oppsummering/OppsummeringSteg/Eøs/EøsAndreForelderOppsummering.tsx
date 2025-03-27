@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../../../context/AppContext';
+import { useAppContext } from '../../../../../context/AppContext';
 import { useSpråkContext } from '../../../../../context/SpråkContext';
 import {
     andreForelderDataKeySpørsmål,
@@ -29,7 +29,7 @@ const EøsAndreForelderOppsummering: React.FC<{
     skjema: ISkjema<IEøsForBarnFeltTyper, string>;
     settIdNummerFelter: Dispatch<SetStateAction<Felt<string>[]>>;
 }> = ({ barn, andreForelder, skjema, settIdNummerFelter }) => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const {
         hvorBorAndreForelder,
         paagaaendeSoeknadYtelseAndreForelder,

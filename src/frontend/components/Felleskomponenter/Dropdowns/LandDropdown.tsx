@@ -4,7 +4,7 @@ import { Alpha3Code, getAlpha3Codes, getName } from 'i18n-iso-countries';
 
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
@@ -21,7 +21,7 @@ interface LandDropdownProps {
 }
 
 export const LandDropdown: React.FC<LandDropdownProps> = props => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const { valgtLocale } = useSpråkContext();
     const { erEøsLand } = useEøsContext();
     const kunEøs = props.kunEøs ?? false;

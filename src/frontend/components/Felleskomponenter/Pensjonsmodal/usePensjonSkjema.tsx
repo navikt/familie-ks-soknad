@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
@@ -32,7 +32,7 @@ export const usePensjonSkjema = ({
     erDød,
     barn,
 }: IUsePensjonSkjemaParams): IUsePeriodeSkjemaVerdi<IPensjonsperiodeFeltTyper> => {
-    const { tekster } = useApp();
+    const { tekster } = useAppContext();
     const { erEøsLand } = useEøsContext();
     const teksterForPersonType: IPensjonsperiodeTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.pensjonsperiode[personType];

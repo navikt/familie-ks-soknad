@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { useApp } from '../context/AppContext';
+import { useAppContext } from '../context/AppContext';
 
 const Barn1: React.FC = () => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     return (
         <svg
             width="63px"

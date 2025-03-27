@@ -3,7 +3,7 @@ import React from 'react';
 import { ErrorSummary } from '@navikt/ds-react';
 import { type ISkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { ISteg } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { AppLenke } from '../AppLenke/AppLenke';
@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const SkjemaFeiloppsummering: React.FC<Props> = ({ skjema, stegMedFeil, id }) => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     return (
         <ErrorSummary
             id={id}

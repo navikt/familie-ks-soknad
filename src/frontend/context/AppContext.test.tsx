@@ -18,7 +18,7 @@ import {
     TestProvidere,
 } from '../utils/testing';
 
-import { useApp } from './AppContext';
+import { useAppContext } from './AppContext';
 
 const søknadEtterRespons: ISøknad = {
     ...initialStateSøknad,
@@ -68,7 +68,7 @@ jest.mock('../context/pdl', () => {
 });
 
 describe('AppContext', () => {
-    let hookResult: RenderHookResult<ReturnType<typeof useApp>, unknown>;
+    let hookResult: RenderHookResult<ReturnType<typeof useAppContext>, unknown>;
     const resolveAxiosRequestTilSøkerRessurs = async () =>
         mockResult.resolve({ status: 'SUKSESS', data: mockDeep<ISøkerRespons>() });
 
@@ -85,7 +85,7 @@ describe('AppContext', () => {
         mockRoutes();
         mockSanity();
         mockFeatureToggle();
-        const renderhookResult = renderHook(() => useApp(), {
+        const renderhookResult = renderHook(() => useAppContext(), {
             wrapper: TestProvidere,
         });
         hookResult = renderhookResult;

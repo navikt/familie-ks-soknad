@@ -6,7 +6,7 @@ import { Box } from '@navikt/ds-react';
 import { ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
@@ -29,7 +29,7 @@ const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
     spørsmålDokument,
     flettefelter,
 }) => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const { ja, nei, jegVetIkke } = tekster().FELLES.frittståendeOrd;
 
     return felt.erSynlig ? (

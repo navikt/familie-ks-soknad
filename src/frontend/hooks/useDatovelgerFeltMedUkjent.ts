@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type Avhengigheter, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
-import { useApp } from '../context/AppContext';
+import { useAppContext } from '../context/AppContext';
 import { ISODateString, LocaleRecordBlock } from '../typer/common';
 import { validerDato } from '../utils/dato';
 
@@ -30,7 +30,7 @@ const useDatovelgerFeltMedUkjent = ({
     customStartdatoFeilmelding?: string;
     avhengigheter?: Avhengigheter;
 }) => {
-    const { plainTekst, tekster } = useApp();
+    const { plainTekst, tekster } = useAppContext();
     const datoFelt = useFelt<ISODateString>({
         feltId: feltId,
         verdi: initiellVerdi,

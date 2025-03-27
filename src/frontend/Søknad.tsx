@@ -16,7 +16,7 @@ import OmBarnet from './components/SøknadsSteg/OmBarnet/OmBarnet';
 import OmDeg from './components/SøknadsSteg/OmDeg/OmDeg';
 import Oppsummering from './components/SøknadsSteg/Oppsummering/Oppsummering';
 import VelgBarn from './components/SøknadsSteg/VelgBarn/VelgBarn';
-import { useApp } from './context/AppContext';
+import { useAppContext } from './context/AppContext';
 import { useEøsContext } from './context/EøsContext';
 import { useRoutesContext } from './context/RoutesContext';
 import { IRoute, RouteEnum } from './typer/routes';
@@ -26,7 +26,7 @@ import { IRoute, RouteEnum } from './typer/routes';
  */
 const OmBarnetWrapper: React.FC = () => {
     const { number } = useParams<{ number?: string }>();
-    const { søknad } = useApp();
+    const { søknad } = useAppContext();
     const barnetsId = søknad.barnInkludertISøknaden[number ? Number.parseInt(number) - 1 : 0].id;
     // https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key
     return <OmBarnet barnetsId={barnetsId} key={barnetsId} />;
@@ -35,7 +35,7 @@ const OmBarnetWrapper: React.FC = () => {
 const EøsForBarnWrapper: React.FC = () => {
     const { number } = useParams<{ number?: string }>();
     const { barnSomTriggerEøs } = useEøsContext();
-    const { søknad } = useApp();
+    const { søknad } = useAppContext();
     const barnSomSkalHaEøsSteg = søknad.søker.triggetEøs
         ? søknad.barnInkludertISøknaden.map(barn => barn.id)
         : barnSomTriggerEøs;
@@ -44,7 +44,7 @@ const EøsForBarnWrapper: React.FC = () => {
 };
 
 const Søknad = () => {
-    const { systemetLaster } = useApp();
+    const { systemetLaster } = useAppContext();
     const { routes } = useRoutesContext();
 
     const routeTilKomponent = (route: IRoute): React.FC => {
