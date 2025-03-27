@@ -1,11 +1,15 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { IBarnMedISøknad } from '../../typer/barn';
+import { AlternativtSvarForInput, ISODateString } from '../../typer/common';
 import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IArbeidsperiodeIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
 import { IArbeidsperiode } from '../../typer/perioder';
 import { IArbeidsperiodeTekstinnhold } from '../../typer/sanity/modaler/arbeidsperiode';
+import { ISøknadSpørsmål } from '../../typer/spørsmål';
+import { formaterDatostringKunMåned } from '../dato';
 import { landkodeTilSpråk } from '../språk';
+import { uppercaseFørsteBokstav } from '../visning';
 
 import {
     sammeVerdiAlleSpråk,
@@ -21,6 +25,7 @@ interface ArbeidsperiodeIKontraktFormatParams {
     tilRestLocaleRecord: TilRestLocaleRecord;
     tekster: IArbeidsperiodeTekstinnhold;
     barn?: IBarnMedISøknad;
+    toggleSpørOmMånedIkkeDato: boolean;
 }
 
 export const tilIArbeidsperiodeIKontraktFormat = ({
@@ -30,6 +35,7 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
     tilRestLocaleRecord,
     tekster,
     barn,
+    toggleSpørOmMånedIkkeDato,
 }: ArbeidsperiodeIKontraktFormatParams): ISøknadsfelt<IArbeidsperiodeIKontraktFormat> => {
     const {
         arbeidsperiodeAvsluttet,
@@ -74,15 +80,15 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
             },
             fraDatoArbeidsperiode: {
                 label: tilRestLocaleRecord(tekster.startdato.sporsmal),
-                verdi: sammeVerdiAlleSpråk(fraDatoArbeidsperiode.svar),
+                verdi: datoTilVerdiForKontrakt(toggleSpørOmMånedIkkeDato, fraDatoArbeidsperiode),
             },
             tilDatoArbeidsperiode: {
                 label: tilRestLocaleRecord(sluttdatoTekst.sporsmal),
-                verdi: sammeVerdiAlleSpråkEllerUkjent(
-                    tilRestLocaleRecord,
-                    tilDatoArbeidsperiode.svar,
+                verdi:
+                    tilDatoArbeidsperiode.svar === AlternativtSvarForInput.UKJENT &&
                     tekster.sluttdatoFremtid.checkboxLabel
-                ),
+                        ? tilRestLocaleRecord(tekster.sluttdatoFremtid.checkboxLabel)
+                        : datoTilVerdiForKontrakt(toggleSpørOmMånedIkkeDato, tilDatoArbeidsperiode),
             },
             adresse: adresse.svar
                 ? søknadsfelt(
@@ -97,3 +103,14 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
         }),
     };
 };
+
+function datoTilVerdiForKontrakt(
+    toggleSpørOmMånedIkkeDato: boolean,
+    skjemaSpørsmål: ISøknadSpørsmål<ISODateString | ''>
+) {
+    return toggleSpørOmMånedIkkeDato
+        ? verdiCallbackAlleSpråk(locale =>
+              uppercaseFørsteBokstav(formaterDatostringKunMåned(skjemaSpørsmål.svar, locale))
+          )
+        : sammeVerdiAlleSpråk(skjemaSpørsmål.svar);
+}

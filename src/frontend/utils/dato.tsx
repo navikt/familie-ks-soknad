@@ -109,6 +109,9 @@ export const formaterDatostringKunMåned = (datoString: ISODateString, språk: L
 export const formaterDato = (datoString: ISODateString) =>
     format(new Date(datoString), 'dd.MM.yyyy');
 
+export const formaterDatoKunMåned = (dato: Date, språk: LocaleType) =>
+    format(dato, 'MMMM yyyy', { locale: mapSpråkvalgTilDateFnsLocale(språk) });
+
 export const formaterDatoMedUkjent = (datoMedUkjent: DatoMedUkjent, tekstForUkjent): string => {
     return datoMedUkjent === AlternativtSvarForInput.UKJENT
         ? tekstForUkjent

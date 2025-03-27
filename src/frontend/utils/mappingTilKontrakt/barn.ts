@@ -31,7 +31,8 @@ export const barnISøknadsFormat = (
     barn: IBarnMedISøknad,
     søknad: ISøknad,
     tekster: ITekstinnhold,
-    tilRestLocaleRecord: TilRestLocaleRecord
+    tilRestLocaleRecord: TilRestLocaleRecord,
+    toggleSpørOmMånedIkkeDato: boolean
 ): ISøknadIKontraktBarn => {
     const {
         ident,
@@ -149,11 +150,23 @@ export const barnISøknadsFormat = (
             )
         ),
         andreForelder: andreForelder
-            ? andreForelderTilISøknadsfelt(andreForelder, barn, tilRestLocaleRecord, tekster)
+            ? andreForelderTilISøknadsfelt(
+                  andreForelder,
+                  barn,
+                  tilRestLocaleRecord,
+                  tekster,
+                  toggleSpørOmMånedIkkeDato
+              )
             : null,
 
         omsorgsperson: omsorgsperson
-            ? omsorgspersonTilISøknadsfelt(omsorgsperson, barn, tilRestLocaleRecord, tekster)
+            ? omsorgspersonTilISøknadsfelt(
+                  omsorgsperson,
+                  barn,
+                  tilRestLocaleRecord,
+                  tekster,
+                  toggleSpørOmMånedIkkeDato
+              )
             : null,
         adresse: adresse.svar
             ? søknadsfelt(
