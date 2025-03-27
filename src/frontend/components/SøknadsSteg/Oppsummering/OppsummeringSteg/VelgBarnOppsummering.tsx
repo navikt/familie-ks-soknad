@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import { useRoutesContext } from '../../../../context/RoutesContext';
 import { RouteEnum } from '../../../../typer/routes';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
-    const { søknad, tekster, plainTekst } = useApp();
+    const { søknad, tekster, plainTekst } = useAppContext();
     const velgBarnTekster = tekster().VELG_BARN;
     const leggTilBarnModalTekster = tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
     const { hentRouteObjektForRouteEnum } = useRoutesContext();

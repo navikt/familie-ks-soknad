@@ -10,7 +10,7 @@ import {
     useFelt,
 } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { BarnetsId } from '../../../typer/common';
 
@@ -20,7 +20,7 @@ const useBarnCheckboxFelt = (
     avhengighet: Felt<ESvar | null>,
     avhengigJaNeiSpmSvarCondition = ESvar.JA
 ) => {
-    const { søknad } = useApp();
+    const { søknad } = useAppContext();
     const barn = søknad.barnInkludertISøknaden;
 
     const skalFeltetVises = jaNeiSpmVerdi => jaNeiSpmVerdi === avhengigJaNeiSpmSvarCondition;

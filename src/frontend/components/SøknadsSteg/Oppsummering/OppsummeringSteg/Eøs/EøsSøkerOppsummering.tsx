@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { useApp } from '../../../../../context/AppContext';
+import { useAppContext } from '../../../../../context/AppContext';
 import { useRoutesContext } from '../../../../../context/RoutesContext';
 import { LocaleRecordBlock, LocaleRecordString } from '../../../../../typer/common';
 import { PersonType } from '../../../../../typer/personType';
@@ -23,7 +23,7 @@ interface Props {
 
 const EøsSøkerOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
     const { hentRouteObjektForRouteEnum } = useRoutesContext();
-    const { søknad, tekster, plainTekst } = useApp();
+    const { søknad, tekster, plainTekst } = useAppContext();
     const eøsSøkerTekster = tekster().EØS_FOR_SØKER;
     const { søker } = søknad;
     const eøsForSøkerHook = useEøsForSøker();

@@ -3,7 +3,7 @@ import React from 'react';
 import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
@@ -15,7 +15,7 @@ import { Personopplysninger } from './Personopplysninger';
 import { useOmdeg } from './useOmdeg';
 
 const OmDeg: React.FC = () => {
-    const { tekster } = useApp();
+    const { tekster } = useAppContext();
 
     const { skjema, validerFelterOgVisFeilmelding, valideringErOk, oppdaterSøknad } = useOmdeg();
 

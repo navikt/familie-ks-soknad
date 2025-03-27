@@ -4,7 +4,7 @@ import axios from 'axios';
 import type { FileRejection } from 'react-dropzone';
 
 import Miljø from '../../../../../shared-utils/Miljø';
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import { useLastRessurserContext } from '../../../../context/LastRessurserContext';
 import { LocaleRecordString } from '../../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
@@ -41,7 +41,7 @@ export const useFilopplaster = (
     ) => void
 ) => {
     const { wrapMedSystemetLaster } = useLastRessurserContext();
-    const { tekster, søknad } = useApp();
+    const { tekster, søknad } = useAppContext();
     const [feilmeldinger, settFeilmeldinger] = useState<Map<LocaleRecordString, File[]>>(new Map());
     const [harFeil, settHarFeil] = useState<boolean>(false);
 

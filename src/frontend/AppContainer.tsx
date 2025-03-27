@@ -5,11 +5,11 @@ import { RessursStatus } from '@navikt/familie-typer';
 
 import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
 import SystemetLaster from './components/Felleskomponenter/SystemetLaster/SystemetLaster';
-import { useApp } from './context/AppContext';
+import { useAppContext } from './context/AppContext';
 import Søknad from './Søknad';
 
 const AppContainer = () => {
-    const { systemetLaster, systemetFeiler, sluttbruker, systemetOK } = useApp();
+    const { systemetLaster, systemetFeiler, sluttbruker, systemetOK } = useAppContext();
 
     return (
         <main>

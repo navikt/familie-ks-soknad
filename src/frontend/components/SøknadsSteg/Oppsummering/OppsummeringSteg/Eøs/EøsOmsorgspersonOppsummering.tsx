@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useApp } from '../../../../../context/AppContext';
+import { useAppContext } from '../../../../../context/AppContext';
 import { useSpråkContext } from '../../../../../context/SpråkContext';
 import { IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
@@ -18,7 +18,7 @@ const EøsOmsorgspersonOppsummering: React.FC<{
     omsorgsperson: IOmsorgsperson;
     barn: IBarnMedISøknad;
 }> = ({ omsorgsperson, barn }) => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const eøsBarnTekster = tekster().EØS_FOR_BARN;
 
     const { valgtLocale } = useSpråkContext();

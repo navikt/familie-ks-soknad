@@ -3,11 +3,10 @@ import React from 'react';
 import { Checkbox, FormSummary, VStack } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
+import { LocaleRecordBlock, Typografi } from '../../../typer/common';
 import {
     dokumentasjonsbehovTilBeskrivelseSanityApiNavn,
     dokumentasjonsbehovTilTittelSanityApiNavn,
-    EFiltyper,
     IDokumentasjon,
     IVedlegg,
 } from '../../../typer/dokumentasjon';
@@ -15,7 +14,8 @@ import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { slåSammen } from '../../../utils/slåSammen';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
-import Filopplaster from './filopplaster/Filopplaster';
+import Filopplaster2 from './filopplaster/Filopplaster2';
+import { useFilopplaster2 } from './filopplaster/useFilopplaster2';
 
 interface Props {
     dokumentasjon: IDokumentasjon;
@@ -26,24 +26,36 @@ interface Props {
     ) => void;
 }
 
-const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
+const LastOppVedlegg2: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
     const { søknad, tekster, plainTekst } = useAppContext();
-    const dokumentasjonstekster = tekster().DOKUMENTASJON;
+
+    const dokumentasjonTekster = tekster().DOKUMENTASJON;
+
+    const { fjernAlleAvvisteFiler } = useFilopplaster2(
+        dokumentasjon,
+        oppdaterDokumentasjon,
+        dokumentasjonTekster,
+        plainTekst
+    );
+
     const settHarSendtInnTidligere = (event: React.ChangeEvent<HTMLInputElement>) => {
         const huketAv = event.target.checked;
         const vedlegg = huketAv ? [] : dokumentasjon.opplastedeVedlegg;
         oppdaterDokumentasjon(dokumentasjon.dokumentasjonsbehov, vedlegg, huketAv);
+        if (huketAv) {
+            fjernAlleAvvisteFiler();
+        }
     };
 
-    const barnDokGjelderFor = søknad.barnInkludertISøknaden.filter(barn =>
-        dokumentasjon.gjelderForBarnId.find(id => id === barn.id)
-    );
-    const barnasNavn = slåSammen(barnDokGjelderFor.map(barn => barn.navn));
-
-    const tittelBlock =
-        dokumentasjonstekster[
+    const tittel: LocaleRecordBlock =
+        dokumentasjonTekster[
             dokumentasjonsbehovTilTittelSanityApiNavn(dokumentasjon.dokumentasjonsbehov)
         ];
+
+    const barnDokumentasjonenGjelderFor = søknad.barnInkludertISøknaden.filter(barn =>
+        dokumentasjon.gjelderForBarnId.find(id => id === barn.id)
+    );
+    const barnasNavn = slåSammen(barnDokumentasjonenGjelderFor.map(barn => barn.navn));
 
     const dokumentasjonsbeskrivelse = dokumentasjonsbehovTilBeskrivelseSanityApiNavn(
         dokumentasjon.dokumentasjonsbehov
@@ -52,8 +64,8 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon 
     return (
         <FormSummary>
             <FormSummary.Header>
-                <FormSummary.Heading level={'3'}>
-                    {plainTekst(tittelBlock, { barnetsNavn: barnasNavn })}
+                <FormSummary.Heading level="3">
+                    {plainTekst(tittel, { barnetsNavn: barnasNavn })}
                 </FormSummary.Heading>
             </FormSummary.Header>
             <VStack gap="6" paddingInline="6" paddingBlock="5 6">
@@ -61,7 +73,7 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon 
                     <div>
                         <TekstBlock
                             data-testid={'dokumentasjonsbeskrivelse'}
-                            block={dokumentasjonstekster[dokumentasjonsbeskrivelse]}
+                            block={dokumentasjonTekster[dokumentasjonsbeskrivelse]}
                             flettefelter={{ barnetsNavn: barnasNavn }}
                             typografi={Typografi.BodyLong}
                         />
@@ -72,30 +84,24 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon 
                     <Checkbox
                         data-testid={'dokumentasjon-er-sendt-inn-checkboks'}
                         aria-label={`${plainTekst(
-                            dokumentasjonstekster.sendtInnTidligere
-                        )} (${plainTekst(tittelBlock, { barnetsNavn: barnasNavn })})`}
+                            dokumentasjonTekster.sendtInnTidligere
+                        )} (${plainTekst(tittel, { barnetsNavn: barnasNavn })})`}
                         checked={dokumentasjon.harSendtInn}
                         onChange={settHarSendtInnTidligere}
                     >
-                        {plainTekst(dokumentasjonstekster.sendtInnTidligere)}
+                        {plainTekst(dokumentasjonTekster.sendtInnTidligere)}
                     </Checkbox>
                 )}
 
                 {!dokumentasjon.harSendtInn && (
-                    <div data-testid={'dokumentopplaster'}>
-                        <Filopplaster
-                            oppdaterDokumentasjon={oppdaterDokumentasjon}
-                            dokumentasjon={dokumentasjon}
-                            tillatteFiltyper={{
-                                'image/*': [EFiltyper.PNG, EFiltyper.JPG, EFiltyper.JPEG],
-                                'application/pdf': [EFiltyper.PDF],
-                            }}
-                        />
-                    </div>
+                    <Filopplaster2
+                        dokumentasjon={dokumentasjon}
+                        oppdaterDokumentasjon={oppdaterDokumentasjon}
+                    />
                 )}
             </VStack>
         </FormSummary>
     );
 };
 
-export default LastOppVedlegg;
+export default LastOppVedlegg2;

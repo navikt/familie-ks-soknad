@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 
 import { BodyShort, Button, Modal, VStack } from '@navikt/ds-react';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useFeatureToggles } from '../../../context/FeatureTogglesContext';
 import { LocaleRecordBlock } from '../../../typer/common';
 import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
@@ -35,7 +35,7 @@ function SkjemaModal({
     flettefelter,
     children,
 }: Props) {
-    const { plainTekst } = useApp();
+    const { plainTekst } = useAppContext();
     const { toggles } = useFeatureToggles();
 
     return (

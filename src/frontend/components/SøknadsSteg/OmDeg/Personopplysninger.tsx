@@ -4,7 +4,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 
 import { BodyShort, Label } from '@navikt/ds-react';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { genererAdresseVisning } from '../../../utils/adresse';
@@ -12,7 +12,7 @@ import { landkodeTilSpråk, sivilstandTilSanitySivilstandApiKey } from '../../..
 
 export const Personopplysninger: React.FC = () => {
     const { valgtLocale } = useSpråkContext();
-    const { søknad, tekster, plainTekst } = useApp();
+    const { søknad, tekster, plainTekst } = useAppContext();
 
     const søker = søknad.søker;
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
@@ -56,7 +56,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
         validerFelterOgVisFeilmelding,
         slutterIBarnehagenMinDato,
     } = useBarnehageplassPeriodeSkjema();
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const barnehageplassTekster: IBarnehageplassTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
 

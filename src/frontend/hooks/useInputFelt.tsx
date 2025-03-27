@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { feil, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
-import { useApp } from '../context/AppContext';
+import { useAppContext } from '../context/AppContext';
 import { LocaleRecordBlock } from '../typer/common';
 import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
@@ -25,7 +25,7 @@ const useInputFelt = ({
     nullstillVedAvhengighetEndring = true,
     flettefelter,
 }: Props) => {
-    const { plainTekst } = useApp();
+    const { plainTekst } = useAppContext();
     return useFelt<string>({
         feltId: søknadsfelt?.id ?? uuidv4(),
         verdi: søknadsfelt ? trimWhiteSpace(søknadsfelt.svar) : '',

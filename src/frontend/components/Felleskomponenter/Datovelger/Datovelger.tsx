@@ -5,7 +5,7 @@ import { formatISO, isAfter, startOfDay } from 'date-fns';
 import { BodyShort, ErrorMessage, DatePicker, useDatepicker } from '@navikt/ds-react';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { ISODateString } from '../../../typer/common';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
@@ -44,7 +44,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     strategy = 'fixed',
 }) => {
     const { valgtLocale } = useSpråkContext();
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const { datoformatHjelpetekst, datoformatPlaceholder } = tekster().FELLES.hjelpeteksterForInput;
 
     const minDatoErIFremtiden = () =>

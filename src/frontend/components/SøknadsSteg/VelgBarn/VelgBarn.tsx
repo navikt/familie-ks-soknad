@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Alert } from '@navikt/ds-react';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import useModal from '../../Felleskomponenter/SkjemaModal/useModal';
 import Steg from '../../Felleskomponenter/Steg/Steg';
@@ -15,7 +15,7 @@ import { NyttBarnKort } from './LeggTilBarn/NyttBarnKort';
 import { useVelgBarn } from './useVelgBarn';
 
 const VelgBarn: React.FC = () => {
-    const { søknad, tekster } = useApp();
+    const { søknad, tekster } = useAppContext();
     const {
         lukkModal: lukkLeggTilBarnModal,
         åpneModal: åpneLeggTilBarnModal,

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { ExpansionCard, Heading, HGrid, VStack } from '@navikt/ds-react';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import TekstBlock from '../TekstBlock';
 
 import PictureScanningExample from './PictureScanningExample';
@@ -22,7 +22,7 @@ const StyledVStack = styled(VStack)`
 const svgIconHeight = 112;
 
 const PictureScanningGuide = () => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
 
     return (

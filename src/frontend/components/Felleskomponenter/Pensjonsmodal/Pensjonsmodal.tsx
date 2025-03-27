@@ -4,7 +4,7 @@ import { parseISO } from 'date-fns';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useFeatureToggles } from '../../../context/FeatureTogglesContext';
 import { EFeatureToggle } from '../../../typer/feature-toggles';
 import { IPensjonsperiode } from '../../../typer/perioder';
@@ -42,7 +42,7 @@ export const PensjonModal: React.FC<Props> = ({
     forklaring = undefined,
 }) => {
     const { toggles } = useFeatureToggles();
-    const { tekster } = useApp();
+    const { tekster } = useAppContext();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
         usePensjonSkjema({
             gjelderUtland,

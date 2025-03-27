@@ -3,13 +3,13 @@ import React from 'react';
 import { Alert, Heading, Label, Loader, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
-import { useApp } from '../../context/AppContext';
+import { useAppContext } from '../../context/AppContext';
 import { Typografi } from '../../typer/common';
 import { ESanitySteg } from '../../typer/sanity/sanity';
 import TekstBlock from '../Felleskomponenter/TekstBlock';
 
 const Kontoinformasjon: React.FC = () => {
-    const { kontoinformasjon, tekster, plainTekst } = useApp();
+    const { kontoinformasjon, tekster, plainTekst } = useAppContext();
 
     const kvitteringstekster = tekster()[ESanitySteg.KVITTERING];
 

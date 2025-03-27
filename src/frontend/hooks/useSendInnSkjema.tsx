@@ -5,7 +5,7 @@ import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import Miljø from '../../shared-utils/Miljø';
 import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon';
-import { useApp } from '../context/AppContext';
+import { useAppContext } from '../context/AppContext';
 import { useFeatureToggles } from '../context/FeatureTogglesContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { EFeatureToggle } from '../typer/feature-toggles';
@@ -24,7 +24,7 @@ export const useSendInnSkjema = (): {
         settSisteModellVersjon,
         tekster,
         tilRestLocaleRecord,
-    } = useApp();
+    } = useAppContext();
     const { soknadApiProxyUrl } = Miljø();
     const { valgtLocale } = useSpråkContext();
     const { toggles } = useFeatureToggles();

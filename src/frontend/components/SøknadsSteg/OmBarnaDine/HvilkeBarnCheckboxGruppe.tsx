@@ -4,7 +4,7 @@ import { CheckboxGroup, Checkbox } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { BarnetsId } from '../../../typer/common';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
@@ -26,7 +26,7 @@ function HvilkeBarnCheckboxGruppe({
     visFeilmelding,
     children,
 }: Props) {
-    const { søknad } = useApp();
+    const { søknad } = useAppContext();
     const [valgteBarn, settValgteBarn] = useState<BarnetsId[]>(
         søknad.barnInkludertISøknaden
             .filter(barn => barn[søknadsdatafelt].svar === ESvar.JA)

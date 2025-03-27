@@ -6,7 +6,7 @@ import { PaperclipIcon, TrashFillIcon } from '@navikt/aksel-icons';
 import { Button } from '@navikt/ds-react';
 import { ABorderDivider } from '@navikt/ds-tokens/dist/tokens';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import { Typografi } from '../../../../typer/common';
 import { IVedlegg } from '../../../../typer/dokumentasjon';
 import { formaterFilstørrelse } from '../../../../utils/dokumentasjon';
@@ -43,7 +43,7 @@ const StyledAttachment = styled(PaperclipIcon)`
 `;
 
 const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     return (
         <FilListe>
             {filliste.map((fil: IVedlegg, index: number) => {

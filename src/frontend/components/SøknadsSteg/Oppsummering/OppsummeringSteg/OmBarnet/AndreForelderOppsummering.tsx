@@ -3,7 +3,7 @@ import React from 'react';
 import { BodyShort, FormSummary } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { useApp } from '../../../../../context/AppContext';
+import { useAppContext } from '../../../../../context/AppContext';
 import {
     andreForelderDataKeySpørsmål,
     barnDataKeySpørsmål,
@@ -25,7 +25,7 @@ const AndreForelderOppsummering: React.FC<{
     barn: IBarnMedISøknad;
     andreForelder: IAndreForelder;
 }> = ({ barn, andreForelder }) => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const omBarnetTekster: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     const andreForelderErDød = barn.andreForelderErDød.svar === ESvar.JA;
 

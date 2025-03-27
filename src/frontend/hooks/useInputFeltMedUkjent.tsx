@@ -6,7 +6,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { feil, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 import { idnr } from '@navikt/fnrvalidator';
 
-import { useApp } from '../context/AppContext';
+import { useAppContext } from '../context/AppContext';
 import { DatoMedUkjent, LocaleRecordBlock } from '../typer/common';
 import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
 import { IdNummerKey } from '../typer/skjema';
@@ -33,7 +33,7 @@ const useInputFeltMedUkjent = ({
     nullstillVedAvhengighetEndring?: boolean;
     flettefelter?: FlettefeltVerdier;
 }) => {
-    const { plainTekst, tekster } = useApp();
+    const { plainTekst, tekster } = useAppContext();
     const { ugyldigFoedselsnummer } = tekster().FELLES.formateringsfeilmeldinger;
     const inputFelt = useFelt<string>({
         feltId: søknadsfelt ? søknadsfelt.id : uuidv4(),

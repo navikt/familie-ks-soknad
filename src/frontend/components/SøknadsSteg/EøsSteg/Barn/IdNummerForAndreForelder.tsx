@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import { useEøsContext } from '../../../../context/EøsContext';
 import { IBarnMedISøknad } from '../../../../typer/barn';
 import { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
@@ -17,7 +17,7 @@ const IdNummerForAndreForelder: React.FC<{
     lesevisning?: boolean;
 }> = ({ skjema, barn, settIdNummerFelter, lesevisning = false }) => {
     const { erEøsLand } = useEøsContext();
-    const { tekster } = useApp();
+    const { tekster } = useAppContext();
 
     if (!barn.andreForelder || skalSkjuleAndreForelderFelt(barn)) {
         return null;

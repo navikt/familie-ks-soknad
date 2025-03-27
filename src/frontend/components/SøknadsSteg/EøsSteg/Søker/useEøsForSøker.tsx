@@ -5,7 +5,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, type Felt, type ISkjema, ok, useSkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import useInputFelt from '../../../../hooks/useInputFelt';
 import useJaNeiSpmFelt from '../../../../hooks/useJaNeiSpmFelt';
 import { usePerioder } from '../../../../hooks/usePerioder';
@@ -40,7 +40,7 @@ export const useEøsForSøker = (): {
     settIdNummerFelter: Dispatch<SetStateAction<Felt<string>[]>>;
     idNummerFelter: Felt<string>[];
 } => {
-    const { søknad, settSøknad, tekster, plainTekst } = useApp();
+    const { søknad, settSøknad, tekster, plainTekst } = useAppContext();
     const { arbeidNorge, hvorBor, pensjonNorge, utbetalinger } = tekster().EØS_FOR_SØKER;
     const forLangAdresseTekst = tekster().FELLES.formateringsfeilmeldinger.forLangAdresse;
 

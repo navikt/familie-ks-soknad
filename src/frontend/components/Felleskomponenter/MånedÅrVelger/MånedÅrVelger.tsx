@@ -5,7 +5,7 @@ import { formatISO, lastDayOfMonth } from 'date-fns';
 import { MonthPicker, useMonthpicker } from '@navikt/ds-react';
 import type { Felt } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { ISODateString } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -51,7 +51,7 @@ export const MånedÅrVelger: React.FC<MånedÅrVelgerProps> = ({
     kanIkkeVæreFremtid,
 }) => {
     const { valgtLocale } = useSpråkContext();
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const [error, setError] = useState<Feilmelding | undefined>(undefined);
 
     const { manedformatPlaceholder } = tekster().FELLES.hjelpeteksterForInput;

@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react';
 
 import { Alert } from '@navikt/ds-react';
 
-import { useApp } from '../../context/AppContext';
+import { useAppContext } from '../../context/AppContext';
 
 import KomponentGruppe from './KomponentGruppe/KomponentGruppe';
 import TekstBlock from './TekstBlock';
@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const SøkerMåBrukePDF: FC<Props> = ({ advarselTekst }) => {
-    const { tekster } = useApp();
+    const { tekster } = useAppContext();
     const { brukPDFKontantstoette } = tekster().FELLES.kanIkkeBrukeSoeknad;
     return (
         <KomponentGruppe dynamisk>

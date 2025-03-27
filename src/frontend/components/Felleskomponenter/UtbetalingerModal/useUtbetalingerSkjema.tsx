@@ -1,7 +1,7 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import { useFelt, useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { useFeatureToggles } from '../../../context/FeatureTogglesContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
@@ -37,7 +37,7 @@ export const useUtbetalingerSkjema = (
     erDød
 ): IUsePeriodeSkjemaVerdi<IUtbetalingerFeltTyper> => {
     const { toggles } = useFeatureToggles();
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const teksterForPersontype: IAndreUtbetalingerTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.andreUtbetalinger[personType];
     const andreForelderErDød = personType === PersonType.andreForelder && erDød;

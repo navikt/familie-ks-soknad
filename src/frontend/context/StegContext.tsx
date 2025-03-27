@@ -5,7 +5,7 @@ import { matchPath, useLocation } from 'react-router';
 import { IBarnMedISøknad } from '../typer/barn';
 import { ISteg, RouteEnum } from '../typer/routes';
 
-import { useApp } from './AppContext';
+import { useAppContext } from './AppContext';
 import { useEøsContext } from './EøsContext';
 import { useRoutesContext } from './RoutesContext';
 
@@ -26,7 +26,7 @@ interface StegContext {
 const StegContext = createContext<StegContext | undefined>(undefined);
 
 export function StegProvider(props: PropsWithChildren) {
-    const { søknad } = useApp();
+    const { søknad } = useAppContext();
     const { barnInkludertISøknaden } = søknad;
     const { pathname } = useLocation();
     const { routes } = useRoutesContext();

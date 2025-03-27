@@ -4,7 +4,7 @@ import { Alert } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import { useApp } from '../../../context/AppContext';
+import { useAppContext } from '../../../context/AppContext';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import {
@@ -49,7 +49,7 @@ const Oppfølgningsspørsmål: React.FC<{
     fjernBarnehageplassPeriode,
     registrerteBarnehageplassPerioder,
 }) => {
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
     const teksterForSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     const {
         paagaaendeSoeknadYtelse,

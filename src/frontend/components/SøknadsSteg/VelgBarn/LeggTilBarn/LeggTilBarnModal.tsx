@@ -3,7 +3,7 @@ import React from 'react';
 import { Fieldset } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { useApp } from '../../../../context/AppContext';
+import { useAppContext } from '../../../../context/AppContext';
 import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { visFeiloppsummering } from '../../../../utils/hjelpefunksjoner';
@@ -23,7 +23,7 @@ const LeggTilBarnModal: React.FC<{
 }> = ({ erÅpen, lukkModal }) => {
     const { skjema, nullstillSkjema, valideringErOk, leggTilBarn, validerFelterOgVisFeilmelding } =
         useLeggTilBarn();
-    const { tekster, plainTekst } = useApp();
+    const { tekster, plainTekst } = useAppContext();
 
     const teksterForLeggTilBarnModal: ILeggTilBarnTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
