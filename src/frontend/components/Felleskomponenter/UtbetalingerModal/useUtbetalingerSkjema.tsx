@@ -21,7 +21,7 @@ import {
     sisteDagDenneMåneden,
     stringTilDate,
 } from '../../../utils/dato';
-import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
+import { minTilDatoForPeriode } from '../../../utils/perioder';
 
 import { UtbetalingerSpørsmålId } from './spørsmål';
 
@@ -95,10 +95,7 @@ export const useUtbetalingerSkjema = (
         sluttdatoAvgrensning: periodenErAvsluttet
             ? utbetalingTilDatoSluttdatoAvgrensning
             : undefined,
-        startdatoAvgrensning: minTilDatoForUtbetalingEllerArbeidsperiode(
-            periodenErAvsluttet,
-            utbetalingFraDato.verdi
-        ),
+        startdatoAvgrensning: minTilDatoForPeriode(periodenErAvsluttet, utbetalingFraDato.verdi),
         customStartdatoFeilmelding:
             erSammeDatoSomDagensDato(stringTilDate(utbetalingFraDato.verdi)) || periodenErAvsluttet
                 ? undefined
