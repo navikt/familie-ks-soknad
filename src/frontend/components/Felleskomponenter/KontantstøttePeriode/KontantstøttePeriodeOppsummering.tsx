@@ -3,12 +3,15 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useAppContext } from '../../../context/AppContext';
+import { useFeatureToggles } from '../../../context/FeatureTogglesContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
+import { EFeatureToggle } from '../../../typer/feature-toggles';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
-import { formaterDato } from '../../../utils/dato';
+import { formaterDato, formaterDatostringKunMåned } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
+import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
 import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
 import TekstBlock from '../TekstBlock';
@@ -35,6 +38,7 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
     erDød,
     personType,
 }) => {
+    const { toggles } = useFeatureToggles();
     const { tekster } = useAppContext();
 
     const teksterForPersonType: IEøsYtelseTekstinnhold =
@@ -92,12 +96,30 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
             />
             <OppsummeringFelt
                 tittel={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
-                søknadsvar={formaterDato(fraDatoKontantstøttePeriode.svar)}
+                søknadsvar={
+                    toggles[EFeatureToggle.SPOR_OM_MANED_IKKE_DATO]
+                        ? uppercaseFørsteBokstav(
+                              formaterDatostringKunMåned(
+                                  fraDatoKontantstøttePeriode.svar,
+                                  valgtLocale
+                              )
+                          )
+                        : formaterDato(fraDatoKontantstøttePeriode.svar)
+                }
             />
             {tilDatoKontantstøttePeriode.svar && (
                 <OppsummeringFelt
                     tittel={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
-                    søknadsvar={formaterDato(tilDatoKontantstøttePeriode.svar)}
+                    søknadsvar={
+                        toggles[EFeatureToggle.SPOR_OM_MANED_IKKE_DATO]
+                            ? uppercaseFørsteBokstav(
+                                  formaterDatostringKunMåned(
+                                      tilDatoKontantstøttePeriode.svar,
+                                      valgtLocale
+                                  )
+                              )
+                            : formaterDato(tilDatoKontantstøttePeriode.svar)
+                    }
                 />
             )}
             <OppsummeringFelt
