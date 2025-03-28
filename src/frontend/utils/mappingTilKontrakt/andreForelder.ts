@@ -245,6 +245,7 @@ export const andreForelderTilISøknadsfelt = (
                 barn,
                 tilRestLocaleRecord,
                 eøsYtelseTekster: tekster.FELLES.modaler.eøsYtelse.andreForelder,
+                toggleSpørOmMånedIkkeDato,
             })
         ),
         idNummer: idNummer.map(idnummerObj =>
