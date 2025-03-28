@@ -1,17 +1,17 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { IBarnMedISøknad } from '../../typer/barn';
+import { AlternativtSvarForInput, ISODateString } from '../../typer/common';
 import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IUtbetalingsperiodeIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
 import { IUtbetalingsperiode } from '../../typer/perioder';
 import { IAndreUtbetalingerTekstinnhold } from '../../typer/sanity/modaler/andreUtbetalinger';
+import { ISøknadSpørsmål } from '../../typer/spørsmål';
+import { formaterDatostringKunMåned } from '../dato';
 import { landkodeTilSpråk } from '../språk';
+import { uppercaseFørsteBokstav } from '../visning';
 
-import {
-    sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjent,
-    verdiCallbackAlleSpråk,
-} from './hjelpefunksjoner';
+import { sammeVerdiAlleSpråk, verdiCallbackAlleSpråk } from './hjelpefunksjoner';
 
 interface UtbetalingsperiodeIKontraktFormatParams {
     periode: IUtbetalingsperiode;
@@ -19,6 +19,7 @@ interface UtbetalingsperiodeIKontraktFormatParams {
     tilRestLocaleRecord: TilRestLocaleRecord;
     tekster: IAndreUtbetalingerTekstinnhold;
     barn?: IBarnMedISøknad;
+    toggleSpørOmMånedIkkeDato: boolean;
 }
 
 export const tilIAndreUtbetalingsperioderIKontraktFormat = ({
@@ -27,6 +28,7 @@ export const tilIAndreUtbetalingsperioderIKontraktFormat = ({
     tilRestLocaleRecord,
     tekster,
     barn,
+    toggleSpørOmMånedIkkeDato,
 }: UtbetalingsperiodeIKontraktFormatParams): ISøknadsfelt<IUtbetalingsperiodeIKontraktFormat> => {
     const { fårUtbetalingNå, utbetalingLand, utbetalingFraDato, utbetalingTilDato } = periode;
 
@@ -60,7 +62,7 @@ export const tilIAndreUtbetalingsperioderIKontraktFormat = ({
             },
             utbetalingFraDato: {
                 label: tilRestLocaleRecord(tekster.startdato.sporsmal),
-                verdi: sammeVerdiAlleSpråk(utbetalingFraDato.svar),
+                verdi: datoTilVerdiForKontrakt(utbetalingFraDato),
             },
             utbetalingTilDato: {
                 label: tilRestLocaleRecord(
@@ -68,12 +70,20 @@ export const tilIAndreUtbetalingsperioderIKontraktFormat = ({
                         ? tekster.sluttdatoFortid.sporsmal
                         : tekster.sluttdatoFremtid.sporsmal
                 ),
-                verdi: sammeVerdiAlleSpråkEllerUkjent(
-                    tilRestLocaleRecord,
-                    utbetalingTilDato.svar,
+                verdi:
+                    utbetalingTilDato.svar === AlternativtSvarForInput.UKJENT &&
                     tekster.sluttdatoFremtid.checkboxLabel
-                ),
+                        ? tilRestLocaleRecord(tekster.sluttdatoFremtid.checkboxLabel)
+                        : datoTilVerdiForKontrakt(utbetalingTilDato),
             },
         }),
     };
+
+    function datoTilVerdiForKontrakt(skjemaSpørsmål: ISøknadSpørsmål<ISODateString | ''>) {
+        return toggleSpørOmMånedIkkeDato
+            ? verdiCallbackAlleSpråk(locale =>
+                  uppercaseFørsteBokstav(formaterDatostringKunMåned(skjemaSpørsmål.svar, locale))
+              )
+            : sammeVerdiAlleSpråk(skjemaSpørsmål.svar);
+    }
 };

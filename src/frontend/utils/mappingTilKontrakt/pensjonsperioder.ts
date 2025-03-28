@@ -5,7 +5,9 @@ import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generel
 import { IPensjonsperiodeIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
 import { IPensjonsperiode } from '../../typer/perioder';
 import { IPensjonsperiodeTekstinnhold } from '../../typer/sanity/modaler/pensjonsperiode';
+import { formaterDatostringKunMåned } from '../dato';
 import { landkodeTilSpråk } from '../språk';
+import { uppercaseFørsteBokstav } from '../visning';
 
 import { sammeVerdiAlleSpråk, verdiCallbackAlleSpråk } from './hjelpefunksjoner';
 
@@ -16,6 +18,7 @@ interface PensjonsperiodeIKontraktFormatParams {
     tilRestLocaleRecord: TilRestLocaleRecord;
     tekster: IPensjonsperiodeTekstinnhold;
     barn?: IBarnMedISøknad;
+    toggleSpørOmMånedIkkeDato: boolean;
 }
 
 export const tilIPensjonsperiodeIKontraktFormat = ({
@@ -25,6 +28,7 @@ export const tilIPensjonsperiodeIKontraktFormat = ({
     tilRestLocaleRecord,
     tekster,
     barn,
+    toggleSpørOmMånedIkkeDato,
 }: PensjonsperiodeIKontraktFormatParams): ISøknadsfelt<IPensjonsperiodeIKontraktFormat> => {
     const { mottarPensjonNå, pensjonsland, pensjonFra, pensjonTil } = periode;
 
@@ -62,13 +66,25 @@ export const tilIPensjonsperiodeIKontraktFormat = ({
             pensjonFra: pensjonFra.svar
                 ? {
                       label: tilRestLocaleRecord(tekster.startdato.sporsmal),
-                      verdi: sammeVerdiAlleSpråk(pensjonFra.svar),
+                      verdi: toggleSpørOmMånedIkkeDato
+                          ? verdiCallbackAlleSpråk(locale =>
+                                uppercaseFørsteBokstav(
+                                    formaterDatostringKunMåned(pensjonFra.svar, locale)
+                                )
+                            )
+                          : sammeVerdiAlleSpråk(pensjonFra.svar),
                   }
                 : null,
             pensjonTil: pensjonTil.svar
                 ? {
                       label: tilRestLocaleRecord(tekster.sluttdato.sporsmal),
-                      verdi: sammeVerdiAlleSpråk(pensjonTil.svar),
+                      verdi: toggleSpørOmMånedIkkeDato
+                          ? verdiCallbackAlleSpråk(locale =>
+                                uppercaseFørsteBokstav(
+                                    formaterDatostringKunMåned(pensjonTil.svar, locale)
+                                )
+                            )
+                          : sammeVerdiAlleSpråk(pensjonTil.svar),
                   }
                 : null,
         }),

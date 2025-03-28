@@ -8,6 +8,7 @@ import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon
 import { useAppContext } from '../context/AppContext';
 import { useFeatureToggles } from '../context/FeatureTogglesContext';
 import { useSpråkContext } from '../context/SpråkContext';
+import { EFeatureToggle } from '../typer/feature-toggles';
 import { ISøknadKontrakt } from '../typer/kontrakt/søknadKontrakt';
 import { IKvittering } from '../typer/kvittering';
 import { dataISøknadKontraktFormat } from '../utils/mappingTilKontrakt/søknad';
@@ -38,7 +39,8 @@ export const useSendInnSkjema = (): {
                 søknad,
                 tekster(),
                 tilRestLocaleRecord,
-                kontraktVersjon
+                kontraktVersjon,
+                toggles[EFeatureToggle.SPOR_OM_MANED_IKKE_DATO] === true
             );
 
             const res = await sendInn<ISøknadKontrakt>(

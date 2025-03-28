@@ -5,16 +5,23 @@ import { useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
+import { useFeatureToggles } from '../../../context/FeatureTogglesContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { EFeatureToggle } from '../../../typer/feature-toggles';
 import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IPensjonsperiodeFeltTyper } from '../../../typer/skjema';
-import { dagenEtterDato, dagensDato, gårsdagensDato, stringTilDate } from '../../../utils/dato';
+import {
+    dagenEtterDato,
+    dagensDato,
+    sisteDagDenneMåneden,
+    stringTilDate,
+} from '../../../utils/dato';
 
 import { mottarPensjonNåFeilmelding } from './språkUtils';
 import { PensjonsperiodeSpørsmålId } from './spørsmål';
@@ -32,6 +39,7 @@ export const usePensjonSkjema = ({
     erDød,
     barn,
 }: IUsePensjonSkjemaParams): IUsePeriodeSkjemaVerdi<IPensjonsperiodeFeltTyper> => {
+    const { toggles } = useFeatureToggles();
     const { tekster } = useAppContext();
     const { erEøsLand } = useEøsContext();
     const teksterForPersonType: IPensjonsperiodeTekstinnhold =
@@ -72,9 +80,15 @@ export const usePensjonSkjema = ({
             (mottarPensjonNå.valideringsstatus === Valideringsstatus.OK || erAndreForelderDød) &&
             (!gjelderUtland || !!erEøsLand(pensjonsland.verdi)),
         feilmelding: teksterForPersonType.startdato.feilmelding,
-        sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
+        sluttdatoAvgrensning: toggles[EFeatureToggle.SPOR_OM_MANED_IKKE_DATO]
+            ? sisteDagDenneMåneden()
+            : dagensDato(),
         avhengigheter: { mottarPensjonNå },
     });
+
+    const tilPensjonperiodeSluttdatoAvgrensning = toggles[EFeatureToggle.SPOR_OM_MANED_IKKE_DATO]
+        ? sisteDagDenneMåneden()
+        : dagensDato();
 
     const pensjonTilDato = useDatovelgerFelt({
         søknadsfelt: {
@@ -85,7 +99,7 @@ export const usePensjonSkjema = ({
             (mottarPensjonNå.verdi === ESvar.NEI || erAndreForelderDød) &&
             (!gjelderUtland || !!erEøsLand(pensjonsland.verdi)),
         feilmelding: teksterForPersonType.sluttdato.feilmelding,
-        sluttdatoAvgrensning: dagensDato(),
+        sluttdatoAvgrensning: tilPensjonperiodeSluttdatoAvgrensning,
         startdatoAvgrensning: dagenEtterDato(stringTilDate(pensjonFraDato.verdi)),
         avhengigheter: { mottarPensjonNå, pensjonFraDato },
     });

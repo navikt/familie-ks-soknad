@@ -34,7 +34,8 @@ export const dataISøknadKontraktFormat = (
     søknad: ISøknad,
     tekster: ITekstinnhold,
     tilRestLocaleRecord: TilRestLocaleRecord,
-    kontraktVersjon: number
+    kontraktVersjon: number,
+    toggleSpørOmMånedIkkeDato: boolean
 ): ISøknadKontrakt => {
     const { søker } = søknad;
     // Raskeste måte å få tak i alle spørsmål minus de andre feltene på søker
@@ -47,9 +48,20 @@ export const dataISøknadKontraktFormat = (
     return {
         kontraktVersjon: kontraktVersjon,
         antallEøsSteg: antallEøsSteg(søker, barnInkludertISøknaden),
-        søker: søkerIKontraktFormat(søknad, tekster, tilRestLocaleRecord),
+        søker: søkerIKontraktFormat(
+            søknad,
+            tekster,
+            tilRestLocaleRecord,
+            toggleSpørOmMånedIkkeDato
+        ),
         barn: barnInkludertISøknaden.map(barn =>
-            barnISøknadsFormat(barn, søknad, tekster, tilRestLocaleRecord)
+            barnISøknadsFormat(
+                barn,
+                søknad,
+                tekster,
+                tilRestLocaleRecord,
+                toggleSpørOmMånedIkkeDato
+            )
         ),
         lestOgForståttBekreftelse: søknad.lestOgForståttBekreftelse,
         erNoenAvBarnaFosterbarn: søknadsfeltForESvar(

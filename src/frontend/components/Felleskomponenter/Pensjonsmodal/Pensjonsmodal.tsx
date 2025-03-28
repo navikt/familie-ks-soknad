@@ -1,16 +1,21 @@
 import React from 'react';
 
+import { parseISO } from 'date-fns';
+
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useAppContext } from '../../../context/AppContext';
+import { useFeatureToggles } from '../../../context/FeatureTogglesContext';
+import { EFeatureToggle } from '../../../typer/feature-toggles';
 import { IPensjonsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
-import { dagensDato, gårsdagensDato } from '../../../utils/dato';
+import { dagensDato, gårsdagensDato, sisteDagDenneMåneden } from '../../../utils/dato';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
+import { DagIMåneden, MånedÅrVelger } from '../MånedÅrVelger/MånedÅrVelger';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import TekstBlock from '../TekstBlock';
@@ -36,6 +41,7 @@ export const PensjonModal: React.FC<Props> = ({
     erDød,
     forklaring = undefined,
 }) => {
+    const { toggles } = useFeatureToggles();
     const { tekster } = useAppContext();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
         usePensjonSkjema({
@@ -119,23 +125,58 @@ export const PensjonModal: React.FC<Props> = ({
                     ekskluderNorge
                 />
             )}
-            {pensjonFraDato.erSynlig && (
-                <Datovelger
-                    felt={pensjonFraDato}
-                    label={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
-                    skjema={skjema}
-                    avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
-                />
-            )}
-            {pensjonTilDato.erSynlig && (
-                <Datovelger
-                    felt={pensjonTilDato}
-                    label={<TekstBlock block={teksterForModal.sluttdato.sporsmal} />}
-                    skjema={skjema}
-                    avgrensMaxDato={dagensDato()}
-                    tilhørendeFraOgMedFelt={pensjonFraDato}
-                    dynamisk
-                />
+            {toggles[EFeatureToggle.SPOR_OM_MANED_IKKE_DATO] ? (
+                <>
+                    {pensjonFraDato.erSynlig && (
+                        <MånedÅrVelger
+                            felt={pensjonFraDato}
+                            label={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
+                            senesteValgbareMåned={
+                                periodenErAvsluttet ? gårsdagensDato() : dagensDato()
+                            }
+                            visFeilmeldinger={skjema.visFeilmeldinger}
+                            dagIMåneden={DagIMåneden.FØRSTE_DAG}
+                            kanIkkeVæreFremtid={true}
+                        />
+                    )}
+                    {pensjonTilDato.erSynlig && (
+                        <MånedÅrVelger
+                            felt={pensjonTilDato}
+                            label={<TekstBlock block={teksterForModal.sluttdato.sporsmal} />}
+                            tidligsteValgbareMåned={
+                                pensjonFraDato.verdi !== ''
+                                    ? parseISO(pensjonFraDato.verdi)
+                                    : undefined
+                            }
+                            senesteValgbareMåned={sisteDagDenneMåneden()}
+                            visFeilmeldinger={skjema.visFeilmeldinger}
+                            dagIMåneden={DagIMåneden.SISTE_DAG}
+                            kanIkkeVæreFremtid={periodenErAvsluttet}
+                            kanIkkeVæreFortid={!periodenErAvsluttet}
+                        />
+                    )}
+                </>
+            ) : (
+                <>
+                    {pensjonFraDato.erSynlig && (
+                        <Datovelger
+                            felt={pensjonFraDato}
+                            label={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
+                            skjema={skjema}
+                            avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
+                        />
+                    )}
+                    {pensjonTilDato.erSynlig && (
+                        <Datovelger
+                            felt={pensjonTilDato}
+                            label={<TekstBlock block={teksterForModal.sluttdato.sporsmal} />}
+                            skjema={skjema}
+                            avgrensMaxDato={dagensDato()}
+                            tilhørendeFraOgMedFelt={pensjonFraDato}
+                            dynamisk
+                        />
+                    )}
+                </>
             )}
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>
