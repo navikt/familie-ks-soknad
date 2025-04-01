@@ -9,15 +9,23 @@ import {
 } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
+import { useFeatureToggles } from '../../../context/FeatureTogglesContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { EFeatureToggle } from '../../../typer/feature-toggles';
 import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IKontantstøttePerioderFeltTyper } from '../../../typer/skjema';
-import { dagenEtterDato, dagensDato, gårsdagensDato, stringTilDate } from '../../../utils/dato';
+import {
+    dagenEtterDato,
+    dagensDato,
+    gårsdagensDato,
+    sisteDagDenneMåneden,
+    stringTilDate,
+} from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
@@ -31,6 +39,7 @@ export const useKontantstøttePeriodeSkjema = (
     personType: PersonType,
     erDød
 ): IUsePeriodeSkjemaVerdi<IKontantstøttePerioderFeltTyper> => {
+    const { toggles } = useFeatureToggles();
     const { tekster, plainTekst } = useAppContext();
     const teksterForPersonType: IEøsYtelseTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.eøsYtelse[personType];
@@ -65,11 +74,17 @@ export const useKontantstøttePeriodeSkjema = (
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
     });
 
+    const tilDatoKontantstøttePeriodeSluttdatoAvgrensning = toggles[
+        EFeatureToggle.SPOR_OM_MANED_IKKE_DATO
+    ]
+        ? sisteDagDenneMåneden()
+        : dagensDato();
+
     const tilDatoKontantstøttePeriode = useDatovelgerFelt({
         søknadsfelt: { id: KontantstøttePeriodeSpørsmålId.tilDatoKontantstøttePeriode, svar: '' },
         skalFeltetVises: periodenErAvsluttet || andreForelderErDød,
         feilmelding: teksterForPersonType.sluttdato.feilmelding,
-        sluttdatoAvgrensning: dagensDato(),
+        sluttdatoAvgrensning: tilDatoKontantstøttePeriodeSluttdatoAvgrensning,
         startdatoAvgrensning: fraDatoKontantstøttePeriode.verdi
             ? dagenEtterDato(stringTilDate(fraDatoKontantstøttePeriode.verdi))
             : undefined,

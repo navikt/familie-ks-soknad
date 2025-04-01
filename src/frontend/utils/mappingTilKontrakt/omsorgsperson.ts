@@ -204,6 +204,7 @@ export const omsorgspersonTilISøknadsfelt = (
                 tilRestLocaleRecord,
                 eøsYtelseTekster: tekster.FELLES.modaler.eøsYtelse.omsorgsperson,
                 barn: barn,
+                toggleSpørOmMånedIkkeDato,
             })
         ),
     };

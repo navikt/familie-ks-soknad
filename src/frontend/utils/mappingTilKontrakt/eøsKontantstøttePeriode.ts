@@ -1,11 +1,15 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { IBarnMedISøknad } from '../../typer/barn';
+import { ISODateString } from '../../typer/common';
 import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IEøsKontantstøttePeriodeIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
 import { IEøsKontantstøttePeriode } from '../../typer/perioder';
 import { IEøsYtelseTekstinnhold } from '../../typer/sanity/modaler/eøsYtelse';
+import { ISøknadSpørsmål } from '../../typer/spørsmål';
+import { formaterDatostringKunMåned } from '../dato';
 import { landkodeTilSpråk } from '../språk';
+import { uppercaseFørsteBokstav } from '../visning';
 
 import { sammeVerdiAlleSpråk, verdiCallbackAlleSpråk } from './hjelpefunksjoner';
 
@@ -15,6 +19,7 @@ interface PensjonperiodeIKontraktFormatParams {
     barn: IBarnMedISøknad;
     tilRestLocaleRecord: TilRestLocaleRecord;
     eøsYtelseTekster: IEøsYtelseTekstinnhold;
+    toggleSpørOmMånedIkkeDato: boolean;
 }
 
 export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
@@ -23,6 +28,7 @@ export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
     tilRestLocaleRecord,
     eøsYtelseTekster,
     barn,
+    toggleSpørOmMånedIkkeDato,
 }: PensjonperiodeIKontraktFormatParams): ISøknadsfelt<IEøsKontantstøttePeriodeIKontraktFormat> => {
     const {
         mottarEøsKontantstøtteNå,
@@ -62,12 +68,12 @@ export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
             },
             fraDatoKontantstøttePeriode: {
                 label: tilRestLocaleRecord(eøsYtelseTekster.startdato.sporsmal),
-                verdi: sammeVerdiAlleSpråk(fraDatoKontantstøttePeriode?.svar),
+                verdi: datoTilVerdiForKontrakt(fraDatoKontantstøttePeriode),
             },
             tilDatoKontantstøttePeriode: tilDatoKontantstøttePeriode.svar
                 ? {
                       label: tilRestLocaleRecord(eøsYtelseTekster.sluttdato.sporsmal),
-                      verdi: sammeVerdiAlleSpråk(tilDatoKontantstøttePeriode?.svar ?? null),
+                      verdi: datoTilVerdiForKontrakt(tilDatoKontantstøttePeriode),
                   }
                 : null,
             månedligBeløp: {
@@ -76,4 +82,12 @@ export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
             },
         }),
     };
+
+    function datoTilVerdiForKontrakt(skjemaSpørsmål: ISøknadSpørsmål<ISODateString | ''>) {
+        return toggleSpørOmMånedIkkeDato
+            ? verdiCallbackAlleSpråk(locale =>
+                  uppercaseFørsteBokstav(formaterDatostringKunMåned(skjemaSpørsmål.svar, locale))
+              )
+            : sammeVerdiAlleSpråk(skjemaSpørsmål.svar);
+    }
 };

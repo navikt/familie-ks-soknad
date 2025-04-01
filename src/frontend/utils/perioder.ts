@@ -7,10 +7,7 @@ import {
     stringTilDate,
 } from './dato';
 
-export const minTilDatoForUtbetalingEllerArbeidsperiode = (
-    periodenErAvsluttet: boolean,
-    fraDato: string
-) => {
+export const minTilDatoForPeriode = (periodenErAvsluttet: boolean, fraDato: string) => {
     const gyldigFraDato = fraDato !== '' && erDatoFormatGodkjent(stringTilDate(fraDato));
     if (periodenErAvsluttet) {
         return gyldigFraDato ? dagenEtterDato(stringTilDate(fraDato)) : undefined;

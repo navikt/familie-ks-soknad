@@ -11,7 +11,7 @@ import { PersonType } from '../../../typer/personType';
 import { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
 import { dagensDato, gårsdagensDato, sisteDagDenneMåneden } from '../../../utils/dato';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
-import { minTilDatoForUtbetalingEllerArbeidsperiode } from '../../../utils/perioder';
+import { minTilDatoForPeriode } from '../../../utils/perioder';
 import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
 import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
@@ -148,7 +148,7 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
                                             }
                                         />
                                     }
-                                    tidligsteValgbareMåned={minTilDatoForUtbetalingEllerArbeidsperiode(
+                                    tidligsteValgbareMåned={minTilDatoForPeriode(
                                         periodenErAvsluttet,
                                         utbetalingFraDato.verdi
                                     )}
@@ -195,7 +195,7 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
                                         />
                                     }
                                     avgrensMaxDato={periodenErAvsluttet ? dagensDato() : undefined}
-                                    avgrensMinDato={minTilDatoForUtbetalingEllerArbeidsperiode(
+                                    avgrensMinDato={minTilDatoForPeriode(
                                         periodenErAvsluttet,
                                         utbetalingFraDato.verdi
                                     )}

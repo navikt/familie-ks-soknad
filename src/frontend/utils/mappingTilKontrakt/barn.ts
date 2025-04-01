@@ -131,6 +131,7 @@ export const barnISøknadsFormat = (
                 barn,
                 tilRestLocaleRecord,
                 eøsYtelseTekster: tekster.FELLES.modaler.eøsYtelse.søker,
+                toggleSpørOmMånedIkkeDato,
             })
         ),
         barnehageplassPerioder: barnehageplassPerioder.map((periode, index) =>
