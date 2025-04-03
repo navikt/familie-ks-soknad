@@ -12,6 +12,7 @@ import {
 } from '@navikt/familie-typer';
 
 import Miljø, { basePath } from '../../shared-utils/Miljø';
+import { useDebounce } from '../hooks/useDebounce';
 import { LocaleType } from '../typer/common';
 import { IKontoinformasjon } from '../typer/kontoinformasjon';
 import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../typer/kontrakt/generelle';
@@ -55,6 +56,7 @@ export interface AppContext {
     systemetOK: () => boolean;
     systemetLaster: () => boolean;
     mellomlagre: (søknadSomSkalLagres: ISøknad, nåværendeStegIndex: number) => void;
+    tvingKjøringAvDebouncedMellomlagre: () => void;
     modellVersjonOppdatert: boolean;
     settSisteModellVersjon: React.Dispatch<React.SetStateAction<number>>;
     eøsLand: Ressurs<Map<Alpha3Code, string>>;
@@ -172,9 +174,14 @@ export function AppProvider(props: PropsWithChildren) {
         settMellomlagretVerdi(kontantstøtte);
     };
 
+    const {
+        debouncedFunksjon: debouncedMellomlagre,
+        tvingKjøringAvDebouncedFunksjon: tvingKjøringAvDebouncedMellomlagre,
+    } = useDebounce(() => mellomlagre(søknad, sisteUtfylteStegIndex), 500);
+
     useEffect(() => {
         if (sisteUtfylteStegIndex > 0) {
-            mellomlagre(søknad, sisteUtfylteStegIndex);
+            debouncedMellomlagre();
         }
     }, [nåværendeRoute, søknad.dokumentasjon]);
 
@@ -389,6 +396,7 @@ export function AppProvider(props: PropsWithChildren) {
                 systemetOK,
                 systemetLaster,
                 mellomlagre,
+                tvingKjøringAvDebouncedMellomlagre,
                 modellVersjonOppdatert,
                 settSisteModellVersjon,
                 eøsLand,
