@@ -56,7 +56,6 @@ export default [
                 },
             ],
 
-            'import/no-cycle': 1,
             '@typescript-eslint/ban-ts-ignore': 'off',
             '@typescript-eslint/explicit-module-boundary-types': 'off',
             'prettier/prettier': 'error',
