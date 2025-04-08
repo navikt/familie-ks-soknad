@@ -1,11 +1,14 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 
-import { LOG_LEVEL } from '@navikt/familie-logging';
+import { LOG_LEVEL, logError, logInfo } from '@navikt/familie-logging';
+import { requestOboToken, validateToken } from '@navikt/oasis';
 
+import { EFeatureToggle } from '../../frontend/typer/feature-toggles';
 import { erLokalt } from '../../shared-utils/Miljø';
 import { logRequest } from '../logger';
 import TokenXClient from '../tokenx';
 import { ApplicationName } from '../types';
+import { isEnabled } from '../utils/unleash';
 
 const { exchangeToken } = new TokenXClient();
 
@@ -56,10 +59,31 @@ const prepareSecuredRequest = async (
     }
     const token = utledToken(authorization);
     logRequest(req, 'IdPorten-token found: ' + (token.length > 1), LOG_LEVEL.INFO);
-    const accessToken = await exchangeToken(token, applicationName).then(
-        accessToken => accessToken
-    );
-    return `Bearer ${accessToken}`;
+
+    if (isEnabled(EFeatureToggle.BRUK_OASIS)) {
+        logInfo('Validerer og henter obo token ved hjelp av oasis');
+        const validation = await validateToken(token);
+        if (validation.ok === false) {
+            logError('Feil under validering av token: ', undefined, { error: validation.error });
+            throw validation.error;
+        }
+
+        const obo = await requestOboToken(
+            token,
+            `${process.env.NAIS_CLUSTER_NAME}:teamfamilie:${applicationName}`
+        );
+        if (obo.ok === false) {
+            logError('Feil under veksling av token: ', undefined, { error: obo.error });
+            throw obo.error;
+        }
+        return `Bearer ${obo.token}`;
+    } else {
+        const accessToken = await exchangeToken(token, applicationName).then(
+            accessToken => accessToken
+        );
+
+        return `Bearer ${accessToken}`;
+    }
 };
 
 const getFakedingsToken = async (applicationName: string): Promise<string> => {

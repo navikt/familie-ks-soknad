@@ -8,6 +8,7 @@ export enum EFeatureToggle {
     BRUK_NYTT_ENDEPUNKT_FOR_INNSENDING_AV_SOKNAD = 'BRUK_NYTT_ENDEPUNKT_FOR_INNSENDING_AV_SOKNAD',
     SPOR_OM_MANED_IKKE_DATO = 'SPOR_OM_MANED_IKKE_DATO',
     BRUK_NY_LAST_OPP_VEDLEGG_KOMPONENT = 'BRUK_NY_LAST_OPP_VEDLEGG_KOMPONENT',
+    BRUK_OASIS = 'BRUK_OASIS_FOR_VEKSLING_TIL_OBO_TOKEN',
 }
 
 export const ToggleKeys: Record<EFeatureToggle, string> = {
@@ -19,6 +20,7 @@ export const ToggleKeys: Record<EFeatureToggle, string> = {
     [EFeatureToggle.SPOR_OM_MANED_IKKE_DATO]: 'familie-ks-soknad.spor-om-maned-ikke-dato',
     [EFeatureToggle.BRUK_NY_LAST_OPP_VEDLEGG_KOMPONENT]:
         'familie-ks-soknad.bruk-ny-last-opp-vedlegg-komponent',
+    [EFeatureToggle.BRUK_OASIS]: 'familie-ks-soknad.bruk-oasis',
 };
 
 export type EAllFeatureToggles = Record<EFeatureToggle, boolean>;

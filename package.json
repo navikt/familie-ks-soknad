@@ -91,6 +91,7 @@
     "@navikt/familie-skjema": "^8.2.25",
     "@navikt/familie-typer": "^8.0.2",
     "@navikt/fnrvalidator": "^2.0.7",
+    "@navikt/oasis": "^3.7.0",
     "@navikt/nav-dekoratoren-moduler": "^3.2.0",
     "@portabletext/react": "^3.2.0",
     "@portabletext/toolkit": "^2.0.8",
