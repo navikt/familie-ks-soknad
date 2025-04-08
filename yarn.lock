@@ -11471,10 +11471,10 @@ universalify@^2.0.0:
   resolved "https://registry.npmjs.org/universalify/-/universalify-2.0.1.tgz#168efc2180964e6386d061e094df61afe239b18d"
   integrity sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==
 
-unleash-client@^6.4.5:
-  version "6.4.5"
-  resolved "https://registry.npmjs.org/unleash-client/-/unleash-client-6.4.5.tgz#d79cf51731fda9a480167cba4b266248682c3f93"
-  integrity sha512-wzAd4UkYpsgIPlPRY1nA1KNGZhUGUS3VaZW4aCbuH0s7vM6hxQ0wFDlsEFEKQ7CQtE6YYUTvjiMHmaj9UvsKQw==
+unleash-client@^6.6.0:
+  version "6.6.0"
+  resolved "https://registry.npmjs.org/unleash-client/-/unleash-client-6.6.0.tgz#2fbe6a19e4f74383436b86ae62269682a4010ba0"
+  integrity sha512-xsxWobHY83d5n80aGVQVTXOVdxRw9vZxsXUeys5oucYRMzW3ymiy+QY0QBEWDORq0AffsP2suF5uj2M6On2qGw==
   dependencies:
     http-proxy-agent "^7.0.2"
     https-proxy-agent "^7.0.5"
