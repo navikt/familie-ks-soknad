@@ -58,7 +58,7 @@ export const initSentry = () => {
     Sentry.init({
         dsn: 'https://700a8fca9e5f411f9bc74df534d03389@sentry.gc.nav.no/137',
         environment,
-        autoSessionTracking: false,
+        integrations: [Sentry.browserSessionIntegration()],
         denyUrls: [
             // Chrome extensions
             /extensions\//i,
