@@ -97,7 +97,7 @@
     "@portabletext/toolkit": "^2.0.8",
     "@sanity/client": "^6.28.3",
     "@sentry/react": "^9.14.0",
-    "axios": "1.8.4",
+    "axios": "1.9.0",
     "classnames": "^2.5.1",
     "compression": "^1.8.0",
     "cookie-parser": "^1.4.7",
