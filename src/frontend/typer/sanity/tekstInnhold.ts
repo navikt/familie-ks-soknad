@@ -141,6 +141,7 @@ export interface IFrittståendeOrdTekstinnhold {
     barnehageplassperioder: LocaleRecordString;
     slipp: LocaleRecordString;
     eller: LocaleRecordString;
+    og: LocaleRecordString;
 }
 
 export interface INavigasjonTekstinnhold {

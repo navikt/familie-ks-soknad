@@ -78,6 +78,9 @@ const Dokumentasjon: React.FC = () => {
         });
     });
 
+    const stegTekster = tekster()[ESanitySteg.DOKUMENTASJON];
+    const frittståendeOrdTekster = tekster()[ESanitySteg.FELLES].frittståendeOrd;
+
     const relevateDokumentasjoner = søknad.dokumentasjon.filter(dokumentasjon =>
         erDokumentasjonRelevant(dokumentasjon)
     );
@@ -94,7 +97,11 @@ const Dokumentasjon: React.FC = () => {
             const barnDokGjelderFor = søknad.barnInkludertISøknaden.filter(barn =>
                 dokumentasjon.gjelderForBarnId.find(id => id === barn.id)
             );
-            const barnasNavn = slåSammen(barnDokGjelderFor.map(barn => barn.navn));
+            const barnasNavn = slåSammen(
+                barnDokGjelderFor.map(barn => barn.navn),
+                plainTekst,
+                frittståendeOrdTekster
+            );
 
             return {
                 skalVises: true,
@@ -102,8 +109,6 @@ const Dokumentasjon: React.FC = () => {
                 flettefeltVerdier: { barnetsNavn: barnasNavn },
             };
         });
-
-    const stegTekster = tekster()[ESanitySteg.DOKUMENTASJON];
 
     return (
         <Steg
