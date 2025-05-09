@@ -28,7 +28,10 @@ interface Props {
 
 const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
     const { søknad, tekster, plainTekst } = useAppContext();
+
     const dokumentasjonstekster = tekster().DOKUMENTASJON;
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
+
     const settHarSendtInnTidligere = (event: React.ChangeEvent<HTMLInputElement>) => {
         const huketAv = event.target.checked;
         const vedlegg = huketAv ? [] : dokumentasjon.opplastedeVedlegg;
@@ -38,7 +41,11 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon 
     const barnDokGjelderFor = søknad.barnInkludertISøknaden.filter(barn =>
         dokumentasjon.gjelderForBarnId.find(id => id === barn.id)
     );
-    const barnasNavn = slåSammen(barnDokGjelderFor.map(barn => barn.navn));
+    const barnasNavn = slåSammen(
+        barnDokGjelderFor.map(barn => barn.navn),
+        plainTekst,
+        frittståendeOrdTekster
+    );
 
     const tittelBlock =
         dokumentasjonstekster[

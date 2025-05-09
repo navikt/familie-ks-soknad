@@ -24,6 +24,7 @@ export const useSendInnSkjema = (): {
         settSisteModellVersjon,
         tekster,
         tilRestLocaleRecord,
+        plainTekst,
     } = useAppContext();
     const { soknadApiProxyUrl } = Miljø();
     const { valgtLocale } = useSpråkContext();
@@ -40,7 +41,8 @@ export const useSendInnSkjema = (): {
                 tekster(),
                 tilRestLocaleRecord,
                 kontraktVersjon,
-                toggles[EFeatureToggle.SPOR_OM_MANED_IKKE_DATO] === true
+                toggles[EFeatureToggle.SPOR_OM_MANED_IKKE_DATO] === true,
+                plainTekst
             );
 
             const res = await sendInn<ISøknadKontrakt>(

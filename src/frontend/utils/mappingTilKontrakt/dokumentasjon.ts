@@ -8,9 +8,9 @@ import {
     ISøknadKontraktDokumentasjon,
     ISøknadKontraktVedlegg,
 } from '../../typer/kontrakt/dokumentasjon';
-import { FlettefeltVerdier, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
+import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { ESanitySteg } from '../../typer/sanity/sanity';
-import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
+import { IFrittståendeOrdTekstinnhold, ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknad } from '../../typer/søknad';
 import { slåSammen } from '../slåSammen';
 
@@ -18,7 +18,8 @@ export const dokumentasjonISøknadFormat = (
     dokumentasjon: IDokumentasjon,
     tekster: ITekstinnhold,
     tilRestLocaleRecord: TilRestLocaleRecord,
-    søknad: ISøknad
+    søknad: ISøknad,
+    plainTekst: PlainTekst
 ): ISøknadKontraktDokumentasjon => {
     const dokumentsjonstekster = tekster[ESanitySteg.DOKUMENTASJON];
 
@@ -32,14 +33,21 @@ export const dokumentasjonISøknadFormat = (
             dokumentsjonstekster[
                 dokumentasjonsbehovTilTittelSanityApiNavn(dokumentasjon.dokumentasjonsbehov)
             ],
-            flettefelterForDokumentasjonTittel(dokumentasjon, søknad)
+            flettefelterForDokumentasjonTittel(
+                dokumentasjon,
+                søknad,
+                plainTekst,
+                tekster.FELLES.frittståendeOrd
+            )
         ),
     };
 };
 
 const flettefelterForDokumentasjonTittel = (
     dokumentasjon: IDokumentasjon,
-    søknad: ISøknad
+    søknad: ISøknad,
+    plainTekst: PlainTekst,
+    frittståendeOrdTekster: IFrittståendeOrdTekstinnhold
 ): FlettefeltVerdier => {
     switch (dokumentasjon.dokumentasjonsbehov) {
         case Dokumentasjonsbehov.BOR_FAST_MED_SØKER:
@@ -47,7 +55,11 @@ const flettefelterForDokumentasjonTittel = (
                 .filter(barn => dokumentasjon.gjelderForBarnId.find(id => barn.id === id))
                 .map(barn => barn.navn);
             return {
-                barnetsNavn: slåSammen(barnDokumentasjonsbehovGjelderFor),
+                barnetsNavn: slåSammen(
+                    barnDokumentasjonsbehovGjelderFor,
+                    plainTekst,
+                    frittståendeOrdTekster
+                ),
             };
         default:
             return {};
