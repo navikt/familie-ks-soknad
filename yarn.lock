@@ -2199,13 +2199,14 @@
   resolved "https://registry.npmjs.org/@rtsao/scc/-/scc-1.1.0.tgz#927dd2fae9bc3361403ac2c7a00c32ddce9ad7e8"
   integrity sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==
 
-"@sanity/client@^6.29.1":
-  version "6.29.1"
-  resolved "https://registry.npmjs.org/@sanity/client/-/client-6.29.1.tgz#a40e6be06481b7291d9dc0115ef34809bb5befe3"
-  integrity sha512-BQRCMeDlBxwnMbFtB61HUxFf9aSb4HNVrpfrC7IFVqFf4cwcc3o5H8/nlrL9U3cDFedbe4W0AXt1mQzwbY/ljw==
+"@sanity/client@^7.2.1":
+  version "7.2.1"
+  resolved "https://registry.npmjs.org/@sanity/client/-/client-7.2.1.tgz#83592d3e99e6e781a65978c127cdba3eeb611975"
+  integrity sha512-BJ3RddlStGc+PjwBwhJIvWgXJbt3+TdWm/ywWWCNruqS5aqOSvvLUFjaAXp5ci4Wy8BL/RnZ60WIeqPi67+5xw==
   dependencies:
     "@sanity/eventsource" "^5.0.2"
     get-it "^8.6.7"
+    nanoid "^3.3.11"
     rxjs "^7.0.0"
 
 "@sanity/eventsource@^5.0.2":
@@ -8459,10 +8460,10 @@ mustache@^4.2.0:
   resolved "https://registry.npmjs.org/mustache/-/mustache-4.2.0.tgz#e5892324d60a12ec9c2a73359edca52972bf6f64"
   integrity sha512-71ippSywq5Yb7/tVYyGbkBggbU8H3u5Rz56fH60jGFgr8uHwxs+aSKeqmluIVzM0m0kB7xQjKS6qPfd0b2ZoqQ==
 
-nanoid@^3.3.7:
-  version "3.3.8"
-  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.8.tgz#b1be3030bee36aaff18bacb375e5cce521684baf"
-  integrity sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==
+nanoid@^3.3.11, nanoid@^3.3.7:
+  version "3.3.11"
+  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.11.tgz#4f4f112cefbe303202f2199838128936266d185b"
+  integrity sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==
 
 natural-compare@^1.4.0:
   version "1.4.0"
