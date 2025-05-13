@@ -94,10 +94,12 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon 
                 )}
 
                 {!dokumentasjon.harSendtInn && (
-                    <Filopplaster
-                        dokumentasjon={dokumentasjon}
-                        oppdaterDokumentasjon={oppdaterDokumentasjon}
-                    />
+                    <div data-testid={'dokumentopplaster'}>
+                        <Filopplaster
+                            dokumentasjon={dokumentasjon}
+                            oppdaterDokumentasjon={oppdaterDokumentasjon}
+                        />
+                    </div>
                 )}
             </VStack>
         </FormSummary>
