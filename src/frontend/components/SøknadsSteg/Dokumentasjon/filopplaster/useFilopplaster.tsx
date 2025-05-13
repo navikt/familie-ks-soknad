@@ -90,7 +90,7 @@ const feilmeldingFraError = (error): string => {
     }
 };
 
-export const useFilopplaster2 = (
+export const useFilopplaster = (
     dokumentasjon: IDokumentasjon,
     oppdaterDokumentasjon: (
         dokumentasjonsBehov: Dokumentasjonsbehov,

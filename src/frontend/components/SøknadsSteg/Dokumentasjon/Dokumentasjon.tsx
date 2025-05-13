@@ -21,7 +21,7 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering/VedleggOppsummering';
 import { IVedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering/vedleggOppsummering.types';
 
-import LastOppVedlegg2 from './LastOppVedlegg2';
+import LastOppVedlegg from './LastOppVedlegg';
 
 // Vedlegg er lagret 48 timer
 export const erVedleggstidspunktGyldig = (vedleggTidspunkt: string): boolean => {
@@ -174,7 +174,7 @@ const Dokumentasjon: React.FC = () => {
                     </>
                 )}
                 {relevateDokumentasjoner.map((dokumentasjon, index) => (
-                    <LastOppVedlegg2
+                    <LastOppVedlegg
                         key={index}
                         dokumentasjon={dokumentasjon}
                         oppdaterDokumentasjon={oppdaterDokumentasjon}

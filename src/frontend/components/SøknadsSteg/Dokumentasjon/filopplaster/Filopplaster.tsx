@@ -7,7 +7,7 @@ import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
 import { uppercaseFørsteBokstav } from '../../../../utils/visning';
 
-import { ECustomFileRejectionReasons, useFilopplaster2 } from './useFilopplaster2';
+import { ECustomFileRejectionReasons, useFilopplaster } from './useFilopplaster';
 
 interface IFilopplasterProps {
     dokumentasjon: IDokumentasjon;
@@ -18,7 +18,7 @@ interface IFilopplasterProps {
     ) => void;
 }
 
-const Filopplaster2: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
+const Filopplaster: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
     const { tekster, plainTekst } = useAppContext();
 
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
@@ -36,7 +36,7 @@ const Filopplaster2: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDo
         fjernVedlegg,
         fjernAvvistFil,
         prøvOpplastingAvAvvistFilPåNytt,
-    } = useFilopplaster2(dokumentasjon, oppdaterDokumentasjon, dokumentasjonTekster, plainTekst);
+    } = useFilopplaster(dokumentasjon, oppdaterDokumentasjon, dokumentasjonTekster, plainTekst);
 
     return (
         <FileUpload
@@ -159,4 +159,4 @@ const Filopplaster2: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDo
     );
 };
 
-export default Filopplaster2;
+export default Filopplaster;
