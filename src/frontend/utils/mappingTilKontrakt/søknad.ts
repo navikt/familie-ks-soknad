@@ -3,7 +3,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { IBarnMedISøknad } from '../../typer/barn';
 import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../typer/common';
-import { ESivilstand, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
+import { ESivilstand, PlainTekst, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { ISøknadKontrakt } from '../../typer/kontrakt/søknadKontrakt';
 import { ISøker } from '../../typer/person';
 import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
@@ -35,7 +35,8 @@ export const dataISøknadKontraktFormat = (
     tekster: ITekstinnhold,
     tilRestLocaleRecord: TilRestLocaleRecord,
     kontraktVersjon: number,
-    toggleSpørOmMånedIkkeDato: boolean
+    toggleSpørOmMånedIkkeDato: boolean,
+    plainTekst: PlainTekst
 ): ISøknadKontrakt => {
     const { søker } = søknad;
     // Raskeste måte å få tak i alle spørsmål minus de andre feltene på søker
@@ -101,7 +102,9 @@ export const dataISøknadKontraktFormat = (
         ),
         dokumentasjon: søknad.dokumentasjon
             .filter(dok => erDokumentasjonRelevant(dok))
-            .map(dok => dokumentasjonISøknadFormat(dok, tekster, tilRestLocaleRecord, søknad)),
+            .map(dok =>
+                dokumentasjonISøknadFormat(dok, tekster, tilRestLocaleRecord, søknad, plainTekst)
+            ),
         teksterTilPdf: {
             ...Object.values(ESivilstand).reduce(
                 (map, sivilstand) => ({

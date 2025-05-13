@@ -30,6 +30,7 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon 
     const { søknad, tekster, plainTekst } = useAppContext();
 
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
+    const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
 
     const { fjernAlleAvvisteFiler } = useFilopplaster(
         dokumentasjon,
@@ -55,7 +56,11 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon 
     const barnDokumentasjonenGjelderFor = søknad.barnInkludertISøknaden.filter(barn =>
         dokumentasjon.gjelderForBarnId.find(id => id === barn.id)
     );
-    const barnasNavn = slåSammen(barnDokumentasjonenGjelderFor.map(barn => barn.navn));
+    const barnasNavn = slåSammen(
+        barnDokumentasjonenGjelderFor.map(barn => barn.navn),
+        plainTekst,
+        frittståendeOrdTekster
+    );
 
     const dokumentasjonsbeskrivelse = dokumentasjonsbehovTilBeskrivelseSanityApiNavn(
         dokumentasjon.dokumentasjonsbehov
