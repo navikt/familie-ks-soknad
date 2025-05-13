@@ -6,7 +6,6 @@ import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useAppContext } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureTogglesContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { useSendInnSkjema } from '../../../hooks/useSendInnSkjema';
 import { Typografi } from '../../../typer/common';
@@ -22,7 +21,6 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering/VedleggOppsummering';
 import { IVedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering/vedleggOppsummering.types';
 
-import LastOppVedlegg from './LastOppVedlegg';
 import LastOppVedlegg2 from './LastOppVedlegg2';
 
 // Vedlegg er lagret 48 timer
@@ -40,7 +38,6 @@ const Dokumentasjon: React.FC = () => {
         plainTekst,
         tvingKjøringAvDebouncedMellomlagre,
     } = useAppContext();
-    const { toggles } = useFeatureToggles();
     const { sendInnSkjema } = useSendInnSkjema();
     const [slettaVedlegg, settSlettaVedlegg] = useState<IVedlegg[]>([]);
 
@@ -177,21 +174,11 @@ const Dokumentasjon: React.FC = () => {
                     </>
                 )}
                 {relevateDokumentasjoner.map((dokumentasjon, index) => (
-                    <>
-                        {toggles.BRUK_NY_LAST_OPP_VEDLEGG_KOMPONENT ? (
-                            <LastOppVedlegg2
-                                key={index}
-                                dokumentasjon={dokumentasjon}
-                                oppdaterDokumentasjon={oppdaterDokumentasjon}
-                            />
-                        ) : (
-                            <LastOppVedlegg
-                                key={index}
-                                dokumentasjon={dokumentasjon}
-                                oppdaterDokumentasjon={oppdaterDokumentasjon}
-                            />
-                        )}
-                    </>
+                    <LastOppVedlegg2
+                        key={index}
+                        dokumentasjon={dokumentasjon}
+                        oppdaterDokumentasjon={oppdaterDokumentasjon}
+                    />
                 ))}
                 {innsendingStatus.status === RessursStatus.FEILET && <Feilside />}
             </VStack>
