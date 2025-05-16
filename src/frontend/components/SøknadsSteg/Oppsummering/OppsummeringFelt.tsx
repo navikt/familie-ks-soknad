@@ -16,9 +16,7 @@ export function OppsummeringFelt({ tittel, søknadsvar, children }: IOppsummerin
 
     return (
         <FormSummary.Answer>
-            <FormSummary.Label>
-                {tittel && <FormSummary.Label>{tittel}</FormSummary.Label>}
-            </FormSummary.Label>
+            {tittel && <FormSummary.Label>{tittel}</FormSummary.Label>}
             {(søknadsvar || children) && (
                 <FormSummary.Value>
                     {søknadsvar

@@ -31,10 +31,10 @@ const AndreForelderOppsummering: React.FC<{
 
     const flettefelter = { barnetsNavn: barn.navn };
     return (
-        <FormSummary.Answers>
+        <>
             {andreForelder[andreForelderDataKeySpørsmål.kanIkkeGiOpplysninger].svar ===
             ESvar.NEI ? (
-                <>
+                <FormSummary.Answers>
                     {andreForelder[andreForelderDataKeySpørsmål.navn].svar && (
                         <OppsummeringFelt
                             tittel={
@@ -184,11 +184,15 @@ const AndreForelderOppsummering: React.FC<{
                             barn={barn}
                         />
                     ))}
-                </>
+                </FormSummary.Answers>
             ) : (
-                <BodyShort>{plainTekst(omBarnetTekster.navnAndreForelder.checkboxLabel)}</BodyShort>
+                <FormSummary.Answer>
+                    <BodyShort>
+                        <TekstBlock block={omBarnetTekster.navnAndreForelder.checkboxLabel} />
+                    </BodyShort>
+                </FormSummary.Answer>
             )}
-        </FormSummary.Answers>
+        </>
     );
 };
 
