@@ -24,6 +24,10 @@ spec:
     path: /isReady
     initialDelay: 5
   observability:
+    logging:
+      destinations:
+        - id: elastic
+        - id: loki
     autoInstrumentation:
       enabled: true
       runtime: nodejs
