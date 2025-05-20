@@ -116,7 +116,7 @@ Applikasjonens tilgjengelighetserklæring ligger lagret som filen `UU-rapport.js
 # Henvendelser
 Ved spørsmål knyttet til koden eller prosjektet opprett en issue.
 
-## For NAV-ansatte
+## For Nav-ansatte
 Interne henvendelser kan sendes via Slack i kanalen #team-familie.
 
 ### Logging til Sentry
