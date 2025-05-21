@@ -25,8 +25,7 @@ export const andreForelderTilISøknadsfelt = (
     andreForelder: IAndreForelder,
     barn: IBarnMedISøknad,
     tilRestLocaleRecord: TilRestLocaleRecord,
-    tekster: ITekstinnhold,
-    toggleSpørOmMånedIkkeDato: boolean
+    tekster: ITekstinnhold
 ): IAndreForelderIKontraktFormat => {
     const {
         navn,
@@ -183,7 +182,6 @@ export const andreForelderTilISøknadsfelt = (
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.arbeidsperiode.andreForelder,
                 barn,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         utenlandsperioder: utenlandsperioder.map((periode, index) =>
@@ -203,7 +201,6 @@ export const andreForelderTilISøknadsfelt = (
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.pensjonsperiode.andreForelder,
                 barn,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         arbeidsperioderNorge: arbeidsperioderNorge.map((periode, index) =>
@@ -214,7 +211,6 @@ export const andreForelderTilISøknadsfelt = (
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.arbeidsperiode.andreForelder,
                 barn,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         pensjonsperioderNorge: pensjonsperioderNorge.map((periode, index) =>
@@ -225,7 +221,6 @@ export const andreForelderTilISøknadsfelt = (
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.pensjonsperiode.andreForelder,
                 barn,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         andreUtbetalingsperioder: andreUtbetalingsperioder.map((periode, index) =>
@@ -235,7 +230,6 @@ export const andreForelderTilISøknadsfelt = (
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.andreUtbetalinger.andreForelder,
                 barn,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         eøsKontantstøttePerioder: eøsKontantstøttePerioder.map((periode, index) =>
@@ -245,7 +239,6 @@ export const andreForelderTilISøknadsfelt = (
                 barn,
                 tilRestLocaleRecord,
                 eøsYtelseTekster: tekster.FELLES.modaler.eøsYtelse.andreForelder,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         idNummer: idNummer.map(idnummerObj =>

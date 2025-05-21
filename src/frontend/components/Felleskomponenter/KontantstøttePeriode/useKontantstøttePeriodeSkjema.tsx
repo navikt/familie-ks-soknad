@@ -9,11 +9,9 @@ import {
 } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureTogglesContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
-import { EFeatureToggle } from '../../../typer/feature-toggles';
 import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
@@ -39,7 +37,6 @@ export const useKontantstøttePeriodeSkjema = (
     personType: PersonType,
     erDød
 ): IUsePeriodeSkjemaVerdi<IKontantstøttePerioderFeltTyper> => {
-    const { toggles } = useFeatureToggles();
     const { tekster, plainTekst } = useAppContext();
     const teksterForPersonType: IEøsYtelseTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.eøsYtelse[personType];
@@ -74,11 +71,7 @@ export const useKontantstøttePeriodeSkjema = (
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
     });
 
-    const tilDatoKontantstøttePeriodeSluttdatoAvgrensning = toggles[
-        EFeatureToggle.SPOR_OM_MANED_IKKE_DATO
-    ]
-        ? sisteDagDenneMåneden()
-        : dagensDato();
+    const tilDatoKontantstøttePeriodeSluttdatoAvgrensning = sisteDagDenneMåneden();
 
     const tilDatoKontantstøttePeriode = useDatovelgerFelt({
         søknadsfelt: { id: KontantstøttePeriodeSpørsmålId.tilDatoKontantstøttePeriode, svar: '' },
