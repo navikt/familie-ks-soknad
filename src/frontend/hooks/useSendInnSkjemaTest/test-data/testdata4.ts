@@ -2223,9 +2223,9 @@ export const testdata4: TilKontraktTestData = {
                 nn: 'Vedlegg {x} av {total}',
             },
             'dokumentasjon.har-sendt-inn.spm': {
-                en: 'I have already submitted this documentation to NAV in the past',
-                nb: 'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
-                nn: 'Eg har sendt inn denne dokumentasjonen til NAV tidlegare',
+                en: 'I have already submitted this documentation to Nav in the past',
+                nb: 'Jeg har sendt inn denne dokumentasjonen til Nav tidligere',
+                nn: 'Eg har sendt inn denne dokumentasjonen til Nav tidlegare',
             },
             'dinlivssituasjon.sidetittel': {
                 en: 'Your life situation',
