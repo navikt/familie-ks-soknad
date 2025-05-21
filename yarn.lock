@@ -1173,6 +1173,11 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
+"@date-fns/tz@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/@date-fns/tz/-/tz-1.2.0.tgz#81cb3211693830babaf3b96aff51607e143030a6"
+  integrity sha512-LBrd7MiJZ9McsOgxqWX7AaxrDjcFVjWH/tIKJd7pnR7McaslGYOP1QmmiBXdJH/H/yLCT+rcQ7FaPBUxRGUtrg==
+
 "@discoveryjs/json-ext@0.5.7":
   version "0.5.7"
   resolved "https://registry.npmjs.org/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz#1d572bfbbe14b7704e0ba0f39b74815b84870d70"
@@ -1366,20 +1371,13 @@
     "@floating-ui/core" "^1.6.0"
     "@floating-ui/utils" "^0.2.4"
 
-"@floating-ui/dom@^1.0.1", "@floating-ui/dom@^1.5.1":
+"@floating-ui/dom@^1.0.1":
   version "1.5.3"
   resolved "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.5.3.tgz#54e50efcb432c06c23cd33de2b575102005436fa"
   integrity sha512-ClAbQnEqJAKCJOEbbLo5IUlZHkNszqhuxS4fHAVxRPXPya6Ysf2G8KypnYcOTpx6I8xcgF9bbHb6g/2KpbV8qA==
   dependencies:
     "@floating-ui/core" "^1.4.2"
     "@floating-ui/utils" "^0.1.3"
-
-"@floating-ui/react-dom@^2.0.2":
-  version "2.0.4"
-  resolved "https://registry.npmjs.org/@floating-ui/react-dom/-/react-dom-2.0.4.tgz#b076fafbdfeb881e1d86ae748b7ff95150e9f3ec"
-  integrity sha512-CF8k2rgKeh/49UrnIBs4BdxPUV6vize/Db1d/YbCLyp9GiVZ0BEwf5AiDSxJRCr6yOkGqTFHtmrULxkEfYZ7dQ==
-  dependencies:
-    "@floating-ui/dom" "^1.5.1"
 
 "@floating-ui/react-dom@^2.0.9":
   version "2.1.1"
@@ -1388,16 +1386,23 @@
   dependencies:
     "@floating-ui/dom" "^1.0.0"
 
-"@floating-ui/react@0.25.4":
-  version "0.25.4"
-  resolved "https://registry.npmjs.org/@floating-ui/react/-/react-0.25.4.tgz#82507e14460aee70f435ad2fd717ea182b6d5c61"
-  integrity sha512-lWRQ/UiTvSIBxohn0/2HFHEmnmOVRjl7j6XcRJuLH0ls6f/9AyHMWVzkAJFuwx0n9gaEeCmg9VccCSCJzbEJig==
+"@floating-ui/react-dom@^2.1.2":
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/@floating-ui/react-dom/-/react-dom-2.1.2.tgz#a1349bbf6a0e5cb5ded55d023766f20a4d439a31"
+  integrity sha512-06okr5cgPzMNBy+Ycse2A6udMi4bqwW/zgBF/rwjcNqWkyr82Mcg8b0vjX8OJpZFy/FKjJmw6wV7t44kK6kW7A==
   dependencies:
-    "@floating-ui/react-dom" "^2.0.2"
-    "@floating-ui/utils" "^0.1.1"
-    tabbable "^6.0.1"
+    "@floating-ui/dom" "^1.0.0"
 
-"@floating-ui/utils@^0.1.1", "@floating-ui/utils@^0.1.3":
+"@floating-ui/react@0.27.8":
+  version "0.27.8"
+  resolved "https://registry.npmjs.org/@floating-ui/react/-/react-0.27.8.tgz#6d7f4bf7bfe2065934ba18d54f7383b777f87dd5"
+  integrity sha512-EQJ4Th328y2wyHR3KzOUOoTW2UKjFk53fmyahfwExnFQ8vnsMYqKc+fFPOkeYtj5tcp1DUMiNJ7BFhed7e9ONw==
+  dependencies:
+    "@floating-ui/react-dom" "^2.1.2"
+    "@floating-ui/utils" "^0.2.9"
+    tabbable "^6.0.0"
+
+"@floating-ui/utils@^0.1.3":
   version "0.1.6"
   resolved "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.1.6.tgz#22958c042e10b67463997bd6ea7115fe28cbcaf9"
   integrity sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==
@@ -1406,6 +1411,11 @@
   version "0.2.4"
   resolved "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.4.tgz#1d459cee5031893a08a0e064c406ad2130cced7c"
   integrity sha512-dWO2pw8hhi+WrXq1YJy2yCuWoL20PddgGaqTgVe4cOS9Q6qklXCiA1tJEqX6BEwRNSCP84/afac9hd4MS+zEUA==
+
+"@floating-ui/utils@^0.2.9":
+  version "0.2.9"
+  resolved "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.9.tgz#50dea3616bc8191fb8e112283b49eaff03e78429"
+  integrity sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==
 
 "@grafana/faro-core@^1.17.1":
   version "1.17.1"
@@ -1769,33 +1779,33 @@
   resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/7.17.4/294d943be11babbbeab9272c2de5c90a22585862#294d943be11babbbeab9272c2de5c90a22585862"
   integrity sha512-RyKgnSO34azlwyC1ujApV3u67r2HfXmQ6e9QcPbrxaQP/E/AAlFWNotmuKT0NL34Mm5nNBfA2dPl8LiBt++hSg==
 
-"@navikt/aksel-icons@^7.13.0":
-  version "7.13.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/7.13.0/23160e57540df4f599acc7b744a08e8a34b05b70#23160e57540df4f599acc7b744a08e8a34b05b70"
-  integrity sha512-ItbZfWy9+tczVLtwcBs5fP9cf6z5XqTtGh4sBRvnaCt0840Qgs/fWld/j4V5TXdXD825morqBMqkP/rJRvEbKQ==
+"@navikt/aksel-icons@^7.22.0":
+  version "7.22.0"
+  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/7.22.0/8cd947078332dbbc5f48e32d10746fd876acb581#8cd947078332dbbc5f48e32d10746fd876acb581"
+  integrity sha512-1hCTk4/zKjYD0pfvrHYOqQmP0r+8XyRG8tenSSVAtnOlyEYvWfUdQwczfGv0VbjYp/UPaSQbkWhpj5z48KF3SA==
 
 "@navikt/ds-css@^7.13.0":
   version "7.13.0"
   resolved "https://npm.pkg.github.com/download/@navikt/ds-css/7.13.0/208180e5bb9f3c344913c7e96ac40256325b1bd3#208180e5bb9f3c344913c7e96ac40256325b1bd3"
   integrity sha512-FVXiYkhee6ngiL+TL9VVSjL9wp6j67fQvmgCsriVJNsWEco1rCgbaaskJuy7WBNZ0uC1mweksRTR+PbdusQBbg==
 
-"@navikt/ds-react@^7.13.0":
-  version "7.13.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-react/7.13.0/0aa70adf19e75769246a25fdf8487fe0dbfa3f0d#0aa70adf19e75769246a25fdf8487fe0dbfa3f0d"
-  integrity sha512-FXgO7s5NkhpDZcqd82MeZYLzlyGWPnUVvdtJW+etv/fXlrKaGLdNd2wK9KY1KVTPaFSHHfBPkmz6dneDY2Z4CA==
+"@navikt/ds-react@^7.22.0":
+  version "7.22.0"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-react/7.22.0/cb6df10ed26fd8cb288c302e44e17370e5be90da#cb6df10ed26fd8cb288c302e44e17370e5be90da"
+  integrity sha512-4fhSc5nxRy5ZgL46k1okqgkVwAnglyIiK1ucsPFI3znHCO9zOYyeYmc2HaE/X+fw8XF3AoSksJzISpL0bgVuAQ==
   dependencies:
-    "@floating-ui/react" "0.25.4"
+    "@floating-ui/react" "0.27.8"
     "@floating-ui/react-dom" "^2.0.9"
-    "@navikt/aksel-icons" "^7.13.0"
-    "@navikt/ds-tokens" "^7.13.0"
+    "@navikt/aksel-icons" "^7.22.0"
+    "@navikt/ds-tokens" "^7.22.0"
     clsx "^2.1.0"
-    date-fns "^3.0.0"
-    react-day-picker "8.10.1"
+    date-fns "^4.0.0"
+    react-day-picker "9.6.1"
 
-"@navikt/ds-tokens@^7.13.0":
-  version "7.13.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/ds-tokens/7.13.0/7ba52d92027490e15b65e79d685757fd38aff7f0#7ba52d92027490e15b65e79d685757fd38aff7f0"
-  integrity sha512-kqKJhx1cQfmpQDwA0eIum0apEqutis/wn65h92nCOxwhpfMm8jUkry4JgTbwlfH5uHMJXEe9p9DwYkgbjeZcmQ==
+"@navikt/ds-tokens@^7.22.0":
+  version "7.22.0"
+  resolved "https://npm.pkg.github.com/download/@navikt/ds-tokens/7.22.0/793c4e3da6051e5e6f3400dac9fbc27caf02864a#793c4e3da6051e5e6f3400dac9fbc27caf02864a"
+  integrity sha512-FiE3bzpKg2U0ESAre5I2WDMFaN/xcpBDyViecjiNZZeJfTqRbSiKQpLADzZlhZj3tbcwz4aughCBVkZScNG0sQ==
 
 "@navikt/familie-form-elements@^21.0.4":
   version "21.0.4"
@@ -2635,11 +2645,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/prop-types@*":
-  version "15.7.11"
-  resolved "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.11.tgz#2596fb352ee96a1379c657734d4b913a613ad563"
-  integrity sha512-ga8y9v9uyeiLdpKddhxYQkxNDrfvuPrlFb0N1qnZZByvcElJaXthF1UhvCh9TLWJBEHeNtdnbysW7Y6Uq8CVng==
-
 "@types/qs@*":
   version "6.9.10"
   resolved "https://registry.npmjs.org/@types/qs/-/qs-6.9.10.tgz#0af26845b5067e1c9a622658a51f60a3934d51e8"
@@ -2650,12 +2655,10 @@
   resolved "https://registry.npmjs.org/@types/range-parser/-/range-parser-1.2.7.tgz#50ae4353eaaddc04044279812f52c8c65857dbcb"
   integrity sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==
 
-"@types/react-dom@^18.3.0":
-  version "18.3.0"
-  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-18.3.0.tgz#0cbc818755d87066ab6ca74fbedb2547d74a82b0"
-  integrity sha512-EhwApuTmMBmXuFOikhQLIBUn6uFg81SwLMOAUgodJF14SOBOCMdU04gDoYi0WOJJHD144TL32z4yDqCW3dnkQg==
-  dependencies:
-    "@types/react" "*"
+"@types/react-dom@^19.0.0":
+  version "19.1.5"
+  resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-19.1.5.tgz#cdfe2c663742887372f54804b16e8dbc26bd794a"
+  integrity sha512-CMCjrWucUBZvohgZxkjd6S9h0nZxXjzus6yDfUb+xLxYM7VvjKNH1tQrE9GWLql1XoOP4/Ds3bwFqShHUYraGg==
 
 "@types/react-router@^5.1.20":
   version "5.1.20"
@@ -2672,12 +2675,11 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^18.3.2":
-  version "18.3.2"
-  resolved "https://registry.npmjs.org/@types/react/-/react-18.3.2.tgz#462ae4904973bc212fa910424d901e3d137dbfcd"
-  integrity sha512-Btgg89dAnqD4vV7R3hlwOxgqobUQKgx3MmrQRi0yYbs/P0ym8XozIAlkqVilPqHQwXs4e9Tf63rrCgl58BcO4w==
+"@types/react@*", "@types/react@^19.0.0":
+  version "19.1.4"
+  resolved "https://registry.npmjs.org/@types/react/-/react-19.1.4.tgz#4d125f014d6ac26b4759775698db118701e314fe"
+  integrity sha512-EB1yiiYdvySuIITtD5lhW4yPyJ31RkJkkDw794LaQYrxCSaQV/47y5o1FMC4zF9ZyjUjzJMZwbovEnT5yHTW6g==
   dependencies:
-    "@types/prop-types" "*"
     csstype "^3.0.2"
 
 "@types/retry@0.12.2":
@@ -4578,10 +4580,20 @@ data-view-byte-offset@^1.0.0:
     es-errors "^1.3.0"
     is-data-view "^1.0.1"
 
-date-fns@^3.0.0, date-fns@^3.6.0:
+date-fns-jalali@^4.1.0-0:
+  version "4.1.0-0"
+  resolved "https://registry.npmjs.org/date-fns-jalali/-/date-fns-jalali-4.1.0-0.tgz#9c7fb286004fab267a300d3e9f1ada9f10b4b6b0"
+  integrity sha512-hTIP/z+t+qKwBDcmmsnmjWTduxCg+5KfdqWQvb2X/8C9+knYY6epN/pfxdDuyVlSVeFz0sM5eEfwIUQ70U4ckg==
+
+date-fns@^3.6.0:
   version "3.6.0"
   resolved "https://registry.npmjs.org/date-fns/-/date-fns-3.6.0.tgz#f20ca4fe94f8b754951b24240676e8618c0206bf"
   integrity sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==
+
+date-fns@^4.0.0, date-fns@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/date-fns/-/date-fns-4.1.0.tgz#64b3d83fff5aa80438f5b1a633c2e83b8a1c2d14"
+  integrity sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==
 
 dayjs@^1.10.4:
   version "1.11.10"
@@ -7961,7 +7973,7 @@ long@^5.0.0:
   resolved "https://registry.npmjs.org/long/-/long-5.2.3.tgz#a3ba97f3877cf1d778eccbcb048525ebb77499e1"
   integrity sha512-lcHwpNoggQTObv5apGNCTdJrO69eHOZMi4BNC+rTLER8iHAqGrUVeLh/irVIM7zTw2bOXA8T6uNPeujwOLg/2Q==
 
-loose-envify@^1.1.0, loose-envify@^1.4.0:
+loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -9340,10 +9352,14 @@ react-cookie@^7.2.2:
     hoist-non-react-statics "^3.3.2"
     universal-cookie "^7.0.0"
 
-react-day-picker@8.10.1:
-  version "8.10.1"
-  resolved "https://registry.npmjs.org/react-day-picker/-/react-day-picker-8.10.1.tgz#4762ec298865919b93ec09ba69621580835b8e80"
-  integrity sha512-TMx7fNbhLk15eqcMt+7Z7S2KF7mfTId/XJDjKE8f+IUcFn0l08/kI4FiYTL/0yuOLmEcbR4Fwe3GJf/NiiMnPA==
+react-day-picker@9.6.1:
+  version "9.6.1"
+  resolved "https://registry.npmjs.org/react-day-picker/-/react-day-picker-9.6.1.tgz#e4dcf562a2b0c083dd6de12e7dca087c36116508"
+  integrity sha512-PiRT/l6yk+fLpSmyMFUHIep8dbKAlilJGfDB0N2krXFhnxbitZf/t+ePDLk8kou/lYUVWAfIIxBJjFuvrNy7Hw==
+  dependencies:
+    "@date-fns/tz" "^1.2.0"
+    date-fns "^4.1.0"
+    date-fns-jalali "^4.1.0-0"
 
 react-dev-utils@^12.0.1:
   version "12.0.1"
@@ -9375,13 +9391,12 @@ react-dev-utils@^12.0.1:
     strip-ansi "^6.0.1"
     text-table "^0.2.0"
 
-react-dom@^18.3.1:
-  version "18.3.1"
-  resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.3.1.tgz#c2265d79511b57d479b3dd3fdfa51536494c5cb4"
-  integrity sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==
+react-dom@^19.0.0:
+  version "19.1.0"
+  resolved "https://registry.npmjs.org/react-dom/-/react-dom-19.1.0.tgz#133558deca37fa1d682708df8904b25186793623"
+  integrity sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==
   dependencies:
-    loose-envify "^1.1.0"
-    scheduler "^0.23.2"
+    scheduler "^0.26.0"
 
 react-error-overlay@^6.0.11:
   version "6.0.11"
@@ -9447,12 +9462,10 @@ react-transition-group@^4.3.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@^18.3.1:
-  version "18.3.1"
-  resolved "https://registry.npmjs.org/react/-/react-18.3.1.tgz#49ab892009c53933625bd16b2533fc754cab2891"
-  integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==
-  dependencies:
-    loose-envify "^1.1.0"
+react@^19.0.0:
+  version "19.1.0"
+  resolved "https://registry.npmjs.org/react/-/react-19.1.0.tgz#926864b6c48da7627f004795d6cce50e90793b75"
+  integrity sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==
 
 readable-stream@^2.0.1, readable-stream@~2.3.6:
   version "2.3.8"
@@ -9806,12 +9819,10 @@ saxes@^6.0.0:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@^0.23.2:
-  version "0.23.2"
-  resolved "https://registry.npmjs.org/scheduler/-/scheduler-0.23.2.tgz#414ba64a3b282892e944cf2108ecc078d115cdc3"
-  integrity sha512-UOShsPwz7NrMUqhR6t0hWjFduvOzbtv7toDH1/hIrfRNIDBnnBWd0CwJTGvTpngVlmwGCdP9/Zl/tVrDqcuYzQ==
-  dependencies:
-    loose-envify "^1.1.0"
+scheduler@^0.26.0:
+  version "0.26.0"
+  resolved "https://registry.npmjs.org/scheduler/-/scheduler-0.26.0.tgz#4ce8a8c2a2095f13ea11bf9a445be50c555d6337"
+  integrity sha512-NlHwttCI/l5gCPR3D1nNXtWABUmBwvZpEQiD4IXSbIDq8BzLIK/7Ir5gTFSGZDUu37K5cMNp0hFtzO38sC7gWA==
 
 schema-utils@2.7.0:
   version "2.7.0"
@@ -10596,7 +10607,7 @@ synckit@^0.9.1:
     "@pkgr/core" "^0.1.0"
     tslib "^2.6.2"
 
-tabbable@^6.0.1:
+tabbable@^6.0.0:
   version "6.2.0"
   resolved "https://registry.npmjs.org/tabbable/-/tabbable-6.2.0.tgz#732fb62bc0175cfcec257330be187dcfba1f3b97"
   integrity sha512-Cat63mxsVJlzYvN51JmVXIgNoUokrIaT2zLclCXjRd8boZ0004U4KCs/sToJ75C6sdlByWxpYnb5Boif1VSFew==
