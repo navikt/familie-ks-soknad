@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import * as Sentry from '@sentry/react';
+import { CookiesProvider } from 'react-cookie';
 
 import { HttpProvider } from '@navikt/familie-http';
 
@@ -17,21 +18,23 @@ interface Props {
 function FellesWrapper({ children }: Props) {
     return (
         <React.StrictMode>
-            <SpråkProvider>
-                <HttpProvider>
-                    <Sentry.ErrorBoundary
-                        fallback={() => <Feilside />}
-                        beforeCapture={scope => scope.setTag('scope', 'familie-ks-soknad')}
-                    >
-                        <LastRessurserProvider>
-                            <SanityProvider>
-                                <GlobalStyle />
-                                {children}
-                            </SanityProvider>
-                        </LastRessurserProvider>
-                    </Sentry.ErrorBoundary>
-                </HttpProvider>
-            </SpråkProvider>
+            <CookiesProvider>
+                <SpråkProvider>
+                    <HttpProvider>
+                        <Sentry.ErrorBoundary
+                            fallback={() => <Feilside />}
+                            beforeCapture={scope => scope.setTag('scope', 'familie-ks-soknad')}
+                        >
+                            <LastRessurserProvider>
+                                <SanityProvider>
+                                    <GlobalStyle />
+                                    {children}
+                                </SanityProvider>
+                            </LastRessurserProvider>
+                        </Sentry.ErrorBoundary>
+                    </HttpProvider>
+                </SpråkProvider>
+            </CookiesProvider>
         </React.StrictMode>
     );
 }
