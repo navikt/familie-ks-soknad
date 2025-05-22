@@ -35,7 +35,6 @@ export const dataISøknadKontraktFormat = (
     tekster: ITekstinnhold,
     tilRestLocaleRecord: TilRestLocaleRecord,
     kontraktVersjon: number,
-    toggleSpørOmMånedIkkeDato: boolean,
     plainTekst: PlainTekst
 ): ISøknadKontrakt => {
     const { søker } = søknad;
@@ -49,20 +48,9 @@ export const dataISøknadKontraktFormat = (
     return {
         kontraktVersjon: kontraktVersjon,
         antallEøsSteg: antallEøsSteg(søker, barnInkludertISøknaden),
-        søker: søkerIKontraktFormat(
-            søknad,
-            tekster,
-            tilRestLocaleRecord,
-            toggleSpørOmMånedIkkeDato
-        ),
+        søker: søkerIKontraktFormat(søknad, tekster, tilRestLocaleRecord),
         barn: barnInkludertISøknaden.map(barn =>
-            barnISøknadsFormat(
-                barn,
-                søknad,
-                tekster,
-                tilRestLocaleRecord,
-                toggleSpørOmMånedIkkeDato
-            )
+            barnISøknadsFormat(barn, søknad, tekster, tilRestLocaleRecord)
         ),
         lestOgForståttBekreftelse: søknad.lestOgForståttBekreftelse,
         erNoenAvBarnaFosterbarn: søknadsfeltForESvar(

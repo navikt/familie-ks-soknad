@@ -153,7 +153,6 @@ export function mockFeatureToggle() {
                 // toggles: { [EFeatureToggle.EXAMPLE]: false },
                 toggles: {
                     [EFeatureToggle.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP]: false,
-                    [EFeatureToggle.SPOR_OM_MANED_IKKE_DATO]: false,
                 },
             })
         );

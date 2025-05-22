@@ -4,22 +4,13 @@ import { Alert, Box } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useAppContext } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureTogglesContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { EFeatureToggle } from '../../../typer/feature-toggles';
 import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
-import {
-    dagenEtterDato,
-    dagensDato,
-    gårsdagensDato,
-    sisteDagDenneMåneden,
-    stringTilDate,
-} from '../../../utils/dato';
+import { dagensDato, gårsdagensDato, sisteDagDenneMåneden } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { minTilDatoForPeriode } from '../../../utils/perioder';
-import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { DagIMåneden, MånedÅrVelger } from '../MånedÅrVelger/MånedÅrVelger';
@@ -51,7 +42,6 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
     erDød = false,
     forklaring = undefined,
 }) => {
-    const { toggles } = useFeatureToggles();
     const { tekster } = useAppContext();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
         useKontantstøttePeriodeSkjema(personType, erDød);
@@ -138,65 +128,29 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                     ekskluderNorge
                 />
             )}
-            {toggles[EFeatureToggle.SPOR_OM_MANED_IKKE_DATO] ? (
-                <>
-                    {fraDatoKontantstøttePeriode.erSynlig && (
-                        <MånedÅrVelger
-                            felt={skjema.felter.fraDatoKontantstøttePeriode}
-                            label={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
-                            senesteValgbareMåned={
-                                periodenErAvsluttet ? gårsdagensDato() : dagensDato()
-                            }
-                            visFeilmeldinger={skjema.visFeilmeldinger}
-                            dagIMåneden={DagIMåneden.FØRSTE_DAG}
-                            kanIkkeVæreFremtid={true}
-                        />
+            {fraDatoKontantstøttePeriode.erSynlig && (
+                <MånedÅrVelger
+                    felt={skjema.felter.fraDatoKontantstøttePeriode}
+                    label={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
+                    senesteValgbareMåned={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
+                    visFeilmeldinger={skjema.visFeilmeldinger}
+                    dagIMåneden={DagIMåneden.FØRSTE_DAG}
+                    kanIkkeVæreFremtid={true}
+                />
+            )}
+            {tilDatoKontantstøttePeriode.erSynlig && (
+                <MånedÅrVelger
+                    felt={skjema.felter.tilDatoKontantstøttePeriode}
+                    label={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
+                    tidligsteValgbareMåned={minTilDatoForPeriode(
+                        periodenErAvsluttet,
+                        skjema.felter.fraDatoKontantstøttePeriode.verdi
                     )}
-                    {tilDatoKontantstøttePeriode.erSynlig && (
-                        <MånedÅrVelger
-                            felt={skjema.felter.tilDatoKontantstøttePeriode}
-                            label={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
-                            tidligsteValgbareMåned={minTilDatoForPeriode(
-                                periodenErAvsluttet,
-                                skjema.felter.fraDatoKontantstøttePeriode.verdi
-                            )}
-                            senesteValgbareMåned={
-                                periodenErAvsluttet ? sisteDagDenneMåneden() : undefined
-                            }
-                            dagIMåneden={DagIMåneden.SISTE_DAG}
-                            kanIkkeVæreFremtid={periodenErAvsluttet}
-                            kanIkkeVæreFortid={!periodenErAvsluttet}
-                        />
-                    )}
-                </>
-            ) : (
-                <>
-                    {fraDatoKontantstøttePeriode.erSynlig && (
-                        <Datovelger
-                            felt={skjema.felter.fraDatoKontantstøttePeriode}
-                            skjema={skjema}
-                            label={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
-                            avgrensMaxDato={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
-                        />
-                    )}
-                    {tilDatoKontantstøttePeriode.erSynlig && (
-                        <Datovelger
-                            felt={skjema.felter.tilDatoKontantstøttePeriode}
-                            skjema={skjema}
-                            label={<TekstBlock block={teksterForPersonType.sluttdato.sporsmal} />}
-                            avgrensMinDato={
-                                skjema.felter.fraDatoKontantstøttePeriode.verdi
-                                    ? dagenEtterDato(
-                                          stringTilDate(
-                                              skjema.felter.fraDatoKontantstøttePeriode.verdi
-                                          )
-                                      )
-                                    : undefined
-                            }
-                            avgrensMaxDato={dagensDato()}
-                        />
-                    )}
-                </>
+                    senesteValgbareMåned={periodenErAvsluttet ? sisteDagDenneMåneden() : undefined}
+                    dagIMåneden={DagIMåneden.SISTE_DAG}
+                    kanIkkeVæreFremtid={periodenErAvsluttet}
+                    kanIkkeVæreFortid={!periodenErAvsluttet}
+                />
             )}
             {månedligBeløp.erSynlig && (
                 <SkjemaFeltInput

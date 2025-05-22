@@ -31,8 +31,7 @@ export const barnISøknadsFormat = (
     barn: IBarnMedISøknad,
     søknad: ISøknad,
     tekster: ITekstinnhold,
-    tilRestLocaleRecord: TilRestLocaleRecord,
-    toggleSpørOmMånedIkkeDato: boolean
+    tilRestLocaleRecord: TilRestLocaleRecord
 ): ISøknadIKontraktBarn => {
     const {
         ident,
@@ -131,7 +130,6 @@ export const barnISøknadsFormat = (
                 barn,
                 tilRestLocaleRecord,
                 eøsYtelseTekster: tekster.FELLES.modaler.eøsYtelse.søker,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         barnehageplassPerioder: barnehageplassPerioder.map((periode, index) =>
@@ -151,23 +149,11 @@ export const barnISøknadsFormat = (
             )
         ),
         andreForelder: andreForelder
-            ? andreForelderTilISøknadsfelt(
-                  andreForelder,
-                  barn,
-                  tilRestLocaleRecord,
-                  tekster,
-                  toggleSpørOmMånedIkkeDato
-              )
+            ? andreForelderTilISøknadsfelt(andreForelder, barn, tilRestLocaleRecord, tekster)
             : null,
 
         omsorgsperson: omsorgsperson
-            ? omsorgspersonTilISøknadsfelt(
-                  omsorgsperson,
-                  barn,
-                  tilRestLocaleRecord,
-                  tekster,
-                  toggleSpørOmMånedIkkeDato
-              )
+            ? omsorgspersonTilISøknadsfelt(omsorgsperson, barn, tilRestLocaleRecord, tekster)
             : null,
         adresse: adresse.svar
             ? søknadsfelt(
