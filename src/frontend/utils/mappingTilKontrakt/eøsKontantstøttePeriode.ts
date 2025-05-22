@@ -19,7 +19,6 @@ interface PensjonperiodeIKontraktFormatParams {
     barn: IBarnMedISøknad;
     tilRestLocaleRecord: TilRestLocaleRecord;
     eøsYtelseTekster: IEøsYtelseTekstinnhold;
-    toggleSpørOmMånedIkkeDato: boolean;
 }
 
 export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
@@ -28,7 +27,6 @@ export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
     tilRestLocaleRecord,
     eøsYtelseTekster,
     barn,
-    toggleSpørOmMånedIkkeDato,
 }: PensjonperiodeIKontraktFormatParams): ISøknadsfelt<IEøsKontantstøttePeriodeIKontraktFormat> => {
     const {
         mottarEøsKontantstøtteNå,
@@ -84,10 +82,8 @@ export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
     };
 
     function datoTilVerdiForKontrakt(skjemaSpørsmål: ISøknadSpørsmål<ISODateString | ''>) {
-        return toggleSpørOmMånedIkkeDato
-            ? verdiCallbackAlleSpråk(locale =>
-                  uppercaseFørsteBokstav(formaterDatostringKunMåned(skjemaSpørsmål.svar, locale))
-              )
-            : sammeVerdiAlleSpråk(skjemaSpørsmål.svar);
+        return verdiCallbackAlleSpråk(locale =>
+            uppercaseFørsteBokstav(formaterDatostringKunMåned(skjemaSpørsmål.svar, locale))
+        );
     }
 };

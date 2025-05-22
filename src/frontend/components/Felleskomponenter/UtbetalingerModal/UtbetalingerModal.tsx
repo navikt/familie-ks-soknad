@@ -4,8 +4,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { Valideringsstatus } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
-import { useFeatureToggles } from '../../../context/FeatureTogglesContext';
-import { EFeatureToggle } from '../../../typer/feature-toggles';
 import { IUtbetalingsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
@@ -13,7 +11,6 @@ import { dagensDato, gårsdagensDato, sisteDagDenneMåneden } from '../../../uti
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { minTilDatoForPeriode } from '../../../utils/perioder';
 import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
-import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import { DagIMåneden, MånedÅrVelger } from '../MånedÅrVelger/MånedÅrVelger';
@@ -41,7 +38,6 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
     erDød,
     forklaring = undefined,
 }) => {
-    const { toggles } = useFeatureToggles();
     const { tekster, plainTekst } = useAppContext();
     const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
         useUtbetalingerSkjema(personType, barn, erDød);
@@ -122,95 +118,44 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
                         }
                         dynamisk
                     />
-                    {toggles[EFeatureToggle.SPOR_OM_MANED_IKKE_DATO] ? (
-                        <>
-                            <MånedÅrVelger
-                                felt={utbetalingFraDato}
-                                label={
-                                    <TekstBlock block={teksterForPersonType.startdato.sporsmal} />
-                                }
-                                senesteValgbareMåned={
-                                    periodenErAvsluttet ? gårsdagensDato() : dagensDato()
-                                }
-                                visFeilmeldinger={skjema.visFeilmeldinger}
-                                dagIMåneden={DagIMåneden.FØRSTE_DAG}
-                                kanIkkeVæreFremtid={true}
-                            />
-                            <div>
-                                <MånedÅrVelger
-                                    felt={utbetalingTilDato}
-                                    label={
-                                        <TekstBlock
-                                            block={
-                                                periodenErAvsluttet
-                                                    ? teksterForPersonType.sluttdatoFortid.sporsmal
-                                                    : teksterForPersonType.sluttdatoFremtid.sporsmal
-                                            }
-                                        />
+                    <MånedÅrVelger
+                        felt={utbetalingFraDato}
+                        label={<TekstBlock block={teksterForPersonType.startdato.sporsmal} />}
+                        senesteValgbareMåned={periodenErAvsluttet ? gårsdagensDato() : dagensDato()}
+                        visFeilmeldinger={skjema.visFeilmeldinger}
+                        dagIMåneden={DagIMåneden.FØRSTE_DAG}
+                        kanIkkeVæreFremtid={true}
+                    />
+                    <div>
+                        <MånedÅrVelger
+                            felt={utbetalingTilDato}
+                            label={
+                                <TekstBlock
+                                    block={
+                                        periodenErAvsluttet
+                                            ? teksterForPersonType.sluttdatoFortid.sporsmal
+                                            : teksterForPersonType.sluttdatoFremtid.sporsmal
                                     }
-                                    tidligsteValgbareMåned={minTilDatoForPeriode(
-                                        periodenErAvsluttet,
-                                        utbetalingFraDato.verdi
-                                    )}
-                                    senesteValgbareMåned={
-                                        periodenErAvsluttet ? sisteDagDenneMåneden() : undefined
-                                    }
-                                    visFeilmeldinger={skjema.visFeilmeldinger}
-                                    dagIMåneden={DagIMåneden.SISTE_DAG}
-                                    kanIkkeVæreFremtid={periodenErAvsluttet}
-                                    kanIkkeVæreFortid={!periodenErAvsluttet}
-                                    disabled={utbetalingTilDatoUkjent.verdi === ESvar.JA}
                                 />
-                                <SkjemaCheckbox
-                                    label={plainTekst(
-                                        teksterForPersonType.sluttdatoFremtid.checkboxLabel
-                                    )}
-                                    felt={utbetalingTilDatoUkjent}
-                                />
-                            </div>
-                        </>
-                    ) : (
-                        <>
-                            <Datovelger
-                                skjema={skjema}
-                                felt={utbetalingFraDato}
-                                label={
-                                    <TekstBlock block={teksterForPersonType.startdato.sporsmal} />
-                                }
-                                avgrensMaxDato={
-                                    periodenErAvsluttet ? gårsdagensDato() : dagensDato()
-                                }
-                            />
-                            <div>
-                                <Datovelger
-                                    skjema={skjema}
-                                    felt={utbetalingTilDato}
-                                    label={
-                                        <TekstBlock
-                                            block={
-                                                periodenErAvsluttet
-                                                    ? teksterForPersonType.sluttdatoFortid.sporsmal
-                                                    : teksterForPersonType.sluttdatoFremtid.sporsmal
-                                            }
-                                        />
-                                    }
-                                    avgrensMaxDato={periodenErAvsluttet ? dagensDato() : undefined}
-                                    avgrensMinDato={minTilDatoForPeriode(
-                                        periodenErAvsluttet,
-                                        utbetalingFraDato.verdi
-                                    )}
-                                    disabled={utbetalingTilDatoUkjent.verdi === ESvar.JA}
-                                />
-                                <SkjemaCheckbox
-                                    label={plainTekst(
-                                        teksterForPersonType.sluttdatoFremtid.checkboxLabel
-                                    )}
-                                    felt={utbetalingTilDatoUkjent}
-                                />
-                            </div>
-                        </>
-                    )}
-                    ;
+                            }
+                            tidligsteValgbareMåned={minTilDatoForPeriode(
+                                periodenErAvsluttet,
+                                utbetalingFraDato.verdi
+                            )}
+                            senesteValgbareMåned={
+                                periodenErAvsluttet ? sisteDagDenneMåneden() : undefined
+                            }
+                            visFeilmeldinger={skjema.visFeilmeldinger}
+                            dagIMåneden={DagIMåneden.SISTE_DAG}
+                            kanIkkeVæreFremtid={periodenErAvsluttet}
+                            kanIkkeVæreFortid={!periodenErAvsluttet}
+                            disabled={utbetalingTilDatoUkjent.verdi === ESvar.JA}
+                        />
+                        <SkjemaCheckbox
+                            label={plainTekst(teksterForPersonType.sluttdatoFremtid.checkboxLabel)}
+                            felt={utbetalingTilDatoUkjent}
+                        />
+                    </div>
                 </>
             )}
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}

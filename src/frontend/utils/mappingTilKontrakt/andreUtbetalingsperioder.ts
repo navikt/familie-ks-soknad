@@ -19,7 +19,6 @@ interface UtbetalingsperiodeIKontraktFormatParams {
     tilRestLocaleRecord: TilRestLocaleRecord;
     tekster: IAndreUtbetalingerTekstinnhold;
     barn?: IBarnMedISøknad;
-    toggleSpørOmMånedIkkeDato: boolean;
 }
 
 export const tilIAndreUtbetalingsperioderIKontraktFormat = ({
@@ -28,7 +27,6 @@ export const tilIAndreUtbetalingsperioderIKontraktFormat = ({
     tilRestLocaleRecord,
     tekster,
     barn,
-    toggleSpørOmMånedIkkeDato,
 }: UtbetalingsperiodeIKontraktFormatParams): ISøknadsfelt<IUtbetalingsperiodeIKontraktFormat> => {
     const { fårUtbetalingNå, utbetalingLand, utbetalingFraDato, utbetalingTilDato } = periode;
 
@@ -80,10 +78,8 @@ export const tilIAndreUtbetalingsperioderIKontraktFormat = ({
     };
 
     function datoTilVerdiForKontrakt(skjemaSpørsmål: ISøknadSpørsmål<ISODateString | ''>) {
-        return toggleSpørOmMånedIkkeDato
-            ? verdiCallbackAlleSpråk(locale =>
-                  uppercaseFørsteBokstav(formaterDatostringKunMåned(skjemaSpørsmål.svar, locale))
-              )
-            : sammeVerdiAlleSpråk(skjemaSpørsmål.svar);
+        return verdiCallbackAlleSpråk(locale =>
+            uppercaseFørsteBokstav(formaterDatostringKunMåned(skjemaSpørsmål.svar, locale))
+        );
     }
 };
