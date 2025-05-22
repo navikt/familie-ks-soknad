@@ -15,9 +15,11 @@ const Eksempelkomponent = () => {
 
 test('Kan hente ut valgt locale fra SpråkContext som defaultes til "nb" hvis dekoratøren ikke har satt en egen', () => {
     render(
-        <SpråkProvider>
-            <Eksempelkomponent />
-        </SpråkProvider>
+        <CookiesProvider>
+            <SpråkProvider>
+                <Eksempelkomponent />
+            </SpråkProvider>
+        </CookiesProvider>
     );
     expect(screen.getByText(/^Språket er:/)).toHaveTextContent('Språket er: nb');
 });
