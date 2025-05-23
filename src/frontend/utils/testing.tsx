@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 
 import { mockDeep } from 'jest-mock-extended';
+import { CookiesProvider } from 'react-cookie';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import { HttpProvider } from '@navikt/familie-http';
@@ -153,7 +154,6 @@ export function mockFeatureToggle() {
                 // toggles: { [EFeatureToggle.EXAMPLE]: false },
                 toggles: {
                     [EFeatureToggle.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP]: false,
-                    [EFeatureToggle.SPOR_OM_MANED_IKKE_DATO]: false,
                 },
             })
         );
@@ -172,6 +172,7 @@ export const wrapMedProvidere = (
 const wrapMedDefaultProvidere = (children: ReactNode) =>
     wrapMedProvidere(
         [
+            CookiesProvider,
             SpråkProvider,
             HttpProvider,
             LastRessurserProvider,

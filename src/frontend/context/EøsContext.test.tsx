@@ -2,6 +2,7 @@ import React from 'react';
 
 import { renderHook, waitFor } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
+import { CookiesProvider } from 'react-cookie';
 
 import { RessursStatus } from '@navikt/familie-typer';
 
@@ -29,17 +30,19 @@ describe('EøsContext', () => {
     };
 
     const wrapper = ({ children }) => (
-        <SpråkProvider>
-            <LastRessurserProvider>
-                <InnloggetProvider>
-                    <SanityProvider>
-                        <AppProvider>
-                            <EøsProvider>{children}</EøsProvider>
-                        </AppProvider>
-                    </SanityProvider>
-                </InnloggetProvider>
-            </LastRessurserProvider>
-        </SpråkProvider>
+        <CookiesProvider>
+            <SpråkProvider>
+                <LastRessurserProvider>
+                    <InnloggetProvider>
+                        <SanityProvider>
+                            <AppProvider>
+                                <EøsProvider>{children}</EøsProvider>
+                            </AppProvider>
+                        </SanityProvider>
+                    </InnloggetProvider>
+                </LastRessurserProvider>
+            </SpråkProvider>
+        </CookiesProvider>
     );
 
     beforeEach(() => {

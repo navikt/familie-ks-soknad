@@ -21,8 +21,7 @@ import { utenlandsperiodeTilISøknadsfelt } from './utenlandsperiode';
 export const søkerIKontraktFormat = (
     søknad: ISøknad,
     tekster: ITekstinnhold,
-    tilRestLocaleRecord: TilRestLocaleRecord,
-    toggleSpørOmMånedIkkeDato: boolean
+    tilRestLocaleRecord: TilRestLocaleRecord
 ): ISøknadKontraktSøker => {
     const { søker, barnInkludertISøknaden } = søknad;
     const {
@@ -147,7 +146,6 @@ export const søkerIKontraktFormat = (
                 gjelderUtlandet: true,
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.arbeidsperiode.søker,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         arbeidsperioderNorge: arbeidsperioderNorge.map((periode, index) =>
@@ -157,7 +155,6 @@ export const søkerIKontraktFormat = (
                 gjelderUtlandet: false,
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.arbeidsperiode.søker,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         pensjonsperioderUtland: pensjonsperioderUtland.map((periode, index) =>
@@ -167,7 +164,6 @@ export const søkerIKontraktFormat = (
                 gjelderUtlandet: true,
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.pensjonsperiode.søker,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         pensjonsperioderNorge: pensjonsperioderNorge.map((periode, index) =>
@@ -177,7 +173,6 @@ export const søkerIKontraktFormat = (
                 gjelderUtlandet: false,
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.pensjonsperiode.søker,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         andreUtbetalingsperioder: andreUtbetalingsperioder.map((periode, index) =>
@@ -186,7 +181,6 @@ export const søkerIKontraktFormat = (
                 periodeNummer: index + 1,
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.andreUtbetalinger.søker,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
     };

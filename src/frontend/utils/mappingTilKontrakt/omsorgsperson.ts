@@ -21,8 +21,7 @@ export const omsorgspersonTilISøknadsfelt = (
     omsorgsperson: IOmsorgsperson,
     barn: IBarnMedISøknad,
     tilRestLocaleRecord: TilRestLocaleRecord,
-    tekster: ITekstinnhold,
-    toggleSpørOmMånedIkkeDato: boolean
+    tekster: ITekstinnhold
 ): IOmsorgspersonIKontraktFormat => {
     const {
         navn,
@@ -112,7 +111,6 @@ export const omsorgspersonTilISøknadsfelt = (
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.arbeidsperiode.omsorgsperson,
                 barn,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         arbeidNorge: søknadsfeltForESvar(
@@ -128,7 +126,6 @@ export const omsorgspersonTilISøknadsfelt = (
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.arbeidsperiode.omsorgsperson,
                 barn,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         pensjonUtland: søknadsfeltForESvar(
@@ -144,7 +141,6 @@ export const omsorgspersonTilISøknadsfelt = (
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.pensjonsperiode.omsorgsperson,
                 barn: barn,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         pensjonNorge: søknadsfeltForESvar(
@@ -160,7 +156,6 @@ export const omsorgspersonTilISøknadsfelt = (
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.pensjonsperiode.omsorgsperson,
                 barn: barn,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         andreUtbetalinger: søknadsfeltForESvar(
@@ -175,7 +170,6 @@ export const omsorgspersonTilISøknadsfelt = (
                 tilRestLocaleRecord,
                 tekster: tekster.FELLES.modaler.andreUtbetalinger.omsorgsperson,
                 barn,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
         pågåendeSøknadFraAnnetEøsLand: søknadsfeltForESvar(
@@ -204,7 +198,6 @@ export const omsorgspersonTilISøknadsfelt = (
                 tilRestLocaleRecord,
                 eøsYtelseTekster: tekster.FELLES.modaler.eøsYtelse.omsorgsperson,
                 barn: barn,
-                toggleSpørOmMånedIkkeDato,
             })
         ),
     };
