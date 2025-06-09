@@ -178,7 +178,7 @@
     "react-refresh": "^0.17.0",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.9",
-    "ts-essentials": "^10.0.3",
+    "ts-essentials": "^10.1.0",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.8.3",
