@@ -10757,10 +10757,10 @@ ts-api-utils@^2.1.0:
   resolved "https://registry.npmjs.org/ts-api-utils/-/ts-api-utils-2.1.0.tgz#595f7094e46eed364c13fd23e75f9513d29baf91"
   integrity sha512-CUgTZL1irw8u29bzrOD/nH85jqyc74D6SshFgujOIA7osm2Rz7dYH77agkx7H4FBNxDq7Cjf+IjaX/8zwFW+ZQ==
 
-ts-essentials@^10.0.3:
-  version "10.0.3"
-  resolved "https://registry.npmjs.org/ts-essentials/-/ts-essentials-10.0.3.tgz#5a5546f00aae2368b47b4f0f6572e2cd6b423f33"
-  integrity sha512-/FrVAZ76JLTWxJOERk04fm8hYENDo0PWSP3YLQKxevLwWtxemGcl5JJEzN4iqfDlRve0ckyfFaOBu4xbNH/wZw==
+ts-essentials@^10.1.0:
+  version "10.1.0"
+  resolved "https://registry.npmjs.org/ts-essentials/-/ts-essentials-10.1.0.tgz#99fc602cda49822c083560db871c4d1abb52a332"
+  integrity sha512-LirrVzbhIpFQ9BdGfqLnM9r7aP9rnyfeoxbP5ZEkdr531IaY21+KdebRSsbvqu28VDJtcDDn+AlGn95t0c52zQ==
 
 ts-essentials@^7.0.3:
   version "7.0.3"
