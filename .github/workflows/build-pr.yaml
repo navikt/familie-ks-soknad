@@ -8,6 +8,9 @@ on:
 env:
   BASE_PATH: /familie/kontantstotte/soknad/
 
+permissions:
+  contents: read
+
 jobs:
   test:
     name: Kjør typecheck og tester
