@@ -3,6 +3,9 @@ name: Deploy unleash api-token for dev og prod
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   deploy-dev:
     runs-on: ubuntu-latest
