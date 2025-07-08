@@ -6,5 +6,9 @@
     "target": "ES6",
     "module": "ESNext",
     "moduleResolution": "Node",
+    "types": [
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ],
   },
 }
