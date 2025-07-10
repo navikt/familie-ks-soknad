@@ -1,26 +1,19 @@
 import React from 'react';
 
 import { renderHook, waitFor } from '@testing-library/react';
-import MockAdapter from 'axios-mock-adapter';
+import { http, HttpResponse } from 'msw';
 
 import { RessursStatus } from '@navikt/familie-typer';
 
+import { server } from '../../../mocks/node';
+import { urlMedBasePath } from '../../../mocks/utils';
 import { InnloggetStatus } from '../utils/autentisering';
 
-import { preferredAxios } from './axios';
 import { InnloggetProvider, useInnloggetContext } from './InnloggetContext';
 import { LastRessurserProvider } from './LastRessurserContext';
 
 describe('innloggetContext', () => {
     test(`Skal vise info når brukeren er autentisert`, async () => {
-        // For å kunne sjekke state underveis bruker vi falske timere og delay på requesten vi mocker
-        const axiosMock = new MockAdapter(preferredAxios);
-
-        axiosMock.onGet(/\/api\/innlogget/).reply(200, {
-            status: RessursStatus.SUKSESS,
-            data: 'Autentisert kall',
-        });
-
         const wrapper = ({ children }) => (
             <LastRessurserProvider>
                 <InnloggetProvider>{children}</InnloggetProvider>
@@ -36,13 +29,13 @@ describe('innloggetContext', () => {
     });
 
     test(`Skal vise info når brukeren ikke er autentisert`, async () => {
-        // For å kunne sjekke state underveis bruker vi falske timere og delay på requesten vi mocker
-        const axiosMock = new MockAdapter(preferredAxios);
-
-        axiosMock.onGet(/\/api\/innlogget/).reply(200, {
-            status: RessursStatus.IKKE_TILGANG,
-            data: 'Autentisert kall',
-        });
+        server.use(
+            http.get(urlMedBasePath('api/innlogget/kontantstotte'), () => {
+                return HttpResponse.json({
+                    status: RessursStatus.IKKE_TILGANG,
+                });
+            })
+        );
 
         const wrapper = ({ children }) => (
             <LastRessurserProvider>
