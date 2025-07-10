@@ -1,6 +1,7 @@
-import React, { ReactNode } from 'react';
+import React, { PropsWithChildren, ReactNode } from 'react';
 
-import { CookiesProvider } from 'react-cookie';
+import { Cookies, CookiesProvider } from 'react-cookie';
+import { MemoryRouter } from 'react-router';
 import { vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
 
@@ -111,6 +112,13 @@ export const spyOnUseApp = søknad => {
     };
 };
 
+export function CookiesProviderMedLocale(props: PropsWithChildren) {
+    const cookies = new Cookies();
+    cookies.set('decorator-language', 'nb');
+
+    return <CookiesProvider cookies={cookies}>{props.children}</CookiesProvider>;
+}
+
 export function mockEøs(barnSomTriggerEøs = [], søkerTriggerEøs = false) {
     const erEøsLand = vi.fn();
 
@@ -168,10 +176,17 @@ export const wrapMedProvidere = (
     return <Første>{resten.length ? wrapMedProvidere(resten, children) : children}</Første>;
 };
 
-const wrapMedDefaultProvidere = (children: ReactNode) =>
-    wrapMedProvidere(
+interface TestProviderProps {
+    children?: ReactNode;
+    mocketNettleserHistorikk?: string[];
+}
+export function TestProvidere({ children, mocketNettleserHistorikk }: TestProviderProps) {
+    const MemoryRouterMedHistorikk = (props: PropsWithChildren) => (
+        <MemoryRouter initialEntries={mocketNettleserHistorikk}>{props.children}</MemoryRouter>
+    );
+    return wrapMedProvidere(
         [
-            CookiesProvider,
+            CookiesProviderMedLocale,
             SpråkProvider,
             HttpProvider,
             LastRessurserProvider,
@@ -181,17 +196,12 @@ const wrapMedDefaultProvidere = (children: ReactNode) =>
             AppProvider,
             EøsProvider,
             RoutesProvider,
+            MemoryRouterMedHistorikk,
             StegProvider,
             AppNavigationProvider,
         ],
         children
     );
-
-interface TestProviderProps {
-    children?: ReactNode;
-}
-export function TestProvidere({ children }: TestProviderProps) {
-    return wrapMedDefaultProvidere(children);
 }
 
 export const mockedHistory: string[] = [];

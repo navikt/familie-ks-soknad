@@ -1,17 +1,9 @@
 import { renderHook, waitFor } from '@testing-library/react';
 
 import { RouteEnum } from '../typer/routes';
-import {
-    mockEøs,
-    mockFeatureToggle,
-    mockHistory,
-    spyOnUseApp,
-    TestProvidere,
-} from '../utils/testing';
+import { mockEøs, mockFeatureToggle, spyOnUseApp, TestProvidere } from '../utils/testing';
 
 import { useAppNavigationContext } from './AppNavigationContext';
-
-mockHistory(['/om-barnet/barn/1']);
 
 describe('AppNavigationContext', () => {
     beforeEach(() => {
@@ -23,7 +15,11 @@ describe('AppNavigationContext', () => {
             barnInkludertISøknaden: [],
         });
 
-        const wrapper = ({ children }) => TestProvidere({ children });
+        const wrapper = ({ children }) => (
+            <TestProvidere mocketNettleserHistorikk={['/om-barnet/barn/1']}>
+                {children}
+            </TestProvidere>
+        );
         const { result } = renderHook(() => useAppNavigationContext(), { wrapper });
         expect(result.current.komFra).toEqual(undefined);
         const omDegSteg = { path: 'om-deg', label: 'Om deg', route: RouteEnum.OmDeg };

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { renderHook } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 
 import { RouteEnum } from '../typer/routes';
 import { mockEøs, mockFeatureToggle, mockHistory, spyOnUseApp } from '../utils/testing';
@@ -21,9 +22,11 @@ describe('Steg', () => {
         });
 
         const wrapper = ({ children }) => (
-            <RoutesProvider>
-                <StegProvider>{children}</StegProvider>
-            </RoutesProvider>
+            <MemoryRouter>
+                <RoutesProvider>
+                    <StegProvider>{children}</StegProvider>
+                </RoutesProvider>
+            </MemoryRouter>
         );
         const { result } = renderHook(() => useStegContext(), { wrapper });
         expect(result.current.steg.length).toEqual(9);
@@ -40,9 +43,11 @@ describe('Steg', () => {
 
         mockHistory(['/']);
         const wrapper = ({ children }) => (
-            <RoutesProvider>
-                <StegProvider>{children}</StegProvider>
-            </RoutesProvider>
+            <MemoryRouter>
+                <RoutesProvider>
+                    <StegProvider>{children}</StegProvider>
+                </RoutesProvider>
+            </MemoryRouter>
         );
         const { result } = renderHook(() => useStegContext(), { wrapper });
         const nesteSteg = result.current.hentNesteSteg();
@@ -57,11 +62,13 @@ describe('Steg', () => {
                 },
             ],
         });
-        mockHistory(['/om-barnet/barn/1']);
+
         const wrapper = ({ children }) => (
-            <RoutesProvider>
-                <StegProvider>{children}</StegProvider>
-            </RoutesProvider>
+            <MemoryRouter initialEntries={['/om-barnet/barn/1']}>
+                <RoutesProvider>
+                    <StegProvider>{children}</StegProvider>
+                </RoutesProvider>
+            </MemoryRouter>
         );
         const { result } = renderHook(() => useStegContext(), { wrapper });
         const nesteRoute = result.current.hentNesteSteg();
@@ -76,11 +83,13 @@ describe('Steg', () => {
                 },
             ],
         });
-        mockHistory(['/om-barnet/barn/1']);
+
         const wrapper = ({ children }) => (
-            <RoutesProvider>
-                <StegProvider>{children}</StegProvider>
-            </RoutesProvider>
+            <MemoryRouter initialEntries={['/om-barnet/barn/1']}>
+                <RoutesProvider>
+                    <StegProvider>{children}</StegProvider>
+                </RoutesProvider>
+            </MemoryRouter>
         );
         const { result } = renderHook(() => useStegContext(), { wrapper });
         const nesteRoute = result.current.hentNesteSteg();
@@ -97,9 +106,11 @@ describe('Steg', () => {
         });
 
         const wrapper = ({ children }) => (
-            <RoutesProvider>
-                <StegProvider>{children}</StegProvider>
-            </RoutesProvider>
+            <MemoryRouter>
+                <RoutesProvider>
+                    <StegProvider>{children}</StegProvider>
+                </RoutesProvider>
+            </MemoryRouter>
         );
         const { result } = renderHook(() => useStegContext(), { wrapper });
 
@@ -120,12 +131,13 @@ describe('Steg', () => {
             ],
         });
         const wrapper = ({ children }) => (
-            <RoutesProvider>
-                <StegProvider>{children}</StegProvider>
-            </RoutesProvider>
+            <MemoryRouter initialEntries={['/om-barnet/barn/1']}>
+                <RoutesProvider>
+                    <StegProvider>{children}</StegProvider>
+                </RoutesProvider>
+            </MemoryRouter>
         );
 
-        mockHistory(['/om-barnet/barn/1']);
         const { result } = renderHook(() => useStegContext(), { wrapper });
 
         expect(result.current.hentForrigeSteg().path).toBe('/om-barna');
@@ -144,12 +156,13 @@ describe('Steg', () => {
             ],
         });
         const wrapper = ({ children }) => (
-            <RoutesProvider>
-                <StegProvider>{children}</StegProvider>
-            </RoutesProvider>
+            <MemoryRouter initialEntries={['/om-barnet/barn/2']}>
+                <RoutesProvider>
+                    <StegProvider>{children}</StegProvider>
+                </RoutesProvider>
+            </MemoryRouter>
         );
 
-        mockHistory(['/om-barnet/barn/2']);
         const { result } = renderHook(() => useStegContext(), { wrapper });
         expect(result.current.hentForrigeSteg().path).toBe('/om-barnet/barn/1');
         expect(result.current.hentNesteSteg().path).toBe('/oppsummering');
