@@ -6,7 +6,7 @@ import { vi } from 'vitest';
 import { IDokumentasjon } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { initialStateSøknad } from '../../../typer/søknad';
-import { mockEøs, spyOnUseApp, TestProvidere } from '../../../utils/testing';
+import { spyOnUseApp, TestProvidere } from '../../../utils/testing';
 
 import LastOppVedlegg from './LastOppVedlegg';
 
@@ -22,10 +22,6 @@ const hentAnnenDokumentasjon = (): IDokumentasjon => {
 };
 
 describe('LastOppVedlegg', () => {
-    beforeEach(() => {
-        mockEøs();
-    });
-
     it('Viser ikke info-tekst og checkbox knapp for ANNEN_DOKUMENTASJON', () => {
         spyOnUseApp({});
         const dokumentasjon = hentAnnenDokumentasjon();

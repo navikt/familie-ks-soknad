@@ -1,15 +1,12 @@
 import { renderHook, waitFor } from '@testing-library/react';
 
 import { RouteEnum } from '../typer/routes';
-import { mockEøs, mockFeatureToggle, spyOnUseApp, TestProvidere } from '../utils/testing';
+import { spyOnUseApp, TestProvidere } from '../utils/testing';
 
 import { useAppNavigationContext } from './AppNavigationContext';
 
 describe('AppNavigationContext', () => {
-    beforeEach(() => {
-        mockFeatureToggle();
-        mockEøs();
-    });
+    beforeEach(() => {});
     test(`Kan kunne sette og hente hvor bruker navigerte fra`, async () => {
         spyOnUseApp({
             barnInkludertISøknaden: [],

@@ -17,33 +17,22 @@ import { AppProvider } from '../context/AppContext';
 import { AppNavigationProvider } from '../context/AppNavigationContext';
 import * as eøsContext from '../context/EøsContext';
 import { EøsProvider } from '../context/EøsContext';
-import * as featureToggleContext from '../context/FeatureTogglesContext';
 import { FeatureTogglesProvider } from '../context/FeatureTogglesContext';
 import { InnloggetProvider } from '../context/InnloggetContext';
 import { LastRessurserProvider } from '../context/LastRessurserContext';
-import * as pdlRequest from '../context/pdl';
-import * as routesContext from '../context/RoutesContext';
-import { getRoutes, RoutesProvider } from '../context/RoutesContext';
-import * as sanityContext from '../context/SanityContext';
+import { RoutesProvider } from '../context/RoutesContext';
 import { SanityProvider } from '../context/SanityContext';
 import { SpråkProvider } from '../context/SpråkContext';
 import { StegProvider } from '../context/StegContext';
-import { EFeatureToggle } from '../typer/feature-toggles';
 import { ESivilstand } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { IUtenlandsperiode } from '../typer/perioder';
-import { ISøker, ISøkerRespons } from '../typer/person';
+import { ISøker } from '../typer/person';
 import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { initialStateSøknad } from '../typer/søknad';
 import { EUtenlandsoppholdÅrsak } from '../typer/utenlandsopphold';
 
-vi.mock('../context/pdl');
-
 export const spyOnUseApp = søknad => {
-    vi.spyOn(pdlRequest, 'hentSluttbrukerFraPdl').mockImplementation(async () => ({
-        status: RessursStatus.SUKSESS,
-        data: mockDeep<ISøkerRespons>({ sivilstand: { type: ESivilstand.UGIFT }, ...søknad.søker }),
-    }));
     const tekster = vi.fn().mockImplementation(() => mockDeep<ITekstinnhold>());
     const plainTekst = vi.fn();
     const tilRestLocaleRecord = vi.fn();
@@ -134,37 +123,6 @@ export function mockEøs(barnSomTriggerEøs = [], søkerTriggerEøs = false) {
         })
     );
     return { useEøs, erEøsLand };
-}
-
-export function mockRoutes() {
-    const useRoutes = vi.spyOn(routesContext, 'useRoutesContext').mockImplementation(
-        vi.fn().mockReturnValue({
-            routes: getRoutes(),
-            hentRouteObjektForRouteEnum: vi.fn(),
-        })
-    );
-    return { useRoutes };
-}
-
-export function mockSanity() {
-    const useSanity = vi.spyOn(sanityContext, 'useSanityContext').mockImplementation(
-        vi.fn().mockReturnValue({
-            teksterRessurs: RessursStatus.SUKSESS,
-        })
-    );
-    return { useSanity };
-}
-
-export function mockFeatureToggle() {
-    const useFeatureToggle = vi.spyOn(featureToggleContext, 'useFeatureToggles').mockImplementation(
-        vi.fn().mockReturnValue({
-            // toggles: { [EFeatureToggle.EXAMPLE]: false },
-            toggles: {
-                [EFeatureToggle.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP]: false,
-            },
-        })
-    );
-    return { useFeatureToggle };
 }
 
 export const wrapMedProvidere = (

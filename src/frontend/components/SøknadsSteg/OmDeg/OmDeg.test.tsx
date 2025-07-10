@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import { mockDeep } from 'vitest-mock-extended';
 
 import { ISøker } from '../../../typer/person';
-import { mockEøs, spyOnUseApp, TestProvidere } from '../../../utils/testing';
+import { spyOnUseApp, TestProvidere } from '../../../utils/testing';
 
 import OmDeg from './OmDeg';
 import { OmDegSpørsmålId } from './spørsmål';
@@ -16,10 +16,6 @@ const TestKomponent = () => (
 );
 
 describe('OmDeg', () => {
-    beforeEach(() => {
-        mockEøs();
-    });
-
     test('Kan gå videre i søknad ved adresse som er ukjent, får ikke spm om bosted, men opphold i norge', async () => {
         spyOnUseApp({
             søker: mockDeep<ISøker>({

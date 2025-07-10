@@ -6,22 +6,11 @@ import { vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import { RessursStatus } from '@navikt/familie-typer';
 
-import * as pdlRequest from '../../../context/pdl';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';
-import { ESivilstand } from '../../../typer/kontrakt/generelle';
-import { IBarnRespons, ISøkerRespons } from '../../../typer/person';
+import { IBarnRespons } from '../../../typer/person';
 import { ISøknad } from '../../../typer/søknad';
-import {
-    mekkGyldigSøker,
-    mockEøs,
-    mockFeatureToggle,
-    mockRoutes,
-    mockSanity,
-    spyOnUseApp,
-    TestProvidere,
-} from '../../../utils/testing';
+import { mekkGyldigSøker, spyOnUseApp, TestProvidere } from '../../../utils/testing';
 import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
 
 import VelgBarn from './VelgBarn';
@@ -55,19 +44,6 @@ const fraPdlSomIBarnMedISøknad: Partial<IBarnMedISøknad> = {
 };
 
 describe('VelgBarn', () => {
-    beforeEach(() => {
-        vi.spyOn(pdlRequest, 'hentSluttbrukerFraPdl').mockImplementation(async () => ({
-            status: RessursStatus.SUKSESS,
-            data: mockDeep<ISøkerRespons>({
-                sivilstand: { type: ESivilstand.UGIFT },
-            }),
-        }));
-        mockEøs();
-        mockRoutes();
-        mockSanity();
-        mockFeatureToggle();
-    });
-
     test('Kan fjerne manuelt registrerte barn', () => {
         const søknad = {
             barnRegistrertManuelt: [manueltRegistrert],
