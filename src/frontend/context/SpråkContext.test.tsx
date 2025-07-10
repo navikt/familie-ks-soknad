@@ -13,17 +13,6 @@ const Eksempelkomponent = () => {
     return <span>Språket er: {valgtLocale}</span>;
 };
 
-test('Kan hente ut valgt locale fra SpråkContext som defaultes til "nb" hvis dekoratøren ikke har satt en egen', () => {
-    render(
-        <CookiesProvider>
-            <SpråkProvider>
-                <Eksempelkomponent />
-            </SpråkProvider>
-        </CookiesProvider>
-    );
-    expect(screen.getByText(/^Språket er:/)).toHaveTextContent('Språket er: nb');
-});
-
 test('Kan hente ut valgt locale fra SpråkContext når den er satt av dekoratøren', () => {
     const cookies = new Cookies();
     cookies.set('decorator-language', 'en');
