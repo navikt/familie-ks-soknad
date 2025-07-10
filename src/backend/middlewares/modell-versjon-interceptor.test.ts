@@ -1,5 +1,5 @@
 import { Response, Request } from 'express';
-import { mockDeep } from 'jest-mock-extended';
+import { mockDeep } from 'vitest-mock-extended';
 
 import { type ApiRessurs, RessursStatus } from '@navikt/familie-typer';
 
@@ -13,11 +13,11 @@ import { modellVersjonInterceptor } from './modell-versjon-interceptor';
 
 describe('modell-versjon-interceptor', () => {
     const response = mockDeep<Response>({
-        status: jest.fn().mockReturnThis(),
-        send: jest.fn(),
+        status: vi.fn().mockReturnThis(),
+        send: vi.fn(),
     });
 
-    const next = jest.fn();
+    const next = vi.fn();
 
     beforeEach(() => {
         next.mockReset();
@@ -28,7 +28,7 @@ describe('modell-versjon-interceptor', () => {
 
     it('Sender 403 hvis modellversjon ikke matcher', () => {
         const request = mockDeep<Request>({
-            get: jest.fn().mockReturnValue(`${modellVersjon - 1}`),
+            get: vi.fn().mockReturnValue(`${modellVersjon - 1}`),
         });
         modellVersjonInterceptor(request, response, next);
         expect(next).not.toHaveBeenCalled();
@@ -46,7 +46,7 @@ describe('modell-versjon-interceptor', () => {
 
     it('Kaller neste handler hvis modellversjon matcher', () => {
         const request = mockDeep<Request>({
-            get: jest.fn().mockReturnValue(`${modellVersjon}`),
+            get: vi.fn().mockReturnValue(`${modellVersjon}`),
         });
         modellVersjonInterceptor(request, response, next);
         expect(next).toHaveBeenCalled();

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { mockDeep } from 'jest-mock-extended';
+import { mockDeep } from 'vitest-mock-extended';
 
 import { ISøker } from '../../../typer/person';
 import { mockEøs, spyOnUseApp, TestProvidere } from '../../../utils/testing';

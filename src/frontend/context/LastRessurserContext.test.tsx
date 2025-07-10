@@ -11,8 +11,7 @@ import { LastRessurserProvider, useLastRessurserContext } from './LastRessurserC
 describe('LastRessurserContext', () => {
     test(`Kan vise at ressurser laster når vi bruker axios-funksjonen til contexten`, async () => {
         // For å kunne sjekke state underveis bruker vi falske timere og delay på requesten vi mocker
-        jest.useFakeTimers();
-        const axiosMock = new MockAdapter(preferredAxios, { delayResponse: 2000 });
+        const axiosMock = new MockAdapter(preferredAxios);
 
         axiosMock.onGet(/\/testing/).reply(200, {
             status: RessursStatus.SUKSESS,
@@ -34,8 +33,6 @@ describe('LastRessurserContext', () => {
         });
 
         expect(result.current.lasterRessurser()).toEqual(true);
-
-        jest.runAllTimers();
 
         await waitFor(() => expect(result.current.lasterRessurser()).toEqual(false));
     });

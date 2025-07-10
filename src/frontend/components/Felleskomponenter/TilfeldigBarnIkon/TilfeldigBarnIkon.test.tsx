@@ -1,7 +1,8 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { mockDeep } from 'jest-mock-extended';
+import { vi } from 'vitest';
+import { mockDeep } from 'vitest-mock-extended';
 
 import { ISøknad } from '../../../typer/søknad';
 import * as hjelpefunksjoner from '../../../utils/hjelpefunksjoner';
@@ -15,7 +16,7 @@ describe('TilfeldigBarnIkon', () => {
     });
 
     it('velger nytt ikon ved rerender by default', () => {
-        const spy = jest.spyOn(hjelpefunksjoner, 'randomIntFraIntervall');
+        const spy = vi.spyOn(hjelpefunksjoner, 'randomIntFraIntervall');
         const { rerender } = render(
             <TestProvidere>
                 <TilfeldigBarnIkon />
@@ -41,7 +42,7 @@ describe('TilfeldigBarnIkon', () => {
     });
 
     it('kan låse barnikon mellom rerenders med prop', () => {
-        const spy = jest.spyOn(hjelpefunksjoner, 'randomIntFraIntervall');
+        const spy = vi.spyOn(hjelpefunksjoner, 'randomIntFraIntervall');
         spyOnUseApp(mockDeep<ISøknad>({ barnInkludertISøknaden: [{ id: '1' }, { id: '2' }] }));
 
         const { rerender } = render(

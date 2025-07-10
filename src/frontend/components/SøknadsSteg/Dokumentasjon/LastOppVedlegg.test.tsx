@@ -1,17 +1,16 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
+import { vi } from 'vitest';
 
 import { IDokumentasjon } from '../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
+import { initialStateSøknad } from '../../../typer/søknad';
 import { mockEøs, spyOnUseApp, TestProvidere } from '../../../utils/testing';
 
 import LastOppVedlegg from './LastOppVedlegg';
 
 const hentAnnenDokumentasjon = (): IDokumentasjon => {
-    jest.resetModules();
-    const { initialStateSøknad } = jest.requireActual('../../../typer/søknad');
-
     const dokumentasjon = initialStateSøknad.dokumentasjon.find(
         dok => dok.dokumentasjonsbehov === Dokumentasjonsbehov.ANNEN_DOKUMENTASJON
     );
@@ -24,14 +23,13 @@ const hentAnnenDokumentasjon = (): IDokumentasjon => {
 
 describe('LastOppVedlegg', () => {
     beforeEach(() => {
-        jest.resetModules();
         mockEøs();
     });
 
     it('Viser ikke info-tekst og checkbox knapp for ANNEN_DOKUMENTASJON', () => {
         spyOnUseApp({});
         const dokumentasjon = hentAnnenDokumentasjon();
-        const oppdaterDokumentasjon = jest.fn();
+        const oppdaterDokumentasjon = vi.fn();
 
         const { queryByTestId, getByTestId } = render(
             <TestProvidere>
