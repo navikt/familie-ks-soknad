@@ -2,7 +2,6 @@ import React from 'react';
 
 import { renderHook } from '@testing-library/react';
 import { Alpha3Code } from 'i18n-iso-countries';
-import { CookiesProvider } from 'react-cookie';
 import { mock } from 'vitest-mock-extended';
 
 import { ESvar } from '@navikt/familie-form-elements';
@@ -10,12 +9,9 @@ import { type Felt, Valideringsstatus } from '@navikt/familie-skjema';
 
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
 import { AppProvider } from '../context/AppContext';
-import { InnloggetProvider } from '../context/InnloggetContext';
-import { LastRessurserProvider } from '../context/LastRessurserContext';
-import { SanityProvider } from '../context/SanityContext';
-import { SpråkProvider } from '../context/SpråkContext';
 import { ISODateString, LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
+import { TestProvidere } from '../utils/testing';
 
 import useJaNeiSpmFelt, { erRelevanteAvhengigheterValidert } from './useJaNeiSpmFelt';
 
@@ -145,17 +141,9 @@ describe('useJaNeiSpmFelt', () => {
         });
 
         const wrapper = ({ children }) => (
-            <CookiesProvider>
-                <SpråkProvider>
-                    <LastRessurserProvider>
-                        <InnloggetProvider>
-                            <SanityProvider>
-                                <AppProvider>{children}</AppProvider>
-                            </SanityProvider>
-                        </InnloggetProvider>
-                    </LastRessurserProvider>
-                </SpråkProvider>
-            </CookiesProvider>
+            <TestProvidere>
+                <AppProvider>{children}</AppProvider>
+            </TestProvidere>
         );
 
         const { result } = renderHook(
