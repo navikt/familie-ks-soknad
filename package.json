@@ -77,7 +77,7 @@
     ]
   },
   "dependencies": {
-    "@grafana/faro-web-sdk": "^1.18.1",
+    "@grafana/faro-web-sdk": "^1.19.0",
     "@navikt/aksel-icons": "^7.10.0",
     "@navikt/ds-css": "^7.13.0",
     "@navikt/ds-react": "^7.22.0",
