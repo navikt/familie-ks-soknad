@@ -138,7 +138,7 @@
     "@types/express": "^5.0.1",
     "@types/jest": "^29.5.11",
     "@types/mustache-express": "^1.2.5",
-    "@types/node": "^22.15.21",
+    "@types/node": "^24.0.13",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@types/react-router": "^5.1.20",
