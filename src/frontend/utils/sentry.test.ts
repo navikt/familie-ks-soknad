@@ -1,5 +1,6 @@
 import type { ErrorEvent } from '@sentry/react';
-import { mockDeep, mockFn } from 'jest-mock-extended';
+import { vi } from 'vitest';
+import { mockDeep, mockFn } from 'vitest-mock-extended';
 
 import { fjernPersonopplysninger } from './sentry';
 
@@ -21,7 +22,7 @@ describe('sentry', () => {
         stringify
             .calledWith(event.breadcrumbs?.slice(0, 1)[0].data)
             .mockReturnValue(stringifiedBreadcrumbData);
-        const stringifySpy = jest.spyOn(JSON, 'stringify').mockImplementation(stringify);
+        const stringifySpy = vi.spyOn(JSON, 'stringify').mockImplementation(stringify);
         const rensketEvent = fjernPersonopplysninger(event);
         stringifySpy.mockRestore();
 

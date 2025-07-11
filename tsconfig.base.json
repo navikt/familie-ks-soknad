@@ -18,7 +18,11 @@
     "moduleResolution": "node",
     "traceResolution": false,
     "jsx": "react",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": [
+      "vitest/globals",
+      "@testing-library/jest-dom"
+    ],
   },
   "exclude": [
     "./src/**/*.test.tsx",

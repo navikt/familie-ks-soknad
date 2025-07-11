@@ -1,10 +1,12 @@
+import { vi } from 'vitest';
+
 import { ESivilstand } from '../../typer/kontrakt/generelle';
 import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
 import { sivilstandTilSanitySivilstandApiKey } from '../../utils/språk';
 
 describe('useSendInnSkjema', () => {
     beforeEach(() => {
-        jest.useFakeTimers();
+        vi.useFakeTimers();
     });
 
     it('Kan mappe sivilstandenum til sanity sivilstand', () => {

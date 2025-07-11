@@ -1,5 +1,5 @@
-import { mockDeep } from 'jest-mock-extended';
-import { DeepPartial } from 'ts-essentials';
+import { vi } from 'vitest';
+import { mockDeep } from 'vitest-mock-extended';
 
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
@@ -28,7 +28,6 @@ describe('genererSvarForSpørsmålBarn', () => {
 });
 
 describe('genererOppdaterteBarn', () => {
-    const { objectContaining } = expect;
     const mockSøknad = mockDeep<ISøknad>({
         barnInkludertISøknaden: [
             {
@@ -71,17 +70,15 @@ describe('genererOppdaterteBarn', () => {
     });
 
     test('Returner objekt med barn, med forventede verdier', () => {
-        expect(genererOppdaterteBarn(mockSøknad, mockSkjema, _barn => false, jest.fn())).toEqual([
-            objectContaining<DeepPartial<IBarnMedISøknad>>({
-                id: 'random-id',
-                erFosterbarn: objectContaining({ svar: 'JA' }),
-                erAsylsøker: objectContaining({ svar: 'JA' }),
-                erAdoptert: objectContaining({ svar: 'NEI' }),
-                oppholderSegIInstitusjon: objectContaining({ svar: 'NEI' }),
-                boddMindreEnn12MndINorge: objectContaining({ svar: 'NEI' }),
-                kontantstøtteFraAnnetEøsland: objectContaining({ svar: 'JA' }),
-                planleggerÅBoINorge12Mnd: objectContaining({ svar: null }),
-            }),
-        ]);
+        const barn = genererOppdaterteBarn(mockSøknad, mockSkjema, _barn => false, vi.fn());
+
+        expect(barn[0].id).toBe('random-id');
+        expect(barn[0].erFosterbarn.svar).toBe('JA');
+        expect(barn[0].erAsylsøker.svar).toBe('JA');
+        expect(barn[0].erAdoptert.svar).toBe('NEI');
+        expect(barn[0].oppholderSegIInstitusjon.svar).toBe('NEI');
+        expect(barn[0].boddMindreEnn12MndINorge.svar).toBe('NEI');
+        expect(barn[0].kontantstøtteFraAnnetEøsland.svar).toBe('JA');
+        expect(barn[0].planleggerÅBoINorge12Mnd.svar).toBe(null);
     });
 });
