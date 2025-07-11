@@ -44,7 +44,7 @@
     ]
   },
   "dependencies": {
-    "@grafana/faro-web-sdk": "^1.18.1",
+    "@grafana/faro-web-sdk": "^1.19.0",
     "@navikt/aksel-icons": "^7.10.0",
     "@navikt/ds-css": "^7.13.0",
     "@navikt/ds-react": "^7.22.0",
@@ -67,7 +67,7 @@
     "cors": "^2.8.5",
     "csp-header": "^6.1.0",
     "date-fns": "^4.1.0",
-    "dotenv": "^16.5.0",
+    "dotenv": "^17.2.0",
     "express": "^5.1.0",
     "express-rate-limit": "^7.5.0",
     "html-react-parser": "^5.2.2",
