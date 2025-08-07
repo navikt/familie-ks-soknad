@@ -4,6 +4,7 @@ import { AxiosError, type AxiosRequestConfig, type AxiosResponse } from 'axios';
 
 import { type ApiRessurs, type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
+import { useUnmountCleanup } from '../hooks/useUnmountCleanup';
 import { hentUid } from '../utils/barn';
 
 import { håndterApiRessurs, loggFeil, preferredAxios } from './axios';
@@ -29,6 +30,11 @@ const LastRessurserContext = createContext<LastRessurserContext | undefined>(und
 
 export function LastRessurserProvider(props: PropsWithChildren) {
     const [ressurserSomLaster, settRessurserSomLaster] = useState<string[]>([]);
+    const {
+        registerTimeoutUnmountHandler,
+        registerRequestUnmountHandler,
+        removeRequestUnmountHandler,
+    } = useUnmountCleanup();
 
     const axiosRequest: AxiosRequest = async <T, D>(
         config: AxiosRequestConfig & {
@@ -42,17 +48,28 @@ export function LastRessurserProvider(props: PropsWithChildren) {
             settRessurserSomLaster([...ressurserSomLaster, ressursId]);
         }
 
+        const controller = new AbortController();
+        registerRequestUnmountHandler(controller);
+
         return preferredAxios
-            .request(config)
+            .request({ signal: controller.signal, ...config })
             .then((response: AxiosResponse<ApiRessurs<T>>) => {
                 const responsRessurs: ApiRessurs<T> = response.data;
                 if (config.påvirkerSystemLaster) {
                     fjernRessursSomLaster(ressursId);
                 }
 
+                removeRequestUnmountHandler(controller);
                 return håndterApiRessurs(responsRessurs);
             })
             .catch((error: AxiosError<ApiRessurs<T>>) => {
+                if (controller.signal?.aborted) {
+                    return {
+                        frontendFeilmelding: 'Requesten ble kansellert',
+                        status: RessursStatus.FEILET,
+                    };
+                }
+
                 if (config.påvirkerSystemLaster) {
                     fjernRessursSomLaster(ressursId);
                 }
@@ -71,11 +88,12 @@ export function LastRessurserProvider(props: PropsWithChildren) {
     };
 
     const fjernRessursSomLaster = (ressursId: string) => {
-        setTimeout(() => {
+        const timer = setTimeout(() => {
             settRessurserSomLaster((prevState: string[]) => {
                 return prevState.filter((ressurs: string) => ressurs !== ressursId);
             });
         }, 300);
+        registerTimeoutUnmountHandler(timer);
     };
 
     async function wrapMedSystemetLaster<T>(callback: () => T | Promise<T>): Promise<T> {
