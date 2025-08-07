@@ -42,7 +42,7 @@ export const erLokalt = () => !erProd() && !erDev();
 const Miljø = (): MiljøProps => {
     if (erDev()) {
         return {
-            sanityDataset: 'production',
+            sanityDataset: 'ks-production',
             soknadApiProxyUrl: `https://familie-ks-soknad.${erAnsattUrl() ? 'ansatt' : 'ekstern'}.dev.nav.no${basePath}api`,
             soknadApiUrl: `http://familie-baks-soknad-api/api`,
             dokumentProxyUrl: `https://familie-ks-soknad.${erAnsattUrl() ? 'ansatt' : 'ekstern'}.dev.nav.no${basePath}dokument`,
@@ -54,7 +54,7 @@ const Miljø = (): MiljøProps => {
         };
     } else if (erProd()) {
         return {
-            sanityDataset: 'production',
+            sanityDataset: 'ks-production',
             soknadApiProxyUrl: `https://www.nav.no${basePath}api`,
             soknadApiUrl: `http://familie-baks-soknad-api/api`,
             dokumentProxyUrl: `https://www.nav.no${basePath}dokument`,
@@ -66,7 +66,7 @@ const Miljø = (): MiljøProps => {
         };
     } else {
         return {
-            sanityDataset: 'production',
+            sanityDataset: 'ks-production',
             soknadApiProxyUrl: `http://localhost:3000${basePath}api`,
             soknadApiUrl: 'http://localhost:8080/api',
             dokumentProxyUrl: `http://localhost:3000${basePath}dokument`,
