@@ -1785,10 +1785,10 @@
   dependencies:
     js-cookie "^3.0.5"
 
-"@navikt/oasis@^3.7.0":
-  version "3.7.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/oasis/3.7.0/751fcd04f8bd873590fc8ad516f906012caaf9ef#751fcd04f8bd873590fc8ad516f906012caaf9ef"
-  integrity sha512-Arf3/k0ZDUsmT7gKOkVvEDYyAegFUznc0TQ1OlzV0O6wJ2qbmSnBHe6lea0J5zxRud+OZ6rgYj0ujsGrIiPPBQ==
+"@navikt/oasis@^3.8.0":
+  version "3.8.0"
+  resolved "https://npm.pkg.github.com/download/@navikt/oasis/3.8.0/fc6862d934adfbefa382220614af18160688cd1e#fc6862d934adfbefa382220614af18160688cd1e"
+  integrity sha512-5CDsv3wop9eIw2YNBCJRr0w6PwwkoTiHzZQXn1+5YZnsksCkHJAFsfKSbRle6zgsD+XRBnc/TPOP0nvNly7NWg==
   dependencies:
     jose "^5.2.3"
     openid-client "^5.6.5"
