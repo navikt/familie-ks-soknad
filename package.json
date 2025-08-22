@@ -56,7 +56,7 @@
     "@navikt/fnrvalidator": "^2.1.5",
     "@navikt/nav-dekoratoren-moduler": "^3.4.0",
     "@navikt/oasis": "^3.8.0",
-    "@portabletext/react": "^3.2.0",
+    "@portabletext/react": "^4.0.1",
     "@portabletext/toolkit": "^2.0.8",
     "@sanity/client": "^7.9.0",
     "@sentry/react": "^10.5.0",
