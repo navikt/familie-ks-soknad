@@ -58,7 +58,7 @@
     "@navikt/oasis": "^3.8.0",
     "@portabletext/react": "^3.2.0",
     "@portabletext/toolkit": "^2.0.8",
-    "@sanity/client": "^7.8.2",
+    "@sanity/client": "^7.9.0",
     "@sentry/react": "^10.5.0",
     "axios": "1.11.0",
     "classnames": "^2.5.1",
