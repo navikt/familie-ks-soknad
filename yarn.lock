@@ -1957,10 +1957,17 @@
     "@portabletext/toolkit" "^2.0.16"
     "@portabletext/types" "^2.0.13"
 
-"@portabletext/toolkit@^2.0.16", "@portabletext/toolkit@^2.0.8":
+"@portabletext/toolkit@^2.0.16":
   version "2.0.17"
   resolved "https://registry.npmjs.org/@portabletext/toolkit/-/toolkit-2.0.17.tgz#a09bb1985dc27949f34a2a5c6817b55dadbcaa9f"
   integrity sha512-5wj+oUaCmHm9Ay1cytPmT1Yc0SrR1twwUIc0qNQ3MtaXaNMPw99Gjt1NcA34yfyKmEf/TAB2NiiT72jFxdddIQ==
+  dependencies:
+    "@portabletext/types" "^2.0.13"
+
+"@portabletext/toolkit@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/@portabletext/toolkit/-/toolkit-3.0.0.tgz#54ae1d7cda180e36b82c0be6e1d89199a55f5f0f"
+  integrity sha512-50otiRkac8unAAU+U9VdhpkZ4FqTG64kzz/6ckeBigKG/cGSU8YZLfmvDhdMH8tw+/uTI7d9Skwqm8RnTHZwDw==
   dependencies:
     "@portabletext/types" "^2.0.13"
 
