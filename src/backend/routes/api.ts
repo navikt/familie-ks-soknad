@@ -1,6 +1,6 @@
 import express, { Express, RequestHandler } from 'express';
 
-import Miljø, { basePath } from '../../shared-utils/Miljø';
+import Miljø, { BASE_PATH } from '../../shared-utils/Miljø';
 import { erklaeringInterceptor } from '../middlewares/erklaering-interceptor';
 import { escapeBody } from '../middlewares/escape';
 import { modellVersjonInterceptor } from '../middlewares/modell-versjon-interceptor';
@@ -9,19 +9,19 @@ import attachToken from '../middlewares/tokenProxy';
 
 export const konfigurerApi = (app: Express): Express => {
     // Sett opp middleware for input-sanitering
-    app.use(`${basePath}api/soknad`, modellVersjonInterceptor);
-    app.use(`${basePath}api/soknad`, express.json({ limit: '5mb' }) as RequestHandler);
-    app.use(`${basePath}api/soknad`, erklaeringInterceptor);
-    app.use(`${basePath}api/soknad`, escapeBody);
+    app.use(`${BASE_PATH}api/soknad`, modellVersjonInterceptor);
+    app.use(`${BASE_PATH}api/soknad`, express.json({ limit: '5mb' }) as RequestHandler);
+    app.use(`${BASE_PATH}api/soknad`, erklaeringInterceptor);
+    app.use(`${BASE_PATH}api/soknad`, escapeBody);
     app.use(
-        `${basePath}api`,
+        `${BASE_PATH}api`,
         addCallId(),
         attachToken('familie-baks-soknad-api'),
         doProxy(Miljø().soknadApiUrl)
     );
 
     app.use(
-        `${basePath}dokument`,
+        `${BASE_PATH}dokument`,
         addCallId(),
         attachToken('familie-dokument'),
         doProxy(Miljø().dokumentUrl)

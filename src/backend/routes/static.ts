@@ -3,7 +3,7 @@ import path from 'path';
 import express, { Express } from 'express';
 import mustacheExpress from 'mustache-express';
 
-import { basePath } from '../../shared-utils/Miljø';
+import { BASE_PATH } from '../../shared-utils/Miljø';
 
 export const konfigurerStatic = (app: Express): Express => {
     // Sett opp mustache templates for index.html og disabled.html
@@ -19,7 +19,7 @@ export const konfigurerStatic = (app: Express): Express => {
 
     // Serve alle statiske filer utenom index.html direkte fra dist-mappen
     app.use(
-        basePath,
+        BASE_PATH,
         express.static(frontendMappe, {
             index: false,
             setHeaders: res => {

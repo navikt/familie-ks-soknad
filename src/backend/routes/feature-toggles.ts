@@ -8,7 +8,7 @@ import {
     defaultFeatureToggleValues,
     ToggleKeys,
 } from '../../frontend/typer/feature-toggles';
-import { basePath } from '../../shared-utils/Miljø';
+import { BASE_PATH } from '../../shared-utils/Miljø';
 import { isEnabled } from '../utils/unleash';
 
 const fetchAllFeatureTogglesHandler: RequestHandler<
@@ -29,6 +29,6 @@ const fetchAllFeatureTogglesHandler: RequestHandler<
 };
 
 export const konfigurerAllFeatureTogglesEndpoint = (app: Express): Express => {
-    app.get(`${basePath}toggles/all`, fetchAllFeatureTogglesHandler);
+    app.get(`${BASE_PATH}toggles/all`, fetchAllFeatureTogglesHandler);
     return app;
 };
