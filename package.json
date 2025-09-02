@@ -7,7 +7,7 @@
     "eslint": "eslint src/",
     "lint": "eslint src/",
     "lint-test": "yarn prettier && yarn eslint",
-    "start:dev": "yarn clean && BASE_PATH=/familie/kontantstotte/soknad/ concurrently \"yarn:dev:*\"",
+    "start:dev": "yarn clean && concurrently \"yarn:dev:*\"",
     "dev:server": "yarn build:backend:dev && node dist/server.cjs",
     "dev:webpack": "yarn set-node-options TS_NODE_PROJECT=src/webpack/tsconfig.json NODE_ENV=development webpack serve -c src/webpack/webpack.development.config.ts",
     "build": "concurrently npm:build:frontend npm:build:backend",
