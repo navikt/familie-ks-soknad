@@ -1,6 +1,6 @@
 import express, { Express, RequestHandler } from 'express';
 
-import Miljø, { BASE_PATH } from '../../shared-utils/Miljø';
+import miljø, { BASE_PATH } from '../../shared-utils/miljø';
 import { erklaeringInterceptor } from '../middlewares/erklaering-interceptor';
 import { escapeBody } from '../middlewares/escape';
 import { modellVersjonInterceptor } from '../middlewares/modell-versjon-interceptor';
@@ -17,14 +17,14 @@ export const konfigurerApi = (app: Express): Express => {
         `${BASE_PATH}api`,
         addCallId(),
         attachToken('familie-baks-soknad-api'),
-        doProxy(Miljø().soknadApiUrl)
+        doProxy(miljø().soknadApiUrl)
     );
 
     app.use(
         `${BASE_PATH}dokument`,
         addCallId(),
         attachToken('familie-dokument'),
-        doProxy(Miljø().dokumentUrl)
+        doProxy(miljø().dokumentUrl)
     );
 
     return app;

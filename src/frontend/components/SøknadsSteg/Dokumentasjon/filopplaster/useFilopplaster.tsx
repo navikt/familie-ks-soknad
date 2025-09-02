@@ -9,7 +9,7 @@ import {
     type FileRejectionReason,
 } from '@navikt/ds-react';
 
-import Miljø from '../../../../../shared-utils/Miljø';
+import miljø from '../../../../../shared-utils/miljø';
 import { EFiltyper, IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
 import { PlainTekst } from '../../../../typer/kontrakt/generelle';
@@ -151,7 +151,7 @@ export const useFilopplaster = (
 
                     return axios
                         .post<OpplastetVedlegg>(
-                            `${Miljø().dokumentProxyUrl}/mapper/familievedlegg`,
+                            `${miljø().dokumentProxyUrl}/mapper/familievedlegg`,
                             requestData,
                             {
                                 withCredentials: true,

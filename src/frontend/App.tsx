@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router';
 
 import { Alert } from '@navikt/ds-react';
 
-import { BASE_PATH } from '../shared-utils/Miljø';
+import { BASE_PATH } from '../shared-utils/miljø';
 
 import AppContainer from './AppContainer';
 import { AppProvider } from './context/AppContext';

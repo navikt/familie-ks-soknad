@@ -10,7 +10,7 @@ _Har du husket alle punktene i listen?_
 - [ ] Jeg har testet endringene mine i mobilstørrelse, zoom 200%, skalerer riktig med endret tekststørrelse i browser 📱
 - [ ] Jeg har skrevet tester. Hvis du ikke har skrevet tester, beskriv hvorfor under 👇
 - [ ] Jeg har fikset en bug, og skrevet regresjonstest for denne
-- [ ] **Jeg har endret søknadskontrakten og modellversjon i Miljø.ts**
+- [ ] **Jeg har endret søknadskontrakten og modellversjon i miljø.ts**
 
 _Jeg har ikke skrevet tester fordi:_
 

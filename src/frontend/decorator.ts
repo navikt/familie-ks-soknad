@@ -1,6 +1,6 @@
 import { injectDecoratorClientSide } from '@navikt/nav-dekoratoren-moduler';
 
-import { erProd } from '../shared-utils/Miljø';
+import { erProd } from '../shared-utils/miljø';
 
 export function hentDekorator() {
     const env = erProd() ? 'prod' : 'dev';

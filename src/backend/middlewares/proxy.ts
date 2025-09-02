@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 
 import { logError, logSecure } from '@navikt/familie-logging';
 
-import { erLokalt } from '../../shared-utils/Miljø';
+import { erLokalt } from '../../shared-utils/miljø';
 
 import { AUTHORIZATION_HEADER } from './tokenProxy';
 

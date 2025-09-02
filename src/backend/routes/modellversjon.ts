@@ -2,7 +2,7 @@ import { Express } from 'express';
 
 import { byggSuksessRessurs } from '@navikt/familie-typer';
 
-import { BASE_PATH } from '../../shared-utils/Miljø';
+import { BASE_PATH } from '../../shared-utils/miljø';
 import { modellVersjon } from '../../shared-utils/modellversjon';
 
 export const konfigurerModellVersjonEndpoint = (app: Express): Express => {

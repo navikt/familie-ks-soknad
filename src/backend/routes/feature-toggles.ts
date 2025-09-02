@@ -8,7 +8,7 @@ import {
     defaultFeatureToggleValues,
     ToggleKeys,
 } from '../../frontend/typer/feature-toggles';
-import { BASE_PATH } from '../../shared-utils/Miljø';
+import { BASE_PATH } from '../../shared-utils/miljø';
 import { isEnabled } from '../utils/unleash';
 
 const fetchAllFeatureTogglesHandler: RequestHandler<

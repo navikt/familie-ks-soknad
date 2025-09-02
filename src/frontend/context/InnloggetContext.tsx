@@ -2,7 +2,7 @@ import React, { createContext, PropsWithChildren, useContext, useEffect, useStat
 
 import { RessursStatus } from '@navikt/familie-typer';
 
-import Miljø from '../../shared-utils/Miljø';
+import miljø from '../../shared-utils/miljø';
 import { autentiseringsInterceptor, InnloggetStatus } from '../utils/autentisering';
 
 import { useLastRessurserContext } from './LastRessurserContext';
@@ -20,7 +20,7 @@ export function InnloggetProvider(props: PropsWithChildren) {
         InnloggetStatus.IKKE_VERIFISERT
     );
 
-    const { soknadApiProxyUrl } = Miljø();
+    const { soknadApiProxyUrl } = miljø();
 
     autentiseringsInterceptor();
 

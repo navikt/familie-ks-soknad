@@ -3,7 +3,7 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { LOG_LEVEL, logError } from '@navikt/familie-logging';
 import { requestOboToken, validateToken } from '@navikt/oasis';
 
-import { erLokalt } from '../../shared-utils/Miljø';
+import { erLokalt } from '../../shared-utils/miljø';
 import { logRequest } from '../logger';
 import { ApplicationName } from '../types';
 

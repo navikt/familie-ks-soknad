@@ -39,7 +39,7 @@ export const erAnsattUrl = () => {
 
 export const erLokalt = () => !erProd() && !erDev();
 
-const Miljø = (): MiljøProps => {
+const miljø = (): MiljøProps => {
     if (erDev()) {
         return {
             sanityDataset: 'ks-production',
@@ -79,4 +79,4 @@ const Miljø = (): MiljøProps => {
     }
 };
 
-export default Miljø;
+export default miljø;

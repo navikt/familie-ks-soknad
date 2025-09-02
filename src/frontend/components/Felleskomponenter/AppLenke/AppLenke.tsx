@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 
 import { Link } from '@navikt/ds-react';
 
-import { BASE_PATH } from '../../../../shared-utils/Miljø';
+import { BASE_PATH } from '../../../../shared-utils/miljø';
 import { unslash } from '../../../../shared-utils/unslash';
 import { useAppNavigationContext } from '../../../context/AppNavigationContext';
 import { ISteg } from '../../../typer/routes';

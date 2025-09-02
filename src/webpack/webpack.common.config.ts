@@ -7,7 +7,7 @@ import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin.js';
 import webpackModule from 'webpack';
 import webpack from 'webpack';
 
-import { BASE_PATH } from '../shared-utils/Miljø';
+import { BASE_PATH } from '../shared-utils/miljø';
 import { unslash } from '../shared-utils/unslash';
 const { DefinePlugin } = webpackModule;
 

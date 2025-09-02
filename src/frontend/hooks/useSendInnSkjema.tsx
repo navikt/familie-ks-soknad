@@ -3,7 +3,7 @@ import { AxiosError } from 'axios';
 
 import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
-import Miljø from '../../shared-utils/Miljø';
+import miljø from '../../shared-utils/miljø';
 import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon';
 import { useAppContext } from '../context/AppContext';
 import { useSpråkContext } from '../context/SpråkContext';
@@ -24,7 +24,7 @@ export const useSendInnSkjema = (): {
         tilRestLocaleRecord,
         plainTekst,
     } = useAppContext();
-    const { soknadApiProxyUrl } = Miljø();
+    const { soknadApiProxyUrl } = miljø();
     const { valgtLocale } = useSpråkContext();
     const sendInnSkjema = async (): Promise<[boolean, ISøknadKontrakt]> => {
         settInnsendingStatus({ status: RessursStatus.HENTER });
