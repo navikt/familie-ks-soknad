@@ -2174,10 +2174,10 @@
     "@sentry-internal/browser-utils" "10.8.0"
     "@sentry/core" "10.8.0"
 
-"@sentry/babel-plugin-component-annotate@4.1.1":
-  version "4.1.1"
-  resolved "https://registry.npmjs.org/@sentry/babel-plugin-component-annotate/-/babel-plugin-component-annotate-4.1.1.tgz#371415afc602f6b2ba0987b51123bd34d1603193"
-  integrity sha512-HUpqrCK7zDVojTV6KL6BO9ZZiYrEYQqvYQrscyMsq04z+WCupXaH6YEliiNRvreR8DBJgdsG3lBRpebhUGmvfA==
+"@sentry/babel-plugin-component-annotate@4.3.0":
+  version "4.3.0"
+  resolved "https://registry.npmjs.org/@sentry/babel-plugin-component-annotate/-/babel-plugin-component-annotate-4.3.0.tgz#c5b6cbb986952596d3ad233540a90a1fd18bad80"
+  integrity sha512-OuxqBprXRyhe8Pkfyz/4yHQJc5c3lm+TmYWSSx8u48g5yKewSQDOxkiLU5pAk3WnbLPy8XwU/PN+2BG0YFU9Nw==
 
 "@sentry/browser@10.8.0":
   version "10.8.0"
@@ -2190,13 +2190,13 @@
     "@sentry-internal/replay-canvas" "10.8.0"
     "@sentry/core" "10.8.0"
 
-"@sentry/bundler-plugin-core@4.1.1":
-  version "4.1.1"
-  resolved "https://registry.npmjs.org/@sentry/bundler-plugin-core/-/bundler-plugin-core-4.1.1.tgz#7e273b83cc8b44f4067f05ab9ed5a7ec7ac6d625"
-  integrity sha512-Hx9RgXaD1HEYmL5aYoWwCKkVvPp4iklwfD9mvmdpQtcwLg6b6oLnPVDQaOry1ak6Pxt8smlrWcKy4IiKASlvig==
+"@sentry/bundler-plugin-core@4.3.0":
+  version "4.3.0"
+  resolved "https://registry.npmjs.org/@sentry/bundler-plugin-core/-/bundler-plugin-core-4.3.0.tgz#cf302522a3e5b8a3bf727635d0c6a7bece981460"
+  integrity sha512-dmR4DJhJ4jqVWGWppuTL2blNFqOZZnt4aLkewbD1myFG3KVfUx8CrMQWEmGjkgPOtj5TO6xH9PyTJjXC6o5tnA==
   dependencies:
     "@babel/core" "^7.18.5"
-    "@sentry/babel-plugin-component-annotate" "4.1.1"
+    "@sentry/babel-plugin-component-annotate" "4.3.0"
     "@sentry/cli" "^2.51.0"
     dotenv "^16.3.1"
     find-up "^5.0.0"
@@ -2283,12 +2283,12 @@
     "@sentry/core" "10.8.0"
     hoist-non-react-statics "^3.3.2"
 
-"@sentry/webpack-plugin@^4.1.1":
-  version "4.1.1"
-  resolved "https://registry.npmjs.org/@sentry/webpack-plugin/-/webpack-plugin-4.1.1.tgz#638c6b65cbc19b5027ffbb6bcd68094e0b0f82c6"
-  integrity sha512-2gFWcQMW1HdJDo/7rADeFs9crkH02l+mW4O1ORbxSjuegauyp1W8SBe7EfPoXbUmLdA3zwnpIxEXjjQpP5Etzg==
+"@sentry/webpack-plugin@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.npmjs.org/@sentry/webpack-plugin/-/webpack-plugin-4.3.0.tgz#a96db7d8ada8646ec3ffdec2a7db6143c8061e85"
+  integrity sha512-K4nU1SheK/tvyakBws2zfd+MN6hzmpW+wPTbSbDWn1+WL9+g9hsPh8hjFFiVe47AhhUoUZ3YgiH2HyeHXjHflA==
   dependencies:
-    "@sentry/bundler-plugin-core" "4.1.1"
+    "@sentry/bundler-plugin-core" "4.3.0"
     unplugin "1.0.1"
     uuid "^9.0.0"
 
