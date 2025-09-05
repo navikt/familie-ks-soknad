@@ -5,6 +5,8 @@ import TerserWebpackPlugin from 'terser-webpack-plugin';
 import webpack from 'webpack';
 import { CustomizeRule, mergeWithRules } from 'webpack-merge';
 
+import { BASE_PATH } from '../shared-utils/miljø';
+
 import baseConfig from './webpack.common.config';
 
 const prodConfig: webpack.Configuration = mergeWithRules({
@@ -31,7 +33,7 @@ const prodConfig: webpack.Configuration = mergeWithRules({
                 name: process.env.SENTRY_RELEASE,
                 uploadLegacySourcemaps: {
                     paths: ['dist'],
-                    urlPrefix: `~${process.env.BASE_PATH}`,
+                    urlPrefix: `~${BASE_PATH}`,
                 },
             },
             errorHandler: err => {

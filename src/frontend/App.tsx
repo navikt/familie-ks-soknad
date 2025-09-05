@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router';
 
 import { Alert } from '@navikt/ds-react';
 
-import { basePath } from '../shared-utils/Miljø';
+import { BASE_PATH } from '../shared-utils/miljø';
 
 import AppContainer from './AppContainer';
 import { AppProvider } from './context/AppContext';
@@ -22,7 +22,7 @@ const App = () => {
                 <AppProvider>
                     <EøsProvider>
                         <RoutesProvider>
-                            <Router basename={basePath}>
+                            <Router basename={BASE_PATH}>
                                 <StegProvider>
                                     {process.env.NODE_ENV !== 'production' && (
                                         <Alert variant="warning">

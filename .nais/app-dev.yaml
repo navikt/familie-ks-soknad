@@ -65,8 +65,6 @@ spec:
   tokenx:
     enabled: true
   env:
-    - name: BASE_PATH
-      value: /familie/kontantstotte/soknad/
     - name: ENV
       value: dev
   secureLogs:

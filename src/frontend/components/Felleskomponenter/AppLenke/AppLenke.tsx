@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router';
 
 import { Link } from '@navikt/ds-react';
 
-import { basePath } from '../../../../shared-utils/Miljø';
+import { BASE_PATH } from '../../../../shared-utils/miljø';
 import { unslash } from '../../../../shared-utils/unslash';
 import { useAppNavigationContext } from '../../../context/AppNavigationContext';
 import { ISteg } from '../../../typer/routes';
@@ -33,7 +33,7 @@ export function AppLenke({ steg, hash, returnTo, children }: Props) {
 
     return (
         <Link
-            href={basePath + unslash(steg.path) + (hash ? '#' + hash : '')}
+            href={BASE_PATH + unslash(steg.path) + (hash ? '#' + hash : '')}
             rel="noopener noreferrer"
             onClick={clickHandler}
         >

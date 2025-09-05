@@ -9,7 +9,7 @@ import {
     RessursStatus,
 } from '@navikt/familie-typer';
 
-import Miljø from '../../shared-utils/Miljø';
+import miljø from '../../shared-utils/miljø';
 import { SanityDokument } from '../typer/sanity/sanity';
 import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { transformerTilTekstinnhold } from '../utils/sanity';
@@ -30,7 +30,7 @@ export function SanityProvider(props: PropsWithChildren) {
 
     const sanityKlient = createClient({
         projectId: 'by26nl8j',
-        dataset: Miljø().sanityDataset,
+        dataset: miljø().sanityDataset,
         apiVersion: '2021-10-21',
         useCdn: true,
     });

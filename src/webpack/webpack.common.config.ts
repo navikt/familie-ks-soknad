@@ -7,6 +7,7 @@ import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin.js';
 import webpackModule from 'webpack';
 import webpack from 'webpack';
 
+import { BASE_PATH } from '../shared-utils/miljø';
 import { unslash } from '../shared-utils/unslash';
 const { DefinePlugin } = webpackModule;
 
@@ -17,7 +18,7 @@ const commonConfig: webpack.Configuration = {
     entry: { main: './src/frontend/index.tsx', disabled: './src/frontend/disabled.tsx' },
     plugins: [
         new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
-            PUBLIC_URL: (process.env.BASE_PATH ?? '/') + publicUrl.substr(1),
+            PUBLIC_URL: BASE_PATH + publicUrl.substr(1),
             DEKORATOREN_URL: process.env.DEKORATOREN_URL ?? 'https://www.nav.no/dekoratoren',
         }),
         new HtmlWebpackPlugin({
@@ -26,7 +27,7 @@ const commonConfig: webpack.Configuration = {
             alwaysWriteToDisk: true,
             excludeChunks: ['disabled'],
             // Dette gjør at hvis vi navigerer direkte til /basepath/om-barna/ så henter vi fortsatt main.js fra /basepath/main.js
-            publicPath: process.env.BASE_PATH ?? '/',
+            publicPath: BASE_PATH,
         }),
         new HtmlWebpackPlugin({
             template: path.join(process.cwd(), 'src/frontend/public/index.html'),
@@ -34,7 +35,7 @@ const commonConfig: webpack.Configuration = {
             inject: 'body',
             chunks: ['disabled'],
             filename: 'disabled.html',
-            publicPath: process.env.BASE_PATH ?? '/',
+            publicPath: BASE_PATH,
         }),
         new CopyWebpackPlugin({
             patterns: [
@@ -46,7 +47,7 @@ const commonConfig: webpack.Configuration = {
         new CaseSensitivePathsPlugin(),
         new DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-            'process.env.BASE_PATH': JSON.stringify(process.env.BASE_PATH ?? '/'),
+            'process.env.BASE_PATH': JSON.stringify(BASE_PATH),
         }),
     ],
     resolve: {

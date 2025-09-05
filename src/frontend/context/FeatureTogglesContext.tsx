@@ -2,7 +2,7 @@ import React, { createContext, PropsWithChildren, useContext, useState } from 'r
 
 import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
-import { basePath } from '../../shared-utils/Miljø';
+import { BASE_PATH } from '../../shared-utils/miljø';
 import useFørsteRender from '../hooks/useFørsteRender';
 import { EAllFeatureToggles, defaultFeatureToggleValues } from '../typer/feature-toggles';
 
@@ -24,7 +24,7 @@ export function FeatureTogglesProvider(props: PropsWithChildren) {
             EAllFeatureToggles,
             void
         >({
-            url: `${basePath}toggles/all`,
+            url: `${BASE_PATH}toggles/all`,
         });
 
         if (allFeatureToggles.status === RessursStatus.SUKSESS) {

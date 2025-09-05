@@ -1,5 +1,5 @@
-import { basePath } from '../src/shared-utils/Miljø';
+import { BASE_PATH } from '../src/shared-utils/miljø';
 
 export function urlMedBasePath(path) {
-    return basePath + path;
+    return BASE_PATH + path;
 }

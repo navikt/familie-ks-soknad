@@ -14,7 +14,7 @@ interface MiljøProps {
     port: number;
 }
 
-export const basePath = process.env.BASE_PATH ?? '/';
+export const BASE_PATH = '/familie/kontantstotte/soknad/';
 
 export const erProd = () => {
     if (typeof window === 'undefined') {
@@ -39,13 +39,13 @@ export const erAnsattUrl = () => {
 
 export const erLokalt = () => !erProd() && !erDev();
 
-const Miljø = (): MiljøProps => {
+const miljø = (): MiljøProps => {
     if (erDev()) {
         return {
             sanityDataset: 'ks-production',
-            soknadApiProxyUrl: `https://familie-ks-soknad.${erAnsattUrl() ? 'ansatt' : 'ekstern'}.dev.nav.no${basePath}api`,
+            soknadApiProxyUrl: `https://familie-ks-soknad.${erAnsattUrl() ? 'ansatt' : 'ekstern'}.dev.nav.no${BASE_PATH}api`,
             soknadApiUrl: `http://familie-baks-soknad-api/api`,
-            dokumentProxyUrl: `https://familie-ks-soknad.${erAnsattUrl() ? 'ansatt' : 'ekstern'}.dev.nav.no${basePath}dokument`,
+            dokumentProxyUrl: `https://familie-ks-soknad.${erAnsattUrl() ? 'ansatt' : 'ekstern'}.dev.nav.no${BASE_PATH}dokument`,
             dokumentUrl: 'http://familie-dokument/familie/dokument/api', //Vil uansett gå til bucket "familievedlegg" enn så lenge
             modellVersjon: modellVersjon,
             wonderwallUrl: `https://familie-ks-soknad.${erAnsattUrl() ? 'ansatt' : 'ekstern'}.dev.nav.no/familie/kontantstotte/soknad/oauth2/login?redirect=`,
@@ -55,9 +55,9 @@ const Miljø = (): MiljøProps => {
     } else if (erProd()) {
         return {
             sanityDataset: 'ks-production',
-            soknadApiProxyUrl: `https://www.nav.no${basePath}api`,
+            soknadApiProxyUrl: `https://www.nav.no${BASE_PATH}api`,
             soknadApiUrl: `http://familie-baks-soknad-api/api`,
-            dokumentProxyUrl: `https://www.nav.no${basePath}dokument`,
+            dokumentProxyUrl: `https://www.nav.no${BASE_PATH}dokument`,
             dokumentUrl: 'http://familie-dokument/familie/dokument/api', //Vil uansett gå til bucket "familievedlegg" enn så lenge,
             modellVersjon: modellVersjon,
             wonderwallUrl: 'https://www.nav.no/familie/kontantstotte/soknad/oauth2/login?redirect=',
@@ -67,16 +67,16 @@ const Miljø = (): MiljøProps => {
     } else {
         return {
             sanityDataset: 'ks-production',
-            soknadApiProxyUrl: `http://localhost:3000${basePath}api`,
+            soknadApiProxyUrl: `http://localhost:3000${BASE_PATH}api`,
             soknadApiUrl: 'http://localhost:8080/api',
-            dokumentProxyUrl: `http://localhost:3000${basePath}dokument`,
+            dokumentProxyUrl: `http://localhost:3000${BASE_PATH}dokument`,
             dokumentUrl: `http://localhost:8082/familie/dokument/api`,
             modellVersjon: modellVersjon,
             wonderwallUrl: '',
-            oauthCallbackUri: `http://localhost:3000${basePath}`,
+            oauthCallbackUri: `http://localhost:3000${BASE_PATH}`,
             port: 55554,
         };
     }
 };
 
-export default Miljø;
+export default miljø;
