@@ -50,12 +50,7 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
                 return (
                     <FilRad key={fil.dokumentId} $skillelinje={index !== filliste.length - 1}>
                         <FilTekstWrapper>
-                            <StyledAttachment
-                                focusable={false}
-                                role={'img'}
-                                aria-hidden={true}
-                                aria-label={''}
-                            />
+                            <StyledAttachment focusable={false} role={'img'} aria-hidden={true} aria-label={''} />
                             <TypografiWrapper typografi={Typografi.BodyShort}>
                                 {`${fil.navn} (${formaterFilstørrelse(fil.størrelse)})`}
                             </TypografiWrapper>

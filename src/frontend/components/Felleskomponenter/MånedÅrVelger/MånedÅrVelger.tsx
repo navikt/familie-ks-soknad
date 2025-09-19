@@ -84,9 +84,7 @@ export const MånedÅrVelger: React.FC<MånedÅrVelgerProps> = ({
                 if (dagIMåneden === DagIMåneden.FØRSTE_DAG) {
                     felt.validerOgSettFelt(formatISO(dato, { representation: 'date' }));
                 } else {
-                    felt.validerOgSettFelt(
-                        formatISO(lastDayOfMonth(dato), { representation: 'date' })
-                    );
+                    felt.validerOgSettFelt(formatISO(lastDayOfMonth(dato), { representation: 'date' }));
                 }
             }
         },

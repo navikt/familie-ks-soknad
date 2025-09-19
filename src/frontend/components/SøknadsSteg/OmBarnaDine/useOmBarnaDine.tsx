@@ -27,8 +27,7 @@ export const useOmBarnaDine = (): {
     validerAlleSynligeFelter: () => void;
 } => {
     const { søknad, settSøknad, tekster, plainTekst } = useAppContext();
-    const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } =
-        useEøsContext();
+    const { skalTriggeEøsForBarn, barnSomTriggerEøs, settBarnSomTriggerEøs, erEøsLand } = useEøsContext();
 
     const teksterForSteg: IOmBarnaTekstinnhold = tekster()[ESanitySteg.OM_BARNA];
 
@@ -113,8 +112,7 @@ export const useOmBarnaDine = (): {
     const erAvdødPartnerForelder = useJaNeiSpmFelt({
         søknadsfelt: søknad.erAvdødPartnerForelder,
         feilmelding:
-            søknad.erAvdødPartnerForelder.id ===
-            OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+            søknad.erAvdødPartnerForelder.id === OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
                 ? teksterForSteg.folkeregistrertGjenlevende.feilmelding
                 : teksterForSteg.folkeregistrertEnkeEnkemann.feilmelding,
         skalSkjules: !(
@@ -126,8 +124,7 @@ export const useOmBarnaDine = (): {
     const hvemAvdødPartner = useBarnCheckboxFelt(
         barnDataKeySpørsmål.andreForelderErDød,
         plainTekst(
-            søknad.erAvdødPartnerForelder.id ===
-                OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+            søknad.erAvdødPartnerForelder.id === OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
                 ? teksterForSteg.hvemAvBarnaAvdoedPartner.feilmelding
                 : teksterForSteg.hvemAvBarnaAvdoedEktefelle.feilmelding
         ),
@@ -135,12 +132,7 @@ export const useOmBarnaDine = (): {
     );
 
     useEffect(() => {
-        const oppdaterteBarn = genererOppdaterteBarn(
-            søknad,
-            skjema,
-            skalTriggeEøsForBarn,
-            erEøsLand
-        );
+        const oppdaterteBarn = genererOppdaterteBarn(søknad, skjema, skalTriggeEøsForBarn, erEøsLand);
 
         oppdaterteBarn.forEach(oppdatertBarn => {
             const skalTriggeEøs = skalTriggeEøsForBarn(oppdatertBarn);
@@ -152,9 +144,7 @@ export const useOmBarnaDine = (): {
                     if (skalTriggeEøs) {
                         return prevState.concat(oppdatertBarn.id);
                     } else {
-                        return prevState.filter(
-                            barnSomTriggetEøsId => barnSomTriggetEøsId !== oppdatertBarn.id
-                        );
+                        return prevState.filter(barnSomTriggetEøsId => barnSomTriggetEøsId !== oppdatertBarn.id);
                     }
                 });
             }
@@ -162,15 +152,9 @@ export const useOmBarnaDine = (): {
     }, [hvemKontantstøtteFraAnnetEøsland]);
 
     const oppdaterSøknad = () => {
-        const oppdaterteBarn = genererOppdaterteBarn(
-            søknad,
-            skjema,
-            skalTriggeEøsForBarn,
-            erEøsLand
-        );
+        const oppdaterteBarn = genererOppdaterteBarn(søknad, skjema, skalTriggeEøsForBarn, erEøsLand);
 
-        const skalNullstilleEøsForSøker =
-            !søknad.søker.triggetEøs && !oppdaterteBarn.find(barn => barn.triggetEøs);
+        const skalNullstilleEøsForSøker = !søknad.søker.triggetEøs && !oppdaterteBarn.find(barn => barn.triggetEøs);
 
         const oppdatertSøknad = {
             ...søknad,

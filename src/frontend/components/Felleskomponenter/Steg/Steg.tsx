@@ -14,11 +14,7 @@ import useFørsteRender from '../../../hooks/useFørsteRender';
 import { RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { ISøknad } from '../../../typer/søknad';
-import {
-    logKlikkGåVidere,
-    logSidevisningKontantstøtte,
-    logSkjemaStegFullført,
-} from '../../../utils/amplitude';
+import { logKlikkGåVidere, logSidevisningKontantstøtte, logSkjemaStegFullført } from '../../../utils/amplitude';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import InnholdContainer from '../InnholdContainer/InnholdContainer';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
@@ -59,13 +55,8 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         modellVersjonOppdatert,
         mellomlagre,
     } = useAppContext();
-    const {
-        hentNesteSteg,
-        hentForrigeSteg,
-        hentNåværendeSteg,
-        hentNåværendeStegIndex,
-        erPåKvitteringsside,
-    } = useStegContext();
+    const { hentNesteSteg, hentForrigeSteg, hentNåværendeSteg, hentNåværendeStegIndex, erPåKvitteringsside } =
+        useStegContext();
     const { komFra, settKomFra } = useAppNavigationContext();
 
     const nesteRoute = hentNesteSteg();
@@ -156,8 +147,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
 
     const formProgressStegOppsummeringTekst = `${plainTekst(frittståendeOrdTekster.steg)} ${hentNåværendeStegIndex()} ${plainTekst(frittståendeOrdTekster.av)} ${formProgressSteg.length}`;
 
-    const visVedleggOppsummering =
-        vedleggOppsummering && skalVedleggOppsummeringVises(vedleggOppsummering);
+    const visVedleggOppsummering = vedleggOppsummering && skalVedleggOppsummeringVises(vedleggOppsummering);
 
     return (
         <>
@@ -225,9 +215,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
                         )}
                     </VStack>
                 </form>
-                {erModellVersjonModalÅpen && (
-                    <ModellVersjonModal erÅpen={erModellVersjonModalÅpen} />
-                )}
+                {erModellVersjonModalÅpen && <ModellVersjonModal erÅpen={erModellVersjonModalÅpen} />}
             </InnholdContainer>
         </>
     );

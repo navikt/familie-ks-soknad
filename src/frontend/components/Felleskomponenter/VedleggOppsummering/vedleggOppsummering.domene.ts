@@ -4,9 +4,7 @@ import { slåSammen } from '../../../utils/slåSammen';
 
 import { IVedleggOppsummering } from './vedleggOppsummering.types';
 
-export const hentVedleggSomSkalVises = (
-    vedlegg: IVedleggOppsummering[]
-): IVedleggOppsummering[] => {
+export const hentVedleggSomSkalVises = (vedlegg: IVedleggOppsummering[]): IVedleggOppsummering[] => {
     return vedlegg.filter(enkeltVedlegg => enkeltVedlegg.skalVises);
 };
 

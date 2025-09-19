@@ -10,21 +10,13 @@ describe('useSendInnSkjema', () => {
     });
 
     it('Kan mappe sivilstandenum til sanity sivilstand', () => {
-        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.GIFT)).toEqual(
-            ESanitySivilstandApiKey.GIFT
-        );
-        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.UGIFT)).toEqual(
-            ESanitySivilstandApiKey.UGIFT
-        );
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.GIFT)).toEqual(ESanitySivilstandApiKey.GIFT);
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.UGIFT)).toEqual(ESanitySivilstandApiKey.UGIFT);
         expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.ENKE_ELLER_ENKEMANN)).toEqual(
             ESanitySivilstandApiKey.ENKE_ELLER_ENKEMANN
         );
-        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.SKILT)).toEqual(
-            ESanitySivilstandApiKey.SKILT
-        );
-        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.SEPARERT)).toEqual(
-            ESanitySivilstandApiKey.SEPARERT
-        );
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.SKILT)).toEqual(ESanitySivilstandApiKey.SKILT);
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.SEPARERT)).toEqual(ESanitySivilstandApiKey.SEPARERT);
         expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.REGISTRERT_PARTNER)).toEqual(
             ESanitySivilstandApiKey.REGISTRERT_PARTNER
         );
@@ -37,8 +29,6 @@ describe('useSendInnSkjema', () => {
         expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.GJENLEVENDE_PARTNER)).toEqual(
             ESanitySivilstandApiKey.GJENLEVENDE_PARTNER
         );
-        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.UOPPGITT)).toEqual(
-            ESanitySivilstandApiKey.UOPPGITT
-        );
+        expect(sivilstandTilSanitySivilstandApiKey(ESivilstand.UOPPGITT)).toEqual(ESanitySivilstandApiKey.UOPPGITT);
     });
 });

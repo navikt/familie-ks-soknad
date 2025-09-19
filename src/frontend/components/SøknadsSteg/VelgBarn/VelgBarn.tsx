@@ -70,10 +70,7 @@ const VelgBarn: React.FC = () => {
                 )}
             </Steg>
             {erLeggTilBarnModalÅpen && (
-                <LeggTilBarnModal
-                    erÅpen={erLeggTilBarnModalÅpen}
-                    lukkModal={lukkLeggTilBarnModal}
-                />
+                <LeggTilBarnModal erÅpen={erLeggTilBarnModalÅpen} lukkModal={lukkLeggTilBarnModal} />
             )}
         </>
     );

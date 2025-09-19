@@ -62,16 +62,11 @@ export const omsorgspersonTilISøknadsfelt = (
     const flettefelter = { barnetsNavn: barn.navn };
 
     return {
-        navn: søknadsfelt(
-            eøsTekster.hvaHeterOmsorgspersonen.sporsmal,
-            sammeVerdiAlleSpråk(navn.svar)
-        ),
+        navn: søknadsfelt(eøsTekster.hvaHeterOmsorgspersonen.sporsmal, sammeVerdiAlleSpråk(navn.svar)),
         slektsforhold: slektsforhold.svar
             ? søknadsfelt(
                   eøsTekster.slektsforholdOmsorgsperson.sporsmal,
-                  tilRestLocaleRecord(
-                      hentSlektsforhold(slektsforhold.svar as Slektsforhold, eøsTekster)
-                  ),
+                  tilRestLocaleRecord(hentSlektsforhold(slektsforhold.svar as Slektsforhold, eøsTekster)),
                   flettefelter
               )
             : null,
@@ -113,11 +108,7 @@ export const omsorgspersonTilISøknadsfelt = (
                 barn,
             })
         ),
-        arbeidNorge: søknadsfeltForESvar(
-            eøsTekster.arbeidNorgeOmsorgsperson.sporsmal,
-            arbeidNorge.svar,
-            flettefelter
-        ),
+        arbeidNorge: søknadsfeltForESvar(eøsTekster.arbeidNorgeOmsorgsperson.sporsmal, arbeidNorge.svar, flettefelter),
         arbeidsperioderNorge: arbeidsperioderNorge.map((periode, index) =>
             tilIArbeidsperiodeIKontraktFormat({
                 periode,
@@ -180,9 +171,7 @@ export const omsorgspersonTilISøknadsfelt = (
         pågåendeSøknadHvilketLand: pågåendeSøknadHvilketLand.svar
             ? søknadsfelt(
                   eøsTekster.hvilketLandSoektYtelseOmsorgsperson.sporsmal,
-                  verdiCallbackAlleSpråk(locale =>
-                      landkodeTilSpråk(pågåendeSøknadHvilketLand.svar, locale)
-                  ),
+                  verdiCallbackAlleSpråk(locale => landkodeTilSpråk(pågåendeSøknadHvilketLand.svar, locale)),
                   flettefelter
               )
             : null,

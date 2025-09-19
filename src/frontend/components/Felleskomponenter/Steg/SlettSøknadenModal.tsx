@@ -19,11 +19,7 @@ interface ISlettSøkadenModalProps {
     startPåNytt: () => void;
 }
 
-export const SlettSøknadenModal: React.FC<ISlettSøkadenModalProps> = ({
-    open,
-    avbryt,
-    startPåNytt,
-}) => {
+export const SlettSøknadenModal: React.FC<ISlettSøkadenModalProps> = ({ open, avbryt, startPåNytt }) => {
     const { tekster, plainTekst } = useAppContext();
 
     const startPåNyttTekster = tekster().FELLES.modaler.startPåNytt;

@@ -20,11 +20,7 @@ export function OppsummeringFelt({ tittel, søknadsvar, children }: IOppsummerin
             {(søknadsvar || children) && (
                 <FormSummary.Value>
                     {søknadsvar
-                        ? formaterSøknadsvar(
-                              søknadsvar,
-                              plainTekst,
-                              tekster().FELLES.frittståendeOrd
-                          )
+                        ? formaterSøknadsvar(søknadsvar, plainTekst, tekster().FELLES.frittståendeOrd)
                         : children}
                 </FormSummary.Value>
             )}

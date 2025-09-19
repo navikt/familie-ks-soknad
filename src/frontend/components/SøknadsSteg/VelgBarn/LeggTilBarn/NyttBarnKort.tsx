@@ -12,8 +12,7 @@ import { IVelgBarnTekstinnhold } from '../innholdTyper';
 export const NyttBarnKort: React.FC<{ onLeggTilBarn: () => void }> = ({ onLeggTilBarn }) => {
     const { tekster } = useAppContext();
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
-    const teksterForLeggTilBarnModal: ILeggTilBarnTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
+    const teksterForLeggTilBarnModal: ILeggTilBarnTekstinnhold = tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
     const { soekeForUregistrerteBarn } = teksterForSteg;
 
     return (

@@ -1,12 +1,5 @@
 import { ESvar } from '@navikt/familie-form-elements';
-import {
-    feil,
-    type FeltState,
-    ok,
-    useFelt,
-    useSkjema,
-    Valideringsstatus,
-} from '@navikt/familie-skjema';
+import { feil, type FeltState, ok, useFelt, useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
@@ -17,13 +10,7 @@ import { PersonType } from '../../../typer/personType';
 import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IKontantstøttePerioderFeltTyper } from '../../../typer/skjema';
-import {
-    dagenEtterDato,
-    dagensDato,
-    gårsdagensDato,
-    sisteDagDenneMåneden,
-    stringTilDate,
-} from '../../../utils/dato';
+import { dagenEtterDato, dagensDato, gårsdagensDato, sisteDagDenneMåneden, stringTilDate } from '../../../utils/dato';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
@@ -38,8 +25,7 @@ export const useKontantstøttePeriodeSkjema = (
     erDød
 ): IUsePeriodeSkjemaVerdi<IKontantstøttePerioderFeltTyper> => {
     const { tekster, plainTekst } = useAppContext();
-    const teksterForPersonType: IEøsYtelseTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.eøsYtelse[personType];
+    const teksterForPersonType: IEøsYtelseTekstinnhold = tekster()[ESanitySteg.FELLES].modaler.eøsYtelse[personType];
 
     const mottarEøsKontantstøtteNå = useJaNeiSpmFelt({
         søknadsfelt: { id: KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå, svar: null },
@@ -56,17 +42,13 @@ export const useKontantstøttePeriodeSkjema = (
         feilmelding: periodenErAvsluttet
             ? teksterForPersonType.ytelseLandFortid.feilmelding
             : teksterForPersonType.ytelseLandNaatid.feilmelding,
-        skalFeltetVises:
-            mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK ||
-            andreForelderErDød,
+        skalFeltetVises: mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK || andreForelderErDød,
         nullstillVedAvhengighetEndring: true,
     });
 
     const fraDatoKontantstøttePeriode = useDatovelgerFelt({
         søknadsfelt: { id: KontantstøttePeriodeSpørsmålId.fraDatoKontantstøttePeriode, svar: '' },
-        skalFeltetVises:
-            mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK ||
-            andreForelderErDød,
+        skalFeltetVises: mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK || andreForelderErDød,
         feilmelding: teksterForPersonType.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
     });
@@ -104,8 +86,7 @@ export const useKontantstøttePeriodeSkjema = (
         },
 
         skalFeltetVises: avhengigheter =>
-            avhengigheter.mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK ||
-            andreForelderErDød,
+            avhengigheter.mottarEøsKontantstøtteNå.valideringsstatus === Valideringsstatus.OK || andreForelderErDød,
         avhengigheter: { mottarEøsKontantstøtteNå },
     });
 

@@ -61,13 +61,9 @@ const bestemÅrstall = (fødselsårIFnr: number, individNummer: number): number 
         return 1800 + fødselsårIFnr;
     } else if (individnummerGyldigForIntervallOgÅr(0, 499, individNummer)) {
         return 1900 + fødselsårIFnr;
-    } else if (
-        individnummerGyldigForIntervallOgÅr(900, 999, individNummer, () => fødselsårIFnr > 39)
-    ) {
+    } else if (individnummerGyldigForIntervallOgÅr(900, 999, individNummer, () => fødselsårIFnr > 39)) {
         return 1900 + fødselsårIFnr;
-    } else if (
-        individnummerGyldigForIntervallOgÅr(500, 999, individNummer, () => fødselsårIFnr < 40)
-    ) {
+    } else if (individnummerGyldigForIntervallOgÅr(500, 999, individNummer, () => fødselsårIFnr < 40)) {
         return 2000 + fødselsårIFnr;
     } else {
         throw new Error('Individnummer og fødselsår i fnr passer ikke inn i gyldige intervaller');
@@ -79,10 +75,7 @@ const individnummerGyldigForIntervallOgÅr = (
     max: number,
     individNummer: number,
     triggerForFødselsår?: () => boolean
-): boolean =>
-    individNummer >= min &&
-    individNummer <= max &&
-    (triggerForFødselsår ? triggerForFødselsår() : true);
+): boolean => individNummer >= min && individNummer <= max && (triggerForFødselsår ? triggerForFødselsår() : true);
 
 const datoTilDatoString = (år: number, mnd: number, dag: number) =>
     år + '-' + ('0' + mnd).slice(-2) + '-' + ('0' + dag).slice(-2);

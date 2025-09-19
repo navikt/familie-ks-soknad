@@ -22,11 +22,7 @@ import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
 import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import TekstBlock from '../TekstBlock';
 
-import {
-    hentBarnehageplassBeskrivelse,
-    hentFraDatoSpørsmål,
-    hentTilDatoSpørsmål,
-} from './barnehageplassSpråkUtils';
+import { hentBarnehageplassBeskrivelse, hentFraDatoSpørsmål, hentTilDatoSpørsmål } from './barnehageplassSpråkUtils';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 import { useBarnehageplassPeriodeSkjema } from './useBarnehageplassPeriodeSkjema';
@@ -49,16 +45,10 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
     barn,
     forklaring = undefined,
 }) => {
-    const {
-        skjema,
-        valideringErOk,
-        nullstillSkjema,
-        validerFelterOgVisFeilmelding,
-        slutterIBarnehagenMinDato,
-    } = useBarnehageplassPeriodeSkjema();
+    const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding, slutterIBarnehagenMinDato } =
+        useBarnehageplassPeriodeSkjema();
     const { tekster, plainTekst } = useAppContext();
-    const barnehageplassTekster: IBarnehageplassTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
+    const barnehageplassTekster: IBarnehageplassTekstinnhold = tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
 
     const {
         barnehageplassPeriodeBeskrivelse,
@@ -185,10 +175,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     skjema={skjema}
                     label={
                         <TekstBlock
-                            block={hentFraDatoSpørsmål(
-                                barnehageplassPeriodeBeskrivelse.verdi,
-                                barnehageplassTekster
-                            )}
+                            block={hentFraDatoSpørsmål(barnehageplassPeriodeBeskrivelse.verdi, barnehageplassTekster)}
                         />
                     }
                     avgrensMinDato={

@@ -26,8 +26,7 @@ export const eøsKontantstøtteSpørsmålsdokument = (
 const kontantstøttePeriodeFellesSpørsmålSpråkId: Record<
     Exclude<
         KontantstøttePeriodeSpørsmålId,
-        | KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå
-        | KontantstøttePeriodeSpørsmålId.kontantstøtteLand
+        KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå | KontantstøttePeriodeSpørsmålId.kontantstøtteLand
     >,
     string
 > = {
@@ -50,8 +49,7 @@ export const kontantstøttePeriodeSøkerSpørsmålSpråkId = (
 export const kontantstøttePeriodeAndreForelderSpørsmålSpråkId = (
     periodenErAvsluttet = false
 ): Record<KontantstøttePeriodeSpørsmålId, string> => ({
-    [KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå]:
-        'modal.barnetrygdnå-annenforelder.spm',
+    [KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå]: 'modal.barnetrygdnå-annenforelder.spm',
     [KontantstøttePeriodeSpørsmålId.kontantstøtteLand]: periodenErAvsluttet
         ? 'modal.annenforelder-barnetrygd-fortid.spm'
         : 'modal.annenforelder-barnetrygd-nåtid.spm',
@@ -61,8 +59,7 @@ export const kontantstøttePeriodeAndreForelderSpørsmålSpråkId = (
 export const kontantstøttePeriodeOmsorgspersonSpørsmålSpråkId = (
     periodenErAvsluttet = false
 ): Record<KontantstøttePeriodeSpørsmålId, string> => ({
-    [KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå]:
-        'modal.barnetrygdnå-omsorgsperson.spm',
+    [KontantstøttePeriodeSpørsmålId.mottarEøsKontantstøtteNå]: 'modal.barnetrygdnå-omsorgsperson.spm',
     [KontantstøttePeriodeSpørsmålId.kontantstøtteLand]: periodenErAvsluttet
         ? 'modal.omsorgsperson-barnetrygd-fortid.spm'
         : 'modal.omsorgsperson-barnetrygd-nåtid.spm',
@@ -74,13 +71,9 @@ export const kontantstøttePeriodeModalSpørsmålSpråkId =
     (spørsmålId: KontantstøttePeriodeSpørsmålId): string => {
         switch (personType) {
             case PersonType.andreForelder:
-                return kontantstøttePeriodeAndreForelderSpørsmålSpråkId(periodenErAvsluttet)[
-                    spørsmålId
-                ];
+                return kontantstøttePeriodeAndreForelderSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
             case PersonType.omsorgsperson: {
-                return kontantstøttePeriodeOmsorgspersonSpørsmålSpråkId(periodenErAvsluttet)[
-                    spørsmålId
-                ];
+                return kontantstøttePeriodeOmsorgspersonSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
             }
             case PersonType.søker:
             default:

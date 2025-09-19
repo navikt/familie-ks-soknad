@@ -49,18 +49,13 @@ export const dataISøknadKontraktFormat = (
         kontraktVersjon: kontraktVersjon,
         antallEøsSteg: antallEøsSteg(søker, barnInkludertISøknaden),
         søker: søkerIKontraktFormat(søknad, tekster, tilRestLocaleRecord),
-        barn: barnInkludertISøknaden.map(barn =>
-            barnISøknadsFormat(barn, søknad, tekster, tilRestLocaleRecord)
-        ),
+        barn: barnInkludertISøknaden.map(barn => barnISøknadsFormat(barn, søknad, tekster, tilRestLocaleRecord)),
         lestOgForståttBekreftelse: søknad.lestOgForståttBekreftelse,
         erNoenAvBarnaFosterbarn: søknadsfeltForESvar(
             tekster.OM_BARNA.fosterbarn.sporsmal,
             søknad.erNoenAvBarnaFosterbarn.svar
         ),
-        søktAsylForBarn: søknadsfeltForESvar(
-            tekster.OM_BARNA.asyl.sporsmal,
-            søknad.søktAsylForBarn.svar
-        ),
+        søktAsylForBarn: søknadsfeltForESvar(tekster.OM_BARNA.asyl.sporsmal, søknad.søktAsylForBarn.svar),
         oppholderBarnSegIInstitusjon: søknadsfeltForESvar(
             tekster.OM_BARNA.institusjonKontantstoette.sporsmal,
             søknad.oppholderBarnSegIInstitusjon.svar
@@ -82,25 +77,20 @@ export const dataISøknadKontraktFormat = (
             søknad.harEllerTildeltBarnehageplass.svar
         ),
         erAvdødPartnerForelder: nullableSøknadsfeltForESvar(
-            søknad.erAvdødPartnerForelder.id ===
-                OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+            søknad.erAvdødPartnerForelder.id === OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
                 ? tekster.OM_BARNA.folkeregistrertGjenlevende.sporsmal
                 : tekster.OM_BARNA.folkeregistrertEnkeEnkemann.sporsmal,
             søknad.erAvdødPartnerForelder.svar
         ),
         dokumentasjon: søknad.dokumentasjon
             .filter(dok => erDokumentasjonRelevant(dok))
-            .map(dok =>
-                dokumentasjonISøknadFormat(dok, tekster, tilRestLocaleRecord, søknad, plainTekst)
-            ),
+            .map(dok => dokumentasjonISøknadFormat(dok, tekster, tilRestLocaleRecord, søknad, plainTekst)),
         teksterTilPdf: {
             ...Object.values(ESivilstand).reduce(
                 (map, sivilstand) => ({
                     ...map,
                     [ESanitySivilstandApiKey[ESivilstand[sivilstand]]]: tilRestLocaleRecord(
-                        fellesTekster.frittståendeOrd[
-                            sivilstandTilSanitySivilstandApiKey(sivilstand)
-                        ]
+                        fellesTekster.frittståendeOrd[sivilstandTilSanitySivilstandApiKey(sivilstand)]
                     ),
                 }),
                 {}
@@ -123,9 +113,7 @@ export const dataISøknadKontraktFormat = (
                 tekster.FELLES.frittståendeOrd.av,
                 tekster.FELLES.frittståendeOrd.soeker,
                 tekster.DOKUMENTASJON.sendtInnTidligere,
-                ...Object.values(ESvar).map(svar =>
-                    jaNeiSvarTilSpråkId(svar, tekster.FELLES.frittståendeOrd)
-                ),
+                ...Object.values(ESvar).map(svar => jaNeiSvarTilSpråkId(svar, tekster.FELLES.frittståendeOrd)),
             ].reduce(
                 (map, sanityDok: LocaleRecordBlock | LocaleRecordString) => ({
                     ...map,

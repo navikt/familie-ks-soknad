@@ -47,8 +47,7 @@ export const spyOnUseApp = søknad => {
     const axiosRequestMock = vi
         .fn()
         .mockImplementation(
-            (): Promise<Ressurs<unknown>> =>
-                Promise.resolve({ status: RessursStatus.SUKSESS, data: {} })
+            (): Promise<Ressurs<unknown>> => Promise.resolve({ status: RessursStatus.SUKSESS, data: {} })
         );
     const settNåværendeRoute = vi.fn();
     const mellomlagre = vi.fn();

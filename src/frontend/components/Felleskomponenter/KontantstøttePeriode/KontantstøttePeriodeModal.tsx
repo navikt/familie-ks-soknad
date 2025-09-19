@@ -20,10 +20,7 @@ import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import TekstBlock from '../TekstBlock';
 
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
-import {
-    IUsePensjonsperiodeSkjemaParams,
-    useKontantstøttePeriodeSkjema,
-} from './useKontantstøttePeriodeSkjema';
+import { IUsePensjonsperiodeSkjemaParams, useKontantstøttePeriodeSkjema } from './useKontantstøttePeriodeSkjema';
 
 interface Props extends IUsePensjonsperiodeSkjemaParams {
     erÅpen: boolean;
@@ -43,11 +40,12 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
     forklaring = undefined,
 }) => {
     const { tekster } = useAppContext();
-    const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
-        useKontantstøttePeriodeSkjema(personType, erDød);
+    const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } = useKontantstøttePeriodeSkjema(
+        personType,
+        erDød
+    );
 
-    const teksterForPersonType: IEøsYtelseTekstinnhold =
-        tekster().FELLES.modaler.eøsYtelse[personType];
+    const teksterForPersonType: IEøsYtelseTekstinnhold = tekster().FELLES.modaler.eøsYtelse[personType];
 
     const {
         mottarEøsKontantstøtteNå,
@@ -89,8 +87,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
     };
 
     const periodenErAvsluttet =
-        mottarEøsKontantstøtteNå.verdi === ESvar.NEI ||
-        (personType === PersonType.andreForelder && erDød);
+        mottarEøsKontantstøtteNå.verdi === ESvar.NEI || (personType === PersonType.andreForelder && erDød);
 
     return (
         <SkjemaModal

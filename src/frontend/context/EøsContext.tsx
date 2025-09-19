@@ -79,22 +79,15 @@ export function EøsProvider(props: PropsWithChildren) {
         const landSvarSomKanTriggeEøs = [
             ...(barn.andreForelder
                 ? [
-                      barn.andreForelder.arbeidsperioderUtland.map(
-                          periode => periode.arbeidsperiodeland.svar
-                      ),
-                      barn.andreForelder.pensjonsperioderUtland.map(
-                          periode => periode.pensjonsland.svar
-                      ),
-                      barn.andreForelder.utenlandsperioder.map(
-                          periode => periode.oppholdsland.svar
-                      ),
+                      barn.andreForelder.arbeidsperioderUtland.map(periode => periode.arbeidsperiodeland.svar),
+                      barn.andreForelder.pensjonsperioderUtland.map(periode => periode.pensjonsland.svar),
+                      barn.andreForelder.utenlandsperioder.map(periode => periode.oppholdsland.svar),
                   ]
                 : []),
             barn.utenlandsperioder.map(periode => periode.oppholdsland.svar),
         ].flat();
 
-        const jaNeiSvarSomKanTriggeEøs =
-            barn[barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland].svar === ESvar.JA;
+        const jaNeiSvarSomKanTriggeEøs = barn[barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland].svar === ESvar.JA;
 
         return !!landSvarSomKanTriggeEøs.find(land => erEøsLand(land)) || jaNeiSvarSomKanTriggeEøs;
     };
@@ -102,9 +95,7 @@ export function EøsProvider(props: PropsWithChildren) {
     useEffect(() => {
         const eøsTriggetForSøker = skalTriggeEøsForSøker(søknad.søker);
 
-        const eøsTriggetForBarn = !!søknad.barnInkludertISøknaden.find(barn =>
-            skalTriggeEøsForBarn(barn)
-        );
+        const eøsTriggetForBarn = !!søknad.barnInkludertISøknaden.find(barn => skalTriggeEøsForBarn(barn));
 
         const erEøs = eøsTriggetForSøker || eøsTriggetForBarn;
 

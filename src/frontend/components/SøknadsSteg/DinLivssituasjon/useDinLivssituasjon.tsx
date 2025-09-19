@@ -41,8 +41,7 @@ export const useDinLivssituasjon = (): {
     fjernUtenlandsperiode: (periode: IUtenlandsperiode) => void;
 } => {
     const { søknad, settSøknad, tekster, plainTekst } = useAppContext();
-    const { skalTriggeEøsForSøker, søkerTriggerEøs, settSøkerTriggerEøs, erEøsLand } =
-        useEøsContext();
+    const { skalTriggeEøsForSøker, søkerTriggerEøs, settSøkerTriggerEøs, erEøsLand } = useEøsContext();
     const søker = søknad.søker;
     const teksterForSteg = tekster()[ESanitySteg.DIN_LIVSSITUASJON];
     const teksterForArbeidsperiode: IArbeidsperiodeTekstinnhold =
@@ -167,16 +166,11 @@ export const useDinLivssituasjon = (): {
         søknad.søker.idNummer.filter(idNummer =>
             idNummerLand(
                 {
-                    arbeidsperioderUtland:
-                        arbeidIUtlandet.verdi === ESvar.JA ? registrerteArbeidsperioder.verdi : [],
+                    arbeidsperioderUtland: arbeidIUtlandet.verdi === ESvar.JA ? registrerteArbeidsperioder.verdi : [],
                     pensjonsperioderUtland:
-                        mottarUtenlandspensjon.verdi === ESvar.JA
-                            ? registrertePensjonsperioder.verdi
-                            : [],
+                        mottarUtenlandspensjon.verdi === ESvar.JA ? registrertePensjonsperioder.verdi : [],
                     utenlandsperioder:
-                        utenlandsoppholdUtenArbeid.verdi === ESvar.JA
-                            ? registrerteUtenlandsperioder.verdi
-                            : [],
+                        utenlandsoppholdUtenArbeid.verdi === ESvar.JA ? registrerteUtenlandsperioder.verdi : [],
                 },
                 erEøsLand
             ).includes(idNummer.land)
@@ -192,15 +186,12 @@ export const useDinLivssituasjon = (): {
             svar: skjema.felter.arbeidIUtlandet.verdi,
         },
         arbeidsperioderUtland:
-            skjema.felter.arbeidIUtlandet.verdi === ESvar.JA
-                ? skjema.felter.registrerteArbeidsperioder.verdi
-                : [],
+            skjema.felter.arbeidIUtlandet.verdi === ESvar.JA ? skjema.felter.registrerteArbeidsperioder.verdi : [],
         utenlandsoppholdUtenArbeid: {
             ...søknad.søker.utenlandsoppholdUtenArbeid,
             svar: skjema.felter.utenlandsoppholdUtenArbeid.verdi,
         },
-        utenlandsperioder:
-            utenlandsoppholdUtenArbeid.verdi === ESvar.JA ? registrerteUtenlandsperioder.verdi : [],
+        utenlandsperioder: utenlandsoppholdUtenArbeid.verdi === ESvar.JA ? registrerteUtenlandsperioder.verdi : [],
         mottarUtenlandspensjon: {
             ...søknad.søker.mottarUtenlandspensjon,
             svar: skjema.felter.mottarUtenlandspensjon.verdi,
@@ -222,8 +213,7 @@ export const useDinLivssituasjon = (): {
     const oppdaterSøknad = () => {
         const oppdatertSøker = genererOppdatertSøker();
         const søkerTriggetEøs = skalTriggeEøsForSøker(oppdatertSøker);
-        const harEøsSteg =
-            søkerTriggetEøs || !!søknad.barnInkludertISøknaden.find(barn => barn.triggetEøs);
+        const harEøsSteg = søkerTriggetEøs || !!søknad.barnInkludertISøknaden.find(barn => barn.triggetEøs);
         const oppdatertSøknad = {
             ...søknad,
             erAvdødPartnerForelder: {
@@ -234,9 +224,7 @@ export const useDinLivssituasjon = (): {
                 ...barn,
                 andreForelderErDød: {
                     ...barn[barnDataKeySpørsmål.andreForelderErDød],
-                    svar: erEnkeEnkemann()
-                        ? barn[barnDataKeySpørsmål.andreForelderErDød].svar
-                        : ESvar.NEI,
+                    svar: erEnkeEnkemann() ? barn[barnDataKeySpørsmål.andreForelderErDød].svar : ESvar.NEI,
                 },
             })),
             dokumentasjon: søknad.dokumentasjon.map(dok => {

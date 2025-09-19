@@ -35,8 +35,7 @@ const Forside: React.FC = () => {
         ]).then();
     };
 
-    const kanFortsettePåSøknad =
-        mellomlagretVerdi && mellomlagretVerdi.modellVersjon === miljø().modellVersjon;
+    const kanFortsettePåSøknad = mellomlagretVerdi && mellomlagretVerdi.modellVersjon === miljø().modellVersjon;
 
     return (
         <InnholdContainer>
@@ -54,14 +53,9 @@ const Forside: React.FC = () => {
             </div>
             <Accordion>
                 <Accordion.Item>
-                    <Accordion.Header>
-                        {plainTekst(forsidetekster.informasjonOmPlikterTittel)}
-                    </Accordion.Header>
+                    <Accordion.Header>{plainTekst(forsidetekster.informasjonOmPlikterTittel)}</Accordion.Header>
                     <Accordion.Content>
-                        <TekstBlock
-                            block={forsidetekster.informasjonOmPlikter}
-                            typografi={Typografi.BodyLong}
-                        />
+                        <TekstBlock block={forsidetekster.informasjonOmPlikter} typografi={Typografi.BodyLong} />
                     </Accordion.Content>
                 </Accordion.Item>
                 <Accordion.Item>
@@ -76,14 +70,9 @@ const Forside: React.FC = () => {
                     </Accordion.Content>
                 </Accordion.Item>
                 <Accordion.Item>
-                    <Accordion.Header>
-                        {plainTekst(forsidetekster.informasjonOmLagringAvSvarTittel)}
-                    </Accordion.Header>
+                    <Accordion.Header>{plainTekst(forsidetekster.informasjonOmLagringAvSvarTittel)}</Accordion.Header>
                     <Accordion.Content>
-                        <TekstBlock
-                            block={forsidetekster.informasjonOmLagringAvSvar}
-                            typografi={Typografi.BodyLong}
-                        />
+                        <TekstBlock block={forsidetekster.informasjonOmLagringAvSvar} typografi={Typografi.BodyLong} />
                     </Accordion.Content>
                 </Accordion.Item>
             </Accordion>

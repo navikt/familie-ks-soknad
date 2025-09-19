@@ -38,16 +38,9 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
 }) => {
     const { valgtLocale } = useSpråkContext();
     const { plainTekst, tekster } = useAppContext();
-    const {
-        oppholdsland,
-        utenlandsoppholdÅrsak,
-        oppholdslandFraDato,
-        oppholdslandTilDato,
-        adresse,
-    } = periode;
+    const { oppholdsland, utenlandsoppholdÅrsak, oppholdslandFraDato, oppholdslandTilDato, adresse } = periode;
     const årsak = utenlandsoppholdÅrsak.svar;
-    const teksterForPersonType: IUtenlandsoppholdTekstinnhold =
-        tekster().FELLES.modaler.utenlandsopphold[personType];
+    const teksterForPersonType: IUtenlandsoppholdTekstinnhold = tekster().FELLES.modaler.utenlandsopphold[personType];
 
     const adresseTekst: ISanitySpørsmålDokument | undefined =
         årsak === EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE ||
@@ -84,18 +77,14 @@ export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummering
 
                 {oppholdslandFraDato.svar && (
                     <OppsummeringFelt
-                        tittel={
-                            <TekstBlock block={hentFraDatoSpørsmål(årsak, teksterForPersonType)} />
-                        }
+                        tittel={<TekstBlock block={hentFraDatoSpørsmål(årsak, teksterForPersonType)} />}
                         søknadsvar={formaterDato(oppholdslandFraDato.svar)}
                     />
                 )}
 
                 {oppholdslandTilDato.svar && (
                     <OppsummeringFelt
-                        tittel={
-                            <TekstBlock block={hentTilDatoSpørsmål(årsak, teksterForPersonType)} />
-                        }
+                        tittel={<TekstBlock block={hentTilDatoSpørsmål(årsak, teksterForPersonType)} />}
                         søknadsvar={formaterDatoMedUkjent(
                             oppholdslandTilDato.svar,
                             plainTekst(teksterForPersonType.sluttdatoFremtid.checkboxLabel)

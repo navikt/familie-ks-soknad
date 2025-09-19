@@ -18,20 +18,12 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import Kontoinformasjon from '../../Kontoinformasjon/Kontoinformasjon';
 
 const Kvittering: React.FC = () => {
-    const {
-        avbrytOgSlettSøknad,
-        sisteUtfylteStegIndex,
-        settFåttGyldigKvittering,
-        søknad,
-        tekster,
-    } = useAppContext();
+    const { avbrytOgSlettSøknad, sisteUtfylteStegIndex, settFåttGyldigKvittering, søknad, tekster } = useAppContext();
     const { hentStegNummer } = useStegContext();
 
     const { innsendingStatus } = useAppContext();
     const innsendtDato: Date =
-        innsendingStatus.status === RessursStatus.SUKSESS
-            ? new Date(innsendingStatus.data.mottattDato)
-            : new Date();
+        innsendingStatus.status === RessursStatus.SUKSESS ? new Date(innsendingStatus.data.mottattDato) : new Date();
 
     const klokkeslett = format(innsendtDato, 'HH:mm');
     const dato = format(innsendtDato, 'dd.MM.yy');
@@ -59,18 +51,12 @@ const Kvittering: React.FC = () => {
     return (
         <Steg tittel={<TekstBlock block={kvitteringTekster.kvitteringTittel} />}>
             <Alert variant="success">
-                <TekstBlock
-                    block={kvitteringTekster.soeknadMottatt}
-                    flettefelter={{ dato, klokkeslett }}
-                />
+                <TekstBlock block={kvitteringTekster.soeknadMottatt} flettefelter={{ dato, klokkeslett }} />
             </Alert>
 
             <VStack gap="6">
                 {allNødvendigDokumentasjonErLastetOpp.current ? (
-                    <TekstBlock
-                        block={kvitteringTekster.trengerIkkeEttersendeVedlegg}
-                        typografi={Typografi.BodyLong}
-                    />
+                    <TekstBlock block={kvitteringTekster.trengerIkkeEttersendeVedlegg} typografi={Typografi.BodyLong} />
                 ) : (
                     <Alert variant="warning">
                         <TekstBlock block={kvitteringTekster.maaEttersendeVedleggAlert} />

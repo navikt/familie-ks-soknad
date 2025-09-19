@@ -20,8 +20,7 @@ import { OmBarnaDineSpørsmålId } from './spørsmål';
 import { useOmBarnaDine } from './useOmBarnaDine';
 
 const OmBarnaDine: React.FC = () => {
-    const { skjema, validerFelterOgVisFeilmelding, valideringErOk, oppdaterSøknad } =
-        useOmBarnaDine();
+    const { skjema, validerFelterOgVisFeilmelding, valideringErOk, oppdaterSøknad } = useOmBarnaDine();
 
     const navigate = useNavigate();
     const { søknad, tekster } = useAppContext();
@@ -77,11 +76,7 @@ const OmBarnaDine: React.FC = () => {
                 },
             ]}
         >
-            <JaNeiSpm
-                skjema={skjema}
-                felt={skjema.felter.erNoenAvBarnaFosterbarn}
-                spørsmålDokument={fosterbarn}
-            />
+            <JaNeiSpm skjema={skjema} felt={skjema.felter.erNoenAvBarnaFosterbarn} spørsmålDokument={fosterbarn} />
             <HvilkeBarnCheckboxGruppe
                 legend={<TekstBlock block={hvemFosterbarn.sporsmal} />}
                 skjemafelt={skjema.felter.hvemErFosterbarn}
@@ -109,18 +104,11 @@ const OmBarnaDine: React.FC = () => {
             >
                 {skjema.felter.oppholderBarnSegIInstitusjon.verdi === ESvar.JA && (
                     <Alert variant={'warning'} inline>
-                        <TekstBlock
-                            block={institusjonKontantstoette.alert}
-                            typografi={Typografi.BodyShort}
-                        />
+                        <TekstBlock block={institusjonKontantstoette.alert} typografi={Typografi.BodyShort} />
                     </Alert>
                 )}
             </HvilkeBarnCheckboxGruppe>
-            <JaNeiSpm
-                skjema={skjema}
-                felt={skjema.felter.erBarnAdoptert}
-                spørsmålDokument={adoptertKontantstoette}
-            />
+            <JaNeiSpm skjema={skjema} felt={skjema.felter.erBarnAdoptert} spørsmålDokument={adoptertKontantstoette} />
             <HvilkeBarnCheckboxGruppe
                 legend={<TekstBlock block={hvemAdoptertKontantstoette.sporsmal} />}
                 skjemafelt={skjema.felter.hvemErAdoptert}
@@ -128,11 +116,7 @@ const OmBarnaDine: React.FC = () => {
                 nullstillValgteBarn={skjema.felter.erBarnAdoptert.verdi === ESvar.NEI}
                 visFeilmelding={skjema.visFeilmeldinger}
             />
-            <JaNeiSpm
-                skjema={skjema}
-                felt={skjema.felter.søktAsylForBarn}
-                spørsmålDokument={asyl}
-            />
+            <JaNeiSpm skjema={skjema} felt={skjema.felter.søktAsylForBarn} spørsmålDokument={asyl} />
             <HvilkeBarnCheckboxGruppe
                 legend={<TekstBlock block={hvemAsyl.sporsmal} />}
                 skjemafelt={skjema.felter.hvemErSøktAsylFor}
@@ -144,20 +128,13 @@ const OmBarnaDine: React.FC = () => {
                 skjema={skjema}
                 felt={skjema.felter.barnOppholdtSegTolvMndSammenhengendeINorge}
                 spørsmålDokument={sammenhengendeOppholdINorge}
-                tilleggsinfo={
-                    <TekstBlock
-                        block={sammenhengendeOppholdINorge.alert}
-                        typografi={Typografi.BodyShort}
-                    />
-                }
+                tilleggsinfo={<TekstBlock block={sammenhengendeOppholdINorge.alert} typografi={Typografi.BodyShort} />}
             />
             <HvilkeBarnCheckboxGruppe
                 legend={<TekstBlock block={hvemOppholdUtenforNorge.sporsmal} />}
                 skjemafelt={skjema.felter.hvemTolvMndSammenhengendeINorge}
                 søknadsdatafelt={barnDataKeySpørsmål.boddMindreEnn12MndINorge}
-                nullstillValgteBarn={
-                    skjema.felter.barnOppholdtSegTolvMndSammenhengendeINorge.verdi === ESvar.JA
-                }
+                nullstillValgteBarn={skjema.felter.barnOppholdtSegTolvMndSammenhengendeINorge.verdi === ESvar.JA}
                 visFeilmelding={skjema.visFeilmeldinger}
             />
             <JaNeiSpm
@@ -169,9 +146,7 @@ const OmBarnaDine: React.FC = () => {
                 legend={<TekstBlock block={hvemSoektYtelse.sporsmal} />}
                 skjemafelt={skjema.felter.hvemKontantstøtteFraAnnetEøsland}
                 søknadsdatafelt={barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland}
-                nullstillValgteBarn={
-                    skjema.felter.mottarKontantstøtteForBarnFraAnnetEøsland.verdi === ESvar.NEI
-                }
+                nullstillValgteBarn={skjema.felter.mottarKontantstøtteForBarnFraAnnetEøsland.verdi === ESvar.NEI}
                 visFeilmelding={skjema.visFeilmeldinger}
             />
             <JaNeiSpm
@@ -183,17 +158,14 @@ const OmBarnaDine: React.FC = () => {
                 legend={<TekstBlock block={hvemBarnehageplass.sporsmal} />}
                 skjemafelt={skjema.felter.hvemHarBarnehageplass}
                 søknadsdatafelt={barnDataKeySpørsmål.harBarnehageplass}
-                nullstillValgteBarn={
-                    skjema.felter.harEllerTildeltBarnehageplass.verdi === ESvar.NEI
-                }
+                nullstillValgteBarn={skjema.felter.harEllerTildeltBarnehageplass.verdi === ESvar.NEI}
                 visFeilmelding={skjema.visFeilmeldinger}
             />
             <JaNeiSpm
                 skjema={skjema}
                 felt={skjema.felter.erAvdødPartnerForelder}
                 spørsmålDokument={
-                    søknad.erAvdødPartnerForelder.id ===
-                    OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+                    søknad.erAvdødPartnerForelder.id === OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
                         ? folkeregistrertGjenlevende
                         : folkeregistrertEnkeEnkemann
                 }
@@ -202,8 +174,7 @@ const OmBarnaDine: React.FC = () => {
                 legend={
                     <TekstBlock
                         block={
-                            søknad.erAvdødPartnerForelder.id ===
-                            OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+                            søknad.erAvdødPartnerForelder.id === OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
                                 ? hvemAvBarnaAvdoedPartner.sporsmal
                                 : hvemAvBarnaAvdoedEktefelle.sporsmal
                         }

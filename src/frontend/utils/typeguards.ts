@@ -26,9 +26,7 @@ export const erGyldigISøknadKontraktSøker = (input): input is ISøknadKontrakt
     'andreUtbetalingsperioder' in input &&
     'idNummer' in input;
 
-export const erGyldigISøknadKontraktOmsorgsperson = (
-    input
-): input is IOmsorgspersonIKontraktFormat =>
+export const erGyldigISøknadKontraktOmsorgsperson = (input): input is IOmsorgspersonIKontraktFormat =>
     input === null ||
     (input &&
         'navn' in input &&
@@ -51,9 +49,7 @@ export const erGyldigISøknadKontraktOmsorgsperson = (
         'kontantstøtteFraEøs' in input &&
         'eøsKontantstøttePerioder' in input);
 
-export const erGyldigISøknadKontraktAndreForelder = (
-    input
-): input is IAndreForelderIKontraktFormat =>
+export const erGyldigISøknadKontraktAndreForelder = (input): input is IAndreForelderIKontraktFormat =>
     input === null ||
     (input &&
         'kanIkkeGiOpplysninger' in input &&
@@ -97,9 +93,7 @@ export const erGyldigISøknadKontraktBarnListe = (input): input is ISøknadIKont
     Array.isArray(input) &&
     input.map(erGyldigISøknadsKontraktBarn).reduce((prev, curr) => !!(prev && curr), true);
 
-export const erGyldigISøknadKontraktDokumentasjon = (
-    input
-): input is ISøknadKontraktDokumentasjon =>
+export const erGyldigISøknadKontraktDokumentasjon = (input): input is ISøknadKontraktDokumentasjon =>
     input.dokumentasjonsbehov && input.harSendtInn !== undefined && input.opplastedeVedlegg;
 
 export const erGyldigDokumentasjon = (input): input is ISøknadKontraktDokumentasjon[] =>

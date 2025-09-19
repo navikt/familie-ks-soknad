@@ -14,12 +14,8 @@ test('Kan hente ut info om routes fra RoutesContext', () => {
 
         return (
             <>
-                <span>
-                    Route-label: {hentRouteObjektForRouteEnum(RouteEnum.DinLivssituasjon).label}
-                </span>
-                <span>
-                    Route-path: {hentRouteObjektForRouteEnum(RouteEnum.DinLivssituasjon).path}
-                </span>
+                <span>Route-label: {hentRouteObjektForRouteEnum(RouteEnum.DinLivssituasjon).label}</span>
+                <span>Route-path: {hentRouteObjektForRouteEnum(RouteEnum.DinLivssituasjon).path}</span>
             </>
         );
     };

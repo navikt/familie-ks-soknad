@@ -28,9 +28,7 @@ function HvilkeBarnCheckboxGruppe({
 }: Props) {
     const { søknad } = useAppContext();
     const [valgteBarn, settValgteBarn] = useState<BarnetsId[]>(
-        søknad.barnInkludertISøknaden
-            .filter(barn => barn[søknadsdatafelt].svar === ESvar.JA)
-            .map(barn => barn.id)
+        søknad.barnInkludertISøknaden.filter(barn => barn[søknadsdatafelt].svar === ESvar.JA).map(barn => barn.id)
     );
 
     useEffect(() => {

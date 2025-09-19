@@ -13,9 +13,7 @@ describe('AppNavigationContext', () => {
         });
 
         const wrapper = ({ children }) => (
-            <TestProvidere mocketNettleserHistorikk={['/om-barnet/barn/1']}>
-                {children}
-            </TestProvidere>
+            <TestProvidere mocketNettleserHistorikk={['/om-barnet/barn/1']}>{children}</TestProvidere>
         );
         const { result } = renderHook(() => useAppNavigationContext(), { wrapper });
         expect(result.current.komFra).toEqual(undefined);

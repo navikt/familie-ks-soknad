@@ -32,17 +32,13 @@ const AndreForelderOppsummering: React.FC<{
     const flettefelter = { barnetsNavn: barn.navn };
     return (
         <>
-            {andreForelder[andreForelderDataKeySpørsmål.kanIkkeGiOpplysninger].svar ===
-            ESvar.NEI ? (
+            {andreForelder[andreForelderDataKeySpørsmål.kanIkkeGiOpplysninger].svar === ESvar.NEI ? (
                 <FormSummary.Answers>
                     {andreForelder[andreForelderDataKeySpørsmål.navn].svar && (
                         <OppsummeringFelt
-                            tittel={
-                                <TekstBlock block={omBarnetTekster.navnAndreForelder.sporsmal} />
-                            }
+                            tittel={<TekstBlock block={omBarnetTekster.navnAndreForelder.sporsmal} />}
                             søknadsvar={
-                                andreForelder[andreForelderDataKeySpørsmål.navn].svar !==
-                                AlternativtSvarForInput.UKJENT
+                                andreForelder[andreForelderDataKeySpørsmål.navn].svar !== AlternativtSvarForInput.UKJENT
                                     ? andreForelder[andreForelderDataKeySpørsmål.navn].svar
                                     : plainTekst(omBarnetTekster.navnAndreForelder.checkboxLabel)
                             }
@@ -50,31 +46,17 @@ const AndreForelderOppsummering: React.FC<{
                     )}
                     {andreForelder[andreForelderDataKeySpørsmål.fnr].svar && (
                         <OppsummeringFelt
-                            tittel={
-                                <TekstBlock
-                                    block={
-                                        omBarnetTekster.foedselsnummerDnummerAndreForelder.sporsmal
-                                    }
-                                />
-                            }
+                            tittel={<TekstBlock block={omBarnetTekster.foedselsnummerDnummerAndreForelder.sporsmal} />}
                             søknadsvar={
-                                andreForelder[andreForelderDataKeySpørsmål.fnr].svar !==
-                                AlternativtSvarForInput.UKJENT
+                                andreForelder[andreForelderDataKeySpørsmål.fnr].svar !== AlternativtSvarForInput.UKJENT
                                     ? andreForelder[andreForelderDataKeySpørsmål.fnr].svar
-                                    : plainTekst(
-                                          omBarnetTekster.foedselsnummerDnummerAndreForelder
-                                              .checkboxLabel
-                                      )
+                                    : plainTekst(omBarnetTekster.foedselsnummerDnummerAndreForelder.checkboxLabel)
                             }
                         />
                     )}
                     {andreForelder[andreForelderDataKeySpørsmål.fødselsdato].svar && (
                         <OppsummeringFelt
-                            tittel={
-                                <TekstBlock
-                                    block={omBarnetTekster.foedselsdatoAndreForelder.sporsmal}
-                                />
-                            }
+                            tittel={<TekstBlock block={omBarnetTekster.foedselsdatoAndreForelder.sporsmal} />}
                             søknadsvar={formaterDatoMedUkjent(
                                 andreForelder[andreForelderDataKeySpørsmål.fødselsdato].svar,
                                 plainTekst(omBarnetTekster.foedselsdatoAndreForelder.checkboxLabel)
@@ -85,15 +67,11 @@ const AndreForelderOppsummering: React.FC<{
                         <OppsummeringFelt
                             tittel={
                                 <TekstBlock
-                                    block={
-                                        omBarnetTekster.medlemAvFolktetrygdenAndreForelder.sporsmal
-                                    }
+                                    block={omBarnetTekster.medlemAvFolktetrygdenAndreForelder.sporsmal}
                                     flettefelter={flettefelter}
                                 />
                             }
-                            søknadsvar={
-                                andreForelder[andreForelderDataKeySpørsmål.yrkesaktivFemÅr].svar
-                            }
+                            søknadsvar={andreForelder[andreForelderDataKeySpørsmål.yrkesaktivFemÅr].svar}
                         />
                     )}
                     {andreForelder[andreForelderDataKeySpørsmål.arbeidUtlandet].svar && (
@@ -102,18 +80,13 @@ const AndreForelderOppsummering: React.FC<{
                                 <TekstBlock
                                     block={
                                         andreForelderErDød
-                                            ? omBarnetTekster
-                                                  .arbeidUtenforNorgeAndreForelderGjenlevende
-                                                  .sporsmal
-                                            : omBarnetTekster.arbeidUtenforNorgeAndreForelder
-                                                  .sporsmal
+                                            ? omBarnetTekster.arbeidUtenforNorgeAndreForelderGjenlevende.sporsmal
+                                            : omBarnetTekster.arbeidUtenforNorgeAndreForelder.sporsmal
                                     }
                                     flettefelter={flettefelter}
                                 />
                             }
-                            søknadsvar={
-                                andreForelder[andreForelderDataKeySpørsmål.arbeidUtlandet].svar
-                            }
+                            søknadsvar={andreForelder[andreForelderDataKeySpørsmål.arbeidUtlandet].svar}
                         />
                     )}
 
@@ -133,10 +106,7 @@ const AndreForelderOppsummering: React.FC<{
                         <OppsummeringFelt
                             tittel={
                                 <TekstBlock
-                                    block={
-                                        omBarnetTekster.utenlandsoppholdUtenArbeidAndreForelder
-                                            .sporsmal
-                                    }
+                                    block={omBarnetTekster.utenlandsoppholdUtenArbeidAndreForelder.sporsmal}
                                     flettefelter={flettefelter}
                                 />
                             }
@@ -160,16 +130,13 @@ const AndreForelderOppsummering: React.FC<{
                                 <TekstBlock
                                     block={
                                         andreForelderErDød
-                                            ? omBarnetTekster.pensjonUtlandAndreForelderGjenlevende
-                                                  .sporsmal
+                                            ? omBarnetTekster.pensjonUtlandAndreForelderGjenlevende.sporsmal
                                             : omBarnetTekster.pensjonUtlandAndreForelder.sporsmal
                                     }
                                     flettefelter={flettefelter}
                                 />
                             }
-                            søknadsvar={
-                                andreForelder[andreForelderDataKeySpørsmål.pensjonUtland].svar
-                            }
+                            søknadsvar={andreForelder[andreForelderDataKeySpørsmål.pensjonUtland].svar}
                         />
                     )}
 

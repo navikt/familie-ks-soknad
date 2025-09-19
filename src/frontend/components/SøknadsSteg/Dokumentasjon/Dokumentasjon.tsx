@@ -30,14 +30,8 @@ export const erVedleggstidspunktGyldig = (vedleggTidspunkt: string): boolean => 
 };
 
 const Dokumentasjon: React.FC = () => {
-    const {
-        søknad,
-        settSøknad,
-        innsendingStatus,
-        tekster,
-        plainTekst,
-        tvingKjøringAvDebouncedMellomlagre,
-    } = useAppContext();
+    const { søknad, settSøknad, innsendingStatus, tekster, plainTekst, tvingKjøringAvDebouncedMellomlagre } =
+        useAppContext();
     const { sendInnSkjema } = useSendInnSkjema();
     const [slettaVedlegg, settSlettaVedlegg] = useState<IVedlegg[]>([]);
 
@@ -49,9 +43,7 @@ const Dokumentasjon: React.FC = () => {
         settSøknad(prevState => ({
             ...prevState,
             dokumentasjon: prevState.dokumentasjon.map(dok =>
-                dok.dokumentasjonsbehov === dokumentasjonsbehov
-                    ? { ...dok, opplastedeVedlegg, harSendtInn }
-                    : dok
+                dok.dokumentasjonsbehov === dokumentasjonsbehov ? { ...dok, opplastedeVedlegg, harSendtInn } : dok
             ),
         }));
     };
@@ -63,9 +55,7 @@ const Dokumentasjon: React.FC = () => {
                 const gyldigeVedlegg = dok.opplastedeVedlegg.filter(vedlegg =>
                     erVedleggstidspunktGyldig(vedlegg.tidspunkt)
                 );
-                const ugyldigeVedlegg = dok.opplastedeVedlegg.filter(
-                    vedlegg => !gyldigeVedlegg.includes(vedlegg)
-                );
+                const ugyldigeVedlegg = dok.opplastedeVedlegg.filter(vedlegg => !gyldigeVedlegg.includes(vedlegg));
 
                 if (gyldigeVedlegg.length !== dok.opplastedeVedlegg.length) {
                     settSlettaVedlegg(prevState => [prevState, ugyldigeVedlegg].flat());
@@ -83,14 +73,13 @@ const Dokumentasjon: React.FC = () => {
     );
 
     const relevateDokumentasjonerUtenAnnenDokumentasjon = relevateDokumentasjoner.filter(
-        dokumentasjon =>
-            dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON
+        dokumentasjon => dokumentasjon.dokumentasjonsbehov !== Dokumentasjonsbehov.ANNEN_DOKUMENTASJON
     );
 
     const brukerHarVedleggskrav = relevateDokumentasjonerUtenAnnenDokumentasjon.length > 0;
 
-    const vedleggOppsummering: IVedleggOppsummering[] =
-        relevateDokumentasjonerUtenAnnenDokumentasjon.map(dokumentasjon => {
+    const vedleggOppsummering: IVedleggOppsummering[] = relevateDokumentasjonerUtenAnnenDokumentasjon.map(
+        dokumentasjon => {
             const barnDokGjelderFor = søknad.barnInkludertISøknaden.filter(barn =>
                 dokumentasjon.gjelderForBarnId.find(id => id === barn.id)
             );
@@ -105,7 +94,8 @@ const Dokumentasjon: React.FC = () => {
                 dokumentasjonsbehov: dokumentasjon.dokumentasjonsbehov,
                 flettefeltVerdier: { barnetsNavn: barnasNavn },
             };
-        });
+        }
+    );
 
     return (
         <Steg
@@ -128,10 +118,7 @@ const Dokumentasjon: React.FC = () => {
             <VStack gap="12">
                 {slettaVedlegg.length > 0 && (
                     <Alert variant={'warning'}>
-                        <TekstBlock
-                            block={stegTekster.forLangTidDokumentasjon}
-                            typografi={Typografi.BodyLong}
-                        />
+                        <TekstBlock block={stegTekster.forLangTidDokumentasjon} typografi={Typografi.BodyLong} />
                         <ul>
                             {slettaVedlegg.map(vedlegg => (
                                 <li key={vedlegg.dokumentId}>
@@ -148,10 +135,7 @@ const Dokumentasjon: React.FC = () => {
                                 {plainTekst(stegTekster.vedleggskravTittel)}
                             </Heading>
                             <VedleggOppsummering vedlegg={vedleggOppsummering} />
-                            <TekstBlock
-                                block={stegTekster.vedleggskrav}
-                                typografi={Typografi.BodyLong}
-                            />
+                            <TekstBlock block={stegTekster.vedleggskrav} typografi={Typografi.BodyLong} />
                         </div>
                         <PictureScanningGuide />
                         <div>
@@ -170,10 +154,7 @@ const Dokumentasjon: React.FC = () => {
                             <Heading level="3" size="small" spacing>
                                 {plainTekst(stegTekster.ingenVedleggskravTittel)}
                             </Heading>
-                            <TekstBlock
-                                block={stegTekster.ingenVedleggskrav}
-                                typografi={Typografi.BodyLong}
-                            />
+                            <TekstBlock block={stegTekster.ingenVedleggskrav} typografi={Typografi.BodyLong} />
                         </div>
                         <PictureScanningGuide />
                     </>

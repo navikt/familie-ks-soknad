@@ -1,14 +1,7 @@
 import { useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import {
-    feil,
-    type FeltState,
-    ok,
-    useFelt,
-    useSkjema,
-    Valideringsstatus,
-} from '@navikt/familie-skjema';
+import { feil, type FeltState, ok, useFelt, useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
@@ -30,11 +23,7 @@ import {
 } from '../../../utils/utenlandsopphold';
 
 import { UtenlandsoppholdSpørsmålId } from './spørsmål';
-import {
-    hentFraDatoFeilmelding,
-    hentLandFeilmelding,
-    hentTilDatoFeilmelding,
-} from './utenlandsoppholdSpråkUtils';
+import { hentFraDatoFeilmelding, hentLandFeilmelding, hentTilDatoFeilmelding } from './utenlandsoppholdSpråkUtils';
 
 export interface IUseUtenlandsoppholdSkjemaParams {
     personType: PersonType;
@@ -51,9 +40,7 @@ export const useUtenlandsoppholdSkjema = ({
         feltId: UtenlandsoppholdSpørsmålId.årsakUtenlandsopphold,
         verdi: '',
         valideringsfunksjon: (felt: FeltState<EUtenlandsoppholdÅrsak | ''>) =>
-            felt.verdi !== ''
-                ? ok(felt)
-                : feil(felt, plainTekst(teksterForPersontype.periodeBeskrivelse.feilmelding)),
+            felt.verdi !== '' ? ok(felt) : feil(felt, plainTekst(teksterForPersontype.periodeBeskrivelse.feilmelding)),
     });
 
     useEffect(() => {
@@ -91,8 +78,7 @@ export const useUtenlandsoppholdSkjema = ({
         feltId: UtenlandsoppholdSpørsmålId.tilDatoUtenlandsoppholdVetIkke,
         skalFeltetVises: avhengigheter =>
             !!avhengigheter.utenlandsoppholdÅrsak.verdi &&
-            avhengigheter.utenlandsoppholdÅrsak.verdi ===
-                EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE,
+            avhengigheter.utenlandsoppholdÅrsak.verdi === EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE,
         avhengigheter: { utenlandsoppholdÅrsak },
     });
 
@@ -111,9 +97,7 @@ export const useUtenlandsoppholdSkjema = ({
         customStartdatoFeilmelding: !harTilhørendeFomFelt(utenlandsoppholdÅrsak.verdi)
             ? utenlandsoppholdÅrsak.verdi === EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE
                 ? plainTekst(tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid)
-                : plainTekst(
-                      tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaere12MndTilbake
-                  )
+                : plainTekst(tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaere12MndTilbake)
             : undefined,
         avhengigheter: { utenlandsoppholdÅrsak, oppholdslandFraDato },
         nullstillVedAvhengighetEndring: false,
@@ -122,8 +106,7 @@ export const useUtenlandsoppholdSkjema = ({
     const adresseUkjent = useFelt<ESvar>({
         verdi: ESvar.NEI,
         feltId: UtenlandsoppholdSpørsmålId.adresseUkjent,
-        skalFeltetVises: avhengigheter =>
-            personType !== PersonType.barn && !!avhengigheter.utenlandsoppholdÅrsak.verdi,
+        skalFeltetVises: avhengigheter => personType !== PersonType.barn && !!avhengigheter.utenlandsoppholdÅrsak.verdi,
         avhengigheter: { utenlandsoppholdÅrsak },
         nullstillVedAvhengighetEndring: false,
     });
@@ -135,9 +118,7 @@ export const useUtenlandsoppholdSkjema = ({
         },
         avhengighet: adresseUkjent,
         feilmelding: adresseTekst?.feilmelding,
-        skalVises:
-            personType !== PersonType.barn &&
-            utenlandsoppholdÅrsak.valideringsstatus === Valideringsstatus.OK,
+        skalVises: personType !== PersonType.barn && utenlandsoppholdÅrsak.valideringsstatus === Valideringsstatus.OK,
     });
 
     const skjema = useSkjema<IUtenlandsoppholdFeltTyper, string>({

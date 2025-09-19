@@ -9,12 +9,7 @@ import { ArbeidsperiodeSpørsmålsId } from '../../Felleskomponenter/Arbeidsperi
 import { PensjonsperiodeSpørsmålId } from '../../Felleskomponenter/Pensjonsmodal/spørsmål';
 import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 
-import {
-    eøsLandUtenDuplikatHof,
-    fjernDuplikat,
-    idNummerLandMedPeriodeType,
-    PeriodeType,
-} from './idnummerUtils';
+import { eøsLandUtenDuplikatHof, fjernDuplikat, idNummerLandMedPeriodeType, PeriodeType } from './idnummerUtils';
 
 const arbeidsPeriodeMock = () => ({
     arbeidsperiodeland: {

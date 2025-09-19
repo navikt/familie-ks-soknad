@@ -16,9 +16,7 @@ const InnloggetContext = createContext<InnloggetContext | undefined>(undefined);
 export function InnloggetProvider(props: PropsWithChildren) {
     const { axiosRequest } = useLastRessurserContext();
 
-    const [innloggetStatus, settInnloggetStatus] = useState<InnloggetStatus>(
-        InnloggetStatus.IKKE_VERIFISERT
-    );
+    const [innloggetStatus, settInnloggetStatus] = useState<InnloggetStatus>(InnloggetStatus.IKKE_VERIFISERT);
 
     const { soknadApiProxyUrl } = miljø();
 
@@ -30,9 +28,7 @@ export function InnloggetProvider(props: PropsWithChildren) {
         }
     }, [innloggetStatus]);
 
-    const verifiserAtBrukerErAutentisert = (
-        settInnloggetStatus: (innloggetStatus: InnloggetStatus) => void
-    ) => {
+    const verifiserAtBrukerErAutentisert = (settInnloggetStatus: (innloggetStatus: InnloggetStatus) => void) => {
         return axiosRequest({
             url: `${soknadApiProxyUrl}/innlogget/kontantstotte`,
             method: 'GET',
@@ -51,11 +47,7 @@ export function InnloggetProvider(props: PropsWithChildren) {
             });
     };
 
-    return (
-        <InnloggetContext.Provider value={{ innloggetStatus }}>
-            {props.children}
-        </InnloggetContext.Provider>
-    );
+    return <InnloggetContext.Provider value={{ innloggetStatus }}>{props.children}</InnloggetContext.Provider>;
 }
 
 export function useInnloggetContext() {

@@ -76,14 +76,9 @@ const Helse: React.FC = () => {
 const renderHelse = (ressurs: Ressurs<string>, tjeneste: string) => {
     return (
         <div className={'helse__tjeneste'}>
-            <TypografiWrapper
-                typografi={Typografi.BodyShort}
-            >{`Svar fra ${tjeneste}:`}</TypografiWrapper>
+            <TypografiWrapper typografi={Typografi.BodyShort}>{`Svar fra ${tjeneste}:`}</TypografiWrapper>
             {ressurs.status === RessursStatus.SUKSESS && (
-                <TypografiWrapper
-                    typografi={Typografi.BodyShort}
-                    children={`suksess (${ressurs.data})`}
-                />
+                <TypografiWrapper typografi={Typografi.BodyShort} children={`suksess (${ressurs.data})`} />
             )}
             {ressurs.status === RessursStatus.HENTER && <Loader />}
             {ressurs.status === RessursStatus.FEILET && (

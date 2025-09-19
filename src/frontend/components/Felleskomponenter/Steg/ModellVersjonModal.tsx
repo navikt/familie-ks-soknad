@@ -30,24 +30,15 @@ const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
             }}
         >
             <ModalContent>
-                <Alert
-                    variant={'error'}
-                    children={plainTekst(mistetInformasjonenDinTekster.tittel)}
-                />
+                <Alert variant={'error'} children={plainTekst(mistetInformasjonenDinTekster.tittel)} />
 
                 <HovedinnholdContainer>
-                    <TekstBlock
-                        block={mistetInformasjonenDinTekster.info}
-                        typografi={Typografi.BodyLong}
-                    />
+                    <TekstBlock block={mistetInformasjonenDinTekster.info} typografi={Typografi.BodyLong} />
                 </HovedinnholdContainer>
             </ModalContent>
             <Modal.Footer>
                 <Button onClick={refresh}>
-                    <TekstBlock
-                        block={mistetInformasjonenDinTekster.knapp}
-                        typografi={Typografi.BodyShort}
-                    />
+                    <TekstBlock block={mistetInformasjonenDinTekster.knapp} typografi={Typografi.BodyShort} />
                 </Button>
             </Modal.Footer>
         </Modal>

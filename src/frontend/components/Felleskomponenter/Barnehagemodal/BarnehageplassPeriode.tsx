@@ -40,19 +40,14 @@ export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
         åpneModal: åpneBarnehageplassModal,
     } = useModal();
     const { tekster, plainTekst } = useAppContext();
-    const barnehageplassTekster: IBarnehageplassTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
+    const barnehageplassTekster: IBarnehageplassTekstinnhold = tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
     const teksterForOmBarnetSteg: IOmBarnetTekstinnhold = tekster()[ESanitySteg.OM_BARNET];
     const barnetsNavn = barn.navn;
 
     const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
 
     return (
-        <PerioderContainer
-            tittel={uppercaseFørsteBokstav(
-                plainTekst(frittståendeOrdTekster.barnehageplassperioder)
-            )}
-        >
+        <PerioderContainer tittel={uppercaseFørsteBokstav(plainTekst(frittståendeOrdTekster.barnehageplassperioder))}>
             <TekstBlock
                 block={teksterForOmBarnetSteg.opplystBarnehageplass}
                 flettefelter={{ barnetsNavn }}

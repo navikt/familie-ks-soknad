@@ -30,11 +30,8 @@ const LastRessurserContext = createContext<LastRessurserContext | undefined>(und
 
 export function LastRessurserProvider(props: PropsWithChildren) {
     const [ressurserSomLaster, settRessurserSomLaster] = useState<string[]>([]);
-    const {
-        registerTimeoutUnmountHandler,
-        registerRequestUnmountHandler,
-        removeRequestUnmountHandler,
-    } = useUnmountCleanup();
+    const { registerTimeoutUnmountHandler, registerRequestUnmountHandler, removeRequestUnmountHandler } =
+        useUnmountCleanup();
 
     const axiosRequest: AxiosRequest = async <T, D>(
         config: AxiosRequestConfig & {

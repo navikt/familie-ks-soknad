@@ -38,15 +38,7 @@ interface Props {
     children?: ReactNode;
 }
 
-function Oppsummeringsbolk({
-    children,
-    tittel,
-    flettefelter,
-    steg,
-    skjemaHook,
-    settFeilAnchors,
-    barn,
-}: Props) {
+function Oppsummeringsbolk({ children, tittel, flettefelter, steg, skjemaHook, settFeilAnchors, barn }: Props) {
     const { hentStegNummer } = useStegContext();
     const { søknad, plainTekst, tekster } = useAppContext();
     const { validerAlleSynligeFelter, valideringErOk, skjema } = skjemaHook;
@@ -94,13 +86,7 @@ function Oppsummeringsbolk({
             </FormSummary.Header>
             <FormSummary.Answers>
                 {children}
-                {visFeil && (
-                    <SkjemaFeiloppsummering
-                        skjema={skjema}
-                        stegMedFeil={steg}
-                        id={feilOppsummeringId}
-                    />
-                )}
+                {visFeil && <SkjemaFeiloppsummering skjema={skjema} stegMedFeil={steg} id={feilOppsummeringId} />}
             </FormSummary.Answers>
         </FormSummary>
     );

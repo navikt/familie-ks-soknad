@@ -23,18 +23,12 @@ const StyledDropdown = <ConstrainedString extends string>({
 }: PropsWithChildren<StyledDropdownProps<ConstrainedString>>) =>
     felt.erSynlig ? (
         <div id={felt.id} aria-live={dynamisk ? 'polite' : 'off'}>
-            <Select
-                label={label}
-                {...felt.hentNavInputProps(skjema.visFeilmeldinger)}
-                id={undefined}
-            >
+            <Select label={label} {...felt.hentNavInputProps(skjema.visFeilmeldinger)} id={undefined}>
                 <option disabled={true} value={''}>
                     {placeholder}
                 </option>
                 {children}
-                <optgroup
-                    label="" /* En tom optgroup hindrer teksten i dropdown på ios å bli truncated */
-                />
+                <optgroup label="" /* En tom optgroup hindrer teksten i dropdown på ios å bli truncated */ />
             </Select>
         </div>
     ) : null;

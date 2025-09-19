@@ -49,9 +49,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
     const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
 
     return (
-        <PerioderContainer
-            tittel={uppercaseFørsteBokstav(plainTekst(frittståendeOrdTekster.utenlandsopphold))}
-        >
+        <PerioderContainer tittel={uppercaseFørsteBokstav(plainTekst(frittståendeOrdTekster.utenlandsopphold))}>
             {erUtenlandsoppholdModalÅpen && (
                 <UtenlandsoppholdModal
                     erÅpen={erUtenlandsoppholdModalÅpen}
@@ -75,9 +73,7 @@ export const Utenlandsperiode: React.FC<Props> = ({
             <LeggTilKnapp
                 id={registrerteUtenlandsperioder.id}
                 onClick={åpneUtenlandsoppholdModal}
-                leggTilFlereTekst={
-                    registrerteUtenlandsperioder.verdi.length > 0 && plainTekst(flerePerioder)
-                }
+                leggTilFlereTekst={registrerteUtenlandsperioder.verdi.length > 0 && plainTekst(flerePerioder)}
                 feilmelding={
                     registrerteUtenlandsperioder.erSynlig &&
                     skjema.visFeilmeldinger &&

@@ -23,9 +23,7 @@ describe('innloggetContext', () => {
 
         expect(result.current.innloggetStatus).toEqual(InnloggetStatus.IKKE_VERIFISERT);
 
-        await waitFor(() =>
-            expect(result.current.innloggetStatus).toEqual(InnloggetStatus.AUTENTISERT)
-        );
+        await waitFor(() => expect(result.current.innloggetStatus).toEqual(InnloggetStatus.AUTENTISERT));
     });
 
     test(`Skal vise info når brukeren ikke er autentisert`, async () => {

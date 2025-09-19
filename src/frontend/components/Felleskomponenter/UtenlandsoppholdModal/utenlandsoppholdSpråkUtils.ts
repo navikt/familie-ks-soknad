@@ -59,10 +59,7 @@ export const hentLandFeilmelding = (
     }
 };
 
-export const hentFraDatoFeilmelding = (
-    årsak: EUtenlandsoppholdÅrsak | '',
-    tekster: IUtenlandsoppholdTekstinnhold
-) => {
+export const hentFraDatoFeilmelding = (årsak: EUtenlandsoppholdÅrsak | '', tekster: IUtenlandsoppholdTekstinnhold) => {
     switch (årsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE:
             return tekster.flyttetFraNorgeDato.feilmelding;
@@ -102,10 +99,7 @@ export const hentTilDatoSpørsmål = (
     }
 };
 
-export const hentTilDatoFeilmelding = (
-    årsak: EUtenlandsoppholdÅrsak | '',
-    tekster: IUtenlandsoppholdTekstinnhold
-) => {
+export const hentTilDatoFeilmelding = (årsak: EUtenlandsoppholdÅrsak | '', tekster: IUtenlandsoppholdTekstinnhold) => {
     switch (årsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE:
             return tekster.flyttetTilNorgeDato.feilmelding;

@@ -20,13 +20,7 @@ const StyledButton = styled(Button)`
     }
 `;
 
-export function LeggTilKnapp({
-    onClick,
-    leggTilFlereTekst = undefined,
-    feilmelding,
-    id,
-    children,
-}: Props) {
+export function LeggTilKnapp({ onClick, leggTilFlereTekst = undefined, feilmelding, id, children }: Props) {
     return (
         <>
             {leggTilFlereTekst && <BodyShort spacing>{leggTilFlereTekst}</BodyShort>}

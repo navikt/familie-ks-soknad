@@ -49,9 +49,7 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon 
     };
 
     const tittel: LocaleRecordBlock =
-        dokumentasjonTekster[
-            dokumentasjonsbehovTilTittelSanityApiNavn(dokumentasjon.dokumentasjonsbehov)
-        ];
+        dokumentasjonTekster[dokumentasjonsbehovTilTittelSanityApiNavn(dokumentasjon.dokumentasjonsbehov)];
 
     const barnDokumentasjonenGjelderFor = søknad.barnInkludertISøknaden.filter(barn =>
         dokumentasjon.gjelderForBarnId.find(id => id === barn.id)
@@ -62,16 +60,12 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon 
         frittståendeOrdTekster
     );
 
-    const dokumentasjonsbeskrivelse = dokumentasjonsbehovTilBeskrivelseSanityApiNavn(
-        dokumentasjon.dokumentasjonsbehov
-    );
+    const dokumentasjonsbeskrivelse = dokumentasjonsbehovTilBeskrivelseSanityApiNavn(dokumentasjon.dokumentasjonsbehov);
 
     return (
         <FormSummary>
             <FormSummary.Header>
-                <FormSummary.Heading level="3">
-                    {plainTekst(tittel, { barnetsNavn: barnasNavn })}
-                </FormSummary.Heading>
+                <FormSummary.Heading level="3">{plainTekst(tittel, { barnetsNavn: barnasNavn })}</FormSummary.Heading>
             </FormSummary.Header>
             <VStack gap="6" paddingInline="6" paddingBlock="5 6">
                 {dokumentasjonsbeskrivelse && (
@@ -100,10 +94,7 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon 
 
                 {!dokumentasjon.harSendtInn && (
                     <div data-testid={'dokumentopplaster'}>
-                        <Filopplaster
-                            dokumentasjon={dokumentasjon}
-                            oppdaterDokumentasjon={oppdaterDokumentasjon}
-                        />
+                        <Filopplaster dokumentasjon={dokumentasjon} oppdaterDokumentasjon={oppdaterDokumentasjon} />
                     </div>
                 )}
             </VStack>

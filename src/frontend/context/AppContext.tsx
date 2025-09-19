@@ -98,9 +98,7 @@ export function AppProvider(props: PropsWithChildren) {
         } else {
             axiosRequest<number, void>({
                 url: `${BASE_PATH}modellversjon`,
-            }).then(data =>
-                settSisteModellVersjon(prevState => hentDataFraRessurs(data) ?? prevState)
-            );
+            }).then(data => settSisteModellVersjon(prevState => hentDataFraRessurs(data) ?? prevState));
         }
     }, [nåværendeRoute]);
 
@@ -120,10 +118,7 @@ export function AppProvider(props: PropsWithChildren) {
     }, [søknad.søker.triggetEøs]);
 
     useEffect(() => {
-        if (
-            innloggetStatus === InnloggetStatus.AUTENTISERT &&
-            teksterRessurs.status === RessursStatus.SUKSESS
-        ) {
+        if (innloggetStatus === InnloggetStatus.AUTENTISERT && teksterRessurs.status === RessursStatus.SUKSESS) {
             settSluttbruker(byggHenterRessurs());
 
             hentSluttbrukerFraPdl(axiosRequest).then(ressurs => {
@@ -249,8 +244,7 @@ export function AppProvider(props: PropsWithChildren) {
         });
     };
 
-    const erStegUtfyltFrafør = (nåværendeStegIndex: number) =>
-        sisteUtfylteStegIndex >= nåværendeStegIndex;
+    const erStegUtfyltFrafør = (nåværendeStegIndex: number) => sisteUtfylteStegIndex >= nåværendeStegIndex;
 
     const avbrytOgSlettSøknad = () => {
         nullstillSøknadsobjekt();
@@ -327,17 +321,9 @@ export function AppProvider(props: PropsWithChildren) {
                 }
                 return flettefelter.barnetsNavn;
             case ESanityFlettefeltverdi.YTELSE:
-                return plainTekst(
-                    frittståendeOrd.kontantstoette,
-                    undefined,
-                    spesifikkLocale ?? valgtLocale
-                );
+                return plainTekst(frittståendeOrd.kontantstoette, undefined, spesifikkLocale ?? valgtLocale);
             case ESanityFlettefeltverdi.YTELSE_BESTEMT_FORM:
-                return plainTekst(
-                    frittståendeOrd.kontantstoetten,
-                    undefined,
-                    spesifikkLocale ?? valgtLocale
-                );
+                return plainTekst(frittståendeOrd.kontantstoetten, undefined, spesifikkLocale ?? valgtLocale);
             case ESanityFlettefeltverdi.I_UTENFOR:
                 return plainTekst(
                     flettefelter?.gjelderUtland ? frittståendeOrd.utenfor : frittståendeOrd.i,
@@ -354,18 +340,13 @@ export function AppProvider(props: PropsWithChildren) {
                 if (!flettefelter?.land) {
                     throw Error('Flettefeltet land ikke sendt med');
                 }
-                return (
-                    getName(flettefelter.land, spesifikkLocale ?? valgtLocale) ?? flettefelter.land
-                );
+                return getName(flettefelter.land, spesifikkLocale ?? valgtLocale) ?? flettefelter.land;
         }
     };
 
     const plainTekst: PlainTekst = plainTekstHof(flettefeltTilTekst, valgtLocale);
 
-    const tilRestLocaleRecord: TilRestLocaleRecord = (
-        sanityTekst,
-        flettefelter
-    ): Record<LocaleType, string> => {
+    const tilRestLocaleRecord: TilRestLocaleRecord = (sanityTekst, flettefelter): Record<LocaleType, string> => {
         return {
             [LocaleType.en]: plainTekst(sanityTekst, flettefelter, LocaleType.en),
             [LocaleType.nn]: plainTekst(sanityTekst, flettefelter, LocaleType.nn),

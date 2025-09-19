@@ -10,27 +10,20 @@ import { ISøker } from '../typer/person';
 import { trimWhiteSpace } from './hjelpefunksjoner';
 import { uppercaseKunFørsteBokstav } from './visning';
 
-export const erNorskPostnummer = (verdi: string) =>
-    !!(verdi?.length === 4 && Number.parseInt(verdi));
+export const erNorskPostnummer = (verdi: string) => !!(verdi?.length === 4 && Number.parseInt(verdi));
 
 export const hentAdressefelterSortert = (adresse: IAdresse): string[] => {
     return [
         `${adresse.adressenavn ?? ''} ${adresse.husnummer ?? ''}${adresse.husbokstav ?? ''} ${
             adresse.bruksenhetsnummer ?? ''
         }`,
-        `${adresse.postnummer ?? ''} ${
-            adresse.poststed ? uppercaseKunFørsteBokstav(adresse.poststed) : ''
-        }`,
+        `${adresse.postnummer ?? ''} ${adresse.poststed ? uppercaseKunFørsteBokstav(adresse.poststed) : ''}`,
     ]
         .map(linje => linje.replace(/\s{2+}/, ' ').trim())
         .filter(value => value);
 };
 
-export const genererAdresseVisning = (
-    søker: ISøker,
-    tekster: IOmDegTekstinnhold,
-    plainTekst: PlainTekst
-) => {
+export const genererAdresseVisning = (søker: ISøker, tekster: IOmDegTekstinnhold, plainTekst: PlainTekst) => {
     if (søker.adresse) {
         return hentAdressefelterSortert(søker.adresse).map((adresseFelt, index) => (
             <BodyShort key={index}>{adresseFelt}</BodyShort>
@@ -39,11 +32,7 @@ export const genererAdresseVisning = (
 
     return (
         <BodyShort>
-            {plainTekst(
-                søker.adressebeskyttelse
-                    ? tekster.soekerAdressesperre
-                    : tekster.ikkeRegistrertAdresse
-            )}
+            {plainTekst(søker.adressebeskyttelse ? tekster.soekerAdressesperre : tekster.ikkeRegistrertAdresse)}
         </BodyShort>
     );
 };

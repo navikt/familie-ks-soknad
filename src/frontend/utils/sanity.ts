@@ -49,10 +49,7 @@ import {
     SanityPersonType,
 } from '../typer/sanity/tekstInnhold';
 
-const strukturerInnholdForSteg = (
-    dokumenter: SanityDokument[],
-    steg: ESanitySteg
-): Record<string, SanityDokument> =>
+const strukturerInnholdForSteg = (dokumenter: SanityDokument[], steg: ESanitySteg): Record<string, SanityDokument> =>
     dokumenter
         .filter(dok => dok.steg === steg)
         .reduce((acc, dok) => {
@@ -77,34 +74,19 @@ const strukturertInnholdForModaler = (dokumenter: SanityDokument[]): IModalerTek
         struktrerInnholdForFelles(dokumenterFiltrertPåPrefix(dokumenter, prefix), personType);
 
     const arbeidsperiode = (personType: SanityPersonType) =>
-        strukturerInnholdForModal(
-            SanityModalPrefix.ARBEIDSPERIODE,
-            personType
-        ) as IArbeidsperiodeTekstinnhold;
+        strukturerInnholdForModal(SanityModalPrefix.ARBEIDSPERIODE, personType) as IArbeidsperiodeTekstinnhold;
 
     const pensjonsperiode = (personType: SanityPersonType) =>
-        strukturerInnholdForModal(
-            SanityModalPrefix.PENSJONSPERIODE,
-            personType
-        ) as IPensjonsperiodeTekstinnhold;
+        strukturerInnholdForModal(SanityModalPrefix.PENSJONSPERIODE, personType) as IPensjonsperiodeTekstinnhold;
 
     const andreUtbetalinger = (personType: SanityPersonType) =>
-        strukturerInnholdForModal(
-            SanityModalPrefix.ANDRE_UTBETALINGER,
-            personType
-        ) as IAndreUtbetalingerTekstinnhold;
+        strukturerInnholdForModal(SanityModalPrefix.ANDRE_UTBETALINGER, personType) as IAndreUtbetalingerTekstinnhold;
 
     const utenlandsopphold = (personType: SanityPersonType) =>
-        strukturerInnholdForModal(
-            SanityModalPrefix.UTENLANDSOPPHOLD,
-            personType
-        ) as IUtenlandsoppholdTekstinnhold;
+        strukturerInnholdForModal(SanityModalPrefix.UTENLANDSOPPHOLD, personType) as IUtenlandsoppholdTekstinnhold;
 
     const eøsYtelse = (personType: SanityPersonType) =>
-        strukturerInnholdForModal(
-            SanityModalPrefix.EOS_YTELSE,
-            personType
-        ) as IEøsYtelseTekstinnhold;
+        strukturerInnholdForModal(SanityModalPrefix.EOS_YTELSE, personType) as IEøsYtelseTekstinnhold;
 
     return {
         arbeidsperiode: {
@@ -132,15 +114,9 @@ const strukturertInnholdForModaler = (dokumenter: SanityDokument[]): IModalerTek
             andreForelder: eøsYtelse(SanityPersonType.ANDRE_FORELDER),
             omsorgsperson: eøsYtelse(SanityPersonType.OMSORGSPERSON),
         },
-        barnehageplass: strukturerInnholdForModal(
-            SanityModalPrefix.BARNEHAGEPLASS
-        ) as IBarnehageplassTekstinnhold,
-        leggTilBarn: strukturerInnholdForModal(
-            SanityModalPrefix.LEGG_TIL_BARN
-        ) as ILeggTilBarnTekstinnhold,
-        startPåNytt: strukturerInnholdForModal(
-            SanityModalPrefix.START_PAA_NYTT
-        ) as IStartPåNyttModal,
+        barnehageplass: strukturerInnholdForModal(SanityModalPrefix.BARNEHAGEPLASS) as IBarnehageplassTekstinnhold,
+        leggTilBarn: strukturerInnholdForModal(SanityModalPrefix.LEGG_TIL_BARN) as ILeggTilBarnTekstinnhold,
+        startPåNytt: strukturerInnholdForModal(SanityModalPrefix.START_PAA_NYTT) as IStartPåNyttModal,
         mistetInformasjonenDin: strukturerInnholdForModal(
             SanityModalPrefix.MISTET_INFORMASJONEN_DIN
         ) as IMistetInformasjonenDinModal,
@@ -157,18 +133,13 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
 
     for (const steg in ESanitySteg) {
         if (ESanitySteg[steg] !== ESanitySteg.FELLES) {
-            tekstInnhold[ESanitySteg[steg]] = strukturerInnholdForSteg(
-                alleDokumenter,
-                ESanitySteg[steg]
-            );
+            tekstInnhold[ESanitySteg[steg]] = strukturerInnholdForSteg(alleDokumenter, ESanitySteg[steg]);
         }
     }
 
     tekstInnhold[ESanitySteg.FELLES] = {
         modaler: {
-            ...strukturertInnholdForModaler(
-                dokumenterFiltrertPåPrefix(fellesDokumenter, modalPrefix)
-            ),
+            ...strukturertInnholdForModaler(dokumenterFiltrertPåPrefix(fellesDokumenter, modalPrefix)),
         },
         frittståendeOrd: struktrerInnholdForFelles(
             dokumenterFiltrertPåPrefix(fellesDokumenter, frittståendeOrdPrefix)
@@ -200,12 +171,7 @@ export const transformerTilTekstinnhold = (alleDokumenter: SanityDokument[]): IT
 
 const tranformMarks = (
     span: PortableTextSpan,
-    block: PortableTextBlock<
-        PortableTextMarkDefinition,
-        ArbitraryTypedObject | PortableTextSpan,
-        string,
-        string
-    >,
+    block: PortableTextBlock<PortableTextMarkDefinition, ArbitraryTypedObject | PortableTextSpan, string, string>,
     customMarks: { flettefelt: (props: { value: { flettefeltVerdi } }) => string }
 ) => {
     return span.marks?.map(name => node => {
@@ -253,11 +219,7 @@ export const plainTekstHof =
         const marks = {
             flettefelt: props => {
                 if (props.value.flettefeltVerdi) {
-                    return flettefeltTilTekst(
-                        props.value.flettefeltVerdi,
-                        flettefelter,
-                        spesifikkLocale
-                    );
+                    return flettefeltTilTekst(props.value.flettefeltVerdi, flettefelter, spesifikkLocale);
                 } else {
                     throw new Error(`Fant ikke flettefeltVerdi`);
                 }

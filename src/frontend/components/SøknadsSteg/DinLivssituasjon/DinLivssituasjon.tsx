@@ -34,12 +34,7 @@ const DinLivssituasjon: React.FC = () => {
     } = useDinLivssituasjon();
 
     const teksterForSteg: IDinLivssituasjonTekstinnhold = tekster()[ESanitySteg.DIN_LIVSSITUASJON];
-    const {
-        dinLivssituasjonTittel,
-        dinLivssituasjonGuide,
-        asylsoeker,
-        utenlandsoppholdUtenArbeid,
-    } = teksterForSteg;
+    const { dinLivssituasjonTittel, dinLivssituasjonGuide, asylsoeker, utenlandsoppholdUtenArbeid } = teksterForSteg;
 
     return (
         <Steg
@@ -58,11 +53,7 @@ const DinLivssituasjon: React.FC = () => {
                 },
             ]}
         >
-            <JaNeiSpm
-                skjema={skjema}
-                felt={skjema.felter.erAsylsøker}
-                spørsmålDokument={asylsoeker}
-            />
+            <JaNeiSpm skjema={skjema} felt={skjema.felter.erAsylsøker} spørsmålDokument={asylsoeker} />
             <Arbeidsperiode
                 skjema={skjema}
                 leggTilArbeidsperiode={leggTilArbeidsperiode}
@@ -78,10 +69,7 @@ const DinLivssituasjon: React.FC = () => {
                     felt={skjema.felter.utenlandsoppholdUtenArbeid}
                     spørsmålDokument={utenlandsoppholdUtenArbeid}
                     tilleggsinfo={
-                        <TekstBlock
-                            block={utenlandsoppholdUtenArbeid.alert}
-                            typografi={Typografi.BodyShort}
-                        />
+                        <TekstBlock block={utenlandsoppholdUtenArbeid.alert} typografi={Typografi.BodyShort} />
                     }
                 />
                 {skjema.felter.utenlandsoppholdUtenArbeid.verdi === ESvar.JA && (

@@ -62,9 +62,7 @@ const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             />
             {søknad.erBarnAdoptert.svar === ESvar.JA && (
                 <OppsummeringFelt
-                    tittel={
-                        <TekstBlock block={omBarnaTekster.hvemAdoptertKontantstoette.sporsmal} />
-                    }
+                    tittel={<TekstBlock block={omBarnaTekster.hvemAdoptertKontantstoette.sporsmal} />}
                     søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.erAdoptert)}
                 />
             )}
@@ -97,9 +95,7 @@ const OmBarnaOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             {søknad.mottarKontantstøtteForBarnFraAnnetEøsland.svar === ESvar.JA && (
                 <OppsummeringFelt
                     tittel={<TekstBlock block={omBarnaTekster.hvemSoektYtelse.sporsmal} />}
-                    søknadsvar={genererListeMedBarn(
-                        barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland
-                    )}
+                    søknadsvar={genererListeMedBarn(barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland)}
                 />
             )}
 

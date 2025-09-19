@@ -51,9 +51,7 @@ export const useSendInnSkjema = (): {
                         settSisteModellVersjon(responseData.data.modellVersjon);
                     } else {
                         //Denne skal feile mykt, med en custom feilmelding til brukeren. Kaster dermed ingen feil her.
-                        Sentry.captureException(
-                            new Error('Klarte ikke sende inn søknaden', { cause: res.message })
-                        );
+                        Sentry.captureException(new Error('Klarte ikke sende inn søknaden', { cause: res.message }));
                     }
                 }
             );

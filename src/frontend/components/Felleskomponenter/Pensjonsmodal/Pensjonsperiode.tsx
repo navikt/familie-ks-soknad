@@ -26,10 +26,7 @@ import { pensjonSpørsmålDokument } from './språkUtils';
 
 interface PensjonsperiodeProps {
     skjema: ISkjema<
-        | IDinLivssituasjonFeltTyper
-        | IOmBarnetFeltTyper
-        | IEøsForSøkerFeltTyper
-        | IEøsForBarnFeltTyper,
+        IDinLivssituasjonFeltTyper | IOmBarnetFeltTyper | IEøsForSøkerFeltTyper | IEøsForBarnFeltTyper,
         string
     >;
     leggTilPensjonsperiode: (periode: IPensjonsperiode) => void;
@@ -54,11 +51,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
 }) => {
     const { tekster, plainTekst } = useAppContext();
 
-    const {
-        erÅpen: pensjonsmodalErÅpen,
-        lukkModal: lukkPensjonsmodal,
-        åpneModal: åpnePensjonsmodal,
-    } = useModal();
+    const { erÅpen: pensjonsmodalErÅpen, lukkModal: lukkPensjonsmodal, åpneModal: åpnePensjonsmodal } = useModal();
 
     const teksterForModal = tekster().FELLES.modaler.pensjonsperiode[personType];
 
@@ -74,12 +67,7 @@ export const Pensjonsperiode: React.FC<Props> = ({
             <JaNeiSpm
                 skjema={skjema}
                 felt={mottarEllerMottattPensjonFelt}
-                spørsmålDokument={pensjonSpørsmålDokument(
-                    gjelderUtlandet,
-                    personType,
-                    tekster,
-                    erDød
-                )}
+                spørsmålDokument={pensjonSpørsmålDokument(gjelderUtlandet, personType, tekster, erDød)}
                 inkluderVetIkke={personType !== PersonType.søker}
                 flettefelter={{ barnetsNavn: barn?.navn }}
             />

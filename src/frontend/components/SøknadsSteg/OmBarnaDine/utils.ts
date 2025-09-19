@@ -18,11 +18,7 @@ import { EøsBarnSpørsmålId } from '../EøsSteg/Barn/spørsmål';
 export const genererSvarForSpørsmålBarn = (barn: IBarnMedISøknad, felt: Felt<string[]>): ESvar =>
     felt.verdi.includes(barn.id) ? ESvar.JA : ESvar.NEI;
 
-export const genererSvarForOppfølgningspørsmålBarn = (
-    svarPåGrunnSpørsmål,
-    søknadsfelt,
-    nullstillingsVerdi
-) => {
+export const genererSvarForOppfølgningspørsmålBarn = (svarPåGrunnSpørsmål, søknadsfelt, nullstillingsVerdi) => {
     return svarPåGrunnSpørsmål === ESvar.JA ? søknadsfelt.svar : nullstillingsVerdi;
 };
 
@@ -47,29 +43,18 @@ export const genererOppdaterteBarn = (
             barn,
             skjema.felter.hvemKontantstøtteFraAnnetEøsland
         );
-        const harBarnehageplass: ESvar = genererSvarForSpørsmålBarn(
-            barn,
-            skjema.felter.hvemHarBarnehageplass
-        );
+        const harBarnehageplass: ESvar = genererSvarForSpørsmålBarn(barn, skjema.felter.hvemHarBarnehageplass);
 
-        const andreForelderErDød: ESvar = genererSvarForSpørsmålBarn(
-            barn,
-            skjema.felter.hvemAvdødPartner
-        );
+        const andreForelderErDød: ESvar = genererSvarForSpørsmålBarn(barn, skjema.felter.hvemAvdødPartner);
 
-        const erFosterbarn: ESvar = genererSvarForSpørsmålBarn(
-            barn,
-            skjema.felter.hvemErFosterbarn
-        );
+        const erFosterbarn: ESvar = genererSvarForSpørsmålBarn(barn, skjema.felter.hvemErFosterbarn);
         const erAdoptert: ESvar = genererSvarForSpørsmålBarn(barn, skjema.felter.hvemErAdoptert);
 
-        const utenlandsperioder =
-            boddMindreEnn12MndINorge === ESvar.JA ? barn.utenlandsperioder : [];
+        const utenlandsperioder = boddMindreEnn12MndINorge === ESvar.JA ? barn.utenlandsperioder : [];
         const eøsKontantstøttePerioder =
             mottarKontantstøtteFraAnnetEøsland === ESvar.JA ? barn.eøsKontantstøttePerioder : [];
 
-        const barnehageplassPerioder =
-            harBarnehageplass === ESvar.JA ? barn.barnehageplassPerioder : [];
+        const barnehageplassPerioder = harBarnehageplass === ESvar.JA ? barn.barnehageplassPerioder : [];
 
         const pågåendeSøknadFraAnnetEøsLand: ESvar | null = genererSvarForOppfølgningspørsmålBarn(
             mottarKontantstøtteFraAnnetEøsland,
@@ -84,13 +69,9 @@ export const genererOppdaterteBarn = (
         );
 
         const borMedAnnenForelderErIkkeRelevant = () =>
-            erFosterbarn === ESvar.JA ||
-            oppholderSegIInstitusjon === ESvar.JA ||
-            andreForelderErDød === ESvar.JA;
+            erFosterbarn === ESvar.JA || oppholderSegIInstitusjon === ESvar.JA || andreForelderErDød === ESvar.JA;
 
-        const borMedAndreForelder = borMedAnnenForelderErIkkeRelevant()
-            ? null
-            : barn.borMedAndreForelder.svar;
+        const borMedAndreForelder = borMedAnnenForelderErIkkeRelevant() ? null : barn.borMedAndreForelder.svar;
 
         const borMedOmsorgsperson: ESvar | null = skalViseBorMedOmsorgsperson(
             borMedAndreForelder,
@@ -131,10 +112,7 @@ export const genererOppdaterteBarn = (
             andreForelder:
                 erFosterbarn === ESvar.JA
                     ? null
-                    : genererInitiellAndreForelder(
-                          barn.andreForelder,
-                          andreForelderErDød === ESvar.JA
-                      ),
+                    : genererInitiellAndreForelder(barn.andreForelder, andreForelderErDød === ESvar.JA),
             omsorgsperson,
             [barnDataKeySpørsmål.borMedAndreForelder]: {
                 ...barn[barnDataKeySpørsmål.borMedAndreForelder],
@@ -220,8 +198,7 @@ export const genererOppdaterteBarn = (
                 ...barn[barnDataKeySpørsmål.adresse],
                 svar:
                     erFosterbarn === ESvar.JA ||
-                    (barn.andreForelder?.kanIkkeGiOpplysninger &&
-                        barn.borMedAndreForelder.svar === ESvar.JA)
+                    (barn.andreForelder?.kanIkkeGiOpplysninger && barn.borMedAndreForelder.svar === ESvar.JA)
                         ? barn.adresse.svar
                         : '',
             },

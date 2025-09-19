@@ -3,28 +3,18 @@ import { ParamsDictionary } from 'express-serve-static-core';
 
 import { byggSuksessRessurs, type Ressurs } from '@navikt/familie-typer';
 
-import {
-    EAllFeatureToggles,
-    defaultFeatureToggleValues,
-    ToggleKeys,
-} from '../../frontend/typer/feature-toggles';
+import { EAllFeatureToggles, defaultFeatureToggleValues, ToggleKeys } from '../../frontend/typer/feature-toggles';
 import { BASE_PATH } from '../../shared-utils/miljø';
 import { isEnabled } from '../utils/unleash';
 
-const fetchAllFeatureTogglesHandler: RequestHandler<
-    ParamsDictionary,
-    Ressurs<EAllFeatureToggles>
-> = (_, res) => {
-    const featureToggles = Object.entries(ToggleKeys).reduce(
-        (allFeatureToggles, featureToggleEntry) => {
-            allFeatureToggles[featureToggleEntry[0]] = isEnabled(
-                featureToggleEntry[1],
-                defaultFeatureToggleValues[featureToggleEntry[0]]
-            );
-            return allFeatureToggles;
-        },
-        {} as EAllFeatureToggles
-    );
+const fetchAllFeatureTogglesHandler: RequestHandler<ParamsDictionary, Ressurs<EAllFeatureToggles>> = (_, res) => {
+    const featureToggles = Object.entries(ToggleKeys).reduce((allFeatureToggles, featureToggleEntry) => {
+        allFeatureToggles[featureToggleEntry[0]] = isEnabled(
+            featureToggleEntry[1],
+            defaultFeatureToggleValues[featureToggleEntry[0]]
+        );
+        return allFeatureToggles;
+    }, {} as EAllFeatureToggles);
     res.send(byggSuksessRessurs(featureToggles));
 };
 

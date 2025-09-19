@@ -3,15 +3,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { Alpha3Code } from 'i18n-iso-countries';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import {
-    feil,
-    type Felt,
-    type FeltState,
-    type ISkjema,
-    ok,
-    useFelt,
-    useSkjema,
-} from '@navikt/familie-skjema';
+import { feil, type Felt, type FeltState, type ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../../context/AppContext';
 import useInputFelt from '../../../../hooks/useInputFelt';
@@ -94,26 +86,21 @@ export const useEøsForBarn = (
     );
 
     const [idNummerFelterForBarn, settIdNummerFelterForBarn] = useState<Felt<string>[]>([]);
-    const [idNummerFelterForAndreForelder, settIdNummerFelterForAndreForelder] = useState<
-        Felt<string>[]
-    >([]);
+    const [idNummerFelterForAndreForelder, settIdNummerFelterForAndreForelder] = useState<Felt<string>[]>([]);
 
     if (!gjeldendeBarn) {
         throw new TypeError('Kunne ikke finne barn som skulle være her');
     }
     const andreForelder = gjeldendeBarn.andreForelder;
     const omsorgsperson = gjeldendeBarn.omsorgsperson;
-    const andreForelderErDød =
-        gjeldendeBarn[barnDataKeySpørsmål.andreForelderErDød].svar === ESvar.JA;
+    const andreForelderErDød = gjeldendeBarn[barnDataKeySpørsmål.andreForelderErDød].svar === ESvar.JA;
 
     /*--- SLEKTSFORHOLD ---*/
     const søkersSlektsforhold = useFelt<Slektsforhold | ''>({
         feltId: gjeldendeBarn[barnDataKeySpørsmål.søkersSlektsforhold].id,
         verdi: gjeldendeBarn[barnDataKeySpørsmål.søkersSlektsforhold].svar,
         valideringsfunksjon: (felt: FeltState<Slektsforhold | ''>) => {
-            return felt.verdi !== ''
-                ? ok(felt)
-                : feil(felt, plainTekst(eøsForBarnTekster.slektsforhold.feilmelding));
+            return felt.verdi !== '' ? ok(felt) : feil(felt, plainTekst(eøsForBarnTekster.slektsforhold.feilmelding));
         },
         skalFeltetVises: () => gjeldendeBarn.erFosterbarn.svar === ESvar.NEI,
     });
@@ -126,10 +113,7 @@ export const useEøsForBarn = (
             const verdi = trimWhiteSpace(felt.verdi);
             return verdi.match(/^[\dA-Za-z\s\-\\,.]{4,60}$/)
                 ? ok(felt)
-                : feil(
-                      felt,
-                      plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigRelasjon)
-                  );
+                : feil(felt, plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigRelasjon));
         },
         nullstillVedAvhengighetEndring: false,
     });
@@ -168,10 +152,7 @@ export const useEøsForBarn = (
             const verdi = trimWhiteSpace(felt.verdi);
             return verdi.match(/^[A-Za-zæøåÆØÅ\s\-\\,.]{1,60}$/)
                 ? ok(felt)
-                : feil(
-                      felt,
-                      plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigRelasjon)
-                  );
+                : feil(felt, plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigRelasjon));
         },
         nullstillVedAvhengighetEndring: false,
     });
@@ -185,8 +166,7 @@ export const useEøsForBarn = (
                 : feil(felt, plainTekst(eøsForBarnTekster.slektsforholdOmsorgsperson.feilmelding));
         },
         skalFeltetVises: avhengigheter =>
-            gjeldendeBarn.erFosterbarn.svar === ESvar.NEI &&
-            avhengigheter.borMedOmsorgsperson.verdi === ESvar.JA,
+            gjeldendeBarn.erFosterbarn.svar === ESvar.NEI && avhengigheter.borMedOmsorgsperson.verdi === ESvar.JA,
         avhengigheter: { borMedOmsorgsperson },
         nullstillVedAvhengighetEndring: false,
     });
@@ -199,10 +179,7 @@ export const useEøsForBarn = (
             const verdi = trimWhiteSpace(felt.verdi);
             return verdi.match(/^[\dA-Za-zæøåÆØÅ\s\-\\,.]{4,60}$/)
                 ? ok(felt)
-                : feil(
-                      felt,
-                      plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigRelasjon)
-                  );
+                : feil(felt, plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigRelasjon));
         },
         nullstillVedAvhengighetEndring: false,
     });
@@ -223,10 +200,7 @@ export const useEøsForBarn = (
             const verdi = trimWhiteSpace(felt.verdi);
             return verdi.match(/^[\dA-Za-zæøåÆØÅ\s\-.\\/]{4,20}$/)
                 ? ok(felt)
-                : feil(
-                      felt,
-                      plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigIDnummer)
-                  );
+                : feil(felt, plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigIDnummer));
         },
         nullstillVedAvhengighetEndring: false,
     });
@@ -267,10 +241,9 @@ export const useEøsForBarn = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      plainTekst(
-                          tekster().FELLES.modaler.arbeidsperiode.omsorgsperson.leggTilFeilmelding,
-                          { gjelderUtland: true }
-                      )
+                      plainTekst(tekster().FELLES.modaler.arbeidsperiode.omsorgsperson.leggTilFeilmelding, {
+                          gjelderUtland: true,
+                      })
                   );
         }
     );
@@ -296,10 +269,9 @@ export const useEøsForBarn = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      plainTekst(
-                          tekster().FELLES.modaler.arbeidsperiode.omsorgsperson.leggTilFeilmelding,
-                          { gjelderUtland: false }
-                      )
+                      plainTekst(tekster().FELLES.modaler.arbeidsperiode.omsorgsperson.leggTilFeilmelding, {
+                          gjelderUtland: false,
+                      })
                   );
         }
     );
@@ -325,10 +297,9 @@ export const useEøsForBarn = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      plainTekst(
-                          tekster().FELLES.modaler.pensjonsperiode.omsorgsperson.leggTilFeilmelding,
-                          { gjelderUtland: true }
-                      )
+                      plainTekst(tekster().FELLES.modaler.pensjonsperiode.omsorgsperson.leggTilFeilmelding, {
+                          gjelderUtland: true,
+                      })
                   );
         }
     );
@@ -354,10 +325,9 @@ export const useEøsForBarn = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      plainTekst(
-                          tekster().FELLES.modaler.pensjonsperiode.omsorgsperson.leggTilFeilmelding,
-                          { gjelderUtland: false }
-                      )
+                      plainTekst(tekster().FELLES.modaler.pensjonsperiode.omsorgsperson.leggTilFeilmelding, {
+                          gjelderUtland: false,
+                      })
                   );
         }
     );
@@ -379,16 +349,9 @@ export const useEøsForBarn = (
         avhengigheter => avhengigheter.omsorgspersonAndreUtbetalinger.verdi === ESvar.JA,
         (felt, avhengigheter) => {
             return avhengigheter?.omsorgspersonAndreUtbetalinger.verdi === ESvar.NEI ||
-                (avhengigheter?.omsorgspersonAndreUtbetalinger.verdi === ESvar.JA &&
-                    felt.verdi.length)
+                (avhengigheter?.omsorgspersonAndreUtbetalinger.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(
-                      felt,
-                      plainTekst(
-                          tekster().FELLES.modaler.andreUtbetalinger.omsorgsperson
-                              .leggTilFeilmelding
-                      )
-                  );
+                : feil(felt, plainTekst(tekster().FELLES.modaler.andreUtbetalinger.omsorgsperson.leggTilFeilmelding));
         }
     );
     const omsorgspersonPågåendeSøknadFraAnnetEøsLand = useJaNeiSpmFelt({
@@ -421,15 +384,9 @@ export const useEøsForBarn = (
         avhengigheter => avhengigheter.omsorgspersonKontantstøtteFraEøs.verdi === ESvar.JA,
         (felt, avhengigheter) => {
             return avhengigheter?.omsorgspersonKontantstøtteFraEøs.verdi === ESvar.NEI ||
-                (avhengigheter?.omsorgspersonKontantstøtteFraEøs.verdi === ESvar.JA &&
-                    felt.verdi.length)
+                (avhengigheter?.omsorgspersonKontantstøtteFraEøs.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(
-                      felt,
-                      plainTekst(
-                          tekster().FELLES.modaler.eøsYtelse.omsorgsperson.leggTilFeilmelding
-                      )
-                  );
+                : feil(felt, plainTekst(tekster().FELLES.modaler.eøsYtelse.omsorgsperson.leggTilFeilmelding));
         }
     );
 
@@ -438,8 +395,7 @@ export const useEøsForBarn = (
         verdi: formaterVerdiForCheckbox(gjeldendeBarn[barnDataKeySpørsmål.adresse].svar),
         feltId: EøsBarnSpørsmålId.barnetsAdresseVetIkke,
         skalFeltetVises: () =>
-            (borMedAndreForelder.verdi === ESvar.JA &&
-                skalSkjuleAndreForelderFelt(gjeldendeBarn)) ||
+            (borMedAndreForelder.verdi === ESvar.JA && skalSkjuleAndreForelderFelt(gjeldendeBarn)) ||
             gjeldendeBarn.erFosterbarn.svar === ESvar.JA,
         avhengigheter: { borMedAndreForelder },
     });
@@ -450,8 +406,7 @@ export const useEøsForBarn = (
         feilmelding: eøsForBarnTekster.hvorBorBarnet.feilmelding,
         flettefelter: flettefelter,
         skalVises:
-            (borMedAndreForelder.verdi === ESvar.JA &&
-                skalSkjuleAndreForelderFelt(gjeldendeBarn)) ||
+            (borMedAndreForelder.verdi === ESvar.JA && skalSkjuleAndreForelderFelt(gjeldendeBarn)) ||
             gjeldendeBarn.erFosterbarn.svar === ESvar.JA,
         customValidering: felt => valideringAdresse(felt, plainTekst(forLangAdresseTekst)),
     });
@@ -494,10 +449,9 @@ export const useEøsForBarn = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      plainTekst(
-                          tekster().FELLES.modaler.arbeidsperiode.andreForelder.leggTilFeilmelding,
-                          { gjelderUtland: false }
-                      )
+                      plainTekst(tekster().FELLES.modaler.arbeidsperiode.andreForelder.leggTilFeilmelding, {
+                          gjelderUtland: false,
+                      })
                   );
         }
     );
@@ -525,10 +479,9 @@ export const useEøsForBarn = (
                 ? ok(felt)
                 : feil(
                       felt,
-                      plainTekst(
-                          tekster().FELLES.modaler.pensjonsperiode.andreForelder.leggTilFeilmelding,
-                          { gjelderUtland: false }
-                      )
+                      plainTekst(tekster().FELLES.modaler.pensjonsperiode.andreForelder.leggTilFeilmelding, {
+                          gjelderUtland: false,
+                      })
                   );
         }
     );
@@ -552,16 +505,9 @@ export const useEøsForBarn = (
         avhengigheter => avhengigheter.andreForelderAndreUtbetalinger.verdi === ESvar.JA,
         (felt, avhengigheter) => {
             return avhengigheter?.andreForelderAndreUtbetalinger.verdi === ESvar.NEI ||
-                (avhengigheter?.andreForelderAndreUtbetalinger.verdi === ESvar.JA &&
-                    felt.verdi.length)
+                (avhengigheter?.andreForelderAndreUtbetalinger.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(
-                      felt,
-                      plainTekst(
-                          tekster().FELLES.modaler.andreUtbetalinger.andreForelder
-                              .leggTilFeilmelding
-                      )
-                  );
+                : feil(felt, plainTekst(tekster().FELLES.modaler.andreUtbetalinger.andreForelder.leggTilFeilmelding));
         }
     );
 
@@ -599,21 +545,13 @@ export const useEøsForBarn = (
         avhengigheter => avhengigheter.andreForelderKontantstøtteFraEøs.verdi === ESvar.JA,
         (felt, avhengigheter) => {
             return avhengigheter?.andreForelderKontantstøtteFraEøs.verdi === ESvar.NEI ||
-                (avhengigheter?.andreForelderKontantstøtteFraEøs.verdi === ESvar.JA &&
-                    felt.verdi.length)
+                (avhengigheter?.andreForelderKontantstøtteFraEøs.verdi === ESvar.JA && felt.verdi.length)
                 ? ok(felt)
-                : feil(
-                      felt,
-                      plainTekst(
-                          tekster().FELLES.modaler.eøsYtelse.andreForelder.leggTilFeilmelding
-                      )
-                  );
+                : feil(felt, plainTekst(tekster().FELLES.modaler.eøsYtelse.andreForelder.leggTilFeilmelding));
         }
     );
 
-    const genererAndreForelder = (
-        andreForelder: IAndreForelder
-    ): { andreForelder: IAndreForelder } => ({
+    const genererAndreForelder = (andreForelder: IAndreForelder): { andreForelder: IAndreForelder } => ({
         andreForelder: {
             ...andreForelder,
             pensjonNorge: {
@@ -621,25 +559,19 @@ export const useEøsForBarn = (
                 svar: andreForelderPensjonNorge.verdi,
             },
             pensjonsperioderNorge:
-                andreForelderPensjonNorge.verdi === ESvar.JA
-                    ? andreForelderPensjonsperioderNorge.verdi
-                    : [],
+                andreForelderPensjonNorge.verdi === ESvar.JA ? andreForelderPensjonsperioderNorge.verdi : [],
             andreUtbetalinger: {
                 ...andreForelder[andreForelderDataKeySpørsmål.andreUtbetalinger],
                 svar: andreForelderAndreUtbetalinger.verdi,
             },
             andreUtbetalingsperioder:
-                andreForelderAndreUtbetalinger.verdi === ESvar.JA
-                    ? andreForelderAndreUtbetalingsperioder.verdi
-                    : [],
+                andreForelderAndreUtbetalinger.verdi === ESvar.JA ? andreForelderAndreUtbetalingsperioder.verdi : [],
             arbeidNorge: {
                 ...andreForelder[andreForelderDataKeySpørsmål.arbeidNorge],
                 svar: andreForelderArbeidNorge.verdi,
             },
             arbeidsperioderNorge:
-                andreForelderArbeidNorge.verdi === ESvar.JA
-                    ? andreForelderArbeidsperioderNorge.verdi
-                    : [],
+                andreForelderArbeidNorge.verdi === ESvar.JA ? andreForelderArbeidsperioderNorge.verdi : [],
             pågåendeSøknadFraAnnetEøsLand: {
                 id: EøsBarnSpørsmålId.andreForelderPågåendeSøknadFraAnnetEøsLand,
                 svar: andreForelderPågåendeSøknadFraAnnetEøsLand.verdi,
@@ -653,19 +585,14 @@ export const useEøsForBarn = (
                 svar: andreForelderKontantstøtteFraEøs.verdi,
             },
             eøsKontantstøttePerioder:
-                andreForelderKontantstøtteFraEøs.verdi === ESvar.JA
-                    ? andreForelderEøsKontantstøttePerioder.verdi
-                    : [],
+                andreForelderKontantstøtteFraEøs.verdi === ESvar.JA ? andreForelderEøsKontantstøttePerioder.verdi : [],
             idNummer: idNummerFelterForAndreForelder.map(felt => ({
                 land: felt.id.split(idNummerKeyPrefix)[1] as Alpha3Code,
-                idnummer:
-                    trimWhiteSpace(felt.verdi) === '' ? AlternativtSvarForInput.UKJENT : felt.verdi,
+                idnummer: trimWhiteSpace(felt.verdi) === '' ? AlternativtSvarForInput.UKJENT : felt.verdi,
             })),
             adresse: {
                 ...andreForelder[andreForelderDataKeySpørsmål.adresse],
-                svar: trimWhiteSpace(
-                    svarForSpørsmålMedUkjent(andreForelderAdresseVetIkke, andreForelderAdresse)
-                ),
+                svar: trimWhiteSpace(svarForSpørsmålMedUkjent(andreForelderAdresseVetIkke, andreForelderAdresse)),
             },
         },
     });
@@ -685,56 +612,42 @@ export const useEøsForBarn = (
         },
         idNummer: {
             id: EøsBarnSpørsmålId.omsorgspersonIdNummer,
-            svar: trimWhiteSpace(
-                svarForSpørsmålMedUkjent(omsorgspersonIdNummerVetIkke, omsorgspersonIdNummer)
-            ),
+            svar: trimWhiteSpace(svarForSpørsmålMedUkjent(omsorgspersonIdNummerVetIkke, omsorgspersonIdNummer)),
         },
         adresse: {
             id: EøsBarnSpørsmålId.omsorgspersonAdresse,
-            svar: trimWhiteSpace(
-                svarForSpørsmålMedUkjent(omsorgspersonAdresseVetIkke, omsorgspersonAdresse)
-            ),
+            svar: trimWhiteSpace(svarForSpørsmålMedUkjent(omsorgspersonAdresseVetIkke, omsorgspersonAdresse)),
         },
         arbeidUtland: {
             id: EøsBarnSpørsmålId.omsorgspersonArbeidUtland,
             svar: omsorgspersonArbeidUtland.verdi,
         },
         arbeidsperioderUtland:
-            omsorgspersonArbeidUtland.verdi === ESvar.JA
-                ? omsorgspersonArbeidsperioderUtland.verdi
-                : [],
+            omsorgspersonArbeidUtland.verdi === ESvar.JA ? omsorgspersonArbeidsperioderUtland.verdi : [],
         arbeidNorge: {
             id: EøsBarnSpørsmålId.omsorgspersonArbeidNorge,
             svar: omsorgspersonArbeidNorge.verdi,
         },
         arbeidsperioderNorge:
-            omsorgspersonArbeidNorge.verdi === ESvar.JA
-                ? omsorgspersonArbeidsperioderNorge.verdi
-                : [],
+            omsorgspersonArbeidNorge.verdi === ESvar.JA ? omsorgspersonArbeidsperioderNorge.verdi : [],
         pensjonUtland: {
             id: EøsBarnSpørsmålId.omsorgspersonPensjonUtland,
             svar: omsorgspersonPensjonUtland.verdi,
         },
         pensjonsperioderUtland:
-            omsorgspersonPensjonUtland.verdi === ESvar.JA
-                ? omsorgspersonPensjonsperioderUtland.verdi
-                : [],
+            omsorgspersonPensjonUtland.verdi === ESvar.JA ? omsorgspersonPensjonsperioderUtland.verdi : [],
         pensjonNorge: {
             id: EøsBarnSpørsmålId.omsorgspersonPensjonNorge,
             svar: omsorgspersonPensjonNorge.verdi,
         },
         pensjonsperioderNorge:
-            omsorgspersonPensjonNorge.verdi === ESvar.JA
-                ? omsorgspersonPensjonsperioderNorge.verdi
-                : [],
+            omsorgspersonPensjonNorge.verdi === ESvar.JA ? omsorgspersonPensjonsperioderNorge.verdi : [],
         andreUtbetalinger: {
             id: EøsBarnSpørsmålId.omsorgspersonAndreUtbetalinger,
             svar: omsorgspersonAndreUtbetalinger.verdi,
         },
         andreUtbetalingsperioder:
-            omsorgspersonAndreUtbetalinger.verdi === ESvar.JA
-                ? omsorgspersonAndreUtbetalingsperioder.verdi
-                : [],
+            omsorgspersonAndreUtbetalinger.verdi === ESvar.JA ? omsorgspersonAndreUtbetalingsperioder.verdi : [],
         pågåendeSøknadFraAnnetEøsLand: {
             id: EøsBarnSpørsmålId.omsorgspersonPågåendeSøknadFraAnnetEøsLand,
             svar: omsorgspersonPågåendeSøknadFraAnnetEøsLand.verdi,
@@ -748,9 +661,7 @@ export const useEøsForBarn = (
             svar: omsorgspersonKontantstøtteFraEøs.verdi,
         },
         eøsKontantstøttePerioder:
-            omsorgspersonKontantstøtteFraEøs.verdi === ESvar.JA
-                ? omsorgspersonEøsKontantstøttePerioder.verdi
-                : [],
+            omsorgspersonKontantstøtteFraEøs.verdi === ESvar.JA ? omsorgspersonEøsKontantstøttePerioder.verdi : [],
     });
 
     const genererOppdatertBarn = (barn: IBarnMedISøknad): IBarnMedISøknad => {
@@ -762,8 +673,7 @@ export const useEøsForBarn = (
             ...barn,
             idNummer: idNummerFelterForBarn.map(felt => ({
                 land: felt.id.split(idNummerKeyPrefix)[1] as Alpha3Code,
-                idnummer:
-                    trimWhiteSpace(felt.verdi) === '' ? AlternativtSvarForInput.UKJENT : felt.verdi,
+                idnummer: trimWhiteSpace(felt.verdi) === '' ? AlternativtSvarForInput.UKJENT : felt.verdi,
             })),
             søkersSlektsforhold: {
                 ...barn.søkersSlektsforhold,
@@ -771,9 +681,7 @@ export const useEøsForBarn = (
             },
             søkersSlektsforholdSpesifisering: {
                 ...barn.søkersSlektsforholdSpesifisering,
-                svar: søkersSlektsforholdSpesifisering.erSynlig
-                    ? søkersSlektsforholdSpesifisering.verdi
-                    : '',
+                svar: søkersSlektsforholdSpesifisering.erSynlig ? søkersSlektsforholdSpesifisering.verdi : '',
             },
             borMedAndreForelder: {
                 ...barn.borMedAndreForelder,
@@ -785,31 +693,25 @@ export const useEøsForBarn = (
             },
             adresse: {
                 ...barn.adresse,
-                svar: trimWhiteSpace(
-                    svarForSpørsmålMedUkjent(barnetsAdresseVetIkke, barnetsAdresse)
-                ),
+                svar: trimWhiteSpace(svarForSpørsmålMedUkjent(barnetsAdresseVetIkke, barnetsAdresse)),
             },
             omsorgsperson: borMedOmsorgsperson.verdi === ESvar.JA ? genererOmsorgsperson() : null,
-            ...(!!barn.andreForelder &&
-                !barnMedSammeForelder &&
-                genererAndreForelder(barn.andreForelder)),
+            ...(!!barn.andreForelder && !barnMedSammeForelder && genererAndreForelder(barn.andreForelder)),
         };
     };
 
     const oppdaterSøknad = () => {
-        const oppdatertBarnInkludertISøknaden: IBarnMedISøknad[] =
-            søknad.barnInkludertISøknaden.map(barn => {
-                if (barn === gjeldendeBarn) {
-                    return genererOppdatertBarn(gjeldendeBarn);
-                } else {
-                    const barnSkalOppdatereEnAnnensForelder =
-                        barn[barnDataKeySpørsmål.sammeForelderSomAnnetBarnMedId].svar ===
-                        gjeldendeBarn.id;
-                    return !!barn.andreForelder && barnSkalOppdatereEnAnnensForelder
-                        ? { ...barn, ...genererAndreForelder(barn.andreForelder) }
-                        : barn;
-                }
-            });
+        const oppdatertBarnInkludertISøknaden: IBarnMedISøknad[] = søknad.barnInkludertISøknaden.map(barn => {
+            if (barn === gjeldendeBarn) {
+                return genererOppdatertBarn(gjeldendeBarn);
+            } else {
+                const barnSkalOppdatereEnAnnensForelder =
+                    barn[barnDataKeySpørsmål.sammeForelderSomAnnetBarnMedId].svar === gjeldendeBarn.id;
+                return !!barn.andreForelder && barnSkalOppdatereEnAnnensForelder
+                    ? { ...barn, ...genererAndreForelder(barn.andreForelder) }
+                    : barn;
+            }
+        });
 
         const oppdatertSøknad = {
             ...søknad,

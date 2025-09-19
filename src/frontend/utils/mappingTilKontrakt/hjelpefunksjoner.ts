@@ -1,16 +1,7 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import {
-    AlternativtSvarForInput,
-    LocaleRecordBlock,
-    LocaleRecordString,
-    LocaleType,
-} from '../../typer/common';
-import {
-    FlettefeltVerdier,
-    ISøknadsfelt,
-    TilRestLocaleRecord,
-} from '../../typer/kontrakt/generelle';
+import { AlternativtSvarForInput, LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../typer/common';
+import { FlettefeltVerdier, ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 
 export const søknadsfeltHof =
     (tilRestLocaleRecord: TilRestLocaleRecord) =>
@@ -27,11 +18,7 @@ export const søknadsfeltHof =
 
 export const søknadsfeltForESvarHof =
     (tilRestLocaleRecord: TilRestLocaleRecord) =>
-    (
-        spørsmål: LocaleRecordBlock,
-        svar: ESvar | null,
-        flettefelter?: FlettefeltVerdier
-    ): ISøknadsfelt<ESvar> => {
+    (spørsmål: LocaleRecordBlock, svar: ESvar | null, flettefelter?: FlettefeltVerdier): ISøknadsfelt<ESvar> => {
         const søknadsfelt = søknadsfeltHof(tilRestLocaleRecord);
         if (!svar) {
             throw Error(`Svar for ${spørsmål.nb} kan ikke være null`);
@@ -46,16 +33,13 @@ export const nullableSøknadsfeltForESvarHof =
         return svar ? søknadsfelt(spørsmål, sammeVerdiAlleSpråk(svar), flettefelter) : null;
     };
 
-export const verdiCallbackAlleSpråk = <T>(
-    cb: (locale: LocaleType) => T
-): Record<LocaleType, T> => ({
+export const verdiCallbackAlleSpråk = <T>(cb: (locale: LocaleType) => T): Record<LocaleType, T> => ({
     [LocaleType.nb]: cb(LocaleType.nb),
     [LocaleType.nn]: cb(LocaleType.nn),
     [LocaleType.en]: cb(LocaleType.en),
 });
 
-export const sammeVerdiAlleSpråk = <T>(verdi: T): Record<LocaleType, T> =>
-    verdiCallbackAlleSpråk(() => verdi);
+export const sammeVerdiAlleSpråk = <T>(verdi: T): Record<LocaleType, T> => verdiCallbackAlleSpråk(() => verdi);
 
 export const sammeVerdiAlleSpråkEllerUkjent = <T>(
     tilRestLocaleRecord: TilRestLocaleRecord,

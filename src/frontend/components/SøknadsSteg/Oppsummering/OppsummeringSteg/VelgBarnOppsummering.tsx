@@ -35,9 +35,7 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                     <OppsummeringFelt
                         tittel={<TekstBlock block={leggTilBarnModalTekster.barnetsNavnSubtittel} />}
                         søknadsvar={
-                            barn.adressebeskyttelse
-                                ? plainTekst(velgBarnTekster.registrertMedAdressesperre)
-                                : barn.navn
+                            barn.adressebeskyttelse ? plainTekst(velgBarnTekster.registrertMedAdressesperre) : barn.navn
                         }
                     />
 

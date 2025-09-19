@@ -35,8 +35,7 @@ export const useArbeidsperiodeSkjema = (
     erDød = false
 ): IUsePeriodeSkjemaVerdi<IArbeidsperioderFeltTyper> => {
     const { tekster, plainTekst } = useAppContext();
-    const teksterForPersonType: IArbeidsperiodeTekstinnhold =
-        tekster().FELLES.modaler.arbeidsperiode[personType];
+    const teksterForPersonType: IArbeidsperiodeTekstinnhold = tekster().FELLES.modaler.arbeidsperiode[personType];
 
     const andreForelderErDød = personType === PersonType.andreForelder && erDød;
 
@@ -48,9 +47,7 @@ export const useArbeidsperiodeSkjema = (
 
     const periodenErAvsluttet = arbeidsperiodeAvsluttet.verdi === ESvar.JA || andreForelderErDød;
 
-    const adresseTekst = periodenErAvsluttet
-        ? teksterForPersonType.adresseFortid
-        : teksterForPersonType.adresseNaatid;
+    const adresseTekst = periodenErAvsluttet ? teksterForPersonType.adresseFortid : teksterForPersonType.adresseNaatid;
 
     const arbeidsperiodeLand = useLanddropdownFelt({
         søknadsfelt: { id: ArbeidsperiodeSpørsmålsId.arbeidsperiodeLand, svar: '' },
@@ -58,8 +55,7 @@ export const useArbeidsperiodeSkjema = (
             ? teksterForPersonType.hvilketLandFortid.feilmelding
             : teksterForPersonType.hvilketLandNaatid.feilmelding,
         skalFeltetVises:
-            (arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
-                andreForelderErDød) &&
+            (arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK || andreForelderErDød) &&
             gjelderUtlandet,
         nullstillVedAvhengighetEndring: true,
     });
@@ -67,16 +63,12 @@ export const useArbeidsperiodeSkjema = (
     const arbeidsgiver = useInputFelt({
         søknadsfelt: { id: ArbeidsperiodeSpørsmålsId.arbeidsgiver, svar: '' },
         feilmelding: teksterForPersonType.arbeidsgiver.feilmelding,
-        skalVises:
-            arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
-            andreForelderErDød,
+        skalVises: arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK || andreForelderErDød,
     });
 
     const fraDatoArbeidsperiode = useDatovelgerFelt({
         søknadsfelt: { id: ArbeidsperiodeSpørsmålsId.fraDatoArbeidsperiode, svar: '' },
-        skalFeltetVises:
-            arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
-            andreForelderErDød,
+        skalFeltetVises: arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK || andreForelderErDød,
         feilmelding: teksterForPersonType.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
     });
@@ -84,8 +76,7 @@ export const useArbeidsperiodeSkjema = (
     const tilDatoArbeidsperiodeUkjent = useFelt<ESvar>({
         verdi: ESvar.NEI,
         feltId: ArbeidsperiodeSpørsmålsId.tilDatoArbeidsperiodeVetIkke,
-        skalFeltetVises: avhengigheter =>
-            avhengigheter?.arbeidsperiodeAvsluttet?.verdi === ESvar.NEI,
+        skalFeltetVises: avhengigheter => avhengigheter?.arbeidsperiodeAvsluttet?.verdi === ESvar.NEI,
         avhengigheter: { arbeidsperiodeAvsluttet },
     });
 
@@ -98,23 +89,13 @@ export const useArbeidsperiodeSkjema = (
         feilmelding: periodenErAvsluttet
             ? teksterForPersonType.sluttdatoFortid.feilmelding
             : teksterForPersonType.sluttdatoFremtid.feilmelding,
-        skalFeltetVises:
-            arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
-            andreForelderErDød,
-        sluttdatoAvgrensning: periodenErAvsluttet
-            ? tilArbeidsperiodeSluttdatoAvgrensning
-            : undefined,
-        startdatoAvgrensning: minTilDatoForPeriode(
-            periodenErAvsluttet,
-            fraDatoArbeidsperiode.verdi
-        ),
+        skalFeltetVises: arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK || andreForelderErDød,
+        sluttdatoAvgrensning: periodenErAvsluttet ? tilArbeidsperiodeSluttdatoAvgrensning : undefined,
+        startdatoAvgrensning: minTilDatoForPeriode(periodenErAvsluttet, fraDatoArbeidsperiode.verdi),
         customStartdatoFeilmelding:
-            erSammeDatoSomDagensDato(stringTilDate(fraDatoArbeidsperiode.verdi)) ||
-            periodenErAvsluttet
+            erSammeDatoSomDagensDato(stringTilDate(fraDatoArbeidsperiode.verdi)) || periodenErAvsluttet
                 ? undefined
-                : plainTekst(
-                      tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
-                  ),
+                : plainTekst(tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid),
         avhengigheter: { fraDatoArbeidsperiode },
         nullstillVedAvhengighetEndring: false,
     });
@@ -124,8 +105,7 @@ export const useArbeidsperiodeSkjema = (
         feltId: ArbeidsperiodeSpørsmålsId.adresseVetIkke,
         skalFeltetVises: () =>
             gjelderUtlandet &&
-            (arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
-                andreForelderErDød),
+            (arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK || andreForelderErDød),
         avhengigheter: { arbeidsperiodeAvsluttet },
         nullstillVedAvhengighetEndring: false,
     });
@@ -139,8 +119,7 @@ export const useArbeidsperiodeSkjema = (
         feilmelding: adresseTekst.feilmelding,
         skalVises:
             gjelderUtlandet &&
-            (arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK ||
-                andreForelderErDød),
+            (arbeidsperiodeAvsluttet.valideringsstatus === Valideringsstatus.OK || andreForelderErDød),
     });
 
     const skjema = useSkjema<IArbeidsperioderFeltTyper, string>({

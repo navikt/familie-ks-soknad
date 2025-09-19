@@ -36,8 +36,7 @@ const IdNummerForSøker: React.FC<Props> = ({ lesevisning = false, skjema, settI
                     !!landMedPeriodeType.land && (
                         <IdNummer
                             idNummerVerdiFraSøknad={
-                                søker.idNummer.find(verdi => verdi.land === landMedPeriodeType.land)
-                                    ?.idnummer
+                                søker.idNummer.find(verdi => verdi.land === landMedPeriodeType.land)?.idnummer
                             }
                             lesevisning={lesevisning}
                             skjema={skjema}

@@ -47,9 +47,7 @@ export const IdNummer: React.FC<{
 
     const idNummerUkjent = useFelt<ESvar>({
         verdi:
-            skalViseVetIkkeCheckbox && idNummerVerdiFraSøknad === AlternativtSvarForInput.UKJENT
-                ? ESvar.JA
-                : ESvar.NEI,
+            skalViseVetIkkeCheckbox && idNummerVerdiFraSøknad === AlternativtSvarForInput.UKJENT ? ESvar.JA : ESvar.NEI,
         feltId: `${uuidv4()}idnummer-ukjent-${landAlphaCode}`,
         skalFeltetVises: () => skalViseVetIkkeCheckbox,
     });
@@ -69,10 +67,7 @@ export const IdNummer: React.FC<{
             if (verdi.match(/^[\dA-Za-z\s\-.\\/]{4,20}$/)) {
                 return ok(felt);
             } else {
-                return feil(
-                    felt,
-                    plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigIDnummer)
-                );
+                return feil(felt, plainTekst(tekster().FELLES.formateringsfeilmeldinger.ugyldigIDnummer));
             }
         },
         flettefelter: { barnetsNavn: barn?.navn, land: landAlphaCode },

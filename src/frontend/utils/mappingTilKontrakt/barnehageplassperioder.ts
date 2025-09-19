@@ -9,11 +9,7 @@ import { IBarnehageplassPeriode } from '../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../typer/sanity/modaler/barnehageplass';
 import { landkodeTilSpråk } from '../språk';
 
-import {
-    sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjent,
-    verdiCallbackAlleSpråk,
-} from './hjelpefunksjoner';
+import { sammeVerdiAlleSpråk, sammeVerdiAlleSpråkEllerUkjent, verdiCallbackAlleSpråk } from './hjelpefunksjoner';
 
 interface BarnehageplassperiodeIKontraktFormatParams {
     periode: IBarnehageplassPeriode;
@@ -46,10 +42,7 @@ export const tilIBarnehageplassPeriodeIKontraktFormat = ({
             barnehageplassPeriodeBeskrivelse: {
                 label: tilRestLocaleRecord(barnehageplassTekster.periodebeskrivelse.sporsmal),
                 verdi: tilRestLocaleRecord(
-                    hentBarnehageplassBeskrivelse(
-                        barnehageplassPeriodeBeskrivelse.svar,
-                        barnehageplassTekster
-                    )
+                    hentBarnehageplassBeskrivelse(barnehageplassPeriodeBeskrivelse.svar, barnehageplassTekster)
                 ),
             },
             barnehageplassUtlandet: {
@@ -60,9 +53,7 @@ export const tilIBarnehageplassPeriodeIKontraktFormat = ({
                 ? {
                       label: tilRestLocaleRecord(barnehageplassTekster.hvilketLand.sporsmal),
                       verdi: verdiCallbackAlleSpråk(
-                          locale =>
-                              barnehageplassLand &&
-                              landkodeTilSpråk(barnehageplassLand.svar, locale)
+                          locale => barnehageplassLand && landkodeTilSpråk(barnehageplassLand.svar, locale)
                       ),
                   }
                 : null,
@@ -78,19 +69,13 @@ export const tilIBarnehageplassPeriodeIKontraktFormat = ({
             },
             startetIBarnehagen: {
                 label: tilRestLocaleRecord(
-                    hentFraDatoSpørsmål(
-                        barnehageplassPeriodeBeskrivelse.svar,
-                        barnehageplassTekster
-                    )
+                    hentFraDatoSpørsmål(barnehageplassPeriodeBeskrivelse.svar, barnehageplassTekster)
                 ),
                 verdi: sammeVerdiAlleSpråk(startetIBarnehagen.svar),
             },
             slutterIBarnehagen: {
                 label: tilRestLocaleRecord(
-                    hentTilDatoSpørsmål(
-                        barnehageplassPeriodeBeskrivelse.svar,
-                        barnehageplassTekster
-                    )
+                    hentTilDatoSpørsmål(barnehageplassPeriodeBeskrivelse.svar, barnehageplassTekster)
                 ),
                 verdi: sammeVerdiAlleSpråkEllerUkjent(
                     tilRestLocaleRecord,

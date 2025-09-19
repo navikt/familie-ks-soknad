@@ -68,9 +68,7 @@ export const søkerIKontraktFormat = (
         sivilstand: søknadsfelt(omDegTekster.sivilstatus, sammeVerdiAlleSpråk(sivilstand.type)),
         statsborgerskap: søknadsfelt(
             omDegTekster.statsborgerskap,
-            verdiCallbackAlleSpråk(locale =>
-                statsborgerskap.map(objekt => landkodeTilSpråk(objekt.landkode, locale))
-            )
+            verdiCallbackAlleSpråk(locale => statsborgerskap.map(objekt => landkodeTilSpråk(objekt.landkode, locale)))
         ),
         adresse: søknadsfelt(omDegTekster.adresse, sammeVerdiAlleSpråk(adresse)),
         adressebeskyttelse: adressebeskyttelse,
@@ -86,18 +84,9 @@ export const søkerIKontraktFormat = (
             omDegTekster.planleggerAaBoSammenhengende.sporsmal,
             planleggerÅBoINorgeTolvMnd.svar
         ),
-        yrkesaktivFemÅr: søknadsfeltForESvar(
-            omDegTekster.medlemAvFolketrygden.sporsmal,
-            yrkesaktivFemÅr.svar
-        ),
-        erAsylsøker: søknadsfeltForESvar(
-            dinLivssituasjonTekster.asylsoeker.sporsmal,
-            erAsylsøker.svar
-        ),
-        arbeidIUtlandet: søknadsfeltForESvar(
-            dinLivssituasjonTekster.arbeidUtenforNorge.sporsmal,
-            arbeidIUtlandet.svar
-        ),
+        yrkesaktivFemÅr: søknadsfeltForESvar(omDegTekster.medlemAvFolketrygden.sporsmal, yrkesaktivFemÅr.svar),
+        erAsylsøker: søknadsfeltForESvar(dinLivssituasjonTekster.asylsoeker.sporsmal, erAsylsøker.svar),
+        arbeidIUtlandet: søknadsfeltForESvar(dinLivssituasjonTekster.arbeidUtenforNorge.sporsmal, arbeidIUtlandet.svar),
         utenlandsoppholdUtenArbeid: søknadsfeltForESvar(
             dinLivssituasjonTekster.utenlandsoppholdUtenArbeid.sporsmal,
             utenlandsoppholdUtenArbeid.svar
@@ -106,23 +95,11 @@ export const søkerIKontraktFormat = (
             dinLivssituasjonTekster.pensjonUtland.sporsmal,
             mottarUtenlandspensjon.svar
         ),
-        arbeidINorge: nullableSøknadsfeltForESvar(
-            eøsTekster.arbeidNorge.sporsmal,
-            arbeidINorge.svar
-        ),
-        pensjonNorge: nullableSøknadsfeltForESvar(
-            eøsTekster.pensjonNorge.sporsmal,
-            pensjonNorge.svar
-        ),
-        andreUtbetalinger: nullableSøknadsfeltForESvar(
-            eøsTekster.utbetalinger.sporsmal,
-            andreUtbetalinger.svar
-        ),
+        arbeidINorge: nullableSøknadsfeltForESvar(eøsTekster.arbeidNorge.sporsmal, arbeidINorge.svar),
+        pensjonNorge: nullableSøknadsfeltForESvar(eøsTekster.pensjonNorge.sporsmal, pensjonNorge.svar),
+        andreUtbetalinger: nullableSøknadsfeltForESvar(eøsTekster.utbetalinger.sporsmal, andreUtbetalinger.svar),
         adresseISøkeperiode: adresseISøkeperiode.svar
-            ? søknadsfelt(
-                  eøsTekster.hvorBor.sporsmal,
-                  sammeVerdiAlleSpråk(adresseISøkeperiode.svar)
-              )
+            ? søknadsfelt(eøsTekster.hvorBor.sporsmal, sammeVerdiAlleSpråk(adresseISøkeperiode.svar))
             : null,
         utenlandsperioder: utenlandsperioder.map((periode, index) =>
             utenlandsperiodeTilISøknadsfelt({
@@ -133,11 +110,7 @@ export const søkerIKontraktFormat = (
             })
         ),
         idNummer: idNummer.map(idnummerObj =>
-            idNummerTilISøknadsfelt(
-                tilRestLocaleRecord,
-                idnummerObj,
-                tekster.EØS_FOR_SØKER.idNummer
-            )
+            idNummerTilISøknadsfelt(tilRestLocaleRecord, idnummerObj, tekster.EØS_FOR_SØKER.idNummer)
         ),
         arbeidsperioderUtland: arbeidsperioderUtland.map((periode, index) =>
             tilIArbeidsperiodeIKontraktFormat({

@@ -5,11 +5,7 @@ import {
     hentUtenlandsoppholdÅrsak,
 } from '../../components/Felleskomponenter/UtenlandsoppholdModal/utenlandsoppholdSpråkUtils';
 import { IBarnMedISøknad } from '../../typer/barn';
-import {
-    ISøknadsfelt,
-    IUtenlandsperiodeIKontraktFormat,
-    TilRestLocaleRecord,
-} from '../../typer/kontrakt/generelle';
+import { ISøknadsfelt, IUtenlandsperiodeIKontraktFormat, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IUtenlandsperiode } from '../../typer/perioder';
 import { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenlandsopphold';
 import { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
@@ -41,10 +37,8 @@ export const utenlandsperiodeTilISøknadsfelt = ({
     const søknadsfelt = søknadsfeltHof(tilRestLocaleRecord);
 
     const adresseTekst: ISanitySpørsmålDokument | undefined =
-        utenlandperiode.utenlandsoppholdÅrsak.svar ===
-            EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE ||
-        utenlandperiode.utenlandsoppholdÅrsak.svar ===
-            EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE
+        utenlandperiode.utenlandsoppholdÅrsak.svar === EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_TIL_NORGE ||
+        utenlandperiode.utenlandsoppholdÅrsak.svar === EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE
             ? adresseFortid
             : adresseNaatid;
 
@@ -60,13 +54,10 @@ export const utenlandsperiodeTilISøknadsfelt = ({
                 ),
             },
             oppholdsland: {
-                label: tilRestLocaleRecord(
-                    hentLandSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster),
-                    { barnetsNavn: barn?.navn }
-                ),
-                verdi: verdiCallbackAlleSpråk(locale =>
-                    landkodeTilSpråk(utenlandperiode.oppholdsland.svar, locale)
-                ),
+                label: tilRestLocaleRecord(hentLandSpørsmål(utenlandperiode.utenlandsoppholdÅrsak.svar, tekster), {
+                    barnetsNavn: barn?.navn,
+                }),
+                verdi: verdiCallbackAlleSpråk(locale => landkodeTilSpråk(utenlandperiode.oppholdsland.svar, locale)),
             },
             oppholdslandFraDato: utenlandperiode.oppholdslandFraDato?.svar
                 ? {

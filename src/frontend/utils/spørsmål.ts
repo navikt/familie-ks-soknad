@@ -6,16 +6,11 @@ import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
 
 import { trimWhiteSpace } from './hjelpefunksjoner';
 
-export const svarForSpørsmålMedUkjent = (
-    vetIkkeFelt: Felt<ESvar>,
-    spørsmålFelt: Felt<string>
-): string => {
+export const svarForSpørsmålMedUkjent = (vetIkkeFelt: Felt<ESvar>, spørsmålFelt: Felt<string>): string => {
     if (!spørsmålFelt.erSynlig) {
         return '';
     } else {
-        return vetIkkeFelt.verdi === ESvar.JA
-            ? AlternativtSvarForInput.UKJENT
-            : trimWhiteSpace(spørsmålFelt.verdi);
+        return vetIkkeFelt.verdi === ESvar.JA ? AlternativtSvarForInput.UKJENT : trimWhiteSpace(spørsmålFelt.verdi);
     }
 };
 

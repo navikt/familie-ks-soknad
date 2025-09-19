@@ -83,9 +83,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     flettefeltVerdier: { barnetsNavn },
                 },
                 {
-                    skalVises:
-                        søkerDeltKontantstøtte.erSynlig &&
-                        søkerDeltKontantstøtte.verdi === ESvar.JA,
+                    skalVises: søkerDeltKontantstøtte.erSynlig && søkerDeltKontantstøtte.verdi === ESvar.JA,
                     dokumentasjonsbehov: Dokumentasjonsbehov.AVTALE_DELT_BOSTED,
                 },
             ]}
@@ -143,10 +141,7 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                     flettefelter={{ barnetsNavn }}
                     tilleggsinfo={
                         harPeriodeMedGradertBarnehageplass ? (
-                            <TekstBlock
-                                block={soekerDeltKontantstoette.alert}
-                                typografi={Typografi.BodyShort}
-                            />
+                            <TekstBlock block={soekerDeltKontantstoette.alert} typografi={Typografi.BodyShort} />
                         ) : undefined
                     }
                 />

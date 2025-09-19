@@ -16,8 +16,7 @@ const StyledModalFooter = styled(Modal.Footer)`
 `;
 
 const BlokkerTilbakeKnappModal = () => {
-    const { visBlokkerTilbakeKnappModal, settVisBlokkerTilbakeKnappModal } =
-        useAppNavigationContext();
+    const { visBlokkerTilbakeKnappModal, settVisBlokkerTilbakeKnappModal } = useAppNavigationContext();
 
     const { tekster, plainTekst } = useAppContext();
     const blokkerTilbakeknappTekster = tekster()[ESanitySteg.FELLES].modaler.blokkerTilbakeKnapp;
@@ -36,22 +35,13 @@ const BlokkerTilbakeKnappModal = () => {
             }}
         >
             <ModalContent>
-                <TekstBlock
-                    block={blokkerTilbakeknappTekster.tekst}
-                    typografi={Typografi.BodyLong}
-                />
+                <TekstBlock block={blokkerTilbakeknappTekster.tekst} typografi={Typografi.BodyLong} />
             </ModalContent>
             <StyledModalFooter>
                 <Button onClick={håndterAvbryt}>
-                    <TekstBlock
-                        block={blokkerTilbakeknappTekster.avbryt}
-                        typografi={Typografi.BodyShort}
-                    />
+                    <TekstBlock block={blokkerTilbakeknappTekster.avbryt} typografi={Typografi.BodyShort} />
                 </Button>
-                <TekstBlock
-                    block={blokkerTilbakeknappTekster.tilDittNav}
-                    typografi={Typografi.BodyShort}
-                />
+                <TekstBlock block={blokkerTilbakeknappTekster.tilDittNav} typografi={Typografi.BodyShort} />
             </StyledModalFooter>
         </Modal>
     );

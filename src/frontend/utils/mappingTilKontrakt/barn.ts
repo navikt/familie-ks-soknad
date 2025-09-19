@@ -1,11 +1,7 @@
 import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { IBarnMedISøknad } from '../../typer/barn';
 import { LocaleRecordBlock, LocaleRecordString } from '../../typer/common';
-import {
-    ERegistrertBostedType,
-    Slektsforhold,
-    TilRestLocaleRecord,
-} from '../../typer/kontrakt/generelle';
+import { ERegistrertBostedType, Slektsforhold, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { ISøknadIKontraktBarn } from '../../typer/kontrakt/søknadKontrakt';
 import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
@@ -141,12 +137,7 @@ export const barnISøknadsFormat = (
             })
         ),
         idNummer: idNummer.map(idnummerObj =>
-            idNummerTilISøknadsfelt(
-                tilRestLocaleRecord,
-                idnummerObj,
-                tekster.EØS_FOR_BARN.idNummerBarn,
-                navn
-            )
+            idNummerTilISøknadsfelt(tilRestLocaleRecord, idnummerObj, tekster.EØS_FOR_BARN.idNummerBarn, navn)
         ),
         andreForelder: andreForelder
             ? andreForelderTilISøknadsfelt(andreForelder, barn, tilRestLocaleRecord, tekster)
@@ -166,18 +157,12 @@ export const barnISøknadsFormat = (
                   flettefelter
               )
             : null,
-        erFosterbarn: søknadsfeltForESvar(
-            omBarnaTekster.hvemFosterbarn.sporsmal,
-            erFosterbarn.svar
-        ),
+        erFosterbarn: søknadsfeltForESvar(omBarnaTekster.hvemFosterbarn.sporsmal, erFosterbarn.svar),
         oppholderSegIInstitusjon: søknadsfeltForESvar(
             omBarnaTekster.hvemInstitusjon.sporsmal,
             oppholderSegIInstitusjon.svar
         ),
-        erAdoptert: søknadsfeltForESvar(
-            omBarnaTekster.hvemAdoptertKontantstoette.sporsmal,
-            erAdoptert.svar
-        ),
+        erAdoptert: søknadsfeltForESvar(omBarnaTekster.hvemAdoptertKontantstoette.sporsmal, erAdoptert.svar),
         erAsylsøker: søknadsfeltForESvar(omBarnaTekster.hvemAsyl.sporsmal, erAsylsøker.svar),
         boddMindreEnn12MndINorge: søknadsfeltForESvar(
             omBarnaTekster.hvemOppholdUtenforNorge.sporsmal,
@@ -187,13 +172,9 @@ export const barnISøknadsFormat = (
             omBarnaTekster.hvemSoektYtelse.sporsmal,
             kontantstøtteFraAnnetEøsland.svar
         ),
-        harBarnehageplass: søknadsfeltForESvar(
-            omBarnaTekster.hvemBarnehageplass.sporsmal,
-            harBarnehageplass.svar
-        ),
+        harBarnehageplass: søknadsfeltForESvar(omBarnaTekster.hvemBarnehageplass.sporsmal, harBarnehageplass.svar),
         andreForelderErDød: nullableSøknadsfeltForESvar(
-            søknad.erAvdødPartnerForelder.id ===
-                OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
+            søknad.erAvdødPartnerForelder.id === OmBarnaDineSpørsmålId.erFolkeregAvdødPartnerForelder
                 ? omBarnaTekster.hvemAvBarnaAvdoedPartner.sporsmal
                 : omBarnaTekster.hvemAvBarnaAvdoedEktefelle.sporsmal,
             andreForelderErDød.svar
@@ -213,9 +194,7 @@ export const barnISøknadsFormat = (
         pågåendeSøknadHvilketLand: pågåendeSøknadHvilketLand.svar
             ? søknadsfelt(
                   omBarnetTekster.hvilketLandYtelse.sporsmal,
-                  verdiCallbackAlleSpråk(locale =>
-                      landkodeTilSpråk(pågåendeSøknadHvilketLand.svar, locale)
-                  )
+                  verdiCallbackAlleSpråk(locale => landkodeTilSpråk(pågåendeSøknadHvilketLand.svar, locale))
               )
             : null,
         planleggerÅBoINorge12Mnd: nullableSøknadsfeltForESvar(
@@ -241,9 +220,7 @@ export const barnISøknadsFormat = (
         søkersSlektsforhold: søkersSlektsforhold.svar
             ? søknadsfelt(
                   eøsTekster.slektsforhold.sporsmal,
-                  tilRestLocaleRecord(
-                      hentSlektsforhold(søkersSlektsforhold.svar as Slektsforhold, eøsTekster)
-                  ),
+                  tilRestLocaleRecord(hentSlektsforhold(søkersSlektsforhold.svar as Slektsforhold, eøsTekster)),
                   flettefelter
               )
             : null,

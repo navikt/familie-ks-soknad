@@ -49,8 +49,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
         åpneModal: åpneKontantstøtteModal,
     } = useModal();
 
-    const teksterForPersonType: IEøsYtelseTekstinnhold =
-        tekster().FELLES.modaler.eøsYtelse[personType];
+    const teksterForPersonType: IEøsYtelseTekstinnhold = tekster().FELLES.modaler.eøsYtelse[personType];
 
     const frittståendeOrdTekster = tekster().FELLES.frittståendeOrd;
 
@@ -65,9 +64,7 @@ export const KontantstøttePeriode: React.FC<KontantstøttePeriodeProps> = ({
             />
             {tilhørendeJaNeiSpmFelt.verdi === ESvar.JA && (
                 <PerioderContainer
-                    tittel={uppercaseFørsteBokstav(
-                        plainTekst(frittståendeOrdTekster.kontantstoetteperioder)
-                    )}
+                    tittel={uppercaseFørsteBokstav(plainTekst(frittståendeOrdTekster.kontantstoetteperioder))}
                 >
                     {registrerteEøsKontantstøttePerioder.verdi.map((periode, index) => (
                         <KontantstøttePeriodeOppsummering

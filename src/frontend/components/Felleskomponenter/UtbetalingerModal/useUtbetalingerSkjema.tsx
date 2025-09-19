@@ -29,11 +29,7 @@ export interface IUseUtbetalingerSkjemaParams {
     erDød?: boolean;
 }
 
-export const useUtbetalingerSkjema = (
-    personType,
-    barn,
-    erDød
-): IUsePeriodeSkjemaVerdi<IUtbetalingerFeltTyper> => {
+export const useUtbetalingerSkjema = (personType, barn, erDød): IUsePeriodeSkjemaVerdi<IUtbetalingerFeltTyper> => {
     const { tekster, plainTekst } = useAppContext();
     const teksterForPersontype: IAndreUtbetalingerTekstinnhold =
         tekster()[ESanitySteg.FELLES].modaler.andreUtbetalinger[personType];
@@ -53,8 +49,7 @@ export const useUtbetalingerSkjema = (
         feilmelding: periodenErAvsluttet
             ? teksterForPersontype.utbetalingLandFortid.feilmelding
             : teksterForPersontype.utbetalingLandNaatid.feilmelding,
-        skalFeltetVises:
-            fårUtbetalingNå.valideringsstatus === Valideringsstatus.OK || andreForelderErDød,
+        skalFeltetVises: fårUtbetalingNå.valideringsstatus === Valideringsstatus.OK || andreForelderErDød,
         nullstillVedAvhengighetEndring: true,
     });
 
@@ -63,8 +58,7 @@ export const useUtbetalingerSkjema = (
             id: UtbetalingerSpørsmålId.utbetalingFraDato,
             svar: '',
         },
-        skalFeltetVises:
-            andreForelderErDød || fårUtbetalingNå.valideringsstatus === Valideringsstatus.OK,
+        skalFeltetVises: andreForelderErDød || fårUtbetalingNå.valideringsstatus === Valideringsstatus.OK,
         feilmelding: teksterForPersontype.startdato.feilmelding,
         sluttdatoAvgrensning: periodenErAvsluttet ? gårsdagensDato() : dagensDato(),
     });
@@ -85,18 +79,13 @@ export const useUtbetalingerSkjema = (
         feilmelding: periodenErAvsluttet
             ? teksterForPersontype.sluttdatoFortid.feilmelding
             : teksterForPersontype.sluttdatoFremtid.feilmelding,
-        skalFeltetVises:
-            andreForelderErDød || fårUtbetalingNå.valideringsstatus === Valideringsstatus.OK,
-        sluttdatoAvgrensning: periodenErAvsluttet
-            ? utbetalingTilDatoSluttdatoAvgrensning
-            : undefined,
+        skalFeltetVises: andreForelderErDød || fårUtbetalingNå.valideringsstatus === Valideringsstatus.OK,
+        sluttdatoAvgrensning: periodenErAvsluttet ? utbetalingTilDatoSluttdatoAvgrensning : undefined,
         startdatoAvgrensning: minTilDatoForPeriode(periodenErAvsluttet, utbetalingFraDato.verdi),
         customStartdatoFeilmelding:
             erSammeDatoSomDagensDato(stringTilDate(utbetalingFraDato.verdi)) || periodenErAvsluttet
                 ? undefined
-                : plainTekst(
-                      tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
-                  ),
+                : plainTekst(tekster().FELLES.formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid),
         avhengigheter: { utbetalingFraDato },
         nullstillVedAvhengighetEndring: false,
     });

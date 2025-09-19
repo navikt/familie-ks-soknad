@@ -20,10 +20,7 @@ export function FeatureTogglesProvider(props: PropsWithChildren) {
     const [toggles, setToggles] = useState<EAllFeatureToggles>(defaultFeatureToggleValues);
 
     useFørsteRender(async () => {
-        const allFeatureToggles: Ressurs<EAllFeatureToggles> = await axiosRequest<
-            EAllFeatureToggles,
-            void
-        >({
+        const allFeatureToggles: Ressurs<EAllFeatureToggles> = await axiosRequest<EAllFeatureToggles, void>({
             url: `${BASE_PATH}toggles/all`,
         });
 
@@ -32,11 +29,7 @@ export function FeatureTogglesProvider(props: PropsWithChildren) {
         }
     });
 
-    return (
-        <FeatureTogglesContext.Provider value={{ toggles }}>
-            {props.children}
-        </FeatureTogglesContext.Provider>
-    );
+    return <FeatureTogglesContext.Provider value={{ toggles }}>{props.children}</FeatureTogglesContext.Provider>;
 }
 
 export function useFeatureToggles() {

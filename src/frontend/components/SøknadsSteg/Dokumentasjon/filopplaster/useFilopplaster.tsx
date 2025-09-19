@@ -2,12 +2,7 @@ import { useState } from 'react';
 
 import axios from 'axios';
 
-import {
-    type FileAccepted,
-    type FileObject,
-    type FileRejected,
-    type FileRejectionReason,
-} from '@navikt/ds-react';
+import { type FileAccepted, type FileObject, type FileRejected, type FileRejectionReason } from '@navikt/ds-react';
 
 import miljø from '../../../../../shared-utils/miljø';
 import { EFiltyper, IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
@@ -109,17 +104,11 @@ export const useFilopplaster = (
     const STØTTEDE_FILTYPER = [EFiltyper.PNG, EFiltyper.JPG, EFiltyper.JPEG, EFiltyper.PDF];
 
     const feilmeldinger: Record<FileRejectionReason | ECustomFileRejectionReasons, string> = {
-        [EStandardFileRejectionReasons.FIL_TYPE]: plainTekst(
-            dokumentasjonTekster.filtypeFeilmelding
-        ),
+        [EStandardFileRejectionReasons.FIL_TYPE]: plainTekst(dokumentasjonTekster.filtypeFeilmelding),
         [EStandardFileRejectionReasons.FIL_STØRRELSE_FOR_STOR]: `${plainTekst(dokumentasjonTekster.filstorrelseFeilmelding)} ${MAKS_FILSTØRRELSE_MB} MB`,
-        [ECustomFileRejectionReasons.FIL_DIMENSJONER_FOR_LITEN]: plainTekst(
-            dokumentasjonTekster.bildetForLite
-        ),
+        [ECustomFileRejectionReasons.FIL_DIMENSJONER_FOR_LITEN]: plainTekst(dokumentasjonTekster.bildetForLite),
         [ECustomFileRejectionReasons.MAKS_ANTALL_FILER_NÅDD]: `${plainTekst(dokumentasjonTekster.antallFilerFeilmelding)} ${MAKS_ANTALL_FILER}`,
-        [ECustomFileRejectionReasons.UKJENT_FEIL]: plainTekst(
-            dokumentasjonTekster.ukjentFeilmelding
-        ),
+        [ECustomFileRejectionReasons.UKJENT_FEIL]: plainTekst(dokumentasjonTekster.ukjentFeilmelding),
     };
 
     const dagensDatoStreng = new Date().toISOString();
@@ -132,10 +121,7 @@ export const useFilopplaster = (
         );
 
         if (feilendeFiler.length > 0) {
-            setAvvsiteFiler(eksisterendeAvvisteFiler => [
-                ...eksisterendeAvvisteFiler,
-                ...feilendeFiler,
-            ]);
+            setAvvsiteFiler(eksisterendeAvvisteFiler => [...eksisterendeAvvisteFiler, ...feilendeFiler]);
         }
 
         if (aksepterteFiler.length > 0) {
@@ -150,17 +136,13 @@ export const useFilopplaster = (
                     requestData.append('file', fil.file);
 
                     return axios
-                        .post<OpplastetVedlegg>(
-                            `${miljø().dokumentProxyUrl}/mapper/familievedlegg`,
-                            requestData,
-                            {
-                                withCredentials: true,
-                                headers: {
-                                    'content-type': 'multipart/form-data',
-                                    accept: 'application/json',
-                                },
-                            }
-                        )
+                        .post<OpplastetVedlegg>(`${miljø().dokumentProxyUrl}/mapper/familievedlegg`, requestData, {
+                            withCredentials: true,
+                            headers: {
+                                'content-type': 'multipart/form-data',
+                                accept: 'application/json',
+                            },
+                        })
                         .then((response: { data: OpplastetVedlegg }) => {
                             const { data } = response;
                             const nyttVedlegg: IVedlegg = {
@@ -191,10 +173,7 @@ export const useFilopplaster = (
             }
 
             if (feilendeVedlegg.length > 0) {
-                setAvvsiteFiler(eksisterendeAvvisteFiler => [
-                    ...eksisterendeAvvisteFiler,
-                    ...feilendeVedlegg,
-                ]);
+                setAvvsiteFiler(eksisterendeAvvisteFiler => [...eksisterendeAvvisteFiler, ...feilendeVedlegg]);
             }
 
             setFilerUnderOpplastning([]);
@@ -203,15 +182,10 @@ export const useFilopplaster = (
 
     const fjernVedlegg = (vedleggSomSkalFjernes: IVedlegg) => {
         const nyVedleggsliste = dokumentasjon.opplastedeVedlegg.filter(
-            (eksisterendeVedlegg: IVedlegg) =>
-                eksisterendeVedlegg.dokumentId !== vedleggSomSkalFjernes.dokumentId
+            (eksisterendeVedlegg: IVedlegg) => eksisterendeVedlegg.dokumentId !== vedleggSomSkalFjernes.dokumentId
         );
 
-        oppdaterDokumentasjon(
-            dokumentasjon.dokumentasjonsbehov,
-            nyVedleggsliste,
-            dokumentasjon.harSendtInn
-        );
+        oppdaterDokumentasjon(dokumentasjon.dokumentasjonsbehov, nyVedleggsliste, dokumentasjon.harSendtInn);
     };
 
     const fjernAvvistFil = (fil: FileRejected) => {

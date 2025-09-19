@@ -36,13 +36,10 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
 
     const { valgtLocale } = useSpråkContext();
     const { tekster, plainTekst } = useAppContext();
-    const barnehageplassTekster: IBarnehageplassTekstinnhold =
-        tekster().FELLES.modaler.barnehageplass;
+    const barnehageplassTekster: IBarnehageplassTekstinnhold = tekster().FELLES.modaler.barnehageplass;
     return (
         <PeriodeOppsummering
-            fjernPeriodeCallback={
-                fjernPeriodeCallback && (() => fjernPeriodeCallback(barnehageplassPeriode))
-            }
+            fjernPeriodeCallback={fjernPeriodeCallback && (() => fjernPeriodeCallback(barnehageplassPeriode))}
             fjernKnappTekst={barnehageplassTekster.fjernKnapp}
             tittel={
                 <TekstBlock
@@ -54,10 +51,7 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
             <OppsummeringFelt
                 tittel={<TekstBlock block={barnehageplassTekster.periodebeskrivelse.sporsmal} />}
                 søknadsvar={plainTekst(
-                    hentBarnehageplassBeskrivelse(
-                        barnehageplassPeriodeBeskrivelse.svar,
-                        barnehageplassTekster
-                    )
+                    hentBarnehageplassBeskrivelse(barnehageplassPeriodeBeskrivelse.svar, barnehageplassTekster)
                 )}
             />
 

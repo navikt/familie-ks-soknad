@@ -24,8 +24,8 @@ export const FeilsideInnhold: FC = () => {
                         Beklager, noe gikk galt.
                     </Heading>
                     <BodyShort spacing>
-                        En teknisk feil på våre servere gjør at siden er utilgjengelig. Dette
-                        skyldes ikke noe du gjorde.
+                        En teknisk feil på våre servere gjør at siden er utilgjengelig. Dette skyldes ikke noe du
+                        gjorde.
                     </BodyShort>
                     <BodyShort spacing>
                         Du kan prøve å vente noen minutter og{' '}
@@ -54,8 +54,8 @@ export const FeilsideInnhold: FC = () => {
                         Beklager, noe gikk galt.
                     </Heading>
                     <BodyShort spacing>
-                        Ein teknisk feil på våre servere gjer at sida er utilgjengeleg. Dette
-                        skuldast ikkje noko du gjorde.
+                        Ein teknisk feil på våre servere gjer at sida er utilgjengeleg. Dette skuldast ikkje noko du
+                        gjorde.
                     </BodyShort>
                     <BodyShort spacing>
                         Du kan prøve å vente nokre minutt og{' '}
@@ -70,10 +70,7 @@ export const FeilsideInnhold: FC = () => {
                     </BodyShort>
                     <BodyShort>
                         Viss problemet held fram, kan du{' '}
-                        <Link
-                            href="https://www.nav.no/start/soknad-kontantstotte/nn"
-                            target="_blank"
-                        >
+                        <Link href="https://www.nav.no/start/soknad-kontantstotte/nn" target="_blank">
                             lasta ned og senda papirsøknad (blir opna i nytt vindauge)
                         </Link>
                         .
@@ -87,8 +84,7 @@ export const FeilsideInnhold: FC = () => {
                         Something went wrong
                     </Heading>
                     <BodyShort spacing>
-                        A technical error on our servers has made the page unavailable. This is not
-                        your fault.
+                        A technical error on our servers has made the page unavailable. This is not your fault.
                     </BodyShort>
                     <BodyShort spacing>
                         You can try to wait a few minutes and{' '}
@@ -103,10 +99,7 @@ export const FeilsideInnhold: FC = () => {
                     </BodyShort>
                     <BodyShort>
                         If the problem persists, you can{' '}
-                        <Link
-                            href="https://www.nav.no/start/soknad-kontantstotte/en"
-                            target="_blank"
-                        >
+                        <Link href="https://www.nav.no/start/soknad-kontantstotte/en" target="_blank">
                             download and send a paper form (opens in a new window)
                         </Link>
                         .

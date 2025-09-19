@@ -49,11 +49,7 @@ const DinLivssituasjonOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             ))}
 
             <OppsummeringFelt
-                tittel={
-                    <TekstBlock
-                        block={dinLivssituasjonTekster.utenlandsoppholdUtenArbeid.sporsmal}
-                    />
-                }
+                tittel={<TekstBlock block={dinLivssituasjonTekster.utenlandsoppholdUtenArbeid.sporsmal} />}
                 søknadsvar={søknad.søker.utenlandsoppholdUtenArbeid.svar}
             />
 
