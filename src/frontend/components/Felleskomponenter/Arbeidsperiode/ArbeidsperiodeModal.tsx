@@ -43,11 +43,13 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
     forklaring = undefined,
 }) => {
     const { tekster, plainTekst } = useAppContext();
-    const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
-        useArbeidsperiodeSkjema(gjelderUtlandet, personType, erDød);
+    const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } = useArbeidsperiodeSkjema(
+        gjelderUtlandet,
+        personType,
+        erDød
+    );
 
-    const teksterForModal: IArbeidsperiodeTekstinnhold =
-        tekster().FELLES.modaler.arbeidsperiode[personType];
+    const teksterForModal: IArbeidsperiodeTekstinnhold = tekster().FELLES.modaler.arbeidsperiode[personType];
 
     const {
         arbeidsperiodeAvsluttet,
@@ -96,12 +98,9 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
     };
 
     const periodenErAvsluttet =
-        arbeidsperiodeAvsluttet.verdi === ESvar.JA ||
-        (personType === PersonType.andreForelder && erDød);
+        arbeidsperiodeAvsluttet.verdi === ESvar.JA || (personType === PersonType.andreForelder && erDød);
 
-    const adresseTekst = periodenErAvsluttet
-        ? teksterForModal.adresseFortid
-        : teksterForModal.adresseNaatid;
+    const adresseTekst = periodenErAvsluttet ? teksterForModal.adresseFortid : teksterForModal.adresseNaatid;
 
     return (
         <SkjemaModal
@@ -174,9 +173,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                             periodenErAvsluttet,
                             skjema.felter.fraDatoArbeidsperiode.verdi
                         )}
-                        senesteValgbareMåned={
-                            periodenErAvsluttet ? sisteDagDenneMåneden() : undefined
-                        }
+                        senesteValgbareMåned={periodenErAvsluttet ? sisteDagDenneMåneden() : undefined}
                         dagIMåneden={DagIMåneden.SISTE_DAG}
                         kanIkkeVæreFremtid={periodenErAvsluttet}
                         kanIkkeVæreFortid={!periodenErAvsluttet}
@@ -197,10 +194,7 @@ export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
                     disabled={skjema.felter.adresseUkjent.verdi === ESvar.JA}
                     description={plainTekst(adresseTekst.beskrivelse)}
                 />
-                <SkjemaCheckbox
-                    felt={skjema.felter.adresseUkjent}
-                    label={plainTekst(adresseTekst.checkboxLabel)}
-                />
+                <SkjemaCheckbox felt={skjema.felter.adresseUkjent} label={plainTekst(adresseTekst.checkboxLabel)} />
             </div>
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}
         </SkjemaModal>

@@ -13,12 +13,7 @@ interface Props {
     children?: ReactNode;
 }
 
-function PeriodeOppsummering({
-    fjernPeriodeCallback = undefined,
-    fjernKnappTekst,
-    tittel,
-    children,
-}: Props) {
+function PeriodeOppsummering({ fjernPeriodeCallback = undefined, fjernKnappTekst, tittel, children }: Props) {
     return (
         <FormSummary.Answer>
             <FormSummary.Label>{tittel}</FormSummary.Label>

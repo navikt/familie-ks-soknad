@@ -58,8 +58,7 @@ export const usePensjonSkjema = ({
             ? teksterForPersonType.pensjonLandFortid.feilmelding
             : teksterForPersonType.pensjonLandNaatid.feilmelding,
         skalFeltetVises:
-            (mottarPensjonNå.valideringsstatus === Valideringsstatus.OK || erAndreForelderDød) &&
-            gjelderUtland,
+            (mottarPensjonNå.valideringsstatus === Valideringsstatus.OK || erAndreForelderDød) && gjelderUtland,
         nullstillVedAvhengighetEndring: true,
     });
 

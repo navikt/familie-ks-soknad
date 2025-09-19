@@ -46,14 +46,9 @@ const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
                 <>
                     <OppsummeringFelt
                         tittel={
-                            <TekstBlock
-                                block={eøsBarnTekster.slektsforhold.sporsmal}
-                                flettefelter={flettefelter}
-                            />
+                            <TekstBlock block={eøsBarnTekster.slektsforhold.sporsmal} flettefelter={flettefelter} />
                         }
-                        søknadsvar={plainTekst(
-                            hentSlektsforhold(barn.søkersSlektsforhold.svar, eøsBarnTekster)
-                        )}
+                        søknadsvar={plainTekst(hentSlektsforhold(barn.søkersSlektsforhold.svar, eøsBarnTekster))}
                     />
                     {barn.søkersSlektsforholdSpesifisering.svar && (
                         <OppsummeringFelt
@@ -72,10 +67,7 @@ const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
             {barn.borMedAndreForelder.svar && (
                 <OppsummeringFelt
                     tittel={
-                        <TekstBlock
-                            block={eøsBarnTekster.borMedAndreForelder.sporsmal}
-                            flettefelter={flettefelter}
-                        />
+                        <TekstBlock block={eøsBarnTekster.borMedAndreForelder.sporsmal} flettefelter={flettefelter} />
                     }
                     søknadsvar={barn.borMedAndreForelder.svar}
                 />
@@ -83,27 +75,17 @@ const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
             {barn.borMedOmsorgsperson.svar && (
                 <OppsummeringFelt
                     tittel={
-                        <TekstBlock
-                            block={eøsBarnTekster.borMedOmsorgsperson.sporsmal}
-                            flettefelter={flettefelter}
-                        />
+                        <TekstBlock block={eøsBarnTekster.borMedOmsorgsperson.sporsmal} flettefelter={flettefelter} />
                     }
                     søknadsvar={barn.borMedOmsorgsperson.svar}
                 />
             )}
 
-            {barn.omsorgsperson && (
-                <EøsOmsorgspersonOppsummering omsorgsperson={barn.omsorgsperson} barn={barn} />
-            )}
+            {barn.omsorgsperson && <EøsOmsorgspersonOppsummering omsorgsperson={barn.omsorgsperson} barn={barn} />}
 
             {barn.adresse.svar && (
                 <OppsummeringFelt
-                    tittel={
-                        <TekstBlock
-                            block={eøsBarnTekster.hvorBorBarnet.sporsmal}
-                            flettefelter={flettefelter}
-                        />
-                    }
+                    tittel={<TekstBlock block={eøsBarnTekster.hvorBorBarnet.sporsmal} flettefelter={flettefelter} />}
                     søknadsvar={
                         barn.adresse.svar === AlternativtSvarForInput.UKJENT
                             ? plainTekst(eøsBarnTekster.hvorBorBarnet.checkboxLabel)

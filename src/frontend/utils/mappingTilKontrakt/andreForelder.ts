@@ -150,9 +150,7 @@ export const andreForelderTilISøknadsfelt = (
         pågåendeSøknadHvilketLand: pågåendeSøknadHvilketLand.svar
             ? søknadsfelt(
                   eøsTekster.hvilketLandSoektYtelseAndreForelder.sporsmal,
-                  verdiCallbackAlleSpråk(locale =>
-                      landkodeTilSpråk(pågåendeSøknadHvilketLand.svar, locale)
-                  ),
+                  verdiCallbackAlleSpråk(locale => landkodeTilSpråk(pågåendeSøknadHvilketLand.svar, locale)),
                   flettefelter
               )
             : null,

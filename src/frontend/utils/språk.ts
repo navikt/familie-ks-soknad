@@ -12,10 +12,7 @@ import { IBarn } from '../typer/person';
 import { ESanitySivilstandApiKey } from '../typer/sanity/sanity';
 import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
 
-export const hentSlektsforhold = (
-    slektsforhold: Slektsforhold,
-    tekster: IEøsForBarnTekstinnhold
-) => {
+export const hentSlektsforhold = (slektsforhold: Slektsforhold, tekster: IEøsForBarnTekstinnhold) => {
     switch (slektsforhold) {
         case Slektsforhold.FORELDER:
             return tekster.valgalternativForelder;
@@ -32,15 +29,10 @@ export const hentSlektsforhold = (
 
 export const landkodeTilSpråk = (landkode: Alpha3Code | '', locale: string): string => {
     const alpha3ToAlpha2Land = landkode && alpha3ToAlpha2(landkode);
-    return (
-        (alpha3ToAlpha2Land && getName(alpha3ToAlpha2Land, locale)) ??
-        AlternativtSvarForInput.UKJENT
-    );
+    return (alpha3ToAlpha2Land && getName(alpha3ToAlpha2Land, locale)) ?? AlternativtSvarForInput.UKJENT;
 };
 
-export const sivilstandTilSanitySivilstandApiKey = (
-    statuskode: ESivilstand
-): ESanitySivilstandApiKey => {
+export const sivilstandTilSanitySivilstandApiKey = (statuskode: ESivilstand): ESanitySivilstandApiKey => {
     switch (statuskode) {
         case ESivilstand.UGIFT:
             return ESanitySivilstandApiKey.UGIFT;

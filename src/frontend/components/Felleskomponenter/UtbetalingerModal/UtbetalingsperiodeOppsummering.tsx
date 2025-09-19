@@ -32,20 +32,16 @@ export const UtbetalingsperiodeOppsummering: React.FC<UtbetalingsperiodeOppsumme
 }) => {
     const { tekster, plainTekst } = useAppContext();
     const { valgtLocale } = useSpråkContext();
-    const { fårUtbetalingNå, utbetalingLand, utbetalingFraDato, utbetalingTilDato } =
-        utbetalingsperiode;
+    const { fårUtbetalingNå, utbetalingLand, utbetalingFraDato, utbetalingTilDato } = utbetalingsperiode;
 
-    const teksterForPersontype: IAndreUtbetalingerTekstinnhold =
-        tekster().FELLES.modaler.andreUtbetalinger[personType];
+    const teksterForPersontype: IAndreUtbetalingerTekstinnhold = tekster().FELLES.modaler.andreUtbetalinger[personType];
 
     const periodenErAvsluttet =
         fårUtbetalingNå?.svar === ESvar.NEI || (personType === PersonType.andreForelder && erDød);
 
     return (
         <PeriodeOppsummering
-            fjernPeriodeCallback={
-                fjernPeriodeCallback && (() => fjernPeriodeCallback(utbetalingsperiode))
-            }
+            fjernPeriodeCallback={fjernPeriodeCallback && (() => fjernPeriodeCallback(utbetalingsperiode))}
             fjernKnappTekst={teksterForPersontype.fjernKnapp}
             tittel={
                 <TekstBlock
@@ -80,9 +76,7 @@ export const UtbetalingsperiodeOppsummering: React.FC<UtbetalingsperiodeOppsumme
             />
             <OppsummeringFelt
                 tittel={<TekstBlock block={teksterForPersontype.startdato.sporsmal} />}
-                søknadsvar={uppercaseFørsteBokstav(
-                    formaterDatostringKunMåned(utbetalingFraDato.svar, valgtLocale)
-                )}
+                søknadsvar={uppercaseFørsteBokstav(formaterDatostringKunMåned(utbetalingFraDato.svar, valgtLocale))}
             />
             <OppsummeringFelt
                 tittel={

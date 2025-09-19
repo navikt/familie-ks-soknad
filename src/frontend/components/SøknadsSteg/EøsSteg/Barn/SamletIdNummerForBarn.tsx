@@ -19,21 +19,12 @@ const IdNummerForBarn: React.FC<{
     barn: IBarnMedISøknad;
     settIdNummerFelter: Dispatch<SetStateAction<Felt<string>[]>>;
     lesevisning: boolean;
-}> = ({
-    landAlphaCode,
-    skjema,
-    barn,
-    settIdNummerFelter,
-    periodeType = undefined,
-    lesevisning = false,
-}) => {
+}> = ({ landAlphaCode, skjema, barn, settIdNummerFelter, periodeType = undefined, lesevisning = false }) => {
     const { tekster } = useAppContext();
     return (
         <IdNummer
             lesevisning={lesevisning}
-            idNummerVerdiFraSøknad={
-                barn.idNummer.find(verdi => verdi.land === landAlphaCode)?.idnummer
-            }
+            idNummerVerdiFraSøknad={barn.idNummer.find(verdi => verdi.land === landAlphaCode)?.idnummer}
             skjema={skjema}
             settIdNummerFelter={settIdNummerFelter}
             landAlphaCode={landAlphaCode}
@@ -52,10 +43,7 @@ const SamletIdNummerForBarn: React.FC<{
 }> = ({ barn, skjema, settIdNummerFelter, lesevisning = false }) => {
     const { erEøsLand } = useEøsContext();
 
-    const skalSpørreOmIdNummerForPågåendeSøknad = skalSpørreOmIdNummerForPågåendeSøknadEøsLand(
-        barn,
-        erEøsLand
-    );
+    const skalSpørreOmIdNummerForPågåendeSøknad = skalSpørreOmIdNummerForPågåendeSøknadEøsLand(barn, erEøsLand);
     const idNummerSomMåOppgisFraPerioder = idNummerLandMedPeriodeType(
         {
             utenlandsperioder: barn.utenlandsperioder,

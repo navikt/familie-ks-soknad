@@ -43,9 +43,7 @@ export const håndterApiRessurs = <T>(ressurs: ApiRessurs<T>): Ressurs<T> => {
 
 export const loggFeil = (error?: AxiosError, feilmelding?: string): void => {
     apiLoggFeil(
-        `${error ? `${error}${feilmelding ? ' - ' : ''}` : ''}${
-            feilmelding ? `Feilmelding: ${feilmelding}` : ''
-        }`
+        `${error ? `${error}${feilmelding ? ' - ' : ''}` : ''}${feilmelding ? `Feilmelding: ${feilmelding}` : ''}`
     );
 };
 

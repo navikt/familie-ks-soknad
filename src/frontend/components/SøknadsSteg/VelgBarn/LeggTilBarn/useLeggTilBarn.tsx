@@ -7,12 +7,7 @@ import { LocaleRecordBlock } from '../../../../typer/common';
 import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { ILeggTilBarnTyper } from '../../../../typer/skjema';
-import {
-    erBarnRegistrertFraFør,
-    erBarnUnder11Mnd,
-    hentAlder,
-    hentUid,
-} from '../../../../utils/barn';
+import { erBarnRegistrertFraFør, erBarnUnder11Mnd, hentAlder, hentUid } from '../../../../utils/barn';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
 import { identTilFødselsdato } from '../../../../utils/ident';
 import { VelgBarnSpørsmålId } from '../spørsmål';
@@ -26,11 +21,9 @@ export const useLeggTilBarn = (): {
 } => {
     const { søknad, settSøknad, tekster, plainTekst } = useAppContext();
 
-    const teksterForModal: ILeggTilBarnTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
+    const teksterForModal: ILeggTilBarnTekstinnhold = tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
 
-    const navnIkkeBestemtTekst: LocaleRecordBlock =
-        tekster()[ESanitySteg.VELG_BARN].navnIkkeBestemtLabel;
+    const navnIkkeBestemtTekst: LocaleRecordBlock = tekster()[ESanitySteg.VELG_BARN].navnIkkeBestemtLabel;
 
     const navnetErUbestemt = useFelt<ESvar>({
         verdi: ESvar.NEI,
@@ -58,9 +51,7 @@ export const useLeggTilBarn = (): {
     const ikkeFåttIdentChecked = useFelt<ESvar>({
         verdi: ESvar.NEI,
         valideringsfunksjon: felt =>
-            felt.verdi === ESvar.NEI
-                ? ok(felt)
-                : feil(felt, plainTekst(teksterForModal.foedselsnummerFeilmelding)),
+            felt.verdi === ESvar.NEI ? ok(felt) : feil(felt, plainTekst(teksterForModal.foedselsnummerFeilmelding)),
     });
 
     const ident = useInputFeltMedUkjent({
@@ -78,10 +69,7 @@ export const useLeggTilBarn = (): {
         },
     });
 
-    const { skjema, kanSendeSkjema, valideringErOk, nullstillSkjema } = useSkjema<
-        ILeggTilBarnTyper,
-        string
-    >({
+    const { skjema, kanSendeSkjema, valideringErOk, nullstillSkjema } = useSkjema<ILeggTilBarnTyper, string>({
         felter: {
             fornavn,
             etternavn,
@@ -93,9 +81,7 @@ export const useLeggTilBarn = (): {
     });
 
     const fulltNavn = () => {
-        return fornavn.verdi && etternavn.verdi
-            ? trimWhiteSpace(`${fornavn.verdi} ${etternavn.verdi}`)
-            : '';
+        return fornavn.verdi && etternavn.verdi ? trimWhiteSpace(`${fornavn.verdi} ${etternavn.verdi}`) : '';
     };
 
     const leggTilBarn = () => {

@@ -58,12 +58,7 @@ const OmDeg: React.FC = () => {
                 skjema={skjema}
                 felt={skjema.felter.værtINorgeITolvMåneder}
                 spørsmålDokument={oppholdtDegSammenhengende}
-                tilleggsinfo={
-                    <TekstBlock
-                        block={oppholdtDegSammenhengende.alert}
-                        typografi={Typografi.BodyShort}
-                    />
-                }
+                tilleggsinfo={<TekstBlock block={oppholdtDegSammenhengende.alert} typografi={Typografi.BodyShort} />}
             />
             <KomponentGruppe>
                 <JaNeiSpm
@@ -73,10 +68,7 @@ const OmDeg: React.FC = () => {
                 />
                 {skjema.felter.planleggerÅBoINorgeTolvMnd.verdi === ESvar.NEI && (
                     <Alert variant={'warning'} inline aria-live="polite">
-                        <TekstBlock
-                            block={planleggerAaBoSammenhengende.alert}
-                            typografi={Typografi.BodyLong}
-                        />
+                        <TekstBlock block={planleggerAaBoSammenhengende.alert} typografi={Typografi.BodyLong} />
                     </Alert>
                 )}
             </KomponentGruppe>
@@ -88,10 +80,7 @@ const OmDeg: React.FC = () => {
                 />
                 {skjema.felter.yrkesaktivFemÅr.verdi === ESvar.NEI && (
                     <Alert variant={'warning'} inline aria-live="polite">
-                        <TekstBlock
-                            block={medlemAvFolketrygden.alert}
-                            typografi={Typografi.BodyShort}
-                        />
+                        <TekstBlock block={medlemAvFolketrygden.alert} typografi={Typografi.BodyShort} />
                     </Alert>
                 )}
             </KomponentGruppe>

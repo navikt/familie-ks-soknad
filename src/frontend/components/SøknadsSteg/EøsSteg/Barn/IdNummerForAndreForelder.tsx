@@ -41,9 +41,8 @@ const IdNummerForAndreForelder: React.FC<{
                             key={index}
                             lesevisning={lesevisning}
                             idNummerVerdiFraSøknad={
-                                barn.andreForelder?.idNummer.find(
-                                    verdi => verdi.land === landMedPeriodeType.land
-                                )?.idnummer
+                                barn.andreForelder?.idNummer.find(verdi => verdi.land === landMedPeriodeType.land)
+                                    ?.idnummer
                             }
                             skjema={skjema}
                             settIdNummerFelter={settIdNummerFelter}

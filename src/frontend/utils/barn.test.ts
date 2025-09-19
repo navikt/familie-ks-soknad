@@ -4,10 +4,7 @@ import { mockDeep } from 'vitest-mock-extended';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import {
-    genererOppdaterteBarn,
-    genererSvarForSpørsmålBarn,
-} from '../components/SøknadsSteg/OmBarnaDine/utils';
+import { genererOppdaterteBarn, genererSvarForSpørsmålBarn } from '../components/SøknadsSteg/OmBarnaDine/utils';
 import { IBarnMedISøknad } from '../typer/barn';
 import { IOmBarnaDineFeltTyper } from '../typer/skjema';
 import { ISøknad } from '../typer/søknad';

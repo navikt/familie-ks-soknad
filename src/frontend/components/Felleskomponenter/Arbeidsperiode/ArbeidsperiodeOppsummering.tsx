@@ -44,22 +44,16 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
         adresse,
     } = arbeidsperiode;
 
-    const teksterForModal: IArbeidsperiodeTekstinnhold =
-        tekster().FELLES.modaler.arbeidsperiode[personType];
+    const teksterForModal: IArbeidsperiodeTekstinnhold = tekster().FELLES.modaler.arbeidsperiode[personType];
 
     const periodenErAvsluttet =
-        arbeidsperiodeAvsluttet?.svar === ESvar.JA ||
-        (personType === PersonType.andreForelder && erDød);
+        arbeidsperiodeAvsluttet?.svar === ESvar.JA || (personType === PersonType.andreForelder && erDød);
 
-    const adresseTekst = periodenErAvsluttet
-        ? teksterForModal.adresseFortid
-        : teksterForModal.adresseNaatid;
+    const adresseTekst = periodenErAvsluttet ? teksterForModal.adresseFortid : teksterForModal.adresseNaatid;
 
     return (
         <PeriodeOppsummering
-            fjernPeriodeCallback={
-                fjernPeriodeCallback && (() => fjernPeriodeCallback(arbeidsperiode))
-            }
+            fjernPeriodeCallback={fjernPeriodeCallback && (() => fjernPeriodeCallback(arbeidsperiode))}
             fjernKnappTekst={teksterForModal.fjernKnapp}
             tittel={
                 <TekstBlock
@@ -70,9 +64,7 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
         >
             {arbeidsperiodeAvsluttet.svar && (
                 <OppsummeringFelt
-                    tittel={
-                        <TekstBlock block={teksterForModal.arbeidsperiodenAvsluttet.sporsmal} />
-                    }
+                    tittel={<TekstBlock block={teksterForModal.arbeidsperiodenAvsluttet.sporsmal} />}
                     søknadsvar={arbeidsperiodeAvsluttet.svar}
                 />
             )}
@@ -97,9 +89,7 @@ export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProp
             />
             <OppsummeringFelt
                 tittel={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
-                søknadsvar={uppercaseFørsteBokstav(
-                    formaterDatostringKunMåned(fraDatoArbeidsperiode.svar, valgtLocale)
-                )}
+                søknadsvar={uppercaseFørsteBokstav(formaterDatostringKunMåned(fraDatoArbeidsperiode.svar, valgtLocale))}
             />
             <OppsummeringFelt
                 tittel={

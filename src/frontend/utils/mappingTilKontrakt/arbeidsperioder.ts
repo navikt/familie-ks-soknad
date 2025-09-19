@@ -67,9 +67,7 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
             arbeidsperiodeland: arbeidsperiodeland.svar
                 ? {
                       label: tilRestLocaleRecord(landTekst.sporsmal, { barnetsNavn: barn?.navn }),
-                      verdi: verdiCallbackAlleSpråk(locale =>
-                          landkodeTilSpråk(arbeidsperiodeland.svar, locale)
-                      ),
+                      verdi: verdiCallbackAlleSpråk(locale => landkodeTilSpråk(arbeidsperiodeland.svar, locale)),
                   }
                 : null,
             arbeidsgiver: {
@@ -91,11 +89,7 @@ export const tilIArbeidsperiodeIKontraktFormat = ({
             adresse: adresse.svar
                 ? søknadsfelt(
                       adresseTekst.sporsmal,
-                      sammeVerdiAlleSpråkEllerUkjent(
-                          tilRestLocaleRecord,
-                          adresse.svar,
-                          adresseTekst.checkboxLabel
-                      )
+                      sammeVerdiAlleSpråkEllerUkjent(tilRestLocaleRecord, adresse.svar, adresseTekst.checkboxLabel)
                   )
                 : null,
         }),

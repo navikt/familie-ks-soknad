@@ -21,12 +21,10 @@ const LeggTilBarnModal: React.FC<{
     erÅpen: boolean;
     lukkModal: () => void;
 }> = ({ erÅpen, lukkModal }) => {
-    const { skjema, nullstillSkjema, valideringErOk, leggTilBarn, validerFelterOgVisFeilmelding } =
-        useLeggTilBarn();
+    const { skjema, nullstillSkjema, valideringErOk, leggTilBarn, validerFelterOgVisFeilmelding } = useLeggTilBarn();
     const { tekster, plainTekst } = useAppContext();
 
-    const teksterForLeggTilBarnModal: ILeggTilBarnTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
+    const teksterForLeggTilBarnModal: ILeggTilBarnTekstinnhold = tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
 
     const {
         tittel,

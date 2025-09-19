@@ -95,28 +95,18 @@ const TekstBlock: React.FC<{
                             {children}
                         </TypografiWrapper>
                     ),
-                    h1: ({ children }) => (
-                        <TypografiWrapper typografi={typografi}>{children}</TypografiWrapper>
-                    ),
+                    h1: ({ children }) => <TypografiWrapper typografi={typografi}>{children}</TypografiWrapper>,
                     h2: ({ children }) => (
-                        <TypografiWrapper typografi={Typografi.HeadingH2}>
-                            {children}
-                        </TypografiWrapper>
+                        <TypografiWrapper typografi={Typografi.HeadingH2}>{children}</TypografiWrapper>
                     ),
                     h3: ({ children }) => (
-                        <TypografiWrapper typografi={Typografi.HeadingH3}>
-                            {children}
-                        </TypografiWrapper>
+                        <TypografiWrapper typografi={Typografi.HeadingH3}>{children}</TypografiWrapper>
                     ),
                 },
                 marks: {
                     flettefelt: props => {
                         if (props?.value?.flettefeltVerdi) {
-                            return (
-                                <span>
-                                    {flettefeltTilTekst(props.value.flettefeltVerdi, flettefelter)}
-                                </span>
-                            );
+                            return <span>{flettefeltTilTekst(props.value.flettefeltVerdi, flettefelter)}</span>;
                         } else {
                             throw new Error(`Fant ikke flettefeltVerdi`);
                         }
@@ -134,8 +124,7 @@ const TekstBlock: React.FC<{
                     },
                 },
                 types: {
-                    flettefelt: props =>
-                        flettefeltTilTekst(props.value.flettefelt, flettefelter, valgtLocale),
+                    flettefelt: props => flettefeltTilTekst(props.value.flettefelt, flettefelter, valgtLocale),
                 },
             }}
         />

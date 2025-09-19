@@ -80,9 +80,7 @@ export interface IAndreForelder {
     andreUtbetalingsperioder: IUtbetalingsperiode[];
     eøsKontantstøttePerioder: IEøsKontantstøttePeriode[];
     idNummer: IIdNummer[];
-    [andreForelderDataKeySpørsmål.adresse]: ISøknadSpørsmål<
-        string | AlternativtSvarForInput.UKJENT
-    >;
+    [andreForelderDataKeySpørsmål.adresse]: ISøknadSpørsmål<string | AlternativtSvarForInput.UKJENT>;
     [andreForelderDataKeySpørsmål.pensjonNorge]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.arbeidNorge]: ISøknadSpørsmål<ESvar | null>;
     [andreForelderDataKeySpørsmål.andreUtbetalinger]: ISøknadSpørsmål<ESvar | null>;

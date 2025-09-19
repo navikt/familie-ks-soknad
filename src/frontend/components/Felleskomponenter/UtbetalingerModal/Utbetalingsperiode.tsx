@@ -63,9 +63,7 @@ export const Utbetalingsperiode: React.FC<Props> = ({
             />
             {tilhørendeJaNeiSpmFelt.verdi === ESvar.JA && (
                 <PerioderContainer
-                    tittel={uppercaseFørsteBokstav(
-                        plainTekst(frittståendeOrdTekster.utbetalingsperioder)
-                    )}
+                    tittel={uppercaseFørsteBokstav(plainTekst(frittståendeOrdTekster.utbetalingsperioder))}
                 >
                     {registrerteUtbetalingsperioder.verdi.map((utbetalingsperiode, index) => (
                         <UtbetalingsperiodeOppsummering

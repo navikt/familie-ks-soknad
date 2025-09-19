@@ -9,11 +9,7 @@ import { OmBarnetSpørsmålsId } from '../components/SøknadsSteg/OmBarnet/spør
 import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../typer/barn';
 import { tomString } from '../typer/common';
 import { PlainTekst } from '../typer/kontrakt/generelle';
-import {
-    IBarnehageplassPeriode,
-    IEøsKontantstøttePeriode,
-    IUtenlandsperiode,
-} from '../typer/perioder';
+import { IBarnehageplassPeriode, IEøsKontantstøttePeriode, IUtenlandsperiode } from '../typer/perioder';
 import { IBarn, IBarnRespons, IIdNummer } from '../typer/person';
 import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
 import { ISøknad } from '../typer/søknad';
@@ -275,9 +271,7 @@ export const barnetsNavnValue = (
     tekster: IFrittståendeOrdTekstinnhold,
     plainTekst: PlainTekst
 ): string => {
-    return barn.navn
-        ? barn.navn
-        : `${plainTekst(tekster.barn).toUpperCase()} ${formaterFnr(barn.ident)}`;
+    return barn.navn ? barn.navn : `${plainTekst(tekster.barn).toUpperCase()} ${formaterFnr(barn.ident)}`;
 };
 
 export const skalSkjuleAndreForelderFelt = (barn: IBarnMedISøknad) => {
@@ -335,9 +329,7 @@ export const filtrerteRelevanteIdNummerForBarn = (
     return barn.idNummer.filter(idNummerObj => relevanteLand.includes(idNummerObj.land));
 };
 
-export const nullstilteEøsFelterForAndreForelder = (
-    andreForelder: IAndreForelder
-): IAndreForelder => ({
+export const nullstilteEøsFelterForAndreForelder = (andreForelder: IAndreForelder): IAndreForelder => ({
     ...andreForelder,
     idNummer: [],
     pensjonNorge: {
@@ -402,6 +394,5 @@ export const skalViseBorMedOmsorgsperson = (
     return borMedAndreForelder === ESvar.NEI || andreSituasjonerSomUtløserOmsorgsperson;
 };
 
-export const finnesPeriodeMedGradertBarnehageplass = (
-    barnehageplassPerioder: IBarnehageplassPeriode[]
-) => barnehageplassPerioder.some(periode => Number(periode.antallTimer.svar) < 33);
+export const finnesPeriodeMedGradertBarnehageplass = (barnehageplassPerioder: IBarnehageplassPeriode[]) =>
+    barnehageplassPerioder.some(periode => Number(periode.antallTimer.svar) < 33);
