@@ -30,8 +30,7 @@ export const useVelgBarn = (): {
     const { barnInkludertISøknaden } = søknad;
     const { settBarnForSteg, hentNåværendeStegIndex } = useStegContext();
     const { settBarnSomTriggerEøs } = useEøsContext();
-    const [barnSomSkalVæreMed, settBarnSomSkalVæreMed] =
-        useState<IBarnMedISøknad[]>(barnInkludertISøknaden);
+    const [barnSomSkalVæreMed, settBarnSomSkalVæreMed] = useState<IBarnMedISøknad[]>(barnInkludertISøknaden);
 
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
 
@@ -65,15 +64,12 @@ export const useVelgBarn = (): {
 
     const oppdaterSøknad = () => {
         const barnSomAlleredeErLagtTil = barnSomSkalVæreMed.filter(
-            barnSomSkalVæreMed =>
-                !!barnInkludertISøknaden.find(barn => barn.id === barnSomSkalVæreMed.id)
+            barnSomSkalVæreMed => !!barnInkludertISøknaden.find(barn => barn.id === barnSomSkalVæreMed.id)
         );
 
         const nyeBarnSomSkalLeggesTil = barnSomSkalVæreMed.filter(
             barnSomSkalVæreMed =>
-                !barnSomAlleredeErLagtTil.find(
-                    barnLagtTil => barnLagtTil.id === barnSomSkalVæreMed.id
-                )
+                !barnSomAlleredeErLagtTil.find(barnLagtTil => barnLagtTil.id === barnSomSkalVæreMed.id)
         );
 
         const oppdaterteBarn = barnSomAlleredeErLagtTil.concat(
@@ -83,9 +79,7 @@ export const useVelgBarn = (): {
         const oppdatertDokumentasjon = søknad.dokumentasjon.map(dok => {
             return {
                 ...dok,
-                gjelderForBarnId: dok.gjelderForBarnId.filter(barnId =>
-                    mapIdentTilId.includes(barnId)
-                ),
+                gjelderForBarnId: dok.gjelderForBarnId.filter(barnId => mapIdentTilId.includes(barnId)),
             };
         });
 
@@ -107,16 +101,11 @@ export const useVelgBarn = (): {
                 : prevState.filter(barnMedISøknad => barnMedISøknad.id !== barn.id)
         );
         if (!skalVæreMed) {
-            settBarnSomTriggerEøs(prevState =>
-                prevState.filter(barnetsId => barn.id !== barnetsId)
-            );
+            settBarnSomTriggerEøs(prevState => prevState.filter(barnetsId => barn.id !== barnetsId));
         }
     };
 
-    const { skjema, kanSendeSkjema, valideringErOk, validerAlleSynligeFelter } = useSkjema<
-        IVelgBarnFeltTyper,
-        string
-    >({
+    const { skjema, kanSendeSkjema, valideringErOk, validerAlleSynligeFelter } = useSkjema<IVelgBarnFeltTyper, string>({
         felter: {
             barnMedISøknad,
         },

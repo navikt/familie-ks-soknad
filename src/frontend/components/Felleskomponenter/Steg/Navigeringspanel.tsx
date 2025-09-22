@@ -1,12 +1,6 @@
 import React from 'react';
 
-import {
-    ArrowLeftIcon,
-    ArrowRightIcon,
-    FloppydiskIcon,
-    PaperplaneIcon,
-    TrashIcon,
-} from '@navikt/aksel-icons';
+import { ArrowLeftIcon, ArrowRightIcon, FloppydiskIcon, PaperplaneIcon, TrashIcon } from '@navikt/aksel-icons';
 import { Box, Button, HGrid, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
@@ -25,26 +19,16 @@ const Navigeringspanel: React.FC<{
     const { hentNesteSteg } = useStegContext();
     const nesteSteg = hentNesteSteg();
     const { innsendingStatus, tekster, plainTekst } = useAppContext();
-    const { visStartPåNyttModal, settVisStartPåNyttModal, startPåNytt } =
-        useBekreftelseOgStartSoknad();
+    const { visStartPåNyttModal, settVisStartPåNyttModal, startPåNytt } = useBekreftelseOgStartSoknad();
 
-    const {
-        sendSoeknadKnapp,
-        gaaVidereKnapp,
-        tilbakeKnapp,
-        fortsettSenereKnapp,
-        slettSoeknadKnapp,
-    } = tekster().FELLES.navigasjon;
+    const { sendSoeknadKnapp, gaaVidereKnapp, tilbakeKnapp, fortsettSenereKnapp, slettSoeknadKnapp } =
+        tekster().FELLES.navigasjon;
 
     return (
         <>
             <Box marginBlock="12 0">
                 <VStack gap="4">
-                    <HGrid
-                        gap={{ xs: '4', sm: '8 4' }}
-                        columns={{ xs: 1, sm: 2 }}
-                        width={{ sm: 'fit-content' }}
-                    >
+                    <HGrid gap={{ xs: '4', sm: '8 4' }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
                         <Button
                             type={'button'}
                             variant="secondary"
@@ -56,13 +40,7 @@ const Navigeringspanel: React.FC<{
                         </Button>
                         <Button
                             type={'submit'}
-                            variant={
-                                valideringErOk
-                                    ? valideringErOk()
-                                        ? 'primary'
-                                        : 'secondary'
-                                    : 'primary'
-                            }
+                            variant={valideringErOk ? (valideringErOk() ? 'primary' : 'secondary') : 'primary'}
                             icon={
                                 nesteSteg.route === RouteEnum.Kvittering ? (
                                     <PaperplaneIcon aria-hidden />
@@ -74,11 +52,7 @@ const Navigeringspanel: React.FC<{
                             loading={innsendingStatus.status === RessursStatus.HENTER}
                             data-testid="neste-steg"
                         >
-                            {plainTekst(
-                                nesteSteg.route === RouteEnum.Kvittering
-                                    ? sendSoeknadKnapp
-                                    : gaaVidereKnapp
-                            )}
+                            {plainTekst(nesteSteg.route === RouteEnum.Kvittering ? sendSoeknadKnapp : gaaVidereKnapp)}
                         </Button>
 
                         <Box asChild marginBlock={{ xs: '4 0', sm: '0' }}>

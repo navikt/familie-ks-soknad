@@ -10,15 +10,12 @@ export interface ModellMismatchRespons {
     modellVersjon: number;
 }
 
-export const erModellMismatchResponsRessurs = (
-    ressurs: unknown
-): ressurs is ApiRessurs<ModellMismatchRespons> => {
+export const erModellMismatchResponsRessurs = (ressurs: unknown): ressurs is ApiRessurs<ModellMismatchRespons> => {
     if (!ressurs || typeof ressurs !== 'object') {
         return false;
     }
 
-    const erModellMismatchMelding =
-        'melding' in ressurs && ressurs.melding === modellMismatchMelding;
+    const erModellMismatchMelding = 'melding' in ressurs && ressurs.melding === modellMismatchMelding;
 
     const harRessursStatusFeilet = 'status' in ressurs && ressurs.status === RessursStatus.FEILET;
 

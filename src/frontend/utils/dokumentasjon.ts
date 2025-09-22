@@ -13,9 +13,7 @@ export const formaterFilstørrelse = (bytes: number, decimals = 2) => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 };
 
-export const genererInitiellDokumentasjon = (
-    dokumentasjonsbehov: Dokumentasjonsbehov
-): IDokumentasjon => ({
+export const genererInitiellDokumentasjon = (dokumentasjonsbehov: Dokumentasjonsbehov): IDokumentasjon => ({
     dokumentasjonsbehov,
     gjelderForBarnId: [],
     gjelderForSøker: false,

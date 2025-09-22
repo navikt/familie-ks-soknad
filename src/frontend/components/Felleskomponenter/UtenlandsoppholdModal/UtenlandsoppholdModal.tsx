@@ -49,10 +49,9 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
     forklaring = undefined,
 }) => {
     const { tekster, plainTekst } = useAppContext();
-    const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
-        useUtenlandsoppholdSkjema({
-            personType,
-        });
+    const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } = useUtenlandsoppholdSkjema({
+        personType,
+    });
 
     const teksterForPersonType = tekster()[ESanitySteg.FELLES].modaler.utenlandsopphold[personType];
     const {
@@ -125,10 +124,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                     {Object.keys(EUtenlandsoppholdÅrsak).map((årsak, number) => (
                         <option key={number} value={årsak}>
                             {plainTekst(
-                                hentUtenlandsoppholdÅrsak(
-                                    årsak as EUtenlandsoppholdÅrsak,
-                                    teksterForPersonType
-                                )
+                                hentUtenlandsoppholdÅrsak(årsak as EUtenlandsoppholdÅrsak, teksterForPersonType)
                             )}
                         </option>
                     ))}
@@ -150,12 +146,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                 <Datovelger
                     felt={oppholdslandFraDato}
                     label={
-                        <TekstBlock
-                            block={hentFraDatoSpørsmål(
-                                utenlandsoppholdÅrsak.verdi,
-                                teksterForPersonType
-                            )}
-                        />
+                        <TekstBlock block={hentFraDatoSpørsmål(utenlandsoppholdÅrsak.verdi, teksterForPersonType)} />
                     }
                     skjema={skjema}
                     avgrensMaxDato={hentMaxAvgrensningPåFraDato(utenlandsoppholdÅrsak.verdi)}
@@ -168,23 +159,14 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                             felt={oppholdslandTilDato}
                             label={
                                 <TekstBlock
-                                    block={hentTilDatoSpørsmål(
-                                        utenlandsoppholdÅrsak.verdi,
-                                        teksterForPersonType
-                                    )}
+                                    block={hentTilDatoSpørsmål(utenlandsoppholdÅrsak.verdi, teksterForPersonType)}
                                 />
                             }
                             skjema={skjema}
-                            avgrensMinDato={hentMinAvgrensningPåTilDato(
-                                utenlandsoppholdÅrsak.verdi
-                            )}
-                            avgrensMaxDato={hentMaxAvgrensningPåTilDato(
-                                utenlandsoppholdÅrsak.verdi
-                            )}
+                            avgrensMinDato={hentMinAvgrensningPåTilDato(utenlandsoppholdÅrsak.verdi)}
+                            avgrensMaxDato={hentMaxAvgrensningPåTilDato(utenlandsoppholdÅrsak.verdi)}
                             tilhørendeFraOgMedFelt={
-                                harTilhørendeFomFelt(utenlandsoppholdÅrsak.verdi)
-                                    ? oppholdslandFraDato
-                                    : undefined
+                                harTilhørendeFomFelt(utenlandsoppholdÅrsak.verdi) ? oppholdslandFraDato : undefined
                             }
                             disabled={oppholdslandTilDatoUkjent.verdi === ESvar.JA}
                         />
@@ -206,10 +188,7 @@ export const UtenlandsoppholdModal: React.FC<Props> = ({
                         disabled={adresseUkjent.verdi === ESvar.JA}
                         description={plainTekst(adresseTekst?.beskrivelse)}
                     />
-                    <SkjemaCheckbox
-                        felt={adresseUkjent}
-                        label={plainTekst(adresseTekst?.checkboxLabel)}
-                    />
+                    <SkjemaCheckbox felt={adresseUkjent} label={plainTekst(adresseTekst?.checkboxLabel)} />
                 </div>
             )}
             {visFeiloppsummering(skjema) && <SkjemaFeiloppsummering skjema={skjema} />}

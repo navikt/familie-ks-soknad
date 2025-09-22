@@ -76,8 +76,7 @@ export const useOmdeg = (): {
     const oppdaterSøknad = () => {
         const oppdatertSøker = genererOppdatertSøker();
         const søkerTriggetEøs = skalTriggeEøsForSøker(oppdatertSøker);
-        const harEøsSteg =
-            søkerTriggetEøs || !!søknad.barnInkludertISøknaden.find(barn => barn.triggetEøs);
+        const harEøsSteg = søkerTriggetEøs || !!søknad.barnInkludertISøknaden.find(barn => barn.triggetEøs);
 
         const oppdatertSøknad = {
             ...søknad,
@@ -97,10 +96,7 @@ export const useOmdeg = (): {
         return oppdatertSøknad;
     };
 
-    const { skjema, kanSendeSkjema, valideringErOk, validerAlleSynligeFelter } = useSkjema<
-        IOmDegFeltTyper,
-        string
-    >({
+    const { skjema, kanSendeSkjema, valideringErOk, validerAlleSynligeFelter } = useSkjema<IOmDegFeltTyper, string>({
         felter: {
             borPåRegistrertAdresse,
             værtINorgeITolvMåneder,

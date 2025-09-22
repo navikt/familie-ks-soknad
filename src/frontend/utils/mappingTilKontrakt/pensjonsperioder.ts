@@ -49,25 +49,19 @@ export const tilIPensjonsperiodeIKontraktFormat = ({
             pensjonsland: pensjonsland.svar
                 ? {
                       label: tilRestLocaleRecord(
-                          periodenErAvsluttet
-                              ? tekster.pensjonLandFortid.sporsmal
-                              : tekster.pensjonLandNaatid.sporsmal,
+                          periodenErAvsluttet ? tekster.pensjonLandFortid.sporsmal : tekster.pensjonLandNaatid.sporsmal,
                           {
                               barnetsNavn: barn?.navn,
                           }
                       ),
-                      verdi: verdiCallbackAlleSpråk(locale =>
-                          landkodeTilSpråk(pensjonsland.svar, locale)
-                      ),
+                      verdi: verdiCallbackAlleSpråk(locale => landkodeTilSpråk(pensjonsland.svar, locale)),
                   }
                 : null,
             pensjonFra: pensjonFra.svar
                 ? {
                       label: tilRestLocaleRecord(tekster.startdato.sporsmal),
                       verdi: verdiCallbackAlleSpråk(locale =>
-                          uppercaseFørsteBokstav(
-                              formaterDatostringKunMåned(pensjonFra.svar, locale)
-                          )
+                          uppercaseFørsteBokstav(formaterDatostringKunMåned(pensjonFra.svar, locale))
                       ),
                   }
                 : null,
@@ -75,9 +69,7 @@ export const tilIPensjonsperiodeIKontraktFormat = ({
                 ? {
                       label: tilRestLocaleRecord(tekster.sluttdato.sporsmal),
                       verdi: verdiCallbackAlleSpråk(locale =>
-                          uppercaseFørsteBokstav(
-                              formaterDatostringKunMåned(pensjonTil.svar, locale)
-                          )
+                          uppercaseFørsteBokstav(formaterDatostringKunMåned(pensjonTil.svar, locale))
                       ),
                   }
                 : null,

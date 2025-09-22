@@ -4,11 +4,7 @@ import { IIdNummer } from '../../typer/person';
 import { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
 import { landkodeTilSpråk } from '../språk';
 
-import {
-    sammeVerdiAlleSpråk,
-    sammeVerdiAlleSpråkEllerUkjent,
-    verdiCallbackAlleSpråk,
-} from './hjelpefunksjoner';
+import { sammeVerdiAlleSpråk, sammeVerdiAlleSpråkEllerUkjent, verdiCallbackAlleSpråk } from './hjelpefunksjoner';
 
 export const idNummerTilISøknadsfelt = (
     tilRestLocaleRecord: TilRestLocaleRecord,

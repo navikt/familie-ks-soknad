@@ -53,9 +53,7 @@ const Filopplaster: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDok
                             ? dokumentasjonTekster.filopplastingDeaktivertFilerErUnderOpplastning
                             : dokumentasjonTekster.filopplastingDeaktivert
                     ),
-                    disabledFilelimit: plainTekst(
-                        dokumentasjonTekster.filopplastingDeaktivertMaksAntallFiler
-                    ),
+                    disabledFilelimit: plainTekst(dokumentasjonTekster.filopplastingDeaktivertMaksAntallFiler),
                 },
                 item: {
                     retryButtonTitle: plainTekst(dokumentasjonTekster.lastOppFilenPaNytt),
@@ -86,8 +84,7 @@ const Filopplaster: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDok
                     onSelect={nyeFiler => leggTilVedlegg(nyeFiler)}
                 />
 
-                {(dokumentasjon.opplastedeVedlegg.length > 0 ||
-                    filerUnderOpplastning.length > 0) && (
+                {(dokumentasjon.opplastedeVedlegg.length > 0 || filerUnderOpplastning.length > 0) && (
                     <VStack gap="2">
                         <Heading level="4" size="xsmall">
                             {`${plainTekst(frittståendeOrdTekster.vedlegg)} (${dokumentasjon.opplastedeVedlegg.length + filerUnderOpplastning.length})`}
@@ -141,8 +138,7 @@ const Filopplaster: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDok
                                         fil.reasons[0] === ECustomFileRejectionReasons.UKJENT_FEIL
                                             ? {
                                                   action: 'retry',
-                                                  onClick: () =>
-                                                      prøvOpplastingAvAvvistFilPåNytt(fil),
+                                                  onClick: () => prøvOpplastingAvAvvistFilPåNytt(fil),
                                               }
                                             : {
                                                   action: 'delete',

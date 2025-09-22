@@ -13,19 +13,9 @@ export const konfigurerApi = (app: Express): Express => {
     app.use(`${BASE_PATH}api/soknad`, express.json({ limit: '5mb' }) as RequestHandler);
     app.use(`${BASE_PATH}api/soknad`, erklaeringInterceptor);
     app.use(`${BASE_PATH}api/soknad`, escapeBody);
-    app.use(
-        `${BASE_PATH}api`,
-        addCallId(),
-        attachToken('familie-baks-soknad-api'),
-        doProxy(miljø().soknadApiUrl)
-    );
+    app.use(`${BASE_PATH}api`, addCallId(), attachToken('familie-baks-soknad-api'), doProxy(miljø().soknadApiUrl));
 
-    app.use(
-        `${BASE_PATH}dokument`,
-        addCallId(),
-        attachToken('familie-dokument'),
-        doProxy(miljø().dokumentUrl)
-    );
+    app.use(`${BASE_PATH}dokument`, addCallId(), attachToken('familie-dokument'), doProxy(miljø().dokumentUrl));
 
     return app;
 };

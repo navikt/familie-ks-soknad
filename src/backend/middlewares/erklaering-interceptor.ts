@@ -4,11 +4,7 @@ import { byggFeiletRessurs } from '@navikt/familie-typer';
 
 import { ISøknadKontrakt } from '../../frontend/typer/kontrakt/søknadKontrakt';
 
-export const erklaeringInterceptor: RequestHandler = (
-    request: Request,
-    response: Response,
-    next: NextFunction
-) => {
+export const erklaeringInterceptor: RequestHandler = (request: Request, response: Response, next: NextFunction) => {
     const søknad: ISøknadKontrakt = request.body;
     const lestOgForståttErklæringKey = 'lestOgForståttBekreftelse';
 
@@ -20,8 +16,6 @@ export const erklaeringInterceptor: RequestHandler = (
     if (søknad.lestOgForståttBekreftelse) {
         next();
     } else {
-        response
-            .status(403)
-            .send(byggFeiletRessurs('Du må huke av for at du oppgir korrekte opplysninger'));
+        response.status(403).send(byggFeiletRessurs('Du må huke av for at du oppgir korrekte opplysninger'));
     }
 };

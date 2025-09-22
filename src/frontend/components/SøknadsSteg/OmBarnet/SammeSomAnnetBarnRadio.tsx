@@ -48,10 +48,7 @@ const SammeSomAnnetBarnRadio: React.FC<{
         <StyledRadioGroup
             {...felt.hentNavInputProps(skjema.visFeilmeldinger)}
             legend={
-                <TekstBlock
-                    block={teksterForSteg.hvemErBarnSinAndreForelder.sporsmal}
-                    flettefelter={{ barnetsNavn }}
-                />
+                <TekstBlock block={teksterForSteg.hvemErBarnSinAndreForelder.sporsmal} flettefelter={{ barnetsNavn }} />
             }
             name={OmBarnetSpørsmålsId.sammeForelderSomAnnetBarn}
             onChange={value => {

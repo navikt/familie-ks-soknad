@@ -14,7 +14,5 @@ export const slåSammen = (
         return tekstListe[0];
     }
 
-    return tekstListe
-        .join(', ')
-        .replace(/,(?=[^,]+$)/, ` ${plainTekst(frittståendeOrdTekster.og)}`);
+    return tekstListe.join(', ').replace(/,(?=[^,]+$)/, ` ${plainTekst(frittståendeOrdTekster.og)}`);
 };

@@ -27,15 +27,13 @@ import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
 
-interface UseBarnehageplassSkjemaVerdi
-    extends IUsePeriodeSkjemaVerdi<IBarnehageplassPerioderFeltTyper> {
+interface UseBarnehageplassSkjemaVerdi extends IUsePeriodeSkjemaVerdi<IBarnehageplassPerioderFeltTyper> {
     slutterIBarnehagenMinDato: () => Date | undefined;
 }
 
 export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi => {
     const { tekster, plainTekst } = useAppContext();
-    const barnehageplassTekster: IBarnehageplassTekstinnhold =
-        tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
+    const barnehageplassTekster: IBarnehageplassTekstinnhold = tekster()[ESanitySteg.FELLES].modaler.barnehageplass;
     const formateringsfeilmeldinger: IFormateringsfeilmeldingerTekstinnhold =
         tekster()[ESanitySteg.FELLES].formateringsfeilmeldinger;
 
@@ -43,9 +41,7 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
         feltId: BarnehageplassPeriodeSpørsmålId.barnehageplassPeriodeBeskrivelse,
         verdi: '',
         valideringsfunksjon: (felt: FeltState<EBarnehageplassPeriodeBeskrivelse | ''>) =>
-            felt.verdi !== ''
-                ? ok(felt)
-                : feil(felt, plainTekst(barnehageplassTekster.periodebeskrivelse.feilmelding)),
+            felt.verdi !== '' ? ok(felt) : feil(felt, plainTekst(barnehageplassTekster.periodebeskrivelse.feilmelding)),
     });
 
     useEffect(() => {
@@ -88,12 +84,10 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
     });
 
     const periodenErAvsluttet =
-        barnehageplassPeriodeBeskrivelse.verdi ===
-        EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE;
+        barnehageplassPeriodeBeskrivelse.verdi === EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE;
 
     const periodenHarIkkeStartet =
-        barnehageplassPeriodeBeskrivelse.verdi ===
-        EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN;
+        barnehageplassPeriodeBeskrivelse.verdi === EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN;
 
     const startetIBarnehagen = useDatovelgerFelt({
         søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.startetIBarnehagen, svar: '' },
@@ -107,16 +101,13 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
                 ? dagensDato()
                 : undefined,
         sluttdatoAvgrensning:
-            barnehageplassPeriodeBeskrivelse.verdi ===
-            EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
+            barnehageplassPeriodeBeskrivelse.verdi === EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ
                 ? dagensDato()
                 : barnehageplassPeriodeBeskrivelse.verdi ===
                     EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE
                   ? gårsdagensDato()
                   : undefined,
-        customStartdatoFeilmelding: plainTekst(
-            formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid
-        ),
+        customStartdatoFeilmelding: plainTekst(formateringsfeilmeldinger.datoKanIkkeVaereTilbakeITid),
     });
 
     const slutterIBarnehagenVetIkke = useFelt<ESvar>({
@@ -129,8 +120,7 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
     });
 
     const slutterIBarnehagenMinDato = () => {
-        const startetIBarnehageDato =
-            startetIBarnehagen.verdi && stringTilDate(startetIBarnehagen.verdi);
+        const startetIBarnehageDato = startetIBarnehagen.verdi && stringTilDate(startetIBarnehagen.verdi);
 
         switch (barnehageplassPeriodeBeskrivelse.verdi) {
             case EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE:
@@ -138,9 +128,7 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
             case EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ:
                 return morgendagensDato();
             case EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN:
-                return startetIBarnehageDato
-                    ? dagenEtterDato(startetIBarnehageDato)
-                    : morgendagensDato();
+                return startetIBarnehageDato ? dagenEtterDato(startetIBarnehageDato) : morgendagensDato();
         }
     };
 
@@ -154,9 +142,7 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
         skalFeltetVises: !!barnehageplassPeriodeBeskrivelse.verdi,
         sluttdatoAvgrensning: periodenErAvsluttet ? dagensDato() : undefined,
         startdatoAvgrensning: slutterIBarnehagenMinDato(),
-        customStartdatoFeilmelding: erSammeDatoSomDagensDato(
-            stringTilDate(startetIBarnehagen.verdi)
-        )
+        customStartdatoFeilmelding: erSammeDatoSomDagensDato(stringTilDate(startetIBarnehagen.verdi))
             ? undefined
             : plainTekst(formateringsfeilmeldinger.periodeAvsluttesForTidlig),
         avhengigheter: { startetIBarnehagen },

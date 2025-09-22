@@ -42,9 +42,7 @@ export const PensjonsperiodeOppsummering: React.FC<PensjonsperiodeOppsummeringPr
 
     return (
         <PeriodeOppsummering
-            fjernPeriodeCallback={
-                fjernPeriodeCallback && (() => fjernPeriodeCallback(pensjonsperiode))
-            }
+            fjernPeriodeCallback={fjernPeriodeCallback && (() => fjernPeriodeCallback(pensjonsperiode))}
             fjernKnappTekst={teksterForModal.fjernKnapp}
             tittel={
                 <TekstBlock
@@ -82,17 +80,13 @@ export const PensjonsperiodeOppsummering: React.FC<PensjonsperiodeOppsummeringPr
             {pensjonFra.svar && (
                 <OppsummeringFelt
                     tittel={<TekstBlock block={teksterForModal.startdato.sporsmal} />}
-                    søknadsvar={uppercaseFørsteBokstav(
-                        formaterDatostringKunMåned(pensjonFra.svar, valgtLocale)
-                    )}
+                    søknadsvar={uppercaseFørsteBokstav(formaterDatostringKunMåned(pensjonFra.svar, valgtLocale))}
                 />
             )}
             {pensjonTil.svar && (
                 <OppsummeringFelt
                     tittel={<TekstBlock block={teksterForModal.sluttdato.sporsmal} />}
-                    søknadsvar={uppercaseFørsteBokstav(
-                        formaterDatostringKunMåned(pensjonTil.svar, valgtLocale)
-                    )}
+                    søknadsvar={uppercaseFørsteBokstav(formaterDatostringKunMåned(pensjonTil.svar, valgtLocale))}
                 />
             )}
         </PeriodeOppsummering>

@@ -11,17 +11,11 @@ describe('slåSammen', () => {
     });
 
     test('Returnerer første element om det kun er ett element i listen', () => {
-        expect(slåSammen(['test'], PlainTekstMock, frittståendeOrdTekstinnholdMock)).toEqual(
-            'test'
-        );
+        expect(slåSammen(['test'], PlainTekstMock, frittståendeOrdTekstinnholdMock)).toEqual('test');
     });
 
     test('Returnerer "element1 og element2" ved to elementer ', () => {
-        const sammenslåttTekst1 = slåSammen(
-            ['test1', 'test2'],
-            PlainTekstMock,
-            frittståendeOrdTekstinnholdMock
-        );
+        const sammenslåttTekst1 = slåSammen(['test1', 'test2'], PlainTekstMock, frittståendeOrdTekstinnholdMock);
         expect(sammenslåttTekst1).toEqual('test1 og test2');
     });
 

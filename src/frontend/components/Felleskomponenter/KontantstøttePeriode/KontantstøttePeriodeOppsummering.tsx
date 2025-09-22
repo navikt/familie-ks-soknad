@@ -38,8 +38,7 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
 }) => {
     const { tekster } = useAppContext();
 
-    const teksterForPersonType: IEøsYtelseTekstinnhold =
-        tekster().FELLES.modaler.eøsYtelse[personType];
+    const teksterForPersonType: IEøsYtelseTekstinnhold = tekster().FELLES.modaler.eøsYtelse[personType];
 
     const {
         mottarEøsKontantstøtteNå,
@@ -50,15 +49,12 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
     } = kontantstøttePeriode;
 
     const periodenErAvsluttet =
-        mottarEøsKontantstøtteNå.svar === ESvar.NEI ||
-        (personType === PersonType.andreForelder && erDød);
+        mottarEøsKontantstøtteNå.svar === ESvar.NEI || (personType === PersonType.andreForelder && erDød);
     const { valgtLocale } = useSpråkContext();
 
     return (
         <PeriodeOppsummering
-            fjernPeriodeCallback={
-                fjernPeriodeCallback && (() => fjernPeriodeCallback(kontantstøttePeriode))
-            }
+            fjernPeriodeCallback={fjernPeriodeCallback && (() => fjernPeriodeCallback(kontantstøttePeriode))}
             fjernKnappTekst={teksterForPersonType.fjernKnapp}
             tittel={
                 <TekstBlock
@@ -107,10 +103,7 @@ export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
             )}
             <OppsummeringFelt
                 tittel={
-                    <TekstBlock
-                        block={teksterForPersonType.beloepPerMaaned.sporsmal}
-                        flettefelter={{ barnetsNavn }}
-                    />
+                    <TekstBlock block={teksterForPersonType.beloepPerMaaned.sporsmal} flettefelter={{ barnetsNavn }} />
                 }
                 søknadsvar={månedligBeløp.svar}
             />

@@ -7,11 +7,7 @@ import type { Felt, ISkjema } from '@navikt/familie-skjema';
 import { useAppContext } from '../../../context/AppContext';
 import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
-import {
-    IBarnehageplassPeriode,
-    IEøsKontantstøttePeriode,
-    IUtenlandsperiode,
-} from '../../../typer/perioder';
+import { IBarnehageplassPeriode, IEøsKontantstøttePeriode, IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnetFeltTyper } from '../../../typer/skjema';
@@ -75,17 +71,13 @@ const Oppfølgningsspørsmål: React.FC<{
                 </SkjemaFieldset>
             )}
             {barn[barnDataKeySpørsmål.boddMindreEnn12MndINorge].svar === ESvar.JA && (
-                <SkjemaFieldset
-                    legend={plainTekst(opplystBarnOppholdUtenforNorge, { barnetsNavn })}
-                >
+                <SkjemaFieldset legend={plainTekst(opplystBarnOppholdUtenforNorge, { barnetsNavn })}>
                     <Utenlandsperiode
                         personType={PersonType.barn}
                         skjema={skjema}
                         leggTilUtenlandsperiode={leggTilUtenlandsperiode}
                         fjernUtenlandsperiode={fjernUtenlandsperiode}
-                        registrerteUtenlandsperioder={
-                            skjema.felter.barnRegistrerteUtenlandsperioder
-                        }
+                        registrerteUtenlandsperioder={skjema.felter.barnRegistrerteUtenlandsperioder}
                         barn={barn}
                     />
                     {skjema.felter.planleggerÅBoINorge12Mnd.erSynlig && (
@@ -109,9 +101,7 @@ const Oppfølgningsspørsmål: React.FC<{
                 </SkjemaFieldset>
             )}
             {barn[barnDataKeySpørsmål.kontantstøtteFraAnnetEøsland].svar === ESvar.JA && (
-                <SkjemaFieldset
-                    legend={plainTekst(opplystFaarHarFaattEllerSoektYtelse, { barnetsNavn })}
-                >
+                <SkjemaFieldset legend={plainTekst(opplystFaarHarFaattEllerSoektYtelse, { barnetsNavn })}>
                     <JaNeiSpm
                         skjema={skjema}
                         felt={skjema.felter.pågåendeSøknadFraAnnetEøsLand}

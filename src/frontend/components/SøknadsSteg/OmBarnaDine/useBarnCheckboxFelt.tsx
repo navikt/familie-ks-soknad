@@ -1,14 +1,7 @@
 import { ReactNode, useEffect } from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import {
-    type Avhengigheter,
-    feil,
-    type Felt,
-    type FeltState,
-    ok,
-    useFelt,
-} from '@navikt/familie-skjema';
+import { type Avhengigheter, feil, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
 import { barnDataKeySpørsmål } from '../../../typer/barn';
@@ -27,16 +20,13 @@ const useBarnCheckboxFelt = (
 
     const checkbox = useFelt<BarnetsId[]>({
         feltId: barn[0][datafeltNavn].id,
-        verdi: søknad.barnInkludertISøknaden
-            .filter(barn => barn[datafeltNavn].svar === ESvar.JA)
-            .map(barn => barn.id),
+        verdi: søknad.barnInkludertISøknaden.filter(barn => barn[datafeltNavn].svar === ESvar.JA).map(barn => barn.id),
         valideringsfunksjon: (felt: FeltState<BarnetsId[]>) => {
             return felt.verdi.length > 0 ? ok(felt) : feil(felt, feilmelding);
         },
         skalFeltetVises: (avhengigheter: Avhengigheter) => {
             return avhengigheter?.jaNeiSpm
-                ? (avhengigheter.jaNeiSpm as Felt<ESvar | null>).verdi ===
-                      avhengigJaNeiSpmSvarCondition
+                ? (avhengigheter.jaNeiSpm as Felt<ESvar | null>).verdi === avhengigJaNeiSpmSvarCondition
                 : true;
         },
         avhengigheter: { jaNeiSpm: avhengighet },

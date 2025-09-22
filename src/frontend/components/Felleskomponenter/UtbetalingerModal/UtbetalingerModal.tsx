@@ -39,23 +39,19 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
     forklaring = undefined,
 }) => {
     const { tekster, plainTekst } = useAppContext();
-    const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } =
-        useUtbetalingerSkjema(personType, barn, erDød);
+    const { skjema, valideringErOk, nullstillSkjema, validerFelterOgVisFeilmelding } = useUtbetalingerSkjema(
+        personType,
+        barn,
+        erDød
+    );
 
-    const teksterForPersonType: IAndreUtbetalingerTekstinnhold =
-        tekster().FELLES.modaler.andreUtbetalinger[personType];
+    const teksterForPersonType: IAndreUtbetalingerTekstinnhold = tekster().FELLES.modaler.andreUtbetalinger[personType];
 
     const andreForelderErDød: boolean = personType === PersonType.andreForelder && !!erDød;
-    const periodenErAvsluttet: boolean =
-        skjema.felter.fårUtbetalingNå.verdi === ESvar.NEI || andreForelderErDød;
+    const periodenErAvsluttet: boolean = skjema.felter.fårUtbetalingNå.verdi === ESvar.NEI || andreForelderErDød;
 
-    const {
-        fårUtbetalingNå,
-        utbetalingLand,
-        utbetalingFraDato,
-        utbetalingTilDato,
-        utbetalingTilDatoUkjent,
-    } = skjema.felter;
+    const { fårUtbetalingNå, utbetalingLand, utbetalingFraDato, utbetalingTilDato, utbetalingTilDatoUkjent } =
+        skjema.felter;
 
     const onLeggTil = () => {
         if (!validerFelterOgVisFeilmelding()) {
@@ -138,13 +134,8 @@ export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
                                     }
                                 />
                             }
-                            tidligsteValgbareMåned={minTilDatoForPeriode(
-                                periodenErAvsluttet,
-                                utbetalingFraDato.verdi
-                            )}
-                            senesteValgbareMåned={
-                                periodenErAvsluttet ? sisteDagDenneMåneden() : undefined
-                            }
+                            tidligsteValgbareMåned={minTilDatoForPeriode(periodenErAvsluttet, utbetalingFraDato.verdi)}
+                            senesteValgbareMåned={periodenErAvsluttet ? sisteDagDenneMåneden() : undefined}
                             visFeilmeldinger={skjema.visFeilmeldinger}
                             dagIMåneden={DagIMåneden.SISTE_DAG}
                             kanIkkeVæreFremtid={periodenErAvsluttet}

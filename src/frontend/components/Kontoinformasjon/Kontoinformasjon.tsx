@@ -21,10 +21,7 @@ const Kontoinformasjon: React.FC = () => {
                         {plainTekst(kvitteringstekster.kontonummerTittel)}
                     </Heading>
                     <Label as="p">{kontoinformasjon.data.kontonummer}</Label>
-                    <TekstBlock
-                        typografi={Typografi.BodyLong}
-                        block={kvitteringstekster.redigerKontonummerLenke}
-                    />
+                    <TekstBlock typografi={Typografi.BodyLong} block={kvitteringstekster.redigerKontonummerLenke} />
                 </>
             )}
 

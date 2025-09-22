@@ -29,10 +29,7 @@ describe('LastOppVedlegg', () => {
 
         const { queryByTestId, getByTestId } = render(
             <TestProvidere>
-                <LastOppVedlegg
-                    dokumentasjon={dokumentasjon}
-                    oppdaterDokumentasjon={oppdaterDokumentasjon}
-                />
+                <LastOppVedlegg dokumentasjon={dokumentasjon} oppdaterDokumentasjon={oppdaterDokumentasjon} />
             </TestProvidere>
         );
 

@@ -1,8 +1,4 @@
-import {
-    dokumentasjonsbehovTilTittelSanityApiNavn,
-    IDokumentasjon,
-    IVedlegg,
-} from '../../typer/dokumentasjon';
+import { dokumentasjonsbehovTilTittelSanityApiNavn, IDokumentasjon, IVedlegg } from '../../typer/dokumentasjon';
 import {
     Dokumentasjonsbehov,
     ISøknadKontraktDokumentasjon,
@@ -30,15 +26,8 @@ export const dokumentasjonISøknadFormat = (
             vedleggISøknadFormat(vedlegg, dokumentasjon.dokumentasjonsbehov)
         ),
         dokumentasjonSpråkTittel: tilRestLocaleRecord(
-            dokumentsjonstekster[
-                dokumentasjonsbehovTilTittelSanityApiNavn(dokumentasjon.dokumentasjonsbehov)
-            ],
-            flettefelterForDokumentasjonTittel(
-                dokumentasjon,
-                søknad,
-                plainTekst,
-                tekster.FELLES.frittståendeOrd
-            )
+            dokumentsjonstekster[dokumentasjonsbehovTilTittelSanityApiNavn(dokumentasjon.dokumentasjonsbehov)],
+            flettefelterForDokumentasjonTittel(dokumentasjon, søknad, plainTekst, tekster.FELLES.frittståendeOrd)
         ),
     };
 };
@@ -55,11 +44,7 @@ const flettefelterForDokumentasjonTittel = (
                 .filter(barn => dokumentasjon.gjelderForBarnId.find(id => barn.id === id))
                 .map(barn => barn.navn);
             return {
-                barnetsNavn: slåSammen(
-                    barnDokumentasjonsbehovGjelderFor,
-                    plainTekst,
-                    frittståendeOrdTekster
-                ),
+                barnetsNavn: slåSammen(barnDokumentasjonsbehovGjelderFor, plainTekst, frittståendeOrdTekster),
             };
         default:
             return {};

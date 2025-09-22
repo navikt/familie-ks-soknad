@@ -4,14 +4,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ESvar } from '@navikt/familie-form-elements';
-import {
-    type Avhengigheter,
-    feil,
-    type Felt,
-    type FeltState,
-    ok,
-    useFelt,
-} from '@navikt/familie-skjema';
+import { type Avhengigheter, feil, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../context/AppContext';
 import { LocaleRecordBlock } from '../typer/common';
@@ -45,14 +38,10 @@ const useLanddropdownFeltMedJaNeiAvhengighet = ({
             if (!skalFeltetVises) {
                 return false;
             }
-            return (avhengigheter?.jaNeiSpm as Felt<ESvar | null>)
-                ? skalViseFelt(avhengigheter.jaNeiSpm.verdi)
-                : true;
+            return (avhengigheter?.jaNeiSpm as Felt<ESvar | null>) ? skalViseFelt(avhengigheter.jaNeiSpm.verdi) : true;
         },
         valideringsfunksjon: (felt: FeltState<Alpha3Code | ''>) => {
-            return felt.verdi !== ''
-                ? ok(felt)
-                : feil(felt, plainTekst(feilmelding, { ...flettefelter }));
+            return felt.verdi !== '' ? ok(felt) : feil(felt, plainTekst(feilmelding, { ...flettefelter }));
         },
         nullstillVedAvhengighetEndring,
         avhengigheter: { jaNeiSpm: avhengighet },

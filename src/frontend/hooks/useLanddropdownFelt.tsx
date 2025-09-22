@@ -27,10 +27,7 @@ const useLanddropdownFelt = ({
         valideringsfunksjon: (felt: FeltState<Alpha3Code | ''>, avhengigheter) => {
             return felt.verdi !== ''
                 ? ok(felt)
-                : feil(
-                      felt,
-                      avhengigheter?.feilmelding ? plainTekst(avhengigheter?.feilmelding) : ''
-                  );
+                : feil(felt, avhengigheter?.feilmelding ? plainTekst(avhengigheter?.feilmelding) : '');
         },
         nullstillVedAvhengighetEndring,
         avhengigheter: { skalFeltetVises, feilmelding },

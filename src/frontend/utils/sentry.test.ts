@@ -19,9 +19,7 @@ describe('sentry', () => {
         const stringifiedBreadcrumbData = JSON.stringify(breadcrumbData);
 
         const stringify = mockFn();
-        stringify
-            .calledWith(event.breadcrumbs?.slice(0, 1)[0].data)
-            .mockReturnValue(stringifiedBreadcrumbData);
+        stringify.calledWith(event.breadcrumbs?.slice(0, 1)[0].data).mockReturnValue(stringifiedBreadcrumbData);
         const stringifySpy = vi.spyOn(JSON, 'stringify').mockImplementation(stringify);
         const rensketEvent = fjernPersonopplysninger(event);
         stringifySpy.mockRestore();

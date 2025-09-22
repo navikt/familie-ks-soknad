@@ -54,14 +54,10 @@ export const useBekreftelseOgStartSoknad = (): {
             brukMellomlagretVerdi();
             settBarnForSteg(barnInkludertISøknaden);
             settBarnSomTriggerEøs(
-                barnInkludertISøknaden
-                    .filter(barn => skalTriggeEøsForBarn(barn))
-                    .map(barn => barn.id)
+                barnInkludertISøknaden.filter(barn => skalTriggeEøsForBarn(barn)).map(barn => barn.id)
             );
             settSøkerTriggerEøs(søker.triggetEøs);
-            const nesteStegIndex =
-                mellomlagretVerdi.sistePåbegynteStegIndex ||
-                mellomlagretVerdi.sisteUtfylteStegIndex;
+            const nesteStegIndex = mellomlagretVerdi.sistePåbegynteStegIndex || mellomlagretVerdi.sisteUtfylteStegIndex;
 
             navigate(steg[nesteStegIndex].path);
         } else {
@@ -93,9 +89,7 @@ export const useBekreftelseOgStartSoknad = (): {
 
     const bekreftelseOnChange = () => {
         settBekreftelseStatus(prevState => {
-            return prevState !== BekreftelseStatus.BEKREFTET
-                ? BekreftelseStatus.BEKREFTET
-                : BekreftelseStatus.NORMAL;
+            return prevState !== BekreftelseStatus.BEKREFTET ? BekreftelseStatus.BEKREFTET : BekreftelseStatus.NORMAL;
         });
     };
     return {

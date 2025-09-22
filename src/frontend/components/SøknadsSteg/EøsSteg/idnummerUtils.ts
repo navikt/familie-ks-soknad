@@ -27,9 +27,7 @@ export const fjernDuplikat = (landList: Alpha3Code[]): Alpha3Code[] =>
 export const eøsLandUtenDuplikatHof =
     (erEøsLand: (land: Alpha3Code | '') => boolean) =>
     (landListe: (Alpha3Code | '' | undefined)[]): Alpha3Code[] => {
-        const eøsLand: Alpha3Code[] = landListe.filter(
-            land => !!land && erEøsLand(land)
-        ) as Alpha3Code[];
+        const eøsLand: Alpha3Code[] = landListe.filter(land => !!land && erEøsLand(land)) as Alpha3Code[];
         return fjernDuplikat(eøsLand);
     };
 
@@ -113,11 +111,7 @@ export const idNummerLand = (
     },
     erEøsLand: (land: Alpha3Code | '') => boolean
 ) => {
-    const {
-        arbeidsperioderUtland = [],
-        pensjonsperioderUtland = [],
-        utenlandsperioder = [],
-    } = perioder;
+    const { arbeidsperioderUtland = [], pensjonsperioderUtland = [], utenlandsperioder = [] } = perioder;
     return idNummerLandMedPeriodeType(
         {
             arbeidsperioderUtland,

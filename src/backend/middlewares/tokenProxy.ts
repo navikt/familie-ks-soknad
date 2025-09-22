@@ -43,10 +43,7 @@ const utledToken = (authorization: string | undefined): string => {
     }
 };
 
-const prepareSecuredRequest = async (
-    req: Request,
-    applicationName: ApplicationName
-): Promise<string> => {
+const prepareSecuredRequest = async (req: Request, applicationName: ApplicationName): Promise<string> => {
     logRequest(req, 'PrepareSecuredRequest', LOG_LEVEL.INFO);
     const { authorization } = req.headers;
     if (erLokalt()) {
@@ -61,10 +58,7 @@ const prepareSecuredRequest = async (
         throw validation.error;
     }
 
-    const obo = await requestOboToken(
-        token,
-        `${process.env.NAIS_CLUSTER_NAME}:teamfamilie:${applicationName}`
-    );
+    const obo = await requestOboToken(token, `${process.env.NAIS_CLUSTER_NAME}:teamfamilie:${applicationName}`);
     if (obo.ok === false) {
         logError('Feil under veksling av token: ', undefined, { error: obo.error });
         throw obo.error;

@@ -2,12 +2,7 @@ import React, { createContext, PropsWithChildren, useContext, useEffect, useStat
 
 import { createClient } from '@sanity/client';
 
-import {
-    byggHenterRessurs,
-    byggTomRessurs,
-    type Ressurs,
-    RessursStatus,
-} from '@navikt/familie-typer';
+import { byggHenterRessurs, byggTomRessurs, type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import miljø from '../../shared-utils/miljø';
 import { SanityDokument } from '../typer/sanity/sanity';
@@ -24,8 +19,7 @@ export interface SanityContext {
 const SanityContext = createContext<SanityContext | undefined>(undefined);
 
 export function SanityProvider(props: PropsWithChildren) {
-    const { settRessurserSomLaster, fjernRessursSomLaster, ressurserSomLaster } =
-        useLastRessurserContext();
+    const { settRessurserSomLaster, fjernRessursSomLaster, ressurserSomLaster } = useLastRessurserContext();
     const [teksterRessurs, settTeksterRessurs] = useState(byggTomRessurs<ITekstinnhold>());
 
     const sanityKlient = createClient({
@@ -59,9 +53,7 @@ export function SanityProvider(props: PropsWithChildren) {
             });
     }, []);
 
-    return (
-        <SanityContext.Provider value={{ teksterRessurs }}>{props.children}</SanityContext.Provider>
-    );
+    return <SanityContext.Provider value={{ teksterRessurs }}>{props.children}</SanityContext.Provider>;
 }
 
 export function useSanityContext() {

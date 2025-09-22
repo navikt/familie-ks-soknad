@@ -4,12 +4,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { AlternativtSvarForInput, BarnetsId } from './common';
 import { ESivilstand, IAdresse } from './kontrakt/generelle';
-import {
-    IArbeidsperiode,
-    IPensjonsperiode,
-    IUtbetalingsperiode,
-    IUtenlandsperiode,
-} from './perioder';
+import { IArbeidsperiode, IPensjonsperiode, IUtbetalingsperiode, IUtenlandsperiode } from './perioder';
 import { ISøknadSpørsmål } from './spørsmål';
 
 export interface IPerson {

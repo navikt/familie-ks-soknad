@@ -25,9 +25,7 @@ export const VedleggOppsummering: FC<IVedleggOppsummeringProps> = ({ vedlegg }) 
                         <List.Item key={index}>
                             {plainTekst(
                                 dokumentasjonTekster[
-                                    dokumentasjonsbehovTilTittelSanityApiNavn(
-                                        vedlegg.dokumentasjonsbehov
-                                    )
+                                    dokumentasjonsbehovTilTittelSanityApiNavn(vedlegg.dokumentasjonsbehov)
                                 ],
                                 vedlegg.flettefeltVerdier
                             )}

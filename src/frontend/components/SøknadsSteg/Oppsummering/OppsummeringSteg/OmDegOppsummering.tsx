@@ -42,10 +42,7 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                         : jaNeiSvarTilSpråkId(ESvar.NEI, fellesTekster.frittståendeOrd)
                 )}
             />
-            <OppsummeringFelt
-                tittel={plainTekst(omDegTekster.ident)}
-                søknadsvar={søknad.søker.ident}
-            />
+            <OppsummeringFelt tittel={plainTekst(omDegTekster.ident)} søknadsvar={søknad.søker.ident} />
             <OppsummeringFelt
                 tittel={plainTekst(omDegTekster.statsborgerskap)}
                 søknadsvar={søknad.søker.statsborgerskap
@@ -57,9 +54,7 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             <OppsummeringFelt
                 tittel={plainTekst(omDegTekster.sivilstatus)}
                 søknadsvar={plainTekst(
-                    fellesTekster.frittståendeOrd[
-                        sivilstandTilSanitySivilstandApiKey(søknad.søker.sivilstand.type)
-                    ]
+                    fellesTekster.frittståendeOrd[sivilstandTilSanitySivilstandApiKey(søknad.søker.sivilstand.type)]
                 )}
             />
 

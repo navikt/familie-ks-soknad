@@ -17,13 +17,7 @@ import { enGB, nb, nn } from 'date-fns/locale';
 
 import { feil, type FeltState, ok } from '@navikt/familie-skjema';
 
-import {
-    AlternativtSvarForInput,
-    DatoMedUkjent,
-    ISODateString,
-    LocaleRecordBlock,
-    LocaleType,
-} from '../typer/common';
+import { AlternativtSvarForInput, DatoMedUkjent, ISODateString, LocaleRecordBlock, LocaleType } from '../typer/common';
 import { PlainTekst } from '../typer/kontrakt/generelle';
 import { IFormateringsfeilmeldingerTekstinnhold } from '../typer/sanity/tekstInnhold';
 
@@ -31,11 +25,9 @@ export const erDatoFormatGodkjent = (dato: Date) => isValid(dato);
 
 export const erDatoFremITid = (dato: Date) => isFuture(dato);
 
-export const erDatoEtterSluttdatoAvgresning = (dato: Date, sluttdato: Date) =>
-    isAfter(dato, sluttdato);
+export const erDatoEtterSluttdatoAvgresning = (dato: Date, sluttdato: Date) => isAfter(dato, sluttdato);
 
-export const erDatoFørStartDatoAvgrensning = (dato: Date, startdato: Date) =>
-    isBefore(dato, startdato);
+export const erDatoFørStartDatoAvgrensning = (dato: Date, startdato: Date) => isBefore(dato, startdato);
 
 export const gårsdagensDato = () => sub(dagensDato(), { days: 1 });
 
@@ -95,9 +87,7 @@ export const validerDato = (
     if (!!startdatoAvgrensning && erDatoFørStartDatoAvgrensning(dato, startdatoAvgrensning)) {
         return feil(
             feltState,
-            customStartdatoFeilmelding
-                ? customStartdatoFeilmelding
-                : plainTekst(tekster.periodeAvsluttesForTidlig)
+            customStartdatoFeilmelding ? customStartdatoFeilmelding : plainTekst(tekster.periodeAvsluttesForTidlig)
         );
     }
     return ok(feltState);
@@ -106,8 +96,7 @@ export const validerDato = (
 export const formaterDatostringKunMåned = (datoString: ISODateString, språk: LocaleType) =>
     format(new Date(datoString), 'MMMM yyyy', { locale: mapSpråkvalgTilDateFnsLocale(språk) });
 
-export const formaterDato = (datoString: ISODateString) =>
-    format(new Date(datoString), 'dd.MM.yyyy');
+export const formaterDato = (datoString: ISODateString) => format(new Date(datoString), 'dd.MM.yyyy');
 
 export const formaterDatoKunMåned = (dato: Date, språk: LocaleType) =>
     format(dato, 'MMMM yyyy', { locale: mapSpråkvalgTilDateFnsLocale(språk) });

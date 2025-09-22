@@ -48,9 +48,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
     const { datoformatHjelpetekst, datoformatPlaceholder } = tekster().FELLES.hjelpeteksterForInput;
 
     const minDatoErIFremtiden = () =>
-        tilhørendeFraOgMedFelt?.verdi &&
-        hentFromDate() !== undefined &&
-        isAfter(hentFromDate() as Date, dagensDato());
+        tilhørendeFraOgMedFelt?.verdi && hentFromDate() !== undefined && isAfter(hentFromDate() as Date, dagensDato());
 
     const hentFromDate = (): Date | undefined => {
         let minDato = tidenesMorgen();
@@ -96,9 +94,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
         if (inputProps.value && inputProps.value !== '' && !disabled) {
             const parsetDato = parseTilGyldigDato(inputProps.value.toString(), 'dd.MM.yyyy');
             felt.validerOgSettFelt(
-                parsetDato
-                    ? formatISO(startOfDay(parsetDato), { representation: 'date' })
-                    : inputProps.value.toString()
+                parsetDato ? formatISO(startOfDay(parsetDato), { representation: 'date' }) : inputProps.value.toString()
             );
         }
     }, [inputProps.value, disabled]);

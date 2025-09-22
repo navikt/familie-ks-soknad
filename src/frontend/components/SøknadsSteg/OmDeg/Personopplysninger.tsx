@@ -42,9 +42,7 @@ export const Personopplysninger: React.FC = () => {
             <div>
                 <Label>{plainTekst(sivilstatus)}</Label>
                 <BodyShort>
-                    {plainTekst(
-                        frittståendeOrd[sivilstandTilSanitySivilstandApiKey(søker.sivilstand.type)]
-                    )}
+                    {plainTekst(frittståendeOrd[sivilstandTilSanitySivilstandApiKey(søker.sivilstand.type)])}
                 </BodyShort>
             </div>
 

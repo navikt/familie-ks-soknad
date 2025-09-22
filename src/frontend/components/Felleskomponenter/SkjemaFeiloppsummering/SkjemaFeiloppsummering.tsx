@@ -17,10 +17,7 @@ interface Props {
 export const SkjemaFeiloppsummering: React.FC<Props> = ({ skjema, stegMedFeil, id }) => {
     const { tekster, plainTekst } = useAppContext();
     return (
-        <ErrorSummary
-            id={id}
-            heading={plainTekst(tekster().FELLES.navigasjon.duMaaRetteOppFoelgende)}
-        >
+        <ErrorSummary id={id} heading={plainTekst(tekster().FELLES.navigasjon.duMaaRetteOppFoelgende)}>
             {Object.values(skjema.felter)
                 .filter(felt => {
                     return felt.erSynlig && felt.valideringsstatus === Valideringsstatus.FEIL;

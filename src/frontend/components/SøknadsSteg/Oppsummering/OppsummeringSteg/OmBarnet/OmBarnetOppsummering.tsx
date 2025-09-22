@@ -45,13 +45,7 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
         >
             {barn[barnDataKeySpørsmål.utbetaltForeldrepengerEllerEngangsstønad].svar && (
                 <OppsummeringFelt
-                    tittel={
-                        <TekstBlock
-                            block={
-                                omBarnetTekster.utbetaltForeldrepengerEllerEngangsstoenad.sporsmal
-                            }
-                        />
-                    }
+                    tittel={<TekstBlock block={omBarnetTekster.utbetaltForeldrepengerEllerEngangsstoenad.sporsmal} />}
                     søknadsvar={barn.utbetaltForeldrepengerEllerEngangsstønad.svar}
                 />
             )}
@@ -100,21 +94,13 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
                     />
                     {barn[barnDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand].svar && (
                         <OppsummeringFelt
-                            tittel={
-                                <TekstBlock
-                                    block={omBarnetTekster.paagaaendeSoeknadYtelse.sporsmal}
-                                />
-                            }
-                            søknadsvar={
-                                barn[barnDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand].svar
-                            }
+                            tittel={<TekstBlock block={omBarnetTekster.paagaaendeSoeknadYtelse.sporsmal} />}
+                            søknadsvar={barn[barnDataKeySpørsmål.pågåendeSøknadFraAnnetEøsLand].svar}
                         />
                     )}
                     {barn[barnDataKeySpørsmål.pågåendeSøknadHvilketLand].svar && (
                         <OppsummeringFelt
-                            tittel={
-                                <TekstBlock block={omBarnetTekster.hvilketLandYtelse.sporsmal} />
-                            }
+                            tittel={<TekstBlock block={omBarnetTekster.hvilketLandYtelse.sporsmal} />}
                             søknadsvar={landkodeTilSpråk(
                                 barn[barnDataKeySpørsmål.pågåendeSøknadHvilketLand].svar,
                                 valgtLocale
@@ -123,16 +109,8 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
                     )}
                     {barn[barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte].svar && (
                         <OppsummeringFelt
-                            tittel={
-                                <TekstBlock
-                                    block={
-                                        omBarnetTekster.faarEllerHarFaattYtelseFraAnnetLand.sporsmal
-                                    }
-                                />
-                            }
-                            søknadsvar={
-                                barn[barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte].svar
-                            }
+                            tittel={<TekstBlock block={omBarnetTekster.faarEllerHarFaattYtelseFraAnnetLand.sporsmal} />}
+                            søknadsvar={barn[barnDataKeySpørsmål.mottarEllerMottokEøsKontantstøtte].svar}
                         />
                     )}
                     {barn.eøsKontantstøttePerioder.map((periode, index) => (
@@ -150,10 +128,7 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
                 <>
                     <OppsummeringFelt
                         tittel={
-                            <TekstBlock
-                                block={omBarnetTekster.opplystBarnehageplass}
-                                flettefelter={flettefelter}
-                            />
+                            <TekstBlock block={omBarnetTekster.opplystBarnehageplass} flettefelter={flettefelter} />
                         }
                     />
                     {barn.barnehageplassPerioder.map((periode, index) => (
@@ -174,20 +149,14 @@ const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index })
 
             <OppsummeringFelt
                 tittel={
-                    <TekstBlock
-                        block={omBarnetTekster.borBarnFastSammenMedDeg.sporsmal}
-                        flettefelter={flettefelter}
-                    />
+                    <TekstBlock block={omBarnetTekster.borBarnFastSammenMedDeg.sporsmal} flettefelter={flettefelter} />
                 }
                 søknadsvar={barn[barnDataKeySpørsmål.borFastMedSøker].svar}
             />
             {barn[barnDataKeySpørsmål.foreldreBorSammen].svar && (
                 <OppsummeringFelt
                     tittel={
-                        <TekstBlock
-                            block={omBarnetTekster.borForeldreSammen.sporsmal}
-                            flettefelter={flettefelter}
-                        />
+                        <TekstBlock block={omBarnetTekster.borForeldreSammen.sporsmal} flettefelter={flettefelter} />
                     }
                     søknadsvar={barn[barnDataKeySpørsmål.foreldreBorSammen].svar}
                 />

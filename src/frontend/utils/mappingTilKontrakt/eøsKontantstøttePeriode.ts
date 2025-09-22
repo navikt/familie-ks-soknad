@@ -46,10 +46,7 @@ export const tilIEøsKontantstøttePeriodeIKontraktFormat = ({
         verdi: sammeVerdiAlleSpråk({
             mottarEøsKontantstøtteNå: mottarEøsKontantstøtteNå.svar
                 ? {
-                      label: tilRestLocaleRecord(
-                          eøsYtelseTekster.faarYtelserNaa.sporsmal,
-                          flettefelter
-                      ),
+                      label: tilRestLocaleRecord(eøsYtelseTekster.faarYtelserNaa.sporsmal, flettefelter),
                       verdi: sammeVerdiAlleSpråk(mottarEøsKontantstøtteNå.svar),
                   }
                 : null,
