@@ -1,68 +1,41 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { GuidePanel, Heading, Page, VStack } from '@navikt/ds-react';
-import { RessursStatus } from '@navikt/familie-typer';
-import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
+import { Heading, Link, Page, VStack, BodyShort } from '@navikt/ds-react';
 
-import { useAppContext } from '../../context/AppContext';
-import { useLastRessurserContext } from '../../context/LastRessurserContext';
-import { useSanityContext } from '../../context/SanityContext';
-import { Feilside } from '../Felleskomponenter/Feilside/Feilside';
-import SystemetLaster from '../Felleskomponenter/SystemetLaster/SystemetLaster';
-import TekstBlock from '../Felleskomponenter/TekstBlock';
-
-export const DisabledApp: React.FC = () => {
-    const { tekster, plainTekst } = useAppContext();
-    const { teksterRessurs } = useSanityContext();
-    const { lasterRessurser } = useLastRessurserContext();
-
-    if (lasterRessurser()) {
-        return (
-            <main>
-                <SystemetLaster />
-            </main>
-        );
-    }
-
-    if (teksterRessurs.status !== RessursStatus.SUKSESS) {
-        return (
-            <main>
-                <Page.Block width="text" gutters>
-                    <Feilside />
-                </Page.Block>
-            </main>
-        );
-    }
-
-    useEffect(() => {
-        visSpråkvelger();
-    }, []);
-
-    const visSpråkvelger = () => {
-        setAvailableLanguages([
-            { locale: 'nb', handleInApp: true },
-            { locale: 'nn', handleInApp: true },
-            { locale: 'en', handleInApp: true },
-        ]).then();
-    };
-
-    const { vedlikeholdTittel, vedlikeholdBroedtekst, vedlikeholdVeileder } = tekster().FELLES.vedlikeholdsarbeid;
-
+export function DisabledApp() {
     return (
         <main>
             <Page.Block width="text" gutters>
-                <VStack gap="12" marginBlock="32">
-                    <GuidePanel>
-                        <TekstBlock block={vedlikeholdVeileder} />
-                    </GuidePanel>
+                <VStack gap="16">
                     <div>
                         <Heading level="1" size="large" spacing>
-                            {plainTekst(vedlikeholdTittel)}
+                            Vi jobber med å forbedre siden
                         </Heading>
-                        <TekstBlock block={vedlikeholdBroedtekst} />
+                        <BodyShort spacing>
+                            Denne siden er midlertidig utilgjengelig mens vi legger til nytt innhold og gjør
+                            forbedringer. Takk for tålmodigheten. Prøv gjerne igjen litt senere, eller send oss søknaden
+                            på PDF/papir.
+                        </BodyShort>
+                        <BodyShort>
+                            <Link href="https://www.nav.no/start/soknad-kontantstotte">Bruk PDF/papirskjema</Link>
+                        </BodyShort>
+                    </div>
+                    <div>
+                        <Heading level="1" size="large" spacing>
+                            We’re working on this page
+                        </Heading>
+                        <BodyShort spacing>
+                            This page is temporarily unavailable while we add new content and improvements. Thank you
+                            for your patience. Please check back a bit later, or send the application on PDF/paper.
+                        </BodyShort>
+                        <BodyShort>
+                            <Link href="https://www.nav.no/start/soknad-kontantstotte/en">
+                                Send the application on PDF/paper
+                            </Link>
+                        </BodyShort>
                     </div>
                 </VStack>
             </Page.Block>
         </main>
     );
-};
+}
