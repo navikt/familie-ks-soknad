@@ -104,7 +104,7 @@
     "@types/eslint-plugin-jsx-a11y": "^6.9.0",
     "@types/express": "^5.0.1",
     "@types/mustache-express": "^1.2.5",
-    "@types/node": "^24.5.0",
+    "@types/node": "^24.7.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@types/react-router": "^5.1.20",
