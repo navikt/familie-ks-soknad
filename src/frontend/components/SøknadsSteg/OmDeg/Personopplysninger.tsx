@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Alpha3Code } from 'i18n-iso-countries';
 
-import { BodyShort, Label } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
@@ -24,12 +24,12 @@ export const Personopplysninger: React.FC = () => {
     return (
         <>
             <div>
-                <Label>{plainTekst(ident)}</Label>
+                <BodyShort weight="semibold">{plainTekst(ident)}</BodyShort>
                 <BodyShort>{søker.ident}</BodyShort>
             </div>
 
             <div>
-                <Label>{plainTekst(statsborgerskap)}</Label>
+                <BodyShort weight="semibold">{plainTekst(statsborgerskap)}</BodyShort>
                 <BodyShort>
                     {søker.statsborgerskap
                         .map((statsborgerskap: { landkode: Alpha3Code }) =>
@@ -40,14 +40,14 @@ export const Personopplysninger: React.FC = () => {
             </div>
 
             <div>
-                <Label>{plainTekst(sivilstatus)}</Label>
+                <BodyShort weight="semibold">{plainTekst(sivilstatus)}</BodyShort>
                 <BodyShort>
                     {plainTekst(frittståendeOrd[sivilstandTilSanitySivilstandApiKey(søker.sivilstand.type)])}
                 </BodyShort>
             </div>
 
             <div>
-                <Label>{plainTekst(adresse)}</Label>
+                <BodyShort weight="semibold">{plainTekst(adresse)}</BodyShort>
                 {genererAdresseVisning(søker, tekster().OM_DEG, plainTekst)}
             </div>
         </>
