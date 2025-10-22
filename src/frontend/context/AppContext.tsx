@@ -44,6 +44,8 @@ export interface AppContext {
     settInnsendingStatus: React.Dispatch<React.SetStateAction<Ressurs<IKvittering>>>;
     sisteUtfylteStegIndex: number;
     settSisteUtfylteStegIndex: React.Dispatch<React.SetStateAction<number>>;
+    datoSistLagret: string | null;
+    settDatoSistLagret: React.Dispatch<React.SetStateAction<string | null>>;
     erStegUtfyltFrafør: (nåværendeStegIndex: number) => boolean;
     avbrytOgSlettSøknad: () => void;
     gåTilbakeTilStart: () => void;
@@ -84,6 +86,7 @@ export function AppProvider(props: PropsWithChildren) {
     const [søknad, settSøknad] = useState<ISøknad>(initialStateSøknad);
     const [innsendingStatus, settInnsendingStatus] = useState(byggTomRessurs<IKvittering>());
     const [sisteUtfylteStegIndex, settSisteUtfylteStegIndex] = useState<number>(-1);
+    const [datoSistLagret, settDatoSistLagret] = useState<string | null>(null);
     const [mellomlagretVerdi, settMellomlagretVerdi] = useState<IMellomlagretKontantstøtte>();
     const [fåttGyldigKvittering, settFåttGyldigKvittering] = useState(false);
     const [nåværendeRoute, settNåværendeRoute] = useState<RouteEnum | undefined>(undefined);
@@ -156,6 +159,7 @@ export function AppProvider(props: PropsWithChildren) {
             sisteUtfylteStegIndex: sisteUtfylteStegIndex,
             sistePåbegynteStegIndex: nåværendeStegIndex,
             locale: valgtLocale,
+            datoSistLagret: new Date().toISOString(),
         };
         axiosRequest<IMellomlagretKontantstøtte, IMellomlagretKontantstøtte>({
             url: `${miljø().dokumentProxyUrl}/soknad/kontantstotte`,
@@ -199,6 +203,7 @@ export function AppProvider(props: PropsWithChildren) {
         if (mellomlagretVerdi) {
             settSøknad(mellomlagretVerdi.søknad);
             settSisteUtfylteStegIndex(mellomlagretVerdi.sisteUtfylteStegIndex);
+            settDatoSistLagret(mellomlagretVerdi.datoSistLagret);
         }
     };
 
@@ -250,11 +255,13 @@ export function AppProvider(props: PropsWithChildren) {
         nullstillSøknadsobjekt();
         nullstillMellomlagretVerdi();
         settSisteUtfylteStegIndex(-1);
+        settDatoSistLagret(null);
     };
 
     const gåTilbakeTilStart = () => {
         nullstillSøknadsobjekt();
         settSisteUtfylteStegIndex(-1);
+        settDatoSistLagret(null);
     };
 
     const systemetFeiler = () => {
@@ -365,6 +372,8 @@ export function AppProvider(props: PropsWithChildren) {
                 settInnsendingStatus,
                 sisteUtfylteStegIndex,
                 settSisteUtfylteStegIndex,
+                datoSistLagret,
+                settDatoSistLagret,
                 erStegUtfyltFrafør,
                 avbrytOgSlettSøknad,
                 gåTilbakeTilStart,

@@ -107,6 +107,11 @@ export const formaterDatoMedUkjent = (datoMedUkjent: DatoMedUkjent, tekstForUkje
         : format(new Date(datoMedUkjent), 'dd.MM.yyyy');
 };
 
+export const formaterDatoOgTid = (datoString: ISODateString, språk: LocaleType) =>
+    format(new Date(datoString), "dd. MMMM yyyy 'kl.' HH:mm", {
+        locale: mapSpråkvalgTilDateFnsLocale(språk),
+    });
+
 const mapSpråkvalgTilDateFnsLocale = (språkvalg: LocaleType): Locale => {
     switch (språkvalg) {
         case LocaleType.nb:
