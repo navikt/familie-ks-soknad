@@ -153,14 +153,13 @@ export function AppProvider(props: PropsWithChildren) {
     }, [innloggetStatus, teksterRessurs]);
 
     const mellomlagre = (søknadSomSkalLagres: ISøknad, nåværendeStegIndex: number) => {
-        const nåværendeDato = new Date().toISOString();
         const kontantstøtte: IMellomlagretKontantstøtte = {
             søknad: søknadSomSkalLagres,
             modellVersjon: miljø().modellVersjon,
             sisteUtfylteStegIndex: sisteUtfylteStegIndex,
             sistePåbegynteStegIndex: nåværendeStegIndex,
             locale: valgtLocale,
-            datoSistLagret: nåværendeDato,
+            datoSistLagret: new Date().toISOString(),
         };
         axiosRequest<IMellomlagretKontantstøtte, IMellomlagretKontantstøtte>({
             url: `${miljø().dokumentProxyUrl}/soknad/kontantstotte`,
@@ -172,7 +171,7 @@ export function AppProvider(props: PropsWithChildren) {
             // do nothing
         });
         settMellomlagretVerdi(kontantstøtte);
-        settDatoSistLagret(nåværendeDato);
+        settDatoSistLagret(kontantstøtte.datoSistLagret);
     };
 
     const {
