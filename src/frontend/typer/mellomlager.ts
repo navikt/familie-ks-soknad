@@ -7,4 +7,5 @@ export interface IMellomlagretKontantstøtte {
     sistePåbegynteStegIndex: number | undefined;
     modellVersjon: number;
     locale: LocaleType;
+    datoSistLagret: string;
 }

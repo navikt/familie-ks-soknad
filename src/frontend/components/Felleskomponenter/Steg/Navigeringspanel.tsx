@@ -1,12 +1,14 @@
 import React from 'react';
 
 import { ArrowLeftIcon, ArrowRightIcon, FloppydiskIcon, PaperplaneIcon, TrashIcon } from '@navikt/aksel-icons';
-import { Box, Button, HGrid, VStack } from '@navikt/ds-react';
+import { BodyShort, Box, Button, HGrid, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useAppContext } from '../../../context/AppContext';
+import { useSpråkContext } from '../../../context/SpråkContext';
 import { useStegContext } from '../../../context/StegContext';
 import { RouteEnum } from '../../../typer/routes';
+import { formaterDatoOgTid } from '../../../utils/dato';
 import { useBekreftelseOgStartSoknad } from '../../SøknadsSteg/Forside/useBekreftelseOgStartSoknad';
 
 import { SlettSøknadenModal } from './SlettSøknadenModal';
@@ -18,16 +20,22 @@ const Navigeringspanel: React.FC<{
 }> = ({ onAvbrytCallback, onTilbakeCallback, valideringErOk }) => {
     const { hentNesteSteg } = useStegContext();
     const nesteSteg = hentNesteSteg();
-    const { innsendingStatus, tekster, plainTekst } = useAppContext();
+    const { innsendingStatus, tekster, plainTekst, datoSistLagret } = useAppContext();
+    const { valgtLocale } = useSpråkContext();
     const { visStartPåNyttModal, settVisStartPåNyttModal, startPåNytt } = useBekreftelseOgStartSoknad();
 
-    const { sendSoeknadKnapp, gaaVidereKnapp, tilbakeKnapp, fortsettSenereKnapp, slettSoeknadKnapp } =
+    const { sistLagret, sendSoeknadKnapp, gaaVidereKnapp, tilbakeKnapp, fortsettSenereKnapp, slettSoeknadKnapp } =
         tekster().FELLES.navigasjon;
 
     return (
         <>
             <Box marginBlock="12 0">
                 <VStack gap="4">
+                    {datoSistLagret && (
+                        <BodyShort as="div" size="small" textColor="subtle">
+                            {plainTekst(sistLagret)} {formaterDatoOgTid(datoSistLagret, valgtLocale)}
+                        </BodyShort>
+                    )}
                     <HGrid gap={{ xs: '4', sm: '8 4' }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
                         <Button
                             type={'button'}

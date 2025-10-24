@@ -155,6 +155,7 @@ export interface INavigasjonTekstinnhold {
     sendSoeknadKnapp: LocaleRecordString;
     slettSoeknadKnapp: LocaleRecordString;
     fortsettSenereKnapp: LocaleRecordString;
+    sistLagret: LocaleRecordString;
 }
 
 export interface IFormateringsfeilmeldingerTekstinnhold {
