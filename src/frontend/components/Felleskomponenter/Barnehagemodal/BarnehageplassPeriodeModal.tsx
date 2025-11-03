@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { Alert } from '@navikt/ds-react';
+import { Alert, Radio, RadioGroup } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useAppContext } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { AlternativtSvarForInput } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -55,6 +56,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
         barnehageplassUtlandet,
         barnehageplassLand,
         offentligStøtte,
+        harHeltidDeltidBarnehageplass,
         antallTimer,
         startetIBarnehagen,
         slutterIBarnehagen,
@@ -81,6 +83,10 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
             offentligStøtte: {
                 id: BarnehageplassPeriodeSpørsmålId.offentligStøtte,
                 svar: offentligStøtte.erSynlig ? offentligStøtte.verdi : null,
+            },
+            harHeltidDeltidBarnehageplass: {
+                id: BarnehageplassPeriodeSpørsmålId.harHeltidDeltidBarnehageplass,
+                svar: null,
             },
             antallTimer: {
                 id: BarnehageplassPeriodeSpørsmålId.antallTimer,
@@ -154,6 +160,27 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     felt={offentligStøtte}
                     spørsmålDokument={barnehageplassTekster.offentligStoette}
                 />
+            )}
+            {harHeltidDeltidBarnehageplass.erSynlig && (
+                <RadioGroup
+                    {...harHeltidDeltidBarnehageplass.hentNavInputProps(skjema.visFeilmeldinger)}
+                    legend={<TekstBlock block={barnehageplassTekster.harHeltidDeltidBarnehageplass.sporsmal} />}
+                    name={BarnehageplassPeriodeSpørsmålId.harHeltidDeltidBarnehageplass}
+                    error={harHeltidDeltidBarnehageplass.feilmelding}
+                >
+                    <Radio
+                        key={AlternativtSvarForInput.BARNEHAGEPLASS_HELTID}
+                        value={AlternativtSvarForInput.BARNEHAGEPLASS_HELTID}
+                    >
+                        Heltidsplass
+                    </Radio>
+                    <Radio
+                        key={AlternativtSvarForInput.BARNEHAGEPLASS_DELTID}
+                        value={AlternativtSvarForInput.BARNEHAGEPLASS_DELTID}
+                    >
+                        Deltidsplass
+                    </Radio>
+                </RadioGroup>
             )}
             {antallTimer.erSynlig && (
                 <KomponentGruppe>

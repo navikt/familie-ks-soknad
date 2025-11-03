@@ -18,6 +18,7 @@ export interface IBarnehageplassTekstinnhold {
     startdatoFremtid: ISanitySpørsmålDokument;
     ugyldigTimer: LocaleRecordBlock;
     utland: ISanitySpørsmålDokument;
+    harHeltidDeltidBarnehageplass: ISanitySpørsmålDokument;
     valgalternativBarnehageplassIFremtid: LocaleRecordString;
     valgalternativBarnehageplassNaa: LocaleRecordString;
     valgalternativBarnehageplassTidligere: LocaleRecordString;
