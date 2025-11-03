@@ -86,7 +86,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
             },
             harHeltidDeltidBarnehageplass: {
                 id: BarnehageplassPeriodeSpørsmålId.harHeltidDeltidBarnehageplass,
-                svar: null,
+                svar: harHeltidDeltidBarnehageplass.verdi,
             },
             antallTimer: {
                 id: BarnehageplassPeriodeSpørsmålId.antallTimer,
@@ -167,6 +167,9 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     legend={<TekstBlock block={barnehageplassTekster.harHeltidDeltidBarnehageplass.sporsmal} />}
                     name={BarnehageplassPeriodeSpørsmålId.harHeltidDeltidBarnehageplass}
                     error={harHeltidDeltidBarnehageplass.feilmelding}
+                    onChange={value => {
+                        skjema.felter.harHeltidDeltidBarnehageplass.onChange(value);
+                    }}
                 >
                     <Radio
                         key={AlternativtSvarForInput.BARNEHAGEPLASS_HELTID}

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
+import { AlternativtSvarForInput } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
@@ -29,6 +30,7 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
         barnehageplassUtlandet,
         barnehageplassLand,
         offentligStøtte,
+        harHeltidDeltidBarnehageplass,
         antallTimer,
         startetIBarnehagen,
         slutterIBarnehagen,
@@ -54,7 +56,6 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
                     hentBarnehageplassBeskrivelse(barnehageplassPeriodeBeskrivelse.svar, barnehageplassTekster)
                 )}
             />
-
             <OppsummeringFelt
                 tittel={<TekstBlock block={barnehageplassTekster.utland.sporsmal} />}
                 søknadsvar={barnehageplassUtlandet.svar}
@@ -71,6 +72,14 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
                     søknadsvar={offentligStøtte.svar}
                 />
             )}
+            <OppsummeringFelt
+                tittel={<TekstBlock block={barnehageplassTekster.harHeltidDeltidBarnehageplass.sporsmal} />}
+                søknadsvar={
+                    harHeltidDeltidBarnehageplass.svar === AlternativtSvarForInput.BARNEHAGEPLASS_HELTID
+                        ? plainTekst(barnehageplassTekster.barnehageplassHeltid)
+                        : plainTekst(barnehageplassTekster.barnehageplassDeltid)
+                }
+            />
             <OppsummeringFelt
                 tittel={<TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />}
                 søknadsvar={antallTimer.svar}
