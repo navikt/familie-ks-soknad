@@ -1,7 +1,7 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { barnDataKeySpørsmål } from '../barn';
-import { ISODateString, LocaleType } from '../common';
+import { AlternativtSvarForInput, ISODateString, LocaleType } from '../common';
 
 import { ISøknadKontraktDokumentasjon } from './dokumentasjon';
 import {
@@ -201,6 +201,9 @@ export interface IBarnehageplassPeriodeIKontraktFormat {
     barnehageplassUtlandet: ISøknadsfelt<ESvar>;
     barnehageplassLand: ISøknadsfelt<string> | null;
     offentligStøtte: ISøknadsfelt<ESvar> | null;
+    harHeltidDeltidBarnehageplass: ISøknadsfelt<
+        AlternativtSvarForInput.BARNEHAGEPLASS_HELTID | AlternativtSvarForInput.BARNEHAGEPLASS_DELTID
+    >;
     antallTimer: ISøknadsfelt<string>;
     startetIBarnehagen: ISøknadsfelt<ISODateString>;
     slutterIBarnehagen: ISøknadsfelt<ISODateString | string>;
