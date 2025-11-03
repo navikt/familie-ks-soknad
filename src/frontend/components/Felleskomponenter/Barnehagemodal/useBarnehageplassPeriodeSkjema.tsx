@@ -9,6 +9,7 @@ import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjen
 import useInputFelt from '../../../hooks/useInputFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { AlternativtSvarForInput } from '../../../typer/common';
 import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -67,6 +68,28 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
         feilmelding: barnehageplassTekster.offentligStoette.feilmelding,
         skalSkjules: !(barnehageplassUtlandet.verdi === ESvar.JA),
         nullstillVedAvhengighetEndring: true,
+    });
+
+    const harHeltidDeltidBarnehageplass = useFelt<
+        AlternativtSvarForInput.BARNEHAGEPLASS_HELTID | AlternativtSvarForInput.BARNEHAGEPLASS_DELTID | null
+    >({
+        feltId: BarnehageplassPeriodeSpørsmålId.harHeltidDeltidBarnehageplass,
+        verdi: null,
+        valideringsfunksjon: (
+            felt: FeltState<
+                AlternativtSvarForInput.BARNEHAGEPLASS_HELTID | AlternativtSvarForInput.BARNEHAGEPLASS_DELTID | null
+            >
+        ) => {
+            return felt.verdi !== null
+                ? ok(felt)
+                : feil(
+                      felt,
+                      // TODO: legge til feilmelding i sanity for harHeltidDeltidBarnehageplass
+                      plainTekst(barnehageplassTekster.antallTimer.feilmelding)
+                  );
+        },
+        skalFeltetVises: avhengigheter => !!avhengigheter.barnehageplassPeriodeBeskrivelse.verdi,
+        avhengigheter: { barnehageplassPeriodeBeskrivelse },
     });
 
     const antallTimer = useInputFelt({
@@ -155,6 +178,7 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
             barnehageplassUtlandet,
             barnehageplassLand,
             offentligStøtte,
+            harHeltidDeltidBarnehageplass,
             antallTimer,
             startetIBarnehagen,
             slutterIBarnehagen,

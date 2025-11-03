@@ -53,6 +53,9 @@ export interface IBarnehageplassPeriode {
     barnehageplassUtlandet: ISøknadSpørsmål<ESvar>;
     barnehageplassLand: ISøknadSpørsmål<Alpha3Code | ''>;
     offentligStøtte: ISøknadSpørsmål<ESvar | null>;
+    harHeltidDeltidBarnehageplass: ISøknadSpørsmål<
+        AlternativtSvarForInput.BARNEHAGEPLASS_HELTID | AlternativtSvarForInput.BARNEHAGEPLASS_DELTID | null
+    >;
     antallTimer: ISøknadSpørsmål<string>;
     startetIBarnehagen: ISøknadSpørsmål<ISODateString>;
     slutterIBarnehagen: ISøknadSpørsmål<DatoMedUkjent>;
