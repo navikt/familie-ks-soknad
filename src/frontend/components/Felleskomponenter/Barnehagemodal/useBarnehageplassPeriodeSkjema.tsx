@@ -84,14 +84,16 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
                 ? ok(felt)
                 : feil(felt, plainTekst(barnehageplassTekster.harHeltidDeltidBarnehageplass.feilmelding));
         },
-        skalFeltetVises: avhengigheter => !!avhengigheter.barnehageplassPeriodeBeskrivelse.verdi,
         avhengigheter: { barnehageplassPeriodeBeskrivelse },
+        skalFeltetVises: avhengigheter => !!avhengigheter.barnehageplassPeriodeBeskrivelse.verdi,
     });
 
     const antallTimer = useInputFelt({
         søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.antallTimer, svar: '' },
         feilmelding: barnehageplassTekster.barnehageplassDeltidAntallTimer.feilmelding,
-        skalVises: !!barnehageplassPeriodeBeskrivelse.verdi,
+        skalVises:
+            !!barnehageplassPeriodeBeskrivelse.verdi &&
+            harHeltidDeltidBarnehageplass.verdi === AlternativtSvarForInput.BARNEHAGEPLASS_DELTID,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
             if (verdi.match(/^[\d\s.\\/,]{1,7}$/)) {
