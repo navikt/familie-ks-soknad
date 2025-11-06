@@ -193,6 +193,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     description={
                         <TekstBlock block={barnehageplassTekster.barnehageplassDeltidAntallTimer.beskrivelse} />
                     }
+                    inputMode="decimal"
                     htmlSize={15}
                 />
             )}
