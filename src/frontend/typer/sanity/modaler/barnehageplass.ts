@@ -3,6 +3,7 @@ import { ISanitySpørsmålDokument } from '../sanity';
 
 export interface IBarnehageplassTekstinnhold {
     antallTimer: ISanitySpørsmålDokument;
+    barnehageplassDeltidAntallTimer: ISanitySpørsmålDokument;
     fjernKnapp: LocaleRecordBlock;
     leggTilPeriodeForklaring: LocaleRecordString;
     flerePerioder: LocaleRecordBlock;

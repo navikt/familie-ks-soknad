@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Alert, Radio, RadioGroup } from '@navikt/ds-react';
+import { Radio, RadioGroup } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useAppContext } from '../../../context/AppContext';
@@ -16,7 +16,6 @@ import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
 import StyledDropdown from '../Dropdowns/StyledDropdown';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
-import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { SkjemaCheckbox } from '../SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
@@ -187,18 +186,15 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                 </RadioGroup>
             )}
             {antallTimer.erSynlig && (
-                <KomponentGruppe>
-                    <SkjemaFeltInput
-                        felt={antallTimer}
-                        visFeilmeldinger={skjema.visFeilmeldinger}
-                        label={<TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />}
-                        htmlSize={15}
-                    />
-
-                    <Alert variant={'info'} inline>
-                        {plainTekst(barnehageplassTekster.antallTimer.alert)}
-                    </Alert>
-                </KomponentGruppe>
+                <SkjemaFeltInput
+                    felt={antallTimer}
+                    visFeilmeldinger={skjema.visFeilmeldinger}
+                    label={<TekstBlock block={barnehageplassTekster.barnehageplassDeltidAntallTimer.sporsmal} />}
+                    description={
+                        <TekstBlock block={barnehageplassTekster.barnehageplassDeltidAntallTimer.beskrivelse} />
+                    }
+                    htmlSize={15}
+                />
             )}
             {startetIBarnehagen.erSynlig && (
                 <Datovelger
