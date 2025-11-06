@@ -165,6 +165,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                 <RadioGroup
                     {...harHeltidDeltidBarnehageplass.hentNavInputProps(skjema.visFeilmeldinger)}
                     legend={<TekstBlock block={barnehageplassTekster.harHeltidDeltidBarnehageplass.sporsmal} />}
+                    description={<TekstBlock block={barnehageplassTekster.harHeltidDeltidBarnehageplass.beskrivelse} />}
                     name={BarnehageplassPeriodeSpørsmålId.harHeltidDeltidBarnehageplass}
                     error={harHeltidDeltidBarnehageplass.feilmelding}
                     onChange={value => {
@@ -175,13 +176,13 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                         key={AlternativtSvarForInput.BARNEHAGEPLASS_HELTID}
                         value={AlternativtSvarForInput.BARNEHAGEPLASS_HELTID}
                     >
-                        Heltidsplass
+                        {plainTekst(barnehageplassTekster.barnehageplassHeltid)}
                     </Radio>
                     <Radio
                         key={AlternativtSvarForInput.BARNEHAGEPLASS_DELTID}
                         value={AlternativtSvarForInput.BARNEHAGEPLASS_DELTID}
                     >
-                        Deltidsplass
+                        {plainTekst(barnehageplassTekster.barnehageplassDeltid)}
                     </Radio>
                 </RadioGroup>
             )}
