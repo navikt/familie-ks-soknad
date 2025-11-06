@@ -80,10 +80,12 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
                         : plainTekst(barnehageplassTekster.barnehageplassDeltid)
                 }
             />
-            <OppsummeringFelt
-                tittel={<TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />}
-                søknadsvar={antallTimer.svar}
-            />
+            {harHeltidDeltidBarnehageplass.svar === AlternativtSvarForInput.BARNEHAGEPLASS_DELTID && (
+                <OppsummeringFelt
+                    tittel={<TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />}
+                    søknadsvar={antallTimer.svar}
+                />
+            )}
 
             <OppsummeringFelt
                 tittel={
