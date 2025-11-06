@@ -82,11 +82,7 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
         ) => {
             return felt.verdi !== null
                 ? ok(felt)
-                : feil(
-                      felt,
-                      // TODO: legge til feilmelding i sanity for harHeltidDeltidBarnehageplass
-                      plainTekst(barnehageplassTekster.antallTimer.feilmelding)
-                  );
+                : feil(felt, plainTekst(barnehageplassTekster.harHeltidDeltidBarnehageplass.feilmelding));
         },
         skalFeltetVises: avhengigheter => !!avhengigheter.barnehageplassPeriodeBeskrivelse.verdi,
         avhengigheter: { barnehageplassPeriodeBeskrivelse },
@@ -94,7 +90,7 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
 
     const antallTimer = useInputFelt({
         søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.antallTimer, svar: '' },
-        feilmelding: barnehageplassTekster.antallTimer.feilmelding,
+        feilmelding: barnehageplassTekster.barnehageplassDeltidAntallTimer.feilmelding,
         skalVises: !!barnehageplassPeriodeBeskrivelse.verdi,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);

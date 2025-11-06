@@ -74,7 +74,7 @@ export const tilIBarnehageplassPeriodeIKontraktFormat = ({
                 ),
             },
             antallTimer: {
-                label: tilRestLocaleRecord(barnehageplassTekster.antallTimer.sporsmal),
+                label: tilRestLocaleRecord(barnehageplassTekster.barnehageplassDeltidAntallTimer.sporsmal),
                 verdi: sammeVerdiAlleSpråk(antallTimer.svar),
             },
             startetIBarnehagen: {
