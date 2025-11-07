@@ -9,8 +9,7 @@ import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjen
 import useInputFelt from '../../../hooks/useInputFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
-import { AlternativtSvarForInput } from '../../../typer/common';
-import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
+import { HarHeltidDeltidBarnehageplassSvarForInput, IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IFormateringsfeilmeldingerTekstinnhold } from '../../../typer/sanity/tekstInnhold';
@@ -71,13 +70,15 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
     });
 
     const harHeltidDeltidBarnehageplass = useFelt<
-        AlternativtSvarForInput.BARNEHAGEPLASS_HELTID | AlternativtSvarForInput.BARNEHAGEPLASS_DELTID | null
+        HarHeltidDeltidBarnehageplassSvarForInput.HELTID | HarHeltidDeltidBarnehageplassSvarForInput.DELTID | null
     >({
         feltId: BarnehageplassPeriodeSpørsmålId.harHeltidDeltidBarnehageplass,
         verdi: null,
         valideringsfunksjon: (
             felt: FeltState<
-                AlternativtSvarForInput.BARNEHAGEPLASS_HELTID | AlternativtSvarForInput.BARNEHAGEPLASS_DELTID | null
+                | HarHeltidDeltidBarnehageplassSvarForInput.HELTID
+                | HarHeltidDeltidBarnehageplassSvarForInput.DELTID
+                | null
             >
         ) => {
             return felt.verdi !== null
@@ -93,7 +94,7 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
         feilmelding: barnehageplassTekster.barnehageplassDeltidAntallTimer.feilmelding,
         skalVises:
             !!barnehageplassPeriodeBeskrivelse.verdi &&
-            harHeltidDeltidBarnehageplass.verdi === AlternativtSvarForInput.BARNEHAGEPLASS_DELTID,
+            harHeltidDeltidBarnehageplass.verdi === HarHeltidDeltidBarnehageplassSvarForInput.DELTID,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
             if (verdi.match(/^[\d\s.\\/,]{1,7}$/)) {

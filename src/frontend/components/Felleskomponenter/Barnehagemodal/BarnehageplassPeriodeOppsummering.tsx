@@ -2,8 +2,7 @@ import React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { AlternativtSvarForInput } from '../../../typer/common';
-import { IBarnehageplassPeriode } from '../../../typer/perioder';
+import { HarHeltidDeltidBarnehageplassSvarForInput, IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
@@ -75,12 +74,12 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
             <OppsummeringFelt
                 tittel={<TekstBlock block={barnehageplassTekster.harHeltidDeltidBarnehageplass.sporsmal} />}
                 søknadsvar={
-                    harHeltidDeltidBarnehageplass.svar === AlternativtSvarForInput.BARNEHAGEPLASS_HELTID
+                    harHeltidDeltidBarnehageplass.svar === HarHeltidDeltidBarnehageplassSvarForInput.HELTID
                         ? plainTekst(barnehageplassTekster.barnehageplassHeltid)
                         : plainTekst(barnehageplassTekster.barnehageplassDeltid)
                 }
             />
-            {harHeltidDeltidBarnehageplass.svar === AlternativtSvarForInput.BARNEHAGEPLASS_DELTID && (
+            {harHeltidDeltidBarnehageplass.svar === HarHeltidDeltidBarnehageplassSvarForInput.DELTID && (
                 <OppsummeringFelt
                     tittel={<TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />}
                     søknadsvar={antallTimer.svar}

@@ -3,10 +3,9 @@ import {
     hentFraDatoSpørsmål,
     hentTilDatoSpørsmål,
 } from '../../components/Felleskomponenter/Barnehagemodal/barnehageplassSpråkUtils';
-import { AlternativtSvarForInput } from '../../typer/common';
 import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
 import { IBarnehageplassPeriodeIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
-import { IBarnehageplassPeriode } from '../../typer/perioder';
+import { HarHeltidDeltidBarnehageplassSvarForInput, IBarnehageplassPeriode } from '../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../typer/sanity/modaler/barnehageplass';
 import { landkodeTilSpråk } from '../språk';
 
@@ -68,7 +67,7 @@ export const tilIBarnehageplassPeriodeIKontraktFormat = ({
             harHeltidDeltidBarnehageplass: {
                 label: tilRestLocaleRecord(barnehageplassTekster.harHeltidDeltidBarnehageplass.sporsmal),
                 verdi: tilRestLocaleRecord(
-                    harHeltidDeltidBarnehageplass.svar === AlternativtSvarForInput.BARNEHAGEPLASS_HELTID
+                    harHeltidDeltidBarnehageplass.svar === HarHeltidDeltidBarnehageplassSvarForInput.HELTID
                         ? barnehageplassTekster.barnehageplassHeltid
                         : barnehageplassTekster.barnehageplassDeltid
                 ),

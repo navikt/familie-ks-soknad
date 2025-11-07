@@ -5,8 +5,6 @@ export type ISODateString = string;
 export enum AlternativtSvarForInput {
     UKJENT = 'UKJENT',
     ANNEN_FORELDER = 'ANNEN_FORELDER',
-    BARNEHAGEPLASS_HELTID = 'BARNEHAGEPLASS_HELTID',
-    BARNEHAGEPLASS_DELTID = 'BARNEHAGEPLASS_DELTID',
 }
 
 export type DatoMedUkjent = ISODateString | AlternativtSvarForInput.UKJENT;

@@ -5,8 +5,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { useAppContext } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
-import { AlternativtSvarForInput } from '../../../typer/common';
-import { IBarnehageplassPeriode } from '../../../typer/perioder';
+import { HarHeltidDeltidBarnehageplassSvarForInput, IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { dagensDato, gårsdagensDato } from '../../../utils/dato';
@@ -172,14 +171,14 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     }}
                 >
                     <Radio
-                        key={AlternativtSvarForInput.BARNEHAGEPLASS_HELTID}
-                        value={AlternativtSvarForInput.BARNEHAGEPLASS_HELTID}
+                        key={HarHeltidDeltidBarnehageplassSvarForInput.HELTID}
+                        value={HarHeltidDeltidBarnehageplassSvarForInput.HELTID}
                     >
                         {plainTekst(barnehageplassTekster.barnehageplassHeltid)}
                     </Radio>
                     <Radio
-                        key={AlternativtSvarForInput.BARNEHAGEPLASS_DELTID}
-                        value={AlternativtSvarForInput.BARNEHAGEPLASS_DELTID}
+                        key={HarHeltidDeltidBarnehageplassSvarForInput.DELTID}
+                        value={HarHeltidDeltidBarnehageplassSvarForInput.DELTID}
                     >
                         {plainTekst(barnehageplassTekster.barnehageplassDeltid)}
                     </Radio>

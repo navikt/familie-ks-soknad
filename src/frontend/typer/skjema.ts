@@ -8,6 +8,7 @@ import { barnDataKeySpørsmål } from './barn';
 import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent, ISODateString } from './common';
 import { Slektsforhold } from './kontrakt/generelle';
 import {
+    HarHeltidDeltidBarnehageplassSvarForInput,
     IArbeidsperiode,
     IBarnehageplassPeriode,
     IEøsKontantstøttePeriode,
@@ -204,8 +205,8 @@ export interface IBarnehageplassPerioderFeltTyper {
     barnehageplassLand: Alpha3Code | '';
     offentligStøtte: ESvar | null;
     harHeltidDeltidBarnehageplass:
-        | AlternativtSvarForInput.BARNEHAGEPLASS_HELTID
-        | AlternativtSvarForInput.BARNEHAGEPLASS_DELTID
+        | HarHeltidDeltidBarnehageplassSvarForInput.HELTID
+        | HarHeltidDeltidBarnehageplassSvarForInput.DELTID
         | null;
     antallTimer: string;
     startetIBarnehagen: ISODateString;
