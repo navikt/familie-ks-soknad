@@ -69,18 +69,10 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
         nullstillVedAvhengighetEndring: true,
     });
 
-    const harHeltidDeltidBarnehageplass = useFelt<
-        HarHeltidDeltidBarnehageplassSvarForInput.HELTID | HarHeltidDeltidBarnehageplassSvarForInput.DELTID | null
-    >({
+    const harHeltidDeltidBarnehageplass = useFelt<HarHeltidDeltidBarnehageplassSvarForInput | null>({
         feltId: BarnehageplassPeriodeSpørsmålId.harHeltidDeltidBarnehageplass,
         verdi: null,
-        valideringsfunksjon: (
-            felt: FeltState<
-                | HarHeltidDeltidBarnehageplassSvarForInput.HELTID
-                | HarHeltidDeltidBarnehageplassSvarForInput.DELTID
-                | null
-            >
-        ) => {
+        valideringsfunksjon: (felt: FeltState<HarHeltidDeltidBarnehageplassSvarForInput | null>) => {
             return felt.verdi !== null
                 ? ok(felt)
                 : feil(felt, plainTekst(barnehageplassTekster.harHeltidDeltidBarnehageplass.feilmelding));
