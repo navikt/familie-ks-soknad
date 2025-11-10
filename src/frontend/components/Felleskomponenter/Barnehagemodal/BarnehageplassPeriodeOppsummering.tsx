@@ -79,7 +79,7 @@ export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodePr
                         : plainTekst(barnehageplassTekster.barnehageplassDeltid)
                 }
             />
-            {harHeltidDeltidBarnehageplass.svar === HarHeltidDeltidBarnehageplassSvarForInput.DELTID && (
+            {antallTimer.svar && (
                 <OppsummeringFelt
                     tittel={<TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />}
                     søknadsvar={antallTimer.svar}
