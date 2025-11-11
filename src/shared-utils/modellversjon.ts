@@ -1,6 +1,6 @@
 import { type ApiRessurs, RessursStatus } from '@navikt/familie-typer';
 
-export const modellVersjon = 4;
+export const modellVersjon = 5;
 
 export const modellVersjonHeaderName = 'Soknad-Modell-Versjon';
 
