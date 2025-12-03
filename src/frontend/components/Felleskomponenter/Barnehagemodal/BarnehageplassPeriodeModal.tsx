@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { Alert } from '@navikt/ds-react';
+import { Radio, RadioGroup } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useAppContext } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
+import { AlternativtSvarForInput } from '../../../typer/common';
 import { IBarnehageplassPeriode } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -15,7 +16,6 @@ import Datovelger from '../Datovelger/Datovelger';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
 import StyledDropdown from '../Dropdowns/StyledDropdown';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
-import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
 import { SkjemaCheckbox } from '../SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import { SkjemaFeltInput } from '../SkjemaFeltInput/SkjemaFeltInput';
@@ -55,6 +55,7 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
         barnehageplassUtlandet,
         barnehageplassLand,
         offentligStøtte,
+        harHeltidDeltidBarnehageplass,
         antallTimer,
         startetIBarnehagen,
         slutterIBarnehagen,
@@ -81,6 +82,10 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
             offentligStøtte: {
                 id: BarnehageplassPeriodeSpørsmålId.offentligStøtte,
                 svar: offentligStøtte.erSynlig ? offentligStøtte.verdi : null,
+            },
+            harHeltidDeltidBarnehageplass: {
+                id: BarnehageplassPeriodeSpørsmålId.harHeltidDeltidBarnehageplass,
+                svar: harHeltidDeltidBarnehageplass.verdi,
             },
             antallTimer: {
                 id: BarnehageplassPeriodeSpørsmålId.antallTimer,
@@ -155,19 +160,42 @@ export const BarnehageplassPeriodeModal: React.FC<Props> = ({
                     spørsmålDokument={barnehageplassTekster.offentligStoette}
                 />
             )}
+            {harHeltidDeltidBarnehageplass.erSynlig && (
+                <RadioGroup
+                    {...harHeltidDeltidBarnehageplass.hentNavInputProps(skjema.visFeilmeldinger)}
+                    legend={<TekstBlock block={barnehageplassTekster.harHeltidDeltidBarnehageplass.sporsmal} />}
+                    description={<TekstBlock block={barnehageplassTekster.harHeltidDeltidBarnehageplass.beskrivelse} />}
+                    name={BarnehageplassPeriodeSpørsmålId.harHeltidDeltidBarnehageplass}
+                    error={harHeltidDeltidBarnehageplass.feilmelding}
+                    onChange={value => {
+                        skjema.felter.harHeltidDeltidBarnehageplass.onChange(value);
+                    }}
+                >
+                    <Radio
+                        key={AlternativtSvarForInput.BARNEHAGEPLASS_HELTID}
+                        value={AlternativtSvarForInput.BARNEHAGEPLASS_HELTID}
+                    >
+                        {plainTekst(barnehageplassTekster.barnehageplassHeltid)}
+                    </Radio>
+                    <Radio
+                        key={AlternativtSvarForInput.BARNEHAGEPLASS_DELTID}
+                        value={AlternativtSvarForInput.BARNEHAGEPLASS_DELTID}
+                    >
+                        {plainTekst(barnehageplassTekster.barnehageplassDeltid)}
+                    </Radio>
+                </RadioGroup>
+            )}
             {antallTimer.erSynlig && (
-                <KomponentGruppe>
-                    <SkjemaFeltInput
-                        felt={antallTimer}
-                        visFeilmeldinger={skjema.visFeilmeldinger}
-                        label={<TekstBlock block={barnehageplassTekster.antallTimer.sporsmal} />}
-                        htmlSize={15}
-                    />
-
-                    <Alert variant={'info'} inline>
-                        {plainTekst(barnehageplassTekster.antallTimer.alert)}
-                    </Alert>
-                </KomponentGruppe>
+                <SkjemaFeltInput
+                    felt={antallTimer}
+                    visFeilmeldinger={skjema.visFeilmeldinger}
+                    label={<TekstBlock block={barnehageplassTekster.barnehageplassDeltidAntallTimer.sporsmal} />}
+                    description={
+                        <TekstBlock block={barnehageplassTekster.barnehageplassDeltidAntallTimer.beskrivelse} />
+                    }
+                    inputMode="decimal"
+                    htmlSize={15}
+                />
             )}
             {startetIBarnehagen.erSynlig && (
                 <Datovelger

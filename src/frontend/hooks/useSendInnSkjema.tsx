@@ -29,7 +29,7 @@ export const useSendInnSkjema = (): {
     const sendInnSkjema = async (): Promise<[boolean, ISøknadKontrakt]> => {
         settInnsendingStatus({ status: RessursStatus.HENTER });
 
-        const kontraktVersjon = 5;
+        const kontraktVersjon = 6;
 
         try {
             const formatert: ISøknadKontrakt = dataISøknadKontraktFormat(
