@@ -11,6 +11,8 @@ updates:
       interval: daily
       time: "11:40"
       timezone: "Europe/Oslo"
+    cooldown:
+      default-days: 4
     open-pull-requests-limit: 10
     ignore:
     - dependency-name: "*"
@@ -33,3 +35,5 @@ updates:
     schedule:
       # Check for updates to GitHub Actions every week
       interval: "weekly"
+    cooldown:
+      default-days: 4

@@ -9,6 +9,7 @@ import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjen
 import useInputFelt from '../../../hooks/useInputFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
+import { AlternativtSvarForInput } from '../../../typer/common';
 import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -69,10 +70,30 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
         nullstillVedAvhengighetEndring: true,
     });
 
+    const harHeltidDeltidBarnehageplass = useFelt<
+        AlternativtSvarForInput.BARNEHAGEPLASS_HELTID | AlternativtSvarForInput.BARNEHAGEPLASS_DELTID | null
+    >({
+        feltId: BarnehageplassPeriodeSpørsmålId.harHeltidDeltidBarnehageplass,
+        verdi: null,
+        valideringsfunksjon: (
+            felt: FeltState<
+                AlternativtSvarForInput.BARNEHAGEPLASS_HELTID | AlternativtSvarForInput.BARNEHAGEPLASS_DELTID | null
+            >
+        ) => {
+            return felt.verdi !== null
+                ? ok(felt)
+                : feil(felt, plainTekst(barnehageplassTekster.harHeltidDeltidBarnehageplass.feilmelding));
+        },
+        avhengigheter: { barnehageplassPeriodeBeskrivelse },
+        skalFeltetVises: avhengigheter => !!avhengigheter.barnehageplassPeriodeBeskrivelse.verdi,
+    });
+
     const antallTimer = useInputFelt({
         søknadsfelt: { id: BarnehageplassPeriodeSpørsmålId.antallTimer, svar: '' },
-        feilmelding: barnehageplassTekster.antallTimer.feilmelding,
-        skalVises: !!barnehageplassPeriodeBeskrivelse.verdi,
+        feilmelding: barnehageplassTekster.barnehageplassDeltidAntallTimer.feilmelding,
+        skalVises:
+            !!barnehageplassPeriodeBeskrivelse.verdi &&
+            harHeltidDeltidBarnehageplass.verdi === AlternativtSvarForInput.BARNEHAGEPLASS_DELTID,
         customValidering: (felt: FeltState<string>) => {
             const verdi = trimWhiteSpace(felt.verdi);
             if (verdi.match(/^[\d\s.\\/,]{1,7}$/)) {
@@ -155,6 +176,7 @@ export const useBarnehageplassPeriodeSkjema = (): UseBarnehageplassSkjemaVerdi =
             barnehageplassUtlandet,
             barnehageplassLand,
             offentligStøtte,
+            harHeltidDeltidBarnehageplass,
             antallTimer,
             startetIBarnehagen,
             slutterIBarnehagen,

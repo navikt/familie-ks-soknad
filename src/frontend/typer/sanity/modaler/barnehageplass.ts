@@ -3,6 +3,7 @@ import { ISanitySpørsmålDokument } from '../sanity';
 
 export interface IBarnehageplassTekstinnhold {
     antallTimer: ISanitySpørsmålDokument;
+    barnehageplassDeltidAntallTimer: ISanitySpørsmålDokument;
     fjernKnapp: LocaleRecordBlock;
     leggTilPeriodeForklaring: LocaleRecordString;
     flerePerioder: LocaleRecordBlock;
@@ -18,9 +19,12 @@ export interface IBarnehageplassTekstinnhold {
     startdatoFremtid: ISanitySpørsmålDokument;
     ugyldigTimer: LocaleRecordBlock;
     utland: ISanitySpørsmålDokument;
+    harHeltidDeltidBarnehageplass: ISanitySpørsmålDokument;
     valgalternativBarnehageplassIFremtid: LocaleRecordString;
     valgalternativBarnehageplassNaa: LocaleRecordString;
     valgalternativBarnehageplassTidligere: LocaleRecordString;
     valgalternativPlaceholder: LocaleRecordString;
     oppsummeringstittel: LocaleRecordBlock;
+    barnehageplassHeltid: LocaleRecordBlock;
+    barnehageplassDeltid: LocaleRecordBlock;
 }

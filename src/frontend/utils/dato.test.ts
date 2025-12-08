@@ -1,6 +1,6 @@
 import { add } from 'date-fns';
 
-import { erDatoFormatGodkjent, erDatoFremITid, stringTilDate } from './dato';
+import { erDatoFormatGodkjent, erDatoFremITid, formaterDato, stringTilDate } from './dato';
 
 describe('erDatoFormatGodkjent', () => {
     test('Skal returnere false dersom dato ikke er gyldig', () => {
@@ -31,5 +31,16 @@ describe('erDatoFremITid', () => {
 
     test('Skal returnere true dersom dato er frem i tid', () => {
         expect(erDatoFremITid(add(new Date(), { days: 7 }))).toEqual(true);
+    });
+});
+
+describe('formaterDato', () => {
+    test('skal formatere dato', () => {
+        const dato = formaterDato('2025-11-21');
+        expect(dato).toBe('21.11.2025');
+    });
+
+    test('skal kaste error hvis formatering av dato feiler', () => {
+        expect(() => formaterDato('202a-01-01')).toThrow('Klarte ikke formatere dato 202a-01-01');
     });
 });

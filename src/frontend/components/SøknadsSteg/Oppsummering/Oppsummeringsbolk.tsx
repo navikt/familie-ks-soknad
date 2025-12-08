@@ -1,10 +1,12 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { MouseEventHandler, ReactNode, useEffect, useState } from 'react';
 
-import styled from 'styled-components';
+import { useNavigate } from 'react-router';
 
 import { FormSummary } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
 
+import { BASE_PATH } from '../../../../shared-utils/miljø';
+import { unslash } from '../../../../shared-utils/unslash';
 import { useAppContext } from '../../../context/AppContext';
 import { useStegContext } from '../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
@@ -13,7 +15,6 @@ import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
 import { ISteg, RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';
-import { AppLenke } from '../../Felleskomponenter/AppLenke/AppLenke';
 import { SkjemaFeiloppsummering } from '../../Felleskomponenter/SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 
 interface IHookReturn {
@@ -21,12 +22,6 @@ interface IHookReturn {
     validerAlleSynligeFelter: () => void;
     skjema: ISkjema<SkjemaFeltTyper, string>;
 }
-
-const StyledAppLenkeTekst = styled.span`
-    && {
-        white-space: nowrap;
-    }
-`;
 
 interface Props {
     tittel: LocaleRecordBlock | LocaleRecordString;
@@ -69,6 +64,14 @@ function Oppsummeringsbolk({ children, tittel, flettefelter, steg, skjemaHook, s
     }, [visFeil]);
 
     const stegnummer = hentStegNummer(steg?.route ?? RouteEnum.OmDeg, barn);
+    const navigate = useNavigate();
+
+    const navigerTilSteg: MouseEventHandler = event => {
+        event.preventDefault();
+        navigate({
+            pathname: steg?.path,
+        });
+    };
 
     return (
         <FormSummary>
@@ -76,18 +79,22 @@ function Oppsummeringsbolk({ children, tittel, flettefelter, steg, skjemaHook, s
                 <FormSummary.Heading level="3">
                     {`${stegnummer}. ${uppercaseFørsteBokstav(plainTekst(tittel, flettefelter))}`}
                 </FormSummary.Heading>
-                {steg && !visFeil && (
-                    <AppLenke steg={steg}>
-                        <StyledAppLenkeTekst>
-                            {plainTekst(tekster().OPPSUMMERING.endreSvarLenkeTekst)}
-                        </StyledAppLenkeTekst>
-                    </AppLenke>
-                )}
             </FormSummary.Header>
             <FormSummary.Answers>
                 {children}
                 {visFeil && <SkjemaFeiloppsummering skjema={skjema} stegMedFeil={steg} id={feilOppsummeringId} />}
             </FormSummary.Answers>
+            {steg && !visFeil && (
+                <FormSummary.Footer>
+                    <FormSummary.EditLink
+                        href={BASE_PATH + unslash(steg.path)}
+                        rel="noopener noreferrer"
+                        onClick={navigerTilSteg}
+                    >
+                        {plainTekst(tekster().OPPSUMMERING.endreSvarLenkeTekst)}
+                    </FormSummary.EditLink>
+                </FormSummary.Footer>
+            )}
         </FormSummary>
     );
 }
