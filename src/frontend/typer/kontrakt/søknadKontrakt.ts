@@ -201,6 +201,7 @@ export interface IBarnehageplassPeriodeIKontraktFormat {
     barnehageplassUtlandet: ISøknadsfelt<ESvar>;
     barnehageplassLand: ISøknadsfelt<string> | null;
     offentligStøtte: ISøknadsfelt<ESvar> | null;
+    harHeltidDeltidBarnehageplass: ISøknadsfelt<string>;
     antallTimer: ISøknadsfelt<string>;
     startetIBarnehagen: ISøknadsfelt<ISODateString>;
     slutterIBarnehagen: ISøknadsfelt<ISODateString | string>;
