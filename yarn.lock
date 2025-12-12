@@ -2039,10 +2039,22 @@
   dependencies:
     "@portabletext/types" "^2.0.15"
 
+"@portabletext/toolkit@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/@portabletext/toolkit/-/toolkit-4.0.0.tgz#d56479ce31beb02c5a97d8864ef8dd6d44a185fd"
+  integrity sha512-Jj/QIy3vzZCNcxiUGM7KjGhUhyVjch+9pOzotWRARPNe07R6nbF/cRsKL70q5Xizf+6PVtFYwks4CSXKInC+wg==
+  dependencies:
+    "@portabletext/types" "^3.0.0"
+
 "@portabletext/types@^2.0.15", "@portabletext/types@^2.0.6":
   version "2.0.15"
   resolved "https://registry.npmjs.org/@portabletext/types/-/types-2.0.15.tgz#afc1231fd66965d777c6233aea79abfaf8716351"
   integrity sha512-2e6i2gSQsrA/5OL5Gm4/9bxB9MNO73Fa47zj+0mT93xkoQUCGCWX5fZh1YBJ86hszaRYlqvqG08oULxvvPPp/Q==
+
+"@portabletext/types@^3.0.0":
+  version "3.0.1"
+  resolved "https://registry.npmjs.org/@portabletext/types/-/types-3.0.1.tgz#f8a9f7335f1684f379f1e80fda11f66a89dc3483"
+  integrity sha512-Axessc2mZ6tjbD2qIZdTZIEfBtzJBe/1pzKF372cUar6ccUCfgXU4vaKgIbqB33mB6rI75omx9rrm+SgR4rIAA==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
