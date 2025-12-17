@@ -1,17 +1,12 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
-import { Alert, Button, Modal } from '@navikt/ds-react';
+import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
+import { Button, Modal } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import ModalContent from '../ModalContent';
 import TekstBlock from '../TekstBlock';
-
-const HovedinnholdContainer = styled.div`
-    margin: 2.5rem 0;
-`;
 
 const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
     const { tekster, plainTekst } = useAppContext();
@@ -27,14 +22,11 @@ const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
             header={{
                 heading: plainTekst(mistetInformasjonenDinTekster.tittel),
                 size: 'medium',
+                icon: <XMarkOctagonFillIcon color="var(--a-surface-danger)" />,
             }}
         >
             <ModalContent>
-                <Alert variant={'error'} children={plainTekst(mistetInformasjonenDinTekster.tittel)} />
-
-                <HovedinnholdContainer>
-                    <TekstBlock block={mistetInformasjonenDinTekster.info} typografi={Typografi.BodyLong} />
-                </HovedinnholdContainer>
+                <TekstBlock block={mistetInformasjonenDinTekster.info} typografi={Typografi.BodyLong} />
             </ModalContent>
             <Modal.Footer>
                 <Button onClick={refresh}>
