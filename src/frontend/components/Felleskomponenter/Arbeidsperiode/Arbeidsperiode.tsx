@@ -112,7 +112,9 @@ export const Arbeidsperiode: React.FC<Props> = ({
                             personType={personType}
                             erDød={erDød}
                             barn={barn}
-                            forklaring={plainTekst(leggTilPeriodeForklaring)}
+                            forklaring={plainTekst(teksterForModal.leggTilPeriodeForklaring, {
+                                gjelderUtland: true,
+                            })}
                         />
                     )}
                 </PerioderContainer>
