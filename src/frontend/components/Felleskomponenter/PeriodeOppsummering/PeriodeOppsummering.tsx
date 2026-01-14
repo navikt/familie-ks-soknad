@@ -28,6 +28,7 @@ function PeriodeOppsummering({ fjernPeriodeCallback = undefined, fjernKnappTekst
                             <FormSummary.Label hidden>{plainTekst(fjernKnappTekst)}</FormSummary.Label>
                             <FormSummary.Value>
                                 <Button
+                                    type="button"
                                     variant="tertiary"
                                     onClick={fjernPeriodeCallback}
                                     icon={<TrashFillIcon aria-hidden />}
