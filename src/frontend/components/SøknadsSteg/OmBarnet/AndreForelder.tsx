@@ -132,7 +132,7 @@ const AndreForelder: React.FC<{
                                 arbeiderEllerArbeidetFelt={skjema.felter.andreForelderArbeidUtlandet}
                                 leggTilArbeidsperiode={leggTilArbeidsperiode}
                                 fjernArbeidsperiode={fjernArbeidsperiode}
-                                gjelderUtlandet
+                                gjelderUtlandet={true}
                                 personType={PersonType.andreForelder}
                                 barn={barn}
                                 erDød={andreForelderErDød}
