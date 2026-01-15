@@ -35,12 +35,12 @@ export function LeggTilKnapp({ onClick, leggTilFlereTekst, feilmelding, id, chil
                 >
                     {children}
                 </StyledButton>
+                {!!feilmelding && (
+                    <Box marginBlock="2 0">
+                        <ErrorMessage>{feilmelding}</ErrorMessage>
+                    </Box>
+                )}
             </FormSummary.Value>
-            {!!feilmelding && (
-                <Box marginBlock="2 0">
-                    <ErrorMessage>{feilmelding}</ErrorMessage>
-                </Box>
-            )}
         </FormSummary.Answer>
     );
 }
