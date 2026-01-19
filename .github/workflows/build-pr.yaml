@@ -21,7 +21,7 @@ jobs:
       - name: Installer node-pakker
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-        run: yarn --prefer-offline --frozen-lockfile
+        run: yarn --prefer-offline --frozen-lockfile --ignore-scripts
       - name: Kjør validate
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
@@ -51,5 +51,5 @@ jobs:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_RELEASE: ${{ github.sha }}
         run: |-
-          yarn --prefer-offline --frozen-lockfile
+          yarn --prefer-offline --frozen-lockfile --ignore-scripts
           yarn build
