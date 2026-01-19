@@ -70,7 +70,6 @@
     "dotenv": "17.2.0",
     "express": "5.2.0",
     "express-rate-limit": "8.1.0",
-    "html-react-parser": "5.2.2",
     "http-proxy-middleware": "3.0.5",
     "i18n-iso-countries": "7.14.0",
     "jsdom": "27.0.0",
