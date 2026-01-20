@@ -12,8 +12,8 @@ updates:
       time: "11:40"
       timezone: "Europe/Oslo"
     cooldown:
-      default-days: 4
-    open-pull-requests-limit: 10
+      default-days: 7
+    open-pull-requests-limit: 20
     ignore:
     - dependency-name: "*"
       update-types: ["version-update:semver-patch"]
@@ -36,4 +36,4 @@ updates:
       # Check for updates to GitHub Actions every week
       interval: "weekly"
     cooldown:
-      default-days: 4
+      default-days: 7
