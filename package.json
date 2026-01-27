@@ -131,7 +131,7 @@
     "msw": "2.11.1",
     "prettier": "3.6.2",
     "react-dev-utils": "12.0.1",
-    "react-refresh": "0.17.0",
+    "react-refresh": "0.18.0",
     "style-loader": "4.0.0",
     "terser-webpack-plugin": "5.3.14",
     "ts-essentials": "10.1.0",
