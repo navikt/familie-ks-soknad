@@ -57,7 +57,7 @@
     "@navikt/nav-dekoratoren-moduler": "3.4.0",
     "@navikt/oasis": "3.8.0",
     "@portabletext/react": "4.0.3",
-    "@portabletext/toolkit": "3.0.1",
+    "@portabletext/toolkit": "5.0.1",
     "@sanity/client": "7.12.0",
     "@sentry/react": "10.28.0",
     "axios": "1.12.0",
