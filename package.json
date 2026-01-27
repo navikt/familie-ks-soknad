@@ -85,7 +85,7 @@
     "xss": "1.0.14"
   },
   "devDependencies": {
-    "@axe-core/react": "4.10.1",
+    "@axe-core/react": "4.11.0",
     "@babel/core": "7.28.0",
     "@babel/plugin-syntax-import-assertions": "7.27.1",
     "@babel/preset-env": "7.28.0",
