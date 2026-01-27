@@ -328,6 +328,11 @@ export function AppProvider(props: PropsWithChildren) {
                     throw Error('Flettefeltet barnetsNavn ikke sendt med');
                 }
                 return flettefelter.barnetsNavn;
+            case ESanityFlettefeltverdi.LAND:
+                if (!flettefelter?.land) {
+                    throw Error('Flettefeltet land ikke sendt med');
+                }
+                return getName(flettefelter.land, spesifikkLocale ?? valgtLocale) ?? flettefelter.land;
             case ESanityFlettefeltverdi.YTELSE:
                 return plainTekst(frittståendeOrd.kontantstoette, undefined, spesifikkLocale ?? valgtLocale);
             case ESanityFlettefeltverdi.YTELSE_BESTEMT_FORM:
@@ -344,11 +349,12 @@ export function AppProvider(props: PropsWithChildren) {
                     undefined,
                     spesifikkLocale ?? valgtLocale
                 );
-            case ESanityFlettefeltverdi.LAND:
-                if (!flettefelter?.land) {
-                    throw Error('Flettefeltet land ikke sendt med');
-                }
-                return getName(flettefelter.land, spesifikkLocale ?? valgtLocale) ?? flettefelter.land;
+            case ESanityFlettefeltverdi.UTENLANDSK_NORSK:
+                return plainTekst(
+                    flettefelter?.gjelderUtland ? frittståendeOrd.utenlandsk : frittståendeOrd.norsk,
+                    undefined,
+                    spesifikkLocale ?? valgtLocale
+                );
         }
     };
 
