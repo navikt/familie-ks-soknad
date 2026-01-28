@@ -11413,10 +11413,10 @@ webidl-conversions@^8.0.0:
   resolved "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-8.0.0.tgz#821c92aa4f88d88a31264d887e244cb9655690c6"
   integrity sha512-n4W4YFyz5JzOfQeA8oN7dUYpR+MBP3PIUsn2jLjWXwK5ASUzt0Jc/A5sAUZoCYFJRGF0FBKJ+1JjN43rNdsQzA==
 
-webpack-bundle-analyzer@4.10.1:
-  version "4.10.1"
-  resolved "https://registry.npmjs.org/webpack-bundle-analyzer/-/webpack-bundle-analyzer-4.10.1.tgz#84b7473b630a7b8c21c741f81d8fe4593208b454"
-  integrity sha512-s3P7pgexgT/HTUSYgxJyn28A+99mmLq4HsJepMPzu0R8ImJc52QNqaFYW1Z2z2uIb1/J3eYgaAWVpaC+v/1aAQ==
+webpack-bundle-analyzer@5.1.1:
+  version "5.1.1"
+  resolved "https://registry.npmjs.org/webpack-bundle-analyzer/-/webpack-bundle-analyzer-5.1.1.tgz#39273f584a234960158fd9a56ca79e739ae06062"
+  integrity sha512-UzoaIA0Aigo5lUvoUkIkSoHtUK5rBJh9e2vW3Eqct0jc/L8hcruBCz/jsXEvB1hDU1G3V94jo2EJqPcFKeSSeQ==
   dependencies:
     "@discoveryjs/json-ext" "0.5.7"
     acorn "^8.0.4"
@@ -11424,9 +11424,7 @@ webpack-bundle-analyzer@4.10.1:
     commander "^7.2.0"
     debounce "^1.2.1"
     escape-string-regexp "^4.0.0"
-    gzip-size "^6.0.0"
     html-escaper "^2.0.2"
-    is-plain-object "^5.0.0"
     opener "^1.5.2"
     picocolors "^1.0.0"
     sirv "^2.0.3"
