@@ -55,9 +55,7 @@ function SkjemaModal({
             }}
         >
             <ModalContent>
-                {toggles.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP && forklaring && (
-                    <BodyShort spacing>{forklaring}</BodyShort>
-                )}
+                <BodyShort spacing>{forklaring}</BodyShort>
                 <form id="skjema">
                     <VStack gap="10">{children}</VStack>
                 </form>
