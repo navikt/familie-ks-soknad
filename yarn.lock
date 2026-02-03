@@ -4454,10 +4454,10 @@ cross-spawn@^7.0.0, cross-spawn@^7.0.3, cross-spawn@^7.0.6:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-csp-header@6.1.0:
-  version "6.1.0"
-  resolved "https://registry.npmjs.org/csp-header/-/csp-header-6.1.0.tgz#248e36ec8206493103fcdc75233fff222508970a"
-  integrity sha512-vtQIp6C6Pt5vd48fa3wiq3OirDG+Efo3vouLVEeJSJVe+LdpAFZw/IxV77BsDTMtVwzVT78xJ4zRykJoDx+ZeA==
+csp-header@6.3.0:
+  version "6.3.0"
+  resolved "https://registry.npmjs.org/csp-header/-/csp-header-6.3.0.tgz#af7481114b2f7ea13228b2d12324213d41ceb4ec"
+  integrity sha512-sM0AKmeKcPelKjj4jgOVgBQO4J3tejn8c51lXg+OW9gdGQIV5MIZd/G5wfW0e73JOs/VLlj6UI+DRf4xvsiraw==
 
 css-color-keywords@^1.0.0:
   version "1.0.0"
