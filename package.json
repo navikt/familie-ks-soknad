@@ -54,7 +54,7 @@
     "@navikt/familie-skjema": "8.2.27",
     "@navikt/familie-typer": "8.0.4",
     "@navikt/fnrvalidator": "2.2.1",
-    "@navikt/nav-dekoratoren-moduler": "3.4.0",
+    "@navikt/nav-dekoratoren-moduler": "3.6.1",
     "@navikt/oasis": "3.8.0",
     "@portabletext/react": "4.0.3",
     "@portabletext/toolkit": "5.0.1",
