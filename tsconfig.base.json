@@ -20,6 +20,7 @@
     "jsx": "react",
     "esModuleInterop": true,
     "types": [
+      "node",
       "vitest/globals",
       "@testing-library/jest-dom"
     ],

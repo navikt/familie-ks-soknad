@@ -61,12 +61,16 @@ export function TypografiWrapper({ typografi, style, children }: Props) {
         case Typografi.Ingress:
             return <Ingress style={style}>{children}</Ingress>;
         case Typografi.BodyLong:
-            return <StyledBodyLong style={style}>{children}</StyledBodyLong>;
+            return (
+                <StyledBodyLong as={'p'} style={style}>
+                    {children}
+                </StyledBodyLong>
+            );
         case Typografi.BodyShort:
             return <BodyShort style={style}>{children}</BodyShort>;
         case Typografi.Label:
             return (
-                <StyledLabel spacing style={style}>
+                <StyledLabel as={'label'} spacing style={style}>
                     {children}
                 </StyledLabel>
             );
