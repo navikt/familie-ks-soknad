@@ -7,16 +7,13 @@ import { byggSuksessRessurs } from '@navikt/familie-typer';
 
 import { server } from '../../../mocks/node';
 import { urlMedBasePath } from '../../../mocks/utils';
-import { EFeatureToggle } from '../typer/feature-toggles';
 
 import { FeatureTogglesProvider, useFeatureToggles } from './FeatureTogglesContext';
 import { LastRessurserProvider } from './LastRessurserContext';
 
 describe('FeatureToggleContext', () => {
     test(`Skal hente ut alle toggles`, async () => {
-        const toggles = {
-            [EFeatureToggle.FORKLARENDE_TEKSTER_OVER_LEGG_TIL_KNAPP]: false,
-        };
+        const toggles = {};
 
         server.use(
             http.get(urlMedBasePath('toggles/all'), () => {

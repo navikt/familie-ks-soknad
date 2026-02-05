@@ -15,6 +15,10 @@ describe('TilfeldigBarnIkon', () => {
         spyOnUseApp({});
     });
 
+    afterEach(() => {
+        vi.restoreAllMocks();
+    });
+
     it('velger nytt ikon ved rerender by default', () => {
         const spy = vi.spyOn(hjelpefunksjoner, 'randomIntFraIntervall');
         const { rerender } = render(<TilfeldigBarnIkon />);
