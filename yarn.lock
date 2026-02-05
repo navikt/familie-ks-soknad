@@ -2173,15 +2173,15 @@
   dependencies:
     "@portabletext/types" "^2.0.15"
 
-"@portabletext/types@2.0.15", "@portabletext/types@^2.0.15":
-  version "2.0.15"
-  resolved "https://registry.npmjs.org/@portabletext/types/-/types-2.0.15.tgz#afc1231fd66965d777c6233aea79abfaf8716351"
-  integrity sha512-2e6i2gSQsrA/5OL5Gm4/9bxB9MNO73Fa47zj+0mT93xkoQUCGCWX5fZh1YBJ86hszaRYlqvqG08oULxvvPPp/Q==
-
-"@portabletext/types@^4.0.1":
+"@portabletext/types@4.0.1", "@portabletext/types@^4.0.1":
   version "4.0.1"
   resolved "https://registry.npmjs.org/@portabletext/types/-/types-4.0.1.tgz#5738df350641c66f132b5663632f2bab79ebb68d"
   integrity sha512-L8PZjVjmdKpW+82c1oNqGMqCOtQD2xORqJfr6Is7X5XXbz38eLYY79IM/1ok+Esf/iGOPtEYORdcf0ETmsWYew==
+
+"@portabletext/types@^2.0.15":
+  version "2.0.15"
+  resolved "https://registry.npmjs.org/@portabletext/types/-/types-2.0.15.tgz#afc1231fd66965d777c6233aea79abfaf8716351"
+  integrity sha512-2e6i2gSQsrA/5OL5Gm4/9bxB9MNO73Fa47zj+0mT93xkoQUCGCWX5fZh1YBJ86hszaRYlqvqG08oULxvvPPp/Q==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
