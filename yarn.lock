@@ -2371,51 +2371,51 @@
     event-source-polyfill "1.0.31"
     eventsource "2.0.2"
 
-"@sentry-internal/browser-utils@10.28.0":
-  version "10.28.0"
-  resolved "https://registry.npmjs.org/@sentry-internal/browser-utils/-/browser-utils-10.28.0.tgz#088e7ce4309b220f52e6614189b455987f3b81b9"
-  integrity sha512-FYcslFXo+Lq5/9/G83NSVK2vQlcXRkbJ6AHrMwZyPv1Qd9KJ08qoZo4buxMv63MzYDicNF591HBAqCxsv5gXsA==
+"@sentry-internal/browser-utils@10.38.0":
+  version "10.38.0"
+  resolved "https://registry.npmjs.org/@sentry-internal/browser-utils/-/browser-utils-10.38.0.tgz#576780062808bd3bae21476393f50caf9acbe12f"
+  integrity sha512-UOJtYmdcxHCcV0NPfXFff/a95iXl/E0EhuQ1y0uE0BuZDMupWSF5t2BgC4HaE5Aw3RTjDF3XkSHWoIF6ohy7eA==
   dependencies:
-    "@sentry/core" "10.28.0"
+    "@sentry/core" "10.38.0"
 
-"@sentry-internal/feedback@10.28.0":
-  version "10.28.0"
-  resolved "https://registry.npmjs.org/@sentry-internal/feedback/-/feedback-10.28.0.tgz#52d0ee1a3e04ee421536979060db5c5311e4f62e"
-  integrity sha512-vIv59ZN7Ig/oa6se/qGR69Odx3SQRoW2sIcbmJpxbjRF44Re0ZLFk6vBB3AyUvU3Lqnvabbw3y5AAwJt7Z//ug==
+"@sentry-internal/feedback@10.38.0":
+  version "10.38.0"
+  resolved "https://registry.npmjs.org/@sentry-internal/feedback/-/feedback-10.38.0.tgz#c15b00513cddfbe839dbb86684115ec4860abd58"
+  integrity sha512-JXneg9zRftyfy1Fyfc39bBlF/Qd8g4UDublFFkVvdc1S6JQPlK+P6q22DKz3Pc8w3ySby+xlIq/eTu9Pzqi4KA==
   dependencies:
-    "@sentry/core" "10.28.0"
+    "@sentry/core" "10.38.0"
 
-"@sentry-internal/replay-canvas@10.28.0":
-  version "10.28.0"
-  resolved "https://registry.npmjs.org/@sentry-internal/replay-canvas/-/replay-canvas-10.28.0.tgz#8a0006ac440d9a09325257b0ab58f4df148050f0"
-  integrity sha512-/5KnIJXms0DHiqwOsND23fBMIJ1wUzAH5DiGHdY5yHGQTYy9BmVgUxW/Pv57kXqkgA3nBvE38z5Nu6+Cq6uixw==
+"@sentry-internal/replay-canvas@10.38.0":
+  version "10.38.0"
+  resolved "https://registry.npmjs.org/@sentry-internal/replay-canvas/-/replay-canvas-10.38.0.tgz#40fc937e2d05f9819b68c4c5d4d69e789c324823"
+  integrity sha512-OXWM9jEqNYh4VTvrMu7v+z1anz+QKQ/fZXIZdsO7JTT2lGNZe58UUMeoq386M+Saxen8F9SUH7yTORy/8KI5qw==
   dependencies:
-    "@sentry-internal/replay" "10.28.0"
-    "@sentry/core" "10.28.0"
+    "@sentry-internal/replay" "10.38.0"
+    "@sentry/core" "10.38.0"
 
-"@sentry-internal/replay@10.28.0":
-  version "10.28.0"
-  resolved "https://registry.npmjs.org/@sentry-internal/replay/-/replay-10.28.0.tgz#7866fcccab1155772006e1affcfa9da1d9501a5a"
-  integrity sha512-umFBdM5eVJJYnUbrjrSJdjfqs21OMDz5pJtNPTNO8+KjTNSMg/QozBkEyaQZEEfdjYZy9MAcwfQPDPfEMvfUuQ==
+"@sentry-internal/replay@10.38.0":
+  version "10.38.0"
+  resolved "https://registry.npmjs.org/@sentry-internal/replay/-/replay-10.38.0.tgz#b901acf514265bf882e3e4ad849e6d9dd8276633"
+  integrity sha512-YWIkL6/dnaiQyFiZXJ/nN+NXGv/15z45ia86bE/TMq01CubX/DUOilgsFz0pk2v/pg3tp/U2MskLO9Hz0cnqeg==
   dependencies:
-    "@sentry-internal/browser-utils" "10.28.0"
-    "@sentry/core" "10.28.0"
+    "@sentry-internal/browser-utils" "10.38.0"
+    "@sentry/core" "10.38.0"
 
 "@sentry/babel-plugin-component-annotate@4.8.0":
   version "4.8.0"
   resolved "https://registry.npmjs.org/@sentry/babel-plugin-component-annotate/-/babel-plugin-component-annotate-4.8.0.tgz#6705126a7726bd248f93acc79b8f3c8921b1c385"
   integrity sha512-cy/9Eipkv23MsEJ4IuB4dNlVwS9UqOzI3Eu+QPake5BVFgPYCX0uP0Tr3Z43Ime6Rb+BiDnWC51AJK9i9afHYw==
 
-"@sentry/browser@10.28.0":
-  version "10.28.0"
-  resolved "https://registry.npmjs.org/@sentry/browser/-/browser-10.28.0.tgz#402f59bd51bacaf12858f076e381d842021dc137"
-  integrity sha512-OJY5L/2IDB82Eh5Ko83I9YgBN45VBtFi0TFUxSrVDcdeha1tC9YS/975U294K9T2B0kKG65jF8JkWa6x3Gi6HA==
+"@sentry/browser@10.38.0":
+  version "10.38.0"
+  resolved "https://registry.npmjs.org/@sentry/browser/-/browser-10.38.0.tgz#2409e3982756ae8a0b3e46c701a51b63d4ed84cc"
+  integrity sha512-3phzp1YX4wcQr9mocGWKbjv0jwtuoDBv7+Y6Yfrys/kwyaL84mDLjjQhRf4gL5SX7JdYkhBp4WaiNlR0UC4kTA==
   dependencies:
-    "@sentry-internal/browser-utils" "10.28.0"
-    "@sentry-internal/feedback" "10.28.0"
-    "@sentry-internal/replay" "10.28.0"
-    "@sentry-internal/replay-canvas" "10.28.0"
-    "@sentry/core" "10.28.0"
+    "@sentry-internal/browser-utils" "10.38.0"
+    "@sentry-internal/feedback" "10.38.0"
+    "@sentry-internal/replay" "10.38.0"
+    "@sentry-internal/replay-canvas" "10.38.0"
+    "@sentry/core" "10.38.0"
 
 "@sentry/bundler-plugin-core@4.8.0":
   version "4.8.0"
@@ -2491,24 +2491,23 @@
     "@sentry/cli-win32-i686" "2.58.4"
     "@sentry/cli-win32-x64" "2.58.4"
 
-"@sentry/core@10.28.0":
-  version "10.28.0"
-  resolved "https://registry.npmjs.org/@sentry/core/-/core-10.28.0.tgz#0ee28e54cd1b3163528f762584514a536121d80c"
-  integrity sha512-9yFIPxyfWkDzt+IaRjboeNiXOKi22ZRGG3ELmZlLak8JCC+vA+q/+AmF/8Jnw59WlL3/KVC1Q8+t8bLCkxlswg==
+"@sentry/core@10.38.0":
+  version "10.38.0"
+  resolved "https://registry.npmjs.org/@sentry/core/-/core-10.38.0.tgz#391f2535fde084e3eff4b1d2d634aa5619629b34"
+  integrity sha512-1pubWDZE5y5HZEPMAZERP4fVl2NH3Ihp1A+vMoVkb3Qc66Diqj1WierAnStlZP7tCx0TBa0dK85GTW/ZFYyB9g==
 
 "@sentry/core@^8.50.0":
   version "8.55.0"
   resolved "https://registry.npmjs.org/@sentry/core/-/core-8.55.0.tgz#4964920229fcf649237ef13b1533dfc4b9f6b22e"
   integrity sha512-6g7jpbefjHYs821Z+EBJ8r4Z7LT5h80YSWRJaylGS4nW5W5Z2KXzpdnyFarv37O7QjauzVC2E+PABmpkw5/JGA==
 
-"@sentry/react@10.28.0":
-  version "10.28.0"
-  resolved "https://registry.npmjs.org/@sentry/react/-/react-10.28.0.tgz#cfb343704fdbb6678f6bed923bb35e9dc909052a"
-  integrity sha512-n8RCgjqoRh4R9B39jvAUMwRCs2eTIG96CZStZ5TMcRozQyOQ92Cj+aWRrX70nMjoyN3SVI1aLJ6wKB8Lqyw89A==
+"@sentry/react@10.38.0":
+  version "10.38.0"
+  resolved "https://registry.npmjs.org/@sentry/react/-/react-10.38.0.tgz#e9a8509694aff12132791410db96fa2aed9a06d6"
+  integrity sha512-3UiKo6QsqTyPGUt0XWRY9KLaxc/cs6Kz4vlldBSOXEL6qPDL/EfpwNJT61osRo81VFWu8pKu7ZY2bvLPryrnBQ==
   dependencies:
-    "@sentry/browser" "10.28.0"
-    "@sentry/core" "10.28.0"
-    hoist-non-react-statics "^3.3.2"
+    "@sentry/browser" "10.38.0"
+    "@sentry/core" "10.38.0"
 
 "@sentry/webpack-plugin@4.8.0":
   version "4.8.0"
