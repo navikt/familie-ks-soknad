@@ -18,18 +18,104 @@ updates:
     - dependency-name: "*"
       update-types: ["version-update:semver-patch"]
     groups:
-      react:
+      nav-design-system:
+        patterns:
+          - "@navikt/ds-*"
+          - "@navikt/aksel-icons"
+          - "@navikt/familie-*"
+          - "@navikt/nav-dekoratoren-moduler"
+          - "@navikt/oasis"
+          - "@navikt/fnrvalidator"
+
+      react-core:
         patterns:
           - "react"
-          - "@types/react"
           - "react-dom"
-      babel:
+          - "react-router"
+          - "react-cookie"
+          - "styled-components"
+          - "classnames"
+
+      content-cms:
         patterns:
+          - "@sanity/client"
+          - "@portabletext/*"
+
+      observability:
+        patterns:
+          - "@sentry/*"
+          - "@grafana/faro-web-sdk"
+          - "unleash-client"
+
+      backend-runtime:
+        patterns:
+          - "express"
+          - "compression"
+          - "cors"
+          - "cookie-parser"
+          - "express-rate-limit"
+          - "http-proxy-middleware"
+          - "csp-header"
+          - "dotenv"
+          - "mustache-express"
+          - "uuid"
+          - "xss"
+
+      http-and-utils:
+        patterns:
+          - "axios"
+          - "date-fns"
+          - "ramda"
+          - "i18n-iso-countries"
+          - "jsdom"
+
+      typescript-types:
+        patterns:
+          - "typescript"
+          - "ts-*"
+          - "@types/*"
+
+      build-tooling:
+        patterns:
+          - "webpack*"
+          - "babel*"
           - "@babel/*"
-      aksel:
+          - "@vitejs/plugin-react"
+          - "css-loader"
+          - "style-loader"
+          - "mini-css-extract-plugin"
+          - "html-webpack-plugin"
+          - "terser-webpack-plugin"
+          - "copy-webpack-plugin"
+
+      linting-formatting:
         patterns:
-          - "@navikt/aksel-icons"
-          - "@navikt/ds-*"
+          - "eslint*"
+          - "@eslint/js"
+          - "@typescript-eslint/*"
+          - "prettier"
+
+      testing:
+        patterns:
+          - "vitest"
+          - "vitest-mock-extended"
+          - "@testing-library/*"
+          - "cypress"
+          - "msw"
+          - "@axe-core/react"
+
+      dev-workflow:
+        patterns:
+          - "husky"
+          - "lint-staged"
+          - "concurrently"
+          - "react-refresh"
+          - "react-dev-utils"
+
+      patch-minor-misc:
+        update-types:
+          - "patch"
+          - "minor"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
