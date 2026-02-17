@@ -1,0 +1,9 @@
+.header {
+    background-color: var(--a-purple-800);
+}
+
+.divider {
+    width: 100%;
+    border-width: var(--a-spacing-05);
+    border-color: var(--a-grayalpha-200);
+}
