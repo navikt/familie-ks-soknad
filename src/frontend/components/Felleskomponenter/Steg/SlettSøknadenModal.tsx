@@ -1,17 +1,10 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
 import { Button, Heading, Modal } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../context/AppContext';
 
-const StyledHeading = styled(Heading)`
-    && {
-        white-space: nowrap;
-        margin-right: var(--a-spacing-18);
-    }
-`;
+import styles from './SlettSøknadenModal.module.css';
 
 interface ISlettSøkadenModalProps {
     open: boolean;
@@ -27,9 +20,9 @@ export const SlettSøknadenModal: React.FC<ISlettSøkadenModalProps> = ({ open, 
     return (
         <Modal open={open} onClose={avbryt} aria-labelledby="modal-heading">
             <Modal.Header>
-                <StyledHeading level="1" size="medium" id="modal-heading">
+                <Heading className={styles.heading} level="1" size="medium" id="modal-heading">
                     {plainTekst(startPåNyttTekster.startPaaNyttTittel)}
-                </StyledHeading>
+                </Heading>
             </Modal.Header>
             <Modal.Footer>
                 <Button variant={'danger'} type="button" onClick={startPåNytt}>
