@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styled from 'styled-components';
+import { Box, VStack } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
@@ -9,20 +9,7 @@ import { ESanitySteg } from '../../../typer/sanity/sanity';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { TilfeldigBarnIkon } from '../../Felleskomponenter/TilfeldigBarnIkon/TilfeldigBarnIkon';
 
-const HeaderWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
-const BarnCounterWrapper = styled.div`
-    padding: 1rem;
-`;
-
-const HorisontalLinje = styled.span`
-    width: 100%;
-    border-bottom: 1px solid black;
-`;
+import styles from './OmBarnetHeader.module.css';
 
 export const OmBarnetHeader: React.FC<{ barn: IBarnMedISøknad }> = ({ barn }) => {
     const {
@@ -32,10 +19,10 @@ export const OmBarnetHeader: React.FC<{ barn: IBarnMedISøknad }> = ({ barn }) =
     const barnIndex = barnInkludertISøknaden.findIndex(b => b.id === barn.id);
 
     return (
-        <HeaderWrapper>
+        <VStack marginBlock={'space-0 space-32'} align={'center'}>
             <TilfeldigBarnIkon byttVedRerender={false} />
-            <HorisontalLinje />
-            <BarnCounterWrapper data-testid={barn.id}>
+            <hr className={styles.divider} />
+            <Box padding={'space-16'} data-testid={barn.id}>
                 <TekstBlock
                     block={tekster()[ESanitySteg.OM_BARNET].barnXAvY}
                     flettefelter={{
@@ -44,7 +31,7 @@ export const OmBarnetHeader: React.FC<{ barn: IBarnMedISøknad }> = ({ barn }) =
                     }}
                     typografi={Typografi.HeadingH2}
                 />
-            </BarnCounterWrapper>
-        </HeaderWrapper>
+            </Box>
+        </VStack>
     );
 };

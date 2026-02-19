@@ -9,6 +9,7 @@ import webpack from 'webpack';
 
 import { BASE_PATH } from '../shared-utils/miljø';
 import { unslash } from '../shared-utils/unslash';
+
 const { DefinePlugin } = webpackModule;
 
 export const publicUrl = '/public';
@@ -83,20 +84,6 @@ const commonConfig: webpack.Configuration = {
                 options: {
                     plugins: ['@babel/plugin-syntax-import-assertions'],
                 },
-            },
-            {
-                test: /\.(css)$/,
-                use: [
-                    { loader: 'style-loader' },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: {
-                                mode: 'icss',
-                            },
-                        },
-                    },
-                ],
             },
         ],
     },

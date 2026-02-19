@@ -1,0 +1,4 @@
+.heading {
+    white-space: nowrap;
+    padding-right: var(--a-spacing-18);
+}
