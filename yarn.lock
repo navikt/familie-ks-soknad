@@ -1897,10 +1897,10 @@
     outvariant "^1.4.3"
     strict-event-emitter "^0.5.1"
 
-"@navikt/aksel-icons@7.39.0":
-  version "7.39.0"
-  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/7.39.0/a085e7e78b32ffa64bd7319ab6ac697a59941067#a085e7e78b32ffa64bd7319ab6ac697a59941067"
-  integrity sha512-M36ZJ1HRYxyonPJmxOBkK4gjEjT1AVNHRLEk3nNioJZhIj2EDGl7Uw/ALjyghfkxzsof5Q/2m7XXIu3DvInxYQ==
+"@navikt/aksel-icons@8.4.1":
+  version "8.4.1"
+  resolved "https://npm.pkg.github.com/download/@navikt/aksel-icons/8.4.1/deb922b2f447bfd3f95c8f88514d2428e161bb89#deb922b2f447bfd3f95c8f88514d2428e161bb89"
+  integrity sha512-NF1hXW7fmInZ9sT/Ld7e7UE7XaTIidgo/Mamf4Wpm1JlJoyi0vukKIXN9M4ULRw7nSmAz481I5+uJtMIRatCHA==
 
 "@navikt/aksel-icons@^7.39.0":
   version "7.40.0"
