@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 
-import { Alert } from '@navikt/ds-react';
+import { InlineMessage } from '@navikt/ds-react';
 
 import { useAppContext } from '../../context/AppContext';
 
@@ -16,9 +16,7 @@ export const SøkerMåBrukePDF: FC<Props> = ({ advarselTekst }) => {
     const { brukPDFKontantstoette } = tekster().FELLES.kanIkkeBrukeSoeknad;
     return (
         <KomponentGruppe dynamisk>
-            <Alert variant={'warning'} inline>
-                {advarselTekst}
-            </Alert>
+            <InlineMessage status={'warning'}>{advarselTekst}</InlineMessage>
             <TekstBlock block={brukPDFKontantstoette} />
         </KomponentGruppe>
     );

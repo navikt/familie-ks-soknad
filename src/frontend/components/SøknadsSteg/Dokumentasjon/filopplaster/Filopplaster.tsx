@@ -7,6 +7,7 @@ import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
 import { uppercaseFørsteBokstav } from '../../../../utils/visning';
 
+import OpplastedeFiler from './OpplastedeFiler';
 import { ECustomFileRejectionReasons, useFilopplaster } from './useFilopplaster';
 
 interface IFilopplasterProps {
@@ -63,7 +64,7 @@ const Filopplaster: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDok
                 },
             }}
         >
-            <VStack gap="6">
+            <VStack gap="space-24">
                 <FileUpload.Dropzone
                     label={plainTekst(dokumentasjonTekster.lastOppFiler)}
                     description={
@@ -85,11 +86,15 @@ const Filopplaster: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDok
                 />
 
                 {(dokumentasjon.opplastedeVedlegg.length > 0 || filerUnderOpplastning.length > 0) && (
-                    <VStack gap="2">
+                    <VStack gap="space-8">
                         <Heading level="4" size="xsmall">
                             {`${plainTekst(frittståendeOrdTekster.vedlegg)} (${dokumentasjon.opplastedeVedlegg.length + filerUnderOpplastning.length})`}
                         </Heading>
-                        <VStack as="ul" gap="3">
+                        <VStack as="ul" gap="space-12">
+                            <OpplastedeFiler
+                                slettVedlegg={() => console.log('HEY')}
+                                filliste={dokumentasjon.opplastedeVedlegg}
+                            />
                             {dokumentasjon.opplastedeVedlegg.map((opplastetVedlegg, index) => (
                                 <FileUpload.Item
                                     as="li"
@@ -120,11 +125,11 @@ const Filopplaster: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDok
                 )}
 
                 {avvisteFiler.length > 0 && (
-                    <VStack gap="2">
+                    <VStack gap="space-8">
                         <Heading level="4" size="xsmall">
                             {`${plainTekst(frittståendeOrdTekster.vedleggMedFeil)} (${avvisteFiler.length})`}
                         </Heading>
-                        <VStack as="ul" gap="3">
+                        <VStack as="ul" gap="space-12">
                             {avvisteFiler.map((fil, index) => (
                                 <FileUpload.Item
                                     as="li"

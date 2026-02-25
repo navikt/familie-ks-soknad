@@ -67,7 +67,7 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon 
             <FormSummary.Header>
                 <FormSummary.Heading level="3">{plainTekst(tittel, { barnetsNavn: barnasNavn })}</FormSummary.Heading>
             </FormSummary.Header>
-            <VStack gap="6" paddingInline="6" paddingBlock="5 6">
+            <VStack gap="space-24" paddingInline="space-24" paddingBlock="space-20 space-24">
                 {dokumentasjonsbeskrivelse && (
                     <div>
                         <TekstBlock

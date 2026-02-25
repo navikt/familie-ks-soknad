@@ -13,7 +13,7 @@ function KomponentGruppe({ dynamisk = false, children }: Props) {
         return null;
     }
     return (
-        <VStack gap="4" aria-live={dynamisk ? 'polite' : 'off'}>
+        <VStack gap="space-16" aria-live={dynamisk ? 'polite' : 'off'}>
             {children}
         </VStack>
     );

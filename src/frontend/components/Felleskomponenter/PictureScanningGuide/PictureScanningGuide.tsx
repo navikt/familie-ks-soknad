@@ -13,6 +13,7 @@ import ScanningIcon from './ScanningIcon';
 const StyledVStack = styled(VStack)`
     && ul {
         margin: 0;
+
         li {
             margin-bottom: 0.5rem;
         }
@@ -33,7 +34,7 @@ const PictureScanningGuide = () => {
                 </ExpansionCard.Title>
             </ExpansionCard.Header>
             <ExpansionCard.Content>
-                <StyledVStack gap="8">
+                <StyledVStack gap="space-32">
                     <div>
                         <Heading level="4" size="xsmall" spacing>
                             {plainTekst(dokumentasjonTekster.slikTarDuEtGodtBildeTittel)}
@@ -50,7 +51,7 @@ const PictureScanningGuide = () => {
                         <Heading level="4" size="xsmall" spacing>
                             {plainTekst(dokumentasjonTekster.braOgDaarligeTittel)}
                         </Heading>
-                        <HGrid gap="4" columns={{ xs: 1, sm: 2 }}>
+                        <HGrid gap="space-16" columns={{ xs: 1, sm: 2 }}>
                             <PictureScanningExample
                                 image={<ScanningIcon status="good" height={svgIconHeight} />}
                                 variant="success"

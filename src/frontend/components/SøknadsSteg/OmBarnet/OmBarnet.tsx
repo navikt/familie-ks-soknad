@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Alert } from '@navikt/ds-react';
+import { InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useAppContext } from '../../../context/AppContext';
@@ -123,9 +123,9 @@ const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
                         flettefelter={{ barnetsNavn }}
                     />
                     {borFastMedSøker.verdi === ESvar.NEI && !erEøsTrigget() && (
-                        <Alert variant={'warning'} inline>
+                        <InlineMessage status={'warning'}>
                             <TekstBlock block={borBarnFastSammenMedDeg.alert} />
-                        </Alert>
+                        </InlineMessage>
                     )}
                 </KomponentGruppe>
                 <JaNeiSpm

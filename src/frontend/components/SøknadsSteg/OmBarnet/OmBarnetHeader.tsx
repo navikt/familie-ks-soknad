@@ -19,7 +19,7 @@ export const OmBarnetHeader: React.FC<{ barn: IBarnMedISøknad }> = ({ barn }) =
     const barnIndex = barnInkludertISøknaden.findIndex(b => b.id === barn.id);
 
     return (
-        <VStack marginBlock={'space-0 space-32'} align={'center'}>
+        <VStack align={'center'}>
             <TilfeldigBarnIkon byttVedRerender={false} />
             <hr className={styles.divider} />
             <Box padding={'space-16'} data-testid={barn.id}>
