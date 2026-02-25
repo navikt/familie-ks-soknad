@@ -29,14 +29,18 @@ const Navigeringspanel: React.FC<{
 
     return (
         <>
-            <Box marginBlock="12 0">
-                <VStack gap="4">
+            <Box marginBlock="space-48 space-0">
+                <VStack gap="space-16">
                     {datoSistLagret && (
                         <BodyShort as="div" size="small" textColor="subtle">
                             {plainTekst(sistLagret)} {formaterDatoOgTid(datoSistLagret, valgtLocale)}
                         </BodyShort>
                     )}
-                    <HGrid gap={{ xs: '4', sm: '8 4' }} columns={{ xs: 1, sm: 2 }} width={{ sm: 'fit-content' }}>
+                    <HGrid
+                        gap={{ xs: 'space-16', sm: 'space-32 space-16' }}
+                        columns={{ xs: 1, sm: 2 }}
+                        width={{ sm: 'fit-content' }}
+                    >
                         <Button
                             type={'button'}
                             variant="secondary"
@@ -63,7 +67,7 @@ const Navigeringspanel: React.FC<{
                             {plainTekst(nesteSteg.route === RouteEnum.Kvittering ? sendSoeknadKnapp : gaaVidereKnapp)}
                         </Button>
 
-                        <Box asChild marginBlock={{ xs: '4 0', sm: '0' }}>
+                        <Box asChild marginBlock={{ xs: 'space-16 space-0', sm: 'space-0' }}>
                             <Button
                                 variant="tertiary"
                                 type={'button'}

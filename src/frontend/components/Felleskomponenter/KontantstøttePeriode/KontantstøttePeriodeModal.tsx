@@ -160,7 +160,7 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                         />
                     }
                     tilleggsinfo={
-                        <Box marginBlock="2">
+                        <Box marginBlock="space-8">
                             <Alert variant={'info'} inline>
                                 <TekstBlock block={teksterForPersonType.beloepPerMaaned.alert} />
                             </Alert>

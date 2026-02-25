@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { PlusCircleIcon } from '@navikt/aksel-icons';
 import { Box, Button, ErrorMessage, FormSummary } from '@navikt/ds-react';
-import { ARed500 } from '@navikt/ds-tokens/dist/tokens';
 
 interface Props {
     onClick: () => void | Promise<void>;
@@ -16,7 +15,7 @@ interface Props {
 
 const StyledButton = styled(Button)`
     && {
-        border: ${props => (props.$feilmelding ? `2px solid ${ARed500}` : 'none')};
+        border: ${props => (props.$feilmelding ? `2px solid var(--ax-border-danger)` : 'none')};
     }
 `;
 
@@ -36,8 +35,8 @@ export function LeggTilKnapp({ onClick, leggTilFlereTekst, feilmelding, id, chil
                     {children}
                 </StyledButton>
                 {!!feilmelding && (
-                    <Box marginBlock="2 0">
-                        <ErrorMessage>{feilmelding}</ErrorMessage>
+                    <Box marginBlock="space-8 space-0">
+                        <ErrorMessage showIcon>{feilmelding}</ErrorMessage>
                     </Box>
                 )}
             </FormSummary.Value>

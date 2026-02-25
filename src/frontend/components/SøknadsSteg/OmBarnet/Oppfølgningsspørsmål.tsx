@@ -21,6 +21,7 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
 
 import { IOmBarnetTekstinnhold } from './innholdTyper';
+import styles from './Oppfølgningsspørsmål.module.css';
 
 const Oppfølgningsspørsmål: React.FC<{
     barn: IBarnMedISøknad;
@@ -89,12 +90,14 @@ const Oppfølgningsspørsmål: React.FC<{
                                 flettefelter={{ barnetsNavn }}
                             />
                             {skjema.felter.planleggerÅBoINorge12Mnd.verdi === ESvar.NEI && (
-                                <Alert variant={'warning'} aria-live="polite">
-                                    <TekstBlock
-                                        block={planlagtBoSammenhengendeINorge.alert}
-                                        typografi={Typografi.BodyLong}
-                                    />
-                                </Alert>
+                                <div className={styles.textBlockContainer}>
+                                    <Alert variant={'warning'} aria-live="polite">
+                                        <TekstBlock
+                                            block={planlagtBoSammenhengendeINorge.alert}
+                                            typografi={Typografi.BodyLong}
+                                        />
+                                    </Alert>
+                                </div>
                             )}
                         </KomponentGruppe>
                     )}
