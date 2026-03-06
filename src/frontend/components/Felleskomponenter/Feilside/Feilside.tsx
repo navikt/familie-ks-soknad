@@ -19,7 +19,7 @@ export const Feilside: FC = () => {
     };
 
     return (
-        <Box marginBlock="32">
+        <Box marginBlock="space-128">
             <FeilsideInnhold />
         </Box>
     );

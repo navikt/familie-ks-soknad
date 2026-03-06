@@ -13,6 +13,7 @@ import InnholdContainer from '../../Felleskomponenter/InnholdContainer/InnholdCo
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
+import styles from './Forside.module.css';
 import { FortsettPåSøknad } from './FortsettPåSøknad';
 
 const Forside: React.FC = () => {
@@ -45,7 +46,7 @@ const Forside: React.FC = () => {
                 </Heading>
                 <TekstBlock block={forsidetekster.veilederIntro} typografi={Typografi.BodyLong} />
             </GuidePanel>
-            <div>
+            <div className={styles.textBlockContainer}>
                 <Heading level="2" size="large" spacing>
                     {plainTekst(forsidetekster.foerDuSoekerTittel)}
                 </Heading>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Alert } from '@navikt/ds-react';
+import { InlineMessage } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -64,9 +64,9 @@ const VelgBarn: React.FC = () => {
                 ))}
                 <NyttBarnKort onLeggTilBarn={åpneLeggTilBarnModal} />
                 {finnesBarnUnder1År && (
-                    <Alert variant={'warning'} inline>
+                    <InlineMessage status={'warning'}>
                         <TekstBlock block={kanIkkeBestemmeRettUnder1Aar} />
-                    </Alert>
+                    </InlineMessage>
                 )}
             </Steg>
             {erLeggTilBarnModalÅpen && (

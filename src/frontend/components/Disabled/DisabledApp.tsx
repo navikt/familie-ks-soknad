@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Heading, Link, Page, VStack, BodyShort } from '@navikt/ds-react';
+import { BodyShort, Heading, Link, Page, VStack } from '@navikt/ds-react';
 
 export function DisabledApp() {
     return (
         <main>
             <Page.Block width="text" gutters>
-                <VStack gap="16">
+                <VStack gap="space-64">
                     <div>
                         <Heading level="1" size="large" spacing>
                             Vi jobber med å forbedre siden

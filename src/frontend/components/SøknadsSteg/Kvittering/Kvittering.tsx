@@ -54,7 +54,7 @@ const Kvittering: React.FC = () => {
                 <TekstBlock block={kvitteringTekster.soeknadMottatt} flettefelter={{ dato, klokkeslett }} />
             </Alert>
 
-            <VStack gap="6">
+            <VStack gap="space-24">
                 {allNødvendigDokumentasjonErLastetOpp.current ? (
                     <TekstBlock block={kvitteringTekster.trengerIkkeEttersendeVedlegg} typografi={Typografi.BodyLong} />
                 ) : (

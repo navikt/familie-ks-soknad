@@ -29,8 +29,8 @@ const Barn1: React.FC = () => {
                                     <mask id="b" fill="white">
                                         <use href="#a" />
                                     </mask>
-                                    <use fill="#D8A25D" href="#a" />
-                                    <g fill="#D8A25C" mask="url(#b)">
+                                    <use fill="#ffcb6f" href="#a" />
+                                    <g fill="#ffcb6f" mask="url(#b)">
                                         <g transform="translate(-82.261 -105.78)">
                                             <polygon points="0 227 230 227 230 0 0 0" />
                                         </g>
