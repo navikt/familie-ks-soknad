@@ -2,24 +2,12 @@ import React from 'react';
 
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { Button, ConfirmationPanel, Heading, VStack } from '@navikt/ds-react';
-import { AGreen500, ANavRed, AOrange500 } from '@navikt/ds-tokens/dist/tokens';
 
 import { useAppContext } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import { BekreftelseStatus, useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
-
-export const bekreftelseBoksBorderFarge = (status: BekreftelseStatus) => {
-    switch (status) {
-        case BekreftelseStatus.BEKREFTET:
-            return AGreen500;
-        case BekreftelseStatus.FEIL:
-            return ANavRed;
-        default:
-            return AOrange500;
-    }
-};
 
 const BekreftelseOgStartSoknad: React.FC = () => {
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
@@ -30,7 +18,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
 
     return (
         <form onSubmit={event => onStartSøknad(event)}>
-            <VStack gap="12">
+            <VStack gap="space-48">
                 <ConfirmationPanel
                     label={plainTekst(forsidetekster.bekreftelsesboksErklaering)}
                     onChange={bekreftelseOnChange}
@@ -47,7 +35,7 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                     <TekstBlock block={forsidetekster.bekreftelsesboksBroedtekst} typografi={Typografi.BodyLong} />
                 </ConfirmationPanel>
 
-                <VStack gap="8" width={{ sm: 'fit-content' }} marginInline={{ sm: 'auto' }}>
+                <VStack gap="space-32" width={{ sm: 'fit-content' }} marginInline={{ sm: 'auto' }}>
                     <Button
                         variant={bekreftelseStatus === BekreftelseStatus.BEKREFTET ? 'primary' : 'secondary'}
                         type={'submit'}

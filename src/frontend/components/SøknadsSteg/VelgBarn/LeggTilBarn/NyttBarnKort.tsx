@@ -15,7 +15,7 @@ export const NyttBarnKort: React.FC<{ onLeggTilBarn: () => void }> = ({ onLeggTi
     const { soekeForUregistrerteBarn } = teksterForSteg;
 
     return (
-        <Box padding="6" background="surface-subtle" borderRadius="medium">
+        <Box padding="space-24" background={'sunken'} borderRadius="4">
             <BodyShort spacing>
                 <TekstBlock block={soekeForUregistrerteBarn} />
             </BodyShort>

@@ -166,7 +166,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
                             <ArrowLeftIcon aria-hidden />
                             {plainTekst(tilbakeKnapp)}
                         </Link>
-                        <Box paddingBlock="6 5">
+                        <Box paddingBlock="space-24 space-20">
                             <Heading level="2" size={'large'}>
                                 {tittel}
                             </Heading>
@@ -195,7 +195,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
                 )}
                 {guide && <GuidePanel poster>{guide}</GuidePanel>}
                 <form onSubmit={event => håndterGåVidere(event)} autoComplete="off">
-                    <VStack gap="10">
+                    <VStack gap="space-40">
                         {children}
                         {skjema && visFeiloppsummering(skjema.skjema) && (
                             <SkjemaFeiloppsummering skjema={skjema.skjema} />
