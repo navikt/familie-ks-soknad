@@ -11,7 +11,7 @@ interface Props {
 function SkjemaFieldset({ legend, dynamisk = false, children }: Props) {
     return (
         <Fieldset aria-live={dynamisk ? 'polite' : 'off'} legend={legend}>
-            <VStack gap="10">{children}</VStack>
+            <VStack gap="space-40">{children}</VStack>
         </Fieldset>
     );
 }

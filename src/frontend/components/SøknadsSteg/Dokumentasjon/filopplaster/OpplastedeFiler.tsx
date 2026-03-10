@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import { PaperclipIcon, TrashFillIcon } from '@navikt/aksel-icons';
 import { Button } from '@navikt/ds-react';
-import { ABorderDivider } from '@navikt/ds-tokens/dist/tokens';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { Typografi } from '../../../../typer/common';
@@ -26,7 +25,7 @@ const FilRad = styled.li<{ $skillelinje: boolean }>`
     display: flex;
     justify-content: space-between;
     padding: 1rem 0;
-    border-bottom: ${props => (props.$skillelinje ? `1px solid ${ABorderDivider}` : 'none')};
+    border-bottom: ${props => (props.$skillelinje ? `1px solid red` : 'none')}; //TODO NGHI
 `;
 
 const FilTekstWrapper = styled.div`

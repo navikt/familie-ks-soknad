@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Alert } from '@navikt/ds-react';
+import { InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useAppContext } from '../../../context/AppContext';
@@ -11,6 +11,7 @@ import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGr
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
+import styles from './OmDeg.module.css';
 import { Personopplysninger } from './Personopplysninger';
 import { useOmdeg } from './useOmdeg';
 
@@ -49,9 +50,11 @@ const OmDeg: React.FC = () => {
                     spørsmålDokument={borPaaAdressen}
                 />
                 {skjema.felter.borPåRegistrertAdresse.verdi === ESvar.NEI && (
-                    <Alert variant={'warning'} inline>
-                        <TekstBlock block={borPaaAdressen.alert} typografi={Typografi.BodyShort} />
-                    </Alert>
+                    <div className={styles.textBlockContainer}>
+                        <InlineMessage status={'warning'}>
+                            <TekstBlock block={borPaaAdressen.alert} typografi={Typografi.BodyShort} />
+                        </InlineMessage>
+                    </div>
                 )}
             </KomponentGruppe>
             <JaNeiSpm
@@ -67,9 +70,11 @@ const OmDeg: React.FC = () => {
                     spørsmålDokument={planleggerAaBoSammenhengende}
                 />
                 {skjema.felter.planleggerÅBoINorgeTolvMnd.verdi === ESvar.NEI && (
-                    <Alert variant={'warning'} inline aria-live="polite">
-                        <TekstBlock block={planleggerAaBoSammenhengende.alert} typografi={Typografi.BodyLong} />
-                    </Alert>
+                    <div className={styles.textBlockContainer}>
+                        <InlineMessage status={'warning'}>
+                            <TekstBlock block={planleggerAaBoSammenhengende.alert} typografi={Typografi.BodyLong} />
+                        </InlineMessage>
+                    </div>
                 )}
             </KomponentGruppe>
             <KomponentGruppe>
@@ -79,9 +84,11 @@ const OmDeg: React.FC = () => {
                     spørsmålDokument={medlemAvFolketrygden}
                 />
                 {skjema.felter.yrkesaktivFemÅr.verdi === ESvar.NEI && (
-                    <Alert variant={'warning'} inline aria-live="polite">
-                        <TekstBlock block={medlemAvFolketrygden.alert} typografi={Typografi.BodyShort} />
-                    </Alert>
+                    <div className={styles.textBlockContainer}>
+                        <InlineMessage status={'warning'}>
+                            <TekstBlock block={medlemAvFolketrygden.alert} typografi={Typografi.BodyShort} />
+                        </InlineMessage>
+                    </div>
                 )}
             </KomponentGruppe>
         </Steg>

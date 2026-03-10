@@ -19,11 +19,11 @@ export const FortsettPåSøknad: FC = () => {
 
     return (
         <>
-            <VStack role={'navigation'} gap="8" marginBlock="8 0">
+            <VStack role={'navigation'} gap="space-32" marginBlock="space-32 space-0">
                 <Alert variant={'info'}>
                     <TekstBlock block={forsideTekster.mellomlagretAlert} typografi={Typografi.BodyLong} />
                 </Alert>
-                <VStack gap="8" width={{ sm: 'fit-content' }} marginInline={{ sm: 'auto' }}>
+                <VStack gap="space-32" width={{ sm: 'fit-content' }} marginInline={{ sm: 'auto' }}>
                     <Button onClick={fortsettPåSøknaden}>{plainTekst(navigasjonTekster.fortsettKnapp)}</Button>
                     <Button variant={'secondary'} onClick={() => settVisStartPåNyttModal(true)}>
                         {plainTekst(navigasjonTekster.startPaaNyttKnapp)}

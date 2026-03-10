@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect } from 'react';
 
 import { formatISO, isAfter, startOfDay } from 'date-fns';
 
-import { BodyShort, ErrorMessage, DatePicker, useDatepicker } from '@navikt/ds-react';
+import { BodyShort, DatePicker, ErrorMessage, useDatepicker } from '@navikt/ds-react';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
@@ -112,7 +112,7 @@ const Datovelger: React.FC<DatoVelgerProps> = ({
                     error={!!(felt.feilmelding && skjema.visFeilmeldinger)}
                 />
             </DatePicker>
-            {skjema.visFeilmeldinger && <ErrorMessage>{felt.feilmelding}</ErrorMessage>}
+            {skjema.visFeilmeldinger && <ErrorMessage showIcon>{felt.feilmelding}</ErrorMessage>}
         </div>
     ) : null;
 };

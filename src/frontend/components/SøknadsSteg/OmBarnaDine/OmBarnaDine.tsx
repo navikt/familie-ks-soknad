@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useNavigate } from 'react-router';
 
-import { Alert } from '@navikt/ds-react';
+import { InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useAppContext } from '../../../context/AppContext';
@@ -85,9 +85,9 @@ const OmBarnaDine: React.FC = () => {
                 visFeilmelding={skjema.visFeilmeldinger}
             >
                 {skjema.felter.erNoenAvBarnaFosterbarn.verdi === ESvar.JA && (
-                    <Alert variant={'warning'} inline>
+                    <InlineMessage status={'warning'}>
                         <TekstBlock block={fosterbarn.alert} typografi={Typografi.BodyShort} />
-                    </Alert>
+                    </InlineMessage>
                 )}
             </HvilkeBarnCheckboxGruppe>
             <JaNeiSpm
@@ -103,9 +103,9 @@ const OmBarnaDine: React.FC = () => {
                 visFeilmelding={skjema.visFeilmeldinger}
             >
                 {skjema.felter.oppholderBarnSegIInstitusjon.verdi === ESvar.JA && (
-                    <Alert variant={'warning'} inline>
+                    <InlineMessage status={'warning'}>
                         <TekstBlock block={institusjonKontantstoette.alert} typografi={Typografi.BodyShort} />
-                    </Alert>
+                    </InlineMessage>
                 )}
             </HvilkeBarnCheckboxGruppe>
             <JaNeiSpm skjema={skjema} felt={skjema.felter.erBarnAdoptert} spørsmålDokument={adoptertKontantstoette} />

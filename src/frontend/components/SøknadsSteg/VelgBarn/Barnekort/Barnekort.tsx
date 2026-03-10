@@ -1,17 +1,7 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
 import { TrashFillIcon } from '@navikt/aksel-icons';
 import { Alert, Bleed, Box, Button, Checkbox, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
-import {
-    ABorderRadiusMedium,
-    AGrayalpha200,
-    APurple400,
-    APurple800,
-    ASpacing05,
-    ASpacing32,
-} from '@navikt/ds-tokens/dist/tokens';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { LocaleRecordBlock } from '../../../../typer/common';
@@ -32,24 +22,6 @@ interface IBarnekortProps {
     barnSomSkalVæreMed: IBarn[];
     fjernBarnCallback: (ident: string) => void;
 }
-
-const BarnekortHeader = styled.div`
-    height: ${ASpacing32};
-    background-color: ${APurple800};
-    border-bottom: 0.25rem solid ${APurple400};
-    border-radius: ${ABorderRadiusMedium} ${ABorderRadiusMedium} 0 0;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    width: 100%;
-`;
-
-const Divider = styled.hr`
-    height: ${ASpacing05};
-    width: 100%;
-    border: none;
-    background-color: ${AGrayalpha200};
-`;
 
 const Barnekort: React.FC<IBarnekortProps> = ({ barn, velgBarnCallback, barnSomSkalVæreMed, fjernBarnCallback }) => {
     const {
@@ -82,14 +54,14 @@ const Barnekort: React.FC<IBarnekortProps> = ({ barn, velgBarnCallback, barnSomS
     const knappetekst: LocaleRecordBlock = tekster()[ESanitySteg.FELLES].modaler.leggTilBarn.fjernKnapp;
 
     return (
-        <Box padding="6" background={'surface-subtle'} borderRadius="medium">
-            <VStack gap="6">
-                <Bleed marginInline="6" marginBlock="6 0" asChild>
+        <Box padding="space-24" background={'sunken'} borderRadius="4">
+            <VStack gap="space-24">
+                <Bleed marginInline="space-24" marginBlock="space-24 space-0" asChild>
                     <Box
                         borderWidth={'0 0 4 0'}
                         borderRadius={`4 4 0 0`}
-                        borderColor={'border-alt-1'}
-                        className={styles.header}
+                        borderColor={'brand-beige-subtle'}
+                        background={'brand-beige-strong'}
                     >
                         <HStack align={'end'} justify={'center'} width={'100%'} height={'var(--a-spacing-32'}>
                             <TilfeldigBarnIkon />
@@ -99,7 +71,7 @@ const Barnekort: React.FC<IBarnekortProps> = ({ barn, velgBarnCallback, barnSomS
                 <Heading level="3" size="medium">
                     {barn.adressebeskyttelse ? <TekstBlock block={navnErstatterForAdressesperre} /> : barn.navn}
                 </Heading>
-                <HGrid gap="6" columns={{ sm: 1, md: '2fr 1fr 3fr' }}>
+                <HGrid gap="space-24" columns={{ sm: 1, md: '2fr 1fr 3fr' }}>
                     <BarnekortInfo label={<TekstBlock block={foedselsnummerLabel} />} verdi={fødselsnummerTekst} />
                     {barn.alder && ( // Barn med undefined fødselsdato i pdl eller som søker har lagt inn selv har alder -null-
                         <BarnekortInfo

@@ -21,6 +21,7 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering/VedleggOppsummering';
 import { IVedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering/vedleggOppsummering.types';
 
+import styles from './Dokumentasjon.module.css';
 import LastOppVedlegg from './LastOppVedlegg';
 
 // Vedlegg er lagret 48 timer
@@ -115,10 +116,12 @@ const Dokumentasjon: React.FC = () => {
                 return success;
             }}
         >
-            <VStack gap="12">
+            <VStack gap="space-48">
                 {slettaVedlegg.length > 0 && (
                     <Alert variant={'warning'}>
-                        <TekstBlock block={stegTekster.forLangTidDokumentasjon} typografi={Typografi.BodyLong} />
+                        <div className={styles.textBlockContainer}>
+                            <TekstBlock block={stegTekster.forLangTidDokumentasjon} typografi={Typografi.BodyLong} />
+                        </div>
                         <ul>
                             {slettaVedlegg.map(vedlegg => (
                                 <li key={vedlegg.dokumentId}>
