@@ -10476,9 +10476,9 @@ synckit@^0.11.7:
     "@pkgr/core" "^0.2.4"
 
 systeminformation@^5.27.14:
-  version "5.30.7"
-  resolved "https://registry.npmjs.org/systeminformation/-/systeminformation-5.30.7.tgz#7708ac4680a90c183dfb7342d1577045a1d6cc08"
-  integrity sha512-33B/cftpaWdpvH+Ho9U1b08ss8GQuLxrWHelbJT1yw4M48Taj8W3ezcPuaLoIHZz5V6tVHuQPr5BprEfnBLBMw==
+  version "5.31.5"
+  resolved "https://registry.npmjs.org/systeminformation/-/systeminformation-5.31.5.tgz#e839fa6b40620a8bee010eb9d9d55c2d5f7042c8"
+  integrity sha512-5SyLdip4/3alxD4Kh+63bUQTJmu7YMfYQTC+koZy7X73HgNqZSD2P4wOZQWtUncvPvcEmnfIjCoygN4MRoEejQ==
 
 tabbable@^6.0.0:
   version "6.2.0"
