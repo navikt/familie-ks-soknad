@@ -1779,13 +1779,12 @@
   resolved "https://npm.pkg.github.com/download/@navikt/ds-tokens/8.6.0/acac1517c2bc4c4eda259f1bc591db24656f102f#acac1517c2bc4c4eda259f1bc591db24656f102f"
   integrity sha512-MdnPFvi7wPF0N5ms6psNqW0IevlHhoswUCOYFQl7hFwL+uRcqFna6rT8fm/co04z/HDUKKfadbrW0yodzDxj1w==
 
-"@navikt/familie-form-elements@21.0.6":
-  version "21.0.6"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-form-elements/21.0.6/1c24bfbd8d7300278a688a2a31789e50149142fb#1c24bfbd8d7300278a688a2a31789e50149142fb"
-  integrity sha512-e9fYkJ3o33eqF51awoIJx1YAT6TvDr8IcE4h13eOA5kHo6tF733jR85wBFyA3O5kgAzbzrcx25bdmudjDoUdEw==
+"@navikt/familie-form-elements@22.0.1":
+  version "22.0.1"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-form-elements/22.0.1/8a18208cad1a699cc48496cca93bc242b3a60f60#8a18208cad1a699cc48496cca93bc242b3a60f60"
+  integrity sha512-K5BmXg7ifVSskpt3TIwcUha/saWmra7KCndYJ/+kG7FCr8SGQ5Kg8BInY9OkM+AEZH00S/gwSNMS4uCdxg+fnA==
   dependencies:
-    classnames "^2.5.1"
-    react-select "5.9.0"
+    react-select "5.10.2"
 
 "@navikt/familie-http@8.0.2", "@navikt/familie-http@^8.0.2":
   version "8.0.2"
@@ -3991,7 +3990,7 @@ ci-info@^4.1.0:
   resolved "https://registry.npmjs.org/ci-info/-/ci-info-4.2.0.tgz#cbd21386152ebfe1d56f280a3b5feccbd96764c7"
   integrity sha512-cYY9mypksY8NRqgDB1XD1RiJL338v/551niynFTGkZOO2LHuB2OmOYxDIe/ttN9AHwrqdum1360G3ald0W9kCg==
 
-classnames@2.5.1, classnames@^2.5.1:
+classnames@2.5.1:
   version "2.5.1"
   resolved "https://registry.npmjs.org/classnames/-/classnames-2.5.1.tgz#ba774c614be0f016da105c858e7159eae8e7687b"
   integrity sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==
@@ -9198,10 +9197,10 @@ react-router@7.13.0:
     cookie "^1.0.1"
     set-cookie-parser "^2.6.0"
 
-react-select@5.9.0:
-  version "5.9.0"
-  resolved "https://registry.npmjs.org/react-select/-/react-select-5.9.0.tgz#41325b7bfe8452a8d401b82fc4fb7d44a03e29c5"
-  integrity sha512-nwRKGanVHGjdccsnzhFte/PULziueZxGD8LL2WojON78Mvnq7LdAMEtu2frrwld1fr3geixg3iiMBIc/LLAZpw==
+react-select@5.10.2:
+  version "5.10.2"
+  resolved "https://registry.npmjs.org/react-select/-/react-select-5.10.2.tgz#8dffc69dfd7d74684d9613e6eb27204e3b99e127"
+  integrity sha512-Z33nHdEFWq9tfnfVXaiM12rbJmk+QjFEztWLtmXqQhz6Al4UZZ9xc0wiatmGtUOCCnHN0WizL3tCMYRENX4rVQ==
   dependencies:
     "@babel/runtime" "^7.12.0"
     "@emotion/cache" "^11.4.0"
