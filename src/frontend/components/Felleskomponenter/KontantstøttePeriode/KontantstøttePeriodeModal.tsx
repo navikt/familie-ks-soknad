@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Alert, Box } from '@navikt/ds-react';
+import { Box, InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useAppContext } from '../../../context/AppContext';
@@ -161,9 +161,9 @@ export const KontantstøttePeriodeModal: React.FC<Props> = ({
                     }
                     tilleggsinfo={
                         <Box marginBlock="space-8">
-                            <Alert variant={'info'} inline>
+                            <InlineMessage status={'info'}>
                                 <TekstBlock block={teksterForPersonType.beloepPerMaaned.alert} />
-                            </Alert>
+                            </InlineMessage>
                         </Box>
                     }
                     htmlSize={15}
