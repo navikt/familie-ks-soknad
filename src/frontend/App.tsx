@@ -2,7 +2,8 @@ import React from 'react';
 
 import { BrowserRouter as Router } from 'react-router';
 
-import { Alert } from '@navikt/ds-react';
+import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
+import { InfoCard } from '@navikt/ds-react';
 
 import { BASE_PATH } from '../shared-utils/miljø';
 
@@ -25,12 +26,14 @@ const App = () => {
                             <Router basename={BASE_PATH}>
                                 <StegProvider>
                                     {process.env.NODE_ENV !== 'production' && (
-                                        <Alert variant="warning">
-                                            {`Denne siden er under utvikling. `}
-                                            <a href="https://www.nav.no/kontantstotte">
-                                                Klikk her for å gå til våre sider for kontantstøtte
-                                            </a>
-                                        </Alert>
+                                        <InfoCard data-color="warning">
+                                            <InfoCard.Message icon={<ExclamationmarkTriangleIcon aria-hidden />}>
+                                                {`Denne siden er under utvikling. `}
+                                                <a href="https://www.nav.no/kontantstotte">
+                                                    Klikk her for å gå til våre sider for kontantstøtte
+                                                </a>
+                                            </InfoCard.Message>
+                                        </InfoCard>
                                     )}
                                     <AppNavigationProvider>
                                         <AppContainer />
