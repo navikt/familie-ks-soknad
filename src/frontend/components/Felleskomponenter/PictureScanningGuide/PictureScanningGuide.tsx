@@ -2,6 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { CheckmarkCircleIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
 import { ExpansionCard, Heading, HGrid, VStack } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../context/AppContext';
@@ -54,25 +55,29 @@ const PictureScanningGuide = () => {
                         <HGrid gap="space-16" columns={{ xs: 1, sm: 2 }}>
                             <PictureScanningExample
                                 image={<ScanningIcon status="good" height={svgIconHeight} />}
+                                icon={<CheckmarkCircleIcon aria-hidden />}
                                 variant="success"
                                 statusText={plainTekst(dokumentasjonTekster.bra)}
                                 description={plainTekst(dokumentasjonTekster.fyllerHeleBildet)}
                             />
                             <PictureScanningExample
                                 image={<ScanningIcon status="keystone" height={svgIconHeight} />}
-                                variant="error"
+                                icon={<XMarkOctagonIcon aria-hidden />}
+                                variant="danger"
                                 statusText={plainTekst(dokumentasjonTekster.daarlig)}
                                 description={plainTekst(dokumentasjonTekster.ikkeTattOvenfra)}
                             />
                             <PictureScanningExample
                                 image={<ScanningIcon status="horizontal" height={svgIconHeight} />}
-                                variant="error"
+                                icon={<XMarkOctagonIcon aria-hidden />}
+                                variant="danger"
                                 statusText={plainTekst(dokumentasjonTekster.daarlig)}
                                 description={plainTekst(dokumentasjonTekster.ikkeRiktigRetning)}
                             />
                             <PictureScanningExample
                                 image={<ScanningIcon status="shadow" height={svgIconHeight} />}
-                                variant="error"
+                                icon={<XMarkOctagonIcon aria-hidden />}
+                                variant="danger"
                                 statusText={plainTekst(dokumentasjonTekster.daarlig)}
                                 description={plainTekst(dokumentasjonTekster.skyggePaaDokumentet)}
                             />

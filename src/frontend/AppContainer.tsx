@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Alert, Box, Page } from '@navikt/ds-react';
+import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
+import { Box, InfoCard, Page } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
@@ -17,12 +18,14 @@ const AppContainer = () => {
                 {systemetLaster() && <SystemetLaster />}
                 {sluttbruker.status === RessursStatus.IKKE_TILGANG && (
                     <Box marginBlock="space-128">
-                        <Alert variant="warning">
-                            {'Du må søke på papir.'}
-                            <a href="https://www.nav.no/kontantstotte">
-                                Klikk her for å gå til våre sider for kontantstøtte
-                            </a>
-                        </Alert>
+                        <InfoCard data-color="warning">
+                            <InfoCard.Message icon={<ExclamationmarkTriangleIcon aria-hidden />}>
+                                {'Du må søke på papir.'}
+                                <a href="https://www.nav.no/kontantstotte">
+                                    Klikk her for å gå til våre sider for kontantstøtte
+                                </a>
+                            </InfoCard.Message>
+                        </InfoCard>
                     </Box>
                 )}
                 {systemetOK() && <Søknad />}
