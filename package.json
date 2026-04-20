@@ -59,7 +59,6 @@
     "@sanity/client": "7.16.0",
     "@sentry/react": "10.40.0",
     "axios": "1.15.0",
-    "classnames": "2.5.1",
     "compression": "1.8.0",
     "cookie-parser": "1.4.7",
     "cors": "2.8.5",

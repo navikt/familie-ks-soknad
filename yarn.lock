@@ -3990,11 +3990,6 @@ ci-info@^4.1.0:
   resolved "https://registry.npmjs.org/ci-info/-/ci-info-4.2.0.tgz#cbd21386152ebfe1d56f280a3b5feccbd96764c7"
   integrity sha512-cYY9mypksY8NRqgDB1XD1RiJL338v/551niynFTGkZOO2LHuB2OmOYxDIe/ttN9AHwrqdum1360G3ald0W9kCg==
 
-classnames@2.5.1:
-  version "2.5.1"
-  resolved "https://registry.npmjs.org/classnames/-/classnames-2.5.1.tgz#ba774c614be0f016da105c858e7159eae8e7687b"
-  integrity sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==
-
 clean-css@^5.2.2:
   version "5.3.3"
   resolved "https://registry.npmjs.org/clean-css/-/clean-css-5.3.3.tgz#b330653cd3bd6b75009cc25c714cae7b93351ccd"
@@ -4355,11 +4350,6 @@ cross-spawn@^7.0.0, cross-spawn@^7.0.3, cross-spawn@^7.0.6:
     path-key "^3.1.0"
     shebang-command "^2.0.0"
     which "^2.0.1"
-
-csp-header@6.3.0:
-  version "6.3.0"
-  resolved "https://registry.npmjs.org/csp-header/-/csp-header-6.3.0.tgz#af7481114b2f7ea13228b2d12324213d41ceb4ec"
-  integrity sha512-sM0AKmeKcPelKjj4jgOVgBQO4J3tejn8c51lXg+OW9gdGQIV5MIZd/G5wfW0e73JOs/VLlj6UI+DRf4xvsiraw==
 
 css-color-keywords@^1.0.0:
   version "1.0.0"
