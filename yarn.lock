@@ -4901,10 +4901,10 @@ dot-case@^3.0.4:
     no-case "^3.0.4"
     tslib "^2.0.3"
 
-dotenv@17.3.1:
-  version "17.3.1"
-  resolved "https://registry.npmjs.org/dotenv/-/dotenv-17.3.1.tgz#2706f5b0165e45a1503348187b8468f87fe6aae2"
-  integrity sha512-IO8C/dzEb6O3F9/twg6ZLXz164a2fhTnEWb95H23Dm4OuN+92NmEAlTrupP9VW6Jm3sO26tQlqyvyi4CsnY9GA==
+dotenv@17.4.2:
+  version "17.4.2"
+  resolved "https://registry.npmjs.org/dotenv/-/dotenv-17.4.2.tgz#c07e54a746e11eba021dd9e1047ced5afdc1c034"
+  integrity sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw==
 
 dotenv@^16.3.1:
   version "16.5.0"
@@ -9034,6 +9034,11 @@ raw-body@^3.0.1:
     iconv-lite "~0.7.0"
     unpipe "~1.0.0"
 
+re2js@^1.2.2:
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/re2js/-/re2js-1.4.0.tgz#5fa4dc35492f1b583ff5cd2ed9b1aefb2df31794"
+  integrity sha512-KTOIcZTSOpOxbu3i0+T6mFQ6tkxXKlTxfcMFs1trQbsMnG84qNq+DjXr8Afu+FEFjvF1NNlldpC7roPyazFI8g==
+
 react-cookie@8.1.0:
   version "8.1.0"
   resolved "https://registry.npmjs.org/react-cookie/-/react-cookie-8.1.0.tgz#819f32bb4984b3157b44c533cad7883a63ff6e7e"
@@ -10912,18 +10917,20 @@ universalify@^2.0.0:
   resolved "https://registry.npmjs.org/universalify/-/universalify-2.0.1.tgz#168efc2180964e6386d061e094df61afe239b18d"
   integrity sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==
 
-unleash-client@6.9.5:
-  version "6.9.5"
-  resolved "https://registry.npmjs.org/unleash-client/-/unleash-client-6.9.5.tgz#13fd3fb726156be5b82bb223980dcf880c83c5d1"
-  integrity sha512-WiZ2Er0P96vjIiK/Rhj0PAG82HyWdutrsRbJaKRjE2noTkPEmOc5PmMGjQNSNelcMEVK0wFIhe46rspBb7HPVw==
+unleash-client@6.10.1:
+  version "6.10.1"
+  resolved "https://registry.npmjs.org/unleash-client/-/unleash-client-6.10.1.tgz#3c6ecd419c7bd741bd623ef8153dd729d4e27dac"
+  integrity sha512-E5nugurgVElEt2OrRJee9gdPN39/uIAfUFdZyugvaxkf17kW6fUEDkO1ryWFO3MfkN7ABb2iUiLBw3qLe0slaQ==
   dependencies:
     http-proxy-agent "^7.0.2"
     https-proxy-agent "^7.0.5"
     ip-address "^9.0.5"
     launchdarkly-eventsource "2.2.0"
+    lru-cache "^11.2.5"
     make-fetch-happen "^15.0.3"
     murmurhash3js "^3.0.1"
     proxy-from-env "^1.1.0"
+    re2js "^1.2.2"
     semver "^7.7.3"
 
 unpipe@1.0.0, unpipe@~1.0.0:
