@@ -7,9 +7,11 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
+    "ignoreDeprecations": "6.0", // TODO: Fjernes når moduleResolution er oppdatert til NodeNext
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "noUncheckedSideEffectImports": false // Trenger for import av @navikt/ds-css
   },
   "exclude": ["../../node_modules", "../../dist", "../../build", "../backend", "../webpack", "../jest-setup.ts"],
   "lib": [

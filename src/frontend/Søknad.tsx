@@ -1,6 +1,5 @@
 import React from 'react';
 
-import classNames from 'classnames';
 import { Route, Routes, useParams } from 'react-router';
 
 import RedirectTilStart from './components/Felleskomponenter/RedirectTilStart/RedirectTilStart';
@@ -75,7 +74,7 @@ const Søknad = () => {
     };
 
     return (
-        <div className={classNames(systemetLaster() && 'blur')}>
+        <div className={systemetLaster() ? 'blur' : undefined}>
             <Routes>
                 <Route path={'/helse'} element={<Helse />} />
                 <Route path={'/'} element={<Forside />} />
