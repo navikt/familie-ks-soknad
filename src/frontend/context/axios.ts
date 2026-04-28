@@ -6,9 +6,7 @@ axios.defaults.baseURL = window.location.origin;
 export const preferredAxios = axios;
 
 export const håndterApiRessurs = <T>(ressurs: ApiRessurs<T>): Ressurs<T> => {
-    let typetRessurs: Ressurs<T> = {
-        status: RessursStatus.IKKE_HENTET,
-    };
+    let typetRessurs: Ressurs<T>;
 
     switch (ressurs.status) {
         case RessursStatus.SUKSESS:
