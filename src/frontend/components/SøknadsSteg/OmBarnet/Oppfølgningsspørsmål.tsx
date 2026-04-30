@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Alert } from '@navikt/ds-react';
+import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
+import { InfoCard } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
@@ -91,12 +92,14 @@ const Oppfølgningsspørsmål: React.FC<{
                             />
                             {skjema.felter.planleggerÅBoINorge12Mnd.verdi === ESvar.NEI && (
                                 <div className={styles.textBlockContainer}>
-                                    <Alert variant={'warning'} aria-live="polite">
-                                        <TekstBlock
-                                            block={planlagtBoSammenhengendeINorge.alert}
-                                            typografi={Typografi.BodyLong}
-                                        />
-                                    </Alert>
+                                    <InfoCard data-color={'warning'} aria-live="polite">
+                                        <InfoCard.Message icon={<ExclamationmarkTriangleIcon aria-hidden />}>
+                                            <TekstBlock
+                                                block={planlagtBoSammenhengendeINorge.alert}
+                                                typografi={Typografi.BodyLong}
+                                            />
+                                        </InfoCard.Message>
+                                    </InfoCard>
                                 </div>
                             )}
                         </KomponentGruppe>

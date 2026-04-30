@@ -2,7 +2,7 @@ import React from 'react';
 
 import { BrowserRouter as Router } from 'react-router';
 
-import { Alert } from '@navikt/ds-react';
+import { GlobalAlert } from '@navikt/ds-react';
 
 import { BASE_PATH } from '../shared-utils/miljø';
 
@@ -25,12 +25,18 @@ const App = () => {
                             <Router basename={BASE_PATH}>
                                 <StegProvider>
                                     {process.env.NODE_ENV !== 'production' && (
-                                        <Alert variant="warning">
-                                            {`Denne siden er under utvikling. `}
-                                            <a href="https://www.nav.no/kontantstotte">
-                                                Klikk her for å gå til våre sider for kontantstøtte
-                                            </a>
-                                        </Alert>
+                                        <GlobalAlert status={'warning'}>
+                                            <GlobalAlert.Header>
+                                                <GlobalAlert.Title>
+                                                    {`Denne siden er under utvikling. `}
+                                                </GlobalAlert.Title>
+                                            </GlobalAlert.Header>
+                                            <GlobalAlert.Content>
+                                                <a href="https://www.nav.no/kontantstotte">
+                                                    Klikk her for å gå til våre sider for kontantstøtte
+                                                </a>
+                                            </GlobalAlert.Content>
+                                        </GlobalAlert>
                                     )}
                                     <AppNavigationProvider>
                                         <AppContainer />

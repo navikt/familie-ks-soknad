@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { TrashFillIcon } from '@navikt/aksel-icons';
-import { Alert, Bleed, Box, Button, Checkbox, Heading, HGrid, HStack, VStack } from '@navikt/ds-react';
+import { ExclamationmarkTriangleIcon, TrashFillIcon } from '@navikt/aksel-icons';
+import { Bleed, Box, Button, Checkbox, Heading, HGrid, HStack, InfoCard, VStack } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { LocaleRecordBlock } from '../../../../typer/common';
@@ -107,9 +107,11 @@ const Barnekort: React.FC<IBarnekortProps> = ({ barn, velgBarnCallback, barnSomS
                     </Button>
                 )}
                 {erMedISøknad && barn.erUnder11Mnd && (
-                    <Alert variant="warning">
-                        <TekstBlock block={under1Aar} />
-                    </Alert>
+                    <InfoCard data-color="warning">
+                        <InfoCard.Message icon={<ExclamationmarkTriangleIcon aria-hidden />}>
+                            <TekstBlock block={under1Aar} />
+                        </InfoCard.Message>
+                    </InfoCard>
                 )}
             </VStack>
         </Box>
