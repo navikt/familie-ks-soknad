@@ -2,8 +2,8 @@ import React, { ReactNode, useEffect } from 'react';
 
 import { useNavigate } from 'react-router';
 
-import { ArrowLeftIcon } from '@navikt/aksel-icons';
-import { Alert, Box, FormProgress, GuidePanel, Heading, Link, VStack } from '@navikt/ds-react';
+import { ArrowLeftIcon, InformationSquareIcon } from '@navikt/aksel-icons';
+import { Box, FormProgress, GuidePanel, Heading, InfoCard, Link, VStack } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
@@ -201,10 +201,12 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
                             <SkjemaFeiloppsummering skjema={skjema.skjema} />
                         )}
                         {visVedleggOppsummering && (
-                            <Alert variant="info">
-                                {plainTekst(dokumentasjonTekster.lastOppSenereISoknad)}
-                                <VedleggOppsummering vedlegg={vedleggOppsummering} />
-                            </Alert>
+                            <InfoCard data-color="info">
+                                <InfoCard.Message icon={<InformationSquareIcon aria-hidden />}>
+                                    {plainTekst(dokumentasjonTekster.lastOppSenereISoknad)}
+                                    <VedleggOppsummering vedlegg={vedleggOppsummering} />
+                                </InfoCard.Message>
+                            </InfoCard>
                         )}
                         {!erPåKvitteringsside() && (
                             <Navigeringspanel

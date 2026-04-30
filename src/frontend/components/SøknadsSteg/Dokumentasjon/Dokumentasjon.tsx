@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 
 import { add, isBefore } from 'date-fns';
 
-import { Alert, BodyShort, Heading, VStack } from '@navikt/ds-react';
+import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
+import { BodyShort, Heading, InfoCard, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useAppContext } from '../../../context/AppContext';
@@ -118,18 +119,23 @@ const Dokumentasjon: React.FC = () => {
         >
             <VStack gap="space-48">
                 {slettaVedlegg.length > 0 && (
-                    <Alert variant={'warning'}>
-                        <div className={styles.textBlockContainer}>
-                            <TekstBlock block={stegTekster.forLangTidDokumentasjon} typografi={Typografi.BodyLong} />
-                        </div>
-                        <ul>
-                            {slettaVedlegg.map(vedlegg => (
-                                <li key={vedlegg.dokumentId}>
-                                    <BodyShort>{vedlegg.navn}</BodyShort>
-                                </li>
-                            ))}
-                        </ul>
-                    </Alert>
+                    <InfoCard data-color={'warning'}>
+                        <InfoCard.Message icon={<ExclamationmarkTriangleIcon aria-hidden />}>
+                            <div className={styles.textBlockContainer}>
+                                <TekstBlock
+                                    block={stegTekster.forLangTidDokumentasjon}
+                                    typografi={Typografi.BodyLong}
+                                />
+                            </div>
+                            <ul>
+                                {slettaVedlegg.map(vedlegg => (
+                                    <li key={vedlegg.dokumentId}>
+                                        <BodyShort>{vedlegg.navn}</BodyShort>
+                                    </li>
+                                ))}
+                            </ul>
+                        </InfoCard.Message>
+                    </InfoCard>
                 )}
                 {brukerHarVedleggskrav ? (
                     <>
