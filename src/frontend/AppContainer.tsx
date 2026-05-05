@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Alert, Box, Page } from '@navikt/ds-react';
+import { Box, GlobalAlert, Page } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
@@ -17,12 +17,16 @@ const AppContainer = () => {
                 {systemetLaster() && <SystemetLaster />}
                 {sluttbruker.status === RessursStatus.IKKE_TILGANG && (
                     <Box marginBlock="space-128">
-                        <Alert variant="warning">
-                            {'Du må søke på papir.'}
-                            <a href="https://www.nav.no/kontantstotte">
-                                Klikk her for å gå til våre sider for kontantstøtte
-                            </a>
-                        </Alert>
+                        <GlobalAlert status={'warning'}>
+                            <GlobalAlert.Header>
+                                <GlobalAlert.Title>{'Du må søke på papir.'}</GlobalAlert.Title>
+                            </GlobalAlert.Header>
+                            <GlobalAlert.Content>
+                                <a href="https://www.nav.no/kontantstotte">
+                                    Klikk her for å gå til våre sider for kontantstøtte
+                                </a>
+                            </GlobalAlert.Content>
+                        </GlobalAlert>
                     </Box>
                 )}
                 {systemetOK() && <Søknad />}

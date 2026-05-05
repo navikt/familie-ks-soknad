@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Alert, Heading, Label, Loader, VStack } from '@navikt/ds-react';
+import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
+import { Heading, InfoCard, Label, Loader, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useAppContext } from '../../context/AppContext';
@@ -36,9 +37,11 @@ const Kontoinformasjon: React.FC = () => {
 
             {kontoinformasjon.status === RessursStatus.FEILET && (
                 <>
-                    <Alert variant="warning">
-                        <TekstBlock block={kvitteringstekster.finnerIngenKontonummerAdvarsel} />
-                    </Alert>
+                    <InfoCard data-color="warning">
+                        <InfoCard.Message icon={<ExclamationmarkTriangleIcon aria-hidden />}>
+                            <TekstBlock block={kvitteringstekster.finnerIngenKontonummerAdvarsel} />
+                        </InfoCard.Message>
+                    </InfoCard>
                     <Heading level="2" size="medium">
                         {plainTekst(kvitteringstekster.manglerKontonummerTittel)}
                     </Heading>

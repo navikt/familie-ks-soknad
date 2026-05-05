@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from 'react';
 
 import { format } from 'date-fns';
 
-import { Alert, VStack } from '@navikt/ds-react';
+import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
+import { InfoCard, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
 import { useAppContext } from '../../../context/AppContext';
@@ -50,17 +51,21 @@ const Kvittering: React.FC = () => {
 
     return (
         <Steg tittel={<TekstBlock block={kvitteringTekster.kvitteringTittel} />}>
-            <Alert variant="success">
-                <TekstBlock block={kvitteringTekster.soeknadMottatt} flettefelter={{ dato, klokkeslett }} />
-            </Alert>
+            <InfoCard data-color="success">
+                <InfoCard.Message icon={<CheckmarkCircleIcon aria-hidden />}>
+                    <TekstBlock block={kvitteringTekster.soeknadMottatt} flettefelter={{ dato, klokkeslett }} />
+                </InfoCard.Message>
+            </InfoCard>
 
             <VStack gap="space-24">
                 {allNødvendigDokumentasjonErLastetOpp.current ? (
                     <TekstBlock block={kvitteringTekster.trengerIkkeEttersendeVedlegg} typografi={Typografi.BodyLong} />
                 ) : (
-                    <Alert variant="warning">
-                        <TekstBlock block={kvitteringTekster.maaEttersendeVedleggAlert} />
-                    </Alert>
+                    <InfoCard data-color="warning">
+                        <InfoCard.Message icon={<ExclamationmarkTriangleIcon aria-hidden />}>
+                            <TekstBlock block={kvitteringTekster.maaEttersendeVedleggAlert} />
+                        </InfoCard.Message>
+                    </InfoCard>
                 )}
                 <TekstBlock block={kvitteringTekster.infoTilSoker} typografi={Typografi.BodyLong} />
             </VStack>
