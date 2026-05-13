@@ -18,4 +18,5 @@ export interface IVelgBarnTekstinnhold {
     navnIkkeBestemtLabel: LocaleRecordBlock;
     under1Aar: LocaleRecordBlock;
     kanIkkeBestemmeRettUnder1Aar: LocaleRecordBlock;
+    velgBarnListeTittel: LocaleRecordBlock;
 }

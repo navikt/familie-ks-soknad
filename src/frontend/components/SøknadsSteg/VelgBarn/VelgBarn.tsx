@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { InlineMessage } from '@navikt/ds-react';
+import { FormSummary, InlineMessage } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -37,7 +37,7 @@ const VelgBarn: React.FC = () => {
     const finnesBarnUnder1År = barnSomSkalVæreMed.some(barn => barn.erUnder11Mnd);
 
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
-    const { velgBarnTittel, velgBarnGuide, kanIkkeBestemmeRettUnder1Aar } = teksterForSteg;
+    const { velgBarnTittel, velgBarnGuide, velgBarnListeTittel, kanIkkeBestemmeRettUnder1Aar } = teksterForSteg;
 
     return (
         <>
@@ -53,15 +53,26 @@ const VelgBarn: React.FC = () => {
                     },
                 }}
             >
-                {barn.map(barnet => (
-                    <Barnekort
-                        key={barnet.id}
-                        barn={barnet}
-                        velgBarnCallback={håndterVelgBarnToggle}
-                        barnSomSkalVæreMed={barnSomSkalVæreMed}
-                        fjernBarnCallback={fjernBarn}
-                    />
-                ))}
+                {barn.length > 0 && (
+                    <FormSummary>
+                        <FormSummary.Header>
+                            <FormSummary.Heading level="3">
+                                <TekstBlock block={velgBarnListeTittel} />
+                            </FormSummary.Heading>
+                        </FormSummary.Header>
+                        <FormSummary.Answers>
+                            {barn.map(barnet => (
+                                <Barnekort
+                                    key={barnet.id}
+                                    barn={barnet}
+                                    velgBarnCallback={håndterVelgBarnToggle}
+                                    barnSomSkalVæreMed={barnSomSkalVæreMed}
+                                    fjernBarnCallback={fjernBarn}
+                                />
+                            ))}
+                        </FormSummary.Answers>
+                    </FormSummary>
+                )}
                 <NyttBarnKort onLeggTilBarn={åpneLeggTilBarnModal} />
                 {finnesBarnUnder1År && (
                     <InlineMessage status={'warning'}>
