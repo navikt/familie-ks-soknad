@@ -7,7 +7,6 @@ import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
 import { uppercaseFørsteBokstav } from '../../../../utils/visning';
 
-import OpplastedeFiler from './OpplastedeFiler';
 import { ECustomFileRejectionReasons, useFilopplaster } from './useFilopplaster';
 
 interface IFilopplasterProps {
@@ -91,10 +90,6 @@ const Filopplaster: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDok
                             {`${plainTekst(frittståendeOrdTekster.vedlegg)} (${dokumentasjon.opplastedeVedlegg.length + filerUnderOpplastning.length})`}
                         </Heading>
                         <VStack as="ul" gap="space-12">
-                            <OpplastedeFiler
-                                slettVedlegg={() => console.log('HEY')}
-                                filliste={dokumentasjon.opplastedeVedlegg}
-                            />
                             {dokumentasjon.opplastedeVedlegg.map((opplastetVedlegg, index) => (
                                 <FileUpload.Item
                                     as="li"

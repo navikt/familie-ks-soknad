@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 
 import { PortableText } from '@portabletext/react';
-import styled from 'styled-components';
 
 import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds-react';
 
@@ -10,21 +9,13 @@ import { useSpråkContext } from '../../context/SpråkContext';
 import { LocaleRecordBlock, Typografi } from '../../typer/common';
 import { FlettefeltVerdier } from '../../typer/kontrakt/generelle';
 
-const StyledLabel = styled(Label)`
-    display: block;
-`;
+import styles from './TekstBlock.module.css';
 
 interface Props {
     typografi?: Typografi;
     style?: React.CSSProperties;
     children?: ReactNode;
 }
-
-const StyledBodyLong = styled(BodyLong)`
-    :empty {
-        height: 1.625rem;
-    }
-`;
 
 export function TypografiWrapper({ typografi, style, children }: Props) {
     switch (typografi) {
@@ -62,17 +53,17 @@ export function TypografiWrapper({ typografi, style, children }: Props) {
             return <Ingress style={style}>{children}</Ingress>;
         case Typografi.BodyLong:
             return (
-                <StyledBodyLong as={'p'} style={style}>
+                <BodyLong as={'p'} style={style} className={styles.bodyLong}>
                     {children}
-                </StyledBodyLong>
+                </BodyLong>
             );
         case Typografi.BodyShort:
             return <BodyShort style={style}>{children}</BodyShort>;
         case Typografi.Label:
             return (
-                <StyledLabel as={'label'} spacing style={style}>
+                <Label as={'label'} spacing style={style} className={styles.label}>
                     {children}
-                </StyledLabel>
+                </Label>
             );
         case Typografi.Detail:
             return <Detail style={style}>{children}</Detail>;
