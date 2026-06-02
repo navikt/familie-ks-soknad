@@ -1,0 +1,9 @@
+.bodyLong {
+    &:empty {
+        height: 1.625rem;
+    }
+}
+
+.label {
+    display: block;
+}

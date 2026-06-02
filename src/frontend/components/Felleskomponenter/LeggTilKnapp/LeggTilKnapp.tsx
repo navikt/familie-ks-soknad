@@ -1,9 +1,11 @@
 import React, { ReactNode } from 'react';
 
-import styled from 'styled-components';
+import classNames from 'classnames';
 
 import { PlusCircleIcon } from '@navikt/aksel-icons';
 import { Box, Button, ErrorMessage, FormSummary } from '@navikt/ds-react';
+
+import styles from './LeggTilKnapp.module.css';
 
 interface Props {
     onClick: () => void | Promise<void>;
@@ -13,27 +15,21 @@ interface Props {
     children?: ReactNode;
 }
 
-const StyledButton = styled(Button)`
-    && {
-        border: ${props => (props.$feilmelding ? `2px solid var(--ax-border-danger)` : 'none')};
-    }
-`;
-
 export function LeggTilKnapp({ onClick, leggTilFlereTekst, feilmelding, id, children }: Props) {
     return (
         <FormSummary.Answer>
             <FormSummary.Label>{leggTilFlereTekst}</FormSummary.Label>
             <FormSummary.Value>
-                <StyledButton
+                <Button
                     id={id}
+                    className={classNames({ [styles.buttonError]: !!feilmelding })}
                     variant="tertiary"
                     type="button"
                     onClick={onClick}
-                    $feilmelding={!!feilmelding}
                     icon={<PlusCircleIcon aria-hidden />}
                 >
                     {children}
-                </StyledButton>
+                </Button>
                 {!!feilmelding && (
                     <Box marginBlock="space-8 space-0">
                         <ErrorMessage showIcon>{feilmelding}</ErrorMessage>

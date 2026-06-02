@@ -76,7 +76,6 @@ updates:
           - "date-fns"
           - "i18n-iso-countries"
           - "styled-components"
-          - "@types/styled-components"
       common-utils:
         patterns:
           - "uuid"
@@ -120,7 +119,6 @@ updates:
           - "@babel/preset-typescript"
           - "@pmmmwh/react-refresh-webpack-plugin"
           - "babel-loader"
-          - "babel-plugin-styled-components"
           - "case-sensitive-paths-webpack-plugin"
           - "copy-webpack-plugin"
           - "css-loader"

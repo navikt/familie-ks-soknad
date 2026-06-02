@@ -9,7 +9,7 @@ import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
 import { LastRessurserProvider } from './context/LastRessurserContext';
 import { SanityProvider } from './context/SanityContext';
 import { SpråkProvider } from './context/SpråkContext';
-import { GlobalStyle } from './Theme';
+import './index.css';
 
 interface Props {
     children?: ReactNode;
@@ -26,10 +26,7 @@ function FellesWrapper({ children }: Props) {
                             beforeCapture={scope => scope.setTag('scope', 'familie-ks-soknad')}
                         >
                             <LastRessurserProvider>
-                                <SanityProvider>
-                                    <GlobalStyle />
-                                    {children}
-                                </SanityProvider>
+                                <SanityProvider>{children}</SanityProvider>
                             </LastRessurserProvider>
                         </Sentry.ErrorBoundary>
                     </HttpProvider>

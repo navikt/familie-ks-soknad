@@ -1,0 +1,9 @@
+.separator {
+    border-bottom: 1px solid var(--ax-border-neutral-subtle);
+}
+
+.attachment {
+    margin-right: 1rem;
+    min-width: 1rem;
+    font-size: 1.5rem;
+}

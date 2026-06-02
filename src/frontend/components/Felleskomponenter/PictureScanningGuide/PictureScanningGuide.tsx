@@ -1,7 +1,5 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
 import { CheckmarkCircleIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
 import { ExpansionCard, Heading, HGrid, VStack } from '@navikt/ds-react';
 
@@ -9,17 +7,8 @@ import { useAppContext } from '../../../context/AppContext';
 import TekstBlock from '../TekstBlock';
 
 import PictureScanningExample from './PictureScanningExample';
+import styles from './PictureScanningGuide.module.css';
 import ScanningIcon from './ScanningIcon';
-
-const StyledVStack = styled(VStack)`
-    && ul {
-        margin: 0;
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-    }
-`;
 
 const svgIconHeight = 112;
 
@@ -35,7 +24,7 @@ const PictureScanningGuide = () => {
                 </ExpansionCard.Title>
             </ExpansionCard.Header>
             <ExpansionCard.Content>
-                <StyledVStack gap="space-32">
+                <VStack gap="space-32" className={styles.lists}>
                     <div>
                         <Heading level="4" size="xsmall" spacing>
                             {plainTekst(dokumentasjonTekster.slikTarDuEtGodtBildeTittel)}
@@ -89,7 +78,7 @@ const PictureScanningGuide = () => {
                         </Heading>
                         <TekstBlock block={dokumentasjonTekster.vaerTryggNaarDuTarBilde} />
                     </div>
-                </StyledVStack>
+                </VStack>
             </ExpansionCard.Content>
         </ExpansionCard>
     );
