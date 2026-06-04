@@ -2052,10 +2052,10 @@
   resolved "https://registry.npmjs.org/@polka/url/-/url-1.0.0-next.29.tgz#5a40109a1ab5f84d6fd8fc928b19f367cbe7e7b1"
   integrity sha512-wwQAWhWSuHaag8c4q/KN/vCoeOJYshAIvMQwD4GpSb3OiZklFfvAgmj0VCBBImRpuF/aFgIRzllXlVX93Jevww==
 
-"@portabletext/react@6.0.3":
-  version "6.0.3"
-  resolved "https://registry.npmjs.org/@portabletext/react/-/react-6.0.3.tgz#749889f5a933cb53b08822dd635c6ad488f16d1b"
-  integrity sha512-xkpykEYKdyR8DJq1oTGKhmwQMqIta8OEHAEMq1EQ5kGOdnVU4ZzU6c+1EZNgyNFpSZs/25ee3kA4Te9ybbQCyA==
+"@portabletext/react@6.2.0":
+  version "6.2.0"
+  resolved "https://registry.npmjs.org/@portabletext/react/-/react-6.2.0.tgz#8e90d54fef244efcf41af5c64fe9eedccec7b40d"
+  integrity sha512-Z0J/AWrvg7GyDfEBQRRhi6ZpxLOsN4/QbU8KhTwfa6r2ELiRaMa4gkHE9wfs3V1ozNDrTG4IRr+8yBnHNDnAqA==
   dependencies:
     "@portabletext/toolkit" "^5.0.2"
     "@portabletext/types" "^4.0.2"
@@ -2219,10 +2219,10 @@
   resolved "https://registry.npmjs.org/@rtsao/scc/-/scc-1.1.0.tgz#927dd2fae9bc3361403ac2c7a00c32ddce9ad7e8"
   integrity sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==
 
-"@sanity/client@7.21.0":
-  version "7.21.0"
-  resolved "https://registry.npmjs.org/@sanity/client/-/client-7.21.0.tgz#0f9819558d27c56f1466559f06fbfe70cf3bbc39"
-  integrity sha512-j3SdOGy9ggQSj9LtlrV8x4jaZgJmyYKNB5cXpXWkMLgi2/v0U+OTu0mHj17smioTdQSCHuVyJaxGcdpu3hxoOA==
+"@sanity/client@7.22.1":
+  version "7.22.1"
+  resolved "https://registry.npmjs.org/@sanity/client/-/client-7.22.1.tgz#8787817e4cbb1125c8b9e30ed61dd6eed51895e9"
+  integrity sha512-DrQqLAes7W9Ek2iKgTZ+ffY1v3DURJ6//iXJZMEQSUeRbxls2ifRTdV1gRS26v8nMkL0OCH+WCoUUseD4vhuQQ==
   dependencies:
     "@sanity/eventsource" "^5.0.2"
     get-it "^8.7.2"
