@@ -6674,6 +6674,11 @@ ip-address@10.1.0:
   resolved "https://registry.npmjs.org/ip-address/-/ip-address-10.1.0.tgz#d8dcffb34d0e02eb241427444a6e23f5b0595aa4"
   integrity sha512-XXADHxXmvT9+CRxhXg56LJovE+bmWnEWB78LB83VZTprKTmaC5QfruXocxzTZ2Kl0DNwKuBdlIhjL8LeY8Sf8Q==
 
+ip-address@^10.0.0:
+  version "10.2.0"
+  resolved "https://registry.npmjs.org/ip-address/-/ip-address-10.2.0.tgz#805fc178b20c518bd4c8548b24fe30892d7f3206"
+  integrity sha512-/+S6j4E9AHvW9SWMSEY9Xfy66O5PWvVEJ08O0y5JGyEKQpojb0K0GKpz/v5HJ/G0vi3D2sjGK78119oXZeE0qA==
+
 ip-address@^9.0.5:
   version "9.0.5"
   resolved "https://registry.npmjs.org/ip-address/-/ip-address-9.0.5.tgz#117a960819b08780c3bd1f14ef3c1cc1d3f3ea5a"
@@ -10769,14 +10774,14 @@ universalify@^2.0.0:
   resolved "https://registry.npmjs.org/universalify/-/universalify-2.0.1.tgz#168efc2180964e6386d061e094df61afe239b18d"
   integrity sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==
 
-unleash-client@6.10.1:
-  version "6.10.1"
-  resolved "https://registry.npmjs.org/unleash-client/-/unleash-client-6.10.1.tgz#3c6ecd419c7bd741bd623ef8153dd729d4e27dac"
-  integrity sha512-E5nugurgVElEt2OrRJee9gdPN39/uIAfUFdZyugvaxkf17kW6fUEDkO1ryWFO3MfkN7ABb2iUiLBw3qLe0slaQ==
+unleash-client@6.11.0:
+  version "6.11.0"
+  resolved "https://registry.npmjs.org/unleash-client/-/unleash-client-6.11.0.tgz#a1a30d31e274540b9964f316eef5781d871ecc69"
+  integrity sha512-li49VzLvPSfGl0Qtc9jDEaYN+3EaGmOZOzM6mT6RKzUUF7zjLte65AHYj18Jn41S5TxHdaoqdWFlPBxLRRLzKg==
   dependencies:
     http-proxy-agent "^7.0.2"
     https-proxy-agent "^7.0.5"
-    ip-address "^9.0.5"
+    ip-address "^10.0.0"
     launchdarkly-eventsource "2.2.0"
     lru-cache "^11.2.5"
     make-fetch-happen "^15.0.3"
