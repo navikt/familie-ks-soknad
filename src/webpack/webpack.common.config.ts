@@ -64,6 +64,15 @@ const commonConfig: webpack.Configuration = {
     module: {
         rules: [
             {
+                // Webpack 5 tree-shaker kutter JSON-arrays til [] når ingen indekser
+                // aksesseres direkte (f.eks. ved bruk av .forEach()). Dette omgår det
+                // for i18n-iso-countries/codes.json ved å bruke javascript/auto-type.
+                test: /codes\.json$/,
+                include: /node_modules[\\/]i18n-iso-countries/,
+                type: 'javascript/auto',
+                use: [path.resolve(process.cwd(), 'src/webpack/rawJsonLoader.cts')],
+            },
+            {
                 test: /\.m?js$/,
                 resolve: {
                     fullySpecified: false, // Fikser at man ikke kan gjøre import uten filextension fra moduler med type: module i package.json
