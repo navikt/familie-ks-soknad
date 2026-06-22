@@ -30,7 +30,6 @@ export const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
             "'self'",
             '*.nav.no',
             'by26nl8j.apicdn.sanity.io',
-            'amplitude.nav.no',
             '*.psplugin.com',
             'familie-dokument.dev.nav.no',
             '*.hotjar.com',

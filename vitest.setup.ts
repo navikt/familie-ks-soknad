@@ -17,6 +17,5 @@ vi.mock('@navikt/nav-dekoratoren-moduler', () => ({
         return Promise.resolve();
     }),
     onLanguageSelect: vi.fn(),
-    getAmplitudeInstance: vi.fn(),
     getCurrentConsent: vi.fn(),
 }));

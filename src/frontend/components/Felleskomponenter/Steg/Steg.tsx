@@ -14,7 +14,6 @@ import useFørsteRender from '../../../hooks/useFørsteRender';
 import { RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { ISøknad } from '../../../typer/søknad';
-import { logKlikkGåVidere, logSidevisningKontantstøtte, logSkjemaStegFullført } from '../../../utils/amplitude';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import InnholdContainer from '../InnholdContainer/InnholdContainer';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
@@ -65,7 +64,6 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
     const formProgressSteg = useFormProgressSteg();
 
     const nyesteNåværendeRoute: RouteEnum = hentNåværendeSteg().route;
-    useFørsteRender(() => logSidevisningKontantstøtte(nyesteNåværendeRoute));
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -97,13 +95,11 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
         if (komFra) {
             settKomFra(undefined);
         }
-        logSkjemaStegFullført(hentNåværendeStegIndex() + 1);
         navigate(målPath);
     };
 
     const håndterGåVidere = event => {
         event.preventDefault();
-        logKlikkGåVidere(hentNåværendeStegIndex() + 1);
         if (skjema) {
             if (skjema.validerFelterOgVisFeilmelding()) {
                 skjema.settSøknadsdataCallback();
