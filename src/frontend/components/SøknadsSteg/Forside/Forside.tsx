@@ -8,7 +8,6 @@ import { useAppContext } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
-import { logSidevisningKontantstøtte } from '../../../utils/amplitude';
 import InnholdContainer from '../../Felleskomponenter/InnholdContainer/InnholdContainer';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
@@ -20,8 +19,6 @@ const Forside: React.FC = () => {
     const { mellomlagretVerdi, settNåværendeRoute, tekster, plainTekst } = useAppContext();
 
     const forsidetekster = tekster().FORSIDE;
-
-    useFørsteRender(() => logSidevisningKontantstøtte(`${RouteEnum.Forside}`));
 
     useEffect(() => {
         settNåværendeRoute(RouteEnum.Forside);

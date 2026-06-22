@@ -6,7 +6,6 @@ import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
 import { useStegContext } from '../../../context/StegContext';
 import { ISteg } from '../../../typer/routes';
-import { logForsettPåSøknad, logSkjemaStartet } from '../../../utils/amplitude';
 
 export enum BekreftelseStatus {
     NORMAL = 'NORMAL',
@@ -63,7 +62,6 @@ export const useBekreftelseOgStartSoknad = (): {
         } else {
             navigate(nesteRoute.path);
         }
-        logForsettPåSøknad();
     };
 
     const startPåNytt = (): void => {
@@ -80,7 +78,6 @@ export const useBekreftelseOgStartSoknad = (): {
             if (!erStegUtfyltFrafør(nåværendeStegIndex)) {
                 settSisteUtfylteStegIndex(nåværendeStegIndex);
             }
-            logSkjemaStartet();
             navigate(nesteRoute.path);
         } else {
             settBekreftelseStatus(BekreftelseStatus.FEIL);
