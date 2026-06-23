@@ -1642,13 +1642,13 @@
   dependencies:
     react-select "5.10.2"
 
-"@navikt/familie-http@8.0.21", "@navikt/familie-http@^8.0.21":
-  version "8.0.21"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-http/8.0.21/7629c50237443a8aa98c56fda5192a4fa29ac96c#7629c50237443a8aa98c56fda5192a4fa29ac96c"
-  integrity sha512-WXGxoHYPVT5bS34I7oF4yg/sKpvQeYGGeyvWsYbZyqiWzT79t0rvP9gxigDdH0XHSlmoQA5sm+5JR7XrwoVydw==
+"@navikt/familie-http@8.0.22", "@navikt/familie-http@^8.0.22":
+  version "8.0.22"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-http/8.0.22/0bf46467c488277c4e7768a23c185604be3f6d62#0bf46467c488277c4e7768a23c185604be3f6d62"
+  integrity sha512-ygztVBMsTcKzDqhgFhPS9nNJwhsmRXQXYBRrYDnA0sS44BlQKWh8dUQTQXXHa2FQXAvAmEtwnk75GYpzQeKLmQ==
   dependencies:
     "@navikt/familie-typer" "^8.0.5"
-    "@sentry/core" "10.47.0"
+    "@sentry/core" "10.49.0"
 
 "@navikt/familie-logging@7.0.7":
   version "7.0.7"
@@ -1657,12 +1657,12 @@
   dependencies:
     winston "3.19.0"
 
-"@navikt/familie-skjema@8.2.47":
-  version "8.2.47"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-skjema/8.2.47/6d642ba5a53ec41678c1778a95bdcc7c5990ec40#6d642ba5a53ec41678c1778a95bdcc7c5990ec40"
-  integrity sha512-A3LjtY3OJSHcyrLroW5/bdSATJ5GvmYlDt+B3XrST9nfdax6r+POplH+uvICXUpLHXWa7BATU01w+2Yyp7x/2A==
+"@navikt/familie-skjema@8.2.48":
+  version "8.2.48"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-skjema/8.2.48/41825f55e6eefd3593c33367fe7a4e5b5f1cf2ed#41825f55e6eefd3593c33367fe7a4e5b5f1cf2ed"
+  integrity sha512-ICTnB4GzpzmzBVQcH4wvS5Ct64OyYe0FDMeZrM2nL7O7ZBqKN10ycl1cFiDuc/PIl6lQvqr2PbIg8DpkbP3oKg==
   dependencies:
-    "@navikt/familie-http" "^8.0.21"
+    "@navikt/familie-http" "^8.0.22"
     "@navikt/familie-typer" "^8.0.5"
     "@types/deep-equal" "1.0.4"
     deep-equal "2.2.3"
@@ -2250,10 +2250,10 @@
     "@sentry/cli-win32-i686" "2.58.5"
     "@sentry/cli-win32-x64" "2.58.5"
 
-"@sentry/core@10.47.0":
-  version "10.47.0"
-  resolved "https://registry.npmjs.org/@sentry/core/-/core-10.47.0.tgz#175d1865f0d762ebe7be3b2a6ec3ece4e5a76a5a"
-  integrity sha512-nsYRAx3EWezDut+Zl+UwwP07thh9uY7CfSAi2whTdcJl5hu1nSp2z8bba7Vq/MGbNLnazkd3A+GITBEML924JA==
+"@sentry/core@10.49.0":
+  version "10.49.0"
+  resolved "https://registry.npmjs.org/@sentry/core/-/core-10.49.0.tgz#4e9389973917e8ddd2d825040a03b298457d061f"
+  integrity sha512-UaFeum3LUM1mB0d67jvKnqId1yWQjyqmaDV6kWngG03x+jqXb08tJdGpSoxjXZe13jFBbiBL/wKDDYIK7rCK4g==
 
 "@sentry/core@10.57.0":
   version "10.57.0"
