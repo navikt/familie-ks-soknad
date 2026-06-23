@@ -126,6 +126,10 @@ updates:
           - "webpack-cli"
           - "webpack-dev-server"
           - "webpack-merge"
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - "*"
       patch-updates:
         update-types:
           - "patch"
