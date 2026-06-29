@@ -74,7 +74,7 @@
     "react-router": "7.18.0",
     "styled-components": "6.4.2",
     "unleash-client": "6.11.0",
-    "uuid": "14.0.0",
+    "uuid": "14.0.1",
     "xss": "1.0.15"
   },
   "devDependencies": {
