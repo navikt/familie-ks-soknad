@@ -44,12 +44,12 @@
   resolved "https://registry.npmjs.org/@asamuzakjp/nwsapi/-/nwsapi-2.3.9.tgz#ad5549322dfe9d153d4b4dd6f7ff2ae234b06e24"
   integrity sha512-n8GuYSrI9bF7FFZ/SjhwevlHc8xaVlb/7HmHelnc/PZXBD2ZR49NnN9sMMuDdEGPeeRQ5d0hqlSlEpgCX3Wl0Q==
 
-"@axe-core/react@4.11.3":
-  version "4.11.3"
-  resolved "https://registry.npmjs.org/@axe-core/react/-/react-4.11.3.tgz#ef2e7242f3cba83d576be493c3f4c8c94f9331c6"
-  integrity sha512-G7TrxptKNFfrQZ+Iygb8nGx5w8Su0jIjwmtVN/9Jc4G6RumCh1rD3pZRT2NzZKjT70q4BReuWVwEazS3HxFfjg==
+"@axe-core/react@4.12.1":
+  version "4.12.1"
+  resolved "https://registry.npmjs.org/@axe-core/react/-/react-4.12.1.tgz#f5ea70a81e911626846dff12d1be7c4c5713bab9"
+  integrity sha512-8tZysxguMYomHHFA1iPSpJfWiHX0LPSXdHxboR1YKPs+taNOG8wiEqLaGdgXaFDZ2WKyX/+bzvlLcqdNsR/Gdg==
   dependencies:
-    axe-core "~4.11.4"
+    axe-core "~4.12.1"
     requestidlecallback "^0.3.0"
 
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.29.7", "@babel/code-frame@^7.8.3":
@@ -1363,20 +1363,20 @@
   resolved "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.11.tgz#a269e055e40e2f45873bae9d1a2fdccbd314ea3f"
   integrity sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==
 
-"@grafana/faro-core@^2.7.1":
-  version "2.7.1"
-  resolved "https://registry.npmjs.org/@grafana/faro-core/-/faro-core-2.7.1.tgz#ea9216e0ac3ce06de9540c03091af6be2c890283"
-  integrity sha512-qJOp0sPBAEsmUxhs11nVdGx5Dk+VJ4CN/4s9ek99m33FfzybmjQ9nPXLHWhwEeNJNiEwQdDl4HsNUlXBGT5YEw==
+"@grafana/faro-core@^2.8.2":
+  version "2.8.2"
+  resolved "https://registry.npmjs.org/@grafana/faro-core/-/faro-core-2.8.2.tgz#302a387f23d25ba482515e1a2fccb839b8479da3"
+  integrity sha512-63C6+N/P9/ySUMaGut8yVb1DkPuHS5I/lfRm97+aDXFj3+8pxRT/QzyXNe0r6KMU5O95wC9FLVGxG9ZvkwEhJQ==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
-    "@opentelemetry/otlp-transformer" "^0.218.0"
+    "@opentelemetry/otlp-transformer" "^0.219.0"
 
-"@grafana/faro-web-sdk@2.7.1":
-  version "2.7.1"
-  resolved "https://registry.npmjs.org/@grafana/faro-web-sdk/-/faro-web-sdk-2.7.1.tgz#985e244d1244c31b0ab2c7b40097ec25cb493ede"
-  integrity sha512-ZK3MuE6FWBmiT5tTivcMovTVe8fG1tPm1ctc84blVoJkpQXlgODxOX7/fNmDBOjaHZ3EWdoGplZmjoXQ3g0mDw==
+"@grafana/faro-web-sdk@2.8.2":
+  version "2.8.2"
+  resolved "https://registry.npmjs.org/@grafana/faro-web-sdk/-/faro-web-sdk-2.8.2.tgz#76657f51088c49dce668b3e6e5f13e343766bd80"
+  integrity sha512-WnUDnyQSQRq22Nb5kqm+g9SellSEUfiEuWQ7Pgwnvj5tnIO72E9JHNnJdurk4MveX8ulWrdyKxyk1L10FUJyzg==
   dependencies:
-    "@grafana/faro-core" "^2.7.1"
+    "@grafana/faro-core" "^2.8.2"
     ua-parser-js "1.0.41"
     web-vitals "^5.1.0"
 
@@ -1764,10 +1764,10 @@
   resolved "https://registry.npmjs.org/@open-draft/until/-/until-2.1.0.tgz#0acf32f470af2ceaf47f095cdecd40d68666efda"
   integrity sha512-U69T3ItWHvLwGg5eJ0n3I62nWuE6ilHlmz7zM0npLBRvPRd7e6NYmg54vvRtP5mZG7kZqZCFVdsTWo7BPtBujg==
 
-"@opentelemetry/api-logs@0.218.0":
-  version "0.218.0"
-  resolved "https://registry.npmjs.org/@opentelemetry/api-logs/-/api-logs-0.218.0.tgz#7b9818e8dfdf1d3dcab88bfe4d6724f2f831f7ec"
-  integrity sha512-fmEWp5kXlGEc3i/lR698Hz41DfGyN4Tbe4g7L1AxSc7fF8Xeh/FQ9Quqpa9dVA413Q1Ad43QOLzU4JoXgbFPWw==
+"@opentelemetry/api-logs@0.219.0":
+  version "0.219.0"
+  resolved "https://registry.npmjs.org/@opentelemetry/api-logs/-/api-logs-0.219.0.tgz#3303f10f43e6ff1741f8f6019e43a92723781630"
+  integrity sha512-FFx7YnaYJlIjqWW/AG/yAZ0L/NEY724PipXXXQLdtZPbLwBGbUMTGL1i/esI56TWfTUXxhLfpgrnWJCG8aUJyg==
   dependencies:
     "@opentelemetry/api" "^1.3.0"
 
@@ -1776,58 +1776,58 @@
   resolved "https://registry.npmjs.org/@opentelemetry/api/-/api-1.9.0.tgz#d03eba68273dc0f7509e2a3d5cba21eae10379fe"
   integrity sha512-3giAOQvZiH5F9bMlMiv8+GSPMeqg0dbaeo58/0SlA9sxSqZhnUtxzX9/2FzyhS9sWQf5S0GJE0AKBrFqjpeYcg==
 
-"@opentelemetry/core@2.7.1":
-  version "2.7.1"
-  resolved "https://registry.npmjs.org/@opentelemetry/core/-/core-2.7.1.tgz#162bfab46d6ff4da1bef240ea52e23a926b0fdbc"
-  integrity sha512-QAqIj32AtK6+pEVNG7EOVxHdE06RP+FM5qpiEJ4RtDcFIqKUZHYhl7/7UY5efhwmwNAg7j8QbJVBLxMerc0+gw==
+"@opentelemetry/core@2.8.0":
+  version "2.8.0"
+  resolved "https://registry.npmjs.org/@opentelemetry/core/-/core-2.8.0.tgz#f6e86de3688bdb54a6ca8f4935363a5b588ae91c"
+  integrity sha512-hd1Lfh8p545nNz+jq1Ejfz+Mn1hyLuxYn1YzTfFNrxr8urEWMNQLPf1Th8kjOH+HxwawCrtgBp8JpBUR4ZSgww==
   dependencies:
     "@opentelemetry/semantic-conventions" "^1.29.0"
 
-"@opentelemetry/otlp-transformer@^0.218.0":
-  version "0.218.0"
-  resolved "https://registry.npmjs.org/@opentelemetry/otlp-transformer/-/otlp-transformer-0.218.0.tgz#6784d0ddd13803c63a1b24072606c02fc21b9071"
-  integrity sha512-CFaKH87WAzjuJ4awowTTLzUvMfaRfiOFG5+qm5S5ncyalRtN4ecQ+YmuANJSCrVPuvZFEkUgKhBPBndxi3rHsQ==
+"@opentelemetry/otlp-transformer@^0.219.0":
+  version "0.219.0"
+  resolved "https://registry.npmjs.org/@opentelemetry/otlp-transformer/-/otlp-transformer-0.219.0.tgz#86305b29f564220666f6e410b7eded57bb5e6c3a"
+  integrity sha512-aaYKAyXhw9VchKZVGOopD3Gw/kPsyrX2c6IQ0AW32mTjqmZOh5Y6Gf5OYqTNqVktAeBjmFinhyFaCwW6GYK9YQ==
   dependencies:
-    "@opentelemetry/api-logs" "0.218.0"
-    "@opentelemetry/core" "2.7.1"
-    "@opentelemetry/resources" "2.7.1"
-    "@opentelemetry/sdk-logs" "0.218.0"
-    "@opentelemetry/sdk-metrics" "2.7.1"
-    "@opentelemetry/sdk-trace-base" "2.7.1"
+    "@opentelemetry/api-logs" "0.219.0"
+    "@opentelemetry/core" "2.8.0"
+    "@opentelemetry/resources" "2.8.0"
+    "@opentelemetry/sdk-logs" "0.219.0"
+    "@opentelemetry/sdk-metrics" "2.8.0"
+    "@opentelemetry/sdk-trace-base" "2.8.0"
 
-"@opentelemetry/resources@2.7.1":
-  version "2.7.1"
-  resolved "https://registry.npmjs.org/@opentelemetry/resources/-/resources-2.7.1.tgz#3b2a9179f6119bb1f2cddefe41ba9b2855504a5d"
-  integrity sha512-DeT6KKolmC4e/dRQvMQ/RwlnzhaqeiFOXY5ngoOPJ07GgVVKxZOg9EcrNZb5aTzUn+iCrJldAgOfQm1O/QfPAQ==
+"@opentelemetry/resources@2.8.0":
+  version "2.8.0"
+  resolved "https://registry.npmjs.org/@opentelemetry/resources/-/resources-2.8.0.tgz#9bcb658ab6254f33099f4a95544b40d6f53cc946"
+  integrity sha512-qmXQ27ilDbUK/vGMqwL8D4/rhn76C+sherM4wTbjlfknR8Nvfc/hCxjRJPhkzZzUsPiNg16SA31NxMabwttRjg==
   dependencies:
-    "@opentelemetry/core" "2.7.1"
+    "@opentelemetry/core" "2.8.0"
     "@opentelemetry/semantic-conventions" "^1.29.0"
 
-"@opentelemetry/sdk-logs@0.218.0":
-  version "0.218.0"
-  resolved "https://registry.npmjs.org/@opentelemetry/sdk-logs/-/sdk-logs-0.218.0.tgz#78886fe300b82802cee9963208b2af326b928af5"
-  integrity sha512-QvnNdugatFTVCJXH0Mcu7GOOJSylA9j127kIezOE4YwTI4YbowRons2K4WZTv5FMS8T4q9P0NdaRHdkSmeAIag==
+"@opentelemetry/sdk-logs@0.219.0":
+  version "0.219.0"
+  resolved "https://registry.npmjs.org/@opentelemetry/sdk-logs/-/sdk-logs-0.219.0.tgz#002433237908d24fa9e7f17eb4963f25f03d655c"
+  integrity sha512-s6lTKRakaPClvKoWHRChxnXjDMkM/TQ30ff78jN6EBGf7MI7VzANE5PU3f4z9qDUudWjvZjOLHG0rBnBKYvoXA==
   dependencies:
-    "@opentelemetry/api-logs" "0.218.0"
-    "@opentelemetry/core" "2.7.1"
-    "@opentelemetry/resources" "2.7.1"
+    "@opentelemetry/api-logs" "0.219.0"
+    "@opentelemetry/core" "2.8.0"
+    "@opentelemetry/resources" "2.8.0"
     "@opentelemetry/semantic-conventions" "^1.29.0"
 
-"@opentelemetry/sdk-metrics@2.7.1":
-  version "2.7.1"
-  resolved "https://registry.npmjs.org/@opentelemetry/sdk-metrics/-/sdk-metrics-2.7.1.tgz#b713f69dd67933ecc9c61357f1d452cdc9f4e281"
-  integrity sha512-MpDJdkiFDs3Pm1RHO3KByuZbuBdJEXEAkiC0+yJdsZGVCdf1RpHR6n+LHDcS7ffmfrt5kVCzJSCfm4z2C7v0uQ==
+"@opentelemetry/sdk-metrics@2.8.0":
+  version "2.8.0"
+  resolved "https://registry.npmjs.org/@opentelemetry/sdk-metrics/-/sdk-metrics-2.8.0.tgz#c3f908d9e7e02fb855673fcfd4b298ce279e61f1"
+  integrity sha512-UDBGaj6W0Rgy5rTTaoxs8gVGF/aGkAKyjurJv7se6wjRxJu7FoquTLT/vt54DZfo4crbprYfhX/SOK9+BPw1qg==
   dependencies:
-    "@opentelemetry/core" "2.7.1"
-    "@opentelemetry/resources" "2.7.1"
+    "@opentelemetry/core" "2.8.0"
+    "@opentelemetry/resources" "2.8.0"
 
-"@opentelemetry/sdk-trace-base@2.7.1":
-  version "2.7.1"
-  resolved "https://registry.npmjs.org/@opentelemetry/sdk-trace-base/-/sdk-trace-base-2.7.1.tgz#9160c3af9ef2219c26563abd136e22fb7d19b34f"
-  integrity sha512-NAYIlsF8MPUsKqJMiDQJTMPOmlbawC1Iz/omMLygZ1C9am8fTKYjTaI+OZM+WTY3t3Glo0wnOg/6/pac6RGPPw==
+"@opentelemetry/sdk-trace-base@2.8.0":
+  version "2.8.0"
+  resolved "https://registry.npmjs.org/@opentelemetry/sdk-trace-base/-/sdk-trace-base-2.8.0.tgz#ec9c1d69e2e6fba256c9df0c8e8d67d42386d52b"
+  integrity sha512-mhU4jp+vW0mGbFRd+GeXHvmfA4aDqWjBjLC3pE5XMpLs0IE2ryYb019Ts2AQrOq67gaTF25D91+fgvEHDZEnuQ==
   dependencies:
-    "@opentelemetry/core" "2.7.1"
-    "@opentelemetry/resources" "2.7.1"
+    "@opentelemetry/core" "2.8.0"
+    "@opentelemetry/resources" "2.8.0"
     "@opentelemetry/semantic-conventions" "^1.29.0"
 
 "@opentelemetry/semantic-conventions@^1.29.0":
@@ -2126,23 +2126,23 @@
   resolved "https://registry.npmjs.org/@sentry/babel-plugin-component-annotate/-/babel-plugin-component-annotate-5.3.0.tgz#356218f747969f9af970987dcf0f17ec81d6e50c"
   integrity sha512-p4q8gn8wcFqZGP/s2MnJCAAd8fTikaU6A0mM97RDHQgStcrYiaS0Sc5zUNfb1V+UOLPuvdEdL6MwyxfzjYJQTA==
 
-"@sentry/browser-utils@10.58.0":
-  version "10.58.0"
-  resolved "https://registry.npmjs.org/@sentry/browser-utils/-/browser-utils-10.58.0.tgz#e5d17e78f54ecd9c671c312b8ac0823b92e9c98b"
-  integrity sha512-TzXrhZq3Llj6qPSv0ZVG5N5c7C6qNN/aRKJXhq2LombJrLwiQrWdgizp7zdHA0FGlZ7F5YpyRA2JIpkhvrFqYA==
+"@sentry/browser-utils@10.63.0":
+  version "10.63.0"
+  resolved "https://registry.npmjs.org/@sentry/browser-utils/-/browser-utils-10.63.0.tgz#1cc79923d35be2213d7f7d872642f3fda9fa5f15"
+  integrity sha512-DhUGNN+CH8fzAs6qAsueKPU70qShyTX3NxLhIP+l5DbGXDSXpYXBT6s8ubZus0/LhxpLvI0iSyNIDvZRD/gZaA==
   dependencies:
-    "@sentry/core" "10.58.0"
+    "@sentry/core" "10.63.0"
 
-"@sentry/browser@10.58.0":
-  version "10.58.0"
-  resolved "https://registry.npmjs.org/@sentry/browser/-/browser-10.58.0.tgz#bd6243c9b3c20d4d04eecc0623237b05c723e344"
-  integrity sha512-Syf6h6HDwC15fk86+/0ql8ebwwJFw2wp+lvOX9GfLTJVOqrSILCrtLKNI+f4v/3w8mzImsv9ttJGGbUugLNvcA==
+"@sentry/browser@10.63.0":
+  version "10.63.0"
+  resolved "https://registry.npmjs.org/@sentry/browser/-/browser-10.63.0.tgz#145400e655bb524561d5503c9f211d32ad3e876e"
+  integrity sha512-0mi56YOkwgyjdLOcN5cB1//EcYzEOt3NZ2GLygE92B3zAAwVM1WgbmibZCXToKFClH7z1uH3VWVfBffmkwIMYw==
   dependencies:
-    "@sentry/browser-utils" "10.58.0"
-    "@sentry/core" "10.58.0"
-    "@sentry/feedback" "10.58.0"
-    "@sentry/replay" "10.58.0"
-    "@sentry/replay-canvas" "10.58.0"
+    "@sentry/browser-utils" "10.63.0"
+    "@sentry/core" "10.63.0"
+    "@sentry/feedback" "10.63.0"
+    "@sentry/replay" "10.63.0"
+    "@sentry/replay-canvas" "10.63.0"
 
 "@sentry/bundler-plugin-core@5.3.0":
   version "5.3.0"
@@ -2222,41 +2222,41 @@
   resolved "https://registry.npmjs.org/@sentry/core/-/core-10.49.0.tgz#4e9389973917e8ddd2d825040a03b298457d061f"
   integrity sha512-UaFeum3LUM1mB0d67jvKnqId1yWQjyqmaDV6kWngG03x+jqXb08tJdGpSoxjXZe13jFBbiBL/wKDDYIK7rCK4g==
 
-"@sentry/core@10.58.0":
-  version "10.58.0"
-  resolved "https://registry.npmjs.org/@sentry/core/-/core-10.58.0.tgz#66180ae40b341b352e3932753d5eb71157a00d0e"
-  integrity sha512-bkIbh2c6dzwhrWn/FGWu7j8hf6TAat2XxpkGM91LiN09fLYUXIMwcohVsXqze5l2cq35TnvqmSROAbRNr27GVw==
+"@sentry/core@10.63.0":
+  version "10.63.0"
+  resolved "https://registry.npmjs.org/@sentry/core/-/core-10.63.0.tgz#8c37016a70c25f22258f7cb3c0f71f931a78fd4e"
+  integrity sha512-OtUbsrnbEHffOF2S2+M5zXa3HIM0U2b4CDVLKMY1dgS0J3ivRF8XvkjvyIcEG/y8JXnwXbnprLyjhG+AqMdUZQ==
 
-"@sentry/feedback@10.58.0":
-  version "10.58.0"
-  resolved "https://registry.npmjs.org/@sentry/feedback/-/feedback-10.58.0.tgz#7d74a2750433c5e6420f1804c5deaf2f6cd71d63"
-  integrity sha512-VmIlR/0O0GXITbvgjPkQqd6yM0JDEk52WXv6Rs1kTdaIDU5h3Y64VDVN4MAbYVRHqSz7F1arjRRk2FkaKC7ZOQ==
+"@sentry/feedback@10.63.0":
+  version "10.63.0"
+  resolved "https://registry.npmjs.org/@sentry/feedback/-/feedback-10.63.0.tgz#030801b9655fd0d3beadf26e12db286bfab615ff"
+  integrity sha512-If/+72xFg9ylz4twUo3U9gUpZ+Ys+T/3Y09WH7r2gGhWEOF9bp+ta94+Pg7Lb0M2nVD7waz4OxIvB49GEvtLDA==
   dependencies:
-    "@sentry/core" "10.58.0"
+    "@sentry/core" "10.63.0"
 
-"@sentry/react@10.58.0":
-  version "10.58.0"
-  resolved "https://registry.npmjs.org/@sentry/react/-/react-10.58.0.tgz#f53a4e3aa36f7ed13a8fac6334c0aee081cea254"
-  integrity sha512-3FLRtnXrue30UZALrQ9wQZeuvVmZl/pTCA+RyPlaZ5GxcYTapN9CVbm1IvbQpK4w1bt80+JxaKM4HikvII6KpA==
+"@sentry/react@10.63.0":
+  version "10.63.0"
+  resolved "https://registry.npmjs.org/@sentry/react/-/react-10.63.0.tgz#f17b6c505ba819d7527ce009543922bf434c6a72"
+  integrity sha512-+/Y0dd4EMqyqYBJ1D3bAYYuG+ccIx5+IFcbTZ9p+XWnW6nNIVjy5zttVftYo6xOmtTQbzRuPT/vO4dqDHKKmfw==
   dependencies:
-    "@sentry/browser" "10.58.0"
-    "@sentry/core" "10.58.0"
+    "@sentry/browser" "10.63.0"
+    "@sentry/core" "10.63.0"
 
-"@sentry/replay-canvas@10.58.0":
-  version "10.58.0"
-  resolved "https://registry.npmjs.org/@sentry/replay-canvas/-/replay-canvas-10.58.0.tgz#a1ce955549738e815f2ffba5f4b86eb692ca98ba"
-  integrity sha512-ufFmaJ968DXGe6u9W/UqNVjCCTtAqT2bNtSu1jHAjIFFpWIuM80lcR33grK6SuGnFxceu5iJFaIW6JRyfbM0Sw==
+"@sentry/replay-canvas@10.63.0":
+  version "10.63.0"
+  resolved "https://registry.npmjs.org/@sentry/replay-canvas/-/replay-canvas-10.63.0.tgz#754631d8c0773914847f59f97e8fe166ecbe876d"
+  integrity sha512-1Dg6yo+KDNZcE9M6V2EP4DGgTDJMcUgg5ui69w/E96ZZPWErS/bibK2bGj20H3qwpJXlnEwXB5YAJ2fZ620T1A==
   dependencies:
-    "@sentry/core" "10.58.0"
-    "@sentry/replay" "10.58.0"
+    "@sentry/core" "10.63.0"
+    "@sentry/replay" "10.63.0"
 
-"@sentry/replay@10.58.0":
-  version "10.58.0"
-  resolved "https://registry.npmjs.org/@sentry/replay/-/replay-10.58.0.tgz#347eb26b86a458065172d880dc953d5a049eab42"
-  integrity sha512-EVasQNUenpwJksK9DI1TQ78YytpjLAhxn0UTiHqA3sU/s1fHK5XZdZJPr/9uEGedRoInIP0UIWmbOtOEX8HHDg==
+"@sentry/replay@10.63.0":
+  version "10.63.0"
+  resolved "https://registry.npmjs.org/@sentry/replay/-/replay-10.63.0.tgz#014c1be7110eb86d6e6fe148c691130094539460"
+  integrity sha512-u4fDaLbd4QmJbU0qGzV5g2B2hjw5utdeZzpTrmq565AS5o6mfaZdCz30zF9R2Unkn0g9SJr90piTN2RMwvDrkw==
   dependencies:
-    "@sentry/browser-utils" "10.58.0"
-    "@sentry/core" "10.58.0"
+    "@sentry/browser-utils" "10.63.0"
+    "@sentry/core" "10.63.0"
 
 "@sentry/webpack-plugin@5.3.0":
   version "5.3.0"
@@ -3398,10 +3398,10 @@ aws4@^1.8.0:
   resolved "https://registry.npmjs.org/aws4/-/aws4-1.12.0.tgz#ce1c9d143389679e253b314241ea9aa5cec980d3"
   integrity sha512-NmWvPnx0F1SfrQbYwOi7OeaNGokp9XhzNioJ/CSBs8Qa4vxug81mhJEAVZwxXuBmYB5KDRfMq/F3RR0BIU7sWg==
 
-axe-core@^4.10.0, axe-core@~4.11.4:
-  version "4.11.4"
-  resolved "https://registry.npmjs.org/axe-core/-/axe-core-4.11.4.tgz#5b535e381ff1e61ffdd615e5483d16186d3b46a5"
-  integrity sha512-KunSNx+TVpkAw/6ULfhnx+HWRecjqZGTOyquAoWHYLRSdK1tB5Ihce1ZW+UY3fj33bYAFWPu7W/GRSmmrCGuxA==
+axe-core@^4.10.0, axe-core@~4.12.1:
+  version "4.12.1"
+  resolved "https://registry.npmjs.org/axe-core/-/axe-core-4.12.1.tgz#69fe2bf6dfc0b24973af91b1d8e945f79e1b7c44"
+  integrity sha512-s7iGf5GaVMxEG0ENN9x+xTr7GFZCb1ZP/1uATUpCEK2X78nDB3RwbtFCo9pGAf9ru+VwoQ464DkaLEeRM08wJA==
 
 axios@1.18.1:
   version "1.18.1"
@@ -7433,10 +7433,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.npmjs.org/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
-lint-staged@17.0.7:
-  version "17.0.7"
-  resolved "https://registry.npmjs.org/lint-staged/-/lint-staged-17.0.7.tgz#2ed5ffb49d283425778125386278bb4d7ce24d22"
-  integrity sha512-JrSobt+tW3rH8IOMi8tDZd3foorM5yPEkLD/V2NxobgHrFfHWGee4MOLVuZeScgxftEwbHrPHIFA/ZL+nUJeuA==
+lint-staged@17.0.8:
+  version "17.0.8"
+  resolved "https://registry.npmjs.org/lint-staged/-/lint-staged-17.0.8.tgz#315b16ff5900fd3f8cc3e4888de7d08e10ca9162"
+  integrity sha512-B2P/d+jVW0UXOQ0MVMLrB/9ydA1P+zz6jYfdrbbEd9ur3S2rcbduFWKiUCC02Sm5hbC8nrm7y24WuYMG54HfxA==
   dependencies:
     listr2 "^10.2.1"
     picomatch "^4.0.4"
