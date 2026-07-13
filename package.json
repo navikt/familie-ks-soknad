@@ -39,7 +39,7 @@
     ]
   },
   "dependencies": {
-    "@grafana/faro-web-sdk": "2.7.1",
+    "@grafana/faro-web-sdk": "2.8.2",
     "@navikt/aksel-icons": "8.14.0",
     "@navikt/ds-css": "8.14.0",
     "@navikt/ds-react": "8.14.0",
@@ -54,7 +54,7 @@
     "@portabletext/react": "6.2.0",
     "@portabletext/toolkit": "5.0.2",
     "@sanity/client": "7.23.0",
-    "@sentry/react": "10.58.0",
+    "@sentry/react": "10.63.0",
     "axios": "1.18.1",
     "classnames": "2.5.1",
     "compression": "1.8.1",
@@ -78,7 +78,7 @@
     "xss": "1.0.15"
   },
   "devDependencies": {
-    "@axe-core/react": "4.11.3",
+    "@axe-core/react": "4.12.1",
     "@babel/core": "7.29.7",
     "@babel/plugin-syntax-import-assertions": "7.29.7",
     "@babel/preset-env": "7.29.7",
@@ -118,7 +118,7 @@
     "html-webpack-plugin": "5.6.7",
     "husky": "9.1.7",
     "jsdom": "29.1.1",
-    "lint-staged": "17.0.7",
+    "lint-staged": "17.0.8",
     "mini-css-extract-plugin": "2.10.2",
     "msw": "2.14.6",
     "prettier": "3.8.4",
