@@ -1,14 +1,15 @@
 {
   "name": "familie-ks-soknad",
   "type": "module",
+  "packageManager": "pnpm@11.15.0",
   "scripts": {
-    "start:dev": "yarn clean && concurrently \"yarn:dev:*\"",
-    "dev:server": "yarn build:backend:dev && node dist/server.cjs",
-    "dev:webpack": "yarn set-node-options TS_NODE_PROJECT=src/webpack/tsconfig.json NODE_ENV=development webpack serve -c src/webpack/webpack.development.config.ts",
-    "build": "concurrently npm:build:frontend npm:build:backend",
-    "build:frontend": "yarn set-node-options TS_NODE_PROJECT=src/webpack/tsconfig.json NODE_ENV=production webpack -c src/webpack/webpack.production.config.ts",
-    "build:backend": "yarn set-node-options TS_NODE_PROJECT=src/backend/tsconfig.json NODE_ENV=production webpack -c src/backend/webpack.config.ts",
-    "build:backend:dev": "yarn set-node-options TS_NODE_PROJECT=src/backend/tsconfig.json NODE_ENV=development webpack -c src/backend/webpack.config.ts",
+    "start:dev": "pnpm clean && concurrently \"pnpm:dev:*\"",
+    "dev:server": "pnpm build:backend:dev && node dist/server.cjs",
+    "dev:webpack": "pnpm set-node-options TS_NODE_PROJECT=src/webpack/tsconfig.json NODE_ENV=development webpack serve -c src/webpack/webpack.development.config.ts",
+    "build": "concurrently pnpm:build:frontend pnpm:build:backend",
+    "build:frontend": "pnpm set-node-options TS_NODE_PROJECT=src/webpack/tsconfig.json NODE_ENV=production webpack -c src/webpack/webpack.production.config.ts",
+    "build:backend": "pnpm set-node-options TS_NODE_PROJECT=src/backend/tsconfig.json NODE_ENV=production webpack -c src/backend/webpack.config.ts",
+    "build:backend:dev": "pnpm set-node-options TS_NODE_PROJECT=src/backend/tsconfig.json NODE_ENV=development webpack -c src/backend/webpack.config.ts",
     "set-node-options": "NODE_OPTIONS='--import=./registerESMLoader.js --es-module-specifier-resolution=node'",
     "clean": "rm -rf dist",
     "prepare": "husky",
@@ -18,7 +19,7 @@
     "prettier": "prettier --check './src/**/*.{js,jsx,ts,tsx,json,css}'",
     "prettier:fix": "prettier --write './src/**/*.{js,jsx,ts,tsx,json,css}'",
     "typecheck": "tsc --noEmit -p src/backend/tsconfig.json && tsc --noEmit -p src/frontend/tsconfig.json",
-    "validate": "yarn typecheck && yarn lint && yarn prettier"
+    "validate": "pnpm typecheck && pnpm lint && pnpm prettier"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,css}": [
@@ -54,6 +55,8 @@
     "@portabletext/react": "6.2.0",
     "@portabletext/toolkit": "5.0.2",
     "@sanity/client": "7.23.0",
+    "@sentry/browser": "10.63.0",
+    "@sentry/core": "10.63.0",
     "@sentry/react": "10.63.0",
     "axios": "1.18.1",
     "classnames": "2.5.1",
@@ -95,6 +98,7 @@
     "@types/cors": "2.8.19",
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
     "@types/express": "5.0.6",
+    "@types/express-serve-static-core": "5.1.2",
     "@types/mustache-express": "1.2.5",
     "@types/node": "24.13.2",
     "@types/react": "19.2.17",

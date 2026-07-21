@@ -22,10 +22,11 @@ ADR-dokument: https://github.com/navikt/familie/blob/master/doc/adr/0008-KS-lage
 2. Legg til variabelen UNLEASH_SERVER_API_TOKEN i `.env`: `UNLEASH_SERVER_API_TOKEN=<ditt token>`
 
 ## Kjør lokalt
-1. `yarn install`
-2. `nvm use`
-3. `yarn start:dev`
-4. Kjør opp familie-baks-soknad-api
+1. `nvm use`
+2. `corepack enable`
+3. `pnpm install`
+4. `pnpm start:dev`
+5. Kjør opp familie-baks-soknad-api
 
 ### Mellomlagring
 For å kjøre med mellomlagring må du ha familie-dokument kjørende (https://github.com/navikt/familie-dokument).
@@ -89,7 +90,7 @@ if (toggles.NY_TOGGLE) {
 
 # Test av PDF
 Etter at søknaden er sendt inn, vil det genereres en PDF basert på svarene som er gitt. Søknaden går først til `familie-baks-soknad-api` før den sendes over til `familie-baks-mottak` som forbereder og trigger PDF-generering i `familie-dokument`. For å teste hele dette løpet trenger man derfor å kjøre opp alle disse applikasjonene:
-* `familie-ks-soknad` (`yarn start:dev`)
+* `familie-ks-soknad` (`pnpm start:dev`)
 * `familie-baks-soknad-api` (Kjør `LokalLauncher.kt`, se `README.md`)
 * `familie-dokument` (Kjør `ApplicationLocalSoknad.kt`)
 * `familie-baks-mottak` (Kjør `DevLauncherPostgress.kt`, se `README.md`)
