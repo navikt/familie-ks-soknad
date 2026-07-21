@@ -3,7 +3,7 @@ build
 .idea
 .env
 .eslintcache
-yarn-error.log
+pnpm-debug.log
 dist/
 .DS_Store
 secure.log

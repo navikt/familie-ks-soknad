@@ -2,7 +2,7 @@ import React, { PropsWithChildren, ReactNode } from 'react';
 
 import { Cookies, CookiesProvider } from 'react-cookie';
 import { MemoryRouter } from 'react-router';
-import { vi } from 'vitest';
+import { type Mock, type MockInstance, vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
 
 import { ESvar } from '@navikt/familie-form-elements';
@@ -29,10 +29,25 @@ import { IKvittering } from '../typer/kvittering';
 import { IUtenlandsperiode } from '../typer/perioder';
 import { ISøker } from '../typer/person';
 import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
-import { initialStateSøknad } from '../typer/søknad';
+import { type ISøknad, initialStateSøknad } from '../typer/søknad';
 import { EUtenlandsoppholdÅrsak } from '../typer/utenlandsopphold';
 
-export const spyOnUseApp = søknad => {
+interface SpyOnUseAppResult {
+    useAppMock: Mock;
+    settSøknad: Mock;
+    erStegUtfyltFrafør: Mock;
+    settSisteUtfylteStegIndex: Mock;
+    erPåKvitteringsside: Mock;
+    axiosRequestMock: Mock;
+    søknad: ISøknad;
+}
+
+interface MockEøsResult {
+    useEøs: MockInstance;
+    erEøsLand: Mock;
+}
+
+export const spyOnUseApp = (søknad): SpyOnUseAppResult => {
     const tekster = vi.fn().mockImplementation(() => mockDeep<ITekstinnhold>());
     const plainTekst = vi.fn();
     const tilRestLocaleRecord = vi.fn();
@@ -107,7 +122,7 @@ export function CookiesProviderMedLocale(props: PropsWithChildren) {
     return <CookiesProvider cookies={cookies}>{props.children}</CookiesProvider>;
 }
 
-export function mockEøs(barnSomTriggerEøs = [], søkerTriggerEøs = false) {
+export function mockEøs(barnSomTriggerEøs = [], søkerTriggerEøs = false): MockEøsResult {
     const erEøsLand = vi.fn();
 
     const useEøs = vi.spyOn(eøsContext, 'useEøsContext').mockImplementation(
