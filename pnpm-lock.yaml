@@ -53,6 +53,12 @@ importers:
       '@sanity/client':
         specifier: 7.23.0
         version: 7.23.0
+      '@sentry/browser':
+        specifier: 10.63.0
+        version: 10.63.0
+      '@sentry/core':
+        specifier: 10.63.0
+        version: 10.63.0
       '@sentry/react':
         specifier: 10.63.0
         version: 10.63.0(react@19.2.7)
@@ -171,6 +177,9 @@ importers:
       '@types/express':
         specifier: 5.0.6
         version: 5.0.6
+      '@types/express-serve-static-core':
+        specifier: 5.1.2
+        version: 5.1.2
       '@types/mustache-express':
         specifier: 1.2.5
         version: 1.2.5
@@ -8265,7 +8274,7 @@ snapshots:
 
   '@types/connect-history-api-fallback@1.5.4':
     dependencies:
-      '@types/express-serve-static-core': 4.19.9
+      '@types/express-serve-static-core': 5.1.2
       '@types/node': 24.13.2
 
   '@types/connect@3.4.38':
