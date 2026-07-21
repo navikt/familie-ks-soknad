@@ -1630,43 +1630,43 @@
   resolved "https://npm.pkg.github.com/download/@navikt/ds-tokens/8.14.0/0ffa6e54267bba9400b9f4cb306961244e2b6694#0ffa6e54267bba9400b9f4cb306961244e2b6694"
   integrity sha512-OsGQ2wVfQSD5SPIBu4/4eRoOFohTGgtf2jGy5sn7l493d/ZdWCCndaL4Ww01FWDNLH6FG1ZUSCc85MhLdGOX1w==
 
-"@navikt/familie-form-elements@22.0.1":
-  version "22.0.1"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-form-elements/22.0.1/8a18208cad1a699cc48496cca93bc242b3a60f60#8a18208cad1a699cc48496cca93bc242b3a60f60"
-  integrity sha512-K5BmXg7ifVSskpt3TIwcUha/saWmra7KCndYJ/+kG7FCr8SGQ5Kg8BInY9OkM+AEZH00S/gwSNMS4uCdxg+fnA==
+"@navikt/familie-form-elements@22.0.2":
+  version "22.0.2"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-form-elements/22.0.2/c6580331e0de052c14993d84835442dec6e48c49#c6580331e0de052c14993d84835442dec6e48c49"
+  integrity sha512-uirfS+DntZA8wjVyTND3Taqp0SL9eAo78IAcFiF6qMcVeeQH0IOW+3Gh0MG9OEJmaMpT8KGe+6Wjjuq673a/iQ==
   dependencies:
     react-select "5.10.2"
 
-"@navikt/familie-http@8.0.22", "@navikt/familie-http@^8.0.22":
-  version "8.0.22"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-http/8.0.22/0bf46467c488277c4e7768a23c185604be3f6d62#0bf46467c488277c4e7768a23c185604be3f6d62"
-  integrity sha512-ygztVBMsTcKzDqhgFhPS9nNJwhsmRXQXYBRrYDnA0sS44BlQKWh8dUQTQXXHa2FQXAvAmEtwnk75GYpzQeKLmQ==
+"@navikt/familie-http@8.0.23", "@navikt/familie-http@^8.0.23":
+  version "8.0.23"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-http/8.0.23/a92583b2dde955b845eb94c8fcc130ad7a5943ce#a92583b2dde955b845eb94c8fcc130ad7a5943ce"
+  integrity sha512-GoqUAHKooN/c43IUqtBkw0UVp4sYxRYBWIvit6USBbcysWzzybDUoLJvp4Lh1WBGe9KN2ZKiFxz3KNRWMXaJAA==
   dependencies:
-    "@navikt/familie-typer" "^8.0.5"
-    "@sentry/core" "10.49.0"
+    "@navikt/familie-typer" "^8.0.6"
+    "@sentry/core" "10.64.0"
 
-"@navikt/familie-logging@7.0.7":
-  version "7.0.7"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-logging/7.0.7/28040c142a1408fe75afd2ddd321b712ea0cd6b1#28040c142a1408fe75afd2ddd321b712ea0cd6b1"
-  integrity sha512-onSiEjAggrC4oVQbBmAXYZm2I0/JdhGviDKAUIyF/Mb30wd4h9545RkitCkn3xN4r6tgx7d/A81/7K+IxRCqhw==
+"@navikt/familie-logging@7.0.8":
+  version "7.0.8"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-logging/7.0.8/fed8592d83b87d72c534df709c12f88ec3c9f48b#fed8592d83b87d72c534df709c12f88ec3c9f48b"
+  integrity sha512-0EgMimD6krmSresqyQHPymzNlWq5I8Swc9xwm6np7yh0NJuCy/KuGSDvuuJ4Zm422K5kUfZyyls08tkUUUQGeg==
   dependencies:
     winston "3.19.0"
 
-"@navikt/familie-skjema@8.2.48":
-  version "8.2.48"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-skjema/8.2.48/41825f55e6eefd3593c33367fe7a4e5b5f1cf2ed#41825f55e6eefd3593c33367fe7a4e5b5f1cf2ed"
-  integrity sha512-ICTnB4GzpzmzBVQcH4wvS5Ct64OyYe0FDMeZrM2nL7O7ZBqKN10ycl1cFiDuc/PIl6lQvqr2PbIg8DpkbP3oKg==
+"@navikt/familie-skjema@8.2.49":
+  version "8.2.49"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-skjema/8.2.49/48fb95fc6c0626f6463212e519e50c5268477249#48fb95fc6c0626f6463212e519e50c5268477249"
+  integrity sha512-n7FIVJ+VcwIyqGd5k5FmPCD67YxWt8DpUxWEqeDt8KbWMz0FelIKAlz+dmaItsMna7rL3pKQO8ODsxHbhlKcig==
   dependencies:
-    "@navikt/familie-http" "^8.0.22"
-    "@navikt/familie-typer" "^8.0.5"
+    "@navikt/familie-http" "^8.0.23"
+    "@navikt/familie-typer" "^8.0.6"
     "@types/deep-equal" "1.0.4"
     deep-equal "2.2.3"
     hashids "2.3.0"
 
-"@navikt/familie-typer@8.0.5", "@navikt/familie-typer@^8.0.5":
-  version "8.0.5"
-  resolved "https://npm.pkg.github.com/download/@navikt/familie-typer/8.0.5/f048cb47ad2f6b83720c058383fe95802b024718#f048cb47ad2f6b83720c058383fe95802b024718"
-  integrity sha512-oZPfF95H6k/Tz/cK4IQirTRXy4Vz0aSUtHWZAaDa1CVd7+8ifj1Aw8KLV6pPvlHaPirrek1sFsK5GNnad6h3qA==
+"@navikt/familie-typer@8.0.6", "@navikt/familie-typer@^8.0.6":
+  version "8.0.6"
+  resolved "https://npm.pkg.github.com/download/@navikt/familie-typer/8.0.6/c45dc1319c7e23980b030a1dfe06b9ae6798d2aa#c45dc1319c7e23980b030a1dfe06b9ae6798d2aa"
+  integrity sha512-A1IdcGH782ZcoXtib0TDLbO2Iy3Qxc0YcjSXX09fEcINa3sLpsVIvqk9r/u3FSN8OXZ5zaRJHtlJYWrfofGKIQ==
 
 "@navikt/fnrvalidator@2.2.1":
   version "2.2.1"
@@ -2217,15 +2217,22 @@
     "@sentry/cli-win32-i686" "2.58.5"
     "@sentry/cli-win32-x64" "2.58.5"
 
-"@sentry/core@10.49.0":
-  version "10.49.0"
-  resolved "https://registry.npmjs.org/@sentry/core/-/core-10.49.0.tgz#4e9389973917e8ddd2d825040a03b298457d061f"
-  integrity sha512-UaFeum3LUM1mB0d67jvKnqId1yWQjyqmaDV6kWngG03x+jqXb08tJdGpSoxjXZe13jFBbiBL/wKDDYIK7rCK4g==
+"@sentry/conventions@^0.15.1":
+  version "0.15.1"
+  resolved "https://registry.npmjs.org/@sentry/conventions/-/conventions-0.15.1.tgz#5b8888862d1e444678938f5afdd7842bca42f7cc"
+  integrity sha512-ZLP8bRdMON3prWE2tJyImuYscCxdcJeIPIhrOs/rgyFm3C1nCh1B6gdvPj3AZ5zW08oSFFCsq7T+tYEW3h8MNA==
 
 "@sentry/core@10.63.0":
   version "10.63.0"
   resolved "https://registry.npmjs.org/@sentry/core/-/core-10.63.0.tgz#8c37016a70c25f22258f7cb3c0f71f931a78fd4e"
   integrity sha512-OtUbsrnbEHffOF2S2+M5zXa3HIM0U2b4CDVLKMY1dgS0J3ivRF8XvkjvyIcEG/y8JXnwXbnprLyjhG+AqMdUZQ==
+
+"@sentry/core@10.64.0":
+  version "10.64.0"
+  resolved "https://registry.npmjs.org/@sentry/core/-/core-10.64.0.tgz#c2a75ce99853c2cff45aead638265392b2763fd1"
+  integrity sha512-HjojJcXD1l2qZ1AXje2s0XY/nYsaUt00wsM1HMBImA8vAClyPisFE/CC0/UD6pEvsGFhVgi8Dcxo7EN41uyeFw==
+  dependencies:
+    "@sentry/conventions" "^0.15.1"
 
 "@sentry/feedback@10.63.0":
   version "10.63.0"
