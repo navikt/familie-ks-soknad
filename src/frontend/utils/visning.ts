@@ -1,7 +1,7 @@
 import { AlternativtSvarForInput } from '../typer/common';
 
 import { formaterDatostringKunMåned } from './dato';
-import { LocaleType } from '../../common/typer/localeType';
+import { LocaleType } from '../../common/typer/locale';
 
 export const formaterFnr = (fødselsnummer: string) => {
     return fødselsnummer.substring(0, 6) + ' ' + fødselsnummer.substring(6, 11);

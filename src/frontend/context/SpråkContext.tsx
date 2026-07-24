@@ -5,7 +5,7 @@ import { useCookies } from 'react-cookie';
 import { onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
 
 import { erGyldigSpråk } from '../typer/common';
-import { LocaleType } from '../../common/typer/localeType';
+import { LocaleType } from '../../common/typer/locale';
 
 const dekoratorLanguageCookieName = 'decorator-language';
 

@@ -12,7 +12,7 @@ import FellesWrapper from './FellesWrapper';
 import { initGrafanaFaro } from './utils/grafanaFaro';
 import { initSentry } from './utils/sentry';
 import '@navikt/ds-css';
-import { LocaleType } from '../common/typer/localeType';
+import { LocaleType } from '../common/typer/locale';
 
 const polyfillLocaledata = async () => {
     for (const locale in LocaleType) {

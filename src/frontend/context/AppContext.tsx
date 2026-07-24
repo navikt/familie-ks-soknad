@@ -32,7 +32,7 @@ import { AxiosRequest, useLastRessurserContext } from './LastRessurserContext';
 import { hentSluttbrukerFraPdl } from './pdl';
 import { useSanityContext } from './SanityContext';
 import { useSpråkContext } from './SpråkContext';
-import { LocaleType } from '../../common/typer/localeType';
+import { LocaleType } from '../../common/typer/locale';
 
 export interface AppContext {
     axiosRequest: AxiosRequest;

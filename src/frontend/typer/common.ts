@@ -1,5 +1,5 @@
 import { PortableTextBlock } from '@portabletext/types';
-import { LocaleType } from '../../common/typer/localeType';
+import { LocaleType } from '../../common/typer/locale';
 import { ISODateString } from '../../common/typer/ISODateString';
 
 export enum AlternativtSvarForInput {

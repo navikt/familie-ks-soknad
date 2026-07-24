@@ -4,7 +4,7 @@ import { BodyShort, Button, Heading, Link } from '@navikt/ds-react';
 
 import { useSpråkContext } from '../../../context/SpråkContext';
 
-import { LocaleType } from '../../../../common/typer/localeType';
+import { LocaleType } from '../../../../common/typer/locale';
 
 export const FeilsideInnhold: FC = () => {
     const { valgtLocale } = useSpråkContext();

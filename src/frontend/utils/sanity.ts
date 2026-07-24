@@ -48,7 +48,7 @@ import {
     SanityModalPrefix,
     SanityPersonType,
 } from '../typer/sanity/tekstInnhold';
-import { LocaleType } from '../../common/typer/localeType';
+import { LocaleType } from '../../common/typer/locale';
 
 const strukturerInnholdForSteg = (dokumenter: SanityDokument[], steg: ESanitySteg): Record<string, SanityDokument> =>
     dokumenter

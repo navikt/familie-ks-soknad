@@ -8,7 +8,7 @@ import {
     ISøknadsfelt,
     IUtenlandsperiodeIKontraktFormat,
 } from './generelle';
-import { LocaleType } from '../localeType';
+import { LocaleType } from '../locale';
 import { ISODateString } from '../ISODateString';
 
 export interface ISøknadKontrakt {

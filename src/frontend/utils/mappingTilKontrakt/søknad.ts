@@ -17,7 +17,7 @@ import { barnISøknadsFormat } from './barn';
 import { dokumentasjonISøknadFormat } from './dokumentasjon';
 import { nullableSøknadsfeltForESvarHof, søknadsfeltForESvarHof } from './hjelpefunksjoner';
 import { søkerIKontraktFormat } from './søker';
-import { LocaleType } from '../../../common/typer/localeType';
+import { LocaleType } from '../../../common/typer/locale';
 
 const antallEøsSteg = (søker: ISøker, barnInkludertISøknaden: IBarnMedISøknad[]) => {
     const barnSomTriggerEøs = barnInkludertISøknaden.filter(barn => barn.triggetEøs);
