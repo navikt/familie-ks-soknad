@@ -4,7 +4,7 @@ import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import webpack from 'webpack';
 import { CustomizeRule, mergeWithRules } from 'webpack-merge';
 
-import { BASE_PATH } from '../shared-utils/miljø';
+import { BASE_PATH } from '../common/miljø';
 
 import baseConfig from './webpack.common.config';
 

@@ -1,6 +1,6 @@
 import { getWebInstrumentations, initializeFaro } from '@grafana/faro-web-sdk';
 
-import { erDev, erProd } from '../../shared-utils/miljø';
+import { erDev, erProd } from '../../common/miljø';
 
 enum TelemetryCollectorURL {
     prod = 'https://telemetry.nav.no/collect',

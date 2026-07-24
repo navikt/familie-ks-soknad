@@ -2,7 +2,7 @@ import React, { createContext, PropsWithChildren, useContext, useEffect, useStat
 
 import { RessursStatus } from '@navikt/familie-typer';
 
-import miljø from '../../shared-utils/miljø';
+import miljø from '../../common/miljø';
 import { autentiseringsInterceptor, InnloggetStatus } from '../utils/autentisering';
 
 import { useLastRessurserContext } from './LastRessurserContext';

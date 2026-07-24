@@ -1,6 +1,6 @@
 import express, { Express, RequestHandler } from 'express';
 
-import miljø, { BASE_PATH } from '../../shared-utils/miljø';
+import miljø, { BASE_PATH } from '../../common/miljø';
 import { erklaeringInterceptor } from '../middlewares/erklaering-interceptor';
 import { escapeBody } from '../middlewares/escape';
 import { modellVersjonInterceptor } from '../middlewares/modell-versjon-interceptor';

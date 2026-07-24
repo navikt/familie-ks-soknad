@@ -8,7 +8,7 @@ import { rateLimit } from 'express-rate-limit';
 import { logInfo } from '@navikt/familie-logging';
 
 import { cspString } from '../csp';
-import miljø, { BASE_PATH } from '../shared-utils/miljø';
+import miljø, { BASE_PATH } from '../common/miljø';
 
 import { expressToggleInterceptor } from './middlewares/feature-toggles';
 import { konfigurerIndex, konfigurerIndexFallback } from './routes';

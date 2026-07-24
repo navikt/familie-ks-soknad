@@ -9,7 +9,7 @@ import {
     RessursStatus,
 } from '@navikt/familie-typer';
 
-import miljø from '../../../shared-utils/miljø';
+import miljø from '../../../common/miljø';
 import { useAppContext } from '../../context/AppContext';
 import { Typografi } from '../../typer/common';
 import { TypografiWrapper } from '../Felleskomponenter/TekstBlock';

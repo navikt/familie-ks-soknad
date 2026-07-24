@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 
 import type { Ressurs } from '@navikt/familie-typer';
 
-import { modellVersjon, modellVersjonHeaderName } from '../../shared-utils/modellversjon';
+import { modellVersjon, modellVersjonHeaderName } from '../../common/modellversjon';
 import { AxiosRequest } from '../context/LastRessurserContext';
 import { IKvittering } from '../typer/kvittering';
 

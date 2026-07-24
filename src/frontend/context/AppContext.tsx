@@ -11,7 +11,7 @@ import {
     RessursStatus,
 } from '@navikt/familie-typer';
 
-import miljø, { BASE_PATH } from '../../shared-utils/miljø';
+import miljø, { BASE_PATH } from '../../common/miljø';
 import { useDebounce } from '../hooks/useDebounce';
 import { LocaleType } from '../typer/common';
 import { IKontoinformasjon } from '../typer/kontoinformasjon';
