@@ -1,5 +1,5 @@
 // CSP eller Content-Security-Policy er en HTTP-Header som lar oss spesifisere hvor appen kan kjøre REST-kall mot og hvor den kan hente diverse innhold fra (fonter, bilder, javascript, stylesheets mm).
-import { erProd } from './common/miljø';
+import { erProd } from '../common/miljø';
 
 export const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
     return {
