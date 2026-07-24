@@ -3,7 +3,7 @@ import { ParamsDictionary } from 'express-serve-static-core';
 
 import { byggSuksessRessurs, type Ressurs } from '@navikt/familie-typer';
 
-import { EAllFeatureToggles, defaultFeatureToggleValues, ToggleKeys } from '../../frontend/typer/feature-toggles';
+import { EAllFeatureToggles, defaultFeatureToggleValues, ToggleKeys } from '../../common/feature-toggles';
 import { BASE_PATH } from '../../common/miljø';
 import { isEnabled } from '../utils/unleash';
 

@@ -4,7 +4,7 @@ import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import { BASE_PATH } from '../../common/miljø';
 import useFørsteRender from '../hooks/useFørsteRender';
-import { EAllFeatureToggles, defaultFeatureToggleValues } from '../typer/feature-toggles';
+import { EAllFeatureToggles, defaultFeatureToggleValues } from '../../common/feature-toggles';
 
 import { useLastRessurserContext } from './LastRessurserContext';
 
