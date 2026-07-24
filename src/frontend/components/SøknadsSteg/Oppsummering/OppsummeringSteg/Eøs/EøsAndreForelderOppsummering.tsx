@@ -3,6 +3,8 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
+import { LocaleRecordBlock } from '../../../../../../common/typer/locale';
 import { useAppContext } from '../../../../../context/AppContext';
 import { useSpråkContext } from '../../../../../context/SpråkContext';
 import { andreForelderDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../../../../typer/barn';
@@ -17,9 +19,6 @@ import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
 import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
 import IdNummerForAndreForelder from '../../../EøsSteg/Barn/IdNummerForAndreForelder';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
-
-import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
-import { LocaleRecordBlock } from '../../../../../../common/typer/locale';
 
 const EøsAndreForelderOppsummering: React.FC<{
     barn: IBarnMedISøknad;

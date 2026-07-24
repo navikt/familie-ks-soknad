@@ -6,11 +6,11 @@ import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-
 import { InfoCard, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
+import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { useAppContext } from '../../../context/AppContext';
 import { useStegContext } from '../../../context/StegContext';
 import useUxSignals from '../../../hooks/useUxSignals';
 import { Typografi } from '../../../typer/common';
-import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { RouteEnum } from '../../../typer/routes';
 import { erDokumentasjonRelevant } from '../../../utils/dokumentasjon';
 import BlokkerTilbakeKnappModal from '../../Felleskomponenter/BlokkerTilbakeKnappModal/BlokkerTilbakeKnappModal';

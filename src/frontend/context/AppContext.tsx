@@ -12,9 +12,10 @@ import {
 } from '@navikt/familie-typer';
 
 import miljø, { BASE_PATH } from '../../common/miljø';
+import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../common/typer/kontrakt/generelle';
+import { LocaleType } from '../../common/typer/locale';
 import { useDebounce } from '../hooks/useDebounce';
 import { IKontoinformasjon } from '../typer/kontoinformasjon';
-import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../common/typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { IMellomlagretKontantstøtte } from '../typer/mellomlager';
 import { ISøkerRespons } from '../typer/person';
@@ -32,7 +33,6 @@ import { AxiosRequest, useLastRessurserContext } from './LastRessurserContext';
 import { hentSluttbrukerFraPdl } from './pdl';
 import { useSanityContext } from './SanityContext';
 import { useSpråkContext } from './SpråkContext';
-import { LocaleType } from '../../common/typer/locale';
 
 export interface AppContext {
     axiosRequest: AxiosRequest;

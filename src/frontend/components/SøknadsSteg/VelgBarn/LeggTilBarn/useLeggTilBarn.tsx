@@ -1,6 +1,7 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, type FeltState, type ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
+import { LocaleRecordBlock } from '../../../../../common/typer/locale';
 import { useAppContext } from '../../../../context/AppContext';
 import useInputFeltMedUkjent from '../../../../hooks/useInputFeltMedUkjent';
 import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
@@ -10,7 +11,6 @@ import { erBarnRegistrertFraFør, erBarnUnder11Mnd, hentAlder, hentUid } from '.
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
 import { identTilFødselsdato } from '../../../../utils/ident';
 import { VelgBarnSpørsmålId } from '../spørsmål';
-import { LocaleRecordBlock } from '../../../../../common/typer/locale';
 
 export const useLeggTilBarn = (): {
     skjema: ISkjema<ILeggTilBarnTyper, string>;

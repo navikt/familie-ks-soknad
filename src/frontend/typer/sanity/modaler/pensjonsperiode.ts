@@ -1,5 +1,5 @@
-import { ISanitySpørsmålDokument } from '../sanity';
 import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
+import { ISanitySpørsmålDokument } from '../sanity';
 
 export interface IPensjonsperiodeTekstinnhold {
     tittel: LocaleRecordBlock;

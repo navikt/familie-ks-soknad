@@ -3,12 +3,12 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { UseSkjemaVerdi } from '@navikt/familie-skjema';
 
+import { ISODateString } from '../../common/typer/ISODateString';
 import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 
 import { AlternativtSvarForInput, DatoMedUkjent } from './common';
 import { ISøknadSpørsmål } from './spørsmål';
 import { EUtenlandsoppholdÅrsak } from './utenlandsopphold';
-import { ISODateString } from '../../common/typer/ISODateString';
 
 export interface IUtenlandsperiode {
     utenlandsoppholdÅrsak: ISøknadSpørsmål<EUtenlandsoppholdÅrsak>;

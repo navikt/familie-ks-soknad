@@ -4,13 +4,13 @@ import { PortableText } from '@portabletext/react';
 
 import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds-react';
 
+import { FlettefeltVerdier } from '../../../common/typer/kontrakt/generelle';
+import { LocaleRecordBlock } from '../../../common/typer/locale';
 import { useAppContext } from '../../context/AppContext';
 import { useSpråkContext } from '../../context/SpråkContext';
 import { Typografi } from '../../typer/common';
-import { FlettefeltVerdier } from '../../../common/typer/kontrakt/generelle';
 
 import styles from './TekstBlock.module.css';
-import { LocaleRecordBlock } from '../../../common/typer/locale';
 
 interface Props {
     typografi?: Typografi;

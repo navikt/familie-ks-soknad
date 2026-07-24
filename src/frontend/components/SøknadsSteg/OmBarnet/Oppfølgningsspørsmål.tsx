@@ -5,6 +5,7 @@ import { InfoCard } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../context/AppContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
@@ -23,8 +24,6 @@ import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/
 
 import { IOmBarnetTekstinnhold } from './innholdTyper';
 import styles from './Oppfølgningsspørsmål.module.css';
-
-import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 
 const Oppfølgningsspørsmål: React.FC<{
     barn: IBarnMedISøknad;

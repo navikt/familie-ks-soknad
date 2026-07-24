@@ -3,6 +3,7 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { IOmsorgsperson } from '../../../typer/omsorgsperson';
 import { IOmBarnaDineFeltTyper } from '../../../typer/skjema';
@@ -14,8 +15,6 @@ import {
     skalViseBorMedOmsorgsperson,
 } from '../../../utils/barn';
 import { EøsBarnSpørsmålId } from '../EøsSteg/Barn/spørsmål';
-
-import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 
 export const genererSvarForSpørsmålBarn = (barn: IBarnMedISøknad, felt: Felt<string[]>): ESvar =>
     felt.verdi.includes(barn.id) ? ESvar.JA : ESvar.NEI;

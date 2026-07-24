@@ -1,9 +1,10 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
-import { IBarnMedISøknad } from '../../typer/barn';
 import { ESivilstand, PlainTekst, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
 import { ISøknadKontrakt } from '../../../common/typer/kontrakt/søknadKontrakt';
+import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../../common/typer/locale';
+import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
+import { IBarnMedISøknad } from '../../typer/barn';
 import { ISøker } from '../../typer/person';
 import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
@@ -16,7 +17,6 @@ import { barnISøknadsFormat } from './barn';
 import { dokumentasjonISøknadFormat } from './dokumentasjon';
 import { nullableSøknadsfeltForESvarHof, søknadsfeltForESvarHof } from './hjelpefunksjoner';
 import { søkerIKontraktFormat } from './søker';
-import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../../common/typer/locale';
 
 const antallEøsSteg = (søker: ISøker, barnInkludertISøknaden: IBarnMedISøknad[]) => {
     const barnSomTriggerEøs = barnInkludertISøknaden.filter(barn => barn.triggetEøs);

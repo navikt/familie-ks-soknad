@@ -1,7 +1,7 @@
+import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
 import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
-import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
 
 export const hentBarnehageplassBeskrivelse = (
     beskrivelse: EBarnehageplassPeriodeBeskrivelse | '',

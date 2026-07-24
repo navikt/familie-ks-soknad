@@ -8,6 +8,7 @@ import {
 import { pipe } from 'ramda';
 
 import { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
+import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../common/typer/locale';
 import { IAndreUtbetalingerTekstinnhold } from '../typer/sanity/modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from '../typer/sanity/modaler/arbeidsperiode';
 import { IBarnehageplassTekstinnhold } from '../typer/sanity/modaler/barnehageplass';
@@ -47,7 +48,6 @@ import {
     SanityModalPrefix,
     SanityPersonType,
 } from '../typer/sanity/tekstInnhold';
-import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../common/typer/locale';
 
 const strukturerInnholdForSteg = (dokumenter: SanityDokument[], steg: ESanitySteg): Record<string, SanityDokument> =>
     dokumenter

@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type Avhengigheter, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
-import { useAppContext } from '../context/AppContext';
-import { validerDato } from '../utils/dato';
 import { ISODateString } from '../../common/typer/ISODateString';
 import { LocaleRecordBlock } from '../../common/typer/locale';
+import { useAppContext } from '../context/AppContext';
+import { validerDato } from '../utils/dato';
 
 const useDatovelgerFeltMedUkjent = ({
     feltId,

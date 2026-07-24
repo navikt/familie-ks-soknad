@@ -1,8 +1,9 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { IBarnMedISøknad } from '../../typer/barn';
+import { ISODateString } from '../../../common/typer/ISODateString';
 import { ISøknadsfelt, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
 import { IEøsKontantstøttePeriodeIKontraktFormat } from '../../../common/typer/kontrakt/søknadKontrakt';
+import { IBarnMedISøknad } from '../../typer/barn';
 import { IEøsKontantstøttePeriode } from '../../typer/perioder';
 import { IEøsYtelseTekstinnhold } from '../../typer/sanity/modaler/eøsYtelse';
 import { ISøknadSpørsmål } from '../../typer/spørsmål';
@@ -11,7 +12,6 @@ import { landkodeTilSpråk } from '../språk';
 import { uppercaseFørsteBokstav } from '../visning';
 
 import { sammeVerdiAlleSpråk, verdiCallbackAlleSpråk } from './hjelpefunksjoner';
-import { ISODateString } from '../../../common/typer/ISODateString';
 
 interface PensjonperiodeIKontraktFormatParams {
     periode: IEøsKontantstøttePeriode;

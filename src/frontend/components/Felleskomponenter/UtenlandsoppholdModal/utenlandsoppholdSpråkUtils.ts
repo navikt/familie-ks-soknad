@@ -1,6 +1,6 @@
+import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
-import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
 
 export const hentUtenlandsoppholdÅrsak = (
     årsak: EUtenlandsoppholdÅrsak | '',

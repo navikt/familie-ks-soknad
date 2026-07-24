@@ -1,3 +1,4 @@
+import { LocaleRecordBlock, LocaleRecordString } from '../../../common/typer/locale';
 import { IDinLivssituasjonTekstinnhold } from '../../components/SøknadsSteg/DinLivssituasjon/innholdTyper';
 import { IDokumentasjonTekstinnhold } from '../../components/SøknadsSteg/Dokumentasjon/innholdTyper';
 import { IEøsForBarnTekstinnhold } from '../../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
@@ -21,7 +22,6 @@ import { IPensjonsperiodeTekstinnhold } from './modaler/pensjonsperiode';
 import { IStartPåNyttModal } from './modaler/startPåNytt';
 import { IUtenlandsoppholdTekstinnhold } from './modaler/utenlandsopphold';
 import { ESanitySteg } from './sanity';
-import { LocaleRecordBlock, LocaleRecordString } from '../../../common/typer/locale';
 
 export enum SanityPersonType {
     ANDRE_FORELDER = 'ANDRE_FORELDER',

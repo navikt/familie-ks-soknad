@@ -6,13 +6,14 @@ import { createRoot } from 'react-dom/client';
 
 import { awaitDecoratorData } from '@navikt/nav-dekoratoren-moduler';
 
+import { LocaleType } from '../common/typer/locale';
+
 import App from './App';
 import { hentDekorator } from './decorator';
 import FellesWrapper from './FellesWrapper';
 import { initGrafanaFaro } from './utils/grafanaFaro';
 import { initSentry } from './utils/sentry';
 import '@navikt/ds-css';
-import { LocaleType } from '../common/typer/locale';
 
 const polyfillLocaledata = async () => {
     for (const locale in LocaleType) {

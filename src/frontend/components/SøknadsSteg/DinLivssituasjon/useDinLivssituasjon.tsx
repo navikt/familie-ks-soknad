@@ -3,12 +3,13 @@ import { useEffect } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, type ISkjema, ok, useSkjema } from '@navikt/familie-skjema';
 
+import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
+import { ESivilstand } from '../../../../common/typer/kontrakt/generelle';
+import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import { usePerioder } from '../../../hooks/usePerioder';
-import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
-import { ESivilstand } from '../../../../common/typer/kontrakt/generelle';
 import { IArbeidsperiode, IPensjonsperiode, IUtenlandsperiode } from '../../../typer/perioder';
 import { ISøker } from '../../../typer/person';
 import { PersonType } from '../../../typer/personType';
@@ -25,7 +26,6 @@ import { PensjonsperiodeSpørsmålId } from '../../Felleskomponenter/Pensjonsmod
 import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { idNummerLand } from '../EøsSteg/idnummerUtils';
 import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
-import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 
 export const useDinLivssituasjon = (): {
     skjema: ISkjema<IDinLivssituasjonFeltTyper, string>;

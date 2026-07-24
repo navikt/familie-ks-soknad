@@ -1,5 +1,8 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { ISODateString } from '../ISODateString';
+import { LocaleType } from '../locale';
+
 import { ISøknadKontraktDokumentasjon } from './dokumentasjon';
 import {
     ERegistrertBostedType,
@@ -8,8 +11,6 @@ import {
     ISøknadsfelt,
     IUtenlandsperiodeIKontraktFormat,
 } from './generelle';
-import { LocaleType } from '../locale';
-import { ISODateString } from '../ISODateString';
 
 export interface ISøknadKontrakt {
     kontraktVersjon: number;

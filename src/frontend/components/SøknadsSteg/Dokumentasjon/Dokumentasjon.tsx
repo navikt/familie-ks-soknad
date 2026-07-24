@@ -6,12 +6,12 @@ import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 import { BodyShort, Heading, InfoCard, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 
+import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { useAppContext } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { useSendInnSkjema } from '../../../hooks/useSendInnSkjema';
 import { Typografi } from '../../../typer/common';
 import { IDokumentasjon, IVedlegg } from '../../../typer/dokumentasjon';
-import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { erDokumentasjonRelevant } from '../../../utils/dokumentasjon';
 import { slåSammen } from '../../../utils/slåSammen';

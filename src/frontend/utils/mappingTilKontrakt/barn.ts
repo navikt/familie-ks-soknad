@@ -1,7 +1,8 @@
-import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
-import { IBarnMedISøknad } from '../../typer/barn';
 import { ERegistrertBostedType, Slektsforhold, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
 import { ISøknadIKontraktBarn } from '../../../common/typer/kontrakt/søknadKontrakt';
+import { LocaleRecordBlock, LocaleRecordString } from '../../../common/typer/locale';
+import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
+import { IBarnMedISøknad } from '../../typer/barn';
 import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknad } from '../../typer/søknad';
@@ -21,7 +22,6 @@ import {
 import { idNummerTilISøknadsfelt } from './idNummer';
 import { omsorgspersonTilISøknadsfelt } from './omsorgsperson';
 import { utenlandsperiodeTilISøknadsfelt } from './utenlandsperiode';
-import { LocaleRecordBlock, LocaleRecordString } from '../../../common/typer/locale';
 
 export const barnISøknadsFormat = (
     barn: IBarnMedISøknad,

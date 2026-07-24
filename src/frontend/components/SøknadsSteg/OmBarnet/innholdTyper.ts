@@ -1,5 +1,5 @@
-import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
+import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 
 export interface IOmBarnetTekstinnhold {
     omBarnetTittel: LocaleRecordBlock;

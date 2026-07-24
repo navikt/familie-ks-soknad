@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Checkbox, FormSummary, VStack } from '@navikt/ds-react';
 
+import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
+import { LocaleRecordBlock } from '../../../../common/typer/locale';
 import { useAppContext } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import {
@@ -10,13 +12,11 @@ import {
     IDokumentasjon,
     IVedlegg,
 } from '../../../typer/dokumentasjon';
-import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { slåSammen } from '../../../utils/slåSammen';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import Filopplaster from './filopplaster/Filopplaster';
 import { useFilopplaster } from './filopplaster/useFilopplaster';
-import { LocaleRecordBlock } from '../../../../common/typer/locale';
 
 interface Props {
     dokumentasjon: IDokumentasjon;

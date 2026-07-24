@@ -1,10 +1,10 @@
 import { type Avhengigheter, useFelt } from '@navikt/familie-skjema';
 
+import { ISODateString } from '../../common/typer/ISODateString';
+import { LocaleRecordBlock } from '../../common/typer/locale';
 import { useAppContext } from '../context/AppContext';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { validerDato } from '../utils/dato';
-import { ISODateString } from '../../common/typer/ISODateString';
-import { LocaleRecordBlock } from '../../common/typer/locale';
 
 const useDatovelgerFelt = ({
     søknadsfelt,

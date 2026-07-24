@@ -2,8 +2,10 @@ import { Alpha3Code } from 'i18n-iso-countries';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent } from './common';
 import { Slektsforhold } from '../../common/typer/kontrakt/generelle';
+import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
+
+import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent } from './common';
 import { IOmsorgsperson } from './omsorgsperson';
 import {
     IArbeidsperiode,
@@ -15,7 +17,6 @@ import {
 } from './perioder';
 import { IBarn, IIdNummer } from './person';
 import { ISøknadSpørsmål } from './spørsmål';
-import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
 
 export enum andreForelderDataKeySpørsmål {
     kanIkkeGiOpplysninger = 'kanIkkeGiOpplysninger',

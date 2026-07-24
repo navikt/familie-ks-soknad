@@ -5,6 +5,7 @@ import { formatISO, isAfter, startOfDay } from 'date-fns';
 import { BodyShort, DatePicker, ErrorMessage, useDatepicker } from '@navikt/ds-react';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { ISODateString } from '../../../../common/typer/ISODateString';
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
@@ -16,7 +17,6 @@ import {
     tidenesEnde,
     tidenesMorgen,
 } from '../../../utils/dato';
-import { ISODateString } from '../../../../common/typer/ISODateString';
 
 interface DatoVelgerProps {
     felt: Felt<ISODateString>;
