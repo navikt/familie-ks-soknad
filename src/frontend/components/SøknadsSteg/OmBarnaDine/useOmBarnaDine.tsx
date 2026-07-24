@@ -6,7 +6,6 @@ import { type ISkjema, useSkjema } from '@navikt/familie-skjema';
 import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
-import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../../../common/typer/kontrakt/generelle';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -18,6 +17,7 @@ import { IOmBarnaTekstinnhold } from './innholdTyper';
 import { OmBarnaDineSpørsmålId } from './spørsmål';
 import useBarnCheckboxFelt from './useBarnCheckboxFelt';
 import { genererOppdaterteBarn } from './utils';
+import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 
 export const useOmBarnaDine = (): {
     skjema: ISkjema<IOmBarnaDineFeltTyper, string>;

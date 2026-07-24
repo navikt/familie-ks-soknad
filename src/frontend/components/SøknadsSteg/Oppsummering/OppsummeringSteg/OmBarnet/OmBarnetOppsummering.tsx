@@ -5,7 +5,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { useAppContext } from '../../../../../context/AppContext';
 import { useSpråkContext } from '../../../../../context/SpråkContext';
 import { useStegContext } from '../../../../../context/StegContext';
-import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../../typer/barn';
+import { IBarnMedISøknad } from '../../../../../typer/barn';
 import { FlettefeltVerdier } from '../../../../../../common/typer/kontrakt/generelle';
 import { PersonType } from '../../../../../typer/personType';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
@@ -18,6 +18,7 @@ import { OppsummeringFelt } from '../../OppsummeringFelt';
 import Oppsummeringsbolk from '../../Oppsummeringsbolk';
 
 import AndreForelderOppsummering from './AndreForelderOppsummering';
+import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
 
 interface Props {
     settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;

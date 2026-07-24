@@ -6,7 +6,7 @@ import { EøsBarnSpørsmålId } from '../components/SøknadsSteg/EøsSteg/Barn/s
 import { idNummerLandMedPeriodeType } from '../components/SøknadsSteg/EøsSteg/idnummerUtils';
 import { OmBarnaDineSpørsmålId } from '../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { OmBarnetSpørsmålsId } from '../components/SøknadsSteg/OmBarnet/spørsmål';
-import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../typer/barn';
+import { IAndreForelder, IBarnMedISøknad } from '../typer/barn';
 import { tomString } from '../typer/common';
 import { PlainTekst } from '../../common/typer/kontrakt/generelle';
 import { IBarnehageplassPeriode, IEøsKontantstøttePeriode, IUtenlandsperiode } from '../typer/perioder';
@@ -15,6 +15,7 @@ import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
 import { ISøknad } from '../typer/søknad';
 
 import { formaterFnr } from './visning';
+import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
 
 export const genererInitiellAndreForelder = (
     andreForelder: IAndreForelder | null,

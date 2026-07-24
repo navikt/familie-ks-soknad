@@ -7,7 +7,6 @@ import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import { usePerioder } from '../../../hooks/usePerioder';
-import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../../../common/typer/kontrakt/generelle';
 import { IArbeidsperiode, IPensjonsperiode, IUtenlandsperiode } from '../../../typer/perioder';
@@ -26,6 +25,7 @@ import { PensjonsperiodeSpørsmålId } from '../../Felleskomponenter/Pensjonsmod
 import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { idNummerLand } from '../EøsSteg/idnummerUtils';
 import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
+import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 
 export const useDinLivssituasjon = (): {
     skjema: ISkjema<IDinLivssituasjonFeltTyper, string>;

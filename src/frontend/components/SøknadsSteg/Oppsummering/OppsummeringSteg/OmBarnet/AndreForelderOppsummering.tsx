@@ -4,12 +4,7 @@ import { BodyShort, FormSummary } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useAppContext } from '../../../../../context/AppContext';
-import {
-    andreForelderDataKeySpørsmål,
-    barnDataKeySpørsmål,
-    IAndreForelder,
-    IBarnMedISøknad,
-} from '../../../../../typer/barn';
+import { andreForelderDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
 import { PersonType } from '../../../../../typer/personType';
 import { ESanitySteg } from '../../../../../typer/sanity/sanity';
@@ -20,6 +15,8 @@ import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
 import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
 import { IOmBarnetTekstinnhold } from '../../../OmBarnet/innholdTyper';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
+
+import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
 
 const AndreForelderOppsummering: React.FC<{
     barn: IBarnMedISøknad;

@@ -4,8 +4,9 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { type Avhengigheter, feil, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
-import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { BarnetsId } from '../../../typer/common';
+
+import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 
 const useBarnCheckboxFelt = (
     datafeltNavn: barnDataKeySpørsmål,

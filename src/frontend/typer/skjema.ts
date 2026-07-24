@@ -4,7 +4,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 
-import { barnDataKeySpørsmål } from './barn';
 import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent } from './common';
 import { Slektsforhold } from '../../common/typer/kontrakt/generelle';
 import {
@@ -18,6 +17,7 @@ import {
 import { IBarn, IIdNummer } from './person';
 import { EUtenlandsoppholdÅrsak } from './utenlandsopphold';
 import { ISODateString } from '../../common/typer/ISODateString';
+import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
 
 export interface IDinLivssituasjonFeltTyper {
     erAsylsøker: ESvar | null;

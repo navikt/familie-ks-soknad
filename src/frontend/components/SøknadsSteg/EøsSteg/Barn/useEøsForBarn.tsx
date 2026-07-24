@@ -11,12 +11,7 @@ import useInputFeltMedUkjent from '../../../../hooks/useInputFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFeltMedJaNeiAvhengighet from '../../../../hooks/useLanddropdownFeltMedJaNeiAvhengighet';
 import { usePerioder } from '../../../../hooks/usePerioder';
-import {
-    andreForelderDataKeySpørsmål,
-    barnDataKeySpørsmål,
-    IAndreForelder,
-    IBarnMedISøknad,
-} from '../../../../typer/barn';
+import { andreForelderDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../../../typer/barn';
 import { AlternativtSvarForInput, BarnetsId } from '../../../../typer/common';
 import { Slektsforhold } from '../../../../../common/typer/kontrakt/generelle';
 import { IOmsorgsperson } from '../../../../typer/omsorgsperson';
@@ -41,6 +36,7 @@ import { UtbetalingerSpørsmålId } from '../../../Felleskomponenter/Utbetalinge
 import { idNummerKeyPrefix } from '../idnummerUtils';
 
 import { EøsBarnSpørsmålId } from './spørsmål';
+import { barnDataKeySpørsmål } from '../../../../../common/typer/kontrakt/søknadKontrakt';
 
 export const useEøsForBarn = (
     barnetsUuid: BarnetsId

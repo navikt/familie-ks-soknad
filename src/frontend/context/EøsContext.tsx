@@ -6,12 +6,14 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { byggHenterRessurs, hentDataFraRessurs } from '@navikt/familie-typer';
 
 import miljø from '../../common/miljø';
-import { barnDataKeySpørsmål, IBarnMedISøknad } from '../typer/barn';
+import { IBarnMedISøknad } from '../typer/barn';
 import { BarnetsId } from '../typer/common';
 import { ISøker } from '../typer/person';
 
 import { useAppContext } from './AppContext';
 import { useLastRessurserContext } from './LastRessurserContext';
+
+import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
 
 export interface EøsContext {
     erEøsLand: (land: Alpha3Code | '') => boolean;

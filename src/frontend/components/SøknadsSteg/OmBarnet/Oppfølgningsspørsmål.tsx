@@ -6,7 +6,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
-import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';
+import { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { IBarnehageplassPeriode, IEøsKontantstøttePeriode, IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
@@ -23,6 +23,8 @@ import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/
 
 import { IOmBarnetTekstinnhold } from './innholdTyper';
 import styles from './Oppfølgningsspørsmål.module.css';
+
+import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 
 const Oppfølgningsspørsmål: React.FC<{
     barn: IBarnMedISøknad;

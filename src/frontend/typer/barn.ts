@@ -15,6 +15,7 @@ import {
 } from './perioder';
 import { IBarn, IIdNummer } from './person';
 import { ISøknadSpørsmål } from './spørsmål';
+import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
 
 export enum andreForelderDataKeySpørsmål {
     kanIkkeGiOpplysninger = 'kanIkkeGiOpplysninger',
@@ -34,31 +35,6 @@ export enum andreForelderDataKeySpørsmål {
     kontantstøtteFraEøs = 'kontantstøtteFraEøs',
     pågåendeSøknadFraAnnetEøsLand = 'pågåendeSøknadFraAnnetEøsLand',
     pågåendeSøknadHvilketLand = 'pågåendeSøknadHvilketLand',
-}
-
-export enum barnDataKeySpørsmål {
-    erFosterbarn = 'erFosterbarn',
-    erAdoptert = 'erAdoptert',
-    erAsylsøker = 'erAsylsøker',
-    kontantstøtteFraAnnetEøsland = 'kontantstøtteFraAnnetEøsland',
-    pågåendeSøknadFraAnnetEøsLand = 'pågåendeSøknadFraAnnetEøsLand',
-    pågåendeSøknadHvilketLand = 'pågåendeSøknadHvilketLand',
-    mottarEllerMottokEøsKontantstøtte = 'mottarEllerMottokEøsKontantstøtte',
-    harBarnehageplass = 'harBarnehageplass',
-    andreForelderErDød = 'andreForelderErDød',
-    oppholderSegIInstitusjon = 'oppholderSegIInstitusjon',
-    utbetaltForeldrepengerEllerEngangsstønad = 'utbetaltForeldrepengerEllerEngangsstønad',
-    boddMindreEnn12MndINorge = 'boddMindreEnn12MndINorge',
-    planleggerÅBoINorge12Mnd = 'planleggerÅBoINorge12Mnd',
-    borFastMedSøker = 'borFastMedSøker',
-    sammeForelderSomAnnetBarnMedId = 'sammeForelderSomAnnetBarnMedId',
-    søkersSlektsforhold = 'søkersSlektsforhold',
-    søkersSlektsforholdSpesifisering = 'søkersSlektsforholdSpesifisering',
-    borMedAndreForelder = 'borMedAndreForelder',
-    borMedOmsorgsperson = 'borMedOmsorgsperson',
-    adresse = 'adresse',
-    søkerDeltKontantstøtte = 'søkerDeltKontantstøtte',
-    foreldreBorSammen = 'foreldreBorSammen',
 }
 
 export interface IAndreForelder {

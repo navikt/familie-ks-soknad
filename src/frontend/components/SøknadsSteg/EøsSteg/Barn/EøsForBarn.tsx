@@ -3,7 +3,7 @@ import React from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { useAppContext } from '../../../../context/AppContext';
-import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../typer/barn';
+import { IBarnMedISøknad } from '../../../../typer/barn';
 import { BarnetsId } from '../../../../typer/common';
 import { PersonType } from '../../../../typer/personType';
 import { skalSkjuleAndreForelderFelt } from '../../../../utils/barn';
@@ -26,6 +26,8 @@ import IdNummerForAndreForelder from './IdNummerForAndreForelder';
 import Omsorgsperson from './Omsorgsperson';
 import SamletIdNummerForBarn from './SamletIdNummerForBarn';
 import { useEøsForBarn } from './useEøsForBarn';
+
+import { barnDataKeySpørsmål } from '../../../../../common/typer/kontrakt/søknadKontrakt';
 
 const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
     const {
