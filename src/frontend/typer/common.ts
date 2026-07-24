@@ -1,7 +1,6 @@
 import { PortableTextBlock } from '@portabletext/types';
 import { LocaleType } from '../../common/typer/localeType';
-
-export type ISODateString = string;
+import { ISODateString } from '../../common/typer/ISODateString';
 
 export enum AlternativtSvarForInput {
     UKJENT = 'UKJENT',

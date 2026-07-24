@@ -1,7 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { barnDataKeySpørsmål } from '../../../frontend/typer/barn';
-import { ISODateString } from '../../../frontend/typer/common';
 
 import { ISøknadKontraktDokumentasjon } from './dokumentasjon';
 import {
@@ -12,6 +11,7 @@ import {
     IUtenlandsperiodeIKontraktFormat,
 } from './generelle';
 import { LocaleType } from '../localeType';
+import { ISODateString } from '../ISODateString';
 
 export interface ISøknadKontrakt {
     kontraktVersjon: number;

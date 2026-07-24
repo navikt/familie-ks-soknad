@@ -7,7 +7,6 @@ import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { ISODateString } from '../../../typer/common';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import {
     dagenEtterDato,
@@ -17,6 +16,7 @@ import {
     tidenesEnde,
     tidenesMorgen,
 } from '../../../utils/dato';
+import { ISODateString } from '../../../../common/typer/ISODateString';
 
 interface DatoVelgerProps {
     felt: Felt<ISODateString>;

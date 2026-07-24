@@ -7,8 +7,8 @@ import type { Felt } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { ISODateString } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
+import { ISODateString } from '../../../../common/typer/ISODateString';
 
 interface MånedÅrVelgerProps {
     tidligsteValgbareMåned?: Date;

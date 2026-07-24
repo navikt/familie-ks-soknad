@@ -9,11 +9,12 @@ import { type Felt, Valideringsstatus } from '@navikt/familie-skjema';
 
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
 import { AppProvider } from '../context/AppContext';
-import { ISODateString, LocaleRecordBlock } from '../typer/common';
+import { LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { TestProvidere } from '../utils/testing';
 
 import useJaNeiSpmFelt, { erRelevanteAvhengigheterValidert } from './useJaNeiSpmFelt';
+import { ISODateString } from '../../common/typer/ISODateString';
 
 describe('erRelevanteAvhengigheterValidert', () => {
     test('Skal returnere true dersom alle felter er validert til OK', () => {

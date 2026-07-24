@@ -5,9 +5,10 @@ import type { UseSkjemaVerdi } from '@navikt/familie-skjema';
 
 import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 
-import { AlternativtSvarForInput, DatoMedUkjent, ISODateString } from './common';
+import { AlternativtSvarForInput, DatoMedUkjent } from './common';
 import { ISøknadSpørsmål } from './spørsmål';
 import { EUtenlandsoppholdÅrsak } from './utenlandsopphold';
+import { ISODateString } from '../../common/typer/ISODateString';
 
 export interface IUtenlandsperiode {
     utenlandsoppholdÅrsak: ISøknadSpørsmål<EUtenlandsoppholdÅrsak>;

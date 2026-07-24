@@ -4,8 +4,9 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { type Avhengigheter, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../context/AppContext';
-import { ISODateString, LocaleRecordBlock } from '../typer/common';
+import { LocaleRecordBlock } from '../typer/common';
 import { validerDato } from '../utils/dato';
+import { ISODateString } from '../../common/typer/ISODateString';
 
 const useDatovelgerFeltMedUkjent = ({
     feltId,
