@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 
-import { ESivilstand } from '../../typer/kontrakt/generelle';
+import { ESivilstand } from '../../../common/typer/kontrakt/generelle';
 import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
 import { sivilstandTilSanitySivilstandApiKey } from '../../utils/språk';
 

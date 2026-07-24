@@ -7,7 +7,7 @@ import miljø from '../../common/miljø';
 import { erModellMismatchResponsRessurs } from '../../common/modellversjon';
 import { useAppContext } from '../context/AppContext';
 import { useSpråkContext } from '../context/SpråkContext';
-import { ISøknadKontrakt } from '../typer/kontrakt/søknadKontrakt';
+import { ISøknadKontrakt } from '../../common/typer/kontrakt/søknadKontrakt';
 import { IKvittering } from '../typer/kvittering';
 import { dataISøknadKontraktFormat } from '../utils/mappingTilKontrakt/søknad';
 import { sendInn } from '../utils/sendInnSkjema';

@@ -2,8 +2,8 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { IBarnMedISøknad } from '../../typer/barn';
 import { ISODateString } from '../../typer/common';
-import { ISøknadsfelt, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { IEøsKontantstøttePeriodeIKontraktFormat } from '../../typer/kontrakt/søknadKontrakt';
+import { ISøknadsfelt, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
+import { IEøsKontantstøttePeriodeIKontraktFormat } from '../../../common/typer/kontrakt/søknadKontrakt';
 import { IEøsKontantstøttePeriode } from '../../typer/perioder';
 import { IEøsYtelseTekstinnhold } from '../../typer/sanity/modaler/eøsYtelse';
 import { ISøknadSpørsmål } from '../../typer/spørsmål';

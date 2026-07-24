@@ -7,7 +7,7 @@ import { ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../../../context/AppContext';
-import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
+import { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
 import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import TekstBlock from '../TekstBlock';

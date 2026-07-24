@@ -6,7 +6,7 @@ import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponent
 
 import { barnDataKeySpørsmål } from './barn';
 import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent, ISODateString } from './common';
-import { Slektsforhold } from './kontrakt/generelle';
+import { Slektsforhold } from '../../common/typer/kontrakt/generelle';
 import {
     IArbeidsperiode,
     IBarnehageplassPeriode,

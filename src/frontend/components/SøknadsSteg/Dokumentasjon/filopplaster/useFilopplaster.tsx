@@ -6,8 +6,8 @@ import { type FileAccepted, type FileObject, type FileRejected, type FileRejecti
 
 import miljø from '../../../../../common/miljø';
 import { EFiltyper, IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
-import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
-import { PlainTekst } from '../../../../typer/kontrakt/generelle';
+import { Dokumentasjonsbehov } from '../../../../../common/typer/kontrakt/dokumentasjon';
+import { PlainTekst } from '../../../../../common/typer/kontrakt/generelle';
 import { IDokumentasjonTekstinnhold } from '../innholdTyper';
 
 interface OpplastetVedlegg {

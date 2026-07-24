@@ -1,8 +1,8 @@
 import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { IBarnMedISøknad } from '../../typer/barn';
 import { LocaleRecordBlock, LocaleRecordString } from '../../typer/common';
-import { ERegistrertBostedType, Slektsforhold, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { ISøknadIKontraktBarn } from '../../typer/kontrakt/søknadKontrakt';
+import { ERegistrertBostedType, Slektsforhold, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
+import { ISøknadIKontraktBarn } from '../../../common/typer/kontrakt/søknadKontrakt';
 import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknad } from '../../typer/søknad';

@@ -1,6 +1,6 @@
 import { Alpha3Code } from 'i18n-iso-countries';
 
-import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../common';
+import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../../frontend/typer/common';
 
 export interface ISøknadsfelt<T> {
     label: Record<LocaleType, string>;

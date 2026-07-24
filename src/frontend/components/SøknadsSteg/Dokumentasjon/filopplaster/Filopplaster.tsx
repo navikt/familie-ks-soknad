@@ -4,7 +4,7 @@ import { FileUpload, Heading, List, VStack } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
-import { Dokumentasjonsbehov } from '../../../../typer/kontrakt/dokumentasjon';
+import { Dokumentasjonsbehov } from '../../../../../common/typer/kontrakt/dokumentasjon';
 import { uppercaseFørsteBokstav } from '../../../../utils/visning';
 
 import { ECustomFileRejectionReasons, useFilopplaster } from './useFilopplaster';

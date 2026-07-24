@@ -5,7 +5,11 @@ import {
     hentUtenlandsoppholdÅrsak,
 } from '../../components/Felleskomponenter/UtenlandsoppholdModal/utenlandsoppholdSpråkUtils';
 import { IBarnMedISøknad } from '../../typer/barn';
-import { ISøknadsfelt, IUtenlandsperiodeIKontraktFormat, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
+import {
+    ISøknadsfelt,
+    IUtenlandsperiodeIKontraktFormat,
+    TilRestLocaleRecord,
+} from '../../../common/typer/kontrakt/generelle';
 import { IUtenlandsperiode } from '../../typer/perioder';
 import { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenlandsopphold';
 import { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';

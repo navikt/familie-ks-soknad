@@ -1,7 +1,7 @@
 import { useAppContext } from '../../../context/AppContext';
 import { useStegContext } from '../../../context/StegContext';
 import { LocaleRecordBlock } from '../../../typer/common';
-import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
+import { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
 import { ISteg, RouteEnum } from '../../../typer/routes';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';
 

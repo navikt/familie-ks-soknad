@@ -1,4 +1,4 @@
-import { LocaleType } from '../common';
+import { LocaleType } from '../../../frontend/typer/common';
 
 export enum Dokumentasjonsbehov {
     AVTALE_DELT_BOSTED = 'AVTALE_DELT_BOSTED',

@@ -7,7 +7,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { IEøsForBarnTekstinnhold } from '../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
 import { IVelgBarnTekstinnhold } from '../components/SøknadsSteg/VelgBarn/innholdTyper';
 import { AlternativtSvarForInput } from '../typer/common';
-import { ESivilstand, PlainTekst, Slektsforhold } from '../typer/kontrakt/generelle';
+import { ESivilstand, PlainTekst, Slektsforhold } from '../../common/typer/kontrakt/generelle';
 import { IBarn } from '../typer/person';
 import { ESanitySivilstandApiKey } from '../typer/sanity/sanity';
 import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';

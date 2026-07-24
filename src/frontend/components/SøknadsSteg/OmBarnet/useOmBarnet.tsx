@@ -18,7 +18,7 @@ import {
 } from '../../../typer/barn';
 import { AlternativtSvarForInput, BarnetsId } from '../../../typer/common';
 import { IDokumentasjon } from '../../../typer/dokumentasjon';
-import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
+import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import {
     IArbeidsperiode,
     IBarnehageplassPeriode,

@@ -8,7 +8,7 @@ import { idnr } from '@navikt/fnrvalidator';
 
 import { useAppContext } from '../context/AppContext';
 import { DatoMedUkjent, LocaleRecordBlock } from '../typer/common';
-import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
+import { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
 import { IdNummerKey } from '../typer/skjema';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { trimWhiteSpace } from '../utils/hjelpefunksjoner';

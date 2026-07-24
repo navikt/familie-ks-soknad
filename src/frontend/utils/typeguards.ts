@@ -1,13 +1,13 @@
 import { Alpha3Code, getAlpha3Codes } from 'i18n-iso-countries';
 
-import { ISøknadKontraktDokumentasjon } from '../typer/kontrakt/dokumentasjon';
+import { ISøknadKontraktDokumentasjon } from '../../common/typer/kontrakt/dokumentasjon';
 import {
     IAndreForelderIKontraktFormat,
     IOmsorgspersonIKontraktFormat,
     ISøknadIKontraktBarn,
     ISøknadKontraktSøker,
     ISøknadKontrakt,
-} from '../typer/kontrakt/søknadKontrakt';
+} from '../../common/typer/kontrakt/søknadKontrakt';
 
 export const erGyldigISøknadKontraktSøker = (input): input is ISøknadKontraktSøker =>
     'harEøsSteg' in input &&

@@ -3,8 +3,8 @@ import {
     Dokumentasjonsbehov,
     ISøknadKontraktDokumentasjon,
     ISøknadKontraktVedlegg,
-} from '../../typer/kontrakt/dokumentasjon';
-import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
+} from '../../../common/typer/kontrakt/dokumentasjon';
+import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
 import { ESanitySteg } from '../../typer/sanity/sanity';
 import { IFrittståendeOrdTekstinnhold, ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknad } from '../../typer/søknad';

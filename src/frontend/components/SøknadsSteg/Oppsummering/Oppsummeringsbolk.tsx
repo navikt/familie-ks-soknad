@@ -11,7 +11,7 @@ import { useAppContext } from '../../../context/AppContext';
 import { useStegContext } from '../../../context/StegContext';
 import { IBarnMedISøknad } from '../../../typer/barn';
 import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
-import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
+import { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
 import { ISteg, RouteEnum } from '../../../typer/routes';
 import { SkjemaFeltTyper } from '../../../typer/skjema';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';

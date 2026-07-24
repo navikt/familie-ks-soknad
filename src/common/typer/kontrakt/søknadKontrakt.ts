@@ -1,7 +1,7 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { barnDataKeySpørsmål } from '../barn';
-import { ISODateString, LocaleType } from '../common';
+import { barnDataKeySpørsmål } from '../../../frontend/typer/barn';
+import { ISODateString, LocaleType } from '../../../frontend/typer/common';
 
 import { ISøknadKontraktDokumentasjon } from './dokumentasjon';
 import {

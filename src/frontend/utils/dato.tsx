@@ -19,7 +19,7 @@ import { enGB, nb, nn } from 'date-fns/locale';
 import { feil, type FeltState, ok } from '@navikt/familie-skjema';
 
 import { AlternativtSvarForInput, DatoMedUkjent, ISODateString, LocaleRecordBlock, LocaleType } from '../typer/common';
-import { PlainTekst } from '../typer/kontrakt/generelle';
+import { PlainTekst } from '../../common/typer/kontrakt/generelle';
 import { IFormateringsfeilmeldingerTekstinnhold } from '../typer/sanity/tekstInnhold';
 
 export const erDatoFormatGodkjent = (dato: Date) => isValid(dato);
