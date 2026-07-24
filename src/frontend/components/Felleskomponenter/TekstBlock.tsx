@@ -6,10 +6,11 @@ import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds
 
 import { useAppContext } from '../../context/AppContext';
 import { useSpråkContext } from '../../context/SpråkContext';
-import { LocaleRecordBlock, Typografi } from '../../typer/common';
+import { Typografi } from '../../typer/common';
 import { FlettefeltVerdier } from '../../../common/typer/kontrakt/generelle';
 
 import styles from './TekstBlock.module.css';
+import { LocaleRecordBlock } from '../../../common/typer/locale';
 
 interface Props {
     typografi?: Typografi;

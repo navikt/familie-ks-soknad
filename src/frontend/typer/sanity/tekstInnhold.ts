@@ -9,7 +9,6 @@ import { IOmBarnetTekstinnhold } from '../../components/SøknadsSteg/OmBarnet/in
 import { IOmDegTekstinnhold } from '../../components/SøknadsSteg/OmDeg/innholdTyper';
 import { IOppsummeringTekstinnhold } from '../../components/SøknadsSteg/Oppsummering/innholdTyper';
 import { IVelgBarnTekstinnhold } from '../../components/SøknadsSteg/VelgBarn/innholdTyper';
-import { LocaleRecordBlock, LocaleRecordString } from '../common';
 
 import { IAndreUtbetalingerTekstinnhold } from './modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from './modaler/arbeidsperiode';
@@ -22,6 +21,7 @@ import { IPensjonsperiodeTekstinnhold } from './modaler/pensjonsperiode';
 import { IStartPåNyttModal } from './modaler/startPåNytt';
 import { IUtenlandsoppholdTekstinnhold } from './modaler/utenlandsopphold';
 import { ESanitySteg } from './sanity';
+import { LocaleRecordBlock, LocaleRecordString } from '../../../common/typer/locale';
 
 export enum SanityPersonType {
     ANDRE_FORELDER = 'ANDRE_FORELDER',

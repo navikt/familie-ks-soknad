@@ -1,4 +1,3 @@
-import { PortableTextBlock } from '@portabletext/types';
 import { LocaleType } from '../../common/typer/locale';
 import { ISODateString } from '../../common/typer/ISODateString';
 
@@ -14,16 +13,6 @@ export type BarnetsId = string;
 
 export type TomString = '';
 export const tomString: TomString = '';
-
-export type LocaleRecordString = Record<LocaleType, string> & {
-    api_navn: string;
-    [key: string]: unknown;
-};
-
-export type LocaleRecordBlock = Record<LocaleType, PortableTextBlock[]> & {
-    api_navn: string;
-    [key: string]: unknown;
-};
 
 export enum Typografi {
     StegHeadingH1 = 'StegHeadingH1',

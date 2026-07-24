@@ -3,10 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { feil, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
 import { useAppContext } from '../context/AppContext';
-import { LocaleRecordBlock } from '../typer/common';
 import { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
+import { LocaleRecordBlock } from '../../common/typer/locale';
 
 interface Props {
     søknadsfelt: ISøknadSpørsmål<string> | null;

@@ -1,4 +1,4 @@
-import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
+import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
 
 export interface IOppsummeringTekstinnhold {
     oppsummeringTittel: LocaleRecordBlock;

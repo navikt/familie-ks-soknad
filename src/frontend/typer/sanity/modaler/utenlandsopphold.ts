@@ -1,5 +1,5 @@
-import { LocaleRecordBlock, LocaleRecordString } from '../../common';
 import { ISanitySpørsmålDokument } from '../sanity';
+import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
 
 export interface IUtenlandsoppholdTekstinnhold {
     flyttetFraNorgeDato: ISanitySpørsmålDokument;

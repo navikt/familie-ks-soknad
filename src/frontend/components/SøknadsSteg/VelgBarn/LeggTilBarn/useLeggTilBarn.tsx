@@ -3,7 +3,6 @@ import { feil, type FeltState, type ISkjema, ok, useFelt, useSkjema } from '@nav
 
 import { useAppContext } from '../../../../context/AppContext';
 import useInputFeltMedUkjent from '../../../../hooks/useInputFeltMedUkjent';
-import { LocaleRecordBlock } from '../../../../typer/common';
 import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { ILeggTilBarnTyper } from '../../../../typer/skjema';
@@ -11,6 +10,7 @@ import { erBarnRegistrertFraFør, erBarnUnder11Mnd, hentAlder, hentUid } from '.
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
 import { identTilFødselsdato } from '../../../../utils/ident';
 import { VelgBarnSpørsmålId } from '../spørsmål';
+import { LocaleRecordBlock } from '../../../../../common/typer/locale';
 
 export const useLeggTilBarn = (): {
     skjema: ISkjema<ILeggTilBarnTyper, string>;

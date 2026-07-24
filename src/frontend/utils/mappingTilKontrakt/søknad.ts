@@ -2,7 +2,6 @@ import { ESvar } from '@navikt/familie-form-elements';
 
 import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { IBarnMedISøknad } from '../../typer/barn';
-import { LocaleRecordBlock, LocaleRecordString } from '../../typer/common';
 import { ESivilstand, PlainTekst, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
 import { ISøknadKontrakt } from '../../../common/typer/kontrakt/søknadKontrakt';
 import { ISøker } from '../../typer/person';
@@ -17,7 +16,7 @@ import { barnISøknadsFormat } from './barn';
 import { dokumentasjonISøknadFormat } from './dokumentasjon';
 import { nullableSøknadsfeltForESvarHof, søknadsfeltForESvarHof } from './hjelpefunksjoner';
 import { søkerIKontraktFormat } from './søker';
-import { LocaleType } from '../../../common/typer/locale';
+import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../../common/typer/locale';
 
 const antallEøsSteg = (søker: ISøker, barnInkludertISøknaden: IBarnMedISøknad[]) => {
     const barnSomTriggerEøs = barnInkludertISøknaden.filter(barn => barn.triggetEøs);

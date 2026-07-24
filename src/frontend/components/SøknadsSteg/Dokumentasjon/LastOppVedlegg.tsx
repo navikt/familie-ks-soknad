@@ -3,7 +3,7 @@ import React from 'react';
 import { Checkbox, FormSummary, VStack } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { LocaleRecordBlock, Typografi } from '../../../typer/common';
+import { Typografi } from '../../../typer/common';
 import {
     dokumentasjonsbehovTilBeskrivelseSanityApiNavn,
     dokumentasjonsbehovTilTittelSanityApiNavn,
@@ -16,6 +16,7 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import Filopplaster from './filopplaster/Filopplaster';
 import { useFilopplaster } from './filopplaster/useFilopplaster';
+import { LocaleRecordBlock } from '../../../../common/typer/locale';
 
 interface Props {
     dokumentasjon: IDokumentasjon;

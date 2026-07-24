@@ -1,5 +1,5 @@
-import { LocaleRecordBlock } from '../../../typer/common';
 import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
+import { LocaleRecordBlock } from '../../../../common/typer/locale';
 
 export interface IOmBarnaTekstinnhold {
     omBarnaTittel: LocaleRecordBlock;

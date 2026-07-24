@@ -4,13 +4,13 @@ import { ExclamationmarkTriangleIcon, TrashFillIcon } from '@navikt/aksel-icons'
 import { Button, Checkbox, FormSummary, InfoCard } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../../context/AppContext';
-import { LocaleRecordBlock } from '../../../../typer/common';
 import { IBarn } from '../../../../typer/person';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { hentBostedSpråkId } from '../../../../utils/språk';
 import { formaterFnr, uppercaseFørsteBokstav } from '../../../../utils/visning';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { IVelgBarnTekstinnhold } from '../innholdTyper';
+import { LocaleRecordBlock } from '../../../../../common/typer/locale';
 
 interface IBarnekortProps {
     velgBarnCallback: (barn: IBarn, barnMedISøknad: boolean) => void;

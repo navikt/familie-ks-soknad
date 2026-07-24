@@ -4,8 +4,8 @@ import { TrashFillIcon } from '@navikt/aksel-icons';
 import { Button, FormSummary } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { LocaleRecordBlock } from '../../../typer/common';
 import TekstBlock from '../TekstBlock';
+import { LocaleRecordBlock } from '../../../../common/typer/locale';
 
 interface Props {
     fjernPeriodeCallback?: () => void;

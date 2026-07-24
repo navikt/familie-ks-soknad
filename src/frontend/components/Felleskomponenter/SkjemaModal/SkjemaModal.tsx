@@ -3,9 +3,9 @@ import React, { ReactNode } from 'react';
 import { BodyShort, Button, Modal, VStack } from '@navikt/ds-react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { LocaleRecordBlock } from '../../../typer/common';
 import { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
 import ModalContent from '../ModalContent';
+import { LocaleRecordBlock } from '../../../../common/typer/locale';
 
 interface Props {
     erÅpen: boolean;

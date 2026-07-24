@@ -1,7 +1,7 @@
-import { LocaleRecordBlock } from '../../../typer/common';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg, ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { ITekstinnhold } from '../../../typer/sanity/tekstInnhold';
+import { LocaleRecordBlock } from '../../../../common/typer/locale';
 
 export const mottarPensjonNåFeilmelding = ({
     personType,
