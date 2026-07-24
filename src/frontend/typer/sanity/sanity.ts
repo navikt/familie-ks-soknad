@@ -35,8 +35,6 @@ export enum ESanitySteg {
     FELLES = 'FELLES',
 }
 
-export type SanityDataSet = 'ks-production' | 'ks-test';
-
 export const frittståendeOrdPrefix = 'FRITTSTAENDEORD';
 export const modalPrefix = 'MODAL';
 export const navigasjonPrefix = 'NAVIGASJON';
