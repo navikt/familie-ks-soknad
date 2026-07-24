@@ -9,10 +9,10 @@ import { awaitDecoratorData } from '@navikt/nav-dekoratoren-moduler';
 import App from './App';
 import { hentDekorator } from './decorator';
 import FellesWrapper from './FellesWrapper';
-import { LocaleType } from './typer/common';
 import { initGrafanaFaro } from './utils/grafanaFaro';
 import { initSentry } from './utils/sentry';
 import '@navikt/ds-css';
+import { LocaleType } from '../common/typer/localeType';
 
 const polyfillLocaledata = async () => {
     for (const locale in LocaleType) {

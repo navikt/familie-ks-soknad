@@ -1,4 +1,5 @@
 import { PortableTextBlock } from '@portabletext/types';
+import { LocaleType } from '../../common/typer/localeType';
 
 export type ISODateString = string;
 
@@ -36,12 +37,6 @@ export enum Typografi {
     Detail = 'Detail',
     HeadingH2 = 'HeadingH2',
     HeadingH3 = 'HeadingH3',
-}
-
-export enum LocaleType {
-    en = 'en',
-    nb = 'nb',
-    nn = 'nn',
 }
 
 export const erGyldigSpråk = (språk: string): språk is LocaleType =>

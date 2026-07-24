@@ -13,7 +13,6 @@ import {
 
 import miljø, { BASE_PATH } from '../../common/miljø';
 import { useDebounce } from '../hooks/useDebounce';
-import { LocaleType } from '../typer/common';
 import { IKontoinformasjon } from '../typer/kontoinformasjon';
 import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../common/typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
@@ -33,6 +32,7 @@ import { AxiosRequest, useLastRessurserContext } from './LastRessurserContext';
 import { hentSluttbrukerFraPdl } from './pdl';
 import { useSanityContext } from './SanityContext';
 import { useSpråkContext } from './SpråkContext';
+import { LocaleType } from '../../common/typer/localeType';
 
 export interface AppContext {
     axiosRequest: AxiosRequest;

@@ -1,7 +1,8 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { AlternativtSvarForInput, LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../typer/common';
+import { AlternativtSvarForInput, LocaleRecordBlock, LocaleRecordString } from '../../typer/common';
 import { FlettefeltVerdier, ISøknadsfelt, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
+import { LocaleType } from '../../../common/typer/localeType';
 
 export const søknadsfeltHof =
     (tilRestLocaleRecord: TilRestLocaleRecord) =>
