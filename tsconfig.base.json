@@ -1,35 +1,33 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "es6",
-    "lib": ["dom", "esnext", "es6"],
-    "importHelpers": true,
-    "declaration": true,
-    "sourceMap": true,
-    "strict": true,
-    "noImplicitAny": false,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "noImplicitReturns": false,
-    "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
-    "traceResolution": false,
-    "jsx": "react",
+    /* Language and Environment */
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+
+    /* Interop Constraints */
     "esModuleInterop": true,
-    "ignoreDeprecations": "6.0", // TODO: Fjernes når moduleResolution er oppdatert til NodeNext
+    "isolatedModules": true,
+    "verbatimModuleSyntax": false,
+    "allowSyntheticDefaultImports": true,
+
+    /* Modules */
+    "resolveJsonModule": true,
     "types": [
       "node",
       "vitest/globals",
       "@testing-library/jest-dom"
     ],
-  },
-  "exclude": [
-    "./src/**/*.test.tsx",
-    "./src/**/*.test.ts",
-    "./src/**/*.test.jsx",
-    "./src/**/*.test.js"
-  ]
+
+    /* Type Checking */
+    "strict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": false,
+    "noUnusedLocals": false, // Skrus på etter alle 'import React' er fjernet.
+    "noUnusedParameters": true,
+    "noImplicitAny": false, // Burde skrus av og korrigere feil.
+
+      /* Completeness */
+    "skipLibCheck": true,
+    "ignoreDeprecations": "6.0", // TODO: Fjernes når moduleResolution er oppdatert til NodeNext
+  }
 }
