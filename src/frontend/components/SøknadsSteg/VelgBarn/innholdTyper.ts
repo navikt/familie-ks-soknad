@@ -1,4 +1,4 @@
-import { LocaleRecordBlock } from '../../../typer/common';
+import { LocaleRecordBlock } from '../../../../common/typer/locale';
 
 export interface IVelgBarnTekstinnhold {
     velgBarnTittel: LocaleRecordBlock;

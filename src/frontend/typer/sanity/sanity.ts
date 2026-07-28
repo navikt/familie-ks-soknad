@@ -1,4 +1,4 @@
-import { LocaleRecordBlock } from '../common';
+import { LocaleRecordBlock } from '../../../common/typer/locale';
 
 export interface SanityDokument {
     _createdAt: string;
@@ -34,8 +34,6 @@ export enum ESanitySteg {
     KVITTERING = 'KVITTERING',
     FELLES = 'FELLES',
 }
-
-export type SanityDataSet = 'ks-production' | 'ks-test';
 
 export const frittståendeOrdPrefix = 'FRITTSTAENDEORD';
 export const modalPrefix = 'MODAL';

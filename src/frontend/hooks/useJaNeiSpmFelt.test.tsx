@@ -7,9 +7,10 @@ import { mock } from 'vitest-mock-extended';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type Felt, Valideringsstatus } from '@navikt/familie-skjema';
 
+import { ISODateString } from '../../common/typer/ISODateString';
+import { LocaleRecordBlock } from '../../common/typer/locale';
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
 import { AppProvider } from '../context/AppContext';
-import { ISODateString, LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 import { TestProvidere } from '../utils/testing';
 

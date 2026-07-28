@@ -3,12 +3,12 @@ import { useEffect } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type ISkjema, useSkjema } from '@navikt/familie-skjema';
 
+import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
+import { ESivilstand } from '../../../../common/typer/kontrakt/generelle';
+import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
-import { barnDataKeySpørsmål } from '../../../typer/barn';
-import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
-import { ESivilstand } from '../../../typer/kontrakt/generelle';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { IOmBarnaDineFeltTyper } from '../../../typer/skjema';
 import { ISøknad } from '../../../typer/søknad';

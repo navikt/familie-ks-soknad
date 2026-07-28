@@ -2,9 +2,9 @@ import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { LocaleRecordBlock, LocaleRecordString } from '../../../../../../common/typer/locale';
 import { useAppContext } from '../../../../../context/AppContext';
 import { useRoutesContext } from '../../../../../context/RoutesContext';
-import { LocaleRecordBlock, LocaleRecordString } from '../../../../../typer/common';
 import { PersonType } from '../../../../../typer/personType';
 import { RouteEnum } from '../../../../../typer/routes';
 import { ISøknadSpørsmål } from '../../../../../typer/spørsmål';

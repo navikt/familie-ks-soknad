@@ -2,9 +2,9 @@ import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { barnDataKeySpørsmål } from '../../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../../context/AppContext';
 import { useRoutesContext } from '../../../../context/RoutesContext';
-import { barnDataKeySpørsmål } from '../../../../typer/barn';
 import { RouteEnum } from '../../../../typer/routes';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 import { OmBarnaDineSpørsmålId } from '../../OmBarnaDine/spørsmål';

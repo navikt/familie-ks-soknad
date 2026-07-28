@@ -2,7 +2,7 @@ import { RequestHandler, Request, Response, NextFunction } from 'express';
 
 import { byggFeiletRessurs } from '@navikt/familie-typer';
 
-import { ISøknadKontrakt } from '../../frontend/typer/kontrakt/søknadKontrakt';
+import { ISøknadKontrakt } from '../../common/typer/kontrakt/søknadKontrakt';
 
 export const erklaeringInterceptor: RequestHandler = (request: Request, response: Response, next: NextFunction) => {
     const søknad: ISøknadKontrakt = request.body;

@@ -2,8 +2,10 @@ import { Alpha3Code } from 'i18n-iso-countries';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { Slektsforhold } from '../../common/typer/kontrakt/generelle';
+import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
+
 import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent } from './common';
-import { Slektsforhold } from './kontrakt/generelle';
 import { IOmsorgsperson } from './omsorgsperson';
 import {
     IArbeidsperiode,
@@ -34,31 +36,6 @@ export enum andreForelderDataKeySpørsmål {
     kontantstøtteFraEøs = 'kontantstøtteFraEøs',
     pågåendeSøknadFraAnnetEøsLand = 'pågåendeSøknadFraAnnetEøsLand',
     pågåendeSøknadHvilketLand = 'pågåendeSøknadHvilketLand',
-}
-
-export enum barnDataKeySpørsmål {
-    erFosterbarn = 'erFosterbarn',
-    erAdoptert = 'erAdoptert',
-    erAsylsøker = 'erAsylsøker',
-    kontantstøtteFraAnnetEøsland = 'kontantstøtteFraAnnetEøsland',
-    pågåendeSøknadFraAnnetEøsLand = 'pågåendeSøknadFraAnnetEøsLand',
-    pågåendeSøknadHvilketLand = 'pågåendeSøknadHvilketLand',
-    mottarEllerMottokEøsKontantstøtte = 'mottarEllerMottokEøsKontantstøtte',
-    harBarnehageplass = 'harBarnehageplass',
-    andreForelderErDød = 'andreForelderErDød',
-    oppholderSegIInstitusjon = 'oppholderSegIInstitusjon',
-    utbetaltForeldrepengerEllerEngangsstønad = 'utbetaltForeldrepengerEllerEngangsstønad',
-    boddMindreEnn12MndINorge = 'boddMindreEnn12MndINorge',
-    planleggerÅBoINorge12Mnd = 'planleggerÅBoINorge12Mnd',
-    borFastMedSøker = 'borFastMedSøker',
-    sammeForelderSomAnnetBarnMedId = 'sammeForelderSomAnnetBarnMedId',
-    søkersSlektsforhold = 'søkersSlektsforhold',
-    søkersSlektsforholdSpesifisering = 'søkersSlektsforholdSpesifisering',
-    borMedAndreForelder = 'borMedAndreForelder',
-    borMedOmsorgsperson = 'borMedOmsorgsperson',
-    adresse = 'adresse',
-    søkerDeltKontantstøtte = 'søkerDeltKontantstøtte',
-    foreldreBorSammen = 'foreldreBorSammen',
 }
 
 export interface IAndreForelder {

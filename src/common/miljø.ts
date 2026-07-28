@@ -1,6 +1,6 @@
-import { SanityDataSet } from '../frontend/typer/sanity/sanity';
-
 import { modellVersjon } from './modellversjon';
+
+type SanityDataSet = 'ks-production' | 'ks-test';
 
 interface MiljøProps {
     soknadApiProxyUrl: string;
@@ -13,7 +13,6 @@ interface MiljøProps {
     sanityDataset: SanityDataSet;
     port: number;
 }
-
 export const BASE_PATH = '/familie/kontantstotte/soknad/';
 
 export const erProd = () => {

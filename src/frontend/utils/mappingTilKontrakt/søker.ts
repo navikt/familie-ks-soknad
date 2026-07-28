@@ -1,5 +1,5 @@
-import { TilRestLocaleRecord } from '../../typer/kontrakt/generelle';
-import { ISøknadKontraktSøker } from '../../typer/kontrakt/søknadKontrakt';
+import { TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
+import { ISøknadKontraktSøker } from '../../../common/typer/kontrakt/søknadKontrakt';
 import { PersonType } from '../../typer/personType';
 import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { ISøknad } from '../../typer/søknad';

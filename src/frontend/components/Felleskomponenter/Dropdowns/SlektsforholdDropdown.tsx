@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 
+import { Slektsforhold } from '../../../../common/typer/kontrakt/generelle';
 import { useAppContext } from '../../../context/AppContext';
 import { muligeSlektsforhold } from '../../../typer/barn';
-import { Slektsforhold } from '../../../typer/kontrakt/generelle';
 import { hentSlektsforhold } from '../../../utils/språk';
 
 import StyledDropdown, { StyledDropdownProps } from './StyledDropdown';

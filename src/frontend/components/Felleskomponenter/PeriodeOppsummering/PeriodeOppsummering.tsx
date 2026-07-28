@@ -3,8 +3,8 @@ import React, { ReactNode } from 'react';
 import { TrashFillIcon } from '@navikt/aksel-icons';
 import { Button, FormSummary } from '@navikt/ds-react';
 
+import { LocaleRecordBlock } from '../../../../common/typer/locale';
 import { useAppContext } from '../../../context/AppContext';
-import { LocaleRecordBlock } from '../../../typer/common';
 import TekstBlock from '../TekstBlock';
 
 interface Props {

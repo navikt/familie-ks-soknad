@@ -2,11 +2,12 @@ import React from 'react';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { FlettefeltVerdier } from '../../../../../../common/typer/kontrakt/generelle';
+import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../../../context/AppContext';
 import { useSpråkContext } from '../../../../../context/SpråkContext';
 import { useStegContext } from '../../../../../context/StegContext';
-import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../../typer/barn';
-import { FlettefeltVerdier } from '../../../../../typer/kontrakt/generelle';
+import { IBarnMedISøknad } from '../../../../../typer/barn';
 import { PersonType } from '../../../../../typer/personType';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
 import { BarnehageplassPeriodeOppsummering } from '../../../../Felleskomponenter/Barnehagemodal/BarnehageplassPeriodeOppsummering';

@@ -6,9 +6,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type Avhengigheter, feil, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
+import { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
+import { LocaleRecordBlock } from '../../common/typer/locale';
 import { useAppContext } from '../context/AppContext';
-import { LocaleRecordBlock } from '../typer/common';
-import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 
 const useLanddropdownFeltMedJaNeiAvhengighet = ({

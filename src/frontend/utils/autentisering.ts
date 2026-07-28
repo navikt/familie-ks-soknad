@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-import miljø, { BASE_PATH } from '../../shared-utils/miljø';
+import miljø, { BASE_PATH } from '../../common/miljø';
 import { preferredAxios as axios } from '../context/axios';
 
 const er401Feil = (error: AxiosError) => error && error.response && error.response.status === 401;

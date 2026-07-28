@@ -5,8 +5,9 @@ import { Alpha3Code } from 'i18n-iso-countries';
 import { ESvar } from '@navikt/familie-form-elements';
 import { byggHenterRessurs, hentDataFraRessurs } from '@navikt/familie-typer';
 
-import miljø from '../../shared-utils/miljø';
-import { barnDataKeySpørsmål, IBarnMedISøknad } from '../typer/barn';
+import miljø from '../../common/miljø';
+import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
+import { IBarnMedISøknad } from '../typer/barn';
 import { BarnetsId } from '../typer/common';
 import { ISøker } from '../typer/person';
 

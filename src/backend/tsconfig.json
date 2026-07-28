@@ -1,16 +1,15 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "noImplicitAny": false,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "target": "ES6",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "ignoreDeprecations": "6.0", // TODO: Fjernes når moduleResolution er oppdatert til NodeNext
-    "skipLibCheck": true,
+    /* Language and Environment */
+    "lib": ["ES2022", "dom"], // TODO: dom hører ikke hjemme her, men vi sjekker mot window i miljø.ts
+
+    /* Modules */
+    "module": "ESNext", // FIXME
+    "moduleResolution": "Node", // FIXME
     "types": [
-      "vitest/globals",
       "node",
+      "vitest/globals",
       "@testing-library/jest-dom"
     ],
   },

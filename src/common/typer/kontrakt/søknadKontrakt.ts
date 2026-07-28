@@ -1,7 +1,7 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { barnDataKeySpørsmål } from '../barn';
-import { ISODateString, LocaleType } from '../common';
+import { ISODateString } from '../ISODateString';
+import { LocaleType } from '../locale';
 
 import { ISøknadKontraktDokumentasjon } from './dokumentasjon';
 import {
@@ -64,6 +64,31 @@ export interface ISøknadKontraktSøker {
     idNummer: ISøknadsfelt<IIdNummerIKontraktFormat>[];
     andreUtbetalinger: ISøknadsfelt<ESvar> | null;
     adresseISøkeperiode: ISøknadsfelt<string> | null;
+}
+
+export enum barnDataKeySpørsmål {
+    erFosterbarn = 'erFosterbarn',
+    erAdoptert = 'erAdoptert',
+    erAsylsøker = 'erAsylsøker',
+    kontantstøtteFraAnnetEøsland = 'kontantstøtteFraAnnetEøsland',
+    pågåendeSøknadFraAnnetEøsLand = 'pågåendeSøknadFraAnnetEøsLand',
+    pågåendeSøknadHvilketLand = 'pågåendeSøknadHvilketLand',
+    mottarEllerMottokEøsKontantstøtte = 'mottarEllerMottokEøsKontantstøtte',
+    harBarnehageplass = 'harBarnehageplass',
+    andreForelderErDød = 'andreForelderErDød',
+    oppholderSegIInstitusjon = 'oppholderSegIInstitusjon',
+    utbetaltForeldrepengerEllerEngangsstønad = 'utbetaltForeldrepengerEllerEngangsstønad',
+    boddMindreEnn12MndINorge = 'boddMindreEnn12MndINorge',
+    planleggerÅBoINorge12Mnd = 'planleggerÅBoINorge12Mnd',
+    borFastMedSøker = 'borFastMedSøker',
+    sammeForelderSomAnnetBarnMedId = 'sammeForelderSomAnnetBarnMedId',
+    søkersSlektsforhold = 'søkersSlektsforhold',
+    søkersSlektsforholdSpesifisering = 'søkersSlektsforholdSpesifisering',
+    borMedAndreForelder = 'borMedAndreForelder',
+    borMedOmsorgsperson = 'borMedOmsorgsperson',
+    adresse = 'adresse',
+    søkerDeltKontantstøtte = 'søkerDeltKontantstøtte',
+    foreldreBorSammen = 'foreldreBorSammen',
 }
 
 export interface ISøknadIKontraktBarn {

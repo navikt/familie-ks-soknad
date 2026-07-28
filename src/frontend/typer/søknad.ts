@@ -1,5 +1,7 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { Dokumentasjonsbehov } from '../../common/typer/kontrakt/dokumentasjon';
+import { ESivilstand } from '../../common/typer/kontrakt/generelle';
 import { DinLivssituasjonSpørsmålId } from '../components/SøknadsSteg/DinLivssituasjon/spørsmål';
 import { EøsSøkerSpørsmålId } from '../components/SøknadsSteg/EøsSteg/Søker/spørsmål';
 import { OmBarnaDineSpørsmålId } from '../components/SøknadsSteg/OmBarnaDine/spørsmål';
@@ -8,8 +10,6 @@ import { genererInitiellDokumentasjon } from '../utils/dokumentasjon';
 
 import { IBarnMedISøknad } from './barn';
 import { IDokumentasjon } from './dokumentasjon';
-import { Dokumentasjonsbehov } from './kontrakt/dokumentasjon';
-import { ESivilstand } from './kontrakt/generelle';
 import { IBarn, ISøker } from './person';
 import { ISøknadSpørsmål } from './spørsmål';
 

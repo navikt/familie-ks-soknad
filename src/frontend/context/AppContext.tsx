@@ -11,11 +11,11 @@ import {
     RessursStatus,
 } from '@navikt/familie-typer';
 
-import miljø, { BASE_PATH } from '../../shared-utils/miljø';
+import miljø, { BASE_PATH } from '../../common/miljø';
+import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../common/typer/kontrakt/generelle';
+import { LocaleType } from '../../common/typer/locale';
 import { useDebounce } from '../hooks/useDebounce';
-import { LocaleType } from '../typer/common';
 import { IKontoinformasjon } from '../typer/kontoinformasjon';
-import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../typer/kontrakt/generelle';
 import { IKvittering } from '../typer/kvittering';
 import { IMellomlagretKontantstøtte } from '../typer/mellomlager';
 import { ISøkerRespons } from '../typer/person';

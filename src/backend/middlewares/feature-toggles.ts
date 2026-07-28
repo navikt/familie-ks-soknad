@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 
-import { EToggle } from '../../frontend/typer/feature-toggles';
+import { EToggle } from '../../common/feature-toggles';
 import { isEnabled } from '../utils/unleash';
 
 /**

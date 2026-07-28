@@ -7,8 +7,8 @@ import {
 } from '@portabletext/types';
 import { pipe } from 'ramda';
 
-import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../typer/common';
-import { FlettefeltVerdier } from '../typer/kontrakt/generelle';
+import { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
+import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../common/typer/locale';
 import { IAndreUtbetalingerTekstinnhold } from '../typer/sanity/modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from '../typer/sanity/modaler/arbeidsperiode';
 import { IBarnehageplassTekstinnhold } from '../typer/sanity/modaler/barnehageplass';

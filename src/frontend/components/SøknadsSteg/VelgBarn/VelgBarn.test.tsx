@@ -7,7 +7,8 @@ import { mockDeep } from 'vitest-mock-extended';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../typer/barn';
+import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
+import { IBarnMedISøknad } from '../../../typer/barn';
 import { IBarnRespons } from '../../../typer/person';
 import { ISøknad } from '../../../typer/søknad';
 import { mekkGyldigSøker, spyOnUseApp, TestProvidere } from '../../../utils/testing';

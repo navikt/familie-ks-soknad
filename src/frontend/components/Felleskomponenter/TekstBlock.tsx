@@ -4,10 +4,11 @@ import { PortableText } from '@portabletext/react';
 
 import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds-react';
 
+import { FlettefeltVerdier } from '../../../common/typer/kontrakt/generelle';
+import { LocaleRecordBlock } from '../../../common/typer/locale';
 import { useAppContext } from '../../context/AppContext';
 import { useSpråkContext } from '../../context/SpråkContext';
-import { LocaleRecordBlock, Typografi } from '../../typer/common';
-import { FlettefeltVerdier } from '../../typer/kontrakt/generelle';
+import { Typografi } from '../../typer/common';
 
 import styles from './TekstBlock.module.css';
 
