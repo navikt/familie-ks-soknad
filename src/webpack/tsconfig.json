@@ -1,3 +1,7 @@
 {
-  "extends": "../../tsconfig.base.json"
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "es2022"
+  }
 }
