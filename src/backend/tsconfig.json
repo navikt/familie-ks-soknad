@@ -18,4 +18,6 @@
       "@testing-library/jest-dom"
     ],
   },
+  // Skal ikke kompileres.
+  "exclude": ["**/*.test.ts"],
 }

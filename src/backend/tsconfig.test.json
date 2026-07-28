@@ -1,0 +1,10 @@
+{
+  // Testfilene er ekskludert fra tsconfig.json fordi de ikke skal kompileres til dist.
+  // Denne configen tar dem inn igjen, kun for typesjekking.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+  },
+  "include": ["**/*.test.ts"],
+  "exclude": [],
+}
