@@ -17,7 +17,14 @@ async function main() {
         throw new Error(`Fant ikke ${entryFile}. Kjør 'yarn build:backend' (tsc) før dette scriptet.`);
     }
 
-    const { fileList } = await nodeFileTrace([entryFile], { base: rootDir });
+    // Ignorerer filer som ikke er nødvendige for produksjon. @vercel/nft vil finne vite da den
+    // importeres i backend-koden, men vite er kun nødvendig for utvikling og bygging, ikke for produksjon.
+    const ignorerteFiler = ['node_modules/vite'];
+
+    const { fileList } = await nodeFileTrace([entryFile], {
+        base: rootDir,
+        ignore: fil => ignorerteFiler.some(filNavn => fil.startsWith(filNavn)),
+    });
 
     const nodeModuleFiler = [...fileList].filter(fil => fil.startsWith('node_modules/'));
 

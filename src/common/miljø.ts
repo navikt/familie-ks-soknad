@@ -66,14 +66,14 @@ const miljø = (): MiljøProps => {
     } else {
         return {
             sanityDataset: 'ks-production',
-            soknadApiProxyUrl: `http://localhost:3000${BASE_PATH}api`,
+            soknadApiProxyUrl: `${BASE_PATH}api`,
             soknadApiUrl: 'http://localhost:8080/api',
-            dokumentProxyUrl: `http://localhost:3000${BASE_PATH}dokument`,
+            dokumentProxyUrl: `${BASE_PATH}dokument`,
             dokumentUrl: `http://localhost:8082/familie/dokument/api`,
             modellVersjon: modellVersjon,
             wonderwallUrl: '',
-            oauthCallbackUri: `http://localhost:3000${BASE_PATH}`,
-            port: 55554,
+            oauthCallbackUri: `${BASE_PATH}`,
+            port: 3000,
         };
     }
 };
