@@ -4,9 +4,14 @@
     /* Language and Environment */
     "lib": ["ES2022", "dom"], // TODO: dom hører ikke hjemme her, men vi sjekker mot window i miljø.ts
 
+    /* Emit */
+    "importHelpers": true, // tslib dependency påkrevd
+    "outDir": "../../dist",
+    "rootDir": "..",
+
     /* Modules */
-    "module": "ESNext", // FIXME
-    "moduleResolution": "Node", // FIXME
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "types": [
       "node",
       "vitest/globals",

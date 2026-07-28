@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express';
 
-import { EToggle } from '../../common/feature-toggles';
-import { isEnabled } from '../utils/unleash';
+import { EToggle } from '../../common/feature-toggles.js';
+import { isEnabled } from '../utils/unleash.js';
 
 /**
  * Express-middleware som returnerer en feil-side hvis familie-ks-soknad.disable-soknad er skrudd på i unleash

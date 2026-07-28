@@ -1,4 +1,4 @@
-import { modellVersjon } from './modellversjon';
+import { modellVersjon } from './modellversjon.js';
 
 type SanityDataSet = 'ks-production' | 'ks-test';
 

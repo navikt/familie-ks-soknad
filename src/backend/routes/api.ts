@@ -1,11 +1,11 @@
 import express, { Express, RequestHandler } from 'express';
 
-import miljø, { BASE_PATH } from '../../common/miljø';
-import { erklaeringInterceptor } from '../middlewares/erklaering-interceptor';
-import { escapeBody } from '../middlewares/escape';
-import { modellVersjonInterceptor } from '../middlewares/modell-versjon-interceptor';
-import { addCallId, doProxy } from '../middlewares/proxy';
-import attachToken from '../middlewares/tokenProxy';
+import miljø, { BASE_PATH } from '../../common/miljø.js';
+import { erklaeringInterceptor } from '../middlewares/erklaering-interceptor.js';
+import { escapeBody } from '../middlewares/escape.js';
+import { modellVersjonInterceptor } from '../middlewares/modell-versjon-interceptor.js';
+import { addCallId, doProxy } from '../middlewares/proxy.js';
+import attachToken from '../middlewares/tokenProxy.js';
 
 export const konfigurerApi = (app: Express): Express => {
     // Sett opp middleware for input-sanitering

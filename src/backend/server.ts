@@ -7,17 +7,17 @@ import { rateLimit } from 'express-rate-limit';
 
 import { logInfo } from '@navikt/familie-logging';
 
-import miljø, { BASE_PATH } from '../common/miljø';
+import miljø, { BASE_PATH } from '../common/miljø.js';
 
-import { cspString } from './csp';
-import { expressToggleInterceptor } from './middlewares/feature-toggles';
-import { konfigurerIndex, konfigurerIndexFallback } from './routes';
-import { konfigurerApi } from './routes/api';
-import { konfigurerAllFeatureTogglesEndpoint } from './routes/feature-toggles';
-import { konfigurerModellVersjonEndpoint } from './routes/modellversjon';
-import { konfigurerNais } from './routes/nais';
-import { konfigurerStatic } from './routes/static';
-import { initializeUnleash } from './utils/unleash';
+import { cspString } from './csp.js';
+import { expressToggleInterceptor } from './middlewares/feature-toggles.js';
+import { konfigurerApi } from './routes/api.js';
+import { konfigurerAllFeatureTogglesEndpoint } from './routes/feature-toggles.js';
+import { konfigurerIndex, konfigurerIndexFallback } from './routes/index.js';
+import { konfigurerModellVersjonEndpoint } from './routes/modellversjon.js';
+import { konfigurerNais } from './routes/nais.js';
+import { konfigurerStatic } from './routes/static.js';
+import { initializeUnleash } from './utils/unleash.js';
 
 dotenv.config();
 

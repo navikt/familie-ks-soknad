@@ -28,6 +28,5 @@
 
       /* Completeness */
     "skipLibCheck": true,
-    "ignoreDeprecations": "6.0", // TODO: Fjernes når moduleResolution er oppdatert til NodeNext
   }
 }
