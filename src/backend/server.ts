@@ -42,17 +42,6 @@ if (erLokalt()) {
     });
 }
 
-// Skru på rate limiting middleware to all requests.
-if (process.env.NODE_ENV !== 'production') {
-    const limiter = rateLimit({
-        windowMs: 5 * 60 * 1000, // 5 minutter
-        limit: 200, // Limit hver IP til 200 requests per `window` (here, per 5 minutes).
-        standardHeaders: 'draft-8', // draft-6: `RateLimit-*` headers; draft-7 & draft-8: combined `RateLimit` header
-        legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
-    });
-    app.use(limiter);
-}
-
 // Alltid bruk gzip-compression på alt vi server med express
 app.use(compression());
 
