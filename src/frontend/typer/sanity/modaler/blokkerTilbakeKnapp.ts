@@ -1,4 +1,4 @@
-import { LocaleRecordBlock } from '../../common';
+import { LocaleRecordBlock } from '../../../../common/typer/locale';
 
 export interface IBlokkerTilbakeKnappModal {
     tittel: LocaleRecordBlock;

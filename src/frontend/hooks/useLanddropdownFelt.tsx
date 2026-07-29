@@ -2,8 +2,8 @@ import { Alpha3Code } from 'i18n-iso-countries';
 
 import { feil, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
+import { LocaleRecordBlock } from '../../common/typer/locale';
 import { useAppContext } from '../context/AppContext';
-import { LocaleRecordBlock } from '../typer/common';
 import { ISøknadSpørsmål } from '../typer/spørsmål';
 
 const useLanddropdownFelt = ({

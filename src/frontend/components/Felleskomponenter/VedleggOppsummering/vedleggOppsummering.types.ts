@@ -1,5 +1,5 @@
-import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
-import { FlettefeltVerdier } from '../../../typer/kontrakt/generelle';
+import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
+import { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
 
 export interface IVedleggOppsummering {
     skalVises: boolean;

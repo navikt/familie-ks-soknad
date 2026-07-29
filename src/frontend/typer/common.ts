@@ -1,6 +1,5 @@
-import { PortableTextBlock } from '@portabletext/types';
-
-export type ISODateString = string;
+import { ISODateString } from '../../common/typer/ISODateString';
+import { LocaleType } from '../../common/typer/locale';
 
 export enum AlternativtSvarForInput {
     UKJENT = 'UKJENT',
@@ -15,16 +14,6 @@ export type BarnetsId = string;
 export type TomString = '';
 export const tomString: TomString = '';
 
-export type LocaleRecordString = Record<LocaleType, string> & {
-    api_navn: string;
-    [key: string]: unknown;
-};
-
-export type LocaleRecordBlock = Record<LocaleType, PortableTextBlock[]> & {
-    api_navn: string;
-    [key: string]: unknown;
-};
-
 export enum Typografi {
     StegHeadingH1 = 'StegHeadingH1',
     ModalHeadingH1 = 'ModalHeadingH1',
@@ -36,12 +25,6 @@ export enum Typografi {
     Detail = 'Detail',
     HeadingH2 = 'HeadingH2',
     HeadingH3 = 'HeadingH3',
-}
-
-export enum LocaleType {
-    en = 'en',
-    nb = 'nb',
-    nn = 'nn',
 }
 
 export const erGyldigSpråk = (språk: string): språk is LocaleType =>

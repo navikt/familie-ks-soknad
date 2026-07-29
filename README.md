@@ -22,6 +22,12 @@ ADR-dokument: https://github.com/navikt/familie/blob/master/doc/adr/0008-KS-lage
 2. Legg til variabelen UNLEASH_SERVER_API_TOKEN i `.env`: `UNLEASH_SERVER_API_TOKEN=<ditt token>`
 
 ## Kjør lokalt
+
+Prosjektet bruker [pnpm](https://pnpm.io/) som pakkehåndterer. Riktig pnpm-versjon er
+låst via `packageManager`-feltet i `package.json` og hentes automatisk av
+[Corepack](https://nodejs.org/api/corepack.html) (fulgte med Node.js). Kjør `corepack enable`
+én gang for å aktivere Corepack, så vil riktig pnpm-versjon brukes automatisk i prosjektet.
+
 1. `nvm use`
 2. `corepack enable`
 3. `pnpm install`

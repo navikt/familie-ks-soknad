@@ -1,4 +1,4 @@
-import { LocaleRecordBlock, LocaleRecordString } from '../../../typer/common';
+import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
 import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 

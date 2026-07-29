@@ -1,4 +1,4 @@
-import { LocaleRecordBlock } from '../../../typer/common';
+import { LocaleRecordBlock } from '../../../../common/typer/locale';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg, ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { ITekstinnhold } from '../../../typer/sanity/tekstInnhold';

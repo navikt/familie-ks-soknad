@@ -3,11 +3,11 @@ import { AxiosError } from 'axios';
 
 import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
-import miljø from '../../shared-utils/miljø';
-import { erModellMismatchResponsRessurs } from '../../shared-utils/modellversjon';
+import miljø from '../../common/miljø';
+import { erModellMismatchResponsRessurs } from '../../common/modellversjon';
+import { ISøknadKontrakt } from '../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../context/AppContext';
 import { useSpråkContext } from '../context/SpråkContext';
-import { ISøknadKontrakt } from '../typer/kontrakt/søknadKontrakt';
 import { IKvittering } from '../typer/kvittering';
 import { dataISøknadKontraktFormat } from '../utils/mappingTilKontrakt/søknad';
 import { sendInn } from '../utils/sendInnSkjema';

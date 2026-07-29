@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { DeepPartial } from 'ts-essentials';
 import { mockDeep } from 'vitest-mock-extended';
 
-import { ISøknadKontrakt } from '../../frontend/typer/kontrakt/søknadKontrakt';
+import { ISøknadKontrakt } from '../../common/typer/kontrakt/søknadKontrakt';
 
 import { erklaeringInterceptor } from './erklaering-interceptor';
 

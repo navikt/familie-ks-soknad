@@ -4,9 +4,10 @@ import { Alpha3Code } from 'i18n-iso-countries';
 
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import { barnDataKeySpørsmål } from '../../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../../context/AppContext';
 import { useEøsContext } from '../../../../context/EøsContext';
-import { barnDataKeySpørsmål, IBarnMedISøknad } from '../../../../typer/barn';
+import { IBarnMedISøknad } from '../../../../typer/barn';
 import { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
 import { skalSpørreOmIdNummerForPågåendeSøknadEøsLand } from '../../../../utils/barn';
 import { IdNummer } from '../IdNummer';

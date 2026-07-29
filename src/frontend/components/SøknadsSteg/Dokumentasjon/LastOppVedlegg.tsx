@@ -2,15 +2,16 @@ import React from 'react';
 
 import { Checkbox, FormSummary, VStack } from '@navikt/ds-react';
 
+import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
+import { LocaleRecordBlock } from '../../../../common/typer/locale';
 import { useAppContext } from '../../../context/AppContext';
-import { LocaleRecordBlock, Typografi } from '../../../typer/common';
+import { Typografi } from '../../../typer/common';
 import {
     dokumentasjonsbehovTilBeskrivelseSanityApiNavn,
     dokumentasjonsbehovTilTittelSanityApiNavn,
     IDokumentasjon,
     IVedlegg,
 } from '../../../typer/dokumentasjon';
-import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import { slåSammen } from '../../../utils/slåSammen';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 

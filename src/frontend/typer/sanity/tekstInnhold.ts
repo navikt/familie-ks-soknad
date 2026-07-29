@@ -1,3 +1,4 @@
+import { LocaleRecordBlock, LocaleRecordString } from '../../../common/typer/locale';
 import { IDinLivssituasjonTekstinnhold } from '../../components/SøknadsSteg/DinLivssituasjon/innholdTyper';
 import { IDokumentasjonTekstinnhold } from '../../components/SøknadsSteg/Dokumentasjon/innholdTyper';
 import { IEøsForBarnTekstinnhold } from '../../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
@@ -9,7 +10,6 @@ import { IOmBarnetTekstinnhold } from '../../components/SøknadsSteg/OmBarnet/in
 import { IOmDegTekstinnhold } from '../../components/SøknadsSteg/OmDeg/innholdTyper';
 import { IOppsummeringTekstinnhold } from '../../components/SøknadsSteg/Oppsummering/innholdTyper';
 import { IVelgBarnTekstinnhold } from '../../components/SøknadsSteg/VelgBarn/innholdTyper';
-import { LocaleRecordBlock, LocaleRecordString } from '../common';
 
 import { IAndreUtbetalingerTekstinnhold } from './modaler/andreUtbetalinger';
 import { IArbeidsperiodeTekstinnhold } from './modaler/arbeidsperiode';

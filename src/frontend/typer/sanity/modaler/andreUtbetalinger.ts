@@ -1,4 +1,4 @@
-import { LocaleRecordBlock, LocaleRecordString } from '../../common';
+import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
 import { ISanitySpørsmålDokument } from '../sanity';
 
 export interface IAndreUtbetalingerTekstinnhold {

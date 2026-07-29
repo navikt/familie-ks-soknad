@@ -2,13 +2,14 @@ import { Alpha3Code } from 'i18n-iso-countries';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { PlainTekst } from '../../common/typer/kontrakt/generelle';
+import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
 import { EøsBarnSpørsmålId } from '../components/SøknadsSteg/EøsSteg/Barn/spørsmål';
 import { idNummerLandMedPeriodeType } from '../components/SøknadsSteg/EøsSteg/idnummerUtils';
 import { OmBarnaDineSpørsmålId } from '../components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { OmBarnetSpørsmålsId } from '../components/SøknadsSteg/OmBarnet/spørsmål';
-import { barnDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../typer/barn';
+import { IAndreForelder, IBarnMedISøknad } from '../typer/barn';
 import { tomString } from '../typer/common';
-import { PlainTekst } from '../typer/kontrakt/generelle';
 import { IBarnehageplassPeriode, IEøsKontantstøttePeriode, IUtenlandsperiode } from '../typer/perioder';
 import { IBarn, IBarnRespons, IIdNummer } from '../typer/person';
 import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';

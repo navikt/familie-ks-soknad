@@ -1,4 +1,4 @@
-import { PlainTekst } from '../../../typer/kontrakt/generelle';
+import { PlainTekst } from '../../../../common/typer/kontrakt/generelle';
 import { IFrittståendeOrdTekstinnhold } from '../../../typer/sanity/tekstInnhold';
 import { slåSammen } from '../../../utils/slåSammen';
 

@@ -1,6 +1,6 @@
 import { ApiRessurs, RessursStatus } from '@navikt/familie-typer';
 
-import { ESivilstand } from './src/frontend/typer/kontrakt/generelle';
+import { ESivilstand } from './src/common/typer/kontrakt/generelle';
 import { IBarn, IBarnRespons, ISøkerRespons } from './src/frontend/typer/person';
 
 export function barnResponsFixture(props: Partial<IBarnRespons> = {}): IBarnRespons {
@@ -53,9 +53,7 @@ export function søkerResponsFixture(props: Partial<ISøkerRespons> = {}): ISøk
     return { ...standardVerdi, ...props };
 }
 
-export function mockDataFixture(
-    props: Partial<ApiRessurs<ISøkerRespons>> = {}
-): ApiRessurs<ISøkerRespons> {
+export function mockDataFixture(props: Partial<ApiRessurs<ISøkerRespons>> = {}): ApiRessurs<ISøkerRespons> {
     const standardVerdi: ApiRessurs<ISøkerRespons> = {
         data: søkerResponsFixture(),
         melding: 'Innhenting av data var vellykket',

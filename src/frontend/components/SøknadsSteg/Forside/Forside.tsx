@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Accordion, GuidePanel, Heading } from '@navikt/ds-react';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
-import miljø from '../../../../shared-utils/miljø';
+import miljø from '../../../../common/miljø';
 import { useAppContext } from '../../../context/AppContext';
 import useFørsteRender from '../../../hooks/useFørsteRender';
 import { Typografi } from '../../../typer/common';

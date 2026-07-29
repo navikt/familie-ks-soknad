@@ -3,8 +3,8 @@ import { ReactNode, useEffect } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type Avhengigheter, feil, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
 
+import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../context/AppContext';
-import { barnDataKeySpørsmål } from '../../../typer/barn';
 import { BarnetsId } from '../../../typer/common';
 
 const useBarnCheckboxFelt = (

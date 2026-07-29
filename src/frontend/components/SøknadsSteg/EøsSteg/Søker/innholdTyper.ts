@@ -1,4 +1,4 @@
-import { LocaleRecordBlock } from '../../../../typer/common';
+import { LocaleRecordBlock } from '../../../../../common/typer/locale';
 import { ISanitySpørsmålDokument } from '../../../../typer/sanity/sanity';
 
 export interface IEøsForSøkerTekstinnhold {

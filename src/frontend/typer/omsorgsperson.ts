@@ -2,8 +2,9 @@ import { Alpha3Code } from 'i18n-iso-countries';
 
 import { ESvar } from '@navikt/familie-form-elements';
 
+import { Slektsforhold } from '../../common/typer/kontrakt/generelle';
+
 import { AlternativtSvarForInput } from './common';
-import { Slektsforhold } from './kontrakt/generelle';
 import { IArbeidsperiode, IEøsKontantstøttePeriode, IPensjonsperiode, IUtbetalingsperiode } from './perioder';
 import { ISøknadSpørsmål } from './spørsmål';
 

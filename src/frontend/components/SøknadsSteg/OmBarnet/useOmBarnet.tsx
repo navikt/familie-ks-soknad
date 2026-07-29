@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { ESvar } from '@navikt/familie-form-elements';
 import { feil, type FeltState, type ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
+import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
+import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
@@ -10,15 +12,9 @@ import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFeltMedJaNeiAvhengighet from '../../../hooks/useLanddropdownFeltMedJaNeiAvhengighet';
 import { usePerioder } from '../../../hooks/usePerioder';
-import {
-    andreForelderDataKeySpørsmål,
-    barnDataKeySpørsmål,
-    IAndreForelder,
-    IBarnMedISøknad,
-} from '../../../typer/barn';
+import { andreForelderDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput, BarnetsId } from '../../../typer/common';
 import { IDokumentasjon } from '../../../typer/dokumentasjon';
-import { Dokumentasjonsbehov } from '../../../typer/kontrakt/dokumentasjon';
 import {
     IArbeidsperiode,
     IBarnehageplassPeriode,
