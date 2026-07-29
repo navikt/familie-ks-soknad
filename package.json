@@ -1,11 +1,12 @@
 {
   "name": "familie-ks-soknad",
   "type": "module",
+  "packageManager": "pnpm@11.15.0",
   "scripts": {
-    "start:dev": "yarn clean && yarn dev",
-    "dev": "yarn dev:server",
-    "dev:server": "yarn build:backend && NODE_ENV=development node dist/backend/server.js",
-    "build": "yarn build:frontend && yarn build:backend",
+    "start:dev": "pnpm clean && pnpm dev",
+    "dev": "pnpm dev:server",
+    "dev:server": "pnpm build:backend && NODE_ENV=development node dist/backend/server.js",
+    "build": "pnpm build:frontend && pnpm build:backend",
     "build:frontend": "vite build",
     "build:backend": "tsc -p src/backend/tsconfig.json && node scripts/prune-backend-node-modules.js",
     "clean": "rm -rf dist",
@@ -16,7 +17,7 @@
     "prettier": "prettier --check './src/**/*.{js,jsx,ts,tsx,json,css}'",
     "prettier:fix": "prettier --write './src/**/*.{js,jsx,ts,tsx,json,css}'",
     "typecheck": "tsc --noEmit -p src/common/tsconfig.json && tsc --noEmit -p src/backend/tsconfig.json && tsc --noEmit -p src/frontend/tsconfig.json",
-    "validate": "yarn typecheck && yarn lint && yarn prettier"
+    "validate": "pnpm typecheck && pnpm lint && pnpm prettier"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,css}": [
@@ -52,6 +53,8 @@
     "@portabletext/react": "6.2.0",
     "@portabletext/toolkit": "5.0.2",
     "@sanity/client": "7.23.0",
+    "@sentry/browser": "10.63.0",
+    "@sentry/core": "10.63.0",
     "@sentry/react": "10.63.0",
     "axios": "1.18.1",
     "classnames": "2.5.1",
@@ -85,6 +88,7 @@
     "@types/cookie-parser": "1.4.10",
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
     "@types/express": "5.0.6",
+    "@types/express-serve-static-core": "5.1.2",
     "@types/mustache-express": "1.2.5",
     "@types/node": "24.13.2",
     "@types/react": "19.2.17",
