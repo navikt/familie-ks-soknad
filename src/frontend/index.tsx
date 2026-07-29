@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { registerLocale } from 'i18n-iso-countries';
+import type { LocaleData } from 'i18n-iso-countries';
 import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 
@@ -15,15 +16,18 @@ import { initGrafanaFaro } from './utils/grafanaFaro';
 import { initSentry } from './utils/sentry';
 import '@navikt/ds-css';
 
+// Statiske imports (i stedet for en dynamisk import med template literal) slik at
+// vite kan analysere og bunte disse - en dynamisk sti kan ikke analyseres av vite.
+const localeImporters: Record<LocaleType, () => Promise<{ default: LocaleData }>> = {
+    [LocaleType.en]: () => import('i18n-iso-countries/langs/en.json'),
+    [LocaleType.nb]: () => import('i18n-iso-countries/langs/nb.json'),
+    [LocaleType.nn]: () => import('i18n-iso-countries/langs/nn.json'),
+};
+
 const polyfillLocaledata = async () => {
     for (const locale in LocaleType) {
         // Last ned land-navn for statsborgeskap
-        await import(
-            /* webpackInclude: /(nb|nn|en)\.json/ */
-            /* webpackChunkName: "localedata" */
-            /* webpackMode: "lazy-once" */
-            `i18n-iso-countries/langs/${locale}.json`
-        ).then(result => registerLocale(result));
+        await localeImporters[locale as LocaleType]().then(result => registerLocale(result.default));
     }
 };
 

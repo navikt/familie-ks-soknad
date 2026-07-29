@@ -7,7 +7,7 @@ import {
     ModellMismatchRespons,
     modellVersjon,
     modellVersjonHeaderName,
-} from '../../common/modellversjon';
+} from '../../common/modellversjon.js';
 
 export const modellVersjonInterceptor: RequestHandler = (req, res, next) => {
     const requestModellVersjon = req.get(modellVersjonHeaderName);

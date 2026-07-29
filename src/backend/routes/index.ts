@@ -1,24 +1,21 @@
 import { Express, RequestHandler } from 'express';
+import type { ViteDevServer } from 'vite';
 
-export const indexHandler: RequestHandler = async (req, res) => {
-    const språk = req.cookies['decorator-language'];
+import { renderHtml } from '../utils/render-html.js';
 
-    const hbsVariabler = {
-        LOCALE_CODE: språk ?? 'nb',
+const indexHandler = (viteDevServer?: ViteDevServer): RequestHandler => {
+    return async (req, res, next) => {
+        renderHtml('index.html', viteDevServer, req, res, next);
     };
-
-    res.render('index.html', hbsVariabler);
 };
 
-export const konfigurerIndex = (app: Express): Express => {
-    app.get('/', indexHandler);
+export const konfigurerIndex = (app: Express, viteDevServer?: ViteDevServer): Express => {
+    app.get('/', indexHandler(viteDevServer));
     return app;
 };
 
-export const konfigurerIndexFallback = (app: Express): Express => {
+export const konfigurerIndexFallback = (app: Express, viteDevServer?: ViteDevServer): Express => {
     // Fallback, alt vi ikke treffer med andre handlere returnerer index.html
-    app.get('*splat', indexHandler);
+    app.get('*splat', indexHandler(viteDevServer));
     return app;
 };
-
-export default indexHandler;

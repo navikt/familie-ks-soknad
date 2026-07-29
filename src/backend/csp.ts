@@ -1,5 +1,5 @@
 // CSP eller Content-Security-Policy er en HTTP-Header som lar oss spesifisere hvor appen kan kjøre REST-kall mot og hvor den kan hente diverse innhold fra (fonter, bilder, javascript, stylesheets mm).
-import { erProd } from '../common/miljø';
+import { erLokalt, erProd } from '../common/miljø.js';
 
 export const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
     return {
@@ -38,6 +38,8 @@ export const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
             '*.taskanalytics.com',
             '*.uxsignals.com',
             erProd() ? 'telemetry.nav.no' : 'telemetry.ekstern.dev.nav.no',
+            // Vite sin HMR-websocket kjører på en egen port lokalt, se src/backend/server.ts.
+            ...(erLokalt() ? ['ws://localhost:24678'] : []),
         ],
         // Kan kun submitte forms til seg selv.
         'form-action': ["'self'"],
