@@ -36,6 +36,13 @@ export const erAnsattUrl = () => {
     return window.location.hostname.indexOf('ansatt') > -1;
 };
 
+export const erLokaltMotPreprod = () => {
+    if (typeof window === 'undefined') {
+        return process.env.ENV === 'lokalt-mot-preprod';
+    }
+    return false;
+};
+
 export const erLokalt = () => !erProd() && !erDev();
 
 const miljø = (): MiljøProps => {
@@ -67,9 +74,13 @@ const miljø = (): MiljøProps => {
         return {
             sanityDataset: 'ks-production',
             soknadApiProxyUrl: `${BASE_PATH}api`,
-            soknadApiUrl: 'http://localhost:8080/api',
+            soknadApiUrl: erLokaltMotPreprod()
+                ? `https://familie-baks-soknad-api.intern.dev.nav.no/api`
+                : 'http://localhost:8080/api',
             dokumentProxyUrl: `${BASE_PATH}dokument`,
-            dokumentUrl: `http://localhost:8082/familie/dokument/api`,
+            dokumentUrl: erLokaltMotPreprod()
+                ? 'https://familie-dokument.intern.dev.nav.no/familie/dokument/api'
+                : `http://localhost:8082/familie/dokument/api`,
             modellVersjon: modellVersjon,
             wonderwallUrl: '',
             oauthCallbackUri: `${BASE_PATH}`,

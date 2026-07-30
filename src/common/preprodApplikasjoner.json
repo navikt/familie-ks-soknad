@@ -1,0 +1,4 @@
+[
+    { "applicationName": "familie-baks-soknad-api", "envVar": "BAKS_SOKNAD_API_TOKEN" },
+    { "applicationName": "familie-dokument", "envVar": "DOKUMENT_API_TOKEN" }
+]
