@@ -14,7 +14,7 @@ const nodeModulesDir = join(distDir, 'node_modules');
 
 async function main() {
     if (!existsSync(entryFile)) {
-        throw new Error(`Fant ikke ${entryFile}. Kjør 'yarn build:backend' (tsc) før dette scriptet.`);
+        throw new Error(`Fant ikke ${entryFile}. Kjør 'pnpm build:backend' (tsc) før dette scriptet.`);
     }
 
     // Fjern en eventuell tidligere pruning før sporing. Ellers vil @vercel/nft

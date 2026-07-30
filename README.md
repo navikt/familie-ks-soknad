@@ -37,6 +37,18 @@ låst via `packageManager`-feltet i `package.json` og hentes automatisk av
 ### Mellomlagring
 For å kjøre med mellomlagring må du ha familie-dokument kjørende (https://github.com/navikt/familie-dokument).
 
+### Kjør lokalt mot dev-miljøet (uten å kjøre familie-baks-soknad-api/familie-dokument lokalt)
+Hvis du ikke ønsker å kjøre `familie-baks-soknad-api` og `familie-dokument` lokalt, kan du kjøre appen
+lokalt mens den snakker med de ekte tjenestene i dev-gcp. Dette krever at du er tilkoblet naisdevice.
+
+1. `pnpm hent-preprod-tokens` — spør deg om et fødselsnummer, og åpner deretter en nettleser som logger inn
+   via test-ID-porten (TestId) for begge tjenestene (`familie-baks-soknad-api` og `familie-dokument`).
+   La svaret stå tomt for å bruke "Hent tilfeldig person" i stedet. Access-tokenene som hentes lagres
+   som `BAKS_SOKNAD_API_TOKEN` og `DOKUMENT_API_TOKEN` i `.env` (filen opprettes om den ikke finnes).
+2. `pnpm start:dev:lokalt-mot-preprod`
+
+Tokenene utløper etter en stund — kjør `pnpm hent-preprod-tokens` på nytt for å hente ferske tokens.
+
 # Bygg og deploy
 Appen bygges hos github actions, og gir beskjed til nais deploy om å deployere appen i gcp. Alle commits til brancher går til dev miljøet, appen er ikke satt opp i produksjon enda.
 

@@ -3,7 +3,8 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { LOG_LEVEL, logError } from '@navikt/familie-logging';
 import { requestOboToken, validateToken } from '@navikt/oasis';
 
-import { erLokalt } from '../../common/miljø.js';
+import { erLokalt, erLokaltMotPreprod } from '../../common/miljø.js';
+import PREPROD_APPLIKASJONER from '../../common/preprodApplikasjoner.json' with { type: 'json' };
 import { logRequest } from '../logger.js';
 import { ApplicationName } from '../types.js';
 
@@ -46,6 +47,9 @@ const utledToken = (authorization: string | undefined): string => {
 const prepareSecuredRequest = async (req: Request, applicationName: ApplicationName): Promise<string> => {
     logRequest(req, 'PrepareSecuredRequest', LOG_LEVEL.INFO);
     const { authorization } = req.headers;
+    if (erLokaltMotPreprod()) {
+        return await getLokaltMotPreprodToken(applicationName);
+    }
     if (erLokalt()) {
         return await getFakedingsToken(applicationName);
     }
@@ -73,6 +77,17 @@ const getFakedingsToken = async (applicationName: string): Promise<string> => {
     const token = await fetch(url).then(function (body) {
         return body.text();
     });
+    return `Bearer ${token}`;
+};
+
+const getLokaltMotPreprodToken = async (applicationName: ApplicationName): Promise<string> => {
+    const envVarNavn = PREPROD_APPLIKASJONER.find(app => app.applicationName === applicationName)?.envVar;
+    const token = envVarNavn && process.env[envVarNavn];
+    if (!token) {
+        throw Error(
+            `Mangler ${envVarNavn} i .env. Kjør 'pnpm hent-preprod-tokens' for å hente gyldige tokens fra tokenx-token-generator.`
+        );
+    }
     return `Bearer ${token}`;
 };
 
