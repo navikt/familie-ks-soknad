@@ -17,21 +17,25 @@ async function main() {
         throw new Error(`Fant ikke ${entryFile}. Kjør 'yarn build:backend' (tsc) før dette scriptet.`);
     }
 
-    // Ignorerer filer som ikke er nødvendige for produksjon. @vercel/nft vil finne vite da den
-    // importeres i backend-koden, men vite er kun nødvendig for utvikling og bygging, ikke for produksjon.
-    const ignorerteFiler = ['node_modules/vite'];
+    // Fjern en eventuell tidligere pruning før sporing. Ellers vil @vercel/nft
+    // resolve avhengigheter mot den gamle dist/node_modules (stier som starter med
+    // "dist/node_modules/") som deretter filtreres bort under, slik at f.eks.
+    // 'compression' ikke kopieres og produksjonsserveren feiler med ERR_MODULE_NOT_FOUND.
+    await rm(nodeModulesDir, { recursive: true, force: true });
+
+    // Ignorerer filer som ikke er nødvendige for produksjon. @vercel/nft vil finne vite da den importeres i backend-koden,
+    // Vite er kun nødvendig for utvikling og bygging.
+    const ignoredFiles = ['node_modules/vite'];
 
     const { fileList } = await nodeFileTrace([entryFile], {
         base: rootDir,
-        ignore: fil => ignorerteFiler.some(filNavn => fil.startsWith(filNavn)),
+        ignore: fil => ignoredFiles.some(fileName => fil.startsWith(fileName)),
     });
 
-    const nodeModuleFiler = [...fileList].filter(fil => fil.startsWith('node_modules/'));
-
-    await rm(nodeModulesDir, { recursive: true, force: true });
+    const nodeModuleFiles = [...fileList].filter(file => file.startsWith('node_modules/'));
 
     await Promise.all(
-        nodeModuleFiler.map(async relativFil => {
+        nodeModuleFiles.map(async relativFil => {
             const src = join(rootDir, relativFil);
             const dest = join(distDir, relativFil);
 
@@ -41,11 +45,11 @@ async function main() {
     );
 
     console.log(
-        `Sporet og kopierte ${nodeModuleFiler.length} filer fra node_modules til ${relative(rootDir, nodeModulesDir)}`
+        `Sporet og kopierte ${nodeModuleFiles.length} filer fra node_modules til ${relative(rootDir, nodeModulesDir)}`
     );
 }
 
-main().catch(feil => {
-    console.error(feil);
+main().catch(error => {
+    console.error(error);
     process.exit(1);
 });
