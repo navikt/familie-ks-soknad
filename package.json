@@ -74,7 +74,7 @@
     "react-cookie": "8.1.2",
     "react-dom": "19.2.7",
     "react-router": "7.18.0",
-    "styled-components": "6.4.3",
+    "styled-components": "6.4.4",
     "unleash-client": "6.11.1",
     "uuid": "14.0.1",
     "xss": "1.0.15"
