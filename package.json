@@ -55,7 +55,7 @@
     "@portabletext/react": "7.0.1",
     "@portabletext/toolkit": "5.0.2",
     "@sanity/client": "7.26.0",
-    "@sentry/browser": "10.63.0",
+    "@sentry/browser": "10.69.0",
     "@sentry/core": "10.63.0",
     "@sentry/react": "10.69.0",
     "axios": "1.19.0",
