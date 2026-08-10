@@ -204,9 +204,7 @@ export interface IBarnehageplassPerioderFeltTyper {
     barnehageplassLand: Alpha3Code | '';
     offentligStøtte: ESvar | null;
     harHeltidDeltidBarnehageplass:
-        | AlternativtSvarForInput.BARNEHAGEPLASS_HELTID
-        | AlternativtSvarForInput.BARNEHAGEPLASS_DELTID
-        | null;
+        AlternativtSvarForInput.BARNEHAGEPLASS_HELTID | AlternativtSvarForInput.BARNEHAGEPLASS_DELTID | null;
     antallTimer: string;
     startetIBarnehagen: ISODateString;
     slutterIBarnehagen: ISODateString;

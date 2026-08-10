@@ -43,13 +43,11 @@ export const LandDropdown: React.FC<LandDropdownProps> = props => {
             placeholder={plainTekst(tekster().FELLES.hjelpeteksterForInput.velgLandPlaceholder)}
             {...props}
         >
-            {landkoderSortertPåNavn.map(
-                (alphaCode): ReactNode => (
-                    <option value={alphaCode} key={alphaCode}>
-                        {getName(alphaCode, valgtLocale)}
-                    </option>
-                )
-            )}
+            {landkoderSortertPåNavn.map((alphaCode): ReactNode => (
+                <option value={alphaCode} key={alphaCode}>
+                    {getName(alphaCode, valgtLocale)}
+                </option>
+            ))}
         </StyledDropdown>
     );
 };

@@ -18,13 +18,11 @@ const SlektsforholdDropdown: React.FC<SlektsforholdDropdownProps> = ({ gjelderS�
         : muligeSlektsforhold.filter(slektsforhold => slektsforhold !== Slektsforhold.FORELDER);
     return (
         <StyledDropdown<Slektsforhold | ''> {...props}>
-            {aktuelleSlektsforhold.map(
-                (slektsforhold: Slektsforhold): ReactNode => (
-                    <option value={slektsforhold} key={slektsforhold}>
-                        {plainTekst(hentSlektsforhold(slektsforhold, tekster().EØS_FOR_BARN))}
-                    </option>
-                )
-            )}
+            {aktuelleSlektsforhold.map((slektsforhold: Slektsforhold): ReactNode => (
+                <option value={slektsforhold} key={slektsforhold}>
+                    {plainTekst(hentSlektsforhold(slektsforhold, tekster().EØS_FOR_BARN))}
+                </option>
+            ))}
         </StyledDropdown>
     );
 };
