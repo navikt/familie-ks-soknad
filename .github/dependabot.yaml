@@ -11,6 +11,11 @@ updates:
         versions:
           - "25"
           - "26"
+      # typescript-eslint støtter ikke TypeScript 7.x ennå (peer dep krever <6.1.0),
+      # se https://github.com/typescript-eslint/typescript-eslint/issues/10940
+      - dependency-name: "typescript"
+        versions:
+          - ">= 7"
     cooldown:
       default-days: 7
     open-pull-requests-limit: 20
