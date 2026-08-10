@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { init as initApm } from '@nais/apm';
 import { registerLocale } from 'i18n-iso-countries';
 import type { LocaleData } from 'i18n-iso-countries';
 import ReactDOM from 'react-dom';
@@ -12,7 +13,6 @@ import { LocaleType } from '../common/typer/locale';
 import App from './App';
 import { hentDekorator } from './decorator';
 import FellesWrapper from './FellesWrapper';
-import { initGrafanaFaro } from './utils/grafanaFaro';
 import { initSentry } from './utils/sentry';
 import '@navikt/ds-css';
 
@@ -35,7 +35,7 @@ hentDekorator();
 
 polyfillLocaledata().then(async () => {
     initSentry();
-    initGrafanaFaro();
+    initApm();
 
     if (process.env.NODE_ENV !== 'production') {
         import('@axe-core/react').then(({ default: axe }) => {
