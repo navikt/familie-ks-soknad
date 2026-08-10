@@ -58,7 +58,7 @@
     "@sentry/browser": "10.63.0",
     "@sentry/core": "10.63.0",
     "@sentry/react": "10.69.0",
-    "axios": "1.18.1",
+    "axios": "1.19.0",
     "classnames": "2.5.1",
     "compression": "1.8.1",
     "cookie-parser": "1.4.7",
@@ -74,7 +74,7 @@
     "react-cookie": "8.1.2",
     "react-dom": "19.2.8",
     "react-router": "8.3.0",
-    "styled-components": "6.4.3",
+    "styled-components": "6.4.4",
     "unleash-client": "6.11.1",
     "uuid": "14.0.1",
     "xss": "1.0.15"
