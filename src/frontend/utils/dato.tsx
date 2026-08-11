@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/react';
+import { captureException } from '@nais/apm';
 import {
     add,
     endOfMonth,
@@ -106,7 +106,7 @@ export const formaterDato = (datoString: ISODateString) => {
         const error = new Error(`Klarte ikke formatere dato ${datoString}`, {
             cause: e instanceof Error ? e.cause : 'En ukjent feil oppstod.',
         });
-        Sentry.captureException(error);
+        captureException(error);
         throw error;
     }
 };
