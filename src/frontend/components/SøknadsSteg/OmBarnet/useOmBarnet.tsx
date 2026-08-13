@@ -712,7 +712,7 @@ export const useOmBarnet = (
 
     const oppdaterSøknad = () => {
         const oppdatertBarnInkludertISøknaden: IBarnMedISøknad[] = søknad.barnInkludertISøknaden.map(barn => {
-            let oppdatertBarn;
+            let oppdatertBarn: IBarnMedISøknad;
             if (barn === gjeldendeBarn) {
                 oppdatertBarn = genererOppdatertBarn(barn);
             } else if (barn.sammeForelderSomAnnetBarnMedId.svar === gjeldendeBarn.id) {

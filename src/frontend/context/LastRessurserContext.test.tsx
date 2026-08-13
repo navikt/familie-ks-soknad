@@ -28,7 +28,7 @@ describe('LastRessurserContext', () => {
         const wrapper = ({ children }) => <LastRessurserProvider>{children}</LastRessurserProvider>;
         const { result } = renderHook(() => useLastRessurserContext(), { wrapper });
 
-        let promiseResolve;
+        let promiseResolve!: (value?: unknown) => void;
 
         const promise = new Promise(resolve => {
             promiseResolve = resolve;
