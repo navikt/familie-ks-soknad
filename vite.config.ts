@@ -25,7 +25,7 @@ export default defineConfig({
                       filesToDeleteAfterUpload: ['dist/**/*.js.map'],
                   },
                   errorHandler: err => {
-                      console.warn('Sentry Vite Plugin: ' + err.message);
+                      console.warn(`Sentry Vite Plugin: ${err.message}`);
                   },
               })
             : undefined,

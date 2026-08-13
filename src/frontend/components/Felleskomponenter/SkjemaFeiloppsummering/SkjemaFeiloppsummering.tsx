@@ -27,7 +27,7 @@ export const SkjemaFeiloppsummering: React.FC<Props> = ({ skjema, stegMedFeil, i
                             {felt.feilmelding}
                         </AppLenke>
                     ) : (
-                        <ErrorSummary.Item href={'#' + felt.id} key={`feil-${felt.id}`}>
+                        <ErrorSummary.Item href={`#${felt.id}`} key={`feil-${felt.id}`}>
                             {felt.feilmelding}
                         </ErrorSummary.Item>
                     )

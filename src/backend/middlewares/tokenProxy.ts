@@ -53,7 +53,7 @@ const prepareSecuredRequest = async (req: Request, applicationName: ApplicationN
         return await getFakedingsToken(applicationName);
     }
     const token = utledToken(authorization);
-    logRequest(req, 'IdPorten-token found: ' + (token.length > 1), LOG_LEVEL.INFO);
+    logRequest(req, `IdPorten-token found: ${token.length > 1}`, LOG_LEVEL.INFO);
 
     const validation = await validateToken(token);
     if (validation.ok === false) {

@@ -31,7 +31,7 @@ export function AppLenke({ steg, hash, returnTo, children }: Props) {
 
     return (
         <Link
-            href={BASE_PATH + unslash(steg.path) + (hash ? '#' + hash : '')}
+            href={BASE_PATH + unslash(steg.path) + (hash ? `#${hash}` : '')}
             rel="noopener noreferrer"
             onClick={clickHandler}
         >

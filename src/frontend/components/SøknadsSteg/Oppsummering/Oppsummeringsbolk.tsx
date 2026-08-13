@@ -38,7 +38,7 @@ function Oppsummeringsbolk({ children, tittel, flettefelter, steg, skjemaHook, s
     const { validerAlleSynligeFelter, valideringErOk, skjema } = skjemaHook;
     const [visFeil, settVisFeil] = useState(false);
 
-    const feilOppsummeringId = skjema.skjemanavn + '-feil';
+    const feilOppsummeringId = `${skjema.skjemanavn}-feil`;
 
     useEffect(() => {
         // Når felter valideres blir nye synlige, så vi må kjøre denne igjen til vi har validert alt

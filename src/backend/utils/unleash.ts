@@ -3,7 +3,7 @@ import { initialize, type Unleash } from 'unleash-client';
 let unleash: Unleash;
 export const initializeUnleash = () => {
     const UNLEASH_SERVER_API_URL = process.env.UNLEASH_SERVER_API_URL
-        ? process.env.UNLEASH_SERVER_API_URL + '/api'
+        ? `${process.env.UNLEASH_SERVER_API_URL}/api`
         : 'https://teamfamilie-unleash-api.nav.cloud.nais.io/api';
 
     unleash = initialize({

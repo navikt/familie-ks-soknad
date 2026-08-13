@@ -4,7 +4,7 @@ import { AlternativtSvarForInput } from '../typer/common';
 import { formaterDatostringKunMåned } from './dato';
 
 export const formaterFnr = (fødselsnummer: string) => {
-    return fødselsnummer.substring(0, 6) + ' ' + fødselsnummer.substring(6, 11);
+    return `${fødselsnummer.substring(0, 6)} ${fødselsnummer.substring(6, 11)}`;
 };
 
 export const uppercaseKunFørsteBokstav = text => {
