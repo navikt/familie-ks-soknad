@@ -1,4 +1,5 @@
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { useAppContext } from '../../../context/AppContext';
@@ -16,7 +17,7 @@ import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/
 import type { IDinLivssituasjonTekstinnhold } from './innholdTyper';
 import { useDinLivssituasjon } from './useDinLivssituasjon';
 
-const DinLivssituasjon: React.FC = () => {
+const DinLivssituasjon: FC = () => {
     const { tekster } = useAppContext();
     const {
         skjema,

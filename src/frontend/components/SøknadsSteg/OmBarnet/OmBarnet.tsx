@@ -1,5 +1,6 @@
 import { InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { useAppContext } from '../../../context/AppContext';
@@ -18,7 +19,7 @@ import { OmBarnetHeader } from './OmBarnetHeader';
 import Oppfølgningsspørsmål from './Oppfølgningsspørsmål';
 import { useOmBarnet } from './useOmBarnet';
 
-const OmBarnet: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
+const OmBarnet: FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
     const { tekster, plainTekst } = useAppContext();
     const { erEøsTrigget } = useEøsContext();
     const {

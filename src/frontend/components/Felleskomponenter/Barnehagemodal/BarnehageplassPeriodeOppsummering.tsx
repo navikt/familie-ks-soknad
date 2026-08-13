@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { AlternativtSvarForInput } from '../../../typer/common';
@@ -18,7 +19,7 @@ interface BarnehageplassPeriodeProps {
     fjernPeriodeCallback?: (barnehageplassPeriode: IBarnehageplassPeriode) => void;
 }
 
-export const BarnehageplassPeriodeOppsummering: React.FC<BarnehageplassPeriodeProps> = ({
+export const BarnehageplassPeriodeOppsummering: FC<BarnehageplassPeriodeProps> = ({
     barnehageplassPeriode,
     nummer,
     fjernPeriodeCallback = undefined,

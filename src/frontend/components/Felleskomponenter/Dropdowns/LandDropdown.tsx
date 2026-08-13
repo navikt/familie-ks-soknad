@@ -2,7 +2,7 @@ import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { type Alpha3Code, getAlpha3Codes, getName } from 'i18n-iso-countries';
 
-import type { ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
@@ -20,7 +20,7 @@ interface LandDropdownProps {
     ekskluderNorge?: boolean;
 }
 
-export const LandDropdown: React.FC<LandDropdownProps> = props => {
+export const LandDropdown: FC<LandDropdownProps> = props => {
     const { tekster, plainTekst } = useAppContext();
     const { valgtLocale } = useSpråkContext();
     const { erEøsLand } = useEøsContext();

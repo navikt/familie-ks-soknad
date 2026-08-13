@@ -9,7 +9,15 @@ import {
 
 import { type Alpha3Code, getName } from 'i18n-iso-countries';
 
-import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
+import {
+    createContext,
+    type Dispatch,
+    type PropsWithChildren,
+    type SetStateAction,
+    useContext,
+    useEffect,
+    useState,
+} from 'react';
 
 import miljø, { BASE_PATH } from '../../common/miljø';
 import type { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../common/typer/kontrakt/generelle';
@@ -38,31 +46,31 @@ export interface AppContext {
     axiosRequest: AxiosRequest;
     sluttbruker: Ressurs<ISøkerRespons>;
     søknad: ISøknad;
-    settSøknad: React.Dispatch<React.SetStateAction<ISøknad>>;
+    settSøknad: Dispatch<SetStateAction<ISøknad>>;
     nullstillSøknadsobjekt: () => void;
     innsendingStatus: Ressurs<IKvittering>;
-    settInnsendingStatus: React.Dispatch<React.SetStateAction<Ressurs<IKvittering>>>;
+    settInnsendingStatus: Dispatch<SetStateAction<Ressurs<IKvittering>>>;
     sisteUtfylteStegIndex: number;
-    settSisteUtfylteStegIndex: React.Dispatch<React.SetStateAction<number>>;
+    settSisteUtfylteStegIndex: Dispatch<SetStateAction<number>>;
     datoSistLagret: string | null;
-    settDatoSistLagret: React.Dispatch<React.SetStateAction<string | null>>;
+    settDatoSistLagret: Dispatch<SetStateAction<string | null>>;
     erStegUtfyltFrafør: (nåværendeStegIndex: number) => boolean;
     avbrytOgSlettSøknad: () => void;
     gåTilbakeTilStart: () => void;
     brukMellomlagretVerdi: () => void;
     mellomlagretVerdi: IMellomlagretKontantstøtte | undefined;
     fåttGyldigKvittering: boolean;
-    settFåttGyldigKvittering: React.Dispatch<React.SetStateAction<boolean>>;
-    settNåværendeRoute: React.Dispatch<React.SetStateAction<RouteEnum | undefined>>;
+    settFåttGyldigKvittering: Dispatch<SetStateAction<boolean>>;
+    settNåværendeRoute: Dispatch<SetStateAction<RouteEnum | undefined>>;
     systemetFeiler: () => boolean;
     systemetOK: () => boolean;
     systemetLaster: () => boolean;
     mellomlagre: (søknadSomSkalLagres: ISøknad, nåværendeStegIndex: number) => void;
     tvingKjøringAvDebouncedMellomlagre: () => void;
     modellVersjonOppdatert: boolean;
-    settSisteModellVersjon: React.Dispatch<React.SetStateAction<number>>;
+    settSisteModellVersjon: Dispatch<SetStateAction<number>>;
     eøsLand: Ressurs<Map<Alpha3Code, string>>;
-    settEøsLand: React.Dispatch<React.SetStateAction<Ressurs<Map<Alpha3Code, string>>>>;
+    settEøsLand: Dispatch<SetStateAction<Ressurs<Map<Alpha3Code, string>>>>;
     tekster: () => ITekstinnhold;
     flettefeltTilTekst: (
         sanityFlettefelt: ESanityFlettefeltverdi,

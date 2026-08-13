@@ -1,4 +1,5 @@
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IUtenlandsperiode } from '../../../typer/perioder';
@@ -21,7 +22,7 @@ type Props = PeriodePersonTypeMedBarnProps & {
     registrerteUtenlandsperioder: Felt<IUtenlandsperiode[]>;
 };
 
-export const Utenlandsperiode: React.FC<Props> = ({
+export const Utenlandsperiode: FC<Props> = ({
     skjema,
     leggTilUtenlandsperiode,
     fjernUtenlandsperiode,

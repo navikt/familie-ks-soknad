@@ -1,5 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IPensjonsperiode } from '../../../typer/perioder';
@@ -36,7 +37,7 @@ interface PensjonsperiodeProps {
 
 type Props = PensjonsperiodeProps & PeriodePersonTypeMedBarnProps;
 
-export const Pensjonsperiode: React.FC<Props> = ({
+export const Pensjonsperiode: FC<Props> = ({
     skjema,
     leggTilPensjonsperiode,
     fjernPensjonsperiode,

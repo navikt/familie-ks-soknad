@@ -1,5 +1,6 @@
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IBarnMedISøknad } from '../../../typer/barn';
@@ -36,7 +37,7 @@ interface Props extends IUseBarnehageplassSkjemaParams {
     forklaring?: string;
 }
 
-export const BarnehageplassPeriodeModal: React.FC<Props> = ({
+export const BarnehageplassPeriodeModal: FC<Props> = ({
     erÅpen,
     lukkModal,
     onLeggTilBarnehageplassPeriode,

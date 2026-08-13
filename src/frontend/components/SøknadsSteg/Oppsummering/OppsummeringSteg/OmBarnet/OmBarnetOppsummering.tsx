@@ -1,4 +1,5 @@
 import { ESvar } from '@navikt/familie-form-elements';
+import type { Dispatch, FC, SetStateAction } from 'react';
 
 import type { FlettefeltVerdier } from '../../../../../../common/typer/kontrakt/generelle';
 import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
@@ -19,12 +20,12 @@ import Oppsummeringsbolk from '../../Oppsummeringsbolk';
 import AndreForelderOppsummering from './AndreForelderOppsummering';
 
 interface Props {
-    settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
+    settFeilAnchors: Dispatch<SetStateAction<string[]>>;
     barn: IBarnMedISøknad;
     index: number;
 }
 
-const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index }) => {
+const OmBarnetOppsummering: FC<Props> = ({ settFeilAnchors, barn, index }) => {
     const { hentStegObjektForBarn } = useStegContext();
     const { tekster, plainTekst } = useAppContext();
     const omBarnetTekster = tekster().OM_BARNET;

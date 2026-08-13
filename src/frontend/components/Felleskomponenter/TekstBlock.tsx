@@ -2,7 +2,7 @@ import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds
 
 import { PortableText } from '@portabletext/react';
 
-import type { ReactNode } from 'react';
+import type { CSSProperties, FC, ReactNode } from 'react';
 
 import type { FlettefeltVerdier } from '../../../common/typer/kontrakt/generelle';
 import type { LocaleRecordBlock } from '../../../common/typer/locale';
@@ -14,7 +14,7 @@ import styles from './TekstBlock.module.css';
 
 interface Props {
     typografi?: Typografi;
-    style?: React.CSSProperties;
+    style?: CSSProperties;
     children?: ReactNode;
 }
 
@@ -73,7 +73,7 @@ export function TypografiWrapper({ typografi, style, children }: Props) {
     }
 }
 
-const TekstBlock: React.FC<{
+const TekstBlock: FC<{
     block: LocaleRecordBlock | undefined;
     flettefelter?: FlettefeltVerdier;
     typografi?: Typografi;

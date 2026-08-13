@@ -3,7 +3,7 @@ import { BodyShort, Heading, InfoCard, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 import { add, isBefore } from 'date-fns';
 
-import { useState } from 'react';
+import { type FC, useState } from 'react';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { useAppContext } from '../../../context/AppContext';
@@ -30,7 +30,7 @@ export const erVedleggstidspunktGyldig = (vedleggTidspunkt: string): boolean => 
     return isBefore(new Date(), grenseTidForVedlegg);
 };
 
-const Dokumentasjon: React.FC = () => {
+const Dokumentasjon: FC = () => {
     const { søknad, settSøknad, innsendingStatus, tekster, plainTekst, tvingKjøringAvDebouncedMellomlagre } =
         useAppContext();
     const { sendInnSkjema } = useSendInnSkjema();

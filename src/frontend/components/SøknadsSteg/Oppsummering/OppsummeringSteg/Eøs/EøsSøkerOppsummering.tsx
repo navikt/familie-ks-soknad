@@ -1,4 +1,5 @@
 import type { ESvar } from '@navikt/familie-form-elements';
+import type { Dispatch, FC, SetStateAction } from 'react';
 
 import type { LocaleRecordBlock, LocaleRecordString } from '../../../../../../common/typer/locale';
 import { useAppContext } from '../../../../../context/AppContext';
@@ -16,10 +17,10 @@ import { OppsummeringFelt } from '../../OppsummeringFelt';
 import Oppsummeringsbolk from '../../Oppsummeringsbolk';
 
 interface Props {
-    settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
+    settFeilAnchors: Dispatch<SetStateAction<string[]>>;
 }
 
-const EøsSøkerOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
+const EøsSøkerOppsummering: FC<Props> = ({ settFeilAnchors }) => {
     const { hentRouteObjektForRouteEnum } = useRoutesContext();
     const { søknad, tekster, plainTekst } = useAppContext();
     const eøsSøkerTekster = tekster().EØS_FOR_SØKER;

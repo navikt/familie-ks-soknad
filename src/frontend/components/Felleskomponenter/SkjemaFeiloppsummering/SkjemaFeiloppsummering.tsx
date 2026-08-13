@@ -1,5 +1,6 @@
 import { ErrorSummary } from '@navikt/ds-react';
 import { type ISkjema, Valideringsstatus } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { ISteg } from '../../../typer/routes';
@@ -12,7 +13,7 @@ interface Props {
     id?: string;
 }
 
-export const SkjemaFeiloppsummering: React.FC<Props> = ({ skjema, stegMedFeil, id }) => {
+export const SkjemaFeiloppsummering: FC<Props> = ({ skjema, stegMedFeil, id }) => {
     const { tekster, plainTekst } = useAppContext();
     return (
         <ErrorSummary id={id} heading={plainTekst(tekster().FELLES.navigasjon.duMaaRetteOppFoelgende)}>

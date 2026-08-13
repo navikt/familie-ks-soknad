@@ -1,6 +1,7 @@
+import type { FC } from 'react';
 import { useAppContext } from '../context/AppContext';
 
-const Barn1: React.FC = () => {
+const Barn1: FC = () => {
     const { tekster, plainTekst } = useAppContext();
     return (
         <svg

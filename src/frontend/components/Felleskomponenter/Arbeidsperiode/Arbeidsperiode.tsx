@@ -1,5 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IArbeidsperiode } from '../../../typer/perioder';
@@ -37,7 +38,7 @@ interface ArbeidsperiodeProps {
 
 type Props = ArbeidsperiodeProps & PeriodePersonTypeMedBarnProps;
 
-export const Arbeidsperiode: React.FC<Props> = ({
+export const Arbeidsperiode: FC<Props> = ({
     skjema,
     leggTilArbeidsperiode,
     fjernArbeidsperiode,

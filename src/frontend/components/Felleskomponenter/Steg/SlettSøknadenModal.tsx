@@ -1,4 +1,5 @@
 import { Button, Heading, Modal } from '@navikt/ds-react';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 
@@ -10,7 +11,7 @@ interface ISlettSøkadenModalProps {
     startPåNytt: () => void;
 }
 
-export const SlettSøknadenModal: React.FC<ISlettSøkadenModalProps> = ({ open, avbryt, startPåNytt }) => {
+export const SlettSøknadenModal: FC<ISlettSøkadenModalProps> = ({ open, avbryt, startPåNytt }) => {
     const { tekster, plainTekst } = useAppContext();
 
     const startPåNyttTekster = tekster().FELLES.modaler.startPåNytt;

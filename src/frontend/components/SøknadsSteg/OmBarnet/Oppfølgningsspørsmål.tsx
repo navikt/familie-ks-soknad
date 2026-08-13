@@ -2,6 +2,7 @@ import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 import { InfoCard } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../context/AppContext';
@@ -23,7 +24,7 @@ import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/
 import type { IOmBarnetTekstinnhold } from './innholdTyper';
 import styles from './Oppfølgningsspørsmål.module.css';
 
-const Oppfølgningsspørsmål: React.FC<{
+const Oppfølgningsspørsmål: FC<{
     barn: IBarnMedISøknad;
     skjema: ISkjema<IOmBarnetFeltTyper, string>;
     leggTilUtenlandsperiode: (periode: IUtenlandsperiode) => void;

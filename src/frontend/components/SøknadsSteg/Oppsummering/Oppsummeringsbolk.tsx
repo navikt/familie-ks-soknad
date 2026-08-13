@@ -1,7 +1,7 @@
 import { FormSummary } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
 
-import { type MouseEventHandler, type ReactNode, useEffect, useState } from 'react';
+import { type Dispatch, type MouseEventHandler, type ReactNode, type SetStateAction, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import { BASE_PATH } from '../../../../common/miljø';
@@ -27,7 +27,7 @@ interface Props {
     flettefelter?: FlettefeltVerdier;
     steg?: ISteg;
     skjemaHook: IHookReturn;
-    settFeilAnchors?: React.Dispatch<React.SetStateAction<string[]>>;
+    settFeilAnchors?: Dispatch<SetStateAction<string[]>>;
     barn?: IBarnMedISøknad;
     children?: ReactNode;
 }

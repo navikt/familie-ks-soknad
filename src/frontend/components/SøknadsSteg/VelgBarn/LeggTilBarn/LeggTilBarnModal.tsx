@@ -1,5 +1,6 @@
 import { Fieldset } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import type { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
@@ -15,7 +16,7 @@ import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 
 import { useLeggTilBarn } from './useLeggTilBarn';
 
-const LeggTilBarnModal: React.FC<{
+const LeggTilBarnModal: FC<{
     erÅpen: boolean;
     lukkModal: () => void;
 }> = ({ erÅpen, lukkModal }) => {

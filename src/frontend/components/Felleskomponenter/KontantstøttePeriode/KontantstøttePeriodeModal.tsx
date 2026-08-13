@@ -1,5 +1,6 @@
 import { Box, InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IBarnMedISøknad } from '../../../typer/barn';
@@ -28,7 +29,7 @@ interface Props extends IUsePensjonsperiodeSkjemaParams {
     forklaring?: string;
 }
 
-export const KontantstøttePeriodeModal: React.FC<Props> = ({
+export const KontantstøttePeriodeModal: FC<Props> = ({
     erÅpen,
     lukkModal,
     onLeggTilKontantstøttePeriode,

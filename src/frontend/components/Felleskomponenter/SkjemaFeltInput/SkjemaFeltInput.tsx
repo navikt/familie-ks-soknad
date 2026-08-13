@@ -1,7 +1,7 @@
 import { TextField, type TextFieldProps } from '@navikt/ds-react';
 import type { Felt } from '@navikt/familie-skjema';
 
-import type { ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 interface SkjemaFeltInputProps extends TextFieldProps {
     felt: Felt<any>;
@@ -13,7 +13,7 @@ interface SkjemaFeltInputProps extends TextFieldProps {
 /**
  * Henter input props fra felt, og fra props. Props overstyrer felt.
  */
-export const SkjemaFeltInput: React.FC<SkjemaFeltInputProps> = props => {
+export const SkjemaFeltInput: FC<SkjemaFeltInputProps> = props => {
     const {
         felt,
         label,

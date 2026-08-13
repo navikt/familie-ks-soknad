@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { AlternativtSvarForInput } from '../../../typer/common';
@@ -27,7 +28,7 @@ type Props = {
 
 type UtenlandsperiodeOppsummeringProps = Props & PeriodePersonTypeMedBarnProps;
 
-export const UtenlandsperiodeOppsummering: React.FC<UtenlandsperiodeOppsummeringProps> = ({
+export const UtenlandsperiodeOppsummering: FC<UtenlandsperiodeOppsummeringProps> = ({
     periode,
     nummer,
     fjernPeriodeCallback,

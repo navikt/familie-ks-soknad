@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { type FC, useEffect, useRef, useState } from 'react';
 
 import { useLocation } from 'react-router';
 
-export const ScrollHandler: React.FC = () => {
+export const ScrollHandler: FC = () => {
     const { hash } = useLocation();
     const [sjekketGanger, settSjekketGanger] = useState(0);
     const timer = useRef<ReturnType<typeof setInterval> | null>(null);

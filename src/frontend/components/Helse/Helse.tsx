@@ -7,14 +7,14 @@ import {
     RessursStatus,
 } from '@navikt/familie-typer';
 
-import { useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 
 import miljø from '../../../common/miljø';
 import { useAppContext } from '../../context/AppContext';
 import { Typografi } from '../../typer/common';
 import { TypografiWrapper } from '../Felleskomponenter/TekstBlock';
 
-const Helse: React.FC = () => {
+const Helse: FC = () => {
     const { axiosRequest } = useAppContext();
 
     const [helseApi, settHelseApi] = useState(byggTomRessurs<string>());

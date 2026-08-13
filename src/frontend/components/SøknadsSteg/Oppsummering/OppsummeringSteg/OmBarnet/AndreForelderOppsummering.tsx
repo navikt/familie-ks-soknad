@@ -1,5 +1,6 @@
 import { BodyShort, FormSummary } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../../../context/AppContext';
@@ -15,7 +16,7 @@ import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/Uten
 import type { IOmBarnetTekstinnhold } from '../../../OmBarnet/innholdTyper';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 
-const AndreForelderOppsummering: React.FC<{
+const AndreForelderOppsummering: FC<{
     barn: IBarnMedISøknad;
     andreForelder: IAndreForelder;
 }> = ({ barn, andreForelder }) => {

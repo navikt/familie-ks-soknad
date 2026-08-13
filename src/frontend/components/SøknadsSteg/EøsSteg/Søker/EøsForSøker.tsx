@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { useAppContext } from '../../../../context/AppContext';
 import { PersonType } from '../../../../typer/personType';
 import { uppercaseFørsteBokstav } from '../../../../utils/visning';
@@ -11,7 +12,7 @@ import { Utbetalingsperiode } from '../../../Felleskomponenter/UtbetalingerModal
 import IdNummerForSøker from './IdNummerForSøker';
 import { useEøsForSøker } from './useEøsForSøker';
 
-const EøsForSøker: React.FC = () => {
+const EøsForSøker: FC = () => {
     const { tekster, plainTekst } = useAppContext();
     const {
         skjema,

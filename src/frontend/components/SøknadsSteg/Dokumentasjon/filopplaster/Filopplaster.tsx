@@ -1,4 +1,5 @@
 import { FileUpload, Heading, List, VStack } from '@navikt/ds-react';
+import type { FC } from 'react';
 
 import type { Dokumentasjonsbehov } from '../../../../../common/typer/kontrakt/dokumentasjon';
 import { useAppContext } from '../../../../context/AppContext';
@@ -16,7 +17,7 @@ interface IFilopplasterProps {
     ) => void;
 }
 
-const Filopplaster: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
+const Filopplaster: FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
     const { tekster, plainTekst } = useAppContext();
 
     const dokumentasjonTekster = tekster().DOKUMENTASJON;

@@ -1,6 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
-
 import { parseISO } from 'date-fns';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IPensjonsperiode } from '../../../typer/perioder';
@@ -26,7 +26,7 @@ interface Props extends IUsePensjonSkjemaParams {
     forklaring?: string;
 }
 
-export const PensjonModal: React.FC<Props> = ({
+export const PensjonModal: FC<Props> = ({
     erÅpen,
     lukkModal,
     onLeggTilPensjonsperiode,

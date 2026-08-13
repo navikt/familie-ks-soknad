@@ -1,4 +1,5 @@
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IBarnMedISøknad } from '../../../typer/barn';
@@ -30,7 +31,7 @@ interface ArbeidsperiodeModalProps extends IUseArbeidsperiodeSkjemaParams {
     forklaring?: string;
 }
 
-export const ArbeidsperiodeModal: React.FC<ArbeidsperiodeModalProps> = ({
+export const ArbeidsperiodeModal: FC<ArbeidsperiodeModalProps> = ({
     erÅpen,
     lukkModal,
     onLeggTilArbeidsperiode,

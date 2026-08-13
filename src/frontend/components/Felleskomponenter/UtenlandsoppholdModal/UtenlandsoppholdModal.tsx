@@ -1,4 +1,5 @@
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IUtenlandsperiode } from '../../../typer/perioder';
@@ -38,7 +39,7 @@ type Props = PeriodePersonTypeMedBarnProps & {
     forklaring?: string;
 };
 
-export const UtenlandsoppholdModal: React.FC<Props> = ({
+export const UtenlandsoppholdModal: FC<Props> = ({
     erÅpen,
     lukkModal,
     onLeggTilUtenlandsperiode,

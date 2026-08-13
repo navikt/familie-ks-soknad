@@ -1,5 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import type { ISkjema } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IBarnMedISøknad } from '../../../typer/barn';
@@ -23,7 +24,7 @@ import AndreForelderOppsummering from '../Oppsummering/OppsummeringSteg/OmBarnet
 
 import SammeSomAnnetBarnRadio from './SammeSomAnnetBarnRadio';
 
-const AndreForelder: React.FC<{
+const AndreForelder: FC<{
     barn: IBarnMedISøknad;
     skjema: ISkjema<IOmBarnetFeltTyper, string>;
     andreBarnSomErFyltUt: IBarnMedISøknad[];

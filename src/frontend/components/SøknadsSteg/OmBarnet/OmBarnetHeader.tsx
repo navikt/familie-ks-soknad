@@ -1,4 +1,5 @@
 import { Box, VStack } from '@navikt/ds-react';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IBarnMedISøknad } from '../../../typer/barn';
@@ -9,7 +10,7 @@ import { TilfeldigBarnIkon } from '../../Felleskomponenter/TilfeldigBarnIkon/Til
 
 import styles from './OmBarnetHeader.module.css';
 
-export const OmBarnetHeader: React.FC<{ barn: IBarnMedISøknad }> = ({ barn }) => {
+export const OmBarnetHeader: FC<{ barn: IBarnMedISøknad }> = ({ barn }) => {
     const {
         søknad: { barnInkludertISøknaden },
         tekster,

@@ -1,4 +1,5 @@
 import { FormSummary, InlineMessage } from '@navikt/ds-react';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -12,7 +13,7 @@ import LeggTilBarnModal from './LeggTilBarn/LeggTilBarnModal';
 import { NyttBarnKort } from './LeggTilBarn/NyttBarnKort';
 import { useVelgBarn } from './useVelgBarn';
 
-const VelgBarn: React.FC = () => {
+const VelgBarn: FC = () => {
     const { søknad, tekster } = useAppContext();
     const {
         lukkModal: lukkLeggTilBarnModal,

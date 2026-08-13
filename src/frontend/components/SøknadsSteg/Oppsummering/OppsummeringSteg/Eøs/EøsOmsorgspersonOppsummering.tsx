@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { useAppContext } from '../../../../../context/AppContext';
 import { useSpråkContext } from '../../../../../context/SpråkContext';
 import type { IBarnMedISøknad } from '../../../../../typer/barn';
@@ -12,7 +13,7 @@ import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
 import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 
-const EøsOmsorgspersonOppsummering: React.FC<{
+const EøsOmsorgspersonOppsummering: FC<{
     omsorgsperson: IOmsorgsperson;
     barn: IBarnMedISøknad;
 }> = ({ omsorgsperson, barn }) => {

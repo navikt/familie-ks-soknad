@@ -1,6 +1,6 @@
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import type { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, FC, SetStateAction } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { useEøsContext } from '../../../../context/EøsContext';
@@ -14,7 +14,7 @@ interface Props {
     lesevisning?: boolean;
 }
 
-const IdNummerForSøker: React.FC<Props> = ({ lesevisning = false, skjema, settIdNummerFelter }) => {
+const IdNummerForSøker: FC<Props> = ({ lesevisning = false, skjema, settIdNummerFelter }) => {
     const { søknad, tekster } = useAppContext();
     const { søker } = søknad;
     const { arbeidsperioderUtland, pensjonsperioderUtland, utenlandsperioder } = søker;

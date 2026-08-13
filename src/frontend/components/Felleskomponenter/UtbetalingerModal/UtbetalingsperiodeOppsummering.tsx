@@ -1,4 +1,5 @@
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
@@ -20,7 +21,7 @@ interface Props {
 
 type UtbetalingsperiodeOppsummeringProps = Props & PeriodePersonTypeMedBarnProps;
 
-export const UtbetalingsperiodeOppsummering: React.FC<UtbetalingsperiodeOppsummeringProps> = ({
+export const UtbetalingsperiodeOppsummering: FC<UtbetalingsperiodeOppsummeringProps> = ({
     utbetalingsperiode,
     nummer,
     fjernPeriodeCallback = undefined,

@@ -1,4 +1,5 @@
 import { Checkbox, FormSummary, VStack } from '@navikt/ds-react';
+import type { ChangeEvent, FC } from 'react';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import type { LocaleRecordBlock } from '../../../../common/typer/locale';
@@ -25,7 +26,7 @@ interface Props {
     ) => void;
 }
 
-const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
+const LastOppVedlegg: FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
     const { søknad, tekster, plainTekst } = useAppContext();
 
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
@@ -38,7 +39,7 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon 
         plainTekst
     );
 
-    const settHarSendtInnTidligere = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const settHarSendtInnTidligere = (event: ChangeEvent<HTMLInputElement>) => {
         const huketAv = event.target.checked;
         const vedlegg = huketAv ? [] : dokumentasjon.opplastedeVedlegg;
         oppdaterDokumentasjon(dokumentasjon.dokumentasjonsbehov, vedlegg, huketAv);

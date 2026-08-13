@@ -2,7 +2,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { type Felt, type FeltState, feil, type ISkjema, ok, useFelt } from '@navikt/familie-skjema';
 import type { Alpha3Code } from 'i18n-iso-countries';
 
-import { type Dispatch, type SetStateAction, useEffect } from 'react';
+import { type Dispatch, type FC, type SetStateAction, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { useAppContext } from '../../../context/AppContext';
@@ -19,7 +19,7 @@ import { OppsummeringFelt } from '../Oppsummering/OppsummeringFelt';
 
 import { idNummerKeyPrefix, PeriodeType } from './idnummerUtils';
 
-export const IdNummer: React.FC<{
+export const IdNummer: FC<{
     skjema: ISkjema<IEøsForSøkerFeltTyper | IEøsForBarnFeltTyper, string>;
     settIdNummerFelter: Dispatch<SetStateAction<Felt<string>[]>>;
     landAlphaCode: Alpha3Code | '';

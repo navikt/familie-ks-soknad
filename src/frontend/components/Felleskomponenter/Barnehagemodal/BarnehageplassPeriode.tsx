@@ -1,4 +1,5 @@
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IBarnMedISøknad } from '../../../typer/barn';
@@ -25,7 +26,7 @@ interface BarnehageplassPeriodeProps {
     barn: IBarnMedISøknad;
 }
 
-export const BarnehageplassPeriode: React.FC<BarnehageplassPeriodeProps> = ({
+export const BarnehageplassPeriode: FC<BarnehageplassPeriodeProps> = ({
     skjema,
     registrerteBarnehageplassPerioder,
     leggTilBarnehageplassPeriode,

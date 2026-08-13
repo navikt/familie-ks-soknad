@@ -1,5 +1,6 @@
 import { ExclamationmarkTriangleIcon, TrashFillIcon } from '@navikt/aksel-icons';
 import { Button, Checkbox, FormSummary, InfoCard } from '@navikt/ds-react';
+import type { FC } from 'react';
 
 import type { LocaleRecordBlock } from '../../../../../common/typer/locale';
 import { useAppContext } from '../../../../context/AppContext';
@@ -17,7 +18,7 @@ interface IBarnekortProps {
     fjernBarnCallback: (ident: string) => void;
 }
 
-const Barnekort: React.FC<IBarnekortProps> = ({ barn, velgBarnCallback, barnSomSkalVæreMed, fjernBarnCallback }) => {
+const Barnekort: FC<IBarnekortProps> = ({ barn, velgBarnCallback, barnSomSkalVæreMed, fjernBarnCallback }) => {
     const {
         søknad: { barnRegistrertManuelt },
         tekster,

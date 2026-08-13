@@ -2,7 +2,7 @@ import { Box } from '@navikt/ds-react';
 import { type ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import type { ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import type { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
@@ -20,7 +20,7 @@ interface IJaNeiSpmProps {
     flettefelter?: FlettefeltVerdier;
 }
 
-const JaNeiSpm: React.FC<IJaNeiSpmProps> = ({
+const JaNeiSpm: FC<IJaNeiSpmProps> = ({
     skjema,
     felt,
     tilleggsinfo,

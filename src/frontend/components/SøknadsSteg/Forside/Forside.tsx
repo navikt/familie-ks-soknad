@@ -1,7 +1,7 @@
 import { Accordion, GuidePanel, Heading } from '@navikt/ds-react';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 
-import { useEffect } from 'react';
+import { type FC, useEffect } from 'react';
 
 import miljø from '../../../../common/miljø';
 import { useAppContext } from '../../../context/AppContext';
@@ -14,7 +14,7 @@ import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
 import styles from './Forside.module.css';
 import { FortsettPåSøknad } from './FortsettPåSøknad';
 
-const Forside: React.FC = () => {
+const Forside: FC = () => {
     const { mellomlagretVerdi, settNåværendeRoute, tekster, plainTekst } = useAppContext();
 
     const forsidetekster = tekster().FORSIDE;

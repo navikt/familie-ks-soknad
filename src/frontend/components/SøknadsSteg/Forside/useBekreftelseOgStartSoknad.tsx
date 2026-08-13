@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { type FormEvent, useState } from 'react';
 
 import { useNavigate } from 'react-router';
 
@@ -14,7 +14,7 @@ export enum BekreftelseStatus {
 }
 
 export const useBekreftelseOgStartSoknad = (): {
-    onStartSøknad: (event: React.FormEvent) => void;
+    onStartSøknad: (event: FormEvent) => void;
     bekreftelseOnChange: () => void;
     bekreftelseStatus: BekreftelseStatus;
     fortsettPåSøknaden: () => void;
@@ -68,7 +68,7 @@ export const useBekreftelseOgStartSoknad = (): {
         avbrytOgSlettSøknad();
     };
 
-    const onStartSøknad = (event: React.FormEvent) => {
+    const onStartSøknad = (event: FormEvent) => {
         event.preventDefault();
         if (bekreftelseStatus === BekreftelseStatus.BEKREFTET) {
             settSøknad({

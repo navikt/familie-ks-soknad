@@ -1,5 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import { Valideringsstatus } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IUtbetalingsperiode } from '../../../typer/perioder';
@@ -27,7 +28,7 @@ interface UtbetalingerModalProps extends IUseUtbetalingerSkjemaParams {
     forklaring?: string;
 }
 
-export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
+export const UtbetalingerModal: FC<UtbetalingerModalProps> = ({
     erÅpen,
     lukkModal,
     onLeggTilUtbetalinger,

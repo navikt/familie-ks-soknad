@@ -2,7 +2,15 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { byggHenterRessurs, hentDataFraRessurs } from '@navikt/familie-typer';
 import type { Alpha3Code } from 'i18n-iso-countries';
 
-import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
+import {
+    createContext,
+    type Dispatch,
+    type PropsWithChildren,
+    type SetStateAction,
+    useContext,
+    useEffect,
+    useState,
+} from 'react';
 
 import miljø from '../../common/miljø';
 import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
@@ -17,8 +25,8 @@ export interface EøsContext {
     erEøsLand: (land: Alpha3Code | '') => boolean;
     skalTriggeEøsForSøker: (søker: ISøker) => boolean;
     skalTriggeEøsForBarn: (barn: IBarnMedISøknad) => boolean;
-    settSøkerTriggerEøs: React.Dispatch<React.SetStateAction<boolean>>;
-    settBarnSomTriggerEøs: React.Dispatch<React.SetStateAction<string[]>>;
+    settSøkerTriggerEøs: Dispatch<SetStateAction<boolean>>;
+    settBarnSomTriggerEøs: Dispatch<SetStateAction<string[]>>;
     søkerTriggerEøs: boolean;
     barnSomTriggerEøs: BarnetsId[];
     erEøsTrigget: () => number | true;

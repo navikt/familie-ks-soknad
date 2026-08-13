@@ -1,13 +1,14 @@
 import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 import { Heading, InfoCard, Label, Loader, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../context/AppContext';
 import { Typografi } from '../../typer/common';
 import { ESanitySteg } from '../../typer/sanity/sanity';
 import TekstBlock from '../Felleskomponenter/TekstBlock';
 
-const Kontoinformasjon: React.FC = () => {
+const Kontoinformasjon: FC = () => {
     const { kontoinformasjon, tekster, plainTekst } = useAppContext();
 
     const kvitteringstekster = tekster()[ESanitySteg.KVITTERING];

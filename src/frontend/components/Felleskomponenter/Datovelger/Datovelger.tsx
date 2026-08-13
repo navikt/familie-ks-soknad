@@ -2,7 +2,7 @@ import { BodyShort, DatePicker, ErrorMessage, useDatepicker } from '@navikt/ds-r
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 import { formatISO, isAfter, startOfDay } from 'date-fns';
 
-import { type ReactNode, useEffect } from 'react';
+import { type FC, type ReactNode, useEffect } from 'react';
 
 import type { ISODateString } from '../../../../common/typer/ISODateString';
 import { useAppContext } from '../../../context/AppContext';
@@ -30,7 +30,7 @@ interface DatoVelgerProps {
     strategy?: 'absolute' | 'fixed';
 }
 
-const Datovelger: React.FC<DatoVelgerProps> = ({
+const Datovelger: FC<DatoVelgerProps> = ({
     felt,
     avgrensDatoFremITid = false,
     avgrensMaxDato,

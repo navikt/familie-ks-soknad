@@ -1,7 +1,7 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import type { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, FC, SetStateAction } from 'react';
 
 import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
 import type { LocaleRecordBlock } from '../../../../../../common/typer/locale';
@@ -20,7 +20,7 @@ import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/Ut
 import IdNummerForAndreForelder from '../../../EøsSteg/Barn/IdNummerForAndreForelder';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 
-const EøsAndreForelderOppsummering: React.FC<{
+const EøsAndreForelderOppsummering: FC<{
     barn: IBarnMedISøknad;
     andreForelder: IAndreForelder;
     skjema: ISkjema<IEøsForBarnFeltTyper, string>;

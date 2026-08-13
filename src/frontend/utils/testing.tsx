@@ -2,7 +2,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { HttpProvider } from '@navikt/familie-http';
 import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
-import type { PropsWithChildren, ReactNode } from 'react';
+import type { FC, PropsWithChildren, ReactNode } from 'react';
 import { Cookies, CookiesProvider } from 'react-cookie';
 import { MemoryRouter } from 'react-router';
 import { type Mock, type MockInstance, vi } from 'vitest';
@@ -138,7 +138,7 @@ export function mockEøs(barnSomTriggerEøs = [], søkerTriggerEøs = false): Mo
     return { useEøs, erEøsLand };
 }
 
-export const wrapMedProvidere = (providerComponents: React.FC<any>[], children?: ReactNode) => {
+export const wrapMedProvidere = (providerComponents: FC<any>[], children?: ReactNode) => {
     const [Første, ...resten] = providerComponents;
     return <Første>{resten.length ? wrapMedProvidere(resten, children) : children}</Første>;
 };

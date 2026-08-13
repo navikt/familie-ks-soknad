@@ -1,6 +1,6 @@
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
-import type { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, FC, SetStateAction } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { useEøsContext } from '../../../../context/EøsContext';
@@ -10,7 +10,7 @@ import { skalSkjuleAndreForelderFelt } from '../../../../utils/barn';
 import { IdNummer } from '../IdNummer';
 import { idNummerLandMedPeriodeType } from '../idnummerUtils';
 
-const IdNummerForAndreForelder: React.FC<{
+const IdNummerForAndreForelder: FC<{
     skjema: ISkjema<IEøsForBarnFeltTyper, string>;
     barn: IBarnMedISøknad;
     settIdNummerFelter: Dispatch<SetStateAction<Felt<string>[]>>;

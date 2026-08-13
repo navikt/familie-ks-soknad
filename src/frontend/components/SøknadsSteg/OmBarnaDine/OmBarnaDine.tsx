@@ -1,5 +1,6 @@
 import { InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { useNavigate } from 'react-router';
 
@@ -17,7 +18,7 @@ import type { IOmBarnaTekstinnhold } from './innholdTyper';
 import { OmBarnaDineSpørsmålId } from './spørsmål';
 import { useOmBarnaDine } from './useOmBarnaDine';
 
-const OmBarnaDine: React.FC = () => {
+const OmBarnaDine: FC = () => {
     const { skjema, validerFelterOgVisFeilmelding, valideringErOk, oppdaterSøknad } = useOmBarnaDine();
 
     const navigate = useNavigate();

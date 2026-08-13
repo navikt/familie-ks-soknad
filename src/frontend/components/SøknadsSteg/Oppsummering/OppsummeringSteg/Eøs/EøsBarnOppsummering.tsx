@@ -1,3 +1,4 @@
+import type { Dispatch, FC, SetStateAction } from 'react';
 import { useAppContext } from '../../../../../context/AppContext';
 import { useStegContext } from '../../../../../context/StegContext';
 import type { IBarnMedISøknad } from '../../../../../typer/barn';
@@ -13,11 +14,11 @@ import EøsAndreForelderOppsummering from './EøsAndreForelderOppsummering';
 import EøsOmsorgspersonOppsummering from './EøsOmsorgspersonOppsummering';
 
 interface Props {
-    settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
+    settFeilAnchors: Dispatch<SetStateAction<string[]>>;
     barn: IBarnMedISøknad;
 }
 
-const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
+const EøsBarnOppsummering: FC<Props> = ({ settFeilAnchors, barn }) => {
     const { hentStegObjektForBarnEøs } = useStegContext();
     const { tekster, plainTekst } = useAppContext();
     const eøsBarnTekster = tekster().EØS_FOR_BARN;

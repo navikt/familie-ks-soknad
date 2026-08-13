@@ -2,7 +2,7 @@ import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import type { Alpha3Code } from 'i18n-iso-countries';
 
-import type { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, FC, SetStateAction } from 'react';
 
 import { barnDataKeySpørsmål } from '../../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../../context/AppContext';
@@ -13,7 +13,7 @@ import { skalSpørreOmIdNummerForPågåendeSøknadEøsLand } from '../../../../u
 import { IdNummer } from '../IdNummer';
 import { idNummerLandMedPeriodeType, type PeriodeType } from '../idnummerUtils';
 
-const IdNummerForBarn: React.FC<{
+const IdNummerForBarn: FC<{
     landAlphaCode: Alpha3Code | '';
     periodeType?: PeriodeType;
     skjema: ISkjema<IEøsForBarnFeltTyper, string>;
@@ -36,7 +36,7 @@ const IdNummerForBarn: React.FC<{
     );
 };
 
-const SamletIdNummerForBarn: React.FC<{
+const SamletIdNummerForBarn: FC<{
     skjema: ISkjema<IEøsForBarnFeltTyper, string>;
     barn: IBarnMedISøknad;
     settIdNummerFelter: Dispatch<SetStateAction<Felt<string>[]>>;

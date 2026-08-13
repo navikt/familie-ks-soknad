@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 import { Slektsforhold } from '../../../../common/typer/kontrakt/generelle';
 import { useAppContext } from '../../../context/AppContext';
@@ -11,7 +11,7 @@ export interface SlektsforholdDropdownProps extends StyledDropdownProps<Slektsfo
     gjelderSøker?: boolean;
 }
 
-const SlektsforholdDropdown: React.FC<SlektsforholdDropdownProps> = ({ gjelderSøker = false, ...props }) => {
+const SlektsforholdDropdown: FC<SlektsforholdDropdownProps> = ({ gjelderSøker = false, ...props }) => {
     const { plainTekst, tekster } = useAppContext();
     const aktuelleSlektsforhold = gjelderSøker
         ? muligeSlektsforhold

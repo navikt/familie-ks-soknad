@@ -1,5 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import type { ISkjema } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import type { IBarnMedISøknad } from '../../../../typer/barn';
@@ -42,7 +43,7 @@ interface OmsorgspersonProps {
     };
 }
 
-const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunksjoner }) => {
+const Omsorgsperson: FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunksjoner }) => {
     const { plainTekst, tekster } = useAppContext();
     const eøsForBarnTekster = tekster().EØS_FOR_BARN;
     const {

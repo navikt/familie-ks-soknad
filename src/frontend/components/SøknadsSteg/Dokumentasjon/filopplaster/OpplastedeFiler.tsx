@@ -1,6 +1,7 @@
 import { PaperclipIcon, TrashFillIcon } from '@navikt/aksel-icons';
 import { Button, HStack, List } from '@navikt/ds-react';
 import classNames from 'classnames';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { Typografi } from '../../../../typer/common';
@@ -15,7 +16,7 @@ interface Props {
     slettVedlegg: (vedlegg: IVedlegg) => void;
 }
 
-const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
+const OpplastedeFiler: FC<Props> = ({ filliste, slettVedlegg }) => {
     const { tekster, plainTekst } = useAppContext();
     return (
         <List>
