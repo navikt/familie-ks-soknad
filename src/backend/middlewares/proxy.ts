@@ -1,8 +1,7 @@
+import type { ClientRequest } from 'node:http';
 import type { Socket } from 'node:net';
 import { logError, logSecure } from '@navikt/familie-logging';
-
 import type { NextFunction, Request, RequestHandler, Response } from 'express';
-import type { ClientRequest } from 'http';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { v4 as uuid } from 'uuid';
 
