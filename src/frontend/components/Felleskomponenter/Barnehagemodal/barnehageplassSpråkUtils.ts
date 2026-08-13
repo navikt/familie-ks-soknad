@@ -12,7 +12,6 @@ export const hentBarnehageplassBeskrivelse = (
             return tekster.valgalternativBarnehageplassTidligere;
         case EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN:
             return tekster.valgalternativBarnehageplassIFremtid;
-        case EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ:
         default:
             return tekster.valgalternativBarnehageplassNaa;
     }
@@ -25,8 +24,6 @@ export const hentFraDatoSpørsmål = (
     switch (beskrivelse) {
         case EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN:
             return tekster.startdatoFremtid.sporsmal;
-        case EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE:
-        case EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ:
         default:
             return tekster.startdatoFortid.sporsmal;
     }
@@ -39,8 +36,6 @@ export const hentTilDatoSpørsmål = (
     switch (beskrivelse) {
         case EBarnehageplassPeriodeBeskrivelse.HATT_BARNEHAGEPLASS_TIDLIGERE:
             return tekster.sluttdatoFortid.sporsmal;
-        case EBarnehageplassPeriodeBeskrivelse.TILDELT_BARNEHAGEPLASS_I_FREMTIDEN:
-        case EBarnehageplassPeriodeBeskrivelse.HAR_BARNEHAGEPLASS_NÅ:
         default:
             return tekster.sluttdatoFremtid.sporsmal;
     }

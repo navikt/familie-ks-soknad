@@ -75,7 +75,6 @@ export const kontantstøttePeriodeModalSpørsmålSpråkId =
             case PersonType.omsorgsperson: {
                 return kontantstøttePeriodeOmsorgspersonSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
             }
-            case PersonType.søker:
             default:
                 return kontantstøttePeriodeSøkerSpørsmålSpråkId(periodenErAvsluttet)[spørsmålId];
         }

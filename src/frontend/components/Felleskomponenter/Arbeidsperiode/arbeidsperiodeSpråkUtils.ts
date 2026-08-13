@@ -25,7 +25,6 @@ export const arbeidsperiodeSpørsmålDokument = (
                 ? tekster().EØS_FOR_BARN.arbeidUtenforNorgeOmsorgsperson
                 : tekster().EØS_FOR_BARN.arbeidNorgeOmsorgsperson;
         }
-        case PersonType.søker:
         default:
             return gjelderUtlandet
                 ? tekster().DIN_LIVSSITUASJON.arbeidUtenforNorge

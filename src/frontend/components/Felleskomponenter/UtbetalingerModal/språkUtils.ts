@@ -14,7 +14,6 @@ export const mottarEllerMottattUtbetalingApiNavn = (
                 : tekster.EØS_FOR_BARN.utbetalingerAndreForelder;
         case PersonType.omsorgsperson:
             return tekster.EØS_FOR_BARN.utbetalingerOmsorgsperson;
-        case PersonType.søker:
         default:
             return tekster.EØS_FOR_SØKER.utbetalinger;
     }

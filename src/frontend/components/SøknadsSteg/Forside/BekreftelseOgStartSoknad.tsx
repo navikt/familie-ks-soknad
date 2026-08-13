@@ -21,7 +21,6 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                 return 'success';
             case BekreftelseStatus.FEIL:
                 return 'danger';
-            case BekreftelseStatus.NORMAL:
             default:
                 return 'warning';
         }

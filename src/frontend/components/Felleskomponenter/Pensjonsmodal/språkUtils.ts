@@ -64,7 +64,6 @@ export const pensjonSpørsmålDokument = (
                 ? tekster()[ESanitySteg.EØS_FOR_BARN].pensjonUtlandOmsorgsperson
                 : tekster()[ESanitySteg.EØS_FOR_BARN].pensjonNorgeOmsorgsperson;
         }
-        case PersonType.søker:
         default: {
             return gjelderUtlandet
                 ? tekster()[ESanitySteg.DIN_LIVSSITUASJON].pensjonUtland
