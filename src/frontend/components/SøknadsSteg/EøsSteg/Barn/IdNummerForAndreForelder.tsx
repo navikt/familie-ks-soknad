@@ -1,5 +1,5 @@
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
-import type React from 'react';
+
 import type { Dispatch, SetStateAction } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';

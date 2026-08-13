@@ -1,6 +1,5 @@
 import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 import { Button, Modal } from '@navikt/ds-react';
-import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';

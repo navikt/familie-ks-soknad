@@ -1,5 +1,4 @@
 import { Button, Heading, Modal } from '@navikt/ds-react';
-import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 

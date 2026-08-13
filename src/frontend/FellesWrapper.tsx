@@ -1,7 +1,7 @@
 import { HttpProvider } from '@navikt/familie-http';
 
 import * as Sentry from '@sentry/react';
-import React, { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { CookiesProvider } from 'react-cookie';
 
 import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';

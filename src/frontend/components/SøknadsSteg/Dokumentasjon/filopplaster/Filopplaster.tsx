@@ -1,5 +1,4 @@
 import { FileUpload, Heading, List, VStack } from '@navikt/ds-react';
-import type React from 'react';
 
 import type { Dokumentasjonsbehov } from '../../../../../common/typer/kontrakt/dokumentasjon';
 import { useAppContext } from '../../../../context/AppContext';

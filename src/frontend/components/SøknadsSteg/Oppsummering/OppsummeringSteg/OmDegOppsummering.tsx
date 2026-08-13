@@ -1,7 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
 import type { Alpha3Code } from 'i18n-iso-countries';
-import type React from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { useRoutesContext } from '../../../../context/RoutesContext';

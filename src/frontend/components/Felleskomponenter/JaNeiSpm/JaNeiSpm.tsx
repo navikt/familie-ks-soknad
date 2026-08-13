@@ -1,7 +1,7 @@
 import { Box } from '@navikt/ds-react';
 import { type ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
-import type React from 'react';
+
 import type { ReactNode } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 

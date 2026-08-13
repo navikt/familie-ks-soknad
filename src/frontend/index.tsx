@@ -1,7 +1,6 @@
 import { awaitDecoratorData } from '@navikt/nav-dekoratoren-moduler';
 import type { LocaleData } from 'i18n-iso-countries';
 import { registerLocale } from 'i18n-iso-countries';
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 

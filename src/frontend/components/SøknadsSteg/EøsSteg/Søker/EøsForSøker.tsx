@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { useAppContext } from '../../../../context/AppContext';
 import { PersonType } from '../../../../typer/personType';
 import { uppercaseFørsteBokstav } from '../../../../utils/visning';

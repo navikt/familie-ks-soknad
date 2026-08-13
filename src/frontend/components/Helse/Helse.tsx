@@ -6,7 +6,7 @@ import {
     type Ressurs,
     RessursStatus,
 } from '@navikt/familie-typer';
-import type React from 'react';
+
 import { useEffect, useState } from 'react';
 
 import miljø from '../../../common/miljø';

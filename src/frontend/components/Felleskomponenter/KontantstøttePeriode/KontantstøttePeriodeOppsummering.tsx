@@ -1,5 +1,4 @@
 import { ESvar } from '@navikt/familie-form-elements';
-import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';

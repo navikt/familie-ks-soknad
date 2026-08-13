@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { useAppContext } from '../../../../../context/AppContext';
 import { useStegContext } from '../../../../../context/StegContext';
 import type { IBarnMedISøknad } from '../../../../../typer/barn';

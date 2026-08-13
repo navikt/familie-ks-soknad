@@ -1,5 +1,4 @@
 import { ESvar } from '@navikt/familie-form-elements';
-import type React from 'react';
 
 import type { FlettefeltVerdier } from '../../../../../../common/typer/kontrakt/generelle';
 import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';

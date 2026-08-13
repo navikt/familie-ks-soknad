@@ -1,7 +1,7 @@
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { type Alpha3Code, getAlpha3Codes, getName } from 'i18n-iso-countries';
-import type React from 'react';
+
 import type { ReactNode } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';

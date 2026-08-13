@@ -1,7 +1,6 @@
 import { Checkbox, ErrorMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt } from '@navikt/familie-skjema';
-import type React from 'react';
 
 export const SkjemaCheckbox: React.FC<{
     felt: Felt<ESvar>;

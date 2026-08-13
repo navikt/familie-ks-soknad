@@ -1,7 +1,6 @@
 import { ArrowLeftIcon, ArrowRightIcon, FloppydiskIcon, PaperplaneIcon, TrashIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, HGrid, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
-import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';

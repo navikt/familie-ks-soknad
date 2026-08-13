@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { useAppContext } from '../context/AppContext';
 
 const Barn3: React.FC = () => {

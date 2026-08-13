@@ -2,7 +2,6 @@ import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 import { InfoCard } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
-import type React from 'react';
 
 import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../context/AppContext';

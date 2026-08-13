@@ -1,6 +1,5 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import { Valideringsstatus } from '@navikt/familie-skjema';
-import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IUtbetalingsperiode } from '../../../typer/perioder';

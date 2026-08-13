@@ -1,7 +1,7 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import { byggHenterRessurs, hentDataFraRessurs } from '@navikt/familie-typer';
 import type { Alpha3Code } from 'i18n-iso-countries';
-import type React from 'react';
+
 import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 import miljø from '../../common/miljø';

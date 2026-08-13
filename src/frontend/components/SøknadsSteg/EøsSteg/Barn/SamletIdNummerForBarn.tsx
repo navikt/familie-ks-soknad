@@ -1,7 +1,7 @@
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import type { Alpha3Code } from 'i18n-iso-countries';
-import type React from 'react';
+
 import type { Dispatch, SetStateAction } from 'react';
 
 import { barnDataKeySpørsmål } from '../../../../../common/typer/kontrakt/søknadKontrakt';

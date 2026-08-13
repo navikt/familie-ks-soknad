@@ -1,7 +1,7 @@
 import { BodyShort, DatePicker, ErrorMessage, useDatepicker } from '@navikt/ds-react';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 import { formatISO, isAfter, startOfDay } from 'date-fns';
-import type React from 'react';
+
 import { type ReactNode, useEffect } from 'react';
 
 import type { ISODateString } from '../../../../common/typer/ISODateString';

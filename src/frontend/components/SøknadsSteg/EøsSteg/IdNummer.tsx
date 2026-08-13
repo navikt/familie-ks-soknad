@@ -1,7 +1,7 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import { type Felt, type FeltState, feil, type ISkjema, ok, useFelt } from '@navikt/familie-skjema';
 import type { Alpha3Code } from 'i18n-iso-countries';
-import type React from 'react';
+
 import { type Dispatch, type SetStateAction, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 

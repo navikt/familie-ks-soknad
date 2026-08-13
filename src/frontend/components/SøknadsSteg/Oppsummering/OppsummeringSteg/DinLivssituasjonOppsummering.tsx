@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { useAppContext } from '../../../../context/AppContext';
 import { useRoutesContext } from '../../../../context/RoutesContext';
 import { PersonType } from '../../../../typer/personType';

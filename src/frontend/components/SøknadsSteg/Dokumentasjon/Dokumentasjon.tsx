@@ -2,7 +2,7 @@ import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 import { BodyShort, Heading, InfoCard, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 import { add, isBefore } from 'date-fns';
-import type React from 'react';
+
 import { useState } from 'react';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';

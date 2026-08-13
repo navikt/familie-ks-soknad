@@ -1,7 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { parseISO } from 'date-fns';
-import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IPensjonsperiode } from '../../../typer/perioder';

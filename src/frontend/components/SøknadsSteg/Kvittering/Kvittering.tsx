@@ -2,7 +2,7 @@ import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-
 import { InfoCard, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 import { format } from 'date-fns';
-import type React from 'react';
+
 import { useEffect, useRef } from 'react';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';

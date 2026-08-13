@@ -1,5 +1,4 @@
 import { BodyShort, InfoCard, type InfoCardProps } from '@navikt/ds-react';
-import type React from 'react';
 
 interface Props {
     image: React.ReactNode;

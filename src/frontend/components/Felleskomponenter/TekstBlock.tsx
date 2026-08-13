@@ -1,7 +1,7 @@
 import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds-react';
 
 import { PortableText } from '@portabletext/react';
-import type React from 'react';
+
 import type { ReactNode } from 'react';
 
 import type { FlettefeltVerdier } from '../../../common/typer/kontrakt/generelle';

@@ -1,6 +1,5 @@
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
-import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import type { IBarnMedISøknad } from '../../../typer/barn';

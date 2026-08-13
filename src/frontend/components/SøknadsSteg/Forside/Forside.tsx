@@ -1,6 +1,6 @@
 import { Accordion, GuidePanel, Heading } from '@navikt/ds-react';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
-import type React from 'react';
+
 import { useEffect } from 'react';
 
 import miljø from '../../../../common/miljø';

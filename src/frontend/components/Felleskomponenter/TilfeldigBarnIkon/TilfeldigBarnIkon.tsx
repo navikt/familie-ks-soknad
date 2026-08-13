@@ -1,4 +1,3 @@
-import type React from 'react';
 import { useState } from 'react';
 
 import Barn1 from '../../../assets/Barn1';

@@ -1,6 +1,6 @@
 import { FormSummary } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
-import type React from 'react';
+
 import { type MouseEventHandler, type ReactNode, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 

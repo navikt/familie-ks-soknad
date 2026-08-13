@@ -1,4 +1,4 @@
-import React from 'react';
+import { type Dispatch, type FC, Fragment, type SetStateAction } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { useRoutesContext } from '../../../../context/RoutesContext';
@@ -12,10 +12,10 @@ import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';
 
 interface Props {
-    settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
+    settFeilAnchors: Dispatch<SetStateAction<string[]>>;
 }
 
-const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
+const VelgBarnOppsummering: FC<Props> = ({ settFeilAnchors }) => {
     const { søknad, tekster, plainTekst } = useAppContext();
     const velgBarnTekster = tekster().VELG_BARN;
     const leggTilBarnModalTekster = tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;
@@ -31,7 +31,7 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
             settFeilAnchors={settFeilAnchors}
         >
             {søknad.barnInkludertISøknaden.map((barn, index) => (
-                <React.Fragment key={index}>
+                <Fragment key={index}>
                     <OppsummeringFelt
                         tittel={<TekstBlock block={leggTilBarnModalTekster.barnetsNavnSubtittel} />}
                         søknadsvar={
@@ -52,7 +52,7 @@ const VelgBarnOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                             søknadsvar={plainTekst(hentBostedSpråkId(barn, teksterForSteg))}
                         />
                     )}
-                </React.Fragment>
+                </Fragment>
             ))}
         </Oppsummeringsbolk>
     );

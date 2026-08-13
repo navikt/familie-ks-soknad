@@ -1,7 +1,6 @@
 import { PaperclipIcon, TrashFillIcon } from '@navikt/aksel-icons';
 import { Button, HStack, List } from '@navikt/ds-react';
 import classNames from 'classnames';
-import type React from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { Typografi } from '../../../../typer/common';

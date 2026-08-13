@@ -1,5 +1,3 @@
-import type React from 'react';
-
 import { Route, Routes, useParams } from 'react-router';
 
 import RedirectTilStart from './components/Felleskomponenter/RedirectTilStart/RedirectTilStart';

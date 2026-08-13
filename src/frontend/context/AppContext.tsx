@@ -8,7 +8,7 @@ import {
 } from '@navikt/familie-typer';
 
 import { type Alpha3Code, getName } from 'i18n-iso-countries';
-import type React from 'react';
+
 import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 import miljø, { BASE_PATH } from '../../common/miljø';

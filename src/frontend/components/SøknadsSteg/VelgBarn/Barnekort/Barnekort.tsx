@@ -1,6 +1,5 @@
 import { ExclamationmarkTriangleIcon, TrashFillIcon } from '@navikt/aksel-icons';
 import { Button, Checkbox, FormSummary, InfoCard } from '@navikt/ds-react';
-import type React from 'react';
 
 import type { LocaleRecordBlock } from '../../../../../common/typer/locale';
 import { useAppContext } from '../../../../context/AppContext';

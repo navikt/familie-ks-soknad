@@ -1,7 +1,6 @@
 import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 import { Heading, InfoCard, Label, Loader, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
-import type React from 'react';
 
 import { useAppContext } from '../../context/AppContext';
 import { Typografi } from '../../typer/common';

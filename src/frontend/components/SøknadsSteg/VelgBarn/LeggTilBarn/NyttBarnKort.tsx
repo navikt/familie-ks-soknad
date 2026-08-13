@@ -1,5 +1,4 @@
 import { BodyShort, Box, Button } from '@navikt/ds-react';
-import type React from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import type { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';

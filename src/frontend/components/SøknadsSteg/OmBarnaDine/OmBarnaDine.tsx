@@ -1,6 +1,6 @@
 import { InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
-import type React from 'react';
+
 import { useNavigate } from 'react-router';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';

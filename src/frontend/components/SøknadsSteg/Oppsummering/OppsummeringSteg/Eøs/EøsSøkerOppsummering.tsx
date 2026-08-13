@@ -1,5 +1,4 @@
 import type { ESvar } from '@navikt/familie-form-elements';
-import type React from 'react';
 
 import type { LocaleRecordBlock, LocaleRecordString } from '../../../../../../common/typer/locale';
 import { useAppContext } from '../../../../../context/AppContext';

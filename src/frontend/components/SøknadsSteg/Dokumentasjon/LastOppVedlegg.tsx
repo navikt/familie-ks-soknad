@@ -1,5 +1,4 @@
 import { Checkbox, FormSummary, VStack } from '@navikt/ds-react';
-import type React from 'react';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import type { LocaleRecordBlock } from '../../../../common/typer/locale';
