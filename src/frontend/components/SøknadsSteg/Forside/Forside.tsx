@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 
 import miljø from '../../../../common/miljø';
 import { useAppContext } from '../../../context/AppContext';
-import useFørsteRender from '../../../hooks/useFørsteRender';
 import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
 import InnholdContainer from '../../Felleskomponenter/InnholdContainer/InnholdContainer';

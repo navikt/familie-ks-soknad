@@ -1,5 +1,5 @@
 import { onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
-import React, { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
+import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 
 import { LocaleType } from '../../common/typer/locale';

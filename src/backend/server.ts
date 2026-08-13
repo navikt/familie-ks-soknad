@@ -3,7 +3,6 @@ import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import express from 'express';
-import { rateLimit } from 'express-rate-limit';
 import type { ViteDevServer } from 'vite';
 
 import miljø, { BASE_PATH, erLokalt } from '../common/miljø.js';

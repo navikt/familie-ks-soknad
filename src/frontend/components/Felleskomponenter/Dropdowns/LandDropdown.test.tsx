@@ -2,7 +2,6 @@ import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
 import { render } from '@testing-library/react';
 import type { Alpha3Code } from 'i18n-iso-countries';
-import React from 'react';
 import { mockDeep } from 'vitest-mock-extended';
 
 import type { SkjemaFeltTyper } from '../../../typer/skjema';

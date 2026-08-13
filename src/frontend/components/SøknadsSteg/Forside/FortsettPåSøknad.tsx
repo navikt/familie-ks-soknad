@@ -1,6 +1,6 @@
 import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { Button, InfoCard, VStack } from '@navikt/ds-react';
-import React, { type FC } from 'react';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { SlettSøknadenModal } from '../../Felleskomponenter/Steg/SlettSøknadenModal';

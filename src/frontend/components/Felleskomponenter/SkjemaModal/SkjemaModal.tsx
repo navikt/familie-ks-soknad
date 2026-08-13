@@ -1,5 +1,5 @@
 import { BodyShort, Button, Modal, VStack } from '@navikt/ds-react';
-import React, { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import type { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
 import type { LocaleRecordBlock } from '../../../../common/typer/locale';

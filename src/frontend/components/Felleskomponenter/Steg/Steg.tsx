@@ -2,13 +2,12 @@ import { ArrowLeftIcon, InformationSquareIcon } from '@navikt/aksel-icons';
 import { Box, FormProgress, GuidePanel, Heading, InfoCard, Link, VStack } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
-import React, { type ReactNode, useEffect } from 'react';
+import { type ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useAppNavigationContext } from '../../../context/AppNavigationContext';
 import { useStegContext } from '../../../context/StegContext';
-import useFørsteRender from '../../../hooks/useFørsteRender';
 import { RouteEnum } from '../../../typer/routes';
 import type { SkjemaFeltTyper } from '../../../typer/skjema';
 import type { ISøknad } from '../../../typer/søknad';

@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import React from 'react';
 
 import { ESivilstand } from '../../../../common/typer/kontrakt/generelle';
 import type { ISøker } from '../../../typer/person';

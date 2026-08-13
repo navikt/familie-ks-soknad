@@ -1,5 +1,4 @@
 import { render } from '@testing-library/react';
-import React from 'react';
 import { mockDeep } from 'vitest-mock-extended';
 
 import type { IBarnMedISøknad } from '../../../typer/barn';

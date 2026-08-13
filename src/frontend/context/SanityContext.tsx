@@ -1,7 +1,7 @@
 import { byggHenterRessurs, byggTomRessurs, type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import { createClient } from '@sanity/client';
-import React, { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
+import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 import miljø from '../../common/miljø';
 import type { SanityDokument } from '../typer/sanity/sanity';

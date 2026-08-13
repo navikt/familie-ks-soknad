@@ -1,6 +1,5 @@
 import { BodyShort } from '@navikt/ds-react';
 import { type FeltState, feil, ok } from '@navikt/familie-skjema';
-import React from 'react';
 
 import type { IAdresse, PlainTekst } from '../../common/typer/kontrakt/generelle';
 import type { IOmDegTekstinnhold } from '../components/SøknadsSteg/OmDeg/innholdTyper';

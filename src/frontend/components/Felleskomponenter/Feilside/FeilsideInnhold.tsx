@@ -1,5 +1,5 @@
 import { BodyShort, Button, Heading, Link } from '@navikt/ds-react';
-import React, { type FC } from 'react';
+import type { FC } from 'react';
 
 import { LocaleType } from '../../../../common/typer/locale';
 import { useSpråkContext } from '../../../context/SpråkContext';

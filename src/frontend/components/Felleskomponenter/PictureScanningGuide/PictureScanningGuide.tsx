@@ -1,6 +1,5 @@
 import { CheckmarkCircleIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
 import { ExpansionCard, Heading, HGrid, VStack } from '@navikt/ds-react';
-import React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import TekstBlock from '../TekstBlock';

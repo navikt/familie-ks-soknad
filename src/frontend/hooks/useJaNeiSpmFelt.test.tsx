@@ -2,7 +2,6 @@ import type { ESvar } from '@navikt/familie-form-elements';
 import { type Felt, Valideringsstatus } from '@navikt/familie-skjema';
 import { renderHook } from '@testing-library/react';
 import type { Alpha3Code } from 'i18n-iso-countries';
-import React from 'react';
 import { mock } from 'vitest-mock-extended';
 
 import type { ISODateString } from '../../common/typer/ISODateString';

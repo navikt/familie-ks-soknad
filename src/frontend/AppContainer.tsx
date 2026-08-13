@@ -1,6 +1,5 @@
 import { Box, GlobalAlert, Page } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
-import React from 'react';
 
 import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
 import SystemetLaster from './components/Felleskomponenter/SystemetLaster/SystemetLaster';

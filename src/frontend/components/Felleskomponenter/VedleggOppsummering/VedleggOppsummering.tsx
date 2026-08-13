@@ -1,5 +1,5 @@
 import { List } from '@navikt/ds-react';
-import React, { type FC } from 'react';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { dokumentasjonsbehovTilTittelSanityApiNavn } from '../../../typer/dokumentasjon';

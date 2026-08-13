@@ -1,5 +1,4 @@
 import { GlobalAlert } from '@navikt/ds-react';
-import React from 'react';
 import { BrowserRouter as Router } from 'react-router';
 
 import { BASE_PATH } from '../common/miljø';

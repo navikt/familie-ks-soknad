@@ -1,5 +1,5 @@
 import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
-import React, { createContext, type PropsWithChildren, useContext, useState } from 'react';
+import { createContext, type PropsWithChildren, useContext, useState } from 'react';
 
 import { defaultFeatureToggleValues, type EAllFeatureToggles } from '../../common/feature-toggles';
 import { BASE_PATH } from '../../common/miljø';

@@ -1,7 +1,7 @@
 import { PlusCircleIcon } from '@navikt/aksel-icons';
 import { Box, Button, ErrorMessage, FormSummary } from '@navikt/ds-react';
 import classNames from 'classnames';
-import React, { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import styles from './LeggTilKnapp.module.css';
 

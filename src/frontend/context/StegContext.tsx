@@ -1,4 +1,4 @@
-import React, { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
+import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 import { matchPath, useLocation } from 'react-router';
 

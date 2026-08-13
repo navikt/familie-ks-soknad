@@ -1,5 +1,5 @@
 import { Link } from '@navikt/ds-react';
-import React, { type MouseEventHandler, type ReactNode } from 'react';
+import type { MouseEventHandler, ReactNode } from 'react';
 import { useNavigate } from 'react-router';
 
 import { BASE_PATH } from '../../../../common/miljø';

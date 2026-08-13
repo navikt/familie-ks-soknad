@@ -1,7 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
 import { act, render } from '@testing-library/react';
-import React from 'react';
 import type { DeepPartial } from 'ts-essentials';
 import { vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
