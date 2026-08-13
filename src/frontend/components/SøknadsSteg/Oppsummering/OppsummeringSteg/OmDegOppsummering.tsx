@@ -57,10 +57,9 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                 )}
             />
 
-            <OppsummeringFelt
-                tittel={plainTekst(omDegTekster.adresse)}
-                children={genererAdresseVisning(søknad.søker, omDegTekster, plainTekst)}
-            />
+            <OppsummeringFelt tittel={plainTekst(omDegTekster.adresse)}>
+                {genererAdresseVisning(søknad.søker, omDegTekster, plainTekst)}
+            </OppsummeringFelt>
             {søknad.søker.borPåRegistrertAdresse.svar && (
                 <OppsummeringFelt
                     tittel={<TekstBlock block={omDegTekster.borPaaAdressen.sporsmal} />}
