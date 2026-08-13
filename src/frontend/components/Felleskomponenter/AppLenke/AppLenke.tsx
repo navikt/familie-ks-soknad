@@ -1,13 +1,11 @@
-import React, { MouseEventHandler, ReactNode } from 'react';
-
-import { useNavigate } from 'react-router';
-
 import { Link } from '@navikt/ds-react';
+import React, { type MouseEventHandler, type ReactNode } from 'react';
+import { useNavigate } from 'react-router';
 
 import { BASE_PATH } from '../../../../common/miljø';
 import { unslash } from '../../../../common/unslash';
 import { useAppNavigationContext } from '../../../context/AppNavigationContext';
-import { ISteg } from '../../../typer/routes';
+import type { ISteg } from '../../../typer/routes';
 
 interface Props {
     steg: ISteg;

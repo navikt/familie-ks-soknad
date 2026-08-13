@@ -1,17 +1,17 @@
-import React, { Dispatch, SetStateAction } from 'react';
-
-import { Alpha3Code } from 'i18n-iso-countries';
-
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+
+import type { Alpha3Code } from 'i18n-iso-countries';
+import type React from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 
 import { barnDataKeySpørsmål } from '../../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../../context/AppContext';
 import { useEøsContext } from '../../../../context/EøsContext';
-import { IBarnMedISøknad } from '../../../../typer/barn';
-import { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
+import type { IBarnMedISøknad } from '../../../../typer/barn';
+import type { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
 import { skalSpørreOmIdNummerForPågåendeSøknadEøsLand } from '../../../../utils/barn';
 import { IdNummer } from '../IdNummer';
-import { idNummerLandMedPeriodeType, PeriodeType } from '../idnummerUtils';
+import { idNummerLandMedPeriodeType, type PeriodeType } from '../idnummerUtils';
 
 const IdNummerForBarn: React.FC<{
     landAlphaCode: Alpha3Code | '';

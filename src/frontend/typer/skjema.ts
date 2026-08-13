@@ -1,14 +1,13 @@
-import { Alpha3Code } from 'i18n-iso-countries';
+import type { ESvar } from '@navikt/familie-form-elements';
+import type { Alpha3Code } from 'i18n-iso-countries';
 
-import { ESvar } from '@navikt/familie-form-elements';
+import type { ISODateString } from '../../common/typer/ISODateString';
+import type { Slektsforhold } from '../../common/typer/kontrakt/generelle';
+import type { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
+import type { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 
-import { ISODateString } from '../../common/typer/ISODateString';
-import { Slektsforhold } from '../../common/typer/kontrakt/generelle';
-import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
-import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
-
-import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent } from './common';
-import {
+import type { AlternativtSvarForInput, BarnetsId, DatoMedUkjent } from './common';
+import type {
     IArbeidsperiode,
     IBarnehageplassPeriode,
     IEøsKontantstøttePeriode,
@@ -16,8 +15,8 @@ import {
     IUtbetalingsperiode,
     IUtenlandsperiode,
 } from './perioder';
-import { IBarn, IIdNummer } from './person';
-import { EUtenlandsoppholdÅrsak } from './utenlandsopphold';
+import type { IBarn, IIdNummer } from './person';
+import type { EUtenlandsoppholdÅrsak } from './utenlandsopphold';
 
 export interface IDinLivssituasjonFeltTyper {
     erAsylsøker: ESvar | null;
@@ -143,10 +142,11 @@ export interface IVelgBarnFeltTyper {
     barnMedISøknad: IBarn[];
 }
 
-export interface ILeggTilBarnTyper extends Omit<
-    IBarn,
-    'borMedSøker' | 'alder' | 'erUnder11Mnd' | 'navn' | 'adressebeskyttelse' | 'id' | barnDataKeySpørsmål
-> {
+export interface ILeggTilBarnTyper
+    extends Omit<
+        IBarn,
+        'borMedSøker' | 'alder' | 'erUnder11Mnd' | 'navn' | 'adressebeskyttelse' | 'id' | barnDataKeySpørsmål
+    > {
     fornavn: string;
     etternavn: string;
     navnetErUbestemt: ESvar;
@@ -204,7 +204,9 @@ export interface IBarnehageplassPerioderFeltTyper {
     barnehageplassLand: Alpha3Code | '';
     offentligStøtte: ESvar | null;
     harHeltidDeltidBarnehageplass:
-        AlternativtSvarForInput.BARNEHAGEPLASS_HELTID | AlternativtSvarForInput.BARNEHAGEPLASS_DELTID | null;
+        | AlternativtSvarForInput.BARNEHAGEPLASS_HELTID
+        | AlternativtSvarForInput.BARNEHAGEPLASS_DELTID
+        | null;
     antallTimer: string;
     startetIBarnehagen: ISODateString;
     slutterIBarnehagen: ISODateString;

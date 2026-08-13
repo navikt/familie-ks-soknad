@@ -1,11 +1,15 @@
-import { ERegistrertBostedType, Slektsforhold, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
-import { ISøknadIKontraktBarn } from '../../../common/typer/kontrakt/søknadKontrakt';
-import { LocaleRecordBlock, LocaleRecordString } from '../../../common/typer/locale';
+import {
+    ERegistrertBostedType,
+    type Slektsforhold,
+    type TilRestLocaleRecord,
+} from '../../../common/typer/kontrakt/generelle';
+import type { ISøknadIKontraktBarn } from '../../../common/typer/kontrakt/søknadKontrakt';
+import type { LocaleRecordBlock, LocaleRecordString } from '../../../common/typer/locale';
 import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
-import { IBarnMedISøknad } from '../../typer/barn';
+import type { IBarnMedISøknad } from '../../typer/barn';
 import { PersonType } from '../../typer/personType';
-import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
-import { ISøknad } from '../../typer/søknad';
+import type { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
+import type { ISøknad } from '../../typer/søknad';
 import { hentSlektsforhold, landkodeTilSpråk } from '../språk';
 
 import { andreForelderTilISøknadsfelt } from './andreForelder';

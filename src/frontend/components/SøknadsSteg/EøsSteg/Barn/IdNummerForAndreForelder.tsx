@@ -1,11 +1,11 @@
-import React, { Dispatch, SetStateAction } from 'react';
-
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type React from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { useEøsContext } from '../../../../context/EøsContext';
-import { IBarnMedISøknad } from '../../../../typer/barn';
-import { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
+import type { IBarnMedISøknad } from '../../../../typer/barn';
+import type { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
 import { skalSkjuleAndreForelderFelt } from '../../../../utils/barn';
 import { IdNummer } from '../IdNummer';
 import { idNummerLandMedPeriodeType } from '../idnummerUtils';

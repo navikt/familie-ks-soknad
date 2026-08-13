@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-
-import { useNavigate } from 'react-router';
-
 import { VStack } from '@navikt/ds-react';
+import type React from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
+import type { IBarnMedISøknad } from '../../../typer/barn';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';

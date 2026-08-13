@@ -1,10 +1,10 @@
-import { ESvar } from '@navikt/familie-form-elements';
+import type { ESvar } from '@navikt/familie-form-elements';
 
-import { ISODateString } from '../ISODateString.js';
-import { LocaleType } from '../locale.js';
+import type { ISODateString } from '../ISODateString.js';
+import type { LocaleType } from '../locale.js';
 
-import { ISøknadKontraktDokumentasjon } from './dokumentasjon.js';
-import {
+import type { ISøknadKontraktDokumentasjon } from './dokumentasjon.js';
+import type {
     ERegistrertBostedType,
     ESivilstand,
     IAdresse,

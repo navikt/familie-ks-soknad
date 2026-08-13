@@ -1,19 +1,18 @@
-import React, { MouseEventHandler, ReactNode, useEffect, useState } from 'react';
-
-import { useNavigate } from 'react-router';
-
 import { FormSummary } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
+import type React from 'react';
+import { type MouseEventHandler, type ReactNode, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import { BASE_PATH } from '../../../../common/miljø';
-import { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
-import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
+import type { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
 import { unslash } from '../../../../common/unslash';
 import { useAppContext } from '../../../context/AppContext';
 import { useStegContext } from '../../../context/StegContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
-import { ISteg, RouteEnum } from '../../../typer/routes';
-import { SkjemaFeltTyper } from '../../../typer/skjema';
+import type { IBarnMedISøknad } from '../../../typer/barn';
+import { type ISteg, RouteEnum } from '../../../typer/routes';
+import type { SkjemaFeltTyper } from '../../../typer/skjema';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import { SkjemaFeiloppsummering } from '../../Felleskomponenter/SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 

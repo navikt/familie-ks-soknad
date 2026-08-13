@@ -1,14 +1,14 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { ESivilstand, PlainTekst, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
-import { ISøknadKontrakt } from '../../../common/typer/kontrakt/søknadKontrakt';
-import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../../common/typer/locale';
+import { ESivilstand, type PlainTekst, type TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
+import type { ISøknadKontrakt } from '../../../common/typer/kontrakt/søknadKontrakt';
+import type { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../../common/typer/locale';
 import { OmBarnaDineSpørsmålId } from '../../components/SøknadsSteg/OmBarnaDine/spørsmål';
-import { IBarnMedISøknad } from '../../typer/barn';
-import { ISøker } from '../../typer/person';
+import type { IBarnMedISøknad } from '../../typer/barn';
+import type { ISøker } from '../../typer/person';
 import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
-import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
-import { ISøknad } from '../../typer/søknad';
+import type { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
+import type { ISøknad } from '../../typer/søknad';
 import { erDokumentasjonRelevant } from '../dokumentasjon';
 import { sivilstandTilSanitySivilstandApiKey } from '../språk';
 import { jaNeiSvarTilSpråkId } from '../spørsmål';

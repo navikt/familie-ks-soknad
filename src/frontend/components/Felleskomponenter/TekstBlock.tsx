@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react';
-
-import { PortableText } from '@portabletext/react';
-
 import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds-react';
 
-import { FlettefeltVerdier } from '../../../common/typer/kontrakt/generelle';
-import { LocaleRecordBlock } from '../../../common/typer/locale';
+import { PortableText } from '@portabletext/react';
+import type React from 'react';
+import type { ReactNode } from 'react';
+
+import type { FlettefeltVerdier } from '../../../common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock } from '../../../common/typer/locale';
 import { useAppContext } from '../../context/AppContext';
 import { useSpråkContext } from '../../context/SpråkContext';
 import { Typografi } from '../../typer/common';

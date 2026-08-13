@@ -1,9 +1,7 @@
-import React from 'react';
-
-import { useNavigate } from 'react-router';
-
 import { InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type React from 'react';
+import { useNavigate } from 'react-router';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
@@ -15,7 +13,7 @@ import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import HvilkeBarnCheckboxGruppe from './HvilkeBarnCheckboxGruppe';
-import { IOmBarnaTekstinnhold } from './innholdTyper';
+import type { IOmBarnaTekstinnhold } from './innholdTyper';
 import { OmBarnaDineSpørsmålId } from './spørsmål';
 import { useOmBarnaDine } from './useOmBarnaDine';
 

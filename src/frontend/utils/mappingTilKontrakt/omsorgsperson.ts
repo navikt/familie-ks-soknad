@@ -1,8 +1,8 @@
-import { Slektsforhold, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
-import { IOmsorgspersonIKontraktFormat } from '../../../common/typer/kontrakt/søknadKontrakt';
-import { IBarnMedISøknad } from '../../typer/barn';
-import { IOmsorgsperson } from '../../typer/omsorgsperson';
-import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
+import type { Slektsforhold, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
+import type { IOmsorgspersonIKontraktFormat } from '../../../common/typer/kontrakt/søknadKontrakt';
+import type { IBarnMedISøknad } from '../../typer/barn';
+import type { IOmsorgsperson } from '../../typer/omsorgsperson';
+import type { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { hentSlektsforhold, landkodeTilSpråk } from '../språk';
 
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';

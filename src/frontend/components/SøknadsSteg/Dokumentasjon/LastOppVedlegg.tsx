@@ -1,16 +1,15 @@
-import React from 'react';
-
 import { Checkbox, FormSummary, VStack } from '@navikt/ds-react';
+import type React from 'react';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
-import { LocaleRecordBlock } from '../../../../common/typer/locale';
+import type { LocaleRecordBlock } from '../../../../common/typer/locale';
 import { useAppContext } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import {
     dokumentasjonsbehovTilBeskrivelseSanityApiNavn,
     dokumentasjonsbehovTilTittelSanityApiNavn,
-    IDokumentasjon,
-    IVedlegg,
+    type IDokumentasjon,
+    type IVedlegg,
 } from '../../../typer/dokumentasjon';
 import { slåSammen } from '../../../utils/slåSammen';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';

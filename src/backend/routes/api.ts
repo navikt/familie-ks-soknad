@@ -1,4 +1,4 @@
-import express, { Express, RequestHandler } from 'express';
+import express, { type Express, type RequestHandler } from 'express';
 
 import miljø, { BASE_PATH } from '../../common/miljø.js';
 import { erklaeringInterceptor } from '../middlewares/erklaering-interceptor.js';

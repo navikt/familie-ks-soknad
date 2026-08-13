@@ -1,11 +1,10 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
+import type React from 'react';
 
 import { barnDataKeySpørsmål } from '../../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../../typer/barn';
-import { BarnetsId } from '../../../../typer/common';
+import type { IBarnMedISøknad } from '../../../../typer/barn';
+import type { BarnetsId } from '../../../../typer/common';
 import { PersonType } from '../../../../typer/personType';
 import { skalSkjuleAndreForelderFelt } from '../../../../utils/barn';
 import { uppercaseFørsteBokstav } from '../../../../utils/visning';

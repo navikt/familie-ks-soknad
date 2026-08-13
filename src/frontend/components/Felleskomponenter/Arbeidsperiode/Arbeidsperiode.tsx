@@ -1,13 +1,12 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { IArbeidsperiode } from '../../../typer/perioder';
-import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
-import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
-import {
+import type { IArbeidsperiode } from '../../../typer/perioder';
+import { type PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
+import type { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
+import type {
     IDinLivssituasjonFeltTyper,
     IEøsForBarnFeltTyper,
     IEøsForSøkerFeltTyper,

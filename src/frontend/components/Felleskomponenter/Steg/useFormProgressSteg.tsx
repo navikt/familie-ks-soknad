@@ -1,8 +1,8 @@
-import { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
-import { LocaleRecordBlock } from '../../../../common/typer/locale';
+import type { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock } from '../../../../common/typer/locale';
 import { useAppContext } from '../../../context/AppContext';
 import { useStegContext } from '../../../context/StegContext';
-import { ISteg, RouteEnum } from '../../../typer/routes';
+import { type ISteg, RouteEnum } from '../../../typer/routes';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';
 
 interface IStegMedTittel extends ISteg {
@@ -33,7 +33,7 @@ export const useFormProgressSteg = (): IStegMedTittel[] => {
     return steg
         .map(steg => {
             let tittelBlock: LocaleRecordBlock;
-            let tittelFlettefeltVerider: FlettefeltVerdier | undefined = undefined;
+            let tittelFlettefeltVerider: FlettefeltVerdier | undefined;
 
             switch (steg.route) {
                 case RouteEnum.Forside:
@@ -85,7 +85,7 @@ export const useFormProgressSteg = (): IStegMedTittel[] => {
                 case RouteEnum.Kvittering:
                     tittelBlock = KVITTERING.kvitteringTittel;
                     break;
-                default:
+                default: {
                     /*
                      * Det er viktig at alle enum-medlemmer i RouteEnum blir håndtert i switch-setningen.
                      * Hvis et medlem utelates, vil koden under feile fordi den forutsetter at hver route har en tilhørende tittel fra Sanity.
@@ -94,6 +94,7 @@ export const useFormProgressSteg = (): IStegMedTittel[] => {
                      */
                     const alleRouteEnumMedlemmerGjennomgås: never = steg.route;
                     return alleRouteEnumMedlemmerGjennomgås;
+                }
             }
 
             return {

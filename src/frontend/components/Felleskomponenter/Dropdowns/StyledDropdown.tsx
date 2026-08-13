@@ -1,9 +1,8 @@
-import React, { PropsWithChildren, ReactNode } from 'react';
-
 import { Select } from '@navikt/ds-react';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import React, { type PropsWithChildren, type ReactNode } from 'react';
 
-import { SkjemaFeltTyper } from '../../../typer/skjema';
+import type { SkjemaFeltTyper } from '../../../typer/skjema';
 
 export interface StyledDropdownProps<ConstrainedString extends string> {
     felt: Felt<ConstrainedString>;

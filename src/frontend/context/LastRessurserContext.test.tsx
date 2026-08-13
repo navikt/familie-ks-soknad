@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { act, renderHook, waitFor } from '@testing-library/react';
+import React from 'react';
 
 import { LastRessurserProvider, useLastRessurserContext } from './LastRessurserContext';
 
@@ -31,7 +30,7 @@ describe('LastRessurserContext', () => {
 
         let promiseResolve;
 
-        const promise = new Promise(function (resolve) {
+        const promise = new Promise(resolve => {
             promiseResolve = resolve;
         });
 

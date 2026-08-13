@@ -1,11 +1,10 @@
-import React from 'react';
-
 import { ErrorSummary } from '@navikt/ds-react';
 import { type ISkjema, Valideringsstatus } from '@navikt/familie-skjema';
+import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { ISteg } from '../../../typer/routes';
-import { SkjemaFeltTyper } from '../../../typer/skjema';
+import type { ISteg } from '../../../typer/routes';
+import type { SkjemaFeltTyper } from '../../../typer/skjema';
 import { AppLenke } from '../AppLenke/AppLenke';
 
 interface Props {

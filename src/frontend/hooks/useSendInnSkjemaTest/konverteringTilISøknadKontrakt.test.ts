@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 
-import { ISøknadKontrakt } from '../../../common/typer/kontrakt/søknadKontrakt';
+import type { ISøknadKontrakt } from '../../../common/typer/kontrakt/søknadKontrakt';
 import { spyOnUseApp, TestProvidere } from '../../utils/testing';
 import { erGyldigISøknadKontrakt } from '../../utils/typeguards';
 import { useSendInnSkjema } from '../useSendInnSkjema';

@@ -1,13 +1,12 @@
-import React from 'react';
-
 import { Box, InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
-import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
+import type { IBarnMedISøknad } from '../../../typer/barn';
+import type { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
-import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
+import type { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { dagensDato, gårsdagensDato, sisteDagDenneMåneden } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { minTilDatoForPeriode } from '../../../utils/perioder';
@@ -20,7 +19,7 @@ import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import TekstBlock from '../TekstBlock';
 
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
-import { IUsePensjonsperiodeSkjemaParams, useKontantstøttePeriodeSkjema } from './useKontantstøttePeriodeSkjema';
+import { type IUsePensjonsperiodeSkjemaParams, useKontantstøttePeriodeSkjema } from './useKontantstøttePeriodeSkjema';
 
 interface Props extends IUsePensjonsperiodeSkjemaParams {
     erÅpen: boolean;

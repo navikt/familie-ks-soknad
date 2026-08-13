@@ -1,10 +1,10 @@
-import React from 'react';
+import type React from 'react';
 
 import { useAppContext } from '../../../../../context/AppContext';
 import { useSpråkContext } from '../../../../../context/SpråkContext';
-import { IBarnMedISøknad } from '../../../../../typer/barn';
+import type { IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
-import { IOmsorgsperson } from '../../../../../typer/omsorgsperson';
+import type { IOmsorgsperson } from '../../../../../typer/omsorgsperson';
 import { PersonType } from '../../../../../typer/personType';
 import { hentSlektsforhold, landkodeTilSpråk } from '../../../../../utils/språk';
 import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';

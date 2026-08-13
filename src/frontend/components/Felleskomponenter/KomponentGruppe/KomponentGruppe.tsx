@@ -1,6 +1,5 @@
-import React, { ReactNode } from 'react';
-
 import { VStack } from '@navikt/ds-react';
+import React, { type ReactNode } from 'react';
 
 interface Props {
     className?: string;

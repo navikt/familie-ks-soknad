@@ -1,13 +1,12 @@
-import React from 'react';
+import type { ESvar } from '@navikt/familie-form-elements';
+import type React from 'react';
 
-import { ESvar } from '@navikt/familie-form-elements';
-
-import { LocaleRecordBlock, LocaleRecordString } from '../../../../../../common/typer/locale';
+import type { LocaleRecordBlock, LocaleRecordString } from '../../../../../../common/typer/locale';
 import { useAppContext } from '../../../../../context/AppContext';
 import { useRoutesContext } from '../../../../../context/RoutesContext';
 import { PersonType } from '../../../../../typer/personType';
 import { RouteEnum } from '../../../../../typer/routes';
-import { ISøknadSpørsmål } from '../../../../../typer/spørsmål';
+import type { ISøknadSpørsmål } from '../../../../../typer/spørsmål';
 import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
 import TekstBlock from '../../../../Felleskomponenter/TekstBlock';

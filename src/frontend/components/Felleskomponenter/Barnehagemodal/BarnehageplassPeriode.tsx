@@ -1,16 +1,15 @@
-import React from 'react';
-
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
+import type { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
-import { IBarnehageplassPeriode } from '../../../typer/perioder';
-import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
+import type { IBarnehageplassPeriode } from '../../../typer/perioder';
+import type { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IOmBarnetFeltTyper } from '../../../typer/skjema';
+import type { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';
-import { IOmBarnetTekstinnhold } from '../../SøknadsSteg/OmBarnet/innholdTyper';
+import type { IOmBarnetTekstinnhold } from '../../SøknadsSteg/OmBarnet/innholdTyper';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import PerioderContainer from '../PerioderContainer';
 import useModal from '../SkjemaModal/useModal';

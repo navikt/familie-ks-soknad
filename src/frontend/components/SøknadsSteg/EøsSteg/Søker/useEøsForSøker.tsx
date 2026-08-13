@@ -1,21 +1,19 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-
-import { Alpha3Code } from 'i18n-iso-countries';
-
 import { ESvar } from '@navikt/familie-form-elements';
-import { feil, type Felt, type ISkjema, ok, useSkjema } from '@navikt/familie-skjema';
+import { type Felt, feil, type ISkjema, ok, useSkjema } from '@navikt/familie-skjema';
+import type { Alpha3Code } from 'i18n-iso-countries';
+import { type Dispatch, type SetStateAction, useState } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import useInputFelt from '../../../../hooks/useInputFelt';
 import useJaNeiSpmFelt from '../../../../hooks/useJaNeiSpmFelt';
 import { usePerioder } from '../../../../hooks/usePerioder';
 import { AlternativtSvarForInput } from '../../../../typer/common';
-import { IArbeidsperiode, IPensjonsperiode, IUtbetalingsperiode } from '../../../../typer/perioder';
-import { ISøker } from '../../../../typer/person';
+import type { IArbeidsperiode, IPensjonsperiode, IUtbetalingsperiode } from '../../../../typer/perioder';
+import type { ISøker } from '../../../../typer/person';
 import { PersonType } from '../../../../typer/personType';
-import { IArbeidsperiodeTekstinnhold } from '../../../../typer/sanity/modaler/arbeidsperiode';
-import { IEøsForSøkerFeltTyper } from '../../../../typer/skjema';
-import { ISøknad } from '../../../../typer/søknad';
+import type { IArbeidsperiodeTekstinnhold } from '../../../../typer/sanity/modaler/arbeidsperiode';
+import type { IEøsForSøkerFeltTyper } from '../../../../typer/skjema';
+import type { ISøknad } from '../../../../typer/søknad';
 import { valideringAdresse } from '../../../../utils/adresse';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
 import { ArbeidsperiodeSpørsmålsId } from '../../../Felleskomponenter/Arbeidsperiode/spørsmål';

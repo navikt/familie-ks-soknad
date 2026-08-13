@@ -1,9 +1,8 @@
-import React, { ReactNode } from 'react';
-
 import { TrashFillIcon } from '@navikt/aksel-icons';
 import { Button, FormSummary } from '@navikt/ds-react';
+import React, { type ReactNode } from 'react';
 
-import { LocaleRecordBlock } from '../../../../common/typer/locale';
+import type { LocaleRecordBlock } from '../../../../common/typer/locale';
 import { useAppContext } from '../../../context/AppContext';
 import TekstBlock from '../TekstBlock';
 

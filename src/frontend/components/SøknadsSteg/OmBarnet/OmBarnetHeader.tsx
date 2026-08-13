@@ -1,9 +1,8 @@
-import React from 'react';
-
 import { Box, VStack } from '@navikt/ds-react';
+import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
+import type { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';

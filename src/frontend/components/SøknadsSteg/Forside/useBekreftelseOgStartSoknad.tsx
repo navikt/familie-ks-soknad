@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 
 import { useNavigate } from 'react-router';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
 import { useStegContext } from '../../../context/StegContext';
-import { ISteg } from '../../../typer/routes';
+import type { ISteg } from '../../../typer/routes';
 
 export enum BekreftelseStatus {
     NORMAL = 'NORMAL',

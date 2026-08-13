@@ -1,14 +1,13 @@
-import React, { ReactNode, useEffect } from 'react';
-
-import { formatISO, isAfter, startOfDay } from 'date-fns';
-
 import { BodyShort, DatePicker, ErrorMessage, useDatepicker } from '@navikt/ds-react';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import { formatISO, isAfter, startOfDay } from 'date-fns';
+import type React from 'react';
+import { type ReactNode, useEffect } from 'react';
 
-import { ISODateString } from '../../../../common/typer/ISODateString';
+import type { ISODateString } from '../../../../common/typer/ISODateString';
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { SkjemaFeltTyper } from '../../../typer/skjema';
+import type { SkjemaFeltTyper } from '../../../typer/skjema';
 import {
     dagenEtterDato,
     dagensDato,

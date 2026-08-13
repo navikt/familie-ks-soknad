@@ -1,5 +1,5 @@
 import { Dokumentasjonsbehov } from '../../common/typer/kontrakt/dokumentasjon';
-import { IDokumentasjon } from '../typer/dokumentasjon';
+import type { IDokumentasjon } from '../typer/dokumentasjon';
 
 export const formaterFilstørrelse = (bytes: number, decimals = 2) => {
     if (bytes === 0) return '0 Bytes';
@@ -10,7 +10,7 @@ export const formaterFilstørrelse = (bytes: number, decimals = 2) => {
 
     const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+    return parseFloat((bytes / k ** i).toFixed(dm)) + ' ' + sizes[i];
 };
 
 export const genererInitiellDokumentasjon = (dokumentasjonsbehov: Dokumentasjonsbehov): IDokumentasjon => ({

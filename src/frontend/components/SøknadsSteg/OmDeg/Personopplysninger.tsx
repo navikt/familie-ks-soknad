@@ -1,8 +1,7 @@
-import React from 'react';
-
-import { Alpha3Code } from 'i18n-iso-countries';
-
 import { BodyShort } from '@navikt/ds-react';
+
+import type { Alpha3Code } from 'i18n-iso-countries';
+import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';

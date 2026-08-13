@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { Button, HStack, Modal } from '@navikt/ds-react';
+import React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useAppNavigationContext } from '../../../context/AppNavigationContext';

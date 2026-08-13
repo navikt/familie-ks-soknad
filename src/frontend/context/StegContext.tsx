@@ -1,9 +1,9 @@
-import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
+import React, { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 import { matchPath, useLocation } from 'react-router';
 
-import { IBarnMedISøknad } from '../typer/barn';
-import { ISteg, RouteEnum } from '../typer/routes';
+import type { IBarnMedISøknad } from '../typer/barn';
+import { type ISteg, RouteEnum } from '../typer/routes';
 
 import { useAppContext } from './AppContext';
 import { useEøsContext } from './EøsContext';
@@ -38,41 +38,41 @@ export function StegProvider(props: PropsWithChildren) {
         settBarnForSteg(søknad.barnInkludertISøknaden);
     }, [søknad.barnInkludertISøknaden]);
 
-    const steg: ISteg[] = routes
-        .map((route): ISteg | ISteg[] => {
-            const barnRoute = routes.find(route => route.route === RouteEnum.OmBarnet);
-            const barnEøsRoute = routes.find(route => route.route === RouteEnum.EøsForBarn);
+    const steg: ISteg[] = routes.flatMap((route): ISteg | ISteg[] => {
+        const barnRoute = routes.find(route => route.route === RouteEnum.OmBarnet);
+        const barnEøsRoute = routes.find(route => route.route === RouteEnum.EøsForBarn);
 
-            switch (route.route) {
-                case RouteEnum.OmBarnet:
-                    const omBarnetSteg = barnForSteg.map((_barn, index) => ({
-                        path: barnRoute?.path.replace(':number', (index + 1) as unknown as string) ?? '/',
-                        route: RouteEnum.OmBarnet,
-                        label: route.label,
-                    }));
-                    return omBarnetSteg.length
-                        ? omBarnetSteg
-                        : {
-                              path: barnRoute?.path.replace(':number', 1 as unknown as string) ?? '/',
-                              route: RouteEnum.OmBarnet,
-                              label: route.label,
-                          };
-                case RouteEnum.EøsForBarn:
-                    const barnSomSkalHaEøsSteg = søkerTriggerEøs
-                        ? barnInkludertISøknaden.map(barn => barn.id)
-                        : barnSomTriggerEøs;
-                    return barnSomSkalHaEøsSteg.map((_barnId, index) => ({
-                        path: barnEøsRoute?.path.replace(':number', (index + 1) as unknown as string) ?? '/',
-                        route: RouteEnum.EøsForBarn,
-                        label: route.label,
-                    }));
-                case RouteEnum.EøsForSøker:
-                    return søkerTriggerEøs || barnSomTriggerEøs.length ? route : [];
-                default:
-                    return { path: route.path, route: route.route, label: route.label };
+        switch (route.route) {
+            case RouteEnum.OmBarnet: {
+                const omBarnetSteg = barnForSteg.map((_barn, index) => ({
+                    path: barnRoute?.path.replace(':number', (index + 1) as unknown as string) ?? '/',
+                    route: RouteEnum.OmBarnet,
+                    label: route.label,
+                }));
+                return omBarnetSteg.length
+                    ? omBarnetSteg
+                    : {
+                          path: barnRoute?.path.replace(':number', 1 as unknown as string) ?? '/',
+                          route: RouteEnum.OmBarnet,
+                          label: route.label,
+                      };
             }
-        })
-        .flat();
+            case RouteEnum.EøsForBarn: {
+                const barnSomSkalHaEøsSteg = søkerTriggerEøs
+                    ? barnInkludertISøknaden.map(barn => barn.id)
+                    : barnSomTriggerEøs;
+                return barnSomSkalHaEøsSteg.map((_barnId, index) => ({
+                    path: barnEøsRoute?.path.replace(':number', (index + 1) as unknown as string) ?? '/',
+                    route: RouteEnum.EøsForBarn,
+                    label: route.label,
+                }));
+            }
+            case RouteEnum.EøsForSøker:
+                return søkerTriggerEøs || barnSomTriggerEøs.length ? route : [];
+            default:
+                return { path: route.path, route: route.route, label: route.label };
+        }
+    });
 
     const hentSteg = (pathname: string): ISteg => {
         const index = steg.findIndex(steg => matchPath(steg.path, decodeURIComponent(pathname)));
@@ -82,9 +82,10 @@ export function StegProvider(props: PropsWithChildren) {
     const hentStegNummer = (route: RouteEnum, barn?: IBarnMedISøknad): number => {
         switch (route) {
             case RouteEnum.OmBarnet:
-            case RouteEnum.EøsForBarn:
+            case RouteEnum.EøsForBarn: {
                 const index = barnInkludertISøknaden.findIndex(barnISøknad => barn === barnISøknad);
                 return steg.findIndex(steg => steg.route === route) + Math.max(index, 0);
+            }
             default:
                 return steg.findIndex(steg => steg.route === route);
         }

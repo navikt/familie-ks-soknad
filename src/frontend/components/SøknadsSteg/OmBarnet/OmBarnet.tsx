@@ -1,12 +1,11 @@
-import React from 'react';
-
 import { InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type React from 'react';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
-import { BarnetsId, Typografi } from '../../../typer/common';
+import { type BarnetsId, Typografi } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
@@ -15,7 +14,7 @@ import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import AndreForelder from './AndreForelder';
-import { IOmBarnetTekstinnhold } from './innholdTyper';
+import type { IOmBarnetTekstinnhold } from './innholdTyper';
 import { OmBarnetHeader } from './OmBarnetHeader';
 import Oppfølgningsspørsmål from './Oppfølgningsspørsmål';
 import { useOmBarnet } from './useOmBarnet';

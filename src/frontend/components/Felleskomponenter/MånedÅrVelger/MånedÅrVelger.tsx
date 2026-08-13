@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-
-import { formatISO, lastDayOfMonth } from 'date-fns';
-
 import { MonthPicker, useMonthpicker } from '@navikt/ds-react';
 import type { Felt } from '@navikt/familie-skjema';
+import { formatISO, lastDayOfMonth } from 'date-fns';
+import type React from 'react';
+import { useState } from 'react';
 
-import { ISODateString } from '../../../../common/typer/ISODateString';
+import type { ISODateString } from '../../../../common/typer/ISODateString';
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { ESanitySteg } from '../../../typer/sanity/sanity';

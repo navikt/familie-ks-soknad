@@ -1,4 +1,4 @@
-import { RequestHandler } from 'express';
+import type { RequestHandler } from 'express';
 import type { ViteDevServer } from 'vite';
 
 import { EToggle } from '../../common/feature-toggles.js';

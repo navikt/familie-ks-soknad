@@ -14,17 +14,16 @@
     "hent-preprod-tokens": "node scripts/hent-preprod-tokens.js",
     "prepare": "husky",
     "test": "vitest",
-    "lint": "eslint './src/**/*.{js,ts,tsx}'",
-    "lint:fix": "eslint './src/**/*.{js,ts,tsx}' --fix",
-    "prettier": "prettier --check './src/**/*.{js,jsx,ts,tsx,json,css}'",
-    "prettier:fix": "prettier --write './src/**/*.{js,jsx,ts,tsx,json,css}'",
+    "lint": "biome lint ./src",
+    "lint:fix": "biome lint --write ./src",
+    "format": "biome format ./src",
+    "format:fix": "biome format --write ./src",
     "typecheck": "tsc --noEmit -p src/common/tsconfig.json && tsc --noEmit -p src/backend/tsconfig.json && tsc --noEmit -p src/frontend/tsconfig.json",
-    "validate": "pnpm typecheck && pnpm lint && pnpm prettier"
+    "validate": "pnpm typecheck && pnpm lint && pnpm format"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,css}": [
-      "prettier --write",
-      "eslint --fix src/ --max-warnings=72"
+    "src/**/*.{js,jsx,ts,tsx,json,css}": [
+      "biome check --write --no-errors-on-unmatched"
     ]
   },
   "browserslist": {
@@ -81,14 +80,13 @@
   },
   "devDependencies": {
     "@axe-core/react": "4.12.1",
-    "@eslint/js": "10.0.1",
+    "@biomejs/biome": "2.5.8",
     "@portabletext/types": "4.0.2",
     "@sentry/vite-plugin": "5.4.0",
     "@testing-library/dom": "10.4.1",
     "@testing-library/jest-dom": "7.0.0",
     "@testing-library/react": "16.3.2",
     "@types/cookie-parser": "1.4.10",
-    "@types/eslint-plugin-jsx-a11y": "6.10.1",
     "@types/express": "5.0.6",
     "@types/express-serve-static-core": "5.1.2",
     "@types/mustache-express": "1.2.5",
@@ -98,23 +96,14 @@
     "@types/react-router": "5.1.20",
     "@vercel/nft": "1.10.2",
     "@vitejs/plugin-react": "6.0.5",
-    "eslint": "10.8.0",
-    "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-import": "2.32.0",
-    "eslint-plugin-jsx-a11y": "6.10.2",
-    "eslint-plugin-prettier": "5.5.6",
-    "eslint-plugin-react-hooks": "7.1.1",
-    "globals": "17.9.0",
     "husky": "9.1.7",
     "jsdom": "30.0.1",
     "lint-staged": "17.3.0",
     "msw": "2.15.0",
     "playwright": "1.62.0",
-    "prettier": "3.9.6",
     "ts-essentials": "10.2.1",
     "tslib": "2.8.1",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.65.0",
     "vite": "8.2.0",
     "vitest": "4.1.10",
     "vitest-mock-extended": "5.1.1"

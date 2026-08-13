@@ -1,4 +1,4 @@
-import { Express, RequestHandler } from 'express';
+import type { Express, RequestHandler } from 'express';
 import type { ViteDevServer } from 'vite';
 
 import { renderHtml } from '../utils/render-html.js';

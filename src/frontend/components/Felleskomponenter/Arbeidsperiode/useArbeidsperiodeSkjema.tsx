@@ -8,10 +8,10 @@ import useInputFelt from '../../../hooks/useInputFelt';
 import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
-import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
+import type { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
-import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
-import { IArbeidsperioderFeltTyper } from '../../../typer/skjema';
+import type { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
+import type { IArbeidsperioderFeltTyper } from '../../../typer/skjema';
 import {
     dagensDato,
     erSammeDatoSomDagensDato,

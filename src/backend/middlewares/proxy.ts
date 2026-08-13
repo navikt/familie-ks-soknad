@@ -1,11 +1,10 @@
-import { ClientRequest } from 'http';
-import { Socket } from 'node:net';
+import type { Socket } from 'node:net';
+import { logError, logSecure } from '@navikt/familie-logging';
 
-import { NextFunction, Request, RequestHandler, Response } from 'express';
+import type { NextFunction, Request, RequestHandler, Response } from 'express';
+import type { ClientRequest } from 'http';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { v4 as uuid } from 'uuid';
-
-import { logError, logSecure } from '@navikt/familie-logging';
 
 import { erLokalt } from '../../common/miljø.js';
 

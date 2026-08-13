@@ -1,11 +1,10 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
+import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { IUtenlandsperiode } from '../../../typer/perioder';
-import { PeriodePersonTypeMedBarnProps } from '../../../typer/personType';
-import { ESanitySteg, ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
+import type { IUtenlandsperiode } from '../../../typer/perioder';
+import type { PeriodePersonTypeMedBarnProps } from '../../../typer/personType';
+import { ESanitySteg, type ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';

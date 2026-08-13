@@ -1,6 +1,5 @@
-import React, { ReactNode } from 'react';
-
 import { FormSummary } from '@navikt/ds-react';
+import React, { type ReactNode } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { formaterSøknadsvar } from '../../../utils/språk';

@@ -1,15 +1,14 @@
-import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
-
-import { Alpha3Code } from 'i18n-iso-countries';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import { byggHenterRessurs, hentDataFraRessurs } from '@navikt/familie-typer';
+import type { Alpha3Code } from 'i18n-iso-countries';
+import type React from 'react';
+import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 import miljø from '../../common/miljø';
 import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
-import { IBarnMedISøknad } from '../typer/barn';
-import { BarnetsId } from '../typer/common';
-import { ISøker } from '../typer/person';
+import type { IBarnMedISøknad } from '../typer/barn';
+import type { BarnetsId } from '../typer/common';
+import type { ISøker } from '../typer/person';
 
 import { useAppContext } from './AppContext';
 import { useLastRessurserContext } from './LastRessurserContext';
@@ -49,7 +48,6 @@ export function EøsProvider(props: PropsWithChildren) {
                 });
 
                 settEøsLand(eøsLandResponse);
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
             } catch (_) {
                 // do nothing
             }

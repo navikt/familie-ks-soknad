@@ -1,7 +1,6 @@
-import path from 'path';
-
-import express, { Express } from 'express';
+import express, { type Express } from 'express';
 import mustacheExpress from 'mustache-express';
+import path from 'path';
 import type { ViteDevServer } from 'vite';
 
 import { BASE_PATH } from '../../common/miljø.js';

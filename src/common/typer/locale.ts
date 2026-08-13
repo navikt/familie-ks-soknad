@@ -1,4 +1,4 @@
-import { PortableTextBlock } from '@portabletext/types';
+import type { PortableTextBlock } from '@portabletext/types';
 
 export enum LocaleType {
     en = 'en',

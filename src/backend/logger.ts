@@ -1,6 +1,5 @@
-import { Request } from 'express';
-
 import { LOG_LEVEL, logDebug, logError, logInfo, logWarn } from '@navikt/familie-logging';
+import type { Request } from 'express';
 
 const prefix = (req: Request) => {
     return `${req.method} - ${req.originalUrl}`;

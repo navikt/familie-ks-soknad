@@ -1,14 +1,13 @@
-import { Alpha3Code } from 'i18n-iso-countries';
-
-import { ESvar } from '@navikt/familie-form-elements';
+import type { ESvar } from '@navikt/familie-form-elements';
 import type { UseSkjemaVerdi } from '@navikt/familie-skjema';
+import type { Alpha3Code } from 'i18n-iso-countries';
 
-import { ISODateString } from '../../common/typer/ISODateString';
-import { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
+import type { ISODateString } from '../../common/typer/ISODateString';
+import type { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 
-import { AlternativtSvarForInput, DatoMedUkjent } from './common';
-import { ISøknadSpørsmål } from './spørsmål';
-import { EUtenlandsoppholdÅrsak } from './utenlandsopphold';
+import type { AlternativtSvarForInput, DatoMedUkjent } from './common';
+import type { ISøknadSpørsmål } from './spørsmål';
+import type { EUtenlandsoppholdÅrsak } from './utenlandsopphold';
 
 export interface IUtenlandsperiode {
     utenlandsoppholdÅrsak: ISøknadSpørsmål<EUtenlandsoppholdÅrsak>;

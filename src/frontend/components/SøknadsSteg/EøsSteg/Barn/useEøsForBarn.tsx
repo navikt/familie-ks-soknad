@@ -1,9 +1,7 @@
-import { Dispatch, SetStateAction, useState } from 'react';
-
-import { Alpha3Code } from 'i18n-iso-countries';
-
 import { ESvar } from '@navikt/familie-form-elements';
-import { feil, type Felt, type FeltState, type ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
+import { type Felt, type FeltState, feil, type ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
+import type { Alpha3Code } from 'i18n-iso-countries';
+import { type Dispatch, type SetStateAction, useState } from 'react';
 
 import { Slektsforhold } from '../../../../../common/typer/kontrakt/generelle';
 import { barnDataKeySpørsmål } from '../../../../../common/typer/kontrakt/søknadKontrakt';
@@ -13,18 +11,18 @@ import useInputFeltMedUkjent from '../../../../hooks/useInputFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFeltMedJaNeiAvhengighet from '../../../../hooks/useLanddropdownFeltMedJaNeiAvhengighet';
 import { usePerioder } from '../../../../hooks/usePerioder';
-import { andreForelderDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../../../typer/barn';
-import { AlternativtSvarForInput, BarnetsId } from '../../../../typer/common';
-import { IOmsorgsperson } from '../../../../typer/omsorgsperson';
-import {
+import { andreForelderDataKeySpørsmål, type IAndreForelder, type IBarnMedISøknad } from '../../../../typer/barn';
+import { AlternativtSvarForInput, type BarnetsId } from '../../../../typer/common';
+import type { IOmsorgsperson } from '../../../../typer/omsorgsperson';
+import type {
     IArbeidsperiode,
     IEøsKontantstøttePeriode,
     IPensjonsperiode,
     IUtbetalingsperiode,
 } from '../../../../typer/perioder';
 import { PersonType } from '../../../../typer/personType';
-import { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
-import { ISøknad } from '../../../../typer/søknad';
+import type { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
+import type { ISøknad } from '../../../../typer/søknad';
 import { valideringAdresse } from '../../../../utils/adresse';
 import { skalSkjuleAndreForelderFelt, skalViseBorMedOmsorgsperson } from '../../../../utils/barn';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
@@ -703,7 +701,7 @@ export const useEøsForBarn = (
             } else {
                 const barnSkalOppdatereEnAnnensForelder =
                     barn[barnDataKeySpørsmål.sammeForelderSomAnnetBarnMedId].svar === gjeldendeBarn.id;
-                return !!barn.andreForelder && barnSkalOppdatereEnAnnensForelder
+                return barn.andreForelder && barnSkalOppdatereEnAnnensForelder
                     ? { ...barn, ...genererAndreForelder(barn.andreForelder) }
                     : barn;
             }

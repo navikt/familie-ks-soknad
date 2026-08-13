@@ -6,7 +6,7 @@ import { RouteEnum } from '../../../../typer/routes';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { hentBostedSpråkId } from '../../../../utils/språk';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
-import { IVelgBarnTekstinnhold } from '../../VelgBarn/innholdTyper';
+import type { IVelgBarnTekstinnhold } from '../../VelgBarn/innholdTyper';
 import { useVelgBarn } from '../../VelgBarn/useVelgBarn';
 import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';

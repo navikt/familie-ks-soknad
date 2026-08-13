@@ -1,9 +1,8 @@
-import React from 'react';
+import { RessursStatus } from '@navikt/familie-typer';
 
 import { renderHook, waitFor } from '@testing-library/react';
-import { http, HttpResponse } from 'msw';
-
-import { RessursStatus } from '@navikt/familie-typer';
+import { HttpResponse, http } from 'msw';
+import React from 'react';
 
 import { server } from '../../../mocks/node';
 import { urlMedBasePath } from '../../../mocks/utils';

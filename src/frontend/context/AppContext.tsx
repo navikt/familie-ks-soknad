@@ -1,7 +1,3 @@
-import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
-
-import { Alpha3Code, getName } from 'i18n-iso-countries';
-
 import {
     byggFeiletRessurs,
     byggHenterRessurs,
@@ -11,25 +7,29 @@ import {
     RessursStatus,
 } from '@navikt/familie-typer';
 
+import { type Alpha3Code, getName } from 'i18n-iso-countries';
+import type React from 'react';
+import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
+
 import miljø, { BASE_PATH } from '../../common/miljø';
-import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../common/typer/kontrakt/generelle';
+import type { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../common/typer/kontrakt/generelle';
 import { LocaleType } from '../../common/typer/locale';
 import { useDebounce } from '../hooks/useDebounce';
-import { IKontoinformasjon } from '../typer/kontoinformasjon';
-import { IKvittering } from '../typer/kvittering';
-import { IMellomlagretKontantstøtte } from '../typer/mellomlager';
-import { ISøkerRespons } from '../typer/person';
+import type { IKontoinformasjon } from '../typer/kontoinformasjon';
+import type { IKvittering } from '../typer/kvittering';
+import type { IMellomlagretKontantstøtte } from '../typer/mellomlager';
+import type { ISøkerRespons } from '../typer/person';
 import { RouteEnum } from '../typer/routes';
 import { ESanityFlettefeltverdi, ESanitySteg } from '../typer/sanity/sanity';
-import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
-import { initialStateSøknad, ISøknad } from '../typer/søknad';
+import type { ITekstinnhold } from '../typer/sanity/tekstInnhold';
+import { type ISøknad, initialStateSøknad } from '../typer/søknad';
 import { InnloggetStatus } from '../utils/autentisering';
 import { mapBarnResponsTilBarn } from '../utils/barn';
 import { plainTekstHof } from '../utils/sanity';
 
 import { preferredAxios } from './axios';
 import { useInnloggetContext } from './InnloggetContext';
-import { AxiosRequest, useLastRessurserContext } from './LastRessurserContext';
+import { type AxiosRequest, useLastRessurserContext } from './LastRessurserContext';
 import { hentSluttbrukerFraPdl } from './pdl';
 import { useSanityContext } from './SanityContext';
 import { useSpråkContext } from './SpråkContext';

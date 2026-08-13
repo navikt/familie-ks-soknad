@@ -1,13 +1,11 @@
-import React from 'react';
-
-import classNames from 'classnames';
-
 import { PaperclipIcon, TrashFillIcon } from '@navikt/aksel-icons';
 import { Button, HStack, List } from '@navikt/ds-react';
+import classNames from 'classnames';
+import type React from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { Typografi } from '../../../../typer/common';
-import { IVedlegg } from '../../../../typer/dokumentasjon';
+import type { IVedlegg } from '../../../../typer/dokumentasjon';
 import { formaterFilstørrelse } from '../../../../utils/dokumentasjon';
 import { TypografiWrapper } from '../../../Felleskomponenter/TekstBlock';
 

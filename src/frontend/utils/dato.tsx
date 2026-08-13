@@ -1,3 +1,4 @@
+import { type FeltState, feil, ok } from '@navikt/familie-skjema';
 import * as Sentry from '@sentry/react';
 import {
     add,
@@ -16,13 +17,11 @@ import {
 } from 'date-fns';
 import { enGB, nb, nn } from 'date-fns/locale';
 
-import { feil, type FeltState, ok } from '@navikt/familie-skjema';
-
-import { ISODateString } from '../../common/typer/ISODateString';
-import { PlainTekst } from '../../common/typer/kontrakt/generelle';
-import { LocaleRecordBlock, LocaleType } from '../../common/typer/locale';
-import { AlternativtSvarForInput, DatoMedUkjent } from '../typer/common';
-import { IFormateringsfeilmeldingerTekstinnhold } from '../typer/sanity/tekstInnhold';
+import type { ISODateString } from '../../common/typer/ISODateString';
+import type { PlainTekst } from '../../common/typer/kontrakt/generelle';
+import { type LocaleRecordBlock, LocaleType } from '../../common/typer/locale';
+import { AlternativtSvarForInput, type DatoMedUkjent } from '../typer/common';
+import type { IFormateringsfeilmeldingerTekstinnhold } from '../typer/sanity/tekstInnhold';
 
 export const erDatoFormatGodkjent = (dato: Date) => isValid(dato);
 
@@ -76,7 +75,7 @@ export const validerDato = (
     if (!dato) {
         return feil(feltState, plainTekst(tekster.ugyldigDato));
     }
-    if (!!sluttdatoAvgrensning && erDatoEtterSluttdatoAvgresning(dato, sluttdatoAvgrensning)) {
+    if (sluttdatoAvgrensning && erDatoEtterSluttdatoAvgresning(dato, sluttdatoAvgrensning)) {
         return feil(
             feltState,
             plainTekst(
@@ -87,7 +86,7 @@ export const validerDato = (
         );
     }
 
-    if (!!startdatoAvgrensning && erDatoFørStartDatoAvgrensning(dato, startdatoAvgrensning)) {
+    if (startdatoAvgrensning && erDatoFørStartDatoAvgrensning(dato, startdatoAvgrensning)) {
         return feil(
             feltState,
             customStartdatoFeilmelding ? customStartdatoFeilmelding : plainTekst(tekster.periodeAvsluttesForTidlig)

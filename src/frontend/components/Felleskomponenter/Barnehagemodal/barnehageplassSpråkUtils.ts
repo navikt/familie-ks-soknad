@@ -1,5 +1,5 @@
-import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
-import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
+import type { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
+import type { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 

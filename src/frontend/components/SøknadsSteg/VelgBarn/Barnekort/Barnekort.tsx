@@ -1,16 +1,15 @@
-import React from 'react';
-
 import { ExclamationmarkTriangleIcon, TrashFillIcon } from '@navikt/aksel-icons';
 import { Button, Checkbox, FormSummary, InfoCard } from '@navikt/ds-react';
+import type React from 'react';
 
-import { LocaleRecordBlock } from '../../../../../common/typer/locale';
+import type { LocaleRecordBlock } from '../../../../../common/typer/locale';
 import { useAppContext } from '../../../../context/AppContext';
-import { IBarn } from '../../../../typer/person';
+import type { IBarn } from '../../../../typer/person';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { hentBostedSpråkId } from '../../../../utils/språk';
 import { formaterFnr, uppercaseFørsteBokstav } from '../../../../utils/visning';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
-import { IVelgBarnTekstinnhold } from '../innholdTyper';
+import type { IVelgBarnTekstinnhold } from '../innholdTyper';
 
 interface IBarnekortProps {
     velgBarnCallback: (barn: IBarn, barnMedISøknad: boolean) => void;

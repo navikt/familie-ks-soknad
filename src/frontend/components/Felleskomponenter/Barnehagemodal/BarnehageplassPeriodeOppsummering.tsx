@@ -1,10 +1,10 @@
-import React from 'react';
+import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { AlternativtSvarForInput } from '../../../typer/common';
-import { IBarnehageplassPeriode } from '../../../typer/perioder';
-import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
+import type { IBarnehageplassPeriode } from '../../../typer/perioder';
+import type { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';

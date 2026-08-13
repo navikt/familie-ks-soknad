@@ -1,6 +1,5 @@
-import React, { FC, ReactNode } from 'react';
-
 import { InlineMessage } from '@navikt/ds-react';
+import React, { type FC, type ReactNode } from 'react';
 
 import { useAppContext } from '../../context/AppContext';
 

@@ -1,8 +1,8 @@
-import React from 'react';
+import type React from 'react';
 
 import { useAppContext } from '../../../../../context/AppContext';
 import { useStegContext } from '../../../../../context/StegContext';
-import { IBarnMedISøknad } from '../../../../../typer/barn';
+import type { IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
 import { hentSlektsforhold } from '../../../../../utils/språk';
 import TekstBlock from '../../../../Felleskomponenter/TekstBlock';

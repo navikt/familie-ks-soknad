@@ -1,15 +1,14 @@
-import React, { ReactNode } from 'react';
-
+import { Box } from '@navikt/ds-react';
+import { type ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
+import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type React from 'react';
+import type { ReactNode } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Box } from '@navikt/ds-react';
-import { ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
-import type { Felt, ISkjema } from '@navikt/familie-skjema';
-
-import { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
+import type { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
 import { useAppContext } from '../../../context/AppContext';
-import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
-import { SkjemaFeltTyper } from '../../../typer/skjema';
+import type { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
+import type { SkjemaFeltTyper } from '../../../typer/skjema';
 import TekstBlock from '../TekstBlock';
 
 interface IJaNeiSpmProps {

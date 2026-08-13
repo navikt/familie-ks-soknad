@@ -1,9 +1,8 @@
-import { Express, RequestHandler } from 'express';
-import { ParamsDictionary } from 'express-serve-static-core';
-
 import { byggSuksessRessurs, type Ressurs } from '@navikt/familie-typer';
+import type { Express, RequestHandler } from 'express';
+import type { ParamsDictionary } from 'express-serve-static-core';
 
-import { EAllFeatureToggles, defaultFeatureToggleValues, ToggleKeys } from '../../common/feature-toggles.js';
+import { defaultFeatureToggleValues, type EAllFeatureToggles, ToggleKeys } from '../../common/feature-toggles.js';
 import { BASE_PATH } from '../../common/miljø.js';
 import { isEnabled } from '../utils/unleash.js';
 

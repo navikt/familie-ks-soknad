@@ -1,12 +1,11 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { IUtbetalingsperiode } from '../../../typer/perioder';
-import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
-import { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
+import type { IUtbetalingsperiode } from '../../../typer/perioder';
+import { type PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
+import type { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
 import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';

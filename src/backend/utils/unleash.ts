@@ -1,4 +1,4 @@
-import { initialize, Unleash } from 'unleash-client';
+import { initialize, type Unleash } from 'unleash-client';
 
 let unleash: Unleash;
 export const initializeUnleash = () => {

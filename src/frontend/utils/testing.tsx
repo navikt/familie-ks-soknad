@@ -1,13 +1,12 @@
-import React, { PropsWithChildren, ReactNode } from 'react';
-
+import { ESvar } from '@navikt/familie-form-elements';
+import { HttpProvider } from '@navikt/familie-http';
+import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
+import type React from 'react';
+import type { PropsWithChildren, ReactNode } from 'react';
 import { Cookies, CookiesProvider } from 'react-cookie';
 import { MemoryRouter } from 'react-router';
 import { type Mock, type MockInstance, vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
-
-import { ESvar } from '@navikt/familie-form-elements';
-import { HttpProvider } from '@navikt/familie-http';
-import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
 import { ESivilstand } from '../../common/typer/kontrakt/generelle';
 import { UtenlandsoppholdSpørsmålId } from '../components/Felleskomponenter/UtenlandsoppholdModal/spørsmål';
@@ -25,10 +24,10 @@ import { RoutesProvider } from '../context/RoutesContext';
 import { SanityProvider } from '../context/SanityContext';
 import { SpråkProvider } from '../context/SpråkContext';
 import { StegProvider } from '../context/StegContext';
-import { IKvittering } from '../typer/kvittering';
-import { IUtenlandsperiode } from '../typer/perioder';
-import { ISøker } from '../typer/person';
-import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
+import type { IKvittering } from '../typer/kvittering';
+import type { IUtenlandsperiode } from '../typer/perioder';
+import type { ISøker } from '../typer/person';
+import type { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { type ISøknad, initialStateSøknad } from '../typer/søknad';
 import { EUtenlandsoppholdÅrsak } from '../typer/utenlandsopphold';
 
@@ -61,8 +60,8 @@ export const spyOnUseApp = (søknad): SpyOnUseAppResult => {
     const settInnsendingStatus = vi.fn();
     const axiosRequestMock = vi
         .fn()
-        .mockImplementation((): Promise<Ressurs<unknown>> =>
-            Promise.resolve({ status: RessursStatus.SUKSESS, data: {} })
+        .mockImplementation(
+            (): Promise<Ressurs<unknown>> => Promise.resolve({ status: RessursStatus.SUKSESS, data: {} })
         );
     const settNåværendeRoute = vi.fn();
     const mellomlagre = vi.fn();
@@ -140,7 +139,6 @@ export function mockEøs(barnSomTriggerEøs = [], søkerTriggerEøs = false): Mo
 }
 
 export const wrapMedProvidere = (
-    // eslint-disable-next-line
     providerComponents: React.FC<any>[],
     children?: ReactNode
 ) => {

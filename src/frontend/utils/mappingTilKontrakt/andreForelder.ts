@@ -1,10 +1,10 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
-import { barnDataKeySpørsmål, IAndreForelderIKontraktFormat } from '../../../common/typer/kontrakt/søknadKontrakt';
-import { IAndreForelder, IBarnMedISøknad } from '../../typer/barn';
+import type { TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
+import { barnDataKeySpørsmål, type IAndreForelderIKontraktFormat } from '../../../common/typer/kontrakt/søknadKontrakt';
+import type { IAndreForelder, IBarnMedISøknad } from '../../typer/barn';
 import { PersonType } from '../../typer/personType';
-import { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
+import type { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
 import { landkodeTilSpråk } from '../språk';
 
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';

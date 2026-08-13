@@ -1,10 +1,9 @@
-import React, { ReactNode } from 'react';
-
 import { TextField, type TextFieldProps } from '@navikt/ds-react';
 import type { Felt } from '@navikt/familie-skjema';
+import type React from 'react';
+import type { ReactNode } from 'react';
 
 interface SkjemaFeltInputProps extends TextFieldProps {
-    // eslint-disable-next-line
     felt: Felt<any>;
     visFeilmeldinger: boolean;
     label: ReactNode;

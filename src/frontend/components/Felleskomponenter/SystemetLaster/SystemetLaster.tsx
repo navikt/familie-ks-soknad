@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { BodyShort, Loader, VStack } from '@navikt/ds-react';
+import React from 'react';
 
 const SystemetLaster = () => {
     return (

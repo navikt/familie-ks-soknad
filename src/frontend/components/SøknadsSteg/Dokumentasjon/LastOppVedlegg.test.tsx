@@ -1,10 +1,9 @@
-import React from 'react';
-
 import { render } from '@testing-library/react';
+import React from 'react';
 import { vi } from 'vitest';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
-import { IDokumentasjon } from '../../../typer/dokumentasjon';
+import type { IDokumentasjon } from '../../../typer/dokumentasjon';
 import { initialStateSøknad } from '../../../typer/søknad';
 import { spyOnUseApp, TestProvidere } from '../../../utils/testing';
 

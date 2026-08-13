@@ -1,13 +1,12 @@
-import { Alpha3Code } from 'i18n-iso-countries';
-
-import { ESvar } from '@navikt/familie-form-elements';
+import type { ESvar } from '@navikt/familie-form-elements';
+import type { Alpha3Code } from 'i18n-iso-countries';
 
 import { Slektsforhold } from '../../common/typer/kontrakt/generelle';
 import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
 
-import { AlternativtSvarForInput, BarnetsId, DatoMedUkjent } from './common';
-import { IOmsorgsperson } from './omsorgsperson';
-import {
+import type { AlternativtSvarForInput, BarnetsId, DatoMedUkjent } from './common';
+import type { IOmsorgsperson } from './omsorgsperson';
+import type {
     IArbeidsperiode,
     IBarnehageplassPeriode,
     IEøsKontantstøttePeriode,
@@ -15,8 +14,8 @@ import {
     IUtbetalingsperiode,
     IUtenlandsperiode,
 } from './perioder';
-import { IBarn, IIdNummer } from './person';
-import { ISøknadSpørsmål } from './spørsmål';
+import type { IBarn, IIdNummer } from './person';
+import type { ISøknadSpørsmål } from './spørsmål';
 
 export enum andreForelderDataKeySpørsmål {
     kanIkkeGiOpplysninger = 'kanIkkeGiOpplysninger',

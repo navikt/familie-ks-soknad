@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 
 import { Route, Routes, useParams } from 'react-router';
 
@@ -18,7 +18,7 @@ import VelgBarn from './components/SøknadsSteg/VelgBarn/VelgBarn';
 import { useAppContext } from './context/AppContext';
 import { useEøsContext } from './context/EøsContext';
 import { useRoutesContext } from './context/RoutesContext';
-import { IRoute, RouteEnum } from './typer/routes';
+import { type IRoute, RouteEnum } from './typer/routes';
 
 /**
  * useParams må kalles fra en Route-komponent, derfor kan ikke denne inlines i Søknad-komponenten

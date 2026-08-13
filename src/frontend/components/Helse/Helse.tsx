@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react';
-
 import { Heading, Loader } from '@navikt/ds-react';
 import {
     byggFeiletRessurs,
@@ -8,6 +6,8 @@ import {
     type Ressurs,
     RessursStatus,
 } from '@navikt/familie-typer';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 
 import miljø from '../../../common/miljø';
 import { useAppContext } from '../../context/AppContext';

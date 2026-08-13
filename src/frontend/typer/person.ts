@@ -1,12 +1,11 @@
-import { Alpha3Code } from 'i18n-iso-countries';
+import type { ESvar } from '@navikt/familie-form-elements';
+import type { Alpha3Code } from 'i18n-iso-countries';
 
-import { ESvar } from '@navikt/familie-form-elements';
+import type { ESivilstand, IAdresse } from '../../common/typer/kontrakt/generelle';
 
-import { ESivilstand, IAdresse } from '../../common/typer/kontrakt/generelle';
-
-import { AlternativtSvarForInput, BarnetsId } from './common';
-import { IArbeidsperiode, IPensjonsperiode, IUtbetalingsperiode, IUtenlandsperiode } from './perioder';
-import { ISøknadSpørsmål } from './spørsmål';
+import type { AlternativtSvarForInput, BarnetsId } from './common';
+import type { IArbeidsperiode, IPensjonsperiode, IUtbetalingsperiode, IUtenlandsperiode } from './perioder';
+import type { ISøknadSpørsmål } from './spørsmål';
 
 export interface IPerson {
     ident: string;

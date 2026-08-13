@@ -1,10 +1,9 @@
-import React from 'react';
-
 import { Fieldset } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type React from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
-import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
+import type { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { visFeiloppsummering } from '../../../../utils/hjelpefunksjoner';
 import KomponentGruppe from '../../../Felleskomponenter/KomponentGruppe/KomponentGruppe';

@@ -1,4 +1,4 @@
-import { ISøker } from '../typer/person';
+import type { ISøker } from '../typer/person';
 
 export const nullstilteEøsFelterForSøker = (søker: ISøker) => ({
     idNummer: [],

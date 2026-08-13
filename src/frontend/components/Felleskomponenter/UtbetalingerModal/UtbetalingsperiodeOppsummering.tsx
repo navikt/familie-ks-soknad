@@ -1,12 +1,11 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
+import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { IUtbetalingsperiode } from '../../../typer/perioder';
-import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
-import { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
+import type { IUtbetalingsperiode } from '../../../typer/perioder';
+import { type PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
+import type { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
 import { formaterDatostringKunMåned } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { formaterMånedMedUkjent, uppercaseFørsteBokstav } from '../../../utils/visning';

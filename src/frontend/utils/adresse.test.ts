@@ -1,6 +1,6 @@
-import { IAdresse } from '../../common/typer/kontrakt/generelle';
+import type { IAdresse } from '../../common/typer/kontrakt/generelle';
 
-import { hentAdressefelterSortert, erNorskPostnummer } from './adresse';
+import { erNorskPostnummer, hentAdressefelterSortert } from './adresse';
 
 describe('postnummer', () => {
     test('Skal returnere true for gyldige postnummer', () => {

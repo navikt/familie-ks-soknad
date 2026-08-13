@@ -1,4 +1,4 @@
-import { Express } from 'express';
+import type { Express } from 'express';
 
 export const konfigurerNais = (app: Express): Express => {
     app.get(/^\/(internal\/)?(isAlive|isReady)\/?$/, (_req, res) => {

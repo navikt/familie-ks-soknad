@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync, statSync } from 'fs';
 import { join } from 'path';
 
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 const importsIFil = (filePath: string): string[] => {
     const innhold = readFileSync(filePath, 'utf-8');

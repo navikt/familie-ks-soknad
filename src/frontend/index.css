@@ -1,7 +1,7 @@
 :root {
     --innhold-bredde: 32.75rem;
     color: var(--ax-text-neutral);
-    font-family: 'Source Sans Pro', Arial, sans-serif;
+    font-family: "Source Sans Pro", Arial, sans-serif;
 
     && label,
     legend,

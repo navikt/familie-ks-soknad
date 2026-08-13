@@ -1,4 +1,4 @@
-import { ESvar } from '@navikt/familie-form-elements';
+import type { ESvar } from '@navikt/familie-form-elements';
 
 import { Dokumentasjonsbehov } from '../../common/typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../common/typer/kontrakt/generelle';
@@ -8,10 +8,10 @@ import { OmBarnaDineSpørsmålId } from '../components/SøknadsSteg/OmBarnaDine/
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
 import { genererInitiellDokumentasjon } from '../utils/dokumentasjon';
 
-import { IBarnMedISøknad } from './barn';
-import { IDokumentasjon } from './dokumentasjon';
-import { IBarn, ISøker } from './person';
-import { ISøknadSpørsmål } from './spørsmål';
+import type { IBarnMedISøknad } from './barn';
+import type { IDokumentasjon } from './dokumentasjon';
+import type { IBarn, ISøker } from './person';
+import type { ISøknadSpørsmål } from './spørsmål';
 
 export const søknadstype = {
     id: 340008,

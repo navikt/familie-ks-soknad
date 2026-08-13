@@ -1,6 +1,5 @@
-import React, { ReactNode } from 'react';
-
 import { Fieldset, VStack } from '@navikt/ds-react';
+import React, { type ReactNode } from 'react';
 
 interface Props {
     legend: ReactNode;

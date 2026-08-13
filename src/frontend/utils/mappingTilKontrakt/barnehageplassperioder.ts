@@ -1,13 +1,13 @@
-import { ISøknadsfelt, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
-import { IBarnehageplassPeriodeIKontraktFormat } from '../../../common/typer/kontrakt/søknadKontrakt';
+import type { ISøknadsfelt, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
+import type { IBarnehageplassPeriodeIKontraktFormat } from '../../../common/typer/kontrakt/søknadKontrakt';
 import {
     hentBarnehageplassBeskrivelse,
     hentFraDatoSpørsmål,
     hentTilDatoSpørsmål,
 } from '../../components/Felleskomponenter/Barnehagemodal/barnehageplassSpråkUtils';
 import { AlternativtSvarForInput } from '../../typer/common';
-import { IBarnehageplassPeriode } from '../../typer/perioder';
-import { IBarnehageplassTekstinnhold } from '../../typer/sanity/modaler/barnehageplass';
+import type { IBarnehageplassPeriode } from '../../typer/perioder';
+import type { IBarnehageplassTekstinnhold } from '../../typer/sanity/modaler/barnehageplass';
 import { landkodeTilSpråk } from '../språk';
 
 import { sammeVerdiAlleSpråk, sammeVerdiAlleSpråkEllerUkjent, verdiCallbackAlleSpråk } from './hjelpefunksjoner';

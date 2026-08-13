@@ -6,12 +6,12 @@ import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
 import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
-import { IBarnMedISøknad } from '../../../typer/barn';
-import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
+import type { IBarnMedISøknad } from '../../../typer/barn';
+import type { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
-import { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
+import type { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IUtbetalingerFeltTyper } from '../../../typer/skjema';
+import type { IUtbetalingerFeltTyper } from '../../../typer/skjema';
 import {
     dagensDato,
     erSammeDatoSomDagensDato,

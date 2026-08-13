@@ -1,18 +1,17 @@
-import React from 'react';
-
 import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 import { InfoCard } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type React from 'react';
 
 import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
+import type { IBarnMedISøknad } from '../../../typer/barn';
 import { Typografi } from '../../../typer/common';
-import { IBarnehageplassPeriode, IEøsKontantstøttePeriode, IUtenlandsperiode } from '../../../typer/perioder';
+import type { IBarnehageplassPeriode, IEøsKontantstøttePeriode, IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IOmBarnetFeltTyper } from '../../../typer/skjema';
+import type { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import { BarnehageplassPeriode } from '../../Felleskomponenter/Barnehagemodal/BarnehageplassPeriode';
 import { LandDropdown } from '../../Felleskomponenter/Dropdowns/LandDropdown';
 import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
@@ -22,7 +21,7 @@ import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
 
-import { IOmBarnetTekstinnhold } from './innholdTyper';
+import type { IOmBarnetTekstinnhold } from './innholdTyper';
 import styles from './Oppfølgningsspørsmål.module.css';
 
 const Oppfølgningsspørsmål: React.FC<{

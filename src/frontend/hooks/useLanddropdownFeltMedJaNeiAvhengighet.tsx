@@ -1,15 +1,13 @@
+import type { ESvar } from '@navikt/familie-form-elements';
+import { type Avhengigheter, type Felt, type FeltState, feil, ok, useFelt } from '@navikt/familie-skjema';
+import type { Alpha3Code } from 'i18n-iso-countries';
 import { useEffect } from 'react';
-
-import { Alpha3Code } from 'i18n-iso-countries';
 import { v4 as uuidv4 } from 'uuid';
 
-import { ESvar } from '@navikt/familie-form-elements';
-import { type Avhengigheter, feil, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
-
-import { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
-import { LocaleRecordBlock } from '../../common/typer/locale';
+import type { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock } from '../../common/typer/locale';
 import { useAppContext } from '../context/AppContext';
-import { ISøknadSpørsmål } from '../typer/spørsmål';
+import type { ISøknadSpørsmål } from '../typer/spørsmål';
 
 const useLanddropdownFeltMedJaNeiAvhengighet = ({
     søknadsfelt,

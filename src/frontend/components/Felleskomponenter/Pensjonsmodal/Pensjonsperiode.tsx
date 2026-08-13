@@ -1,12 +1,11 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { IPensjonsperiode } from '../../../typer/perioder';
-import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
-import {
+import type { IPensjonsperiode } from '../../../typer/perioder';
+import { type PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
+import type {
     IDinLivssituasjonFeltTyper,
     IEøsForBarnFeltTyper,
     IEøsForSøkerFeltTyper,

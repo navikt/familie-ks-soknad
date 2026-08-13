@@ -1,12 +1,12 @@
-import React from 'react';
+import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { AlternativtSvarForInput } from '../../../typer/common';
-import { IUtenlandsperiode } from '../../../typer/perioder';
-import { PeriodePersonTypeMedBarnProps } from '../../../typer/personType';
-import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
-import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
+import type { IUtenlandsperiode } from '../../../typer/perioder';
+import type { PeriodePersonTypeMedBarnProps } from '../../../typer/personType';
+import type { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
+import type { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';

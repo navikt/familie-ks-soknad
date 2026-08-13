@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
+import React from 'react';
 import { Cookies, CookiesProvider } from 'react-cookie';
 
 import '@testing-library/jest-dom';

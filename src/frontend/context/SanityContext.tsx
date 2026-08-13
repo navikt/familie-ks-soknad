@@ -1,12 +1,11 @@
-import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
-
-import { createClient } from '@sanity/client';
-
 import { byggHenterRessurs, byggTomRessurs, type Ressurs, RessursStatus } from '@navikt/familie-typer';
 
+import { createClient } from '@sanity/client';
+import React, { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
+
 import miljø from '../../common/miljø';
-import { SanityDokument } from '../typer/sanity/sanity';
-import { ITekstinnhold } from '../typer/sanity/tekstInnhold';
+import type { SanityDokument } from '../typer/sanity/sanity';
+import type { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { transformerTilTekstinnhold } from '../utils/sanity';
 
 import { loggFeil } from './axios';

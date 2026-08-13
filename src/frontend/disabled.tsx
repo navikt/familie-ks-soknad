@@ -1,8 +1,6 @@
-import React from 'react';
-
-import { createRoot } from 'react-dom/client';
-
 import { Box, VStack } from '@navikt/ds-react';
+import React from 'react';
+import { createRoot } from 'react-dom/client';
 
 import { DisabledApp } from './components/Disabled/DisabledApp';
 import { hentDekorator } from './decorator';

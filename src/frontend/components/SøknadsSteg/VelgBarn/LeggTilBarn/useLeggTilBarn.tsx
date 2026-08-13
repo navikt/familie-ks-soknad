@@ -1,12 +1,12 @@
 import { ESvar } from '@navikt/familie-form-elements';
-import { feil, type FeltState, type ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
+import { type FeltState, feil, type ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
 
-import { LocaleRecordBlock } from '../../../../../common/typer/locale';
+import type { LocaleRecordBlock } from '../../../../../common/typer/locale';
 import { useAppContext } from '../../../../context/AppContext';
 import useInputFeltMedUkjent from '../../../../hooks/useInputFeltMedUkjent';
-import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
+import type { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
-import { ILeggTilBarnTyper } from '../../../../typer/skjema';
+import type { ILeggTilBarnTyper } from '../../../../typer/skjema';
 import { erBarnRegistrertFraFør, erBarnUnder11Mnd, hentAlder, hentUid } from '../../../../utils/barn';
 import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
 import { identTilFødselsdato } from '../../../../utils/ident';

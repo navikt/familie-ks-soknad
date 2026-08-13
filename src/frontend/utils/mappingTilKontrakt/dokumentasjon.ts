@@ -1,13 +1,17 @@
 import {
     Dokumentasjonsbehov,
-    ISøknadKontraktDokumentasjon,
-    ISøknadKontraktVedlegg,
+    type ISøknadKontraktDokumentasjon,
+    type ISøknadKontraktVedlegg,
 } from '../../../common/typer/kontrakt/dokumentasjon';
-import { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
-import { dokumentasjonsbehovTilTittelSanityApiNavn, IDokumentasjon, IVedlegg } from '../../typer/dokumentasjon';
+import type { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
+import {
+    dokumentasjonsbehovTilTittelSanityApiNavn,
+    type IDokumentasjon,
+    type IVedlegg,
+} from '../../typer/dokumentasjon';
 import { ESanitySteg } from '../../typer/sanity/sanity';
-import { IFrittståendeOrdTekstinnhold, ITekstinnhold } from '../../typer/sanity/tekstInnhold';
-import { ISøknad } from '../../typer/søknad';
+import type { IFrittståendeOrdTekstinnhold, ITekstinnhold } from '../../typer/sanity/tekstInnhold';
+import type { ISøknad } from '../../typer/søknad';
 import { slåSammen } from '../slåSammen';
 
 export const dokumentasjonISøknadFormat = (
@@ -39,13 +43,14 @@ const flettefelterForDokumentasjonTittel = (
     frittståendeOrdTekster: IFrittståendeOrdTekstinnhold
 ): FlettefeltVerdier => {
     switch (dokumentasjon.dokumentasjonsbehov) {
-        case Dokumentasjonsbehov.BOR_FAST_MED_SØKER:
+        case Dokumentasjonsbehov.BOR_FAST_MED_SØKER: {
             const barnDokumentasjonsbehovGjelderFor = søknad.barnInkludertISøknaden
                 .filter(barn => dokumentasjon.gjelderForBarnId.find(id => barn.id === id))
                 .map(barn => barn.navn);
             return {
                 barnetsNavn: slåSammen(barnDokumentasjonsbehovGjelderFor, plainTekst, frittståendeOrdTekster),
             };
+        }
         default:
             return {};
     }

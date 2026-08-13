@@ -1,6 +1,5 @@
-import React from 'react';
-
 import { FormSummary, InlineMessage } from '@navikt/ds-react';
+import type React from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -9,7 +8,7 @@ import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import Barnekort from './Barnekort/Barnekort';
-import { IVelgBarnTekstinnhold } from './innholdTyper';
+import type { IVelgBarnTekstinnhold } from './innholdTyper';
 import LeggTilBarnModal from './LeggTilBarn/LeggTilBarnModal';
 import { NyttBarnKort } from './LeggTilBarn/NyttBarnKort';
 import { useVelgBarn } from './useVelgBarn';
