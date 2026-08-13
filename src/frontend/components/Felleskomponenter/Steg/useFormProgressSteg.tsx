@@ -89,7 +89,7 @@ export const useFormProgressSteg = (): IStegMedTittel[] => {
                     /*
                      * Det er viktig at alle enum-medlemmer i RouteEnum blir håndtert i switch-setningen.
                      * Hvis et medlem utelates, vil koden under feile fordi den forutsetter at hver route har en tilhørende tittel fra Sanity.
-                     * Eslint vil fange opp en ubehandlet enum-verdi og kaste en feil, men dersom dette ikke korrigeres, kan det resultere i runtime-feil eller manglende tittel for enkelte steg.
+                     * Biome vil fange opp en ubehandlet enum-verdi og kaste en feil, men dersom dette ikke korrigeres, kan det resultere i runtime-feil eller manglende tittel for enkelte steg.
                      * Dette bidrar til å sikre at alle routes har en tilhørende titteltekst og at applikasjonen oppfører seg som forventet.
                      */
                     const alleRouteEnumMedlemmerGjennomgås: never = steg.route;
