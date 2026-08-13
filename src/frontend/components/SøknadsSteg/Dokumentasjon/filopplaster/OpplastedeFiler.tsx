@@ -25,7 +25,14 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
                     <List.Item
                         key={fil.dokumentId}
                         className={classNames({ [styles.separator]: index !== filliste.length - 1 })}
-                        icon={<PaperclipIcon focusable={false} role={'img'} aria-hidden={true} aria-label={''} />}
+                        icon={
+                            <PaperclipIcon
+                                focusable={false}
+                                role={'img'}
+                                aria-hidden={true}
+                                aria-label={`fil ${index}`}
+                            />
+                        }
                     >
                         <HStack justify={'space-between'}>
                             <TypografiWrapper typografi={Typografi.BodyShort}>
