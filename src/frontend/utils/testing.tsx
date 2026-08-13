@@ -138,10 +138,7 @@ export function mockEøs(barnSomTriggerEøs = [], søkerTriggerEøs = false): Mo
     return { useEøs, erEøsLand };
 }
 
-export const wrapMedProvidere = (
-    providerComponents: React.FC<any>[],
-    children?: ReactNode
-) => {
+export const wrapMedProvidere = (providerComponents: React.FC<any>[], children?: ReactNode) => {
     const [Første, ...resten] = providerComponents;
     return <Første>{resten.length ? wrapMedProvidere(resten, children) : children}</Første>;
 };
