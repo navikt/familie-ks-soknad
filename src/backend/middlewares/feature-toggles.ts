@@ -10,7 +10,7 @@ import { isEnabled } from '../utils/unleash.js';
  */
 export const expressToggleInterceptor = (viteDevServer?: ViteDevServer): RequestHandler => {
     return (req, res, next) => {
-        let skalRendreDisabledApp;
+        let skalRendreDisabledApp: boolean;
         if (process.env.FORCE_DISABLED) {
             skalRendreDisabledApp = true;
         } else {
