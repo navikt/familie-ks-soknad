@@ -1,12 +1,11 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { IEøsKontantstøttePeriode } from '../../../typer/perioder';
+import type { IEøsKontantstøttePeriode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
-import { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
+import type { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
 import { formaterDatostringKunMåned } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';
@@ -28,7 +27,7 @@ type KontantstøttePeriodeOppsummeringPersonTypeProps =
 
 type Props = KontantstøttePeriodeProps & KontantstøttePeriodeOppsummeringPersonTypeProps;
 
-export const KontantstøttePeriodeOppsummering: React.FC<Props> = ({
+export const KontantstøttePeriodeOppsummering: FC<Props> = ({
     kontantstøttePeriode,
     nummer,
     fjernPeriodeCallback = undefined,

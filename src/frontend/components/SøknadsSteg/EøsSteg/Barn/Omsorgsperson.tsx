@@ -1,18 +1,17 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import type { ISkjema } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../../typer/barn';
-import {
+import type { IBarnMedISøknad } from '../../../../typer/barn';
+import type {
     IArbeidsperiode,
     IEøsKontantstøttePeriode,
     IPensjonsperiode,
     IUtbetalingsperiode,
 } from '../../../../typer/perioder';
 import { PersonType } from '../../../../typer/personType';
-import { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
+import type { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
 import { Arbeidsperiode } from '../../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
 import { LandDropdown } from '../../../Felleskomponenter/Dropdowns/LandDropdown';
 import SlektsforholdDropdown from '../../../Felleskomponenter/Dropdowns/SlektsforholdDropdown';
@@ -44,7 +43,7 @@ interface OmsorgspersonProps {
     };
 }
 
-const Omsorgsperson: React.FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunksjoner }) => {
+const Omsorgsperson: FC<OmsorgspersonProps> = ({ skjema, barn, periodeFunksjoner }) => {
     const { plainTekst, tekster } = useAppContext();
     const eøsForBarnTekster = tekster().EØS_FOR_BARN;
     const {

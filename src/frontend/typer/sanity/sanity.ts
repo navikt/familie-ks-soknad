@@ -1,4 +1,4 @@
-import { LocaleRecordBlock } from '../../../common/typer/locale';
+import type { LocaleRecordBlock } from '../../../common/typer/locale';
 
 export interface SanityDokument {
     _createdAt: string;

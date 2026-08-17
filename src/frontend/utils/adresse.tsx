@@ -1,11 +1,9 @@
-import React from 'react';
-
 import { BodyShort } from '@navikt/ds-react';
-import { feil, type FeltState, ok } from '@navikt/familie-skjema';
+import { type FeltState, feil, ok } from '@navikt/familie-skjema';
 
-import { IAdresse, PlainTekst } from '../../common/typer/kontrakt/generelle';
-import { IOmDegTekstinnhold } from '../components/SøknadsSteg/OmDeg/innholdTyper';
-import { ISøker } from '../typer/person';
+import type { IAdresse, PlainTekst } from '../../common/typer/kontrakt/generelle';
+import type { IOmDegTekstinnhold } from '../components/SøknadsSteg/OmDeg/innholdTyper';
+import type { ISøker } from '../typer/person';
 
 import { trimWhiteSpace } from './hjelpefunksjoner';
 import { uppercaseKunFørsteBokstav } from './visning';

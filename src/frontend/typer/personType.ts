@@ -1,4 +1,4 @@
-import { IBarnMedISøknad } from './barn';
+import type { IBarnMedISøknad } from './barn';
 
 export enum PersonType {
     andreForelder = 'andreForelder',

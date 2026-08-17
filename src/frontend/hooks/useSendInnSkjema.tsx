@@ -1,14 +1,13 @@
-import * as Sentry from '@sentry/react';
-import { AxiosError } from 'axios';
-
 import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
+import * as Sentry from '@sentry/react';
+import type { AxiosError } from 'axios';
 
 import miljø from '../../common/miljø';
 import { erModellMismatchResponsRessurs } from '../../common/modellversjon';
-import { ISøknadKontrakt } from '../../common/typer/kontrakt/søknadKontrakt';
+import type { ISøknadKontrakt } from '../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../context/AppContext';
 import { useSpråkContext } from '../context/SpråkContext';
-import { IKvittering } from '../typer/kvittering';
+import type { IKvittering } from '../typer/kvittering';
 import { dataISøknadKontraktFormat } from '../utils/mappingTilKontrakt/søknad';
 import { sendInn } from '../utils/sendInnSkjema';
 

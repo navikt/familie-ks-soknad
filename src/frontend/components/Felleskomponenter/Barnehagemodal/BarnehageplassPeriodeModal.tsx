@@ -1,13 +1,12 @@
-import React from 'react';
-
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
+import type { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../typer/common';
-import { IBarnehageplassPeriode } from '../../../typer/perioder';
-import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
+import type { IBarnehageplassPeriode } from '../../../typer/perioder';
+import type { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import { dagensDato, gårsdagensDato } from '../../../utils/dato';
 import { trimWhiteSpace, visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
@@ -38,7 +37,7 @@ interface Props extends IUseBarnehageplassSkjemaParams {
     forklaring?: string;
 }
 
-export const BarnehageplassPeriodeModal: React.FC<Props> = ({
+export const BarnehageplassPeriodeModal: FC<Props> = ({
     erÅpen,
     lukkModal,
     onLeggTilBarnehageplassPeriode,

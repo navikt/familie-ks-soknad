@@ -1,16 +1,15 @@
-import React from 'react';
-
 import { Checkbox, FormSummary, VStack } from '@navikt/ds-react';
+import type { ChangeEvent, FC } from 'react';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
-import { LocaleRecordBlock } from '../../../../common/typer/locale';
+import type { LocaleRecordBlock } from '../../../../common/typer/locale';
 import { useAppContext } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import {
     dokumentasjonsbehovTilBeskrivelseSanityApiNavn,
     dokumentasjonsbehovTilTittelSanityApiNavn,
-    IDokumentasjon,
-    IVedlegg,
+    type IDokumentasjon,
+    type IVedlegg,
 } from '../../../typer/dokumentasjon';
 import { slåSammen } from '../../../utils/slåSammen';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
@@ -27,7 +26,7 @@ interface Props {
     ) => void;
 }
 
-const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
+const LastOppVedlegg: FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
     const { søknad, tekster, plainTekst } = useAppContext();
 
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
@@ -40,7 +39,7 @@ const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon 
         plainTekst
     );
 
-    const settHarSendtInnTidligere = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const settHarSendtInnTidligere = (event: ChangeEvent<HTMLInputElement>) => {
         const huketAv = event.target.checked;
         const vedlegg = huketAv ? [] : dokumentasjon.opplastedeVedlegg;
         oppdaterDokumentasjon(dokumentasjon.dokumentasjonsbehov, vedlegg, huketAv);

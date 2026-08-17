@@ -1,7 +1,6 @@
-import React from 'react';
-
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { Button, Checkbox, ErrorMessage, InfoCard, VStack } from '@navikt/ds-react';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
@@ -9,7 +8,7 @@ import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import { BekreftelseStatus, useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 
-const BekreftelseOgStartSoknad: React.FC = () => {
+const BekreftelseOgStartSoknad: FC = () => {
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
     const { plainTekst, tekster } = useAppContext();
 
@@ -22,7 +21,6 @@ const BekreftelseOgStartSoknad: React.FC = () => {
                 return 'success';
             case BekreftelseStatus.FEIL:
                 return 'danger';
-            case BekreftelseStatus.NORMAL:
             default:
                 return 'warning';
         }

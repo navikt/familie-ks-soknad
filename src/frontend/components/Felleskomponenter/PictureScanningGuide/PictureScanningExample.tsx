@@ -1,10 +1,9 @@
-import React from 'react';
-
 import { BodyShort, InfoCard, type InfoCardProps } from '@navikt/ds-react';
+import type { ReactNode } from 'react';
 
 interface Props {
-    image: React.ReactNode;
-    icon: React.ReactNode;
+    image: ReactNode;
+    icon: ReactNode;
     variant: InfoCardProps['data-color'];
     statusText: string;
     description: string;

@@ -1,5 +1,5 @@
-import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
-import { ISanitySpørsmålDokument } from '../sanity';
+import type { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
+import type { ISanitySpørsmålDokument } from '../sanity';
 
 export interface IBarnehageplassTekstinnhold {
     antallTimer: ISanitySpørsmålDokument;

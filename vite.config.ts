@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 
 import { sentryVitePlugin } from '@sentry/vite-plugin';
 import react from '@vitejs/plugin-react';
@@ -25,7 +25,7 @@ export default defineConfig({
                       filesToDeleteAfterUpload: ['dist/**/*.js.map'],
                   },
                   errorHandler: err => {
-                      console.warn('Sentry Vite Plugin: ' + err.message);
+                      console.warn(`Sentry Vite Plugin: ${err.message}`);
                   },
               })
             : undefined,

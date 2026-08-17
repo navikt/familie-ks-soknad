@@ -1,6 +1,6 @@
-import { LocaleType } from '../../common/typer/locale';
+import type { LocaleType } from '../../common/typer/locale';
 
-import { ISøknad } from './søknad';
+import type { ISøknad } from './søknad';
 
 export interface IMellomlagretKontantstøtte {
     søknad: ISøknad;

@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
-
 import { type Avhengigheter, useFelt } from '@navikt/familie-skjema';
 import type { ValiderFelt } from '@navikt/familie-skjema/dist/typer';
+import { useEffect, useState } from 'react';
 
 export const usePerioder = <T>(
     feltId: string,

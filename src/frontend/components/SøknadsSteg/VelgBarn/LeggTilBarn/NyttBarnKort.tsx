@@ -1,14 +1,13 @@
-import React from 'react';
-
 import { BodyShort, Box, Button } from '@navikt/ds-react';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
-import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
+import type { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import TekstBlock from '../../../Felleskomponenter/TekstBlock';
-import { IVelgBarnTekstinnhold } from '../innholdTyper';
+import type { IVelgBarnTekstinnhold } from '../innholdTyper';
 
-export const NyttBarnKort: React.FC<{ onLeggTilBarn: () => void }> = ({ onLeggTilBarn }) => {
+export const NyttBarnKort: FC<{ onLeggTilBarn: () => void }> = ({ onLeggTilBarn }) => {
     const { tekster } = useAppContext();
     const teksterForSteg: IVelgBarnTekstinnhold = tekster()[ESanitySteg.VELG_BARN];
     const teksterForLeggTilBarnModal: ILeggTilBarnTekstinnhold = tekster()[ESanitySteg.FELLES].modaler.leggTilBarn;

@@ -1,5 +1,5 @@
 import { isPortableTextSpan } from '@portabletext/toolkit';
-import {
+import type {
     ArbitraryTypedObject,
     PortableTextBlock,
     PortableTextMarkDefinition,
@@ -7,44 +7,44 @@ import {
 } from '@portabletext/types';
 import { pipe } from 'ramda';
 
-import { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
-import { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../common/typer/locale';
-import { IAndreUtbetalingerTekstinnhold } from '../typer/sanity/modaler/andreUtbetalinger';
-import { IArbeidsperiodeTekstinnhold } from '../typer/sanity/modaler/arbeidsperiode';
-import { IBarnehageplassTekstinnhold } from '../typer/sanity/modaler/barnehageplass';
-import { IBlokkerTilbakeKnappModal } from '../typer/sanity/modaler/blokkerTilbakeKnapp';
-import { IEøsYtelseTekstinnhold } from '../typer/sanity/modaler/eøsYtelse';
-import { ILeggTilBarnTekstinnhold } from '../typer/sanity/modaler/leggTilBarn';
-import { IMistetInformasjonenDinModal } from '../typer/sanity/modaler/mistetInformasjonenDin';
-import { IPensjonsperiodeTekstinnhold } from '../typer/sanity/modaler/pensjonsperiode';
-import { IStartPåNyttModal } from '../typer/sanity/modaler/startPåNytt';
-import { IUtenlandsoppholdTekstinnhold } from '../typer/sanity/modaler/utenlandsopphold';
+import type { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../common/typer/locale';
+import type { IAndreUtbetalingerTekstinnhold } from '../typer/sanity/modaler/andreUtbetalinger';
+import type { IArbeidsperiodeTekstinnhold } from '../typer/sanity/modaler/arbeidsperiode';
+import type { IBarnehageplassTekstinnhold } from '../typer/sanity/modaler/barnehageplass';
+import type { IBlokkerTilbakeKnappModal } from '../typer/sanity/modaler/blokkerTilbakeKnapp';
+import type { IEøsYtelseTekstinnhold } from '../typer/sanity/modaler/eøsYtelse';
+import type { ILeggTilBarnTekstinnhold } from '../typer/sanity/modaler/leggTilBarn';
+import type { IMistetInformasjonenDinModal } from '../typer/sanity/modaler/mistetInformasjonenDin';
+import type { IPensjonsperiodeTekstinnhold } from '../typer/sanity/modaler/pensjonsperiode';
+import type { IStartPåNyttModal } from '../typer/sanity/modaler/startPåNytt';
+import type { IUtenlandsoppholdTekstinnhold } from '../typer/sanity/modaler/utenlandsopphold';
 import {
     alternativeTeksterPrefix,
-    ESanityFlettefeltverdi,
+    type ESanityFlettefeltverdi,
     ESanitySteg,
     formateringsfeilmeldingerPrefix,
     frittståendeOrdPrefix,
     hjelpeteksterForInputPrefix,
-    midlertidigeTeksterPrefix,
     kanIkkeBrukeSoeknadPrefix,
+    midlertidigeTeksterPrefix,
     modalPrefix,
     navigasjonPrefix,
-    SanityDokument,
+    type SanityDokument,
     vedlikeholdsarbeidPrefix,
 } from '../typer/sanity/sanity';
 import {
-    IAlternativeTeksterTekstinnhold,
-    IFellesTekstInnhold,
-    IFormateringsfeilmeldingerTekstinnhold,
-    IFrittståendeOrdTekstinnhold,
-    IHjelpeteksterForInputTekstInnhold,
-    IKanIkkeBrukeSoeknadTekstinnhold,
-    IMidlertidigeTeksterTekstInnhold,
-    IModalerTekstinnhold,
-    INavigasjonTekstinnhold,
-    ITekstinnhold,
-    IVedlikeholdsarbeidTekstinnhold,
+    type IAlternativeTeksterTekstinnhold,
+    type IFellesTekstInnhold,
+    type IFormateringsfeilmeldingerTekstinnhold,
+    type IFrittståendeOrdTekstinnhold,
+    type IHjelpeteksterForInputTekstInnhold,
+    type IKanIkkeBrukeSoeknadTekstinnhold,
+    type IMidlertidigeTeksterTekstInnhold,
+    type IModalerTekstinnhold,
+    type INavigasjonTekstinnhold,
+    type ITekstinnhold,
+    type IVedlikeholdsarbeidTekstinnhold,
     SanityModalPrefix,
     SanityPersonType,
 } from '../typer/sanity/tekstInnhold';

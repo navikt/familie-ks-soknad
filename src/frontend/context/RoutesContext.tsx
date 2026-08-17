@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren, useContext } from 'react';
+import { createContext, type PropsWithChildren, useContext } from 'react';
 
 import { RouteEnum } from '../typer/routes';
 

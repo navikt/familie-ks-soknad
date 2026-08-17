@@ -1,6 +1,6 @@
-import { Alpha3Code } from 'i18n-iso-countries';
+import type { Alpha3Code } from 'i18n-iso-countries';
 
-import {
+import type {
     IArbeidsperiode,
     IEøsKontantstøttePeriode,
     IPensjonsperiode,

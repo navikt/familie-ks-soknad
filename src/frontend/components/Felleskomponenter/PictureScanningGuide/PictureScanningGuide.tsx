@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { CheckmarkCircleIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
 import { ExpansionCard, Heading, HGrid, VStack } from '@navikt/ds-react';
 

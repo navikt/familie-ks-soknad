@@ -1,9 +1,7 @@
-import React from 'react';
+import { byggSuksessRessurs } from '@navikt/familie-typer';
 
 import { renderHook, waitFor } from '@testing-library/react';
-import { http, HttpResponse } from 'msw';
-
-import { byggSuksessRessurs } from '@navikt/familie-typer';
+import { HttpResponse, http } from 'msw';
 
 import { server } from '../../../mocks/node';
 import { urlMedBasePath } from '../../../mocks/utils';

@@ -1,16 +1,14 @@
-import React from 'react';
+import { ESvar } from '@navikt/familie-form-elements';
 
 import { act, render } from '@testing-library/react';
-import { DeepPartial } from 'ts-essentials';
+import type { DeepPartial } from 'ts-essentials';
 import { vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
 
-import { ESvar } from '@navikt/familie-form-elements';
-
 import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
-import { IBarnMedISøknad } from '../../../typer/barn';
-import { IBarnRespons } from '../../../typer/person';
-import { ISøknad } from '../../../typer/søknad';
+import type { IBarnMedISøknad } from '../../../typer/barn';
+import type { IBarnRespons } from '../../../typer/person';
+import type { ISøknad } from '../../../typer/søknad';
 import { mekkGyldigSøker, spyOnUseApp, TestProvidere } from '../../../utils/testing';
 import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
 

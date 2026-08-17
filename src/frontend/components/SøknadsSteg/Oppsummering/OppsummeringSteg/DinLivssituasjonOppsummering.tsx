@@ -1,5 +1,4 @@
-import React from 'react';
-
+import type { Dispatch, FC, SetStateAction } from 'react';
 import { useAppContext } from '../../../../context/AppContext';
 import { useRoutesContext } from '../../../../context/RoutesContext';
 import { PersonType } from '../../../../typer/personType';
@@ -13,10 +12,10 @@ import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';
 
 interface Props {
-    settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
+    settFeilAnchors: Dispatch<SetStateAction<string[]>>;
 }
 
-const DinLivssituasjonOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
+const DinLivssituasjonOppsummering: FC<Props> = ({ settFeilAnchors }) => {
     const { søknad, tekster } = useAppContext();
     const dinLivssituasjonTekster = tekster().DIN_LIVSSITUASJON;
     const { hentRouteObjektForRouteEnum } = useRoutesContext();

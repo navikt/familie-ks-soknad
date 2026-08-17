@@ -1,6 +1,5 @@
-import path from 'path';
-
-import express, { Express } from 'express';
+import path from 'node:path';
+import express, { type Express } from 'express';
 import mustacheExpress from 'mustache-express';
 import type { ViteDevServer } from 'vite';
 

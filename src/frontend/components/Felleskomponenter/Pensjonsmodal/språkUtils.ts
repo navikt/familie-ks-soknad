@@ -1,7 +1,7 @@
-import { LocaleRecordBlock } from '../../../../common/typer/locale';
+import type { LocaleRecordBlock } from '../../../../common/typer/locale';
 import { PersonType } from '../../../typer/personType';
-import { ESanitySteg, ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
-import { ITekstinnhold } from '../../../typer/sanity/tekstInnhold';
+import { ESanitySteg, type ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
+import type { ITekstinnhold } from '../../../typer/sanity/tekstInnhold';
 
 export const mottarPensjonNåFeilmelding = ({
     personType,
@@ -64,7 +64,6 @@ export const pensjonSpørsmålDokument = (
                 ? tekster()[ESanitySteg.EØS_FOR_BARN].pensjonUtlandOmsorgsperson
                 : tekster()[ESanitySteg.EØS_FOR_BARN].pensjonNorgeOmsorgsperson;
         }
-        case PersonType.søker:
         default: {
             return gjelderUtlandet
                 ? tekster()[ESanitySteg.DIN_LIVSSITUASJON].pensjonUtland

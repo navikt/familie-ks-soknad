@@ -1,17 +1,16 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
-
-import { Alpha3Code } from 'i18n-iso-countries';
-import { v4 as uuidv4 } from 'uuid';
-
 import { ESvar } from '@navikt/familie-form-elements';
-import { feil, type Felt, type FeltState, type ISkjema, ok, useFelt } from '@navikt/familie-skjema';
+import { type Felt, type FeltState, feil, type ISkjema, ok, useFelt } from '@navikt/familie-skjema';
+import type { Alpha3Code } from 'i18n-iso-countries';
+
+import { type Dispatch, type FC, type SetStateAction, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import { useAppContext } from '../../../context/AppContext';
 import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
-import { IBarnMedISøknad } from '../../../typer/barn';
+import type { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../typer/common';
-import { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
-import { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
+import type { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
+import type { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
 import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
 import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
 import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
@@ -20,7 +19,7 @@ import { OppsummeringFelt } from '../Oppsummering/OppsummeringFelt';
 
 import { idNummerKeyPrefix, PeriodeType } from './idnummerUtils';
 
-export const IdNummer: React.FC<{
+export const IdNummer: FC<{
     skjema: ISkjema<IEøsForSøkerFeltTyper | IEøsForBarnFeltTyper, string>;
     settIdNummerFelter: Dispatch<SetStateAction<Felt<string>[]>>;
     landAlphaCode: Alpha3Code | '';

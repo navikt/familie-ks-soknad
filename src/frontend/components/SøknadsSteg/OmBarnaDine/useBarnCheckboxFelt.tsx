@@ -1,11 +1,10 @@
-import { ReactNode, useEffect } from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
-import { type Avhengigheter, feil, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
+import { type Avhengigheter, type Felt, type FeltState, feil, ok, useFelt } from '@navikt/familie-skjema';
+import { type ReactNode, useEffect } from 'react';
 
-import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
+import type { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../context/AppContext';
-import { BarnetsId } from '../../../typer/common';
+import type { BarnetsId } from '../../../typer/common';
 
 const useBarnCheckboxFelt = (
     datafeltNavn: barnDataKeySpørsmål,

@@ -1,11 +1,10 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { IPensjonsperiode } from '../../../typer/perioder';
-import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
+import type { IPensjonsperiode } from '../../../typer/perioder';
+import { type PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { formaterDatostringKunMåned } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';
@@ -22,7 +21,7 @@ interface Props {
 
 type PensjonsperiodeOppsummeringProps = Props & PeriodePersonTypeMedBarnProps;
 
-export const PensjonsperiodeOppsummering: React.FC<PensjonsperiodeOppsummeringProps> = ({
+export const PensjonsperiodeOppsummering: FC<PensjonsperiodeOppsummeringProps> = ({
     pensjonsperiode,
     nummer,
     fjernPeriodeCallback = undefined,

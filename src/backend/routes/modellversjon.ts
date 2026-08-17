@@ -1,6 +1,5 @@
-import { Express } from 'express';
-
 import { byggSuksessRessurs } from '@navikt/familie-typer';
+import type { Express } from 'express';
 
 import { BASE_PATH } from '../../common/miljø.js';
 import { modellVersjon } from '../../common/modellversjon.js';

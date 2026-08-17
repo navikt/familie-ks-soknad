@@ -1,13 +1,11 @@
-import React from 'react';
-
-import { parseISO } from 'date-fns';
-
 import { ESvar } from '@navikt/familie-form-elements';
+import { parseISO } from 'date-fns';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { IPensjonsperiode } from '../../../typer/perioder';
+import type { IPensjonsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
-import { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
+import type { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
 import { dagensDato, gårsdagensDato, sisteDagDenneMåneden } from '../../../utils/dato';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { LandDropdown } from '../Dropdowns/LandDropdown';
@@ -18,7 +16,7 @@ import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import TekstBlock from '../TekstBlock';
 
 import { PensjonsperiodeSpørsmålId } from './spørsmål';
-import { IUsePensjonSkjemaParams, usePensjonSkjema } from './usePensjonSkjema';
+import { type IUsePensjonSkjemaParams, usePensjonSkjema } from './usePensjonSkjema';
 
 interface Props extends IUsePensjonSkjemaParams {
     erÅpen: boolean;
@@ -28,7 +26,7 @@ interface Props extends IUsePensjonSkjemaParams {
     forklaring?: string;
 }
 
-export const PensjonModal: React.FC<Props> = ({
+export const PensjonModal: FC<Props> = ({
     erÅpen,
     lukkModal,
     onLeggTilPensjonsperiode,

@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-
-import { useNavigate } from 'react-router';
-
 import { VStack } from '@navikt/ds-react';
+
+import { type FC, useState } from 'react';
+import { useNavigate } from 'react-router';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
+import type { IBarnMedISøknad } from '../../../typer/barn';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
 import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
@@ -19,7 +18,7 @@ import OmBarnetOppsummering from './OppsummeringSteg/OmBarnet/OmBarnetOppsummeri
 import OmDegOppsummering from './OppsummeringSteg/OmDegOppsummering';
 import VelgBarnOppsummering from './OppsummeringSteg/VelgBarnOppsummering';
 
-const Oppsummering: React.FC = () => {
+const Oppsummering: FC = () => {
     const { søknad, tekster } = useAppContext();
     const navigate = useNavigate();
     const [feilAnchors, settFeilAnchors] = useState<string[]>([]);

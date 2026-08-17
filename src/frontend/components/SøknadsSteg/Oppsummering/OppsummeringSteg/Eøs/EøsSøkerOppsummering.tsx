@@ -1,13 +1,12 @@
-import React from 'react';
+import type { ESvar } from '@navikt/familie-form-elements';
+import type { Dispatch, FC, SetStateAction } from 'react';
 
-import { ESvar } from '@navikt/familie-form-elements';
-
-import { LocaleRecordBlock, LocaleRecordString } from '../../../../../../common/typer/locale';
+import type { LocaleRecordBlock, LocaleRecordString } from '../../../../../../common/typer/locale';
 import { useAppContext } from '../../../../../context/AppContext';
 import { useRoutesContext } from '../../../../../context/RoutesContext';
 import { PersonType } from '../../../../../typer/personType';
 import { RouteEnum } from '../../../../../typer/routes';
-import { ISøknadSpørsmål } from '../../../../../typer/spørsmål';
+import type { ISøknadSpørsmål } from '../../../../../typer/spørsmål';
 import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
 import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
 import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
@@ -18,10 +17,10 @@ import { OppsummeringFelt } from '../../OppsummeringFelt';
 import Oppsummeringsbolk from '../../Oppsummeringsbolk';
 
 interface Props {
-    settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
+    settFeilAnchors: Dispatch<SetStateAction<string[]>>;
 }
 
-const EøsSøkerOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
+const EøsSøkerOppsummering: FC<Props> = ({ settFeilAnchors }) => {
     const { hentRouteObjektForRouteEnum } = useRoutesContext();
     const { søknad, tekster, plainTekst } = useAppContext();
     const eøsSøkerTekster = tekster().EØS_FOR_SØKER;

@@ -1,16 +1,13 @@
+import { ESvar } from '@navikt/familie-form-elements';
+import { type Felt, type FeltState, feil, ok, useFelt, Valideringsstatus } from '@navikt/familie-skjema';
 import { useState } from 'react';
-
 import { v4 as uuidv4 } from 'uuid';
 
-import { ESvar } from '@navikt/familie-form-elements';
-import { feil, type Felt, type FeltState, ok, useFelt, Valideringsstatus } from '@navikt/familie-skjema';
-
-import { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
-import { LocaleRecordBlock } from '../../common/typer/locale';
+import type { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock } from '../../common/typer/locale';
 import { useAppContext } from '../context/AppContext';
-import { ISøknadSpørsmål } from '../typer/spørsmål';
+import type { ISøknadSpørsmål } from '../typer/spørsmål';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface FeltGruppe {
     hovedSpørsmål: Felt<any>;
     tilhørendeFelter?: Felt<any>[];

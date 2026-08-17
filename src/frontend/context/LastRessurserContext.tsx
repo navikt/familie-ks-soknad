@@ -1,8 +1,7 @@
-import React, { createContext, PropsWithChildren, useContext, useState } from 'react';
-
-import { AxiosError, type AxiosRequestConfig, type AxiosResponse } from 'axios';
-
 import { type ApiRessurs, type Ressurs, RessursStatus } from '@navikt/familie-typer';
+
+import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { createContext, type PropsWithChildren, useContext, useState } from 'react';
 
 import { useUnmountCleanup } from '../hooks/useUnmountCleanup';
 import { hentUid } from '../utils/barn';

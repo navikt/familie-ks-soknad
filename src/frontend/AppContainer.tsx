@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Box, GlobalAlert, Page } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
 

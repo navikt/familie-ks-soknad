@@ -1,26 +1,23 @@
-import React, { ReactNode, useEffect } from 'react';
-
-import { useNavigate } from 'react-router';
-
 import { ArrowLeftIcon, InformationSquareIcon } from '@navikt/aksel-icons';
 import { Box, FormProgress, GuidePanel, Heading, InfoCard, Link, VStack } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
+import { type ReactNode, useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useAppNavigationContext } from '../../../context/AppNavigationContext';
 import { useStegContext } from '../../../context/StegContext';
-import useFørsteRender from '../../../hooks/useFørsteRender';
 import { RouteEnum } from '../../../typer/routes';
-import { SkjemaFeltTyper } from '../../../typer/skjema';
-import { ISøknad } from '../../../typer/søknad';
+import type { SkjemaFeltTyper } from '../../../typer/skjema';
+import type { ISøknad } from '../../../typer/søknad';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import InnholdContainer from '../InnholdContainer/InnholdContainer';
 import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 import useModal from '../SkjemaModal/useModal';
 import { VedleggOppsummering } from '../VedleggOppsummering/VedleggOppsummering';
 import { skalVedleggOppsummeringVises } from '../VedleggOppsummering/vedleggOppsummering.domene';
-import { IVedleggOppsummering } from '../VedleggOppsummering/vedleggOppsummering.types';
+import type { IVedleggOppsummering } from '../VedleggOppsummering/vedleggOppsummering.types';
 
 import ModellVersjonModal from './ModellVersjonModal';
 import Navigeringspanel from './Navigeringspanel';

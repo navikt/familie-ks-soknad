@@ -1,11 +1,10 @@
-import React from 'react';
-
 import { ErrorSummary } from '@navikt/ds-react';
 import { type ISkjema, Valideringsstatus } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { ISteg } from '../../../typer/routes';
-import { SkjemaFeltTyper } from '../../../typer/skjema';
+import type { ISteg } from '../../../typer/routes';
+import type { SkjemaFeltTyper } from '../../../typer/skjema';
 import { AppLenke } from '../AppLenke/AppLenke';
 
 interface Props {
@@ -14,7 +13,7 @@ interface Props {
     id?: string;
 }
 
-export const SkjemaFeiloppsummering: React.FC<Props> = ({ skjema, stegMedFeil, id }) => {
+export const SkjemaFeiloppsummering: FC<Props> = ({ skjema, stegMedFeil, id }) => {
     const { tekster, plainTekst } = useAppContext();
     return (
         <ErrorSummary id={id} heading={plainTekst(tekster().FELLES.navigasjon.duMaaRetteOppFoelgende)}>
@@ -28,7 +27,7 @@ export const SkjemaFeiloppsummering: React.FC<Props> = ({ skjema, stegMedFeil, i
                             {felt.feilmelding}
                         </AppLenke>
                     ) : (
-                        <ErrorSummary.Item href={'#' + felt.id} key={`feil-${felt.id}`}>
+                        <ErrorSummary.Item href={`#${felt.id}`} key={`feil-${felt.id}`}>
                             {felt.feilmelding}
                         </ErrorSummary.Item>
                     )

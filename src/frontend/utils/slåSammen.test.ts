@@ -1,4 +1,4 @@
-import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
+import type { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
 
 import { slåSammen } from './slåSammen';
 

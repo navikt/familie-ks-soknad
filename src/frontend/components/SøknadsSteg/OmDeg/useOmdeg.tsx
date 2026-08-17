@@ -1,17 +1,16 @@
-import { useEffect } from 'react';
-
 import { type ISkjema, useSkjema } from '@navikt/familie-skjema';
+import { useEffect } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IOmDegFeltTyper } from '../../../typer/skjema';
-import { ISøknad } from '../../../typer/søknad';
+import type { IOmDegFeltTyper } from '../../../typer/skjema';
+import type { ISøknad } from '../../../typer/søknad';
 import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
 
-import { IOmDegTekstinnhold } from './innholdTyper';
+import type { IOmDegTekstinnhold } from './innholdTyper';
 
 export const useOmdeg = (): {
     skjema: ISkjema<IOmDegFeltTyper, string>;

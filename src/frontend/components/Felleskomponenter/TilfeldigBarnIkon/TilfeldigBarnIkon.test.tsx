@@ -1,10 +1,8 @@
-import React from 'react';
-
 import { render } from '@testing-library/react';
 import { vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
 
-import { ISøknad } from '../../../typer/søknad';
+import type { ISøknad } from '../../../typer/søknad';
 import * as hjelpefunksjoner from '../../../utils/hjelpefunksjoner';
 import { spyOnUseApp } from '../../../utils/testing';
 

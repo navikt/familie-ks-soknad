@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import { type Avhengigheter, type Felt, type FeltState, ok, useFelt } from '@navikt/familie-skjema';
+import { useEffect } from 'react';
 
-import { ISODateString } from '../../common/typer/ISODateString';
-import { LocaleRecordBlock } from '../../common/typer/locale';
+import type { ISODateString } from '../../common/typer/ISODateString';
+import type { LocaleRecordBlock } from '../../common/typer/locale';
 import { useAppContext } from '../context/AppContext';
 import { validerDato } from '../utils/dato';
 

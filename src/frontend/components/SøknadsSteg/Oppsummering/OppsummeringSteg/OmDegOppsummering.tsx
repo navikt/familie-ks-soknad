@@ -1,8 +1,6 @@
-import React from 'react';
-
-import { Alpha3Code } from 'i18n-iso-countries';
-
 import { ESvar } from '@navikt/familie-form-elements';
+import type { Alpha3Code } from 'i18n-iso-countries';
+import type { Dispatch, FC, SetStateAction } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { useRoutesContext } from '../../../../context/RoutesContext';
@@ -17,10 +15,10 @@ import { OppsummeringFelt } from '../OppsummeringFelt';
 import Oppsummeringsbolk from '../Oppsummeringsbolk';
 
 interface Props {
-    settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
+    settFeilAnchors: Dispatch<SetStateAction<string[]>>;
 }
 
-const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
+const OmDegOppsummering: FC<Props> = ({ settFeilAnchors }) => {
     const { søknad, tekster, plainTekst } = useAppContext();
     const { OM_DEG: omDegTekster, FORSIDE: forsideTekster, FELLES: fellesTekster } = tekster();
     const { valgtLocale } = useSpråkContext();
@@ -58,10 +56,9 @@ const OmDegOppsummering: React.FC<Props> = ({ settFeilAnchors }) => {
                 )}
             />
 
-            <OppsummeringFelt
-                tittel={plainTekst(omDegTekster.adresse)}
-                children={genererAdresseVisning(søknad.søker, omDegTekster, plainTekst)}
-            />
+            <OppsummeringFelt tittel={plainTekst(omDegTekster.adresse)}>
+                {genererAdresseVisning(søknad.søker, omDegTekster, plainTekst)}
+            </OppsummeringFelt>
             {søknad.søker.borPåRegistrertAdresse.svar && (
                 <OppsummeringFelt
                     tittel={<TekstBlock block={omDegTekster.borPaaAdressen.sporsmal} />}

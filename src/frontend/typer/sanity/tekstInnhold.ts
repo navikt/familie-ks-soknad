@@ -1,26 +1,26 @@
-import { LocaleRecordBlock, LocaleRecordString } from '../../../common/typer/locale';
-import { IDinLivssituasjonTekstinnhold } from '../../components/SøknadsSteg/DinLivssituasjon/innholdTyper';
-import { IDokumentasjonTekstinnhold } from '../../components/SøknadsSteg/Dokumentasjon/innholdTyper';
-import { IEøsForBarnTekstinnhold } from '../../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
-import { IEøsForSøkerTekstinnhold } from '../../components/SøknadsSteg/EøsSteg/Søker/innholdTyper';
-import { IForsideTekstinnhold } from '../../components/SøknadsSteg/Forside/innholdTyper';
-import { IKvitteringTekstinnhold } from '../../components/SøknadsSteg/Kvittering/innholdTyper';
-import { IOmBarnaTekstinnhold } from '../../components/SøknadsSteg/OmBarnaDine/innholdTyper';
-import { IOmBarnetTekstinnhold } from '../../components/SøknadsSteg/OmBarnet/innholdTyper';
-import { IOmDegTekstinnhold } from '../../components/SøknadsSteg/OmDeg/innholdTyper';
-import { IOppsummeringTekstinnhold } from '../../components/SøknadsSteg/Oppsummering/innholdTyper';
-import { IVelgBarnTekstinnhold } from '../../components/SøknadsSteg/VelgBarn/innholdTyper';
+import type { LocaleRecordBlock, LocaleRecordString } from '../../../common/typer/locale';
+import type { IDinLivssituasjonTekstinnhold } from '../../components/SøknadsSteg/DinLivssituasjon/innholdTyper';
+import type { IDokumentasjonTekstinnhold } from '../../components/SøknadsSteg/Dokumentasjon/innholdTyper';
+import type { IEøsForBarnTekstinnhold } from '../../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
+import type { IEøsForSøkerTekstinnhold } from '../../components/SøknadsSteg/EøsSteg/Søker/innholdTyper';
+import type { IForsideTekstinnhold } from '../../components/SøknadsSteg/Forside/innholdTyper';
+import type { IKvitteringTekstinnhold } from '../../components/SøknadsSteg/Kvittering/innholdTyper';
+import type { IOmBarnaTekstinnhold } from '../../components/SøknadsSteg/OmBarnaDine/innholdTyper';
+import type { IOmBarnetTekstinnhold } from '../../components/SøknadsSteg/OmBarnet/innholdTyper';
+import type { IOmDegTekstinnhold } from '../../components/SøknadsSteg/OmDeg/innholdTyper';
+import type { IOppsummeringTekstinnhold } from '../../components/SøknadsSteg/Oppsummering/innholdTyper';
+import type { IVelgBarnTekstinnhold } from '../../components/SøknadsSteg/VelgBarn/innholdTyper';
 
-import { IAndreUtbetalingerTekstinnhold } from './modaler/andreUtbetalinger';
-import { IArbeidsperiodeTekstinnhold } from './modaler/arbeidsperiode';
-import { IBarnehageplassTekstinnhold } from './modaler/barnehageplass';
-import { IBlokkerTilbakeKnappModal } from './modaler/blokkerTilbakeKnapp';
-import { IEøsYtelseTekstinnhold } from './modaler/eøsYtelse';
-import { ILeggTilBarnTekstinnhold } from './modaler/leggTilBarn';
-import { IMistetInformasjonenDinModal } from './modaler/mistetInformasjonenDin';
-import { IPensjonsperiodeTekstinnhold } from './modaler/pensjonsperiode';
-import { IStartPåNyttModal } from './modaler/startPåNytt';
-import { IUtenlandsoppholdTekstinnhold } from './modaler/utenlandsopphold';
+import type { IAndreUtbetalingerTekstinnhold } from './modaler/andreUtbetalinger';
+import type { IArbeidsperiodeTekstinnhold } from './modaler/arbeidsperiode';
+import type { IBarnehageplassTekstinnhold } from './modaler/barnehageplass';
+import type { IBlokkerTilbakeKnappModal } from './modaler/blokkerTilbakeKnapp';
+import type { IEøsYtelseTekstinnhold } from './modaler/eøsYtelse';
+import type { ILeggTilBarnTekstinnhold } from './modaler/leggTilBarn';
+import type { IMistetInformasjonenDinModal } from './modaler/mistetInformasjonenDin';
+import type { IPensjonsperiodeTekstinnhold } from './modaler/pensjonsperiode';
+import type { IStartPåNyttModal } from './modaler/startPåNytt';
+import type { IUtenlandsoppholdTekstinnhold } from './modaler/utenlandsopphold';
 import { ESanitySteg } from './sanity';
 
 export enum SanityPersonType {
@@ -200,5 +200,4 @@ export interface IAlternativeTeksterTekstinnhold {
     barneillustrajonAltTekst: LocaleRecordBlock;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface IMidlertidigeTeksterTekstInnhold {}
+export type IMidlertidigeTeksterTekstInnhold = {};

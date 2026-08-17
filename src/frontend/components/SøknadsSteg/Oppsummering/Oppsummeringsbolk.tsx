@@ -1,19 +1,18 @@
-import React, { MouseEventHandler, ReactNode, useEffect, useState } from 'react';
-
-import { useNavigate } from 'react-router';
-
 import { FormSummary } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
 
+import { type Dispatch, type MouseEventHandler, type ReactNode, type SetStateAction, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+
 import { BASE_PATH } from '../../../../common/miljø';
-import { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
-import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
+import type { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
 import { unslash } from '../../../../common/unslash';
 import { useAppContext } from '../../../context/AppContext';
 import { useStegContext } from '../../../context/StegContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
-import { ISteg, RouteEnum } from '../../../typer/routes';
-import { SkjemaFeltTyper } from '../../../typer/skjema';
+import type { IBarnMedISøknad } from '../../../typer/barn';
+import { type ISteg, RouteEnum } from '../../../typer/routes';
+import type { SkjemaFeltTyper } from '../../../typer/skjema';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import { SkjemaFeiloppsummering } from '../../Felleskomponenter/SkjemaFeiloppsummering/SkjemaFeiloppsummering';
 
@@ -28,7 +27,7 @@ interface Props {
     flettefelter?: FlettefeltVerdier;
     steg?: ISteg;
     skjemaHook: IHookReturn;
-    settFeilAnchors?: React.Dispatch<React.SetStateAction<string[]>>;
+    settFeilAnchors?: Dispatch<SetStateAction<string[]>>;
     barn?: IBarnMedISøknad;
     children?: ReactNode;
 }
@@ -39,7 +38,7 @@ function Oppsummeringsbolk({ children, tittel, flettefelter, steg, skjemaHook, s
     const { validerAlleSynligeFelter, valideringErOk, skjema } = skjemaHook;
     const [visFeil, settVisFeil] = useState(false);
 
-    const feilOppsummeringId = skjema.skjemanavn + '-feil';
+    const feilOppsummeringId = `${skjema.skjemanavn}-feil`;
 
     useEffect(() => {
         // Når felter valideres blir nye synlige, så vi må kjøre denne igjen til vi har validert alt

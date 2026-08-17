@@ -1,4 +1,4 @@
-import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
+import type { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
 import { BeskrivelseSanityApiNavn, TittelSanityApiNavn } from '../../../typer/dokumentasjon';
 
 export type IDokumentasjonTekstinnhold = {

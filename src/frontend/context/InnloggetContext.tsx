@@ -1,6 +1,5 @@
-import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
-
 import { RessursStatus } from '@navikt/familie-typer';
+import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
 
 import miljø from '../../common/miljø';
 import { autentiseringsInterceptor, InnloggetStatus } from '../utils/autentisering';

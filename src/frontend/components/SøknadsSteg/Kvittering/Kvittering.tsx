@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-
-import { format } from 'date-fns';
-
 import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 import { InfoCard, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
+import { format } from 'date-fns';
+
+import { type FC, useEffect, useRef } from 'react';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { useAppContext } from '../../../context/AppContext';
@@ -18,7 +17,7 @@ import Steg from '../../Felleskomponenter/Steg/Steg';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 import Kontoinformasjon from '../../Kontoinformasjon/Kontoinformasjon';
 
-const Kvittering: React.FC = () => {
+const Kvittering: FC = () => {
     const { avbrytOgSlettSøknad, sisteUtfylteStegIndex, settFåttGyldigKvittering, søknad, tekster } = useAppContext();
     const { hentStegNummer } = useStegContext();
 

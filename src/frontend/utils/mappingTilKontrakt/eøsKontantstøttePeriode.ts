@@ -1,12 +1,12 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { ISODateString } from '../../../common/typer/ISODateString';
-import { ISøknadsfelt, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
-import { IEøsKontantstøttePeriodeIKontraktFormat } from '../../../common/typer/kontrakt/søknadKontrakt';
-import { IBarnMedISøknad } from '../../typer/barn';
-import { IEøsKontantstøttePeriode } from '../../typer/perioder';
-import { IEøsYtelseTekstinnhold } from '../../typer/sanity/modaler/eøsYtelse';
-import { ISøknadSpørsmål } from '../../typer/spørsmål';
+import type { ISODateString } from '../../../common/typer/ISODateString';
+import type { ISøknadsfelt, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
+import type { IEøsKontantstøttePeriodeIKontraktFormat } from '../../../common/typer/kontrakt/søknadKontrakt';
+import type { IBarnMedISøknad } from '../../typer/barn';
+import type { IEøsKontantstøttePeriode } from '../../typer/perioder';
+import type { IEøsYtelseTekstinnhold } from '../../typer/sanity/modaler/eøsYtelse';
+import type { ISøknadSpørsmål } from '../../typer/spørsmål';
 import { formaterDatostringKunMåned } from '../dato';
 import { landkodeTilSpråk } from '../språk';
 import { uppercaseFørsteBokstav } from '../visning';

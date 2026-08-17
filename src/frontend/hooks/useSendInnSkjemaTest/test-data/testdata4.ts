@@ -1,6 +1,6 @@
-import { ISøknad } from '../../../typer/søknad';
+import type { ISøknad } from '../../../typer/søknad';
 
-import { TilKontraktTestData } from './typer';
+import type { TilKontraktTestData } from './typer';
 
 export const testdata4: TilKontraktTestData = {
     input: {

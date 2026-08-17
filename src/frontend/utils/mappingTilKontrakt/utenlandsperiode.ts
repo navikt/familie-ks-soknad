@@ -1,4 +1,4 @@
-import {
+import type {
     ISøknadsfelt,
     IUtenlandsperiodeIKontraktFormat,
     TilRestLocaleRecord,
@@ -9,10 +9,10 @@ import {
     hentTilDatoSpørsmål,
     hentUtenlandsoppholdÅrsak,
 } from '../../components/Felleskomponenter/UtenlandsoppholdModal/utenlandsoppholdSpråkUtils';
-import { IBarnMedISøknad } from '../../typer/barn';
-import { IUtenlandsperiode } from '../../typer/perioder';
-import { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenlandsopphold';
-import { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
+import type { IBarnMedISøknad } from '../../typer/barn';
+import type { IUtenlandsperiode } from '../../typer/perioder';
+import type { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenlandsopphold';
+import type { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
 import { EUtenlandsoppholdÅrsak } from '../../typer/utenlandsopphold';
 import { landkodeTilSpråk } from '../språk';
 

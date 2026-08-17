@@ -1,10 +1,9 @@
-import { renderHook, type RenderHookResult, act } from '@testing-library/react';
-
 import { ESvar } from '@navikt/familie-form-elements';
+import { act, type RenderHookResult, renderHook } from '@testing-library/react';
 
 import { ESivilstand } from '../../common/typer/kontrakt/generelle';
 import { OmBarnaDineSpørsmålId } from '../components/SøknadsSteg/OmBarnaDine/spørsmål';
-import { initialStateSøknad, ISøknad } from '../typer/søknad';
+import { type ISøknad, initialStateSøknad } from '../typer/søknad';
 import { TestProvidere } from '../utils/testing';
 
 import { useAppContext } from './AppContext';

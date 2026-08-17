@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import { type ISkjema, useSkjema } from '@navikt/familie-skjema';
+import { useEffect } from 'react';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
 import { ESivilstand } from '../../../../common/typer/kontrakt/generelle';
@@ -10,11 +9,11 @@ import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IOmBarnaDineFeltTyper } from '../../../typer/skjema';
-import { ISøknad } from '../../../typer/søknad';
+import type { IOmBarnaDineFeltTyper } from '../../../typer/skjema';
+import type { ISøknad } from '../../../typer/søknad';
 import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
 
-import { IOmBarnaTekstinnhold } from './innholdTyper';
+import type { IOmBarnaTekstinnhold } from './innholdTyper';
 import { OmBarnaDineSpørsmålId } from './spørsmål';
 import useBarnCheckboxFelt from './useBarnCheckboxFelt';
 import { genererOppdaterteBarn } from './utils';

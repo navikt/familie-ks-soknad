@@ -1,10 +1,9 @@
-import React, { ReactNode } from 'react';
-
 import { TextField, type TextFieldProps } from '@navikt/ds-react';
 import type { Felt } from '@navikt/familie-skjema';
 
+import type { FC, ReactNode } from 'react';
+
 interface SkjemaFeltInputProps extends TextFieldProps {
-    // eslint-disable-next-line
     felt: Felt<any>;
     visFeilmeldinger: boolean;
     label: ReactNode;
@@ -14,7 +13,7 @@ interface SkjemaFeltInputProps extends TextFieldProps {
 /**
  * Henter input props fra felt, og fra props. Props overstyrer felt.
  */
-export const SkjemaFeltInput: React.FC<SkjemaFeltInputProps> = props => {
+export const SkjemaFeltInput: FC<SkjemaFeltInputProps> = props => {
     const {
         felt,
         label,

@@ -1,10 +1,9 @@
-import React from 'react';
-
 import { Fieldset } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
-import { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
+import type { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import { visFeiloppsummering } from '../../../../utils/hjelpefunksjoner';
 import KomponentGruppe from '../../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
@@ -17,7 +16,7 @@ import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 
 import { useLeggTilBarn } from './useLeggTilBarn';
 
-const LeggTilBarnModal: React.FC<{
+const LeggTilBarnModal: FC<{
     erÅpen: boolean;
     lukkModal: () => void;
 }> = ({ erÅpen, lukkModal }) => {

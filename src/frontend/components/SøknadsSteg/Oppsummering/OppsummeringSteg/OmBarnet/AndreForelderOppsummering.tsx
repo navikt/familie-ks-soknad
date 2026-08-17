@@ -1,11 +1,10 @@
-import React from 'react';
-
 import { BodyShort, FormSummary } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../../../context/AppContext';
-import { andreForelderDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../../../../typer/barn';
+import { andreForelderDataKeySpørsmål, type IAndreForelder, type IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
 import { PersonType } from '../../../../../typer/personType';
 import { ESanitySteg } from '../../../../../typer/sanity/sanity';
@@ -14,10 +13,10 @@ import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeid
 import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
 import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
 import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
-import { IOmBarnetTekstinnhold } from '../../../OmBarnet/innholdTyper';
+import type { IOmBarnetTekstinnhold } from '../../../OmBarnet/innholdTyper';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 
-const AndreForelderOppsummering: React.FC<{
+const AndreForelderOppsummering: FC<{
     barn: IBarnMedISøknad;
     andreForelder: IAndreForelder;
 }> = ({ barn, andreForelder }) => {

@@ -1,14 +1,13 @@
-import React from 'react';
-
 import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 import { Button, Modal } from '@navikt/ds-react';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
 import ModalContent from '../ModalContent';
 import TekstBlock from '../TekstBlock';
 
-const ModellVersjonModal: React.FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
+const ModellVersjonModal: FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
     const { tekster, plainTekst } = useAppContext();
 
     const mistetInformasjonenDinTekster = tekster().FELLES.modaler.mistetInformasjonenDin;

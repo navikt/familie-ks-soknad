@@ -1,9 +1,8 @@
-import { Response, Request } from 'express';
+import { type ApiRessurs, RessursStatus } from '@navikt/familie-typer';
+import type { Request, Response } from 'express';
 import { mockDeep } from 'vitest-mock-extended';
 
-import { type ApiRessurs, RessursStatus } from '@navikt/familie-typer';
-
-import { modellMismatchMelding, ModellMismatchRespons, modellVersjon } from '../../common/modellversjon.js';
+import { type ModellMismatchRespons, modellMismatchMelding, modellVersjon } from '../../common/modellversjon.js';
 
 import { modellVersjonInterceptor } from './modell-versjon-interceptor.js';
 

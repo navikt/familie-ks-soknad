@@ -1,7 +1,6 @@
-import { useEffect } from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
-import { feil, type FeltState, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
+import { type FeltState, feil, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
+import { useEffect } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
@@ -10,11 +9,11 @@ import useInputFelt from '../../../hooks/useInputFelt';
 import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
 import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
 import { AlternativtSvarForInput } from '../../../typer/common';
-import { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
-import { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
+import type { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
+import type { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IFormateringsfeilmeldingerTekstinnhold } from '../../../typer/sanity/tekstInnhold';
-import { IBarnehageplassPerioderFeltTyper } from '../../../typer/skjema';
+import type { IFormateringsfeilmeldingerTekstinnhold } from '../../../typer/sanity/tekstInnhold';
+import type { IBarnehageplassPerioderFeltTyper } from '../../../typer/skjema';
 import {
     dagenEtterDato,
     dagensDato,

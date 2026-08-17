@@ -1,5 +1,5 @@
-import { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
-import { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
+import type { LocaleRecordBlock, LocaleRecordString } from '../../../../common/typer/locale';
+import type { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
 import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
 
 export const hentUtenlandsoppholdÅrsak = (
@@ -34,7 +34,6 @@ export const hentLandSpørsmål = (
             return tekster.landFlyttetFra.sporsmal;
         case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
             return tekster.tidligereOpphold.sporsmal;
-        case EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE:
         default: {
             return tekster.naavaerendeOpphold.sporsmal;
         }
@@ -52,7 +51,6 @@ export const hentLandFeilmelding = (
             return tekster.landFlyttetTil.feilmelding;
         case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
             return tekster.tidligereOpphold.feilmelding;
-        case EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE:
         default: {
             return tekster.naavaerendeOpphold.feilmelding;
         }
@@ -75,8 +73,6 @@ export const hentFraDatoSpørsmål = (
     switch (årsak) {
         case EUtenlandsoppholdÅrsak.FLYTTET_PERMANENT_FRA_NORGE:
             return tekster.flyttetFraNorgeDato.sporsmal;
-        case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
-        case EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE:
         default: {
             return tekster.startdato.sporsmal;
         }
@@ -92,7 +88,6 @@ export const hentTilDatoSpørsmål = (
             return tekster.flyttetTilNorgeDato.sporsmal;
         case EUtenlandsoppholdÅrsak.HAR_OPPHOLDT_SEG_UTENFOR_NORGE:
             return tekster.sluttdatoFortid.sporsmal;
-        case EUtenlandsoppholdÅrsak.OPPHOLDER_SEG_UTENFOR_NORGE:
         default: {
             return tekster.sluttdatoFremtid.sporsmal;
         }

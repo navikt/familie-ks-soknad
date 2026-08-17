@@ -1,6 +1,5 @@
-import React, { ReactNode } from 'react';
-
 import { Box, Heading, VStack } from '@navikt/ds-react';
+import type { ReactNode } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 

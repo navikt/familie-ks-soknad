@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react';
-
 import { Heading, Loader } from '@navikt/ds-react';
 import {
     byggFeiletRessurs,
@@ -9,12 +7,14 @@ import {
     RessursStatus,
 } from '@navikt/familie-typer';
 
+import { type FC, useEffect, useState } from 'react';
+
 import miljø from '../../../common/miljø';
 import { useAppContext } from '../../context/AppContext';
 import { Typografi } from '../../typer/common';
 import { TypografiWrapper } from '../Felleskomponenter/TekstBlock';
 
-const Helse: React.FC = () => {
+const Helse: FC = () => {
     const { axiosRequest } = useAppContext();
 
     const [helseApi, settHelseApi] = useState(byggTomRessurs<string>());
@@ -78,14 +78,13 @@ const renderHelse = (ressurs: Ressurs<string>, tjeneste: string) => {
         <div className={'helse__tjeneste'}>
             <TypografiWrapper typografi={Typografi.BodyShort}>{`Svar fra ${tjeneste}:`}</TypografiWrapper>
             {ressurs.status === RessursStatus.SUKSESS && (
-                <TypografiWrapper typografi={Typografi.BodyShort} children={`suksess (${ressurs.data})`} />
+                <TypografiWrapper typografi={Typografi.BodyShort}>{`suksess (${ressurs.data})`}</TypografiWrapper>
             )}
             {ressurs.status === RessursStatus.HENTER && <Loader />}
             {ressurs.status === RessursStatus.FEILET && (
-                <TypografiWrapper
-                    typografi={Typografi.BodyShort}
-                    children={`feilet (${ressurs.frontendFeilmelding})`}
-                />
+                <TypografiWrapper typografi={Typografi.BodyShort}>
+                    {`feilet (${ressurs.frontendFeilmelding})`}
+                </TypografiWrapper>
             )}
         </div>
     );

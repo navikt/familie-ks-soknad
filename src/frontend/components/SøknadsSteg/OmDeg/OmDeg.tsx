@@ -1,7 +1,6 @@
-import React from 'react';
-
 import { InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { Typografi } from '../../../typer/common';
@@ -15,7 +14,7 @@ import styles from './OmDeg.module.css';
 import { Personopplysninger } from './Personopplysninger';
 import { useOmdeg } from './useOmdeg';
 
-const OmDeg: React.FC = () => {
+const OmDeg: FC = () => {
     const { tekster } = useAppContext();
 
     const { skjema, validerFelterOgVisFeilmelding, valideringErOk, oppdaterSøknad } = useOmdeg();

@@ -1,8 +1,7 @@
-import React from 'react';
-
+import type { Dispatch, FC, SetStateAction } from 'react';
 import { useAppContext } from '../../../../../context/AppContext';
 import { useStegContext } from '../../../../../context/StegContext';
-import { IBarnMedISøknad } from '../../../../../typer/barn';
+import type { IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
 import { hentSlektsforhold } from '../../../../../utils/språk';
 import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
@@ -15,11 +14,11 @@ import EøsAndreForelderOppsummering from './EøsAndreForelderOppsummering';
 import EøsOmsorgspersonOppsummering from './EøsOmsorgspersonOppsummering';
 
 interface Props {
-    settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
+    settFeilAnchors: Dispatch<SetStateAction<string[]>>;
     barn: IBarnMedISøknad;
 }
 
-const EøsBarnOppsummering: React.FC<Props> = ({ settFeilAnchors, barn }) => {
+const EøsBarnOppsummering: FC<Props> = ({ settFeilAnchors, barn }) => {
     const { hentStegObjektForBarnEøs } = useStegContext();
     const { tekster, plainTekst } = useAppContext();
     const eøsBarnTekster = tekster().EØS_FOR_BARN;

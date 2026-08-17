@@ -1,16 +1,16 @@
-import React, { Dispatch, SetStateAction } from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
 
+import type { Dispatch, FC, SetStateAction } from 'react';
+
 import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
-import { LocaleRecordBlock } from '../../../../../../common/typer/locale';
+import type { LocaleRecordBlock } from '../../../../../../common/typer/locale';
 import { useAppContext } from '../../../../../context/AppContext';
 import { useSpråkContext } from '../../../../../context/SpråkContext';
-import { andreForelderDataKeySpørsmål, IAndreForelder, IBarnMedISøknad } from '../../../../../typer/barn';
+import { andreForelderDataKeySpørsmål, type IAndreForelder, type IBarnMedISøknad } from '../../../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../../../typer/common';
 import { PersonType } from '../../../../../typer/personType';
-import { IEøsForBarnFeltTyper } from '../../../../../typer/skjema';
+import type { IEøsForBarnFeltTyper } from '../../../../../typer/skjema';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
 import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
 import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
@@ -20,7 +20,7 @@ import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/Ut
 import IdNummerForAndreForelder from '../../../EøsSteg/Barn/IdNummerForAndreForelder';
 import { OppsummeringFelt } from '../../OppsummeringFelt';
 
-const EøsAndreForelderOppsummering: React.FC<{
+const EøsAndreForelderOppsummering: FC<{
     barn: IBarnMedISøknad;
     andreForelder: IAndreForelder;
     skjema: ISkjema<IEøsForBarnFeltTyper, string>;

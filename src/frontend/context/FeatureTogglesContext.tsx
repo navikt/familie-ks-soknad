@@ -1,8 +1,7 @@
-import React, { createContext, PropsWithChildren, useContext, useState } from 'react';
-
 import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
+import { createContext, type PropsWithChildren, useContext, useState } from 'react';
 
-import { EAllFeatureToggles, defaultFeatureToggleValues } from '../../common/feature-toggles';
+import { defaultFeatureToggleValues, type EAllFeatureToggles } from '../../common/feature-toggles';
 import { BASE_PATH } from '../../common/miljø';
 import useFørsteRender from '../hooks/useFørsteRender';
 

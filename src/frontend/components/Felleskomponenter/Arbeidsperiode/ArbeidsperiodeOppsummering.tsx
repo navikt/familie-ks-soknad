@@ -1,13 +1,12 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { AlternativtSvarForInput } from '../../../typer/common';
-import { IArbeidsperiode } from '../../../typer/perioder';
-import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
-import { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
+import type { IArbeidsperiode } from '../../../typer/perioder';
+import { type PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
+import type { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
 import { formaterDatostringKunMåned } from '../../../utils/dato';
 import { landkodeTilSpråk } from '../../../utils/språk';
 import { formaterMånedMedUkjent, uppercaseFørsteBokstav } from '../../../utils/visning';
@@ -24,7 +23,7 @@ interface Props {
 
 type ArbeidsperiodeOppsummeringProps = Props & PeriodePersonTypeMedBarnProps;
 
-export const ArbeidsperiodeOppsummering: React.FC<ArbeidsperiodeOppsummeringProps> = ({
+export const ArbeidsperiodeOppsummering: FC<ArbeidsperiodeOppsummeringProps> = ({
     arbeidsperiode,
     nummer,
     fjernPeriodeCallback = undefined,

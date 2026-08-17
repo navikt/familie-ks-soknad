@@ -1,12 +1,11 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import { Valideringsstatus } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { IUtbetalingsperiode } from '../../../typer/perioder';
+import type { IUtbetalingsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
-import { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
+import type { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
 import { dagensDato, gårsdagensDato, sisteDagDenneMåneden } from '../../../utils/dato';
 import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
 import { minTilDatoForPeriode } from '../../../utils/perioder';
@@ -20,7 +19,7 @@ import SkjemaModal from '../SkjemaModal/SkjemaModal';
 import TekstBlock from '../TekstBlock';
 
 import { UtbetalingerSpørsmålId } from './spørsmål';
-import { IUseUtbetalingerSkjemaParams, useUtbetalingerSkjema } from './useUtbetalingerSkjema';
+import { type IUseUtbetalingerSkjemaParams, useUtbetalingerSkjema } from './useUtbetalingerSkjema';
 
 interface UtbetalingerModalProps extends IUseUtbetalingerSkjemaParams {
     erÅpen: boolean;
@@ -29,7 +28,7 @@ interface UtbetalingerModalProps extends IUseUtbetalingerSkjemaParams {
     forklaring?: string;
 }
 
-export const UtbetalingerModal: React.FC<UtbetalingerModalProps> = ({
+export const UtbetalingerModal: FC<UtbetalingerModalProps> = ({
     erÅpen,
     lukkModal,
     onLeggTilUtbetalinger,

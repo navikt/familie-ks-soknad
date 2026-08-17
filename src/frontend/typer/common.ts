@@ -1,4 +1,4 @@
-import { ISODateString } from '../../common/typer/ISODateString';
+import type { ISODateString } from '../../common/typer/ISODateString';
 import { LocaleType } from '../../common/typer/locale';
 
 export enum AlternativtSvarForInput {

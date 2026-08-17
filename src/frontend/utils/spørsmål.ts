@@ -2,7 +2,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt } from '@navikt/familie-skjema';
 
 import { AlternativtSvarForInput } from '../typer/common';
-import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
+import type { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
 
 import { trimWhiteSpace } from './hjelpefunksjoner';
 

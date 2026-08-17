@@ -1,13 +1,11 @@
-import React from 'react';
-
-import classNames from 'classnames';
-
 import { PaperclipIcon, TrashFillIcon } from '@navikt/aksel-icons';
 import { Button, HStack, List } from '@navikt/ds-react';
+import classNames from 'classnames';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
 import { Typografi } from '../../../../typer/common';
-import { IVedlegg } from '../../../../typer/dokumentasjon';
+import type { IVedlegg } from '../../../../typer/dokumentasjon';
 import { formaterFilstørrelse } from '../../../../utils/dokumentasjon';
 import { TypografiWrapper } from '../../../Felleskomponenter/TekstBlock';
 
@@ -18,7 +16,7 @@ interface Props {
     slettVedlegg: (vedlegg: IVedlegg) => void;
 }
 
-const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
+const OpplastedeFiler: FC<Props> = ({ filliste, slettVedlegg }) => {
     const { tekster, plainTekst } = useAppContext();
     return (
         <List>
@@ -27,7 +25,14 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
                     <List.Item
                         key={fil.dokumentId}
                         className={classNames({ [styles.separator]: index !== filliste.length - 1 })}
-                        icon={<PaperclipIcon focusable={false} role={'img'} aria-hidden={true} aria-label={''} />}
+                        icon={
+                            <PaperclipIcon
+                                focusable={false}
+                                role={'img'}
+                                aria-hidden={true}
+                                aria-label={`fil ${index}`}
+                            />
+                        }
                     >
                         <HStack justify={'space-between'}>
                             <TypografiWrapper typografi={Typografi.BodyShort}>

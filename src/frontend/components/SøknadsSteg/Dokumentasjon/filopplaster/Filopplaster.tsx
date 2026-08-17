@@ -1,10 +1,9 @@
-import React from 'react';
-
 import { FileUpload, Heading, List, VStack } from '@navikt/ds-react';
+import type { FC } from 'react';
 
-import { Dokumentasjonsbehov } from '../../../../../common/typer/kontrakt/dokumentasjon';
+import type { Dokumentasjonsbehov } from '../../../../../common/typer/kontrakt/dokumentasjon';
 import { useAppContext } from '../../../../context/AppContext';
-import { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
+import type { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
 import { uppercaseFørsteBokstav } from '../../../../utils/visning';
 
 import { ECustomFileRejectionReasons, useFilopplaster } from './useFilopplaster';
@@ -18,7 +17,7 @@ interface IFilopplasterProps {
     ) => void;
 }
 
-const Filopplaster: React.FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
+const Filopplaster: FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
     const { tekster, plainTekst } = useAppContext();
 
     const dokumentasjonTekster = tekster().DOKUMENTASJON;

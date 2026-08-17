@@ -1,12 +1,11 @@
-import React from 'react';
-
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { IUtenlandsperiode } from '../../../typer/perioder';
-import { PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
+import type { IUtenlandsperiode } from '../../../typer/perioder';
+import { type PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IDinLivssituasjonFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
+import type { IDinLivssituasjonFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
 import { uppercaseFørsteBokstav } from '../../../utils/visning';
 import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
 import PerioderContainer from '../PerioderContainer';
@@ -23,7 +22,7 @@ type Props = PeriodePersonTypeMedBarnProps & {
     registrerteUtenlandsperioder: Felt<IUtenlandsperiode[]>;
 };
 
-export const Utenlandsperiode: React.FC<Props> = ({
+export const Utenlandsperiode: FC<Props> = ({
     skjema,
     leggTilUtenlandsperiode,
     fjernUtenlandsperiode,

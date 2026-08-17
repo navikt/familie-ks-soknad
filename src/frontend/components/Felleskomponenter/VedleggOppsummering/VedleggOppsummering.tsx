@@ -1,12 +1,11 @@
-import React, { FC } from 'react';
-
 import { List } from '@navikt/ds-react';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { dokumentasjonsbehovTilTittelSanityApiNavn } from '../../../typer/dokumentasjon';
 
 import { hentVedleggSomSkalVises } from './vedleggOppsummering.domene';
-import { IVedleggOppsummering } from './vedleggOppsummering.types';
+import type { IVedleggOppsummering } from './vedleggOppsummering.types';
 
 interface IVedleggOppsummeringProps {
     vedlegg: IVedleggOppsummering[];

@@ -1,7 +1,6 @@
-import React, { FC, useEffect } from 'react';
-
 import { Box } from '@navikt/ds-react';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
+import { type FC, useEffect } from 'react';
 
 import { FeilsideInnhold } from './FeilsideInnhold';
 

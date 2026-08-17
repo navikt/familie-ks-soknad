@@ -1,11 +1,10 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
+import type { FC } from 'react';
 
 import { barnDataKeySpørsmål } from '../../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../../typer/barn';
-import { BarnetsId } from '../../../../typer/common';
+import type { IBarnMedISøknad } from '../../../../typer/barn';
+import type { BarnetsId } from '../../../../typer/common';
 import { PersonType } from '../../../../typer/personType';
 import { skalSkjuleAndreForelderFelt } from '../../../../utils/barn';
 import { uppercaseFørsteBokstav } from '../../../../utils/visning';
@@ -28,7 +27,7 @@ import Omsorgsperson from './Omsorgsperson';
 import SamletIdNummerForBarn from './SamletIdNummerForBarn';
 import { useEøsForBarn } from './useEøsForBarn';
 
-const EøsForBarn: React.FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
+const EøsForBarn: FC<{ barnetsId: BarnetsId }> = ({ barnetsId }) => {
     const {
         skjema,
         validerFelterOgVisFeilmelding,

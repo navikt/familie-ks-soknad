@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { BodyShort, Heading, Link, Page, VStack } from '@navikt/ds-react';
 
 export function DisabledApp() {

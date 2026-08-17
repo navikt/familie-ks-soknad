@@ -1,10 +1,9 @@
-import { RequestHandler } from 'express';
-
 import { type ApiRessurs, RessursStatus } from '@navikt/familie-typer';
+import type { RequestHandler } from 'express';
 
 import {
+    type ModellMismatchRespons,
     modellMismatchMelding,
-    ModellMismatchRespons,
     modellVersjon,
     modellVersjonHeaderName,
 } from '../../common/modellversjon.js';

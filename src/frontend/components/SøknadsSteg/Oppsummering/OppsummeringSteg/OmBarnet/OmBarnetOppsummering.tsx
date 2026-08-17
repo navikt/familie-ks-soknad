@@ -1,13 +1,12 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
+import type { Dispatch, FC, SetStateAction } from 'react';
 
-import { FlettefeltVerdier } from '../../../../../../common/typer/kontrakt/generelle';
+import type { FlettefeltVerdier } from '../../../../../../common/typer/kontrakt/generelle';
 import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
 import { useAppContext } from '../../../../../context/AppContext';
 import { useSpråkContext } from '../../../../../context/SpråkContext';
 import { useStegContext } from '../../../../../context/StegContext';
-import { IBarnMedISøknad } from '../../../../../typer/barn';
+import type { IBarnMedISøknad } from '../../../../../typer/barn';
 import { PersonType } from '../../../../../typer/personType';
 import { landkodeTilSpråk } from '../../../../../utils/språk';
 import { BarnehageplassPeriodeOppsummering } from '../../../../Felleskomponenter/Barnehagemodal/BarnehageplassPeriodeOppsummering';
@@ -21,12 +20,12 @@ import Oppsummeringsbolk from '../../Oppsummeringsbolk';
 import AndreForelderOppsummering from './AndreForelderOppsummering';
 
 interface Props {
-    settFeilAnchors: React.Dispatch<React.SetStateAction<string[]>>;
+    settFeilAnchors: Dispatch<SetStateAction<string[]>>;
     barn: IBarnMedISøknad;
     index: number;
 }
 
-const OmBarnetOppsummering: React.FC<Props> = ({ settFeilAnchors, barn, index }) => {
+const OmBarnetOppsummering: FC<Props> = ({ settFeilAnchors, barn, index }) => {
     const { hentStegObjektForBarn } = useStegContext();
     const { tekster, plainTekst } = useAppContext();
     const omBarnetTekster = tekster().OM_BARNET;

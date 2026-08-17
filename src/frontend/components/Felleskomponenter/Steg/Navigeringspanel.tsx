@@ -1,8 +1,7 @@
-import React from 'react';
-
 import { ArrowLeftIcon, ArrowRightIcon, FloppydiskIcon, PaperplaneIcon, TrashIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, HGrid, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
@@ -13,7 +12,7 @@ import { useBekreftelseOgStartSoknad } from '../../SøknadsSteg/Forside/useBekre
 
 import { SlettSøknadenModal } from './SlettSøknadenModal';
 
-const Navigeringspanel: React.FC<{
+const Navigeringspanel: FC<{
     onAvbrytCallback: (event) => void;
     onTilbakeCallback: () => void;
     valideringErOk: (() => boolean) | undefined;

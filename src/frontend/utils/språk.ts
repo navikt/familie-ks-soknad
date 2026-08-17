@@ -1,16 +1,15 @@
-import { ReactNode } from 'react';
-
-import { Alpha3Code, alpha3ToAlpha2, getName } from 'i18n-iso-countries';
-
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { ESivilstand, PlainTekst, Slektsforhold } from '../../common/typer/kontrakt/generelle';
-import { IEøsForBarnTekstinnhold } from '../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
-import { IVelgBarnTekstinnhold } from '../components/SøknadsSteg/VelgBarn/innholdTyper';
+import { type Alpha3Code, alpha3ToAlpha2, getName } from 'i18n-iso-countries';
+import type { ReactNode } from 'react';
+
+import { ESivilstand, type PlainTekst, Slektsforhold } from '../../common/typer/kontrakt/generelle';
+import type { IEøsForBarnTekstinnhold } from '../components/SøknadsSteg/EøsSteg/Barn/innholdTyper';
+import type { IVelgBarnTekstinnhold } from '../components/SøknadsSteg/VelgBarn/innholdTyper';
 import { AlternativtSvarForInput } from '../typer/common';
-import { IBarn } from '../typer/person';
+import type { IBarn } from '../typer/person';
 import { ESanitySivilstandApiKey } from '../typer/sanity/sanity';
-import { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
+import type { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold';
 
 export const hentSlektsforhold = (slektsforhold: Slektsforhold, tekster: IEøsForBarnTekstinnhold) => {
     switch (slektsforhold) {

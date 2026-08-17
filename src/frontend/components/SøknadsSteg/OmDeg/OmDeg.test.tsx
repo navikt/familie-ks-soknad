@@ -1,9 +1,7 @@
-import React from 'react';
-
 import { render } from '@testing-library/react';
 import { mockDeep } from 'vitest-mock-extended';
 
-import { ISøker } from '../../../typer/person';
+import type { ISøker } from '../../../typer/person';
 import { spyOnUseApp, TestProvidere } from '../../../utils/testing';
 
 import OmDeg from './OmDeg';

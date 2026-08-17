@@ -1,5 +1,4 @@
-import React from 'react';
-
+import type { FC } from 'react';
 import { Route, Routes, useParams } from 'react-router';
 
 import RedirectTilStart from './components/Felleskomponenter/RedirectTilStart/RedirectTilStart';
@@ -18,12 +17,12 @@ import VelgBarn from './components/SøknadsSteg/VelgBarn/VelgBarn';
 import { useAppContext } from './context/AppContext';
 import { useEøsContext } from './context/EøsContext';
 import { useRoutesContext } from './context/RoutesContext';
-import { IRoute, RouteEnum } from './typer/routes';
+import { type IRoute, RouteEnum } from './typer/routes';
 
 /**
  * useParams må kalles fra en Route-komponent, derfor kan ikke denne inlines i Søknad-komponenten
  */
-const OmBarnetWrapper: React.FC = () => {
+const OmBarnetWrapper: FC = () => {
     const { number } = useParams<{ number?: string }>();
     const { søknad } = useAppContext();
     const barnetsId = søknad.barnInkludertISøknaden[number ? Number.parseInt(number) - 1 : 0].id;
@@ -31,7 +30,7 @@ const OmBarnetWrapper: React.FC = () => {
     return <OmBarnet barnetsId={barnetsId} key={barnetsId} />;
 };
 
-const EøsForBarnWrapper: React.FC = () => {
+const EøsForBarnWrapper: FC = () => {
     const { number } = useParams<{ number?: string }>();
     const { barnSomTriggerEøs } = useEøsContext();
     const { søknad } = useAppContext();
@@ -46,7 +45,7 @@ const Søknad = () => {
     const { systemetLaster } = useAppContext();
     const { routes } = useRoutesContext();
 
-    const routeTilKomponent = (route: IRoute): React.FC => {
+    const routeTilKomponent = (route: IRoute): FC => {
         switch (route.route) {
             case RouteEnum.Forside:
                 return Forside;

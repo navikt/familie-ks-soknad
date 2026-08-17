@@ -1,9 +1,8 @@
-import React, { ReactNode } from 'react';
+import { HttpProvider } from '@navikt/familie-http';
 
 import * as Sentry from '@sentry/react';
+import { type ReactNode, StrictMode } from 'react';
 import { CookiesProvider } from 'react-cookie';
-
-import { HttpProvider } from '@navikt/familie-http';
 
 import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
 import { LastRessurserProvider } from './context/LastRessurserContext';
@@ -17,7 +16,7 @@ interface Props {
 
 function FellesWrapper({ children }: Props) {
     return (
-        <React.StrictMode>
+        <StrictMode>
             <CookiesProvider>
                 <SpråkProvider>
                     <HttpProvider>
@@ -32,7 +31,7 @@ function FellesWrapper({ children }: Props) {
                     </HttpProvider>
                 </SpråkProvider>
             </CookiesProvider>
-        </React.StrictMode>
+        </StrictMode>
     );
 }
 

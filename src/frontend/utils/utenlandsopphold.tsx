@@ -1,4 +1,4 @@
-import { IUtenlandsperiode } from '../typer/perioder';
+import type { IUtenlandsperiode } from '../typer/perioder';
 import { EUtenlandsoppholdÅrsak } from '../typer/utenlandsopphold';
 
 import { dagensDato, ettÅrTilbakeDato, gårsdagensDato } from './dato';

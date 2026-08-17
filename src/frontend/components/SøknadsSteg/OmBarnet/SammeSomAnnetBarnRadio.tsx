@@ -1,18 +1,17 @@
-import React from 'react';
-
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
+import type { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput } from '../../../typer/common';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IOmBarnetFeltTyper } from '../../../typer/skjema';
+import type { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import { OmBarnetSpørsmålsId } from './spørsmål';
 
-const SammeSomAnnetBarnRadio: React.FC<{
+const SammeSomAnnetBarnRadio: FC<{
     andreBarnSomErFyltUt: IBarnMedISøknad[];
     skjema: ISkjema<IOmBarnetFeltTyper, string>;
     barnetsNavn: string;

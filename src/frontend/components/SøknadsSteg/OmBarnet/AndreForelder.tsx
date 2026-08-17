@@ -1,15 +1,14 @@
-import React from 'react';
-
 import { ESvar } from '@navikt/familie-form-elements';
 import type { ISkjema } from '@navikt/familie-skjema';
+import type { FC } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
-import { IBarnMedISøknad } from '../../../typer/barn';
+import type { IBarnMedISøknad } from '../../../typer/barn';
 import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
-import { IArbeidsperiode, IPensjonsperiode, IUtenlandsperiode } from '../../../typer/perioder';
+import type { IArbeidsperiode, IPensjonsperiode, IUtenlandsperiode } from '../../../typer/perioder';
 import { PersonType } from '../../../typer/personType';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { IOmBarnetFeltTyper } from '../../../typer/skjema';
+import type { IOmBarnetFeltTyper } from '../../../typer/skjema';
 import { dagensDato } from '../../../utils/dato';
 import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
 import Datovelger from '../../Felleskomponenter/Datovelger/Datovelger';
@@ -25,7 +24,7 @@ import AndreForelderOppsummering from '../Oppsummering/OppsummeringSteg/OmBarnet
 
 import SammeSomAnnetBarnRadio from './SammeSomAnnetBarnRadio';
 
-const AndreForelder: React.FC<{
+const AndreForelder: FC<{
     barn: IBarnMedISøknad;
     skjema: ISkjema<IOmBarnetFeltTyper, string>;
     andreBarnSomErFyltUt: IBarnMedISøknad[];

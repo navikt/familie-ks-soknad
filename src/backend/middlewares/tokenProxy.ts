@@ -1,12 +1,11 @@
-import { NextFunction, Request, RequestHandler, Response } from 'express';
-
 import { LOG_LEVEL, logError } from '@navikt/familie-logging';
 import { requestOboToken, validateToken } from '@navikt/oasis';
+import type { NextFunction, Request, RequestHandler, Response } from 'express';
 
 import { erLokalt, erLokaltMotPreprod } from '../../common/miljø.js';
 import PREPROD_APPLIKASJONER from '../../common/preprodApplikasjoner.json' with { type: 'json' };
 import { logRequest } from '../logger.js';
-import { ApplicationName } from '../types.js';
+import type { ApplicationName } from '../types.js';
 
 export const AUTHORIZATION_HEADER = 'authorization';
 const WONDERWALL_ID_TOKEN_HEADER = 'x-wonderwall-id-token';
@@ -54,7 +53,7 @@ const prepareSecuredRequest = async (req: Request, applicationName: ApplicationN
         return await getFakedingsToken(applicationName);
     }
     const token = utledToken(authorization);
-    logRequest(req, 'IdPorten-token found: ' + (token.length > 1), LOG_LEVEL.INFO);
+    logRequest(req, `IdPorten-token found: ${token.length > 1}`, LOG_LEVEL.INFO);
 
     const validation = await validateToken(token);
     if (validation.ok === false) {
@@ -74,9 +73,7 @@ const getFakedingsToken = async (applicationName: string): Promise<string> => {
     const clientId = 'dev-gcp:teamfamilie:familie-ks-soknad';
     const audience = `dev-gcp:teamfamilie:${applicationName}`;
     const url = `http://fakedings.intern.dev.nav.no/fake/tokenx?client_id=${clientId}&aud=${audience}&acr=Level4&pid=31458931375`;
-    const token = await fetch(url).then(function (body) {
-        return body.text();
-    });
+    const token = await fetch(url).then(body => body.text());
     return `Bearer ${token}`;
 };
 

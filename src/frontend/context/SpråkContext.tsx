@@ -1,8 +1,6 @@
-import React, { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
-
-import { useCookies } from 'react-cookie';
-
 import { onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
+import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 import { LocaleType } from '../../common/typer/locale';
 import { erGyldigSpråk } from '../typer/common';

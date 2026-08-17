@@ -1,13 +1,13 @@
-import React, { ReactNode } from 'react';
-
-import { Alpha3Code, getAlpha3Codes, getName } from 'i18n-iso-countries';
-
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+
+import { type Alpha3Code, getAlpha3Codes, getName } from 'i18n-iso-countries';
+
+import type { FC, ReactNode } from 'react';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useEøsContext } from '../../../context/EøsContext';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { SkjemaFeltTyper } from '../../../typer/skjema';
+import type { SkjemaFeltTyper } from '../../../typer/skjema';
 
 import StyledDropdown from './StyledDropdown';
 
@@ -20,7 +20,7 @@ interface LandDropdownProps {
     ekskluderNorge?: boolean;
 }
 
-export const LandDropdown: React.FC<LandDropdownProps> = props => {
+export const LandDropdown: FC<LandDropdownProps> = props => {
     const { tekster, plainTekst } = useAppContext();
     const { valgtLocale } = useSpråkContext();
     const { erEøsLand } = useEøsContext();
@@ -43,11 +43,13 @@ export const LandDropdown: React.FC<LandDropdownProps> = props => {
             placeholder={plainTekst(tekster().FELLES.hjelpeteksterForInput.velgLandPlaceholder)}
             {...props}
         >
-            {landkoderSortertPåNavn.map((alphaCode): ReactNode => (
-                <option value={alphaCode} key={alphaCode}>
-                    {getName(alphaCode, valgtLocale)}
-                </option>
-            ))}
+            {landkoderSortertPåNavn.map(
+                (alphaCode): ReactNode => (
+                    <option value={alphaCode} key={alphaCode}>
+                        {getName(alphaCode, valgtLocale)}
+                    </option>
+                )
+            )}
         </StyledDropdown>
     );
 };

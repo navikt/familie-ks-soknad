@@ -1,10 +1,8 @@
-import React from 'react';
-
 import { render } from '@testing-library/react';
 import { mockDeep } from 'vitest-mock-extended';
 
-import { IBarnMedISøknad } from '../../../typer/barn';
-import { ISøknad } from '../../../typer/søknad';
+import type { IBarnMedISøknad } from '../../../typer/barn';
+import type { ISøknad } from '../../../typer/søknad';
 import { spyOnUseApp, TestProvidere } from '../../../utils/testing';
 
 import { OmBarnetHeader } from './OmBarnetHeader';

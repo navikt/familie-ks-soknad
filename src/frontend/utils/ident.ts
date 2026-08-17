@@ -78,4 +78,4 @@ const individnummerGyldigForIntervallOgÅr = (
 ): boolean => individNummer >= min && individNummer <= max && (triggerForFødselsår ? triggerForFødselsår() : true);
 
 const datoTilDatoString = (år: number, mnd: number, dag: number) =>
-    år + '-' + ('0' + mnd).slice(-2) + '-' + ('0' + dag).slice(-2);
+    `${år}-${(`0${mnd}`).slice(-2)}-${(`0${dag}`).slice(-2)}`;
