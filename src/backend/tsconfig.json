@@ -1,23 +1,19 @@
 {
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    /* Language and Environment */
-    "lib": ["ES2022", "dom"], // TODO: dom hører ikke hjemme her, men vi sjekker mot window i miljø.ts
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        /* Language and Environment */
+        "lib": ["ES2022", "dom"], // TODO: dom hører ikke hjemme her, men vi sjekker mot window i miljø.ts
 
-    /* Emit */
-    "importHelpers": true, // tslib dependency påkrevd
-    "outDir": "../../dist",
-    "rootDir": "..",
+        /* Emit */
+        "importHelpers": true, // tslib dependency påkrevd
+        "outDir": "../../dist",
+        "rootDir": "..",
 
-    /* Modules */
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "types": [
-      "node",
-      "vitest/globals",
-      "@testing-library/jest-dom"
-    ],
-  },
-  // Skal ikke kompileres.
-  "exclude": ["**/*.test.ts"],
+        /* Modules */
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "types": ["node", "vitest/globals", "@testing-library/jest-dom"]
+    },
+    // Skal ikke kompileres.
+    "exclude": ["**/*.test.ts"]
 }
