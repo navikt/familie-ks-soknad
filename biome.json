@@ -3,31 +3,13 @@
   "vcs": {
     "enabled": true,
     "clientKind": "git",
-    "useIgnoreFile": true
-  },
-  "files": {
-    "ignoreUnknown": false,
-    "includes": [
-      "**",
-      "!**/*.json",
-      "!**/*.yaml",
-      "!**/*.yml",
-      "!**/*.md",
-      "!**/*.html"
-    ]
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
   },
   "formatter": {
-    "enabled": true,
     "indentStyle": "space",
     "indentWidth": 4,
     "lineWidth": 120
-  },
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "single",
-      "trailingCommas": "es5",
-      "arrowParentheses": "asNeeded"
-    }
   },
   "linter": {
     "enabled": true,
@@ -41,5 +23,51 @@
         "noArrayIndexKey": "warn"
       }
     }
-  }
+  },
+  "javascript": {
+    "formatter": {
+      "trailingCommas": "es5",
+      "arrowParentheses": "asNeeded",
+      "quoteStyle": "single"
+    }
+  },
+  "html": {
+    "parser": {
+      "interpolation": true
+    }
+  },
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "**/tsconfig*.json"
+      ],
+      "json": {
+        "parser": {
+          "allowComments": true,
+          "allowTrailingCommas": true
+        }
+      }
+    },
+    {
+      "includes": [
+        "**/index.html",
+        "**/disabled.html"
+      ],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "useValidLang": "off"
+          }
+        }
+      }
+    }
+  ]
 }
