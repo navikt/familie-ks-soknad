@@ -6,7 +6,6 @@
 nodeLinker: hoisted
 # Avhengigheter får ikke kjøre (pre|post)install-scripts (sikkerhetstiltak)
 allowBuilds:
-  '@sentry/cli': false
   core-js-pure: false
   cypress: false
   msw: false

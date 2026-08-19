@@ -39,7 +39,6 @@
     ]
   },
   "dependencies": {
-    "@grafana/faro-web-sdk": "2.9.0",
     "@nais/apm": "0.6.0",
     "@navikt/aksel-icons": "8.16.1",
     "@navikt/ds-css": "8.16.1",
@@ -55,9 +54,6 @@
     "@portabletext/react": "7.0.1",
     "@portabletext/toolkit": "5.0.2",
     "@sanity/client": "7.26.2",
-    "@sentry/browser": "10.63.0",
-    "@sentry/core": "10.63.0",
-    "@sentry/react": "10.69.0",
     "axios": "1.19.0",
     "classnames": "2.5.1",
     "compression": "1.8.1",
@@ -83,7 +79,6 @@
     "@axe-core/react": "4.12.1",
     "@biomejs/biome": "2.5.8",
     "@portabletext/types": "4.0.2",
-    "@sentry/vite-plugin": "5.4.0",
     "@testing-library/dom": "10.4.1",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.2",
