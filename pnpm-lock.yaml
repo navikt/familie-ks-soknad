@@ -24,14 +24,14 @@ importers:
         specifier: 22.0.2
         version: 22.0.2(@navikt/ds-css@8.16.1)(@navikt/ds-react@8.16.1(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(@types/react@19.2.18)(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(styled-components@6.4.4(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(supports-color@10.2.2)
       '@navikt/familie-http':
-        specifier: 8.0.23
-        version: 8.0.23(axios@1.19.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(react@19.2.8)
+        specifier: 8.0.24
+        version: 8.0.24(axios@1.19.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(react@19.2.8)
       '@navikt/familie-logging':
         specifier: 7.0.8
         version: 7.0.8
       '@navikt/familie-skjema':
-        specifier: 8.2.49
-        version: 8.2.49(axios@1.19.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(react@19.2.8)
+        specifier: 8.2.50
+        version: 8.2.50(axios@1.19.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(react@19.2.8)
       '@navikt/familie-typer':
         specifier: 8.0.6
         version: 8.0.6
@@ -598,8 +598,8 @@ packages:
       react: 18.x || 19.x
       styled-components: 5.x || 6.x
 
-  '@navikt/familie-http@8.0.23':
-    resolution: {integrity: sha512-GoqUAHKooN/c43IUqtBkw0UVp4sYxRYBWIvit6USBbcysWzzybDUoLJvp4Lh1WBGe9KN2ZKiFxz3KNRWMXaJAA==, tarball: https://npm.pkg.github.com/download/@navikt/familie-http/8.0.23/a92583b2dde955b845eb94c8fcc130ad7a5943ce}
+  '@navikt/familie-http@8.0.24':
+    resolution: {integrity: sha512-X3ipwJEvQf5rKKiBc0O5FVggZL/kdirakrGfZYUsCbAWrPCDm2mIHg6xyL5/8DbRXXbrN3j8ru+S3LFupA4jAg==, tarball: https://npm.pkg.github.com/download/@navikt/familie-http/8.0.24/1828c9f16afd5d98e6c788da4e55771858d9e60b}
     peerDependencies:
       axios: 1.x
       react: 18.x || 19.x
@@ -607,8 +607,8 @@ packages:
   '@navikt/familie-logging@7.0.8':
     resolution: {integrity: sha512-0EgMimD6krmSresqyQHPymzNlWq5I8Swc9xwm6np7yh0NJuCy/KuGSDvuuJ4Zm422K5kUfZyyls08tkUUUQGeg==, tarball: https://npm.pkg.github.com/download/@navikt/familie-logging/7.0.8/fed8592d83b87d72c534df709c12f88ec3c9f48b}
 
-  '@navikt/familie-skjema@8.2.49':
-    resolution: {integrity: sha512-n7FIVJ+VcwIyqGd5k5FmPCD67YxWt8DpUxWEqeDt8KbWMz0FelIKAlz+dmaItsMna7rL3pKQO8ODsxHbhlKcig==, tarball: https://npm.pkg.github.com/download/@navikt/familie-skjema/8.2.49/48fb95fc6c0626f6463212e519e50c5268477249}
+  '@navikt/familie-skjema@8.2.50':
+    resolution: {integrity: sha512-eZJKBv/PEhaqomjPDVAoACdwlpzLzNXrjA6O3NakRap9Ryca0kkVo7cFYq/pVFds80Gb1PGjjve4MU8joT8PdQ==, tarball: https://npm.pkg.github.com/download/@navikt/familie-skjema/8.2.50/63b1c6e9e040fe8aa75cb3ee2de9809e2f555930}
     peerDependencies:
       react: 18.x || 19.x
 
@@ -948,14 +948,6 @@ packages:
 
   '@sanity/eventsource@5.0.4':
     resolution: {integrity: sha512-NT6XrTJePJd7q1ZdTqB3NsTyNNOe9R2zMkg4Hlkqwb0LL6UmekVamAD46yjSJ+HbRyXAKLl1Rb65xZBdzC1f8Q==}
-
-  '@sentry/conventions@0.15.1':
-    resolution: {integrity: sha512-ZLP8bRdMON3prWE2tJyImuYscCxdcJeIPIhrOs/rgyFm3C1nCh1B6gdvPj3AZ5zW08oSFFCsq7T+tYEW3h8MNA==}
-    engines: {node: '>=14'}
-
-  '@sentry/core@10.64.0':
-    resolution: {integrity: sha512-HjojJcXD1l2qZ1AXje2s0XY/nYsaUt00wsM1HMBImA8vAClyPisFE/CC0/UD6pEvsGFhVgi8Dcxo7EN41uyeFw==}
-    engines: {node: '>=18'}
 
   '@so-ric/colorspace@1.1.6':
     resolution: {integrity: sha512-/KiKkpHNOBgkFJwu9sh48LkHSMYGyuTcSFK/qMBdnOAlrRJzRSXAOFB5qwzaVQuDl8wAvHVMkaASQDReTahxuw==}
@@ -3488,10 +3480,9 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@navikt/familie-http@8.0.23(axios@1.19.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(react@19.2.8)':
+  '@navikt/familie-http@8.0.24(axios@1.19.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(react@19.2.8)':
     dependencies:
       '@navikt/familie-typer': 8.0.6
-      '@sentry/core': 10.64.0
       axios: 1.19.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2)
       react: 19.2.8
 
@@ -3499,9 +3490,9 @@ snapshots:
     dependencies:
       winston: 3.19.0
 
-  '@navikt/familie-skjema@8.2.49(axios@1.19.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(react@19.2.8)':
+  '@navikt/familie-skjema@8.2.50(axios@1.19.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(react@19.2.8)':
     dependencies:
-      '@navikt/familie-http': 8.0.23(axios@1.19.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(react@19.2.8)
+      '@navikt/familie-http': 8.0.24(axios@1.19.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(react@19.2.8)
       '@navikt/familie-typer': 8.0.6
       '@types/deep-equal': 1.0.4
       deep-equal: 2.2.3
@@ -3837,12 +3828,6 @@ snapshots:
       '@types/eventsource': 1.1.15
       event-source-polyfill: 1.0.31
       eventsource: 2.0.2
-
-  '@sentry/conventions@0.15.1': {}
-
-  '@sentry/core@10.64.0':
-    dependencies:
-      '@sentry/conventions': 0.15.1
 
   '@so-ric/colorspace@1.1.6':
     dependencies:
