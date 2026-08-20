@@ -9,8 +9,7 @@ import { LocaleType } from '../common/typer/locale';
 import App from './App';
 import { hentDekorator } from './decorator';
 import FellesWrapper from './FellesWrapper';
-import { initGrafanaFaro } from './utils/grafanaFaro';
-import { initSentry } from './utils/sentry';
+import { initApm } from './utils/apm';
 import '@navikt/ds-css';
 
 // Statiske imports (i stedet for en dynamisk import med template literal) slik at
@@ -31,8 +30,7 @@ const polyfillLocaledata = async () => {
 hentDekorator();
 
 polyfillLocaledata().then(async () => {
-    initSentry();
-    initGrafanaFaro();
+    initApm();
 
     if (process.env.NODE_ENV !== 'production') {
         import('@axe-core/react').then(({ default: axe }) => {

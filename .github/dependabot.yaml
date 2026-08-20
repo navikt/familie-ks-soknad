@@ -41,9 +41,7 @@ updates:
           - "@navikt/familie-typer"
       tools:
         patterns:
-          - "@grafana/faro-web-sdk"
-          - "@sentry/react"
-          - "@sentry/vite-plugin"
+          - "@nais/apm"
           - "@axe-core/react"
           - "@vercel/nft"
           - "husky"

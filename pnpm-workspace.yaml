@@ -6,7 +6,9 @@
 nodeLinker: hoisted
 # Avhengigheter får ikke kjøre (pre|post)install-scripts (sikkerhetstiltak)
 allowBuilds:
-  '@sentry/cli': false
   core-js-pure: false
   cypress: false
   msw: false
+minimumReleaseAgeExclude:
+  - '@navikt/familie-http@8.0.24'
+  - '@navikt/familie-skjema@8.2.50'

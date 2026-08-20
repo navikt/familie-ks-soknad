@@ -1,5 +1,5 @@
+import { captureException } from '@nais/apm';
 import { type FeltState, feil, ok } from '@navikt/familie-skjema';
-import * as Sentry from '@sentry/react';
 import {
     add,
     endOfMonth,
@@ -105,7 +105,7 @@ export const formaterDato = (datoString: ISODateString) => {
         const error = new Error(`Klarte ikke formatere dato ${datoString}`, {
             cause: e instanceof Error ? e.cause : 'En ukjent feil oppstod.',
         });
-        Sentry.captureException(error);
+        captureException(error);
         throw error;
     }
 };

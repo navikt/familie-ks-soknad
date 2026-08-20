@@ -139,8 +139,3 @@ Ved spørsmål knyttet til koden eller prosjektet opprett en issue.
 
 ## For Nav-ansatte
 Interne henvendelser kan sendes via Slack i kanalen #team-familie.
-
-### Logging til Sentry
-https://sentry.gc.nav.no/nav/familie-ks-soknad/
-
-Bruk tag ``` scope:familie-ks-soknad ``` for å filtrere på kun exceptions fanget opp av Sentry.ErrorBoundary (dette vil f eks filtrere ut alle exceptions som nav-dokoratøren kaster)

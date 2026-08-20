@@ -1,6 +1,5 @@
+import { ApmErrorBoundary } from '@nais/apm/react';
 import { HttpProvider } from '@navikt/familie-http';
-
-import * as Sentry from '@sentry/react';
 import { type ReactNode, StrictMode } from 'react';
 import { CookiesProvider } from 'react-cookie';
 
@@ -20,14 +19,11 @@ function FellesWrapper({ children }: Props) {
             <CookiesProvider>
                 <SpråkProvider>
                     <HttpProvider>
-                        <Sentry.ErrorBoundary
-                            fallback={() => <Feilside />}
-                            beforeCapture={scope => scope.setTag('scope', 'familie-ks-soknad')}
-                        >
+                        <ApmErrorBoundary fallback={<Feilside />}>
                             <LastRessurserProvider>
                                 <SanityProvider>{children}</SanityProvider>
                             </LastRessurserProvider>
-                        </Sentry.ErrorBoundary>
+                        </ApmErrorBoundary>
                     </HttpProvider>
                 </SpråkProvider>
             </CookiesProvider>
