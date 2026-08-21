@@ -10,5 +10,4 @@ allowBuilds:
   cypress: false
   msw: false
 minimumReleaseAgeExclude:
-  - '@navikt/familie-http@8.0.24'
-  - '@navikt/familie-skjema@8.2.50'
+  - '@navikt/*'
