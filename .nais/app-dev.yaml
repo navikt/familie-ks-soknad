@@ -64,6 +64,9 @@ spec:
         - /familie/kontantstotte/soknad/**/manifest.json
   tokenx:
     enabled: true
+  frontend:
+    generatedConfig:
+      mountPath: /app/dist/nais.js
   env:
     - name: ENV
       value: dev
