@@ -1,3 +1,4 @@
+import { useDebounce } from '@hooks/useDebounce';
 import {
     byggFeiletRessurs,
     byggHenterRessurs,
@@ -6,9 +7,7 @@ import {
     type Ressurs,
     RessursStatus,
 } from '@navikt/familie-typer';
-
 import { type Alpha3Code, getName } from 'i18n-iso-countries';
-
 import {
     createContext,
     type Dispatch,
@@ -18,11 +17,9 @@ import {
     useEffect,
     useState,
 } from 'react';
-
 import miljø, { BASE_PATH } from '../../common/miljø';
 import type { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../common/typer/kontrakt/generelle';
 import { LocaleType } from '../../common/typer/locale';
-import { useDebounce } from '../hooks/useDebounce';
 import type { IKontoinformasjon } from '../typer/kontoinformasjon';
 import type { IKvittering } from '../typer/kvittering';
 import type { IMellomlagretKontantstøtte } from '../typer/mellomlager';
@@ -71,12 +68,13 @@ export interface AppContext {
     settSisteModellVersjon: Dispatch<SetStateAction<number>>;
     eøsLand: Ressurs<Map<Alpha3Code, string>>;
     settEøsLand: Dispatch<SetStateAction<Ressurs<Map<Alpha3Code, string>>>>;
+    /**
+     * @deprecated Bruk {@link useSanityTekster}
+     */
     tekster: () => ITekstinnhold;
-    flettefeltTilTekst: (
-        sanityFlettefelt: ESanityFlettefeltverdi,
-        flettefelter?: FlettefeltVerdier,
-        spesifikkLocale?: LocaleType
-    ) => string;
+    /**
+     * @deprecated Bruk {@link useTranslate}
+     */
     plainTekst: PlainTekst;
     tilRestLocaleRecord: TilRestLocaleRecord;
     kontoinformasjon: Ressurs<IKontoinformasjon>;
@@ -101,7 +99,7 @@ export function AppProvider(props: PropsWithChildren) {
     const { modellVersjon } = miljø();
     const [sisteModellVersjon, settSisteModellVersjon] = useState(modellVersjon);
     const modellVersjonOppdatert = sisteModellVersjon > modellVersjon;
-    const { teksterRessurs } = useSanityContext();
+    const sanityContext = useSanityContext();
 
     useEffect(() => {
         if (nåværendeRoute === RouteEnum.Kvittering) {
@@ -129,7 +127,7 @@ export function AppProvider(props: PropsWithChildren) {
     }, [søknad.søker.triggetEøs]);
 
     useEffect(() => {
-        if (innloggetStatus === InnloggetStatus.AUTENTISERT && teksterRessurs.status === RessursStatus.SUKSESS) {
+        if (innloggetStatus === InnloggetStatus.AUTENTISERT) {
             settSluttbruker(byggHenterRessurs());
 
             hentSluttbrukerFraPdl(axiosRequest).then(ressurs => {
@@ -158,7 +156,7 @@ export function AppProvider(props: PropsWithChildren) {
                 }
             });
         }
-    }, [innloggetStatus, teksterRessurs]);
+    }, [innloggetStatus]);
 
     const mellomlagre = (søknadSomSkalLagres: ISøknad, nåværendeStegIndex: number) => {
         const kontantstøtte: IMellomlagretKontantstøtte = {
@@ -274,19 +272,14 @@ export function AppProvider(props: PropsWithChildren) {
     };
 
     const systemetFeiler = () => {
-        return (
-            sluttbruker.status === RessursStatus.FEILET ||
-            eøsLand.status === RessursStatus.FEILET ||
-            teksterRessurs.status === RessursStatus.FEILET
-        );
+        return sluttbruker.status === RessursStatus.FEILET || eøsLand.status === RessursStatus.FEILET;
     };
 
     const systemetOK = () => {
         return (
             innloggetStatus === InnloggetStatus.AUTENTISERT &&
             sluttbruker.status === RessursStatus.SUKSESS &&
-            eøsLand.status === RessursStatus.SUKSESS &&
-            teksterRessurs.status === RessursStatus.SUKSESS
+            eøsLand.status === RessursStatus.SUKSESS
         );
     };
 
@@ -294,14 +287,16 @@ export function AppProvider(props: PropsWithChildren) {
         return lasterRessurser() || innloggetStatus === InnloggetStatus.IKKE_VERIFISERT;
     };
 
+    /**
+     * @deprecated Bruk {@link useSanityTekster}
+     */
     const tekster = (): ITekstinnhold => {
-        if (teksterRessurs.status === RessursStatus.SUKSESS) {
-            return teksterRessurs.data;
-        } else {
-            throw new Error(`Søknaden har lastet uten tekster`);
-        }
+        return sanityContext.tekster;
     };
 
+    /**
+     * @deprecated Bruk {@link useTranslateFlettefelt}
+     */
     const flettefeltTilTekst = (
         sanityFlettefelt: ESanityFlettefeltverdi,
         flettefelter?: FlettefeltVerdier,
@@ -366,6 +361,9 @@ export function AppProvider(props: PropsWithChildren) {
         }
     };
 
+    /**
+     * @deprecated Bruk {@link useTranslate}
+     */
     const plainTekst: PlainTekst = plainTekstHof(flettefeltTilTekst, valgtLocale);
 
     const tilRestLocaleRecord: TilRestLocaleRecord = (sanityTekst, flettefelter): Record<LocaleType, string> => {
@@ -406,8 +404,13 @@ export function AppProvider(props: PropsWithChildren) {
                 settSisteModellVersjon,
                 eøsLand,
                 settEøsLand,
+                /**
+                 * @deprecated Bruk {@link useSanityTekster}
+                 */
                 tekster,
-                flettefeltTilTekst,
+                /**
+                 * @deprecated Bruk {@link useTranslate}
+                 */
                 plainTekst,
                 tilRestLocaleRecord,
                 kontoinformasjon,

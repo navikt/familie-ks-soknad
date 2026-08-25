@@ -5,7 +5,6 @@ import { CookiesProvider } from 'react-cookie';
 
 import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
 import { LastRessurserProvider } from './context/LastRessurserContext';
-import { SanityProvider } from './context/SanityContext';
 import { SpråkProvider } from './context/SpråkContext';
 import './index.css';
 
@@ -20,9 +19,7 @@ function FellesWrapper({ children }: Props) {
                 <SpråkProvider>
                     <HttpProvider>
                         <ApmErrorBoundary fallback={<Feilside />}>
-                            <LastRessurserProvider>
-                                <SanityProvider>{children}</SanityProvider>
-                            </LastRessurserProvider>
+                            <LastRessurserProvider>{children}</LastRessurserProvider>
                         </ApmErrorBoundary>
                     </HttpProvider>
                 </SpråkProvider>

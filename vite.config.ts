@@ -9,6 +9,12 @@ export default defineConfig({
     root: path.resolve(__dirname, 'src/frontend'),
     base: BASE_PATH,
     plugins: [react()],
+    resolve: {
+        alias: {
+            '@api': path.resolve(__dirname, 'src/frontend/_api'),
+            '@hooks': path.resolve(__dirname, 'src/frontend/hooks'),
+        },
+    },
     server: {
         // Tillat at vite dev-serveren leser filer utenfor src/frontend (f.eks. src/common)
         fs: {

@@ -1,6 +1,7 @@
 import { ESvar } from '@navikt/familie-form-elements';
 import { HttpProvider } from '@navikt/familie-http';
 import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
+import { QueryClient } from '@tanstack/react-query';
 
 import type { FC, PropsWithChildren, ReactNode } from 'react';
 import { Cookies, CookiesProvider } from 'react-cookie';
@@ -9,6 +10,7 @@ import { type Mock, type MockInstance, vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
 
 import { ESivilstand } from '../../common/typer/kontrakt/generelle';
+import { AppProviders } from '../AppProviders';
 import { UtenlandsoppholdSpørsmålId } from '../components/Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { DinLivssituasjonSpørsmålId } from '../components/SøknadsSteg/DinLivssituasjon/spørsmål';
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
@@ -21,7 +23,6 @@ import { FeatureTogglesProvider } from '../context/FeatureTogglesContext';
 import { InnloggetProvider } from '../context/InnloggetContext';
 import { LastRessurserProvider } from '../context/LastRessurserContext';
 import { RoutesProvider } from '../context/RoutesContext';
-import { SanityProvider } from '../context/SanityContext';
 import { SpråkProvider } from '../context/SpråkContext';
 import { StegProvider } from '../context/StegContext';
 import type { IKvittering } from '../typer/kvittering';
@@ -143,6 +144,16 @@ export const wrapMedProvidere = (providerComponents: FC<any>[], children?: React
     return <Første>{resten.length ? wrapMedProvidere(resten, children) : children}</Første>;
 };
 
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            retry: false,
+            refetchOnWindowFocus: false,
+            refetchOnReconnect: false,
+        },
+    },
+});
+
 interface TestProviderProps {
     children?: ReactNode;
     mocketNettleserHistorikk?: string[];
@@ -151,15 +162,18 @@ export function TestProvidere({ children, mocketNettleserHistorikk }: TestProvid
     const MemoryRouterMedHistorikk = (props: PropsWithChildren) => (
         <MemoryRouter initialEntries={mocketNettleserHistorikk}>{props.children}</MemoryRouter>
     );
+    const AppProvidereMedTestQueryClient = (props: PropsWithChildren) => (
+        <AppProviders queryClient={queryClient}>{props.children}</AppProviders>
+    );
     return wrapMedProvidere(
         [
             CookiesProviderMedLocale,
             SpråkProvider,
             HttpProvider,
             LastRessurserProvider,
-            SanityProvider,
             InnloggetProvider,
             FeatureTogglesProvider,
+            AppProvidereMedTestQueryClient,
             AppProvider,
             EøsProvider,
             RoutesProvider,
