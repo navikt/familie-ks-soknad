@@ -1,31 +1,29 @@
-import { byggSuksessRessurs } from '@navikt/familie-typer';
+import { renderHook } from '@testing-library/react';
 
-import { renderHook, waitFor } from '@testing-library/react';
-import { HttpResponse, http } from 'msw';
-
-import { server } from '../../../mocks/node';
-import { urlMedBasePath } from '../../../mocks/utils';
-
+import { defaultFeatureToggleValues, type EAllFeatureToggles } from '../../common/feature-toggles';
 import { FeatureTogglesProvider, useFeatureToggles } from './FeatureTogglesContext';
-import { LastRessurserProvider } from './LastRessurserContext';
 
-describe('FeatureToggleContext', () => {
-    test(`Skal hente ut alle toggles`, async () => {
-        const toggles = {};
+describe('FeatureTogglesContext', () => {
+    test('gir default-verdier når providerens toggles-prop ikke er satt', () => {
+        const wrapper = ({ children }) => <FeatureTogglesProvider>{children}</FeatureTogglesProvider>;
+        const { result } = renderHook(() => useFeatureToggles(), { wrapper });
 
-        server.use(
-            http.get(urlMedBasePath('toggles/all'), () => {
-                return HttpResponse.json(byggSuksessRessurs(toggles));
-            })
-        );
+        expect(result.current.toggles).toEqual(defaultFeatureToggleValues);
+    });
 
+    test('gir toggles som blir sendt inn via providerens toggles-prop', () => {
+        const mockToggles = { minTestToggle: true } as unknown as EAllFeatureToggles;
         const wrapper = ({ children }) => (
-            <LastRessurserProvider>
-                <FeatureTogglesProvider>{children}</FeatureTogglesProvider>
-            </LastRessurserProvider>
+            <FeatureTogglesProvider toggles={mockToggles}>{children}</FeatureTogglesProvider>
         );
         const { result } = renderHook(() => useFeatureToggles(), { wrapper });
 
-        await waitFor(() => expect(result.current.toggles).toEqual(toggles));
+        expect(result.current.toggles).toEqual(mockToggles);
+    });
+
+    test('kaster feil når useFeatureToggles brukes utenfor FeatureTogglesProvider', () => {
+        expect(() => renderHook(() => useFeatureToggles())).toThrow(
+            'useFeatureToggles må brukes innenfor FeatureTogglesProvider'
+        );
     });
 });
