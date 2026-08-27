@@ -1,19 +1,20 @@
+import { useTranslate } from '@hooks/useTranslate';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { Button, Checkbox, ErrorMessage, InfoCard, VStack } from '@navikt/ds-react';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
+import { useSanityTekster } from '../../../context/SanityContext';
 import { Typografi } from '../../../typer/common';
+import { ESanitySteg } from '../../../typer/sanity/sanity';
 import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import { BekreftelseStatus, useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 
 const BekreftelseOgStartSoknad: FC = () => {
     const { onStartSøknad, bekreftelseOnChange, bekreftelseStatus } = useBekreftelseOgStartSoknad();
-    const { plainTekst, tekster } = useAppContext();
 
-    const forsidetekster = tekster().FORSIDE;
-    const navigasjonTekster = tekster().FELLES.navigasjon;
+    const forsidetekster = useSanityTekster(ESanitySteg.FORSIDE);
+    const fellestekster = useSanityTekster(ESanitySteg.FELLES);
+    const translate = useTranslate();
 
     const bekreftelseKortStatus = () => {
         switch (bekreftelseStatus) {
@@ -31,7 +32,7 @@ const BekreftelseOgStartSoknad: FC = () => {
             <VStack gap={'space-8'}>
                 <InfoCard data-color={bekreftelseKortStatus()}>
                     <InfoCard.Header>
-                        <InfoCard.Title>{plainTekst(forsidetekster.bekreftelsesboksTittel)}</InfoCard.Title>
+                        <InfoCard.Title>{translate(forsidetekster.bekreftelsesboksTittel)}</InfoCard.Title>
                     </InfoCard.Header>
                     <InfoCard.Content>
                         <TekstBlock block={forsidetekster.bekreftelsesboksBroedtekst} typografi={Typografi.BodyLong} />
@@ -39,12 +40,12 @@ const BekreftelseOgStartSoknad: FC = () => {
                             value={bekreftelseStatus === BekreftelseStatus.BEKREFTET}
                             onChange={bekreftelseOnChange}
                         >
-                            {plainTekst(forsidetekster.bekreftelsesboksErklaering)}
+                            {translate(forsidetekster.bekreftelsesboksErklaering)}
                         </Checkbox>
                     </InfoCard.Content>
                 </InfoCard>
                 {bekreftelseStatus === BekreftelseStatus.FEIL && (
-                    <ErrorMessage showIcon>{plainTekst(forsidetekster.bekreftelsesboksFeilmelding)}</ErrorMessage>
+                    <ErrorMessage showIcon>{translate(forsidetekster.bekreftelsesboksFeilmelding)}</ErrorMessage>
                 )}
             </VStack>
             <VStack marginBlock="space-48 space-0" width={{ sm: 'fit-content' }} marginInline={{ sm: 'auto' }}>
@@ -55,7 +56,7 @@ const BekreftelseOgStartSoknad: FC = () => {
                     iconPosition="right"
                     data-testid={'start-søknad-knapp'}
                 >
-                    {plainTekst(navigasjonTekster.startKnapp)}
+                    {translate(fellestekster.navigasjon.startKnapp)}
                 </Button>
             </VStack>
         </form>

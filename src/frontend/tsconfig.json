@@ -12,6 +12,10 @@
         "module": "ESNext",
         "moduleResolution": "Bundler",
         "moduleDetection": "force",
-        "noUncheckedSideEffectImports": false // Trenger for import av @navikt/ds-css
+        "noUncheckedSideEffectImports": false, // Trenger for import av @navikt/ds-css
+        "paths": {
+            "@api/*": ["./_api/*"],
+            "@hooks/*": ["./hooks/*"]
+        }
     }
 }

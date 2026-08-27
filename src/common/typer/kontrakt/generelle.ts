@@ -12,6 +12,9 @@ export type TilRestLocaleRecord = (
     flettefelter?: FlettefeltVerdier
 ) => Record<LocaleType, string>;
 
+/**
+ * @deprecated Bruk {@link useTranslate}
+ */
 export type PlainTekst = (
     localeRecord: LocaleRecordBlock | LocaleRecordString | undefined,
     flettefelter?: FlettefeltVerdier,

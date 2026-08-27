@@ -1,6 +1,6 @@
+import { useVisSystemetLaster } from '@hooks/useVisSystemetLaster';
 import type { FC } from 'react';
 import { Route, Routes, useParams } from 'react-router';
-
 import RedirectTilStart from './components/Felleskomponenter/RedirectTilStart/RedirectTilStart';
 import Helse from './components/Helse/Helse';
 import DinLivssituasjon from './components/SøknadsSteg/DinLivssituasjon/DinLivssituasjon';
@@ -42,8 +42,9 @@ const EøsForBarnWrapper: FC = () => {
 };
 
 const Søknad = () => {
-    const { systemetLaster } = useAppContext();
     const { routes } = useRoutesContext();
+
+    const visSystemetLaster = useVisSystemetLaster();
 
     const routeTilKomponent = (route: IRoute): FC => {
         switch (route.route) {
@@ -73,7 +74,7 @@ const Søknad = () => {
     };
 
     return (
-        <div className={systemetLaster() ? 'blur' : undefined}>
+        <div className={visSystemetLaster ? 'blur' : undefined}>
             <Routes>
                 <Route path={'/helse'} element={<Helse />} />
                 <Route path={'/'} element={<Forside />} />

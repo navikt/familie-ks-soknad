@@ -1,12 +1,9 @@
+import { useTranslateFlettefelt } from '@hooks/useTranslateFlettefelt';
 import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds-react';
-
 import { PortableText } from '@portabletext/react';
-
-import type { CSSProperties, FC, ReactNode } from 'react';
-
+import type { CSSProperties, ReactNode } from 'react';
 import type { FlettefeltVerdier } from '../../../common/typer/kontrakt/generelle';
 import type { LocaleRecordBlock } from '../../../common/typer/locale';
-import { useAppContext } from '../../context/AppContext';
 import { useSpråkContext } from '../../context/SpråkContext';
 import { Typografi } from '../../typer/common';
 
@@ -73,15 +70,23 @@ export function TypografiWrapper({ typografi, style, children }: Props) {
     }
 }
 
-const TekstBlock: FC<{
+function TekstBlock({
+    block,
+    flettefelter,
+    typografi,
+}: {
     block: LocaleRecordBlock | undefined;
     flettefelter?: FlettefeltVerdier;
     typografi?: Typografi;
-}> = ({ block, flettefelter, typografi }) => {
+}) {
     const { valgtLocale } = useSpråkContext();
-    const { flettefeltTilTekst } = useAppContext();
+    const translateFlettefelt = useTranslateFlettefelt();
 
-    return block ? (
+    if (!block) {
+        return null;
+    }
+
+    return (
         <PortableText
             value={block[valgtLocale]}
             components={{
@@ -102,7 +107,7 @@ const TekstBlock: FC<{
                 marks: {
                     flettefelt: props => {
                         if (props?.value?.flettefeltVerdi) {
-                            return <span>{flettefeltTilTekst(props.value.flettefeltVerdi, flettefelter)}</span>;
+                            return <span>{translateFlettefelt(props.value.flettefeltVerdi, flettefelter)}</span>;
                         } else {
                             throw new Error(`Fant ikke flettefeltVerdi`);
                         }
@@ -120,11 +125,11 @@ const TekstBlock: FC<{
                     },
                 },
                 types: {
-                    flettefelt: props => flettefeltTilTekst(props.value.flettefelt, flettefelter, valgtLocale),
+                    flettefelt: props => translateFlettefelt(props.value.flettefelt, flettefelter, valgtLocale),
                 },
             }}
         />
-    ) : null;
-};
+    );
+}
 
 export default TekstBlock;
