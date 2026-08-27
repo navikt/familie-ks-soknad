@@ -1,6 +1,7 @@
 import { awaitDecoratorData } from '@navikt/nav-dekoratoren-moduler';
 import type { LocaleData } from 'i18n-iso-countries';
 import { registerLocale } from 'i18n-iso-countries';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 
@@ -8,9 +9,10 @@ import { LocaleType } from '../common/typer/locale';
 
 import App from './App';
 import { hentDekorator } from './decorator';
-import FellesWrapper from './FellesWrapper';
 import { initApm } from './utils/apm';
+
 import '@navikt/ds-css';
+import './index.css';
 
 // Statiske imports (i stedet for en dynamisk import med template literal) slik at
 // vite kan analysere og bunte disse - en dynamisk sti kan ikke analyseres av vite.
@@ -44,8 +46,8 @@ polyfillLocaledata().then(async () => {
 
     const root = createRoot(container!);
     root.render(
-        <FellesWrapper>
+        <StrictMode>
             <App />
-        </FellesWrapper>
+        </StrictMode>
     );
 });

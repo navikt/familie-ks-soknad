@@ -1,21 +1,15 @@
 import { Box } from '@navikt/ds-react';
-import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 import { type FC, useEffect } from 'react';
 
+import { useSpråkContext } from '../../../context/SpråkContext';
 import { FeilsideInnhold } from './FeilsideInnhold';
 
 export const Feilside: FC = () => {
+    const { visSpråkvelger } = useSpråkContext();
+
     useEffect(() => {
         visSpråkvelger();
     }, []);
-
-    const visSpråkvelger = () => {
-        setAvailableLanguages([
-            { locale: 'nb', handleInApp: true },
-            { locale: 'nn', handleInApp: true },
-            { locale: 'en', handleInApp: true },
-        ]).then();
-    };
 
     return (
         <Box marginBlock="space-128">

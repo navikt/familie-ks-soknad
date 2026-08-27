@@ -1,12 +1,12 @@
 import { ArrowLeftIcon, InformationSquareIcon } from '@navikt/aksel-icons';
 import { Box, FormProgress, GuidePanel, Heading, InfoCard, Link, VStack } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
-import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 import { type ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import { useAppContext } from '../../../context/AppContext';
 import { useAppNavigationContext } from '../../../context/AppNavigationContext';
+import { useSpråkContext } from '../../../context/SpråkContext';
 import { useStegContext } from '../../../context/StegContext';
 import { RouteEnum } from '../../../typer/routes';
 import type { SkjemaFeltTyper } from '../../../typer/skjema';
@@ -54,6 +54,7 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
     const { hentNesteSteg, hentForrigeSteg, hentNåværendeSteg, hentNåværendeStegIndex, erPåKvitteringsside } =
         useStegContext();
     const { komFra, settKomFra } = useAppNavigationContext();
+    const { skjulSpråkvelger } = useSpråkContext();
 
     const nesteRoute = hentNesteSteg();
     const forrigeRoute = hentForrigeSteg();
@@ -79,10 +80,6 @@ function Steg({ tittel, guide, skjema, gåVidereCallback, vedleggOppsummering, c
             åpneModellVersjonModal();
         }
     }, [modellVersjonOppdatert]);
-
-    const skjulSpråkvelger = () => {
-        setAvailableLanguages([]).then();
-    };
 
     const gåVidere = () => {
         if (!erStegUtfyltFrafør(nåværendeStegIndex)) {
