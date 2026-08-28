@@ -1,3 +1,4 @@
+import { useHentFeatureToggles } from '@hooks/useHentFeatureToggles';
 import { useHentSanityTekster } from '@hooks/useHentSanityTekster';
 import { Page } from '@navikt/ds-react';
 import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -8,6 +9,7 @@ import { erProd } from '../common/miljø';
 import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
 import SystemetLaster from './components/Felleskomponenter/SystemetLaster/SystemetLaster';
 import { loggFeil } from './context/axios';
+import { FeatureTogglesProvider } from './context/FeatureTogglesContext';
 import { SanityProvider } from './context/SanityContext';
 
 const defaultQueryClient = new QueryClient({
@@ -50,7 +52,13 @@ function Providers({ children }: PropsWithChildren) {
         error: sanityTeksterError,
     } = useHentSanityTekster();
 
-    if (sanityTeksterIsPending) {
+    const {
+        data: featureToggles,
+        isPending: featureTogglesIsPending,
+        error: featureTogglesError,
+    } = useHentFeatureToggles();
+
+    if (sanityTeksterIsPending || featureTogglesIsPending) {
         return (
             <main>
                 <Page.Block width={'text'} gutters={true}>
@@ -60,7 +68,7 @@ function Providers({ children }: PropsWithChildren) {
         );
     }
 
-    if (sanityTeksterError) {
+    if (sanityTeksterError || featureTogglesError) {
         return (
             <main>
                 <Page.Block width={'text'} gutters={true}>
@@ -70,5 +78,9 @@ function Providers({ children }: PropsWithChildren) {
         );
     }
 
-    return <SanityProvider tekster={sanityTekster}>{children}</SanityProvider>;
+    return (
+        <FeatureTogglesProvider toggles={featureToggles}>
+            <SanityProvider tekster={sanityTekster}>{children}</SanityProvider>
+        </FeatureTogglesProvider>
+    );
 }

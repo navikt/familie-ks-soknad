@@ -3,7 +3,6 @@ export enum EToggle {
 }
 
 export enum EFeatureToggle {}
-// EKSEMPEL = 'EKSEMPEL',
 
 export const ToggleKeys: Record<EFeatureToggle, string> = {
     // [EFeatureToggle.EKSEMPEL]: 'familie-ks-soknad.eksempel',
