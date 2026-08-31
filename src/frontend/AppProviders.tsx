@@ -1,5 +1,6 @@
 import { useHentFeatureToggles } from '@hooks/useHentFeatureToggles';
 import { useHentSanityTekster } from '@hooks/useHentSanityTekster';
+import { useVerifiserInnloggetBruker } from '@hooks/useVerifiserInnloggetBruker';
 import { ApmErrorBoundary } from '@nais/apm/react';
 import { Page } from '@navikt/ds-react';
 import { HttpProvider } from '@navikt/familie-http';
@@ -13,10 +14,10 @@ import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
 import SystemetLaster from './components/Felleskomponenter/SystemetLaster/SystemetLaster';
 import { loggFeil } from './context/axios';
 import { FeatureTogglesProvider } from './context/FeatureTogglesContext';
-import { InnloggetProvider } from './context/InnloggetContext';
 import { LastRessurserProvider } from './context/LastRessurserContext';
 import { SanityProvider } from './context/SanityContext';
 import { SpråkProvider } from './context/SpråkContext';
+import { InnloggetStatus, utledInnloggetStatus } from './utils/autentisering';
 
 const defaultQueryClient = new QueryClient({
     defaultOptions: {
@@ -74,7 +75,24 @@ function Providers({ children }: PropsWithChildren) {
         error: featureTogglesError,
     } = useHentFeatureToggles();
 
-    if (sanityTeksterIsPending || featureTogglesIsPending) {
+    const {
+        isSuccess: innloggetBrukerVerifiseringIsSuccess,
+        isPending: innloggetBrukerVerifiseringIsPending,
+        isError: innloggetBrukerVerifiseringIsError,
+    } = useVerifiserInnloggetBruker();
+
+    const innloggetStatus = utledInnloggetStatus(
+        innloggetBrukerVerifiseringIsSuccess,
+        innloggetBrukerVerifiseringIsPending,
+        innloggetBrukerVerifiseringIsError
+    );
+
+    if (
+        sanityTeksterIsPending ||
+        featureTogglesIsPending ||
+        innloggetBrukerVerifiseringIsPending ||
+        innloggetStatus === InnloggetStatus.IKKE_VERIFISERT
+    ) {
         return (
             <main>
                 <Page.Block width={'text'} gutters={true}>
@@ -84,7 +102,12 @@ function Providers({ children }: PropsWithChildren) {
         );
     }
 
-    if (sanityTeksterError || featureTogglesError) {
+    if (
+        sanityTeksterError ||
+        featureTogglesError ||
+        innloggetBrukerVerifiseringIsError ||
+        innloggetStatus === InnloggetStatus.FEILET
+    ) {
         return (
             <main>
                 <Page.Block width={'text'} gutters={true}>
@@ -95,10 +118,8 @@ function Providers({ children }: PropsWithChildren) {
     }
 
     return (
-        <InnloggetProvider>
-            <FeatureTogglesProvider toggles={featureToggles}>
-                <SanityProvider tekster={sanityTekster}>{children}</SanityProvider>
-            </FeatureTogglesProvider>
-        </InnloggetProvider>
+        <FeatureTogglesProvider toggles={featureToggles}>
+            <SanityProvider tekster={sanityTekster}>{children}</SanityProvider>
+        </FeatureTogglesProvider>
     );
 }
