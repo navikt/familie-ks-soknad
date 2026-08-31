@@ -28,12 +28,10 @@ import { RouteEnum } from '../typer/routes';
 import { ESanityFlettefeltverdi, ESanitySteg } from '../typer/sanity/sanity';
 import type { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { type ISøknad, initialStateSøknad } from '../typer/søknad';
-import { InnloggetStatus } from '../utils/autentisering';
 import { mapBarnResponsTilBarn } from '../utils/barn';
 import { plainTekstHof } from '../utils/sanity';
 
 import { preferredAxios } from './axios';
-import { useInnloggetContext } from './InnloggetContext';
 import { type AxiosRequest, useLastRessurserContext } from './LastRessurserContext';
 import { hentSluttbrukerFraPdl } from './pdl';
 import { useSanityContext } from './SanityContext';
@@ -85,7 +83,6 @@ const AppContext = createContext<AppContext | undefined>(undefined);
 export function AppProvider(props: PropsWithChildren) {
     const { valgtLocale } = useSpråkContext();
     const { axiosRequest, lasterRessurser } = useLastRessurserContext();
-    const { innloggetStatus } = useInnloggetContext();
     const [sluttbruker, settSluttbruker] = useState(byggTomRessurs<ISøkerRespons>());
     const [eøsLand, settEøsLand] = useState(byggTomRessurs<Map<Alpha3Code, string>>());
     const [kontoinformasjon, settKontoinformasjon] = useState(byggTomRessurs<IKontoinformasjon>());
@@ -127,36 +124,30 @@ export function AppProvider(props: PropsWithChildren) {
     }, [søknad.søker.triggetEøs]);
 
     useEffect(() => {
-        if (innloggetStatus === InnloggetStatus.AUTENTISERT) {
-            settSluttbruker(byggHenterRessurs());
+        settSluttbruker(byggHenterRessurs());
 
-            hentSluttbrukerFraPdl(axiosRequest).then(ressurs => {
-                settSluttbruker(ressurs);
+        hentSluttbrukerFraPdl(axiosRequest).then(ressurs => {
+            settSluttbruker(ressurs);
 
-                hentOgSettMellomlagretData();
-                hentOgSettKontoinformasjon();
-                if (ressurs.status === RessursStatus.SUKSESS) {
-                    settSøknad({
-                        ...søknad,
-                        søker: {
-                            ...søknad.søker,
-                            navn: ressurs.data.navn,
-                            statsborgerskap: ressurs.data.statsborgerskap,
-                            barn: mapBarnResponsTilBarn(
-                                ressurs.data.barn,
-                                tekster().FELLES.frittståendeOrd,
-                                plainTekst
-                            ),
-                            ident: ressurs.data.ident,
-                            adresse: ressurs.data.adresse,
-                            sivilstand: ressurs.data.sivilstand,
-                            adressebeskyttelse: ressurs.data.adressebeskyttelse,
-                        },
-                    });
-                }
-            });
-        }
-    }, [innloggetStatus]);
+            hentOgSettMellomlagretData();
+            hentOgSettKontoinformasjon();
+            if (ressurs.status === RessursStatus.SUKSESS) {
+                settSøknad({
+                    ...søknad,
+                    søker: {
+                        ...søknad.søker,
+                        navn: ressurs.data.navn,
+                        statsborgerskap: ressurs.data.statsborgerskap,
+                        barn: mapBarnResponsTilBarn(ressurs.data.barn, tekster().FELLES.frittståendeOrd, plainTekst),
+                        ident: ressurs.data.ident,
+                        adresse: ressurs.data.adresse,
+                        sivilstand: ressurs.data.sivilstand,
+                        adressebeskyttelse: ressurs.data.adressebeskyttelse,
+                    },
+                });
+            }
+        });
+    }, []);
 
     const mellomlagre = (søknadSomSkalLagres: ISøknad, nåværendeStegIndex: number) => {
         const kontantstøtte: IMellomlagretKontantstøtte = {
@@ -276,15 +267,11 @@ export function AppProvider(props: PropsWithChildren) {
     };
 
     const systemetOK = () => {
-        return (
-            innloggetStatus === InnloggetStatus.AUTENTISERT &&
-            sluttbruker.status === RessursStatus.SUKSESS &&
-            eøsLand.status === RessursStatus.SUKSESS
-        );
+        return sluttbruker.status === RessursStatus.SUKSESS && eøsLand.status === RessursStatus.SUKSESS;
     };
 
     const systemetLaster = (): boolean => {
-        return lasterRessurser() || innloggetStatus === InnloggetStatus.IKKE_VERIFISERT;
+        return lasterRessurser();
     };
 
     /**
