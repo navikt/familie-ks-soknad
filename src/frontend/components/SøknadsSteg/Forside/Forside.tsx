@@ -1,10 +1,10 @@
 import { useTranslate } from '@hooks/useTranslate';
 import { Accordion, GuidePanel, Heading } from '@navikt/ds-react';
-import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
 import { type FC, useEffect } from 'react';
 import miljø from '../../../../common/miljø';
 import { useAppContext } from '../../../context/AppContext';
 import { useSanityTekster } from '../../../context/SanityContext';
+import { useSpråkContext } from '../../../context/SpråkContext';
 import { Typografi } from '../../../typer/common';
 import { RouteEnum } from '../../../typer/routes';
 import { ESanitySteg } from '../../../typer/sanity/sanity';
@@ -17,6 +17,7 @@ import { FortsettPåSøknad } from './FortsettPåSøknad';
 
 const Forside: FC = () => {
     const { mellomlagretVerdi, settNåværendeRoute } = useAppContext();
+    const { visSpråkvelger } = useSpråkContext();
 
     const forsidetekster = useSanityTekster(ESanitySteg.FORSIDE);
     const translate = useTranslate();
@@ -25,14 +26,6 @@ const Forside: FC = () => {
         settNåværendeRoute(RouteEnum.Forside);
         visSpråkvelger();
     }, []);
-
-    const visSpråkvelger = () => {
-        setAvailableLanguages([
-            { locale: 'nb', handleInApp: true },
-            { locale: 'nn', handleInApp: true },
-            { locale: 'en', handleInApp: true },
-        ]).then();
-    };
 
     const kanFortsettePåSøknad = mellomlagretVerdi && mellomlagretVerdi.modellVersjon === miljø().modellVersjon;
 

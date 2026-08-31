@@ -1,5 +1,5 @@
-import { onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
-import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
+import { onLanguageSelect, setAvailableLanguages, setParams } from '@navikt/nav-dekoratoren-moduler';
+import { createContext, type PropsWithChildren, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useCookies } from 'react-cookie';
 
 import { LocaleType } from '../../common/typer/locale';
@@ -9,6 +9,8 @@ const dekoratorLanguageCookieName = 'decorator-language';
 
 interface SpråkContext {
     valgtLocale: LocaleType;
+    visSpråkvelger: () => void;
+    skjulSpråkvelger: () => void;
 }
 
 const SpråkContext = createContext<SpråkContext | undefined>(undefined);
@@ -17,7 +19,20 @@ export function SpråkProvider(props: PropsWithChildren) {
     const [cookies, setCookie] = useCookies([dekoratorLanguageCookieName]);
     const { [dekoratorLanguageCookieName]: dekoratørSpråk } = cookies;
     const defaultSpråk = erGyldigSpråk(dekoratørSpråk) ? dekoratørSpråk : LocaleType.nb;
-    const [valgtLocale, settValgtLocale] = useState<LocaleType>(defaultSpråk);
+
+    const [locale, settLocale] = useState<LocaleType>(defaultSpråk);
+
+    const visSpråkvelger = useCallback(() => {
+        setAvailableLanguages([
+            { locale: 'nb', handleInApp: true },
+            { locale: 'nn', handleInApp: true },
+            { locale: 'en', handleInApp: true },
+        ]);
+    }, []);
+
+    const skjulSpråkvelger = useCallback(() => {
+        setAvailableLanguages([]);
+    }, []);
 
     useEffect(() => {
         if (dekoratørSpråk !== defaultSpråk) {
@@ -25,21 +40,26 @@ export function SpråkProvider(props: PropsWithChildren) {
         }
     }, []);
 
-    onLanguageSelect(language => {
-        settValgtLocale(language.locale as LocaleType);
-        document.documentElement.lang = language.locale;
-        setCookie(dekoratorLanguageCookieName, language.locale);
-    });
+    useEffect(() => {
+        onLanguageSelect(language => {
+            settLocale(erGyldigSpråk(language.locale) ? language.locale : LocaleType.nb);
+            document.documentElement.lang = language.locale;
+            setCookie(dekoratorLanguageCookieName, language.locale);
+        });
+    }, []);
 
-    return <SpråkContext.Provider value={{ valgtLocale }}>{props.children}</SpråkContext.Provider>;
+    const value = useMemo(
+        () => ({ valgtLocale: locale, visSpråkvelger, skjulSpråkvelger }),
+        [locale, visSpråkvelger, skjulSpråkvelger]
+    );
+
+    return <SpråkContext.Provider value={value}>{props.children}</SpråkContext.Provider>;
 }
 
 export function useSpråkContext() {
     const context = useContext(SpråkContext);
-
     if (context === undefined) {
-        throw new Error('useSpråkContext må brukes innenfor SpråkProvider');
+        throw new Error('useSpråkContext må brukes innenfor en SpråkProvider.');
     }
-
     return context;
 }

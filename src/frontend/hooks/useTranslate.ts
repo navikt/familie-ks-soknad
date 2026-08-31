@@ -1,6 +1,6 @@
+import { useLocale } from '@hooks/useLocale';
 import type { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
 import type { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../common/typer/locale';
-import { useSpråkContext } from '../context/SpråkContext';
 import { plainTekstHof } from '../utils/sanity';
 import { useTranslateFlettefelt } from './useTranslateFlettefelt';
 
@@ -11,8 +11,8 @@ type Translate = (
 ) => string;
 
 export function useTranslate(): Translate {
-    const { valgtLocale } = useSpråkContext();
+    const locale = useLocale();
     const translateFlettefelt = useTranslateFlettefelt();
 
-    return plainTekstHof(translateFlettefelt, valgtLocale);
+    return plainTekstHof(translateFlettefelt, locale);
 }

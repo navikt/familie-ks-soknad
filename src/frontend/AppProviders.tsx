@@ -1,16 +1,22 @@
 import { useHentFeatureToggles } from '@hooks/useHentFeatureToggles';
 import { useHentSanityTekster } from '@hooks/useHentSanityTekster';
+import { ApmErrorBoundary } from '@nais/apm/react';
 import { Page } from '@navikt/ds-react';
+import { HttpProvider } from '@navikt/familie-http';
 import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AxiosError } from 'axios';
 import type { PropsWithChildren } from 'react';
+import { CookiesProvider } from 'react-cookie';
 import { erProd } from '../common/miljø';
 import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
 import SystemetLaster from './components/Felleskomponenter/SystemetLaster/SystemetLaster';
 import { loggFeil } from './context/axios';
 import { FeatureTogglesProvider } from './context/FeatureTogglesContext';
+import { InnloggetProvider } from './context/InnloggetContext';
+import { LastRessurserProvider } from './context/LastRessurserContext';
 import { SanityProvider } from './context/SanityContext';
+import { SpråkProvider } from './context/SpråkContext';
 
 const defaultQueryClient = new QueryClient({
     defaultOptions: {
@@ -38,10 +44,20 @@ interface Props extends PropsWithChildren {
 
 export function AppProviders({ queryClient = defaultQueryClient, children }: Props) {
     return (
-        <QueryClientProvider client={queryClient}>
-            {!erProd() && <ReactQueryDevtools position={'right'} initialIsOpen={false} />}
-            <Providers>{children}</Providers>
-        </QueryClientProvider>
+        <CookiesProvider>
+            <SpråkProvider>
+                <ApmErrorBoundary fallback={<Feilside />}>
+                    <QueryClientProvider client={queryClient}>
+                        {!erProd() && <ReactQueryDevtools position={'right'} initialIsOpen={false} />}
+                        <HttpProvider>
+                            <LastRessurserProvider>
+                                <Providers>{children}</Providers>
+                            </LastRessurserProvider>
+                        </HttpProvider>
+                    </QueryClientProvider>
+                </ApmErrorBoundary>
+            </SpråkProvider>
+        </CookiesProvider>
     );
 }
 
@@ -79,8 +95,10 @@ function Providers({ children }: PropsWithChildren) {
     }
 
     return (
-        <FeatureTogglesProvider toggles={featureToggles}>
-            <SanityProvider tekster={sanityTekster}>{children}</SanityProvider>
-        </FeatureTogglesProvider>
+        <InnloggetProvider>
+            <FeatureTogglesProvider toggles={featureToggles}>
+                <SanityProvider tekster={sanityTekster}>{children}</SanityProvider>
+            </FeatureTogglesProvider>
+        </InnloggetProvider>
     );
 }
