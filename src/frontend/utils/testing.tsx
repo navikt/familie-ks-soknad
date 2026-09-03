@@ -21,7 +21,6 @@ import { EøsProvider } from '../context/EøsContext';
 import { FeatureTogglesProvider } from '../context/FeatureTogglesContext';
 import { InnloggetProvider } from '../context/InnloggetContext';
 import { LastRessurserProvider } from '../context/LastRessurserContext';
-import { RoutesProvider } from '../context/RoutesContext';
 import { SanityProvider } from '../context/SanityContext';
 import { SpråkProvider } from '../context/SpråkContext';
 import { StegProvider } from '../context/StegContext';
@@ -165,13 +164,11 @@ export function TestProvidere({ children, mocketNettleserHistorikk }: TestProvid
                                     <SanityProvider tekster={mockDeep<ITekstinnhold>()}>
                                         <AppProvider>
                                             <EøsProvider>
-                                                <RoutesProvider>
-                                                    <MemoryRouter initialEntries={mocketNettleserHistorikk}>
-                                                        <StegProvider>
-                                                            <AppNavigationProvider>{children}</AppNavigationProvider>
-                                                        </StegProvider>
-                                                    </MemoryRouter>
-                                                </RoutesProvider>
+                                                <MemoryRouter initialEntries={mocketNettleserHistorikk}>
+                                                    <StegProvider>
+                                                        <AppNavigationProvider>{children}</AppNavigationProvider>
+                                                    </StegProvider>
+                                                </MemoryRouter>
                                             </EøsProvider>
                                         </AppProvider>
                                     </SanityProvider>
