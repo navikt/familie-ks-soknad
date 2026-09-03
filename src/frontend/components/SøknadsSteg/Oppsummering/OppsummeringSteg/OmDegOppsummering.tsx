@@ -3,8 +3,8 @@ import type { Alpha3Code } from 'i18n-iso-countries';
 import type { Dispatch, FC, SetStateAction } from 'react';
 
 import { useAppContext } from '../../../../context/AppContext';
-import { useRoutesContext } from '../../../../context/RoutesContext';
 import { useSpråkContext } from '../../../../context/SpråkContext';
+import { ROUTES } from '../../../../routes';
 import { RouteEnum } from '../../../../typer/routes';
 import { genererAdresseVisning } from '../../../../utils/adresse';
 import { landkodeTilSpråk, sivilstandTilSanitySivilstandApiKey } from '../../../../utils/språk';
@@ -22,12 +22,11 @@ const OmDegOppsummering: FC<Props> = ({ settFeilAnchors }) => {
     const { søknad, tekster, plainTekst } = useAppContext();
     const { OM_DEG: omDegTekster, FORSIDE: forsideTekster, FELLES: fellesTekster } = tekster();
     const { valgtLocale } = useSpråkContext();
-    const { hentRouteObjektForRouteEnum } = useRoutesContext();
     const omDegHook = useOmdeg();
 
     return (
         <Oppsummeringsbolk
-            steg={hentRouteObjektForRouteEnum(RouteEnum.OmDeg)}
+            steg={ROUTES[RouteEnum.OmDeg]}
             tittel={omDegTekster.omDegTittel}
             skjemaHook={omDegHook}
             settFeilAnchors={settFeilAnchors}
