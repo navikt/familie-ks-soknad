@@ -1,7 +1,7 @@
 import { useDebounce } from '@hooks/useDebounce';
+import { useSøker } from '@hooks/useSøker';
 import {
     byggFeiletRessurs,
-    byggHenterRessurs,
     byggTomRessurs,
     hentDataFraRessurs,
     type Ressurs,
@@ -23,25 +23,20 @@ import { LocaleType } from '../../common/typer/locale';
 import type { IKontoinformasjon } from '../typer/kontoinformasjon';
 import type { IKvittering } from '../typer/kvittering';
 import type { IMellomlagretKontantstøtte } from '../typer/mellomlager';
-import type { ISøkerRespons } from '../typer/person';
 import { RouteEnum } from '../typer/routes';
 import { ESanityFlettefeltverdi, ESanitySteg } from '../typer/sanity/sanity';
 import type { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { type ISøknad, initialStateSøknad } from '../typer/søknad';
-import { InnloggetStatus } from '../utils/autentisering';
 import { mapBarnResponsTilBarn } from '../utils/barn';
 import { plainTekstHof } from '../utils/sanity';
 
 import { preferredAxios } from './axios';
-import { useInnloggetContext } from './InnloggetContext';
 import { type AxiosRequest, useLastRessurserContext } from './LastRessurserContext';
-import { hentSluttbrukerFraPdl } from './pdl';
 import { useSanityContext } from './SanityContext';
 import { useSpråkContext } from './SpråkContext';
 
 export interface AppContext {
     axiosRequest: AxiosRequest;
-    sluttbruker: Ressurs<ISøkerRespons>;
     søknad: ISøknad;
     settSøknad: Dispatch<SetStateAction<ISøknad>>;
     nullstillSøknadsobjekt: () => void;
@@ -85,8 +80,6 @@ const AppContext = createContext<AppContext | undefined>(undefined);
 export function AppProvider(props: PropsWithChildren) {
     const { valgtLocale } = useSpråkContext();
     const { axiosRequest, lasterRessurser } = useLastRessurserContext();
-    const { innloggetStatus } = useInnloggetContext();
-    const [sluttbruker, settSluttbruker] = useState(byggTomRessurs<ISøkerRespons>());
     const [eøsLand, settEøsLand] = useState(byggTomRessurs<Map<Alpha3Code, string>>());
     const [kontoinformasjon, settKontoinformasjon] = useState(byggTomRessurs<IKontoinformasjon>());
     const [søknad, settSøknad] = useState<ISøknad>(initialStateSøknad);
@@ -100,6 +93,8 @@ export function AppProvider(props: PropsWithChildren) {
     const [sisteModellVersjon, settSisteModellVersjon] = useState(modellVersjon);
     const modellVersjonOppdatert = sisteModellVersjon > modellVersjon;
     const sanityContext = useSanityContext();
+
+    const søker = useSøker();
 
     useEffect(() => {
         if (nåværendeRoute === RouteEnum.Kvittering) {
@@ -127,36 +122,23 @@ export function AppProvider(props: PropsWithChildren) {
     }, [søknad.søker.triggetEøs]);
 
     useEffect(() => {
-        if (innloggetStatus === InnloggetStatus.AUTENTISERT) {
-            settSluttbruker(byggHenterRessurs());
+        hentOgSettMellomlagretData();
+        hentOgSettKontoinformasjon();
 
-            hentSluttbrukerFraPdl(axiosRequest).then(ressurs => {
-                settSluttbruker(ressurs);
-
-                hentOgSettMellomlagretData();
-                hentOgSettKontoinformasjon();
-                if (ressurs.status === RessursStatus.SUKSESS) {
-                    settSøknad({
-                        ...søknad,
-                        søker: {
-                            ...søknad.søker,
-                            navn: ressurs.data.navn,
-                            statsborgerskap: ressurs.data.statsborgerskap,
-                            barn: mapBarnResponsTilBarn(
-                                ressurs.data.barn,
-                                tekster().FELLES.frittståendeOrd,
-                                plainTekst
-                            ),
-                            ident: ressurs.data.ident,
-                            adresse: ressurs.data.adresse,
-                            sivilstand: ressurs.data.sivilstand,
-                            adressebeskyttelse: ressurs.data.adressebeskyttelse,
-                        },
-                    });
-                }
-            });
-        }
-    }, [innloggetStatus]);
+        settSøknad({
+            ...søknad,
+            søker: {
+                ...søknad.søker,
+                navn: søker.navn,
+                statsborgerskap: søker.statsborgerskap,
+                barn: mapBarnResponsTilBarn(søker.barn, tekster().FELLES.frittståendeOrd, plainTekst),
+                ident: søker.ident,
+                adresse: søker.adresse,
+                sivilstand: søker.sivilstand,
+                adressebeskyttelse: søker.adressebeskyttelse,
+            },
+        });
+    }, []);
 
     const mellomlagre = (søknadSomSkalLagres: ISøknad, nåværendeStegIndex: number) => {
         const kontantstøtte: IMellomlagretKontantstøtte = {
@@ -272,19 +254,15 @@ export function AppProvider(props: PropsWithChildren) {
     };
 
     const systemetFeiler = () => {
-        return sluttbruker.status === RessursStatus.FEILET || eøsLand.status === RessursStatus.FEILET;
+        return eøsLand.status === RessursStatus.FEILET;
     };
 
     const systemetOK = () => {
-        return (
-            innloggetStatus === InnloggetStatus.AUTENTISERT &&
-            sluttbruker.status === RessursStatus.SUKSESS &&
-            eøsLand.status === RessursStatus.SUKSESS
-        );
+        return eøsLand.status === RessursStatus.SUKSESS;
     };
 
     const systemetLaster = (): boolean => {
-        return lasterRessurser() || innloggetStatus === InnloggetStatus.IKKE_VERIFISERT;
+        return lasterRessurser();
     };
 
     /**
@@ -377,7 +355,6 @@ export function AppProvider(props: PropsWithChildren) {
         <AppContext.Provider
             value={{
                 axiosRequest,
-                sluttbruker,
                 søknad,
                 settSøknad,
                 nullstillSøknadsobjekt,
