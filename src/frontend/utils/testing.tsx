@@ -2,13 +2,12 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { HttpProvider } from '@navikt/familie-http';
 import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
+import { lagSøker } from '@testutils/testdata/søkerTestdata';
 import type { PropsWithChildren, ReactNode } from 'react';
 import { Cookies, CookiesProvider } from 'react-cookie';
 import { MemoryRouter } from 'react-router';
 import { type Mock, type MockInstance, vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
-
 import { ESivilstand } from '../../common/typer/kontrakt/generelle';
 import { UtenlandsoppholdSpørsmålId } from '../components/Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { DinLivssituasjonSpørsmålId } from '../components/SøknadsSteg/DinLivssituasjon/spørsmål';
@@ -24,6 +23,7 @@ import { RoutesProvider } from '../context/RoutesContext';
 import { SanityProvider } from '../context/SanityContext';
 import { SpråkProvider } from '../context/SpråkContext';
 import { StegProvider } from '../context/StegContext';
+import { SøkerProvider } from '../context/SøkerContext';
 import type { IKvittering } from '../typer/kvittering';
 import type { IUtenlandsperiode } from '../typer/perioder';
 import type { ISøker } from '../typer/person';
@@ -65,7 +65,6 @@ export const spyOnUseApp = (søknad): SpyOnUseAppResult => {
         );
     const settNåværendeRoute = vi.fn();
     const mellomlagre = vi.fn();
-    const sluttbruker = { status: RessursStatus.SUKSESS, data: { navn: '' } };
 
     søknad.barnInkludertISøknaden = søknad.barnInkludertISøknaden ?? [];
     søknad.erEøs = søknad.erEøs ?? false;
@@ -90,7 +89,6 @@ export const spyOnUseApp = (søknad): SpyOnUseAppResult => {
         axiosRequest: axiosRequestMock,
         settNåværendeRoute,
         mellomlagre,
-        sluttbruker,
         settEøsLand,
         eøsLand,
         relevateDokumentasjoner: [],
@@ -161,17 +159,19 @@ export function TestProvidere({ children, mocketNettleserHistorikk }: TestProvid
                         <QueryClientProvider client={queryClient}>
                             <FeatureTogglesProvider>
                                 <SanityProvider tekster={mockDeep<ITekstinnhold>()}>
-                                    <AppProvider>
-                                        <EøsProvider>
-                                            <RoutesProvider>
-                                                <MemoryRouter initialEntries={mocketNettleserHistorikk}>
-                                                    <StegProvider>
-                                                        <AppNavigationProvider>{children}</AppNavigationProvider>
-                                                    </StegProvider>
-                                                </MemoryRouter>
-                                            </RoutesProvider>
-                                        </EøsProvider>
-                                    </AppProvider>
+                                    <SøkerProvider søker={lagSøker()}>
+                                        <AppProvider>
+                                            <EøsProvider>
+                                                <RoutesProvider>
+                                                    <MemoryRouter initialEntries={mocketNettleserHistorikk}>
+                                                        <StegProvider>
+                                                            <AppNavigationProvider>{children}</AppNavigationProvider>
+                                                        </StegProvider>
+                                                    </MemoryRouter>
+                                                </RoutesProvider>
+                                            </EøsProvider>
+                                        </AppProvider>
+                                    </SøkerProvider>
                                 </SanityProvider>
                             </FeatureTogglesProvider>
                         </QueryClientProvider>
