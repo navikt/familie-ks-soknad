@@ -58,7 +58,7 @@
     "@tanstack/react-query": "5.101.4",
     "@tanstack/react-query-devtools": "5.101.4",
     "@sanity/client": "7.26.2",
-    "axios": "1.19.0",
+    "axios": "1.20.0",
     "classnames": "2.5.1",
     "compression": "1.8.1",
     "cookie-parser": "1.4.7",
@@ -74,9 +74,9 @@
     "react-cookie": "8.1.2",
     "react-dom": "19.2.8",
     "react-router": "8.3.0",
-    "styled-components": "6.4.4",
-    "unleash-client": "6.11.1",
-    "uuid": "14.0.1",
+    "styled-components": "6.5.3",
+    "unleash-client": "6.12.1",
+    "uuid": "14.0.2",
     "xss": "1.0.15"
   },
   "devDependencies": {
