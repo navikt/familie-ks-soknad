@@ -19,7 +19,6 @@ import { AppNavigationProvider } from '../context/AppNavigationContext';
 import * as eøsContext from '../context/EøsContext';
 import { EøsProvider } from '../context/EøsContext';
 import { FeatureTogglesProvider } from '../context/FeatureTogglesContext';
-import { InnloggetProvider } from '../context/InnloggetContext';
 import { LastRessurserProvider } from '../context/LastRessurserContext';
 import { RoutesProvider } from '../context/RoutesContext';
 import { SanityProvider } from '../context/SanityContext';
@@ -159,25 +158,23 @@ export function TestProvidere({ children, mocketNettleserHistorikk }: TestProvid
             <SpråkProvider>
                 <HttpProvider>
                     <LastRessurserProvider>
-                        <InnloggetProvider>
-                            <QueryClientProvider client={queryClient}>
-                                <FeatureTogglesProvider>
-                                    <SanityProvider tekster={mockDeep<ITekstinnhold>()}>
-                                        <AppProvider>
-                                            <EøsProvider>
-                                                <RoutesProvider>
-                                                    <MemoryRouter initialEntries={mocketNettleserHistorikk}>
-                                                        <StegProvider>
-                                                            <AppNavigationProvider>{children}</AppNavigationProvider>
-                                                        </StegProvider>
-                                                    </MemoryRouter>
-                                                </RoutesProvider>
-                                            </EøsProvider>
-                                        </AppProvider>
-                                    </SanityProvider>
-                                </FeatureTogglesProvider>
-                            </QueryClientProvider>
-                        </InnloggetProvider>
+                        <QueryClientProvider client={queryClient}>
+                            <FeatureTogglesProvider>
+                                <SanityProvider tekster={mockDeep<ITekstinnhold>()}>
+                                    <AppProvider>
+                                        <EøsProvider>
+                                            <RoutesProvider>
+                                                <MemoryRouter initialEntries={mocketNettleserHistorikk}>
+                                                    <StegProvider>
+                                                        <AppNavigationProvider>{children}</AppNavigationProvider>
+                                                    </StegProvider>
+                                                </MemoryRouter>
+                                            </RoutesProvider>
+                                        </EøsProvider>
+                                    </AppProvider>
+                                </SanityProvider>
+                            </FeatureTogglesProvider>
+                        </QueryClientProvider>
                     </LastRessurserProvider>
                 </HttpProvider>
             </SpråkProvider>
