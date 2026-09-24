@@ -5,7 +5,7 @@
 # fra dist/backend/server.js i containeren.
 nodeLinker: hoisted
 overrides:
-  qs: 6.16.0
+  qs: ^6.16.0
 # Avhengigheter får ikke kjøre (pre|post)install-scripts (sikkerhetstiltak)
 allowBuilds:
   core-js-pure: false
