@@ -9,6 +9,7 @@ export function hentDekorator() {
         params: {
             context: 'privatperson',
             simple: true,
+            teamName: 'teambaks.teamfamilie',
         },
     }).catch(e => {
         console.error('Dekoratøren ble ikke hentet', e);
