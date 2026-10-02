@@ -38,4 +38,7 @@ export const handlers = [
             })
         );
     }),
+    http.post(urlMedBasePath('logg'), () => {
+        return new HttpResponse(null, { status: 204 });
+    }),
 ];

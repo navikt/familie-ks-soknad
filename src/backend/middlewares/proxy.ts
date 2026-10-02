@@ -1,11 +1,11 @@
 import type { ClientRequest } from 'node:http';
 import type { Socket } from 'node:net';
-import { logError, logSecure } from '@navikt/familie-logging';
 import type { NextFunction, Request, RequestHandler, Response } from 'express';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 import { v4 as uuid } from 'uuid';
 
 import { erLokalt } from '../../common/miljø.js';
+import { logger } from '../logger.js';
 
 import { AUTHORIZATION_HEADER } from './tokenProxy.js';
 
@@ -26,9 +26,8 @@ export const doProxy = (targetUrl: string): RequestHandler => {
         secure: true,
         on: {
             proxyReq: restream,
-            error: (err: Error, req: Request, res: Response | Socket) => {
-                logError('Feil under proxy til apiet, se i securelog');
-                logSecure('Feil under proxy til apiet', { err, req, res });
+            error: (err: Error, _req: Request, _res: Response | Socket) => {
+                logger.error({ err }, 'Feil under proxy til apiet');
             },
         },
     });
