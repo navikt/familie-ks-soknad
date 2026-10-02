@@ -3,6 +3,7 @@ import { hentFeatureToggles } from '@api/hentFeatureToggles';
 import { MetaKey } from '@hooks/meta/metaKey';
 import { type UseQueryOptions, useQuery } from '@tanstack/react-query';
 import { defaultFeatureToggleValues, type EAllFeatureToggles } from '../../common/feature-toggles';
+import { logger, tilLoggFeil } from '../utils/logger';
 
 type Options = Omit<
     UseQueryOptions<EAllFeatureToggles, ApiFeil, EAllFeatureToggles>,
@@ -15,7 +16,12 @@ export function useHentFeatureToggles(options?: Options) {
         queryFn: async () => {
             try {
                 return await hentFeatureToggles();
-            } catch {
+            } catch (e: unknown) {
+                const feilmelding = e instanceof Error ? e.message : 'En feil oppstod under innlasting av toggles.';
+                logger.warn(
+                    `Kunne ikke laste feature toggles, faller tilbake til standardverdier: ${feilmelding}`,
+                    tilLoggFeil(e)
+                );
                 return defaultFeatureToggleValues;
             }
         },
