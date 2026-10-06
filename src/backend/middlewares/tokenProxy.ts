@@ -1,10 +1,9 @@
-import { LOG_LEVEL, logError } from '@navikt/familie-logging';
 import { requestOboToken, validateToken } from '@navikt/oasis';
 import type { NextFunction, Request, RequestHandler, Response } from 'express';
 
 import { erLokalt, erLokaltMotPreprod } from '../../common/miljø.js';
 import PREPROD_APPLIKASJONER from '../../common/preprodApplikasjoner.json' with { type: 'json' };
-import { logRequest } from '../logger.js';
+import { logger, logRequest } from '../logger.js';
 import type { ApplicationName } from '../types.js';
 
 export const AUTHORIZATION_HEADER = 'authorization';
@@ -18,12 +17,7 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
             req.headers[WONDERWALL_ID_TOKEN_HEADER] = '';
             next();
         } catch (error) {
-            logRequest(
-                req,
-                `Noe gikk galt ved setting av token (${req.method} - ${req.path}): `,
-                LOG_LEVEL.WARNING,
-                error
-            );
+            logRequest(req, `Noe gikk galt ved setting av token (${req.method} - ${req.path}): `, 'warn', error);
             res.status(401).send('En uventet feil oppstod. Ingen gyldig token');
         }
     };
@@ -44,7 +38,7 @@ const utledToken = (authorization: string | undefined): string => {
 };
 
 const prepareSecuredRequest = async (req: Request, applicationName: ApplicationName): Promise<string> => {
-    logRequest(req, 'PrepareSecuredRequest', LOG_LEVEL.INFO);
+    logRequest(req, 'PrepareSecuredRequest', 'info');
     const { authorization } = req.headers;
     if (erLokaltMotPreprod()) {
         return await getLokaltMotPreprodToken(applicationName);
@@ -53,17 +47,17 @@ const prepareSecuredRequest = async (req: Request, applicationName: ApplicationN
         return await getFakedingsToken(applicationName);
     }
     const token = utledToken(authorization);
-    logRequest(req, `IdPorten-token found: ${token.length > 1}`, LOG_LEVEL.INFO);
+    logRequest(req, `IdPorten-token found: ${token.length > 1}`, 'info');
 
     const validation = await validateToken(token);
     if (validation.ok === false) {
-        logError('Feil under validering av token: ', undefined, { error: validation.error });
+        logger.error({ err: validation.error }, 'Feil under validering av token');
         throw validation.error;
     }
 
     const obo = await requestOboToken(token, `${process.env.NAIS_CLUSTER_NAME}:teamfamilie:${applicationName}`);
     if (obo.ok === false) {
-        logError('Feil under veksling av token: ', undefined, { error: obo.error });
+        logger.error({ err: obo.error }, 'Feil under veksling av token');
         throw obo.error;
     }
     return `Bearer ${obo.token}`;

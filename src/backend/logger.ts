@@ -1,11 +1,13 @@
-import { LOG_LEVEL, logDebug, logError, logInfo, logWarn } from '@navikt/familie-logging';
+import { logger } from '@navikt/pino-logger';
 import type { Request } from 'express';
+
+export type LoggNivå = 'error' | 'warn' | 'info' | 'debug' | 'trace';
 
 const prefix = (req: Request) => {
     return `${req.method} - ${req.originalUrl}`;
 };
 
-export const logRequest = (req: Request, message: string, level: LOG_LEVEL, error?: unknown) => {
+export const logRequest = (req: Request, message: string, nivå: LoggNivå, error?: unknown) => {
     const melding = `${prefix(req)}: ${message}`;
     const callId = req.header('nav-call-id');
     const requestId = req.header('x-request-id');
@@ -13,19 +15,10 @@ export const logRequest = (req: Request, message: string, level: LOG_LEVEL, erro
     const meta = {
         ...(callId ? { x_callId: callId } : {}),
         ...(requestId ? { x_requestId: requestId } : {}),
-        ...(error ? { error: error } : {}),
+        ...(error ? { err: error } : {}),
     };
-    switch (level) {
-        case LOG_LEVEL.DEBUG:
-            logDebug(melding, meta);
-            break;
-        case LOG_LEVEL.WARNING:
-            logWarn(melding, meta);
-            break;
-        case LOG_LEVEL.ERROR:
-            logError(melding, undefined, meta);
-            break;
-        default:
-            logInfo(melding, meta);
-    }
+
+    logger[nivå](meta, melding);
 };
+
+export { logger };
