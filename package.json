@@ -12,6 +12,7 @@
     "build:backend": "tsc -p src/backend/tsconfig.json && node scripts/prune-backend-node-modules.js",
     "clean": "rm -rf dist",
     "hent-preprod-tokens": "node scripts/hent-preprod-tokens.js",
+    "hent-sanity-dokumenter": "node scripts/hent-sanity-dokumenter.js",
     "prepare": "husky",
     "test": "vitest",
     "lint": "biome lint ./src",
