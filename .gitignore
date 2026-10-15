@@ -7,3 +7,6 @@ pnpm-debug.log
 dist/
 .DS_Store
 secure.log
+playwright/.bygg
+playwright/resultater
+playwright/rapport
