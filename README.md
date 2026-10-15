@@ -49,6 +49,21 @@ lokalt mens den snakker med de ekte tjenestene i dev-gcp. Dette krever at du er 
 
 Tokenene utløper etter en stund — kjør `pnpm hent-preprod-tokens` på nytt for å hente ferske tokens.
 
+## Playwright-tester
+UI-testene i `playwright/tester` kjører mot et produksjonsbygg av frontend (`vite build` + `vite preview`), der alle
+kall til backend og Sanity besvares av msw-handlers (`mocks/handlers.ts`, `playwright/sanity.ts` og
+`playwright/personopplysning.ts`), og dekoratøren er erstattet av en stub.
+
+1. `pnpm exec playwright install chromium` (første gang)
+2. `pnpm test:playwright` eller `pnpm test:playwright:ui`
+
+Testene bruker et øyeblikksbilde av tekstene i Sanity (`playwright/testdata/sanity-dokumenter.json`).
+Kjør `pnpm hent-sanity-dokumenter` for å oppdatere det.
+
+Felles hjelpefunksjoner for å fylle ut søknaden ligger i `playwright/søknad.ts`, f.eks. `startSøknad(page)`.
+Bruk `apiMock.use(...)` for å overstyre et endepunkt i én test, og fixturen `mellomlager` for tester som trenger at
+mellomlagringen husker søknaden.
+
 # Bygg og deploy
 Appen bygges hos github actions, og gir beskjed til nais deploy om å deployere appen i gcp. Alle commits til brancher går til dev miljøet, appen er ikke satt opp i produksjon enda.
 
