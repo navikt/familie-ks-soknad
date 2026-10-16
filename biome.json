@@ -6,6 +6,12 @@
     "useIgnoreFile": true,
     "defaultBranch": "main"
   },
+  "files": {
+    "includes": [
+      "**",
+      "!playwright/testdata"
+    ]
+  },
   "formatter": {
     "indentStyle": "space",
     "indentWidth": 4,
