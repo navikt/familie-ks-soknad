@@ -7,7 +7,8 @@ import { BASE_PATH } from './src/common/miljø';
 
 export default defineConfig({
     root: path.resolve(__dirname, 'src/frontend'),
-    base: BASE_PATH,
+    // Settes i CI når cdn-kilde er satt, slik at JS/CSS og sourcemaps lastes fra cdn.nav.no
+    base: process.env.CDN_BASE_URL || BASE_PATH,
     plugins: [react()],
     resolve: {
         alias: {
