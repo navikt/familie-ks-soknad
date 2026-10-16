@@ -27,6 +27,7 @@ jobs:
       node-version: '24'
       build-image: true
       push-image: true
+      cdn-kilde: 'dist/assets'
     secrets: inherit
   deploy-dev:
     name: Deploy dev
