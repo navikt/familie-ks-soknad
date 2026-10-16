@@ -60,7 +60,8 @@ kall til backend og Sanity besvares av msw-handlers (`mocks/handlers.ts`, `playw
 Testene bruker et øyeblikksbilde av tekstene i Sanity (`playwright/testdata/sanity-dokumenter.json`).
 Kjør `pnpm hent-sanity-dokumenter` for å oppdatere det.
 
-Felles hjelpefunksjoner for å fylle ut søknaden ligger i `playwright/søknad.ts`, f.eks. `startSøknad(page)`.
+Felles hjelpefunksjoner for å fylle ut søknaden ligger i `playwright/søknad.ts`, f.eks. `gåTilSteg(page, Steg.Oppsummering)`
+som fyller ut en ordinær søknad fram til valgt steg.
 Bruk `apiMock.use(...)` for å overstyre et endepunkt i én test, og fixturen `mellomlager` for tester som trenger at
 mellomlagringen husker søknaden.
 
