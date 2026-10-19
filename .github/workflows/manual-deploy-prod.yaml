@@ -22,6 +22,7 @@ jobs:
       node-version: '24'
       build-image: true
       push-image: true
+      cdn-kilde: 'dist/assets'
       skip-tests: ${{ inputs.skip-tests }}
       skip-validation: ${{ inputs.skip-validation }}
     secrets:
