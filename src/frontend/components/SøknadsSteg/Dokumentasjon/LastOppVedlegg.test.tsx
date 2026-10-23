@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
@@ -19,20 +19,22 @@ const hentAnnenDokumentasjon = (): IDokumentasjon => {
     return dokumentasjon;
 };
 
+const sendtInnTidligere = /^DOKUMENTASJON\.sendtInnTidligere/;
+
 describe('LastOppVedlegg', () => {
-    it('Viser ikke info-tekst og checkbox knapp for ANNEN_DOKUMENTASJON', () => {
+    it('Viser beskrivelse, men ikke checkbox, for ANNEN_DOKUMENTASJON', () => {
         spyOnUseApp({});
         const dokumentasjon = hentAnnenDokumentasjon();
         const oppdaterDokumentasjon = vi.fn();
 
-        const { queryByTestId, getByTestId } = render(
+        render(
             <TestProvidere>
                 <LastOppVedlegg dokumentasjon={dokumentasjon} oppdaterDokumentasjon={oppdaterDokumentasjon} />
             </TestProvidere>
         );
 
-        expect(queryByTestId('dokumentasjon-er-sendt-inn-checkboks')).not.toBeInTheDocument();
-        expect(queryByTestId('dokumentasjonsbeskrivelse')).not.toBeInTheDocument();
-        expect(getByTestId('dokumentopplaster')).toBeInTheDocument();
+        expect(screen.queryByRole('checkbox', { name: sendtInnTidligere })).not.toBeInTheDocument();
+        expect(screen.getByText('DOKUMENTASJON.annenDokumentasjonBeskrivelse')).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: 'DOKUMENTASJON.velgFiler' })).toBeInTheDocument();
     });
 });

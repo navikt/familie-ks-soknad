@@ -32,7 +32,7 @@ const JaNeiSpm: FC<IJaNeiSpmProps> = ({
     const { ja, nei, jegVetIkke } = tekster().FELLES.frittståendeOrd;
 
     return felt.erSynlig ? (
-        <div id={felt.id} data-testid={felt.id}>
+        <div id={felt.id}>
             <JaNeiSpørsmål
                 {...felt.hentNavInputProps(skjema.visFeilmeldinger)}
                 initiellVerdi={felt.verdi}

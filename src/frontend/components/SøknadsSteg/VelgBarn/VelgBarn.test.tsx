@@ -1,6 +1,6 @@
 import { ESvar } from '@navikt/familie-form-elements';
 
-import { act, render } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import type { DeepPartial } from 'ts-essentials';
 import { vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
@@ -58,18 +58,17 @@ describe('VelgBarn', () => {
             søknad.barnInkludertISøknaden = nySøknad.barnInkludertISøknaden;
         });
 
-        const { queryByTestId } = render(
+        render(
             <TestProvidere>
                 <VelgBarn />
             </TestProvidere>
         );
 
-        const fjernBarnKnapp = queryByTestId('fjern-barn-knapp');
+        const fjernBarnKnapp = screen.getByRole('button', { name: 'FELLES.modaler.leggTilBarn.fjernKnapp' });
+        act(() => fjernBarnKnapp.click());
 
-        act(() => fjernBarnKnapp?.click());
-
-        const gåVidere = queryByTestId('neste-steg');
-        act(() => gåVidere?.click());
+        const gåVidere = screen.getByRole('button', { name: 'FELLES.navigasjon.gaaVidereKnapp' });
+        act(() => gåVidere.click());
 
         // Først blir barnet fjernet fra manuelt registrerte barn
         expect(settSøknad).toHaveBeenNthCalledWith(1, {
@@ -140,12 +139,14 @@ describe('VelgBarn', () => {
         };
         spyOnUseApp(søknad);
 
-        const { queryByTestId } = render(
+        render(
             <TestProvidere>
                 <VelgBarn />
             </TestProvidere>
         );
-        const checkbox: HTMLInputElement = queryByTestId('velg-barn-checkbox') as HTMLInputElement;
+        const checkbox = screen.getByRole<HTMLInputElement>('checkbox', {
+            name: 'VELG_BARN.soekOmYtelseForBarnetSjekkboks Jens',
+        });
         act(() => checkbox.click());
 
         expect(checkbox.checked).toBe(true);

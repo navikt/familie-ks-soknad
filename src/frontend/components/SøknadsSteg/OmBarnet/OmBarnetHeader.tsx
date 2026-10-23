@@ -21,7 +21,7 @@ export const OmBarnetHeader: FC<{ barn: IBarnMedISøknad }> = ({ barn }) => {
         <VStack align={'center'}>
             <TilfeldigBarnIkon byttVedRerender={false} />
             <hr className={styles.divider} />
-            <Box padding={'space-16'} data-testid={barn.id}>
+            <Box padding={'space-16'}>
                 <TekstBlock
                     block={tekster()[ESanitySteg.OM_BARNET].barnXAvY}
                     flettefelter={{
