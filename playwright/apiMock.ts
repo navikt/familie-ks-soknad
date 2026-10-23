@@ -24,7 +24,10 @@ export interface ApiMock {
      * apiMock.use(http.get(urlMedBasePath('api/innlogget/kontantstotte'), () => new HttpResponse(null, { status: 401 })));
      */
     use: (...handlers: RequestHandler[]) => void;
-    /** Kall (`METODE url`) som ingen handler matchet. Fixturen feiler testen hvis listen ikke er tom. */
+    /**
+     * Kall (`METODE url`) som ingen handler matchet, eller som gikk til et ukjent eksternt domene og ble blokkert.
+     * Fixturen feiler testen hvis listen ikke er tom.
+     */
     ubehandledeKall: string[];
 }
 
@@ -46,13 +49,17 @@ async function tilFetchRequest(request: PlaywrightRequest): Promise<Request> {
     });
 }
 
+function beskrivKall(request: PlaywrightRequest, appOrigin: string): string {
+    const url = new URL(request.url());
+    return `${request.method()} ${url.origin === appOrigin ? '' : url.origin}${decodeURIComponent(url.pathname)}`;
+}
+
 async function svarMedMock(route: Route, handlers: RequestHandler[], appOrigin: string, ubehandledeKall: string[]) {
     const request = route.request();
     const respons = await getResponse(handlers, await tilFetchRequest(request), { baseUrl: appOrigin });
 
     if (!respons) {
-        const url = new URL(request.url());
-        const kall = `${request.method()} ${url.origin === appOrigin ? '' : url.origin}${decodeURIComponent(url.pathname)}`;
+        const kall = beskrivKall(request, appOrigin);
         ubehandledeKall.push(kall);
 
         return route.fulfill({ status: 501, body: `Mangler mock-handler for ${kall}` });
@@ -77,7 +84,8 @@ async function fyllUtIndexHtml(route: Route) {
  * Avskjærer alle requester fra siden:
  * - Kall mot backenden og Sanity besvares av msw-handlers. Kall uten handler registreres i `ubehandledeKall`.
  * - Dekoratøren erstattes av en stub, se `dekoratør.ts`.
- * - Kall til andre domener blokkeres (bortsett fra Aksel-fonter), slik at testene ikke er avhengige av eksterne tjenester.
+ * - Kall til andre domener blokkeres og registreres i `ubehandledeKall` (bortsett fra Aksel-fonter), slik at testene ikke
+ *   er avhengige av eksterne tjenester, og nye eksterne kall ikke går upåaktet hen.
  * - Øvrige requester (statiske filer fra vite preview) slippes gjennom.
  */
 export async function settOppApiMock(
@@ -99,8 +107,11 @@ export async function settOppApiMock(
             return svarMedDekoratørStub(route);
         }
         if (url.origin !== appOrigin) {
-            const erTillatt = TILLATTE_EKSTERNE_RESSURSER.some(prefiks => url.href.startsWith(prefiks));
-            return erTillatt ? route.fallback() : route.abort('blockedbyclient');
+            if (TILLATTE_EKSTERNE_RESSURSER.some(prefiks => url.href.startsWith(prefiks))) {
+                return route.fallback();
+            }
+            ubehandledeKall.push(beskrivKall(request, appOrigin));
+            return route.abort('blockedbyclient');
         }
         if (request.resourceType() === 'document') {
             return fyllUtIndexHtml(route);

@@ -30,7 +30,7 @@ export const test = base.extend<Fixtures>({
             await page.unrouteAll({ behavior: 'ignoreErrors' });
             expect(
                 apiMock.ubehandledeKall,
-                'Det ble gjort kall uten mock-handler. Legg til handler i mocks/handlers.ts eller bruk apiMock.use() i testen.'
+                'Det ble gjort kall uten mock-handler. Legg til handler i mocks/handlers.ts, bruk apiMock.use() i testen, eller tillat ressursen i apiMock.ts.'
             ).toEqual([]);
         },
         { auto: true },
