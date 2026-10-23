@@ -10,6 +10,7 @@ import { type Mock, type MockInstance, vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
 
 import { ESivilstand } from '../../common/typer/kontrakt/generelle';
+import { LocaleType } from '../../common/typer/locale';
 import { UtenlandsoppholdSpørsmålId } from '../components/Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { DinLivssituasjonSpørsmålId } from '../components/SøknadsSteg/DinLivssituasjon/spørsmål';
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
@@ -27,9 +28,12 @@ import { StegProvider } from '../context/StegContext';
 import type { IKvittering } from '../typer/kvittering';
 import type { IUtenlandsperiode } from '../typer/perioder';
 import type { ISøker } from '../typer/person';
+import type { ESanityFlettefeltverdi } from '../typer/sanity/sanity';
 import type { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { type ISøknad, initialStateSøknad } from '../typer/søknad';
 import { EUtenlandsoppholdÅrsak } from '../typer/utenlandsopphold';
+
+import { plainTekstHof } from './sanity';
 
 interface SpyOnUseAppResult {
     useAppMock: Mock;
@@ -46,6 +50,8 @@ interface MockEøsResult {
     useEøs: MockInstance;
     erEøsLand: Mock;
 }
+
+const flettefeltTilTekstStub = (flettefeltVerdi: ESanityFlettefeltverdi): string => `[${flettefeltVerdi}]`;
 
 const språk = ['nb', 'nn', 'en'] as const;
 
@@ -104,7 +110,7 @@ export const lagTekstProxy = (overstyringer: Record<string, unknown> = {}): ITek
 export const spyOnUseApp = (søknad): SpyOnUseAppResult => {
     const tekstInnhold = lagTekstProxy();
     const tekster = vi.fn().mockImplementation(() => tekstInnhold);
-    const plainTekst = vi.fn();
+    const plainTekst = vi.fn(plainTekstHof(flettefeltTilTekstStub, LocaleType.nb));
     const tilRestLocaleRecord = vi.fn();
     const settSøknad = vi.fn();
     const erPåKvitteringsside = vi.fn().mockImplementation(() => false);

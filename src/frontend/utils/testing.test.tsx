@@ -2,7 +2,7 @@ import { isPortableTextSpan } from '@portabletext/toolkit';
 
 import { type LocaleRecordBlock, LocaleType } from '../../common/typer/locale';
 
-import { lagTekstProxy } from './testing';
+import { lagTekstProxy, spyOnUseApp } from './testing';
 
 const blokkTekst = (block: LocaleRecordBlock, locale: LocaleType = LocaleType.nb) => {
     const barn = block[locale][0].children[0];
@@ -41,5 +41,14 @@ describe('lagTekstProxy', () => {
         const tekster = lagTekstProxy({ 'OM_DEG.navn': overstyring });
 
         expect(tekster.OM_DEG.navn).toBe(overstyring);
+    });
+});
+
+describe('spyOnUseApp', () => {
+    it('gir plainTekst som returnerer nøkkelstien', () => {
+        const { useAppMock } = spyOnUseApp({});
+        const { tekster, plainTekst } = useAppMock();
+
+        expect(plainTekst(tekster().OM_DEG.omDegTittel)).toBe('OM_DEG.omDegTittel');
     });
 });
