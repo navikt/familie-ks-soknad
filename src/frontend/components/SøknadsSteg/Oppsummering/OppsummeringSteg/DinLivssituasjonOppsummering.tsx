@@ -1,6 +1,6 @@
 import type { Dispatch, FC, SetStateAction } from 'react';
 import { useAppContext } from '../../../../context/AppContext';
-import { useRoutesContext } from '../../../../context/RoutesContext';
+import { ROUTES } from '../../../../routes';
 import { PersonType } from '../../../../typer/personType';
 import { RouteEnum } from '../../../../typer/routes';
 import { ArbeidsperiodeOppsummering } from '../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
@@ -18,12 +18,11 @@ interface Props {
 const DinLivssituasjonOppsummering: FC<Props> = ({ settFeilAnchors }) => {
     const { søknad, tekster } = useAppContext();
     const dinLivssituasjonTekster = tekster().DIN_LIVSSITUASJON;
-    const { hentRouteObjektForRouteEnum } = useRoutesContext();
     const dinLivsituasjonHook = useDinLivssituasjon();
 
     return (
         <Oppsummeringsbolk
-            steg={hentRouteObjektForRouteEnum(RouteEnum.DinLivssituasjon)}
+            steg={ROUTES[RouteEnum.DinLivssituasjon]}
             tittel={dinLivssituasjonTekster.dinLivssituasjonTittel}
             skjemaHook={dinLivsituasjonHook}
             settFeilAnchors={settFeilAnchors}

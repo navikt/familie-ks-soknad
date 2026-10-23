@@ -16,7 +16,7 @@ import Oppsummering from './components/SøknadsSteg/Oppsummering/Oppsummering';
 import VelgBarn from './components/SøknadsSteg/VelgBarn/VelgBarn';
 import { useAppContext } from './context/AppContext';
 import { useEøsContext } from './context/EøsContext';
-import { useRoutesContext } from './context/RoutesContext';
+import { ROUTES } from './routes';
 import { type IRoute, RouteEnum } from './typer/routes';
 
 /**
@@ -42,8 +42,6 @@ const EøsForBarnWrapper: FC = () => {
 };
 
 const Søknad = () => {
-    const { routes } = useRoutesContext();
-
     const visSystemetLaster = useVisSystemetLaster();
 
     const routeTilKomponent = (route: IRoute): FC => {
@@ -78,7 +76,7 @@ const Søknad = () => {
             <Routes>
                 <Route path={'/helse'} element={<Helse />} />
                 <Route path={'/'} element={<Forside />} />
-                {routes.map((route, index) => (
+                {Object.values(ROUTES).map((route, index) => (
                     <Route
                         key={index}
                         path={route.path}
