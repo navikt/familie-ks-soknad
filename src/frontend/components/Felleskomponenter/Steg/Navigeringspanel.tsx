@@ -61,7 +61,6 @@ const Navigeringspanel: FC<{
                             }
                             iconPosition="right"
                             loading={innsendingStatus.status === RessursStatus.HENTER}
-                            data-testid="neste-steg"
                         >
                             {plainTekst(nesteSteg.route === RouteEnum.Kvittering ? sendSoeknadKnapp : gaaVidereKnapp)}
                         </Button>
