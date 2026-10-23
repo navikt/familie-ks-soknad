@@ -1,8 +1,20 @@
 import { isPortableTextSpan } from '@portabletext/toolkit';
+import { render, screen } from '@testing-library/react';
+import { mockDeep } from 'vitest-mock-extended';
 
 import { type LocaleRecordBlock, LocaleType } from '../../common/typer/locale';
 
-import { lagTekstProxy, spyOnUseApp } from './testing';
+import OmDeg from '../components/SøknadsSteg/OmDeg/OmDeg';
+import type { ISøker } from '../typer/person';
+import {
+    hentSpørsmål,
+    hentSvaralternativ,
+    lagTekstProxy,
+    spyOnUseApp,
+    spørsmålFinnes,
+    TestProvidere,
+    ventPåSpørsmål,
+} from './testing';
 
 const blokkTekst = (block: LocaleRecordBlock, locale: LocaleType = LocaleType.nb) => {
     const barn = block[locale][0].children[0];
@@ -50,5 +62,44 @@ describe('spyOnUseApp', () => {
         const { tekster, plainTekst } = useAppMock();
 
         expect(plainTekst(tekster().OM_DEG.omDegTittel)).toBe('OM_DEG.omDegTittel');
+    });
+});
+
+const renderOmDeg = (søker: Partial<ISøker>) => {
+    spyOnUseApp({ søker: mockDeep<ISøker>({ statsborgerskap: [{ landkode: 'NOR' }], ...søker }) });
+    render(
+        <TestProvidere>
+            <OmDeg />
+        </TestProvidere>
+    );
+};
+
+describe('Hjelpere for spørringer på Ja/Nei-spørsmål', () => {
+    it('finner spørsmål ut fra nøkkelstien og svaralternativene innenfor det', async () => {
+        renderOmDeg({ adressebeskyttelse: false });
+
+        const spørsmål = await ventPåSpørsmål('OM_DEG.borPaaAdressen.sporsmal');
+
+        expect(hentSvaralternativ(spørsmål, 'ja')).toBeInTheDocument();
+        expect(hentSvaralternativ(spørsmål, 'nei')).toBeInTheDocument();
+        expect(hentSpørsmål('OM_DEG.borPaaAdressen.sporsmal')).toBe(spørsmål);
+    });
+
+    it('skiller spørsmål som vises samtidig', async () => {
+        renderOmDeg({ adressebeskyttelse: false });
+
+        const bosted = await ventPåSpørsmål('OM_DEG.borPaaAdressen.sporsmal');
+        const opphold = await ventPåSpørsmål('OM_DEG.oppholdtDegSammenhengende.sporsmal');
+
+        expect(bosted).not.toBe(opphold);
+        expect(screen.getAllByRole('radio', { name: 'FELLES.frittståendeOrd.ja' }).length).toBeGreaterThanOrEqual(2);
+    });
+
+    it('spørsmålFinnes gir false for spørsmål som ikke vises', async () => {
+        renderOmDeg({ adresse: undefined, adressebeskyttelse: false });
+
+        await ventPåSpørsmål('OM_DEG.oppholdtDegSammenhengende.sporsmal');
+
+        expect(spørsmålFinnes('OM_DEG.borPaaAdressen.sporsmal')).toBe(false);
     });
 });

@@ -2,6 +2,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { HttpProvider } from '@navikt/familie-http';
 import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { within } from '@testing-library/react';
 
 import type { PropsWithChildren, ReactNode } from 'react';
 import { Cookies, CookiesProvider } from 'react-cookie';
@@ -106,6 +107,22 @@ export const lagTekstProxy = (overstyringer: Record<string, unknown> = {}): ITek
 
     return lag([]) as ITekstinnhold;
 };
+
+const escapeRegExp = (tekst: string) => tekst.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const spørsmålNavn = (sti: string) => new RegExp(`^${escapeRegExp(sti)}`);
+
+export const hentSpørsmål = (sti: string, container: HTMLElement = document.body): HTMLElement =>
+    within(container).getByRole('radiogroup', { name: spørsmålNavn(sti) });
+
+export const ventPåSpørsmål = (sti: string, container: HTMLElement = document.body): Promise<HTMLElement> =>
+    within(container).findByRole('radiogroup', { name: spørsmålNavn(sti) });
+
+export const spørsmålFinnes = (sti: string, container: HTMLElement = document.body): boolean =>
+    within(container).queryByRole('radiogroup', { name: spørsmålNavn(sti) }) !== null;
+
+export const hentSvaralternativ = (spørsmål: HTMLElement, svar: 'ja' | 'nei' | 'jegVetIkke'): HTMLElement =>
+    within(spørsmål).getByRole('radio', { name: `FELLES.frittståendeOrd.${svar}` });
 
 export const spyOnUseApp = (søknad): SpyOnUseAppResult => {
     const tekstInnhold = lagTekstProxy();
