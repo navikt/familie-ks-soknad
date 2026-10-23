@@ -33,6 +33,7 @@ import { EUtenlandsoppholdÅrsak } from '../typer/utenlandsopphold';
 
 interface SpyOnUseAppResult {
     useAppMock: Mock;
+    tekster: Mock;
     settSøknad: Mock;
     erStegUtfyltFrafør: Mock;
     settSisteUtfylteStegIndex: Mock;
@@ -46,8 +47,63 @@ interface MockEøsResult {
     erEøsLand: Mock;
 }
 
+const språk = ['nb', 'nn', 'en'] as const;
+
+const lagBlokk = (tekst: string) => [
+    {
+        _type: 'block',
+        _key: tekst,
+        style: 'normal',
+        markDefs: [],
+        children: [{ _type: 'span', _key: `${tekst}-span`, text: tekst, marks: [] }],
+    },
+];
+
+/**
+ * Lager mock-tekster fra Sanity der hver tekst er lik nøkkelstien, f.eks. `OM_DEG.navn`.
+ * Både `plainTekst` og `TekstBlock` leser `tekst[locale]`, og får da en blokk med nøkkelstien.
+ * `overstyringer` lar en test gi en nøkkelsti egen verdi, f.eks. en blokk med flettefelt.
+ */
+export const lagTekstProxy = (overstyringer: Record<string, unknown> = {}): ITekstinnhold => {
+    const buffer = new Map<string, unknown>();
+
+    const lag = (sti: string[]): unknown => {
+        const stiTekst = sti.join('.');
+        if (stiTekst in overstyringer) {
+            return overstyringer[stiTekst];
+        }
+        const bufret = buffer.get(stiTekst);
+        if (bufret) {
+            return bufret;
+        }
+        const proxy = new Proxy(
+            {},
+            {
+                get: (_, nøkkel) => {
+                    // Unngå at objektet tolkes som promise, React-element eller serialiseres
+                    if (typeof nøkkel === 'symbol' || ['then', 'toJSON', '$$typeof'].includes(nøkkel)) {
+                        return undefined;
+                    }
+                    if ((språk as readonly string[]).includes(nøkkel)) {
+                        return lagBlokk(stiTekst);
+                    }
+                    if (nøkkel === 'api_navn') {
+                        return stiTekst;
+                    }
+                    return lag([...sti, nøkkel]);
+                },
+            }
+        );
+        buffer.set(stiTekst, proxy);
+        return proxy;
+    };
+
+    return lag([]) as ITekstinnhold;
+};
+
 export const spyOnUseApp = (søknad): SpyOnUseAppResult => {
-    const tekster = vi.fn().mockImplementation(() => mockDeep<ITekstinnhold>());
+    const tekstInnhold = lagTekstProxy();
+    const tekster = vi.fn().mockImplementation(() => tekstInnhold);
     const plainTekst = vi.fn();
     const tilRestLocaleRecord = vi.fn();
     const settSøknad = vi.fn();
@@ -105,6 +161,7 @@ export const spyOnUseApp = (søknad): SpyOnUseAppResult => {
 
     return {
         useAppMock,
+        tekster,
         settSøknad,
         erStegUtfyltFrafør,
         settSisteUtfylteStegIndex,
