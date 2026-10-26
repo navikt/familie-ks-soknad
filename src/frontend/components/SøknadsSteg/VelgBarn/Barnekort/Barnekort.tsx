@@ -78,7 +78,6 @@ const Barnekort: FC<IBarnekortProps> = ({ barn, velgBarnCallback, barnSomSkalVæ
                             checked={erMedISøknad}
                             aria-label={`${plainTekst(soekOmYtelseForBarnetSjekkboks)} ${barn.navn}`}
                             onChange={() => velgBarnCallback(barn, erMedISøknad)}
-                            data-testid={'velg-barn-checkbox'}
                         >
                             <TekstBlock block={soekOmYtelseForBarnetSjekkboks} />
                         </Checkbox>
@@ -91,7 +90,6 @@ const Barnekort: FC<IBarnekortProps> = ({ barn, velgBarnCallback, barnSomSkalVæ
                                 type={'button'}
                                 variant="tertiary"
                                 onClick={() => fjernBarnCallback(barn.id)}
-                                data-testid={'fjern-barn-knapp'}
                                 icon={<TrashFillIcon aria-hidden />}
                             >
                                 <TekstBlock block={knappetekst} />

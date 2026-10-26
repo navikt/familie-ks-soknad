@@ -2,6 +2,7 @@ import { ESvar } from '@navikt/familie-form-elements';
 import { HttpProvider } from '@navikt/familie-http';
 import { type Ressurs, RessursStatus } from '@navikt/familie-typer';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { within } from '@testing-library/react';
 
 import type { PropsWithChildren, ReactNode } from 'react';
 import { Cookies, CookiesProvider } from 'react-cookie';
@@ -10,6 +11,7 @@ import { type Mock, type MockInstance, vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
 
 import { ESivilstand } from '../../common/typer/kontrakt/generelle';
+import { LocaleType } from '../../common/typer/locale';
 import { UtenlandsoppholdSpørsmålId } from '../components/Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { DinLivssituasjonSpørsmålId } from '../components/SøknadsSteg/DinLivssituasjon/spørsmål';
 import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
@@ -26,12 +28,16 @@ import { StegProvider } from '../context/StegContext';
 import type { IKvittering } from '../typer/kvittering';
 import type { IUtenlandsperiode } from '../typer/perioder';
 import type { ISøker } from '../typer/person';
+import type { ESanityFlettefeltverdi } from '../typer/sanity/sanity';
 import type { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 import { type ISøknad, initialStateSøknad } from '../typer/søknad';
 import { EUtenlandsoppholdÅrsak } from '../typer/utenlandsopphold';
 
+import { plainTekstHof } from './sanity';
+
 interface SpyOnUseAppResult {
     useAppMock: Mock;
+    tekster: Mock;
     settSøknad: Mock;
     erStegUtfyltFrafør: Mock;
     settSisteUtfylteStegIndex: Mock;
@@ -45,9 +51,82 @@ interface MockEøsResult {
     erEøsLand: Mock;
 }
 
+const flettefeltTilTekstStub = (flettefeltVerdi: ESanityFlettefeltverdi): string => `[${flettefeltVerdi}]`;
+
+const språk = ['nb', 'nn', 'en'] as const;
+
+const lagBlokk = (tekst: string) => [
+    {
+        _type: 'block',
+        _key: tekst,
+        style: 'normal',
+        markDefs: [],
+        children: [{ _type: 'span', _key: `${tekst}-span`, text: tekst, marks: [] }],
+    },
+];
+
+/**
+ * Lager mock-tekster fra Sanity der hver tekst er lik nøkkelstien, f.eks. `OM_DEG.navn`.
+ * Både `plainTekst` og `TekstBlock` leser `tekst[locale]`, og får da en blokk med nøkkelstien.
+ * `overstyringer` lar en test gi en nøkkelsti egen verdi, f.eks. en blokk med flettefelt.
+ */
+export const lagTekstProxy = (overstyringer: Record<string, unknown> = {}): ITekstinnhold => {
+    const buffer = new Map<string, unknown>();
+
+    const lag = (sti: string[]): unknown => {
+        const stiTekst = sti.join('.');
+        if (stiTekst in overstyringer) {
+            return overstyringer[stiTekst];
+        }
+        const bufret = buffer.get(stiTekst);
+        if (bufret) {
+            return bufret;
+        }
+        const proxy = new Proxy(
+            {},
+            {
+                get: (_, nøkkel) => {
+                    // Unngå at objektet tolkes som promise, React-element eller serialiseres
+                    if (typeof nøkkel === 'symbol' || ['then', 'toJSON', '$$typeof'].includes(nøkkel)) {
+                        return undefined;
+                    }
+                    if ((språk as readonly string[]).includes(nøkkel)) {
+                        return lagBlokk(stiTekst);
+                    }
+                    if (nøkkel === 'api_navn') {
+                        return stiTekst;
+                    }
+                    return lag([...sti, nøkkel]);
+                },
+            }
+        );
+        buffer.set(stiTekst, proxy);
+        return proxy;
+    };
+
+    return lag([]) as ITekstinnhold;
+};
+
+const escapeRegExp = (tekst: string) => tekst.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const spørsmålNavn = (sti: string) => new RegExp(`^${escapeRegExp(sti)}`);
+
+export const hentSpørsmål = (sti: string, container: HTMLElement = document.body): HTMLElement =>
+    within(container).getByRole('radiogroup', { name: spørsmålNavn(sti) });
+
+export const ventPåSpørsmål = (sti: string, container: HTMLElement = document.body): Promise<HTMLElement> =>
+    within(container).findByRole('radiogroup', { name: spørsmålNavn(sti) });
+
+export const spørsmålFinnes = (sti: string, container: HTMLElement = document.body): boolean =>
+    within(container).queryByRole('radiogroup', { name: spørsmålNavn(sti) }) !== null;
+
+export const hentSvaralternativ = (spørsmål: HTMLElement, svar: 'ja' | 'nei' | 'jegVetIkke'): HTMLElement =>
+    within(spørsmål).getByRole('radio', { name: `FELLES.frittståendeOrd.${svar}` });
+
 export const spyOnUseApp = (søknad): SpyOnUseAppResult => {
-    const tekster = vi.fn().mockImplementation(() => mockDeep<ITekstinnhold>());
-    const plainTekst = vi.fn();
+    const tekstInnhold = lagTekstProxy();
+    const tekster = vi.fn().mockImplementation(() => tekstInnhold);
+    const plainTekst = vi.fn(plainTekstHof(flettefeltTilTekstStub, LocaleType.nb));
     const tilRestLocaleRecord = vi.fn();
     const settSøknad = vi.fn();
     const erPåKvitteringsside = vi.fn().mockImplementation(() => false);
@@ -104,6 +183,7 @@ export const spyOnUseApp = (søknad): SpyOnUseAppResult => {
 
     return {
         useAppMock,
+        tekster,
         settSøknad,
         erStegUtfyltFrafør,
         settSisteUtfylteStegIndex,

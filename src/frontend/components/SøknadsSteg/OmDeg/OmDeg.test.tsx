@@ -2,10 +2,13 @@ import { render } from '@testing-library/react';
 import { mockDeep } from 'vitest-mock-extended';
 
 import type { ISøker } from '../../../typer/person';
-import { spyOnUseApp, TestProvidere } from '../../../utils/testing';
+import { spyOnUseApp, spørsmålFinnes, TestProvidere, ventPåSpørsmål } from '../../../utils/testing';
 
 import OmDeg from './OmDeg';
 import { OmDegSpørsmålId } from './spørsmål';
+
+const borPåAdressen = 'OM_DEG.borPaaAdressen.sporsmal';
+const oppholdtDegSammenhengende = 'OM_DEG.oppholdtDegSammenhengende.sporsmal';
 
 const TestKomponent = () => (
     <TestProvidere>
@@ -22,11 +25,10 @@ describe('OmDeg', () => {
                 statsborgerskap: [{ landkode: 'NOR' }],
             }),
         });
-        const { container, queryByTestId } = render(<TestKomponent />);
-        // Lar async useEffect i AppContext bli ferdig
-        await container.getElementsByClassName('navds-alert');
-        expect(queryByTestId(OmDegSpørsmålId.borPåRegistrertAdresse)).not.toBeInTheDocument();
-        expect(queryByTestId(OmDegSpørsmålId.værtINorgeITolvMåneder)).toBeInTheDocument();
+        render(<TestKomponent />);
+
+        expect(await ventPåSpørsmål(oppholdtDegSammenhengende)).toBeInTheDocument();
+        expect(spørsmålFinnes(borPåAdressen)).toBe(false);
     });
 
     test('Søker med adresse får opp to spørsmål med en gang', async () => {
@@ -39,10 +41,10 @@ describe('OmDeg', () => {
                 yrkesaktivFemÅr: { id: OmDegSpørsmålId.yrkesaktivFemÅr, svar: null },
             }),
         });
-        const { queryByTestId } = render(<TestKomponent />);
+        render(<TestKomponent />);
 
-        expect(queryByTestId(OmDegSpørsmålId.borPåRegistrertAdresse)).toBeInTheDocument();
-        expect(queryByTestId(OmDegSpørsmålId.værtINorgeITolvMåneder)).toBeInTheDocument();
+        expect(await ventPåSpørsmål(borPåAdressen)).toBeInTheDocument();
+        expect(await ventPåSpørsmål(oppholdtDegSammenhengende)).toBeInTheDocument();
     });
 
     test('Søker med adressesperre får ikke opp spørsmål om bosted', async () => {
@@ -52,12 +54,9 @@ describe('OmDeg', () => {
                 statsborgerskap: [{ landkode: 'NOR' }],
             }),
         });
-        const { queryByTestId, container } = render(<TestKomponent />);
-        // Lar async useEffect i AppContext bli ferdig
-        await container.getElementsByClassName('navds-alert');
+        render(<TestKomponent />);
 
-        expect(queryByTestId(OmDegSpørsmålId.borPåRegistrertAdresse)).not.toBeInTheDocument();
-
-        expect(queryByTestId(OmDegSpørsmålId.værtINorgeITolvMåneder)).toBeInTheDocument();
+        expect(await ventPåSpørsmål(oppholdtDegSammenhengende)).toBeInTheDocument();
+        expect(spørsmålFinnes(borPåAdressen)).toBe(false);
     });
 });

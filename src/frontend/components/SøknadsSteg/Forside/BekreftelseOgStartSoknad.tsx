@@ -54,7 +54,6 @@ const BekreftelseOgStartSoknad: FC = () => {
                     type={'submit'}
                     icon={<ArrowRightIcon aria-hidden />}
                     iconPosition="right"
-                    data-testid={'start-søknad-knapp'}
                 >
                     {translate(fellestekster.navigasjon.startKnapp)}
                 </Button>
