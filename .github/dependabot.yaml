@@ -24,6 +24,8 @@ updates:
           - "@types/react-dom"
           - "react-router"
           - "@types/react-router"
+          - "@tanstack/react-query"
+          - "@tanstack/react-query-devtools"
       navikt:
         patterns:
           - "@navikt/aksel-icons"
@@ -32,6 +34,7 @@ updates:
           - "@navikt/fnrvalidator"
           - "@navikt/nav-dekoratoren-moduler"
           - "@navikt/oasis"
+          - "@navikt/pino-logger"
       familie:
         patterns:
           - "@navikt/familie-form-elements"
@@ -60,16 +63,20 @@ updates:
           - "@types/cors"
           - "express"
           - "@types/express"
+          - "@types/express-serve-static-core"
           - "express-rate-limit"
           - "http-proxy-middleware"
           - "mustache-express"
           - "@types/mustache-express"
+          - "pino"
+          - "pino-pretty"
           - "xss"
       utils:
         patterns:
           - "dotenv"
           - "unleash-client"
           - "axios"
+          - "classnames"
           - "date-fns"
           - "i18n-iso-countries"
           - "styled-components"
@@ -78,6 +85,7 @@ updates:
         patterns:
           - "@types/node"
           - "ts-essentials"
+          - "tslib"
           - "typescript"
           - "@biomejs/biome"
           - "@testing-library/dom"
@@ -87,6 +95,7 @@ updates:
           - "vite"
           - "jsdom"
           - "msw"
+          - "playwright"
           - "vitest"
           - "vitest-mock-extended"
       security-updates:
