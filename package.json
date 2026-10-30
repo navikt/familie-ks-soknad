@@ -48,9 +48,9 @@
   },
   "dependencies": {
     "@nais/apm": "0.7.3",
-    "@navikt/aksel-icons": "8.19.2",
-    "@navikt/ds-css": "8.19.2",
-    "@navikt/ds-react": "8.19.2",
+    "@navikt/aksel-icons": "8.20.0",
+    "@navikt/ds-css": "8.20.0",
+    "@navikt/ds-react": "8.20.0",
     "@navikt/familie-form-elements": "22.0.5",
     "@navikt/familie-http": "8.0.30",
     "@navikt/familie-skjema": "8.2.56",
