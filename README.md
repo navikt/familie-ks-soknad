@@ -25,14 +25,16 @@ ADR-dokument: https://github.com/navikt/familie/blob/master/doc/adr/0008-KS-lage
 
 Prosjektet bruker [pnpm](https://pnpm.io/) som pakkehåndterer. Riktig pnpm-versjon er
 låst via `packageManager`-feltet i `package.json` og hentes automatisk av
-[Corepack](https://nodejs.org/api/corepack.html) (fulgte med Node.js). Kjør `corepack enable`
+[Corepack](https://nodejs.org/api/corepack.html) (følger ikke lenger med Node.js, installer med
+`npm install -g corepack`). Kjør `corepack enable`
 én gang for å aktivere Corepack, så vil riktig pnpm-versjon brukes automatisk i prosjektet.
 
 1. `nvm use`
-2. `corepack enable`
-3. `pnpm install`
-4. `pnpm start:dev`
-5. Kjør opp familie-baks-soknad-api
+2. `npm install -g corepack`
+3. `corepack enable`
+4. `pnpm install`
+5. `pnpm start:dev`
+6. Kjør opp familie-baks-soknad-api
 
 ### Mellomlagring
 For å kjøre med mellomlagring må du ha familie-dokument kjørende (https://github.com/navikt/familie-dokument).
