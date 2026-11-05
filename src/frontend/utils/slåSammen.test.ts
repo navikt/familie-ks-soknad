@@ -2,8 +2,9 @@ import type { IFrittståendeOrdTekstinnhold } from '../typer/sanity/tekstInnhold
 
 import { slåSammen } from './slåSammen';
 
+const PlainTekstMock = () => 'og';
+
 describe('slåSammen', () => {
-    const PlainTekstMock = () => 'og';
     const frittståendeOrdTekstinnholdMock = {} as IFrittståendeOrdTekstinnhold;
 
     test('Returnerer tom streng ved tom liste ', () => {
