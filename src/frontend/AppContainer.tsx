@@ -1,13 +1,12 @@
 import { useVisSystemetLaster } from '@hooks/useVisSystemetLaster';
-import { Box, GlobalAlert, Page } from '@navikt/ds-react';
-import { RessursStatus } from '@navikt/familie-typer';
+import { Page } from '@navikt/ds-react';
 import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
 import SystemetLaster from './components/Felleskomponenter/SystemetLaster/SystemetLaster';
 import { useAppContext } from './context/AppContext';
 import Søknad from './Søknad';
 
 const AppContainer = () => {
-    const { systemetFeiler, sluttbruker, systemetOK } = useAppContext();
+    const { systemetFeiler, systemetOK } = useAppContext();
 
     const visSystemetLaster = useVisSystemetLaster();
 
@@ -15,20 +14,6 @@ const AppContainer = () => {
         <main>
             <Page.Block width="text" gutters>
                 {visSystemetLaster && <SystemetLaster />}
-                {sluttbruker.status === RessursStatus.IKKE_TILGANG && (
-                    <Box marginBlock="space-128">
-                        <GlobalAlert status={'warning'}>
-                            <GlobalAlert.Header>
-                                <GlobalAlert.Title>{'Du må søke på papir.'}</GlobalAlert.Title>
-                            </GlobalAlert.Header>
-                            <GlobalAlert.Content>
-                                <a href="https://www.nav.no/kontantstotte">
-                                    Klikk her for å gå til våre sider for kontantstøtte
-                                </a>
-                            </GlobalAlert.Content>
-                        </GlobalAlert>
-                    </Box>
-                )}
                 {systemetOK() && <Søknad />}
                 {systemetFeiler() && !visSystemetLaster && <Feilside />}
             </Page.Block>
