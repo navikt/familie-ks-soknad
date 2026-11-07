@@ -12,7 +12,15 @@
       "src/**",
       "playwright/**",
       "!playwright/testdata",
-      "playwright.config.ts"
+      "playwright.config.ts",
+      "mocks/**",
+      "scripts/**",
+      "package.json",
+      "tsconfig.base.json",
+      "vite.config.ts",
+      "vitest.config.ts",
+      "vitest.setup.ts",
+      "MockResponse.ts"
     ]
   },
   "formatter": {
