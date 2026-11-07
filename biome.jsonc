@@ -6,10 +6,21 @@
     "useIgnoreFile": true,
     "defaultBranch": "main"
   },
+  // Biome sjekker bare filene som er listet her: fra 2.6 formaterer Biome også YAML-filene i .nais, og det ødela deploy.
   "files": {
     "includes": [
-      "**",
-      "!playwright/testdata"
+      "src/**",
+      "playwright/**",
+      "!playwright/testdata",
+      "playwright.config.ts",
+      "mocks/**",
+      "scripts/**",
+      "package.json",
+      "tsconfig.base.json",
+      "vite.config.ts",
+      "vitest.config.ts",
+      "vitest.setup.ts",
+      "MockResponse.ts"
     ]
   },
   "formatter": {
