@@ -8,6 +8,7 @@ export default defineConfig({
         alias: {
             '@api': path.resolve(__dirname, 'src/frontend/_api'),
             '@hooks': path.resolve(__dirname, 'src/frontend/hooks'),
+            '@testutils': path.resolve(__dirname, 'src/frontend/testutils'),
         },
     },
     test: {
