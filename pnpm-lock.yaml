@@ -15,17 +15,17 @@ importers:
         specifier: 0.7.3
         version: 0.7.3(@grafana/faro-react@2.10.0(react-dom@19.3.1(react@19.3.1))(react-router-dom@7.18.2(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-router@8.5.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(supports-color@10.2.2))(react-dom@19.3.1(react@19.3.1))(react-router-dom@7.18.2(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-router@8.5.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(supports-color@10.2.2)
       '@navikt/aksel-icons':
-        specifier: 8.20.1
-        version: 8.20.1
+        specifier: 8.22.1
+        version: 8.22.1
       '@navikt/ds-css':
-        specifier: 8.20.1
-        version: 8.20.1
+        specifier: 8.22.1
+        version: 8.22.1
       '@navikt/ds-react':
-        specifier: 8.20.1
-        version: 8.20.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+        specifier: 8.22.1
+        version: 8.22.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@navikt/familie-form-elements':
         specifier: 22.0.5
-        version: 22.0.5(@navikt/ds-css@8.20.1)(@navikt/ds-react@8.20.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(supports-color@10.2.2)
+        version: 22.0.5(@navikt/ds-css@8.22.1)(@navikt/ds-react@8.22.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(supports-color@10.2.2)
       '@navikt/familie-http':
         specifier: 8.0.30
         version: 8.0.30(axios@1.21.0(debug@4.4.3(supports-color@10.2.2))(supports-color@10.2.2))(react@19.3.1)
@@ -39,14 +39,14 @@ importers:
         specifier: 2.2.1
         version: 2.2.1
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 4.5.3
-        version: 4.5.3(html-react-parser@6.1.5(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
+        specifier: 4.6.0
+        version: 4.6.0(html-react-parser@6.1.5(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
       '@navikt/oasis':
         specifier: 4.2.2
         version: 4.2.2
       '@navikt/pino-logger':
-        specifier: 5.0.1
-        version: 5.0.1(pino@10.4.0)
+        specifier: 5.0.2
+        version: 5.0.2(pino@10.4.0)
       '@portabletext/react':
         specifier: 8.0.1
         version: 8.0.1(react@19.3.1)
@@ -604,18 +604,18 @@ packages:
       react-router: '>=6.0.0'
       react-router-dom: '>=6.0.0'
 
-  '@navikt/aksel-icons@8.20.1':
-    resolution: {integrity: sha512-+rS7SW9iyq1OIylkOIEpU9bGtspSp1edUxMUYip6ukOJEZ97cHBUHpOJkx6J/t/VrX/UCojBxdjYBwb9cPZ45w==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.20.1/e0a03944294b287dfe5d844bdf4958be67e804fa}
+  '@navikt/aksel-icons@8.22.1':
+    resolution: {integrity: sha512-NmNg4vK6Hrabw8CleI6jJCwOb4aXnMjkE9Rw4OQjbfgHrg4UXWnUFgQJ3/Rk/unGdfXGNxV591RTwPNc2dZoTA==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.22.1/c93a3bad8be4134bd833ecc08db4583034be4d75}
 
   '@navikt/analytics-types@0.0.9':
     resolution: {integrity: sha512-bopCvqEogyFcmrJiBxK/Mr25d6yPKF7GR36MGrJqiHCPJYf1rDu6lK4cpooTG4Q//D/1xTkHRom8ZH5BI6dTew==, tarball: https://npm.pkg.github.com/download/@navikt/analytics-types/0.0.9/5919241a6dbb782eb101fff3234ce5c36d16e942}
     engines: {node: '>=20.0.0', npm: '>=9.0.0'}
 
-  '@navikt/ds-css@8.20.1':
-    resolution: {integrity: sha512-qEv4FIv9OI9B7hCEk8wSjU7Z37ZxrVmO6IcITn2OijAKXXg3GVxHva74LBk84T84nX1Tt1S7TTrY3GGudoEE7A==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.20.1/94247803f073d5b89dc4492eaad35693eb4c3790}
+  '@navikt/ds-css@8.22.1':
+    resolution: {integrity: sha512-whWza4g9GAssC9qWOEtrnPYcffaGGT6ko347A6KggccrC7/G7drxJj2aQVk+2bHFWT7GClg20dDxlmZKm9CcTA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.22.1/623473ad66bd13b979cd026acb51b996b25a62a4}
 
-  '@navikt/ds-react@8.20.1':
-    resolution: {integrity: sha512-nJjH7BZap2l33JJWKESIh/YUy/Am/ouSPeOPq5B4/iyIvymaPsWZDxrEFPSmoIwCWVCKJT8g/1w1vVYQRWyd4g==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.20.1/c6b76321c9250b8c2d22fd86abed3e5c9e54c242}
+  '@navikt/ds-react@8.22.1':
+    resolution: {integrity: sha512-rS7wmk/pE3KIDTV3Oimbnx/vd9nxQs3AQt7QgxILNrIGvE+uih5ohbcz9UOk970beUDc+xeQ5jmRK209dzNfcw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.22.1/864ade4ec3891f9bf5e94a71089665433ce351d7}
     peerDependencies:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
@@ -649,9 +649,9 @@ packages:
   '@navikt/fnrvalidator@2.2.1':
     resolution: {integrity: sha512-R6x3MBFC0E/B7oTs+P2jAP+ym7+d6cwSpDsLeMja9IwPpJq3HV/OClFBVWm9fJZPmXfumKRMGy6gqsQPj90ftg==, tarball: https://npm.pkg.github.com/download/@navikt/fnrvalidator/2.2.1/37ed0feb23a7525139ad5512684ff6b0977112c6}
 
-  '@navikt/nav-dekoratoren-moduler@4.5.3':
-    resolution: {integrity: sha512-mXrR0tq6EuOuG7guYw7BVxTpJmfRDxSlNb+vCEOfcf7FXZmOhIQpKiVbXlbUE9Ke2X2EEKDyirWasxJdNH5r2Q==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.5.3/afe4e953f4de64d0c611ac0f5b4ce25eac3969d5}
-    engines: {node: 24.x}
+  '@navikt/nav-dekoratoren-moduler@4.6.0':
+    resolution: {integrity: sha512-1Yrbbmap/zuC5zGic6/+pOp6hbveoApTyMPQEBHB3a4Ac9mMdKqnLJyDtcYJCVhpMByD4KaRm5NgBaLpy17JmA==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.6.0/6c8cbd3d81091b0eb1e35818598aa81b0fc16295}
+    engines: {node: 24.x || 26.x}
     peerDependencies:
       html-react-parser: '>=5.x'
       react: '>=17.x'
@@ -660,8 +660,8 @@ packages:
     resolution: {integrity: sha512-EVMsF8uKbLPNRWuPfH1IKVJhqtibFzSTSyNkzj5mTCVMZV2QPS5W3uYMD4r0rXsmLx7nv0HnLovDphb3AFEjvw==, tarball: https://npm.pkg.github.com/download/@navikt/oasis/4.2.2/3c43e1e89bb2d46646a9a2aaf27972a024377a6f}
     engines: {node: ^20.19.0 || >= 22.12.0 || 24.x || 25.x}
 
-  '@navikt/pino-logger@5.0.1':
-    resolution: {integrity: sha512-E69LgUqIjM/zSv1HxToYHTZA85jZC3L/eD/+InirLEJDwbd58K4lj8hzSFe+4uunNzyraTQNwZfZONN+vd3r2A==, tarball: https://npm.pkg.github.com/download/@navikt/pino-logger/5.0.1/819f7f398e4378c014dd39f704c26f691a0915a1}
+  '@navikt/pino-logger@5.0.2':
+    resolution: {integrity: sha512-wF8tWdLueNZ6KMhzJoe9Cyl2ScPvL380SJtdtJBuTZ8vG6uI9ufo/CY3R8zjW/pwFsiQDUni8vweWxLaHwdkWw==, tarball: https://npm.pkg.github.com/download/@navikt/pino-logger/5.0.2/7cb892a73d8c4b0480edf989cf46dfdb123b8361}
     engines: {node: ^20.19.0 || >= 22.12.0 || 24.x}
     peerDependencies:
       pino: 8 || 9 || 10
@@ -687,6 +687,10 @@ packages:
 
   '@opentelemetry/api-logs@0.222.0':
     resolution: {integrity: sha512-9mb1If+IF6u0ZVXkHQ6ogEae5HwA6ajIVUgpSDQyRASxft6BSXHvBvPooRle3yFN/fKnCdSOnuu0OC3PLcF6+g==}
+    engines: {node: '>=8.0.0'}
+
+  '@opentelemetry/api@1.10.0':
+    resolution: {integrity: sha512-lMkyes8iHrG+mk6WH7X70MdCLI2RS0FwNBY1PyQ8UemaijE2m5mv5A0Niy3HtbYTFrgkUEQjFMXmSAk2hQDuPQ==}
     engines: {node: '>=8.0.0'}
 
   '@opentelemetry/api@1.9.1':
@@ -2610,8 +2614,8 @@ packages:
     peerDependencies:
       react: '>= 16.3.0'
 
-  react-day-picker@10.0.1:
-    resolution: {integrity: sha512-eNh6BlwcYInWaJtRv18mXQ06Ys/H6rdTZAnTaSdOYJuTpwP1JMCHNd1FDRadA+gbeinq+psdULN5Xnowy9mV8w==}
+  react-day-picker@10.0.2:
+    resolution: {integrity: sha512-QetiKtZWE9Uaw/pM/SYNv6WPYOTRnSJ2puL0GgwkmUFMIwiY0dtjH1W4B7DOVXVNQM0ZOClGpH/heOfBSzWeiA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@types/react': '>=16.8.0'
@@ -3540,8 +3544,8 @@ snapshots:
 
   '@grafana/faro-core@2.12.1':
     dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/otlp-transformer': 0.222.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/otlp-transformer': 0.222.0(@opentelemetry/api@1.10.0)
 
   '@grafana/faro-react@2.10.0(react-dom@19.3.1(react@19.3.1))(react-router-dom@7.18.2(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react-router@8.5.1(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(react@19.3.1)(supports-color@10.2.2)':
     dependencies:
@@ -3565,15 +3569,15 @@ snapshots:
   '@grafana/faro-web-tracing@2.12.1(supports-color@10.2.2)':
     dependencies:
       '@grafana/faro-web-sdk': 2.12.1
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/exporter-trace-otlp-http': 0.222.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/instrumentation': 0.222.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2)
-      '@opentelemetry/instrumentation-fetch': 0.222.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2)
-      '@opentelemetry/instrumentation-xml-http-request': 0.222.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2)
-      '@opentelemetry/otlp-transformer': 0.222.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/resources': 2.12.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-trace-web': 2.12.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/exporter-trace-otlp-http': 0.222.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/instrumentation': 0.222.0(@opentelemetry/api@1.10.0)(supports-color@10.2.2)
+      '@opentelemetry/instrumentation-fetch': 0.222.0(@opentelemetry/api@1.10.0)(supports-color@10.2.2)
+      '@opentelemetry/instrumentation-xml-http-request': 0.222.0(@opentelemetry/api@1.10.0)(supports-color@10.2.2)
+      '@opentelemetry/otlp-transformer': 0.222.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/resources': 2.12.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/sdk-trace-web': 2.12.0(@opentelemetry/api@1.10.0)
       '@opentelemetry/semantic-conventions': 1.43.0
     transitivePeerDependencies:
       - supports-color
@@ -3719,30 +3723,30 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@navikt/aksel-icons@8.20.1': {}
+  '@navikt/aksel-icons@8.22.1': {}
 
   '@navikt/analytics-types@0.0.9': {}
 
-  '@navikt/ds-css@8.20.1': {}
+  '@navikt/ds-css@8.22.1': {}
 
-  '@navikt/ds-react@8.20.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
+  '@navikt/ds-react@8.22.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@floating-ui/react': 0.27.20(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       '@floating-ui/react-dom': 2.1.9(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
-      '@navikt/aksel-icons': 8.20.1
+      '@navikt/aksel-icons': 8.22.1
       '@navikt/ds-tokens': 8.22.1
       '@types/react': 19.3.0
       date-fns: 4.4.0
       react: 19.3.1
-      react-day-picker: 10.0.1(@types/react@19.3.0)(react@19.3.1)
+      react-day-picker: 10.0.2(@types/react@19.3.0)(react@19.3.1)
       react-dom: 19.3.1(react@19.3.1)
 
   '@navikt/ds-tokens@8.22.1': {}
 
-  '@navikt/familie-form-elements@22.0.5(@navikt/ds-css@8.20.1)(@navikt/ds-react@8.20.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(supports-color@10.2.2)':
+  '@navikt/familie-form-elements@22.0.5(@navikt/ds-css@8.22.1)(@navikt/ds-react@8.22.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(styled-components@6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(supports-color@10.2.2)':
     dependencies:
-      '@navikt/ds-css': 8.20.1
-      '@navikt/ds-react': 8.20.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
+      '@navikt/ds-css': 8.22.1
+      '@navikt/ds-react': 8.22.1(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       react: 19.3.1
       react-select: 5.10.2(@types/react@19.3.0)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(supports-color@10.2.2)
       styled-components: 6.6.0(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -3772,7 +3776,7 @@ snapshots:
 
   '@navikt/fnrvalidator@2.2.1': {}
 
-  '@navikt/nav-dekoratoren-moduler@4.5.3(html-react-parser@6.1.5(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)':
+  '@navikt/nav-dekoratoren-moduler@4.6.0(html-react-parser@6.1.5(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)':
     dependencies:
       '@navikt/analytics-types': 0.0.9
       csp-header: 6.4.0
@@ -3787,9 +3791,9 @@ snapshots:
       '@prometheus-io/client': 0.16.1
       jose: 6.2.12
 
-  '@navikt/pino-logger@5.0.1(pino@10.4.0)':
+  '@navikt/pino-logger@5.0.2(pino@10.4.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/api': 1.10.0
       pino: 10.4.0
     optionalDependencies:
       pino-socket: 8.0.0
@@ -3816,138 +3820,140 @@ snapshots:
 
   '@opentelemetry/api-logs@0.222.0':
     dependencies:
-      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/api': 1.10.0
+
+  '@opentelemetry/api@1.10.0': {}
 
   '@opentelemetry/api@1.9.1': {}
 
-  '@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/core@2.11.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/api': 1.10.0
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/core@2.12.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/core@2.12.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/api': 1.10.0
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/exporter-trace-otlp-http@0.222.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/exporter-trace-otlp-http@0.222.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/otlp-exporter-base': 0.222.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/otlp-transformer': 0.222.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-trace': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/otlp-exporter-base': 0.222.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/otlp-transformer': 0.222.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/sdk-trace': 2.11.0(@opentelemetry/api@1.10.0)
 
-  '@opentelemetry/instrumentation-fetch@0.222.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2)':
+  '@opentelemetry/instrumentation-fetch@0.222.0(@opentelemetry/api@1.10.0)(supports-color@10.2.2)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/instrumentation': 0.222.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2)
-      '@opentelemetry/sdk-trace-web': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/semantic-conventions': 1.43.0
-    transitivePeerDependencies:
-      - supports-color
-
-  '@opentelemetry/instrumentation-xml-http-request@0.222.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2)':
-    dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/instrumentation': 0.222.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2)
-      '@opentelemetry/sdk-trace-web': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/instrumentation': 0.222.0(@opentelemetry/api@1.10.0)(supports-color@10.2.2)
+      '@opentelemetry/sdk-trace-web': 2.11.0(@opentelemetry/api@1.10.0)
       '@opentelemetry/semantic-conventions': 1.43.0
     transitivePeerDependencies:
       - supports-color
 
-  '@opentelemetry/instrumentation@0.222.0(@opentelemetry/api@1.9.1)(supports-color@10.2.2)':
+  '@opentelemetry/instrumentation-xml-http-request@0.222.0(@opentelemetry/api@1.10.0)(supports-color@10.2.2)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/instrumentation': 0.222.0(@opentelemetry/api@1.10.0)(supports-color@10.2.2)
+      '@opentelemetry/sdk-trace-web': 2.11.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/semantic-conventions': 1.43.0
+    transitivePeerDependencies:
+      - supports-color
+
+  '@opentelemetry/instrumentation@0.222.0(@opentelemetry/api@1.10.0)(supports-color@10.2.2)':
+    dependencies:
+      '@opentelemetry/api': 1.10.0
       '@opentelemetry/api-logs': 0.222.0
       import-in-the-middle: 3.5.2
       require-in-the-middle: 8.0.1(supports-color@10.2.2)
     transitivePeerDependencies:
       - supports-color
 
-  '@opentelemetry/otlp-exporter-base@0.222.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/otlp-exporter-base@0.222.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/otlp-transformer': 0.222.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/otlp-transformer': 0.222.0(@opentelemetry/api@1.10.0)
 
-  '@opentelemetry/otlp-transformer@0.222.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/otlp-transformer@0.222.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/api': 1.10.0
       '@opentelemetry/api-logs': 0.222.0
-      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-logs': 0.222.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-metrics': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-trace': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/sdk-logs': 0.222.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/sdk-metrics': 2.11.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/sdk-trace': 2.11.0(@opentelemetry/api@1.10.0)
 
-  '@opentelemetry/resources@2.11.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/resources@2.11.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.10.0)
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/resources@2.12.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/resources@2.12.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.10.0)
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/sdk-logs@0.222.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
+      '@opentelemetry/api': 1.10.0
       '@opentelemetry/api-logs': 0.222.0
-      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.10.0)
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/sdk-metrics@2.11.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.10.0)
 
-  '@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/sdk-trace-base@2.11.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-trace': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/sdk-trace': 2.11.0(@opentelemetry/api@1.10.0)
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/sdk-trace-base@2.12.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/sdk-trace-base@2.12.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/resources': 2.12.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-trace': 2.12.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/resources': 2.12.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/sdk-trace': 2.12.0(@opentelemetry/api@1.10.0)
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/sdk-trace-web@2.11.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/sdk-trace-web@2.11.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-trace-base': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/sdk-trace-base': 2.11.0(@opentelemetry/api@1.10.0)
 
-  '@opentelemetry/sdk-trace-web@2.12.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/sdk-trace-web@2.12.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/sdk-trace-base': 2.12.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/sdk-trace-base': 2.12.0(@opentelemetry/api@1.10.0)
 
-  '@opentelemetry/sdk-trace@2.11.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/sdk-trace@2.11.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/core': 2.11.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/resources': 2.11.0(@opentelemetry/api@1.10.0)
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/sdk-trace@2.12.0(@opentelemetry/api@1.9.1)':
+  '@opentelemetry/sdk-trace@2.12.0(@opentelemetry/api@1.10.0)':
     dependencies:
-      '@opentelemetry/api': 1.9.1
-      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.9.1)
-      '@opentelemetry/resources': 2.12.0(@opentelemetry/api@1.9.1)
+      '@opentelemetry/api': 1.10.0
+      '@opentelemetry/core': 2.12.0(@opentelemetry/api@1.10.0)
+      '@opentelemetry/resources': 2.12.0(@opentelemetry/api@1.10.0)
       '@opentelemetry/semantic-conventions': 1.43.0
 
   '@opentelemetry/semantic-conventions@1.43.0': {}
@@ -5653,7 +5659,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  react-day-picker@10.0.1(@types/react@19.3.0)(react@19.3.1):
+  react-day-picker@10.0.2(@types/react@19.3.0)(react@19.3.1):
     dependencies:
       '@date-fns/tz': 1.5.0
       date-fns: 4.4.0
