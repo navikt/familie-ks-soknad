@@ -89,7 +89,7 @@
   "devDependencies": {
     "@axe-core/react": "4.14.0",
     "@biomejs/biome": "2.6.4",
-    "@playwright/test": "1.64.1",
+    "@playwright/test": "1.65.0",
     "@portabletext/types": "4.0.2",
     "@testing-library/dom": "10.4.2",
     "@testing-library/jest-dom": "7.0.1",
