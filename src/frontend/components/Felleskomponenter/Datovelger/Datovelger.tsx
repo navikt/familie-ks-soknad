@@ -77,9 +77,7 @@ const Datovelger: FC<DatoVelgerProps> = ({
         today: minDatoErIFremtiden() ? hentFromDate() : dagensDato(),
         defaultSelected: parseTilGyldigDato(felt.verdi, 'yyyy-MM-dd'),
         onDateChange: (dato: Date | undefined) => {
-            if (dato) {
-                felt.validerOgSettFelt(formatISO(dato, { representation: 'date' }));
-            }
+            felt.validerOgSettFelt(dato ? formatISO(dato, { representation: 'date' }) : '');
         },
     });
 
