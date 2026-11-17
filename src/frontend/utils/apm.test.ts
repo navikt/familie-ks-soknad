@@ -1,6 +1,24 @@
 import { describe, expect, test } from 'vitest';
 
-import { NETTVERKSFEIL_LOGGET_AV_DEKORATØREN } from './apm';
+import { NETTVERKSFEIL_LOGGET_AV_DEKORATØREN, SCRIPT_ERROR_FRA_ANNET_OPPHAV } from './apm';
+
+const tekstFaroMatcherMot = (feil: Error) => `${feil.message} ${feil.name} ${feil.stack}`;
+
+describe('SCRIPT_ERROR_FRA_ANNET_OPPHAV', () => {
+    test.each(['Script error.', 'Script error'])(
+        'matcher feil uten detaljer fra skript på annet opphav: %s',
+        melding => {
+            expect(SCRIPT_ERROR_FRA_ANNET_OPPHAV.test(tekstFaroMatcherMot(new Error(melding)))).toBe(true);
+        }
+    );
+
+    test.each(['Script error. Kunne ikke laste søknaden', 'Innsending feilet: Script error.', 'Script errors'])(
+        'matcher ikke andre feil: %s',
+        melding => {
+            expect(SCRIPT_ERROR_FRA_ANNET_OPPHAV.test(tekstFaroMatcherMot(new Error(melding)))).toBe(false);
+        }
+    );
+});
 
 describe('NETTVERKSFEIL_LOGGET_AV_DEKORATØREN', () => {
     test.each([
