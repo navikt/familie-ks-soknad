@@ -157,15 +157,11 @@ const Dokumentasjon: FC = () => {
                         </div>
                     </>
                 ) : (
-                    <>
-                        <div>
-                            <Heading level="3" size="small" spacing>
-                                {plainTekst(stegTekster.ingenVedleggskravTittel)}
-                            </Heading>
-                            <TekstBlock block={stegTekster.ingenVedleggskrav} typografi={Typografi.BodyLong} />
-                        </div>
-                        <PictureScanningGuide />
-                    </>
+                    <div>
+                        <Heading level="3" size="small" spacing>
+                            {plainTekst(stegTekster.ingenVedleggskravTittel)}
+                        </Heading>
+                    </div>
                 )}
                 {relevateDokumentasjoner.map((dokumentasjon, index) => (
                     <LastOppVedlegg

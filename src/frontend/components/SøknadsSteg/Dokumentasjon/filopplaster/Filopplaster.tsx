@@ -10,6 +10,7 @@ import { ECustomFileRejectionReasons, useFilopplaster } from './useFilopplaster'
 
 interface IFilopplasterProps {
     dokumentasjon: IDokumentasjon;
+    tillatNyOpplasting?: boolean;
     oppdaterDokumentasjon: (
         dokumentasjonsBehov: Dokumentasjonsbehov,
         opplastedeVedlegg: IVedlegg[],
@@ -17,7 +18,7 @@ interface IFilopplasterProps {
     ) => void;
 }
 
-const Filopplaster: FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDokumentasjon }) => {
+const Filopplaster: FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDokumentasjon, tillatNyOpplasting = true }) => {
     const { tekster, plainTekst } = useAppContext();
 
     const dokumentasjonTekster = tekster().DOKUMENTASJON;
@@ -63,25 +64,27 @@ const Filopplaster: FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDokumenta
             }}
         >
             <VStack gap="space-24">
-                <FileUpload.Dropzone
-                    label={plainTekst(dokumentasjonTekster.lastOppFiler)}
-                    description={
-                        <List as="ul" size="small">
-                            <List.Item>{`${plainTekst(dokumentasjonTekster.stottedeFiltyper)} ${STØTTEDE_FILTYPER.join(' ')}`}</List.Item>
-                            <List.Item>{`${plainTekst(dokumentasjonTekster.maksFilstorrelse)} ${MAKS_FILSTØRRELSE_MB} MB`}</List.Item>
-                            <List.Item>{`${plainTekst(dokumentasjonTekster.maksAntallFiler)} ${MAKS_ANTALL_FILER}`}</List.Item>
-                        </List>
-                    }
-                    accept={STØTTEDE_FILTYPER.join(',')}
-                    maxSizeInBytes={MAKS_FILSTØRRELSE_BYTES}
-                    fileLimit={{
-                        max: MAKS_ANTALL_FILER,
-                        current: dokumentasjon.opplastedeVedlegg.length,
-                    }}
-                    // Dersom disabled blir satt til false her vil dette overskrive disabled-staten som blir satt av "fileLimit" prop-en. Derfor settes den til undefined slik at "fileLimit" fungerer som forventet.
-                    disabled={filerUnderOpplastning.length > 0 ? true : undefined}
-                    onSelect={nyeFiler => leggTilVedlegg(nyeFiler)}
-                />
+                {tillatNyOpplasting && (
+                    <FileUpload.Dropzone
+                        label={plainTekst(dokumentasjonTekster.lastOppFiler)}
+                        description={
+                            <List as="ul" size="small">
+                                <List.Item>{`${plainTekst(dokumentasjonTekster.stottedeFiltyper)} ${STØTTEDE_FILTYPER.join(' ')}`}</List.Item>
+                                <List.Item>{`${plainTekst(dokumentasjonTekster.maksFilstorrelse)} ${MAKS_FILSTØRRELSE_MB} MB`}</List.Item>
+                                <List.Item>{`${plainTekst(dokumentasjonTekster.maksAntallFiler)} ${MAKS_ANTALL_FILER}`}</List.Item>
+                            </List>
+                        }
+                        accept={STØTTEDE_FILTYPER.join(',')}
+                        maxSizeInBytes={MAKS_FILSTØRRELSE_BYTES}
+                        fileLimit={{
+                            max: MAKS_ANTALL_FILER,
+                            current: dokumentasjon.opplastedeVedlegg.length,
+                        }}
+                        // Dersom disabled blir satt til false her vil dette overskrive disabled-staten som blir satt av "fileLimit" prop-en. Derfor settes den til undefined slik at "fileLimit" fungerer som forventet.
+                        disabled={filerUnderOpplastning.length > 0 ? true : undefined}
+                        onSelect={nyeFiler => leggTilVedlegg(nyeFiler)}
+                    />
+                )}
 
                 {(dokumentasjon.opplastedeVedlegg.length > 0 || filerUnderOpplastning.length > 0) && (
                     <VStack gap="space-8">
@@ -134,7 +137,7 @@ const Filopplaster: FC<IFilopplasterProps> = ({ dokumentasjon, oppdaterDokumenta
                                     }}
                                     error={feilmeldinger[fil.reasons[0]]}
                                     button={
-                                        fil.reasons[0] === ECustomFileRejectionReasons.UKJENT_FEIL
+                                        tillatNyOpplasting && fil.reasons[0] === ECustomFileRejectionReasons.UKJENT_FEIL
                                             ? {
                                                   action: 'retry',
                                                   onClick: () => prøvOpplastingAvAvvistFilPåNytt(fil),
