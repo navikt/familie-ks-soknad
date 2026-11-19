@@ -61,6 +61,13 @@ const LastOppVedlegg: FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => 
     );
 
     const dokumentasjonsbeskrivelse = dokumentasjonsbehovTilBeskrivelseSanityApiNavn(dokumentasjon.dokumentasjonsbehov);
+    const erAnnenDokumentasjon = dokumentasjon.dokumentasjonsbehov === Dokumentasjonsbehov.ANNEN_DOKUMENTASJON;
+
+    if (erAnnenDokumentasjon && dokumentasjon.opplastedeVedlegg.length === 0) {
+        return null;
+    }
+
+    const skalViseFilopplaster = erAnnenDokumentasjon || !dokumentasjon.harSendtInn;
 
     return (
         <FormSummary>
@@ -68,7 +75,7 @@ const LastOppVedlegg: FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => 
                 <FormSummary.Heading level="3">{plainTekst(tittel, { barnetsNavn: barnasNavn })}</FormSummary.Heading>
             </FormSummary.Header>
             <VStack gap="space-24" paddingInline="space-24" paddingBlock="space-20 space-24">
-                {dokumentasjonsbeskrivelse && (
+                {!erAnnenDokumentasjon && dokumentasjonsbeskrivelse && (
                     <div>
                         <TekstBlock
                             block={dokumentasjonTekster[dokumentasjonsbeskrivelse]}
@@ -90,9 +97,13 @@ const LastOppVedlegg: FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => 
                     </Checkbox>
                 )}
 
-                {!dokumentasjon.harSendtInn && (
+                {skalViseFilopplaster && (
                     <div>
-                        <Filopplaster dokumentasjon={dokumentasjon} oppdaterDokumentasjon={oppdaterDokumentasjon} />
+                        <Filopplaster
+                            dokumentasjon={dokumentasjon}
+                            oppdaterDokumentasjon={oppdaterDokumentasjon}
+                            tillatNyOpplasting={!erAnnenDokumentasjon}
+                        />
                     </div>
                 )}
             </VStack>
