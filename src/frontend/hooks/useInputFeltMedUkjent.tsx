@@ -10,7 +10,7 @@ import { useAppContext } from '../context/AppContext';
 import type { DatoMedUkjent } from '../typer/common';
 import type { IdNummerKey } from '../typer/skjema';
 import type { ISøknadSpørsmål } from '../typer/spørsmål';
-import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
+import { fjernWhiteSpace, trimWhiteSpace } from '../utils/hjelpefunksjoner';
 import { formaterInitVerdiForInputMedUkjent } from '../utils/input';
 
 const useInputFeltMedUkjent = ({
@@ -38,7 +38,7 @@ const useInputFeltMedUkjent = ({
         feltId: søknadsfelt ? søknadsfelt.id : uuidv4(),
         verdi: søknadsfelt ? trimWhiteSpace(formaterInitVerdiForInputMedUkjent(søknadsfelt.svar)) : '',
         valideringsfunksjon: (felt: FeltState<string>, avhengigheter): FeltState<string> => {
-            const feltVerdi = trimWhiteSpace(felt.verdi);
+            const feltVerdi = erFnrInput ? fjernWhiteSpace(felt.verdi) : trimWhiteSpace(felt.verdi);
             if (avhengigheter?.vetIkkeCheckbox?.verdi === ESvar.JA) {
                 return ok(felt);
             }
