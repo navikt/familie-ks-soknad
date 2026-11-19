@@ -8,7 +8,7 @@ import type { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/
 import { ESanitySteg } from '../../../../typer/sanity/sanity';
 import type { ILeggTilBarnTyper } from '../../../../typer/skjema';
 import { erBarnRegistrertFraFør, erBarnUnder11Mnd, hentAlder, hentUid } from '../../../../utils/barn';
-import { trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
+import { fjernWhiteSpace, trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
 import { identTilFødselsdato } from '../../../../utils/ident';
 import { VelgBarnSpørsmålId } from '../spørsmål';
 
@@ -63,7 +63,7 @@ export const useLeggTilBarn = (): {
         feilmelding: teksterForModal.foedselsnummerEllerDNummer.feilmelding,
         erFnrInput: true,
         customValidering: (felt: FeltState<string>) => {
-            return erBarnRegistrertFraFør(søknad, felt.verdi)
+            return erBarnRegistrertFraFør(søknad, fjernWhiteSpace(felt.verdi))
                 ? feil(felt, plainTekst(teksterForModal.sammeFoedselsnummerFeilmelding))
                 : ok(felt);
         },
@@ -85,14 +85,15 @@ export const useLeggTilBarn = (): {
     };
 
     const leggTilBarn = () => {
-        const fødselsdato = identTilFødselsdato(ident.verdi);
+        const identUtenMellomrom = fjernWhiteSpace(ident.verdi);
+        const fødselsdato = identTilFødselsdato(identUtenMellomrom);
         settSøknad({
             ...søknad,
             barnRegistrertManuelt: søknad.barnRegistrertManuelt.concat([
                 {
                     id: hentUid(),
                     navn: fulltNavn() || plainTekst(navnIkkeBestemtTekst),
-                    ident: ident.verdi,
+                    ident: identUtenMellomrom,
                     borMedSøker: undefined,
                     alder: hentAlder(fødselsdato),
                     erUnder11Mnd: erBarnUnder11Mnd(fødselsdato),

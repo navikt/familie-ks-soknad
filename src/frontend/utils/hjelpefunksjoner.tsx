@@ -11,6 +11,10 @@ export const trimWhiteSpace = (str: string) => {
     return str.split(/\s+/).join(' ').trim();
 };
 
+export const fjernWhiteSpace = (str: string) => {
+    return str.replace(/\s/g, '');
+};
+
 export const visFeiloppsummering = (skjema: ISkjema<SkjemaFeltTyper, string>): boolean => {
     const feil = Object.values(skjema.felter).find(
         felt => felt.erSynlig && felt.valideringsstatus === Valideringsstatus.FEIL
