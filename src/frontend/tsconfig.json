@@ -15,8 +15,13 @@
         "noUncheckedSideEffectImports": false, // Trenger for import av @navikt/ds-css
         "paths": {
             "@api/*": ["./_api/*"],
+            "@common/*": ["../common/*"],
+            "@components/*": ["./components/*"],
+            "@context/*": ["./context/*"],
             "@hooks/*": ["./hooks/*"],
-            "@testutils/*": ["./testutils/*"]
+            "@testutils/*": ["./testutils/*"],
+            "@typer/*": ["./typer/*"],
+            "@utils/*": ["./utils/*"]
         }
     }
 }
