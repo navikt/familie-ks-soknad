@@ -1,15 +1,10 @@
 import react from '@vitejs/plugin-react';
 import { configDefaults, defineConfig } from 'vitest/config';
-import path from 'node:path';
 
 export default defineConfig({
     plugins: [react()],
     resolve: {
-        alias: {
-            '@api': path.resolve(__dirname, 'src/frontend/_api'),
-            '@hooks': path.resolve(__dirname, 'src/frontend/hooks'),
-            '@testutils': path.resolve(__dirname, 'src/frontend/testutils'),
-        },
+        tsconfigPaths: true,
     },
     test: {
         globals: true,
