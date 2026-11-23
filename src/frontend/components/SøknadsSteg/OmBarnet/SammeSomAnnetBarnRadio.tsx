@@ -1,13 +1,12 @@
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { Radio, RadioGroup } from '@navikt/ds-react';
 import type { ISkjema } from '@navikt/familie-skjema';
+import type { IBarnMedISøknad } from '@typer/barn';
+import { AlternativtSvarForInput } from '@typer/common';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import type { IOmBarnetFeltTyper } from '@typer/skjema';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import type { IBarnMedISøknad } from '../../../typer/barn';
-import { AlternativtSvarForInput } from '../../../typer/common';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import type { IOmBarnetFeltTyper } from '../../../typer/skjema';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import { OmBarnetSpørsmålsId } from './spørsmål';
 

@@ -1,7 +1,6 @@
+import { useAppContext } from '@context/AppContext';
 import type { ComponentType, FC } from 'react';
 import { Navigate } from 'react-router';
-
-import { useAppContext } from '../../../context/AppContext';
 
 interface RedirectTilStartProps {
     component: ComponentType<any>;

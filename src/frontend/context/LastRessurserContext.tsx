@@ -1,10 +1,8 @@
+import { useUnmountCleanup } from '@hooks/useUnmountCleanup';
 import { type ApiRessurs, type Ressurs, RessursStatus } from '@navikt/familie-typer';
-
+import { hentUid } from '@utils/barn';
 import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { createContext, type PropsWithChildren, useContext, useState } from 'react';
-
-import { useUnmountCleanup } from '../hooks/useUnmountCleanup';
-import { hentUid } from '../utils/barn';
 
 import { håndterApiRessurs, loggFeil, preferredAxios } from './axios';
 

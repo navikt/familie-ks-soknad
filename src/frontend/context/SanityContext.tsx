@@ -1,6 +1,6 @@
+import type { ESanitySteg } from '@typer/sanity/sanity';
+import type { ITekstinnhold } from '@typer/sanity/tekstInnhold';
 import { createContext, type PropsWithChildren, useContext } from 'react';
-import type { ESanitySteg } from '../typer/sanity/sanity';
-import type { ITekstinnhold } from '../typer/sanity/tekstInnhold';
 
 interface SanityContext {
     tekster: ITekstinnhold;

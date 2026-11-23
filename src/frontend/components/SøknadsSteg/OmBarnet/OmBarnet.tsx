@@ -1,17 +1,16 @@
+import { Dokumentasjonsbehov } from '@common/typer/kontrakt/dokumentasjon';
+import JaNeiSpm from '@components/Felleskomponenter/JaNeiSpm/JaNeiSpm';
+import KomponentGruppe from '@components/Felleskomponenter/KomponentGruppe/KomponentGruppe';
+import SkjemaFieldset from '@components/Felleskomponenter/SkjemaFieldset';
+import Steg from '@components/Felleskomponenter/Steg/Steg';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
+import { useEøsContext } from '@context/EøsContext';
 import { InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import { type BarnetsId, Typografi } from '@typer/common';
+import { ESanitySteg } from '@typer/sanity/sanity';
 import type { FC } from 'react';
-
-import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
-import { useAppContext } from '../../../context/AppContext';
-import { useEøsContext } from '../../../context/EøsContext';
-import { type BarnetsId, Typografi } from '../../../typer/common';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
-import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
-import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
-import Steg from '../../Felleskomponenter/Steg/Steg';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import AndreForelder from './AndreForelder';
 import type { IOmBarnetTekstinnhold } from './innholdTyper';

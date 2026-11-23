@@ -1,25 +1,18 @@
+import { useAppContext } from '@context/AppContext';
+import useDatovelgerFelt from '@hooks/useDatovelgerFelt';
+import useDatovelgerFeltMedUkjent from '@hooks/useDatovelgerFeltMedUkjent';
+import useInputFelt from '@hooks/useInputFelt';
+import useInputFeltMedUkjent from '@hooks/useInputFeltMedUkjent';
+import useJaNeiSpmFelt from '@hooks/useJaNeiSpmFelt';
+import useLanddropdownFelt from '@hooks/useLanddropdownFelt';
 import { ESvar } from '@navikt/familie-form-elements';
 import { useFelt, useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
-
-import { useAppContext } from '../../../context/AppContext';
-import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
-import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
-import useInputFelt from '../../../hooks/useInputFelt';
-import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
-import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
-import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
-import type { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
-import type { IArbeidsperiodeTekstinnhold } from '../../../typer/sanity/modaler/arbeidsperiode';
-import type { IArbeidsperioderFeltTyper } from '../../../typer/skjema';
-import {
-    dagensDato,
-    erSammeDatoSomDagensDato,
-    gårsdagensDato,
-    sisteDagDenneMåneden,
-    stringTilDate,
-} from '../../../utils/dato';
-import { minTilDatoForPeriode } from '../../../utils/perioder';
+import type { IUsePeriodeSkjemaVerdi } from '@typer/perioder';
+import { PersonType } from '@typer/personType';
+import type { IArbeidsperiodeTekstinnhold } from '@typer/sanity/modaler/arbeidsperiode';
+import type { IArbeidsperioderFeltTyper } from '@typer/skjema';
+import { dagensDato, erSammeDatoSomDagensDato, gårsdagensDato, sisteDagDenneMåneden, stringTilDate } from '@utils/dato';
+import { minTilDatoForPeriode } from '@utils/perioder';
 
 import { ArbeidsperiodeSpørsmålsId } from './spørsmål';
 

@@ -1,11 +1,11 @@
+import { SlettSøknadenModal } from '@components/Felleskomponenter/Steg/SlettSøknadenModal';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useSanityTekster } from '@context/SanityContext';
 import { useTranslate } from '@hooks/useTranslate';
 import { InformationSquareIcon } from '@navikt/aksel-icons';
 import { Button, InfoCard, VStack } from '@navikt/ds-react';
+import { ESanitySteg } from '@typer/sanity/sanity';
 import type { FC } from 'react';
-import { useSanityTekster } from '../../../context/SanityContext';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { SlettSøknadenModal } from '../../Felleskomponenter/Steg/SlettSøknadenModal';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import { useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 

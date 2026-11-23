@@ -1,16 +1,15 @@
+import { LeggTilKnapp } from '@components/Felleskomponenter/LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '@components/Felleskomponenter/PerioderContainer';
+import useModal from '@components/Felleskomponenter/SkjemaModal/useModal';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { IUtenlandsperiode } from '@typer/perioder';
+import { type PeriodePersonTypeMedBarnProps, PersonType } from '@typer/personType';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import type { IDinLivssituasjonFeltTyper, IOmBarnetFeltTyper } from '@typer/skjema';
+import { uppercaseFørsteBokstav } from '@utils/visning';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import type { IUtenlandsperiode } from '../../../typer/perioder';
-import { type PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import type { IDinLivssituasjonFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
-import { uppercaseFørsteBokstav } from '../../../utils/visning';
-import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
-import PerioderContainer from '../PerioderContainer';
-import useModal from '../SkjemaModal/useModal';
-import TekstBlock from '../TekstBlock';
 
 import { UtenlandsoppholdModal } from './UtenlandsoppholdModal';
 import { UtenlandsperiodeOppsummering } from './UtenlandsperiodeOppsummering';

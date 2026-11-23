@@ -1,14 +1,13 @@
+import { useBekreftelseOgStartSoknad } from '@components/SøknadsSteg/Forside/useBekreftelseOgStartSoknad';
+import { useAppContext } from '@context/AppContext';
+import { useSpråkContext } from '@context/SpråkContext';
+import { useStegContext } from '@context/StegContext';
 import { ArrowLeftIcon, ArrowRightIcon, FloppydiskIcon, PaperplaneIcon, TrashIcon } from '@navikt/aksel-icons';
 import { BodyShort, Box, Button, HGrid, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
+import { RouteEnum } from '@typer/routes';
+import { formaterDatoOgTid } from '@utils/dato';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import { useSpråkContext } from '../../../context/SpråkContext';
-import { useStegContext } from '../../../context/StegContext';
-import { RouteEnum } from '../../../typer/routes';
-import { formaterDatoOgTid } from '../../../utils/dato';
-import { useBekreftelseOgStartSoknad } from '../../SøknadsSteg/Forside/useBekreftelseOgStartSoknad';
 
 import { SlettSøknadenModal } from './SlettSøknadenModal';
 

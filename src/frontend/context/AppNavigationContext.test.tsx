@@ -1,7 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
-
-import { RouteEnum } from '../typer/routes';
-import { spyOnUseApp, TestProvidere } from '../utils/testing';
+import { RouteEnum } from '@typer/routes';
+import { spyOnUseApp, TestProvidere } from '@utils/testing';
 
 import { useAppNavigationContext } from './AppNavigationContext';
 

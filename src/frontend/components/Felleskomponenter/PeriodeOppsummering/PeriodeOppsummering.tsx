@@ -1,10 +1,9 @@
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { TrashFillIcon } from '@navikt/aksel-icons';
 import { Button, FormSummary } from '@navikt/ds-react';
 import type { ReactNode } from 'react';
-
-import type { LocaleRecordBlock } from '../../../../common/typer/locale';
-import { useAppContext } from '../../../context/AppContext';
-import TekstBlock from '../TekstBlock';
 
 interface Props {
     fjernPeriodeCallback?: () => void;

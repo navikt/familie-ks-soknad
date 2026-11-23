@@ -1,11 +1,10 @@
+import { BASE_PATH } from '@common/miljø';
+import { unslash } from '@common/unslash';
+import { useAppNavigationContext } from '@context/AppNavigationContext';
 import { Link } from '@navikt/ds-react';
+import type { ISteg } from '@typer/routes';
 import type { MouseEventHandler, ReactNode } from 'react';
 import { useNavigate } from 'react-router';
-
-import { BASE_PATH } from '../../../../common/miljø';
-import { unslash } from '../../../../common/unslash';
-import { useAppNavigationContext } from '../../../context/AppNavigationContext';
-import type { ISteg } from '../../../typer/routes';
 
 interface Props {
     steg: ISteg;

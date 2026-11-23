@@ -1,5 +1,5 @@
+import { RouteEnum } from '@typer/routes';
 import { ROUTES } from './routes';
-import { RouteEnum } from './typer/routes';
 
 describe('ROUTES', () => {
     test('Skal inneholde et routeobjekt for hver verdi i RouteEnum', () => {

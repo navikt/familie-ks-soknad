@@ -1,11 +1,10 @@
+import ModalContent from '@components/Felleskomponenter/ModalContent';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
+import { useAppNavigationContext } from '@context/AppNavigationContext';
 import { Button, HStack, Modal } from '@navikt/ds-react';
-
-import { useAppContext } from '../../../context/AppContext';
-import { useAppNavigationContext } from '../../../context/AppNavigationContext';
-import { Typografi } from '../../../typer/common';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import ModalContent from '../ModalContent';
-import TekstBlock from '../TekstBlock';
+import { Typografi } from '@typer/common';
+import { ESanitySteg } from '@typer/sanity/sanity';
 
 const BlokkerTilbakeKnappModal = () => {
     const { visBlokkerTilbakeKnappModal, settVisBlokkerTilbakeKnappModal } = useAppNavigationContext();

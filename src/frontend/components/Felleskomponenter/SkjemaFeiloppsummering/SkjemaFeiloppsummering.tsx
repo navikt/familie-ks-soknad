@@ -1,11 +1,10 @@
+import { AppLenke } from '@components/Felleskomponenter/AppLenke/AppLenke';
+import { useAppContext } from '@context/AppContext';
 import { ErrorSummary } from '@navikt/ds-react';
 import { type ISkjema, Valideringsstatus } from '@navikt/familie-skjema';
+import type { ISteg } from '@typer/routes';
+import type { SkjemaFeltTyper } from '@typer/skjema';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import type { ISteg } from '../../../typer/routes';
-import type { SkjemaFeltTyper } from '../../../typer/skjema';
-import { AppLenke } from '../AppLenke/AppLenke';
 
 interface Props {
     skjema: ISkjema<SkjemaFeltTyper, string>;

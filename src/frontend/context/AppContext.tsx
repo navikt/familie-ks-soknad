@@ -1,3 +1,6 @@
+import miljø, { BASE_PATH } from '@common/miljø';
+import type { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '@common/typer/kontrakt/generelle';
+import { LocaleType } from '@common/typer/locale';
 import { useDebounce } from '@hooks/useDebounce';
 import { useSøker } from '@hooks/useSøker';
 import {
@@ -7,6 +10,15 @@ import {
     type Ressurs,
     RessursStatus,
 } from '@navikt/familie-typer';
+import type { IKontoinformasjon } from '@typer/kontoinformasjon';
+import type { IKvittering } from '@typer/kvittering';
+import type { IMellomlagretKontantstøtte } from '@typer/mellomlager';
+import { RouteEnum } from '@typer/routes';
+import { ESanityFlettefeltverdi, ESanitySteg } from '@typer/sanity/sanity';
+import type { ITekstinnhold } from '@typer/sanity/tekstInnhold';
+import { type ISøknad, initialStateSøknad } from '@typer/søknad';
+import { mapBarnResponsTilBarn } from '@utils/barn';
+import { plainTekstHof } from '@utils/sanity';
 import { type Alpha3Code, getName } from 'i18n-iso-countries';
 import {
     createContext,
@@ -17,18 +29,6 @@ import {
     useEffect,
     useState,
 } from 'react';
-import miljø, { BASE_PATH } from '../../common/miljø';
-import type { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../common/typer/kontrakt/generelle';
-import { LocaleType } from '../../common/typer/locale';
-import type { IKontoinformasjon } from '../typer/kontoinformasjon';
-import type { IKvittering } from '../typer/kvittering';
-import type { IMellomlagretKontantstøtte } from '../typer/mellomlager';
-import { RouteEnum } from '../typer/routes';
-import { ESanityFlettefeltverdi, ESanitySteg } from '../typer/sanity/sanity';
-import type { ITekstinnhold } from '../typer/sanity/tekstInnhold';
-import { type ISøknad, initialStateSøknad } from '../typer/søknad';
-import { mapBarnResponsTilBarn } from '../utils/barn';
-import { plainTekstHof } from '../utils/sanity';
 
 import { preferredAxios } from './axios';
 import { type AxiosRequest, useLastRessurserContext } from './LastRessurserContext';

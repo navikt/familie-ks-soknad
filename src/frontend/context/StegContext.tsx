@@ -1,10 +1,8 @@
+import type { IBarnMedISøknad } from '@typer/barn';
+import { type ISteg, RouteEnum } from '@typer/routes';
 import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
-
 import { matchPath, useLocation } from 'react-router';
-
 import { ROUTES } from '../routes';
-import type { IBarnMedISøknad } from '../typer/barn';
-import { type ISteg, RouteEnum } from '../typer/routes';
 
 import { useAppContext } from './AppContext';
 import { useEøsContext } from './EøsContext';

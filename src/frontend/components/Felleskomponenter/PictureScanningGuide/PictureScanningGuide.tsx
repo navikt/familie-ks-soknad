@@ -1,8 +1,7 @@
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { CheckmarkCircleIcon, XMarkOctagonIcon } from '@navikt/aksel-icons';
 import { ExpansionCard, Heading, HGrid, VStack } from '@navikt/ds-react';
-
-import { useAppContext } from '../../../context/AppContext';
-import TekstBlock from '../TekstBlock';
 
 import PictureScanningExample from './PictureScanningExample';
 import styles from './PictureScanningGuide.module.css';

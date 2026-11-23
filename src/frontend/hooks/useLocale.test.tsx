@@ -1,12 +1,11 @@
+import { LocaleType } from '@common/typer/locale';
+import { useSpråkContext } from '@context/SpråkContext';
 import { renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 
-import { LocaleType } from '../../common/typer/locale';
-import { useSpråkContext } from '../context/SpråkContext';
-
 import { useLocale } from './useLocale';
 
-vi.mock('../context/SpråkContext', () => ({
+vi.mock('@context/SpråkContext', () => ({
     useSpråkContext: vi.fn(),
 }));
 

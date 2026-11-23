@@ -1,15 +1,15 @@
+import { ArbeidsperiodeOppsummering } from '@components/Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
+import { PensjonsperiodeOppsummering } from '@components/Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { UtenlandsperiodeOppsummering } from '@components/Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
+import { useDinLivssituasjon } from '@components/SøknadsSteg/DinLivssituasjon/useDinLivssituasjon';
+import { OppsummeringFelt } from '@components/SøknadsSteg/Oppsummering/OppsummeringFelt';
+import Oppsummeringsbolk from '@components/SøknadsSteg/Oppsummering/Oppsummeringsbolk';
+import { useAppContext } from '@context/AppContext';
+import { PersonType } from '@typer/personType';
+import { RouteEnum } from '@typer/routes';
 import type { Dispatch, FC, SetStateAction } from 'react';
-import { useAppContext } from '../../../../context/AppContext';
 import { ROUTES } from '../../../../routes';
-import { PersonType } from '../../../../typer/personType';
-import { RouteEnum } from '../../../../typer/routes';
-import { ArbeidsperiodeOppsummering } from '../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
-import { PensjonsperiodeOppsummering } from '../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
-import TekstBlock from '../../../Felleskomponenter/TekstBlock';
-import { UtenlandsperiodeOppsummering } from '../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
-import { useDinLivssituasjon } from '../../DinLivssituasjon/useDinLivssituasjon';
-import { OppsummeringFelt } from '../OppsummeringFelt';
-import Oppsummeringsbolk from '../Oppsummeringsbolk';
 
 interface Props {
     settFeilAnchors: Dispatch<SetStateAction<string[]>>;

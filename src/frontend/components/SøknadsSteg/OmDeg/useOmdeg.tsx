@@ -1,14 +1,13 @@
+import { useAppContext } from '@context/AppContext';
+import { useEøsContext } from '@context/EøsContext';
+import useJaNeiSpmFelt from '@hooks/useJaNeiSpmFelt';
 import { type ISkjema, useSkjema } from '@navikt/familie-skjema';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import type { IOmDegFeltTyper } from '@typer/skjema';
+import type { ISøknad } from '@typer/søknad';
+import { nullstilteEøsFelterForBarn } from '@utils/barn';
+import { nullstilteEøsFelterForSøker } from '@utils/søker';
 import { useEffect } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import { useEøsContext } from '../../../context/EøsContext';
-import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import type { IOmDegFeltTyper } from '../../../typer/skjema';
-import type { ISøknad } from '../../../typer/søknad';
-import { nullstilteEøsFelterForBarn } from '../../../utils/barn';
-import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
 
 import type { IOmDegTekstinnhold } from './innholdTyper';
 

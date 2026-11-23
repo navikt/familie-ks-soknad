@@ -1,12 +1,11 @@
+import { genererOppdaterteBarn, genererSvarForSpørsmålBarn } from '@components/SøknadsSteg/OmBarnaDine/utils';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { IBarnMedISøknad } from '@typer/barn';
+import type { IOmBarnaDineFeltTyper } from '@typer/skjema';
+import type { ISøknad } from '@typer/søknad';
 import { vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
-
-import { genererOppdaterteBarn, genererSvarForSpørsmålBarn } from '../components/SøknadsSteg/OmBarnaDine/utils';
-import type { IBarnMedISøknad } from '../typer/barn';
-import type { IOmBarnaDineFeltTyper } from '../typer/skjema';
-import type { ISøknad } from '../typer/søknad';
 
 describe('genererSvarForSpørsmålBarn', () => {
     const mockBarn = mockDeep<IBarnMedISøknad>({ id: 'random-id' });

@@ -1,10 +1,9 @@
+import { Dokumentasjonsbehov } from '@common/typer/kontrakt/dokumentasjon';
 import { fireEvent, render, screen } from '@testing-library/react';
+import type { IDokumentasjon } from '@typer/dokumentasjon';
+import { initialStateSøknad } from '@typer/søknad';
+import { spyOnUseApp, TestProvidere } from '@utils/testing';
 import { vi } from 'vitest';
-
-import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
-import type { IDokumentasjon } from '../../../typer/dokumentasjon';
-import { initialStateSøknad } from '../../../typer/søknad';
-import { spyOnUseApp, TestProvidere } from '../../../utils/testing';
 
 import LastOppVedlegg from './LastOppVedlegg';
 

@@ -1,6 +1,5 @@
+import { erDev, erProd } from '@common/miljø';
 import { init, setTag } from '@nais/apm';
-
-import { erDev, erProd } from '../../common/miljø';
 
 export const NETTVERKSFEIL_LOGGET_AV_DEKORATØREN =
     /^console\.error: \[ERROR\] .*\{"error":"TypeError: (Failed to fetch|Load failed|NetworkError when attempting to fetch resource\.)"/;

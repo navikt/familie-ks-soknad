@@ -1,19 +1,18 @@
+import { LandDropdown } from '@components/Felleskomponenter/Dropdowns/LandDropdown';
+import JaNeiSpm from '@components/Felleskomponenter/JaNeiSpm/JaNeiSpm';
+import { DagIMåneden, MånedÅrVelger } from '@components/Felleskomponenter/MånedÅrVelger/MånedÅrVelger';
+import { SkjemaFeiloppsummering } from '@components/Felleskomponenter/SkjemaFeiloppsummering/SkjemaFeiloppsummering';
+import SkjemaModal from '@components/Felleskomponenter/SkjemaModal/SkjemaModal';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { IPensjonsperiode } from '@typer/perioder';
+import { PersonType } from '@typer/personType';
+import type { IPensjonsperiodeTekstinnhold } from '@typer/sanity/modaler/pensjonsperiode';
+import { dagensDato, gårsdagensDato, sisteDagDenneMåneden } from '@utils/dato';
+import { visFeiloppsummering } from '@utils/hjelpefunksjoner';
 import { parseISO } from 'date-fns';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import type { IPensjonsperiode } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
-import type { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
-import { dagensDato, gårsdagensDato, sisteDagDenneMåneden } from '../../../utils/dato';
-import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
-import { LandDropdown } from '../Dropdowns/LandDropdown';
-import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
-import { DagIMåneden, MånedÅrVelger } from '../MånedÅrVelger/MånedÅrVelger';
-import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
-import SkjemaModal from '../SkjemaModal/SkjemaModal';
-import TekstBlock from '../TekstBlock';
 
 import { PensjonsperiodeSpørsmålId } from './spørsmål';
 import { type IUsePensjonSkjemaParams, usePensjonSkjema } from './usePensjonSkjema';

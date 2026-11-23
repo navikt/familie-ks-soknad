@@ -1,23 +1,23 @@
+import RedirectTilStart from '@components/Felleskomponenter/RedirectTilStart/RedirectTilStart';
+import Helse from '@components/Helse/Helse';
+import DinLivssituasjon from '@components/SøknadsSteg/DinLivssituasjon/DinLivssituasjon';
+import Dokumentasjon from '@components/SøknadsSteg/Dokumentasjon/Dokumentasjon';
+import EøsForBarn from '@components/SøknadsSteg/EøsSteg/Barn/EøsForBarn';
+import EøsForSøker from '@components/SøknadsSteg/EøsSteg/Søker/EøsForSøker';
+import Forside from '@components/SøknadsSteg/Forside/Forside';
+import Kvittering from '@components/SøknadsSteg/Kvittering/Kvittering';
+import OmBarnaDine from '@components/SøknadsSteg/OmBarnaDine/OmBarnaDine';
+import OmBarnet from '@components/SøknadsSteg/OmBarnet/OmBarnet';
+import OmDeg from '@components/SøknadsSteg/OmDeg/OmDeg';
+import Oppsummering from '@components/SøknadsSteg/Oppsummering/Oppsummering';
+import VelgBarn from '@components/SøknadsSteg/VelgBarn/VelgBarn';
+import { useAppContext } from '@context/AppContext';
+import { useEøsContext } from '@context/EøsContext';
 import { useVisSystemetLaster } from '@hooks/useVisSystemetLaster';
+import { type IRoute, RouteEnum } from '@typer/routes';
 import type { FC } from 'react';
 import { Route, Routes, useParams } from 'react-router';
-import RedirectTilStart from './components/Felleskomponenter/RedirectTilStart/RedirectTilStart';
-import Helse from './components/Helse/Helse';
-import DinLivssituasjon from './components/SøknadsSteg/DinLivssituasjon/DinLivssituasjon';
-import Dokumentasjon from './components/SøknadsSteg/Dokumentasjon/Dokumentasjon';
-import EøsForBarn from './components/SøknadsSteg/EøsSteg/Barn/EøsForBarn';
-import EøsForSøker from './components/SøknadsSteg/EøsSteg/Søker/EøsForSøker';
-import Forside from './components/SøknadsSteg/Forside/Forside';
-import Kvittering from './components/SøknadsSteg/Kvittering/Kvittering';
-import OmBarnaDine from './components/SøknadsSteg/OmBarnaDine/OmBarnaDine';
-import OmBarnet from './components/SøknadsSteg/OmBarnet/OmBarnet';
-import OmDeg from './components/SøknadsSteg/OmDeg/OmDeg';
-import Oppsummering from './components/SøknadsSteg/Oppsummering/Oppsummering';
-import VelgBarn from './components/SøknadsSteg/VelgBarn/VelgBarn';
-import { useAppContext } from './context/AppContext';
-import { useEøsContext } from './context/EøsContext';
 import { ROUTES } from './routes';
-import { type IRoute, RouteEnum } from './typer/routes';
 
 /**
  * useParams må kalles fra en Route-komponent, derfor kan ikke denne inlines i Søknad-komponenten

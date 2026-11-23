@@ -1,7 +1,7 @@
 import { apiClient } from '@api/client/apiClient';
+import type { EAllFeatureToggles } from '@common/feature-toggles';
+import { BASE_PATH } from '@common/miljø';
 import { describe, expect, test, vi } from 'vitest';
-import type { EAllFeatureToggles } from '../../common/feature-toggles';
-import { BASE_PATH } from '../../common/miljø';
 import { hentFeatureToggles } from './hentFeatureToggles';
 
 vi.mock('@api/client/apiClient', () => ({

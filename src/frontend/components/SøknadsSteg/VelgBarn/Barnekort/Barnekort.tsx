@@ -1,15 +1,14 @@
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import type { IVelgBarnTekstinnhold } from '@components/SøknadsSteg/VelgBarn/innholdTyper';
+import { useAppContext } from '@context/AppContext';
 import { ExclamationmarkTriangleIcon, TrashFillIcon } from '@navikt/aksel-icons';
 import { Button, Checkbox, FormSummary, InfoCard } from '@navikt/ds-react';
+import type { IBarn } from '@typer/person';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import { hentBostedSpråkId } from '@utils/språk';
+import { formaterFnr, uppercaseFørsteBokstav } from '@utils/visning';
 import type { FC } from 'react';
-
-import type { LocaleRecordBlock } from '../../../../../common/typer/locale';
-import { useAppContext } from '../../../../context/AppContext';
-import type { IBarn } from '../../../../typer/person';
-import { ESanitySteg } from '../../../../typer/sanity/sanity';
-import { hentBostedSpråkId } from '../../../../utils/språk';
-import { formaterFnr, uppercaseFørsteBokstav } from '../../../../utils/visning';
-import TekstBlock from '../../../Felleskomponenter/TekstBlock';
-import type { IVelgBarnTekstinnhold } from '../innholdTyper';
 
 interface IBarnekortProps {
     velgBarnCallback: (barn: IBarn, barnMedISøknad: boolean) => void;

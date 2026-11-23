@@ -1,13 +1,11 @@
+import miljø from '@common/miljø';
+import type { Dokumentasjonsbehov } from '@common/typer/kontrakt/dokumentasjon';
+import type { PlainTekst } from '@common/typer/kontrakt/generelle';
+import type { IDokumentasjonTekstinnhold } from '@components/SøknadsSteg/Dokumentasjon/innholdTyper';
 import type { FileAccepted, FileObject, FileRejected, FileRejectionReason } from '@navikt/ds-react';
-
+import { EFiltyper, type IDokumentasjon, type IVedlegg } from '@typer/dokumentasjon';
 import axios from 'axios';
 import { useState } from 'react';
-
-import miljø from '../../../../../common/miljø';
-import type { Dokumentasjonsbehov } from '../../../../../common/typer/kontrakt/dokumentasjon';
-import type { PlainTekst } from '../../../../../common/typer/kontrakt/generelle';
-import { EFiltyper, type IDokumentasjon, type IVedlegg } from '../../../../typer/dokumentasjon';
-import type { IDokumentasjonTekstinnhold } from '../innholdTyper';
 
 interface OpplastetVedlegg {
     dokumentId: string;

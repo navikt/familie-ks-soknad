@@ -1,12 +1,11 @@
+import type { FlettefeltVerdier } from '@common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import { useAppContext } from '@context/AppContext';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type Felt, type FeltState, feil, ok, useFelt, Valideringsstatus } from '@navikt/familie-skjema';
+import type { ISøknadSpørsmål } from '@typer/spørsmål';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-
-import type { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
-import type { LocaleRecordBlock } from '../../common/typer/locale';
-import { useAppContext } from '../context/AppContext';
-import type { ISøknadSpørsmål } from '../typer/spørsmål';
 
 export interface FeltGruppe {
     hovedSpørsmål: Felt<any>;

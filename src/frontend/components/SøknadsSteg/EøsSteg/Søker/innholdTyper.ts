@@ -1,5 +1,5 @@
-import type { LocaleRecordBlock } from '../../../../../common/typer/locale';
-import type { ISanitySpørsmålDokument } from '../../../../typer/sanity/sanity';
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import type { ISanitySpørsmålDokument } from '@typer/sanity/sanity';
 
 export interface IEøsForSøkerTekstinnhold {
     eoesForSoekerTittel: LocaleRecordBlock;

@@ -1,9 +1,8 @@
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import { useAppContext } from '@context/AppContext';
 import { type FeltState, feil, ok, useFelt } from '@navikt/familie-skjema';
+import type { ISøknadSpørsmål } from '@typer/spørsmål';
 import type { Alpha3Code } from 'i18n-iso-countries';
-
-import type { LocaleRecordBlock } from '../../common/typer/locale';
-import { useAppContext } from '../context/AppContext';
-import type { ISøknadSpørsmål } from '../typer/spørsmål';
 
 const useLanddropdownFelt = ({
     søknadsfelt,

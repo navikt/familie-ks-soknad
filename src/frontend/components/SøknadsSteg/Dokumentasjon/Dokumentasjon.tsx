@@ -1,25 +1,23 @@
+import { Dokumentasjonsbehov } from '@common/typer/kontrakt/dokumentasjon';
+import { Feilside } from '@components/Felleskomponenter/Feilside/Feilside';
+import PictureScanningGuide from '@components/Felleskomponenter/PictureScanningGuide/PictureScanningGuide';
+import Steg from '@components/Felleskomponenter/Steg/Steg';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { VedleggOppsummering } from '@components/Felleskomponenter/VedleggOppsummering/VedleggOppsummering';
+import type { IVedleggOppsummering } from '@components/Felleskomponenter/VedleggOppsummering/vedleggOppsummering.types';
+import { useAppContext } from '@context/AppContext';
+import useFørsteRender from '@hooks/useFørsteRender';
+import { useSendInnSkjema } from '@hooks/useSendInnSkjema';
 import { ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 import { BodyShort, Heading, InfoCard, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
+import { Typografi } from '@typer/common';
+import type { IDokumentasjon, IVedlegg } from '@typer/dokumentasjon';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import { erDokumentasjonRelevant } from '@utils/dokumentasjon';
+import { slåSammen } from '@utils/slåSammen';
 import { add, isBefore } from 'date-fns';
-
 import { type FC, useState } from 'react';
-
-import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
-import { useAppContext } from '../../../context/AppContext';
-import useFørsteRender from '../../../hooks/useFørsteRender';
-import { useSendInnSkjema } from '../../../hooks/useSendInnSkjema';
-import { Typografi } from '../../../typer/common';
-import type { IDokumentasjon, IVedlegg } from '../../../typer/dokumentasjon';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { erDokumentasjonRelevant } from '../../../utils/dokumentasjon';
-import { slåSammen } from '../../../utils/slåSammen';
-import { Feilside } from '../../Felleskomponenter/Feilside/Feilside';
-import PictureScanningGuide from '../../Felleskomponenter/PictureScanningGuide/PictureScanningGuide';
-import Steg from '../../Felleskomponenter/Steg/Steg';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import { VedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering/VedleggOppsummering';
-import type { IVedleggOppsummering } from '../../Felleskomponenter/VedleggOppsummering/vedleggOppsummering.types';
 
 import styles from './Dokumentasjon.module.css';
 import LastOppVedlegg from './LastOppVedlegg';

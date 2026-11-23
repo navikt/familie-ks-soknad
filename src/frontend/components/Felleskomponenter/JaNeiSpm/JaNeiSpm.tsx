@@ -1,15 +1,13 @@
+import type { FlettefeltVerdier } from '@common/typer/kontrakt/generelle';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { Box } from '@navikt/ds-react';
 import { type ESvar, JaNeiSpørsmål } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
-
+import type { ISanitySpørsmålDokument } from '@typer/sanity/sanity';
+import type { SkjemaFeltTyper } from '@typer/skjema';
 import type { FC, ReactNode } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-
-import type { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
-import { useAppContext } from '../../../context/AppContext';
-import type { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
-import type { SkjemaFeltTyper } from '../../../typer/skjema';
-import TekstBlock from '../TekstBlock';
 
 interface IJaNeiSpmProps {
     skjema: ISkjema<SkjemaFeltTyper, string>;

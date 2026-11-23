@@ -1,17 +1,17 @@
+import { ArbeidsperiodeOppsummering } from '@components/Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
+import { KontantstøttePeriodeOppsummering } from '@components/Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
+import { PensjonsperiodeOppsummering } from '@components/Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { UtbetalingsperiodeOppsummering } from '@components/Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
+import { OppsummeringFelt } from '@components/SøknadsSteg/Oppsummering/OppsummeringFelt';
+import { useAppContext } from '@context/AppContext';
+import { useSpråkContext } from '@context/SpråkContext';
+import type { IBarnMedISøknad } from '@typer/barn';
+import { AlternativtSvarForInput } from '@typer/common';
+import type { IOmsorgsperson } from '@typer/omsorgsperson';
+import { PersonType } from '@typer/personType';
+import { hentSlektsforhold, landkodeTilSpråk } from '@utils/språk';
 import type { FC } from 'react';
-import { useAppContext } from '../../../../../context/AppContext';
-import { useSpråkContext } from '../../../../../context/SpråkContext';
-import type { IBarnMedISøknad } from '../../../../../typer/barn';
-import { AlternativtSvarForInput } from '../../../../../typer/common';
-import type { IOmsorgsperson } from '../../../../../typer/omsorgsperson';
-import { PersonType } from '../../../../../typer/personType';
-import { hentSlektsforhold, landkodeTilSpråk } from '../../../../../utils/språk';
-import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
-import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
-import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
-import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
-import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
-import { OppsummeringFelt } from '../../OppsummeringFelt';
 
 const EøsOmsorgspersonOppsummering: FC<{
     omsorgsperson: IOmsorgsperson;

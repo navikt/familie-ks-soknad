@@ -1,18 +1,17 @@
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useOmdeg } from '@components/SøknadsSteg/OmDeg/useOmdeg';
+import { OppsummeringFelt } from '@components/SøknadsSteg/Oppsummering/OppsummeringFelt';
+import Oppsummeringsbolk from '@components/SøknadsSteg/Oppsummering/Oppsummeringsbolk';
+import { useAppContext } from '@context/AppContext';
+import { useSpråkContext } from '@context/SpråkContext';
 import { ESvar } from '@navikt/familie-form-elements';
+import { RouteEnum } from '@typer/routes';
+import { genererAdresseVisning } from '@utils/adresse';
+import { landkodeTilSpråk, sivilstandTilSanitySivilstandApiKey } from '@utils/språk';
+import { jaNeiSvarTilSpråkId } from '@utils/spørsmål';
 import type { Alpha3Code } from 'i18n-iso-countries';
 import type { Dispatch, FC, SetStateAction } from 'react';
-
-import { useAppContext } from '../../../../context/AppContext';
-import { useSpråkContext } from '../../../../context/SpråkContext';
 import { ROUTES } from '../../../../routes';
-import { RouteEnum } from '../../../../typer/routes';
-import { genererAdresseVisning } from '../../../../utils/adresse';
-import { landkodeTilSpråk, sivilstandTilSanitySivilstandApiKey } from '../../../../utils/språk';
-import { jaNeiSvarTilSpråkId } from '../../../../utils/spørsmål';
-import TekstBlock from '../../../Felleskomponenter/TekstBlock';
-import { useOmdeg } from '../../OmDeg/useOmdeg';
-import { OppsummeringFelt } from '../OppsummeringFelt';
-import Oppsummeringsbolk from '../Oppsummeringsbolk';
 
 interface Props {
     settFeilAnchors: Dispatch<SetStateAction<string[]>>;

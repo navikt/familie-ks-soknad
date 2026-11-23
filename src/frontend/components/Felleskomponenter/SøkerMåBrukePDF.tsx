@@ -1,7 +1,6 @@
+import { useAppContext } from '@context/AppContext';
 import { InlineMessage } from '@navikt/ds-react';
 import type { FC, ReactNode } from 'react';
-
-import { useAppContext } from '../../context/AppContext';
 
 import KomponentGruppe from './KomponentGruppe/KomponentGruppe';
 import TekstBlock from './TekstBlock';

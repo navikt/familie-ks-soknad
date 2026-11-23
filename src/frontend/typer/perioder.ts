@@ -1,9 +1,8 @@
+import type { ISODateString } from '@common/typer/ISODateString';
+import type { EBarnehageplassPeriodeBeskrivelse } from '@components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 import type { ESvar } from '@navikt/familie-form-elements';
 import type { UseSkjemaVerdi } from '@navikt/familie-skjema';
 import type { Alpha3Code } from 'i18n-iso-countries';
-
-import type { ISODateString } from '../../common/typer/ISODateString';
-import type { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 
 import type { AlternativtSvarForInput, DatoMedUkjent } from './common';
 import type { ISøknadSpørsmål } from './spørsmål';

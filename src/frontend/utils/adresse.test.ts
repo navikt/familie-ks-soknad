@@ -1,4 +1,4 @@
-import type { IAdresse } from '../../common/typer/kontrakt/generelle';
+import type { IAdresse } from '@common/typer/kontrakt/generelle';
 
 import { erNorskPostnummer, hentAdressefelterSortert } from './adresse';
 

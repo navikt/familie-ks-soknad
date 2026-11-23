@@ -1,16 +1,14 @@
+import { barnDataKeySpørsmål } from '@common/typer/kontrakt/søknadKontrakt';
+import { OmBarnaDineSpørsmålId } from '@components/SøknadsSteg/OmBarnaDine/spørsmål';
 import { ESvar } from '@navikt/familie-form-elements';
-
 import { act, render, screen } from '@testing-library/react';
+import type { IBarnMedISøknad } from '@typer/barn';
+import type { IBarnRespons } from '@typer/person';
+import type { ISøknad } from '@typer/søknad';
+import { mekkGyldigSøker, spyOnUseApp, TestProvidere } from '@utils/testing';
 import type { DeepPartial } from 'ts-essentials';
 import { vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
-
-import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
-import type { IBarnMedISøknad } from '../../../typer/barn';
-import type { IBarnRespons } from '../../../typer/person';
-import type { ISøknad } from '../../../typer/søknad';
-import { mekkGyldigSøker, spyOnUseApp, TestProvidere } from '../../../utils/testing';
-import { OmBarnaDineSpørsmålId } from '../OmBarnaDine/spørsmål';
 
 import VelgBarn from './VelgBarn';
 

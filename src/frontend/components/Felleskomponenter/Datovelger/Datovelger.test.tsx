@@ -1,10 +1,9 @@
+import type { ISODateString } from '@common/typer/ISODateString';
 import { type Felt, type ISkjema, useFelt } from '@navikt/familie-skjema';
 import { fireEvent, render, screen } from '@testing-library/react';
+import type { SkjemaFeltTyper } from '@typer/skjema';
+import { spyOnUseApp, TestProvidere } from '@utils/testing';
 import { mockDeep } from 'vitest-mock-extended';
-
-import type { ISODateString } from '../../../../common/typer/ISODateString';
-import type { SkjemaFeltTyper } from '../../../typer/skjema';
-import { spyOnUseApp, TestProvidere } from '../../../utils/testing';
 
 import Datovelger from './Datovelger';
 

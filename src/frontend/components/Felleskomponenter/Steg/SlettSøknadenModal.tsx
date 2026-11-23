@@ -1,7 +1,6 @@
+import { useAppContext } from '@context/AppContext';
 import { Button, Heading, Modal } from '@navikt/ds-react';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
 
 import styles from './SlettSøknadenModal.module.css';
 

@@ -1,10 +1,9 @@
+import type { Dokumentasjonsbehov } from '@common/typer/kontrakt/dokumentasjon';
+import { useAppContext } from '@context/AppContext';
 import { FileUpload, Heading, List, VStack } from '@navikt/ds-react';
+import type { IDokumentasjon, IVedlegg } from '@typer/dokumentasjon';
+import { uppercaseFørsteBokstav } from '@utils/visning';
 import type { FC } from 'react';
-
-import type { Dokumentasjonsbehov } from '../../../../../common/typer/kontrakt/dokumentasjon';
-import { useAppContext } from '../../../../context/AppContext';
-import type { IDokumentasjon, IVedlegg } from '../../../../typer/dokumentasjon';
-import { uppercaseFørsteBokstav } from '../../../../utils/visning';
 
 import { ECustomFileRejectionReasons, useFilopplaster } from './useFilopplaster';
 

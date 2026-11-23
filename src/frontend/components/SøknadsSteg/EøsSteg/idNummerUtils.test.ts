@@ -1,12 +1,11 @@
+import { ArbeidsperiodeSpørsmålsId } from '@components/Felleskomponenter/Arbeidsperiode/spørsmål';
+import { PensjonsperiodeSpørsmålId } from '@components/Felleskomponenter/Pensjonsmodal/spørsmål';
+import { UtenlandsoppholdSpørsmålId } from '@components/Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { IArbeidsperiode, IPensjonsperiode, IUtenlandsperiode } from '@typer/perioder';
+import { EUtenlandsoppholdÅrsak } from '@typer/utenlandsopphold';
+import { mockEøs } from '@utils/testing';
 import type { Alpha3Code } from 'i18n-iso-countries';
-
-import type { IArbeidsperiode, IPensjonsperiode, IUtenlandsperiode } from '../../../typer/perioder';
-import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
-import { mockEøs } from '../../../utils/testing';
-import { ArbeidsperiodeSpørsmålsId } from '../../Felleskomponenter/Arbeidsperiode/spørsmål';
-import { PensjonsperiodeSpørsmålId } from '../../Felleskomponenter/Pensjonsmodal/spørsmål';
-import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
 
 import { eøsLandUtenDuplikatHof, fjernDuplikat, idNummerLandMedPeriodeType, PeriodeType } from './idnummerUtils';
 

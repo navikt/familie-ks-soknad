@@ -1,17 +1,15 @@
+import { Dokumentasjonsbehov } from '@common/typer/kontrakt/dokumentasjon';
+import { barnDataKeySpørsmål } from '@common/typer/kontrakt/søknadKontrakt';
+import JaNeiSpm from '@components/Felleskomponenter/JaNeiSpm/JaNeiSpm';
+import Steg from '@components/Felleskomponenter/Steg/Steg';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { InlineMessage } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import { Typografi } from '@typer/common';
+import { ESanitySteg } from '@typer/sanity/sanity';
 import type { FC } from 'react';
-
 import { useNavigate } from 'react-router';
-
-import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
-import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
-import { useAppContext } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
-import Steg from '../../Felleskomponenter/Steg/Steg';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import HvilkeBarnCheckboxGruppe from './HvilkeBarnCheckboxGruppe';
 import type { IOmBarnaTekstinnhold } from './innholdTyper';

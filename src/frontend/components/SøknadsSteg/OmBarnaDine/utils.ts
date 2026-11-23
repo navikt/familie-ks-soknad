@@ -1,19 +1,18 @@
+import { barnDataKeySpørsmål } from '@common/typer/kontrakt/søknadKontrakt';
+import { EøsBarnSpørsmålId } from '@components/SøknadsSteg/EøsSteg/Barn/spørsmål';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
-import type { Alpha3Code } from 'i18n-iso-countries';
-
-import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
-import type { IBarnMedISøknad } from '../../../typer/barn';
-import type { IOmsorgsperson } from '../../../typer/omsorgsperson';
-import type { IOmBarnaDineFeltTyper } from '../../../typer/skjema';
-import type { ISøknad } from '../../../typer/søknad';
+import type { IBarnMedISøknad } from '@typer/barn';
+import type { IOmsorgsperson } from '@typer/omsorgsperson';
+import type { IOmBarnaDineFeltTyper } from '@typer/skjema';
+import type { ISøknad } from '@typer/søknad';
 import {
     filtrerteRelevanteIdNummerForBarn,
     genererInitiellAndreForelder,
     nullstilteEøsFelterForBarn,
     skalViseBorMedOmsorgsperson,
-} from '../../../utils/barn';
-import { EøsBarnSpørsmålId } from '../EøsSteg/Barn/spørsmål';
+} from '@utils/barn';
+import type { Alpha3Code } from 'i18n-iso-countries';
 
 export const genererSvarForSpørsmålBarn = (barn: IBarnMedISøknad, felt: Felt<string[]>): ESvar =>
     felt.verdi.includes(barn.id) ? ESvar.JA : ESvar.NEI;

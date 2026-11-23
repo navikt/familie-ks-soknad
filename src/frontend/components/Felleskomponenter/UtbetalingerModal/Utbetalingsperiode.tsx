@@ -1,18 +1,17 @@
+import JaNeiSpm from '@components/Felleskomponenter/JaNeiSpm/JaNeiSpm';
+import KomponentGruppe from '@components/Felleskomponenter/KomponentGruppe/KomponentGruppe';
+import { LeggTilKnapp } from '@components/Felleskomponenter/LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '@components/Felleskomponenter/PerioderContainer';
+import useModal from '@components/Felleskomponenter/SkjemaModal/useModal';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { IUtbetalingsperiode } from '@typer/perioder';
+import { type PeriodePersonTypeMedBarnProps, PersonType } from '@typer/personType';
+import type { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '@typer/skjema';
+import { uppercaseFørsteBokstav } from '@utils/visning';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import type { IUtbetalingsperiode } from '../../../typer/perioder';
-import { type PeriodePersonTypeMedBarnProps, PersonType } from '../../../typer/personType';
-import type { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
-import { uppercaseFørsteBokstav } from '../../../utils/visning';
-import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
-import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
-import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
-import PerioderContainer from '../PerioderContainer';
-import useModal from '../SkjemaModal/useModal';
-import TekstBlock from '../TekstBlock';
 
 import { mottarEllerMottattUtbetalingApiNavn } from './språkUtils';
 import { UtbetalingerModal } from './UtbetalingerModal';

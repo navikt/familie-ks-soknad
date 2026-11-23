@@ -1,5 +1,5 @@
-import { BASE_PATH } from '../../common/miljø';
-import type { LoggNivå, LoggPayload } from '../../common/typer/logg';
+import { BASE_PATH } from '@common/miljø';
+import type { LoggNivå, LoggPayload } from '@common/typer/logg';
 
 interface LoggFeil {
     name?: string;

@@ -1,11 +1,11 @@
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useSanityTekster } from '@context/SanityContext';
 import { useTranslate } from '@hooks/useTranslate';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { Button, Checkbox, ErrorMessage, InfoCard, VStack } from '@navikt/ds-react';
+import { Typografi } from '@typer/common';
+import { ESanitySteg } from '@typer/sanity/sanity';
 import type { FC } from 'react';
-import { useSanityTekster } from '../../../context/SanityContext';
-import { Typografi } from '../../../typer/common';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import { BekreftelseStatus, useBekreftelseOgStartSoknad } from './useBekreftelseOgStartSoknad';
 

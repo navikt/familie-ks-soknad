@@ -1,15 +1,15 @@
+import miljø from '@common/miljø';
+import InnholdContainer from '@components/Felleskomponenter/InnholdContainer/InnholdContainer';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
+import { useSanityTekster } from '@context/SanityContext';
+import { useSpråkContext } from '@context/SpråkContext';
 import { useTranslate } from '@hooks/useTranslate';
 import { Accordion, GuidePanel, Heading } from '@navikt/ds-react';
+import { Typografi } from '@typer/common';
+import { RouteEnum } from '@typer/routes';
+import { ESanitySteg } from '@typer/sanity/sanity';
 import { type FC, useEffect } from 'react';
-import miljø from '../../../../common/miljø';
-import { useAppContext } from '../../../context/AppContext';
-import { useSanityTekster } from '../../../context/SanityContext';
-import { useSpråkContext } from '../../../context/SpråkContext';
-import { Typografi } from '../../../typer/common';
-import { RouteEnum } from '../../../typer/routes';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import InnholdContainer from '../../Felleskomponenter/InnholdContainer/InnholdContainer';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
 
 import BekreftelseOgStartSoknad from './BekreftelseOgStartSoknad';
 import styles from './Forside.module.css';

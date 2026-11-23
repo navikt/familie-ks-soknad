@@ -1,19 +1,18 @@
+import { useAppContext } from '@context/AppContext';
+import { useEøsContext } from '@context/EøsContext';
+import useDatovelgerFelt from '@hooks/useDatovelgerFelt';
+import useJaNeiSpmFelt from '@hooks/useJaNeiSpmFelt';
+import useLanddropdownFelt from '@hooks/useLanddropdownFelt';
 import { ESvar } from '@navikt/familie-form-elements';
 import { useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
+import type { IBarnMedISøknad } from '@typer/barn';
+import type { IUsePeriodeSkjemaVerdi } from '@typer/perioder';
+import { PersonType } from '@typer/personType';
+import type { IPensjonsperiodeTekstinnhold } from '@typer/sanity/modaler/pensjonsperiode';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import type { IPensjonsperiodeFeltTyper } from '@typer/skjema';
+import { dagenEtterDato, sisteDagDenneMåneden, stringTilDate } from '@utils/dato';
 import { useEffect } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import { useEøsContext } from '../../../context/EøsContext';
-import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
-import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
-import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
-import type { IBarnMedISøknad } from '../../../typer/barn';
-import type { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
-import type { IPensjonsperiodeTekstinnhold } from '../../../typer/sanity/modaler/pensjonsperiode';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import type { IPensjonsperiodeFeltTyper } from '../../../typer/skjema';
-import { dagenEtterDato, sisteDagDenneMåneden, stringTilDate } from '../../../utils/dato';
 
 import { mottarPensjonNåFeilmelding } from './språkUtils';
 import { PensjonsperiodeSpørsmålId } from './spørsmål';

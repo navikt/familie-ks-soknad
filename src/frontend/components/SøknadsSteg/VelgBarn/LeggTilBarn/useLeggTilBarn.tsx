@@ -1,16 +1,15 @@
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import { VelgBarnSpørsmålId } from '@components/SøknadsSteg/VelgBarn/spørsmål';
+import { useAppContext } from '@context/AppContext';
+import useInputFeltMedUkjent from '@hooks/useInputFeltMedUkjent';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type FeltState, feil, type ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
-
-import type { LocaleRecordBlock } from '../../../../../common/typer/locale';
-import { useAppContext } from '../../../../context/AppContext';
-import useInputFeltMedUkjent from '../../../../hooks/useInputFeltMedUkjent';
-import type { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
-import { ESanitySteg } from '../../../../typer/sanity/sanity';
-import type { ILeggTilBarnTyper } from '../../../../typer/skjema';
-import { erBarnRegistrertFraFør, erBarnUnder11Mnd, hentAlder, hentUid } from '../../../../utils/barn';
-import { fjernWhiteSpace, trimWhiteSpace } from '../../../../utils/hjelpefunksjoner';
-import { identTilFødselsdato } from '../../../../utils/ident';
-import { VelgBarnSpørsmålId } from '../spørsmål';
+import type { ILeggTilBarnTekstinnhold } from '@typer/sanity/modaler/leggTilBarn';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import type { ILeggTilBarnTyper } from '@typer/skjema';
+import { erBarnRegistrertFraFør, erBarnUnder11Mnd, hentAlder, hentUid } from '@utils/barn';
+import { fjernWhiteSpace, trimWhiteSpace } from '@utils/hjelpefunksjoner';
+import { identTilFødselsdato } from '@utils/ident';
 
 export const useLeggTilBarn = (): {
     skjema: ISkjema<ILeggTilBarnTyper, string>;

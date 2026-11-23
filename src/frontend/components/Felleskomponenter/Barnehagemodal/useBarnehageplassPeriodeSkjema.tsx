@@ -1,19 +1,17 @@
+import { useAppContext } from '@context/AppContext';
+import useDatovelgerFelt from '@hooks/useDatovelgerFelt';
+import useDatovelgerFeltMedUkjent from '@hooks/useDatovelgerFeltMedUkjent';
+import useInputFelt from '@hooks/useInputFelt';
+import useJaNeiSpmFelt from '@hooks/useJaNeiSpmFelt';
+import useLanddropdownFelt from '@hooks/useLanddropdownFelt';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type FeltState, feil, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
-import { useEffect } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
-import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
-import useInputFelt from '../../../hooks/useInputFelt';
-import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
-import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
-import { AlternativtSvarForInput } from '../../../typer/common';
-import type { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
-import type { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import type { IFormateringsfeilmeldingerTekstinnhold } from '../../../typer/sanity/tekstInnhold';
-import type { IBarnehageplassPerioderFeltTyper } from '../../../typer/skjema';
+import { AlternativtSvarForInput } from '@typer/common';
+import type { IUsePeriodeSkjemaVerdi } from '@typer/perioder';
+import type { IBarnehageplassTekstinnhold } from '@typer/sanity/modaler/barnehageplass';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import type { IFormateringsfeilmeldingerTekstinnhold } from '@typer/sanity/tekstInnhold';
+import type { IBarnehageplassPerioderFeltTyper } from '@typer/skjema';
 import {
     dagenEtterDato,
     dagensDato,
@@ -21,8 +19,9 @@ import {
     gårsdagensDato,
     morgendagensDato,
     stringTilDate,
-} from '../../../utils/dato';
-import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
+} from '@utils/dato';
+import { trimWhiteSpace } from '@utils/hjelpefunksjoner';
+import { useEffect } from 'react';
 
 import { EBarnehageplassPeriodeBeskrivelse } from './barnehageplassTyper';
 import { BarnehageplassPeriodeSpørsmålId } from './spørsmål';
