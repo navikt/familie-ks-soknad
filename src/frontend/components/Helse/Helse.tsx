@@ -1,3 +1,6 @@
+import miljø from '@common/miljø';
+import { TypografiWrapper } from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { Heading, Loader } from '@navikt/ds-react';
 import {
     byggFeiletRessurs,
@@ -6,13 +9,8 @@ import {
     type Ressurs,
     RessursStatus,
 } from '@navikt/familie-typer';
-
+import { Typografi } from '@typer/common';
 import { type FC, useEffect, useState } from 'react';
-
-import miljø from '../../../common/miljø';
-import { useAppContext } from '../../context/AppContext';
-import { Typografi } from '../../typer/common';
-import { TypografiWrapper } from '../Felleskomponenter/TekstBlock';
 
 const Helse: FC = () => {
     const { axiosRequest } = useAppContext();

@@ -1,8 +1,7 @@
+import { DisabledApp } from '@components/Disabled/DisabledApp';
 import { Box, VStack } from '@navikt/ds-react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-
-import { DisabledApp } from './components/Disabled/DisabledApp';
 import { hentDekorator } from './decorator';
 
 import '@navikt/ds-css';

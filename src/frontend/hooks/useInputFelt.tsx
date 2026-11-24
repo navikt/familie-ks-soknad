@@ -1,11 +1,10 @@
+import type { FlettefeltVerdier } from '@common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import { useAppContext } from '@context/AppContext';
 import { type FeltState, feil, ok, useFelt } from '@navikt/familie-skjema';
+import type { ISøknadSpørsmål } from '@typer/spørsmål';
+import { trimWhiteSpace } from '@utils/hjelpefunksjoner';
 import { v4 as uuidv4 } from 'uuid';
-
-import type { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
-import type { LocaleRecordBlock } from '../../common/typer/locale';
-import { useAppContext } from '../context/AppContext';
-import type { ISøknadSpørsmål } from '../typer/spørsmål';
-import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
 
 interface Props {
     søknadsfelt: ISøknadSpørsmål<string> | null;

@@ -1,8 +1,7 @@
+import { ESivilstand } from '@common/typer/kontrakt/generelle';
+import { ESanitySivilstandApiKey } from '@typer/sanity/sanity';
+import { sivilstandTilSanitySivilstandApiKey } from '@utils/språk';
 import { vi } from 'vitest';
-
-import { ESivilstand } from '../../../common/typer/kontrakt/generelle';
-import { ESanitySivilstandApiKey } from '../../typer/sanity/sanity';
-import { sivilstandTilSanitySivilstandApiKey } from '../../utils/språk';
 
 describe('useSendInnSkjema', () => {
     beforeEach(() => {

@@ -1,25 +1,18 @@
+import { useAppContext } from '@context/AppContext';
+import useDatovelgerFelt from '@hooks/useDatovelgerFelt';
+import useDatovelgerFeltMedUkjent from '@hooks/useDatovelgerFeltMedUkjent';
+import useJaNeiSpmFelt from '@hooks/useJaNeiSpmFelt';
+import useLanddropdownFelt from '@hooks/useLanddropdownFelt';
 import { ESvar } from '@navikt/familie-form-elements';
 import { useFelt, useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
-
-import { useAppContext } from '../../../context/AppContext';
-import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
-import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
-import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
-import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
-import type { IBarnMedISøknad } from '../../../typer/barn';
-import type { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
-import type { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import type { IUtbetalingerFeltTyper } from '../../../typer/skjema';
-import {
-    dagensDato,
-    erSammeDatoSomDagensDato,
-    gårsdagensDato,
-    sisteDagDenneMåneden,
-    stringTilDate,
-} from '../../../utils/dato';
-import { minTilDatoForPeriode } from '../../../utils/perioder';
+import type { IBarnMedISøknad } from '@typer/barn';
+import type { IUsePeriodeSkjemaVerdi } from '@typer/perioder';
+import { PersonType } from '@typer/personType';
+import type { IAndreUtbetalingerTekstinnhold } from '@typer/sanity/modaler/andreUtbetalinger';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import type { IUtbetalingerFeltTyper } from '@typer/skjema';
+import { dagensDato, erSammeDatoSomDagensDato, gårsdagensDato, sisteDagDenneMåneden, stringTilDate } from '@utils/dato';
+import { minTilDatoForPeriode } from '@utils/perioder';
 
 import { UtbetalingerSpørsmålId } from './spørsmål';
 

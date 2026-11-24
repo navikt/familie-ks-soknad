@@ -1,8 +1,7 @@
+import { useAppContext } from '@context/AppContext';
 import { List } from '@navikt/ds-react';
+import { dokumentasjonsbehovTilTittelSanityApiNavn } from '@typer/dokumentasjon';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import { dokumentasjonsbehovTilTittelSanityApiNavn } from '../../../typer/dokumentasjon';
 
 import { hentVedleggSomSkalVises } from './vedleggOppsummering.domene';
 import type { IVedleggOppsummering } from './vedleggOppsummering.types';

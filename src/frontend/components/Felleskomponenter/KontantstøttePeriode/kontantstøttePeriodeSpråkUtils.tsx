@@ -1,6 +1,6 @@
-import { PersonType } from '../../../typer/personType';
-import { ESanitySteg, type ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
-import type { ITekstinnhold } from '../../../typer/sanity/tekstInnhold';
+import { PersonType } from '@typer/personType';
+import { ESanitySteg, type ISanitySpørsmålDokument } from '@typer/sanity/sanity';
+import type { ITekstinnhold } from '@typer/sanity/tekstInnhold';
 
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 

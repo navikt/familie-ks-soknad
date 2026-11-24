@@ -1,14 +1,12 @@
+import { IdNummer } from '@components/SøknadsSteg/EøsSteg/IdNummer';
+import { idNummerLandMedPeriodeType } from '@components/SøknadsSteg/EøsSteg/idnummerUtils';
+import { useAppContext } from '@context/AppContext';
+import { useEøsContext } from '@context/EøsContext';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
-
+import type { IBarnMedISøknad } from '@typer/barn';
+import type { IEøsForBarnFeltTyper } from '@typer/skjema';
+import { skalSkjuleAndreForelderFelt } from '@utils/barn';
 import type { Dispatch, FC, SetStateAction } from 'react';
-
-import { useAppContext } from '../../../../context/AppContext';
-import { useEøsContext } from '../../../../context/EøsContext';
-import type { IBarnMedISøknad } from '../../../../typer/barn';
-import type { IEøsForBarnFeltTyper } from '../../../../typer/skjema';
-import { skalSkjuleAndreForelderFelt } from '../../../../utils/barn';
-import { IdNummer } from '../IdNummer';
-import { idNummerLandMedPeriodeType } from '../idnummerUtils';
 
 const IdNummerForAndreForelder: FC<{
     skjema: ISkjema<IEøsForBarnFeltTyper, string>;

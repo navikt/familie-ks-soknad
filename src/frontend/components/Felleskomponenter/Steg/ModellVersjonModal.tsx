@@ -1,11 +1,10 @@
+import ModalContent from '@components/Felleskomponenter/ModalContent';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { XMarkOctagonFillIcon } from '@navikt/aksel-icons';
 import { Button, Modal } from '@navikt/ds-react';
+import { Typografi } from '@typer/common';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
-import ModalContent from '../ModalContent';
-import TekstBlock from '../TekstBlock';
 
 const ModellVersjonModal: FC<{ erÅpen: boolean }> = ({ erÅpen }) => {
     const { tekster, plainTekst } = useAppContext();

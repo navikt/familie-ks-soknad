@@ -1,6 +1,6 @@
 import { apiClient } from '@api/client/apiClient';
+import { BASE_PATH } from '@common/miljø';
 import { describe, expect, test, vi } from 'vitest';
-import { BASE_PATH } from '../../common/miljø';
 import { verifiserInnloggetBruker } from './verifiserInnloggetBruker';
 
 vi.mock('@api/client/apiClient', () => ({

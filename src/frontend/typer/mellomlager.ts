@@ -1,4 +1,4 @@
-import type { LocaleType } from '../../common/typer/locale';
+import type { LocaleType } from '@common/typer/locale';
 
 import type { ISøknad } from './søknad';
 

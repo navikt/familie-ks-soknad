@@ -1,22 +1,21 @@
+import { LandDropdown } from '@components/Felleskomponenter/Dropdowns/LandDropdown';
+import JaNeiSpm from '@components/Felleskomponenter/JaNeiSpm/JaNeiSpm';
+import { DagIMåneden, MånedÅrVelger } from '@components/Felleskomponenter/MånedÅrVelger/MånedÅrVelger';
+import { SkjemaCheckbox } from '@components/Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
+import { SkjemaFeiloppsummering } from '@components/Felleskomponenter/SkjemaFeiloppsummering/SkjemaFeiloppsummering';
+import SkjemaModal from '@components/Felleskomponenter/SkjemaModal/SkjemaModal';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { ESvar } from '@navikt/familie-form-elements';
 import { Valideringsstatus } from '@navikt/familie-skjema';
+import type { IUtbetalingsperiode } from '@typer/perioder';
+import { PersonType } from '@typer/personType';
+import type { IAndreUtbetalingerTekstinnhold } from '@typer/sanity/modaler/andreUtbetalinger';
+import { dagensDato, gårsdagensDato, sisteDagDenneMåneden } from '@utils/dato';
+import { visFeiloppsummering } from '@utils/hjelpefunksjoner';
+import { minTilDatoForPeriode } from '@utils/perioder';
+import { svarForSpørsmålMedUkjent } from '@utils/spørsmål';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import type { IUtbetalingsperiode } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
-import type { IAndreUtbetalingerTekstinnhold } from '../../../typer/sanity/modaler/andreUtbetalinger';
-import { dagensDato, gårsdagensDato, sisteDagDenneMåneden } from '../../../utils/dato';
-import { visFeiloppsummering } from '../../../utils/hjelpefunksjoner';
-import { minTilDatoForPeriode } from '../../../utils/perioder';
-import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
-import { LandDropdown } from '../Dropdowns/LandDropdown';
-import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
-import { DagIMåneden, MånedÅrVelger } from '../MånedÅrVelger/MånedÅrVelger';
-import { SkjemaCheckbox } from '../SkjemaCheckbox/SkjemaCheckbox';
-import { SkjemaFeiloppsummering } from '../SkjemaFeiloppsummering/SkjemaFeiloppsummering';
-import SkjemaModal from '../SkjemaModal/SkjemaModal';
-import TekstBlock from '../TekstBlock';
 
 import { UtbetalingerSpørsmålId } from './spørsmål';
 import { type IUseUtbetalingerSkjemaParams, useUtbetalingerSkjema } from './useUtbetalingerSkjema';

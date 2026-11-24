@@ -1,21 +1,19 @@
+import { SkjemaCheckbox } from '@components/Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
+import { SkjemaFeltInput } from '@components/Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { OppsummeringFelt } from '@components/SøknadsSteg/Oppsummering/OppsummeringFelt';
+import { useAppContext } from '@context/AppContext';
+import useInputFeltMedUkjent from '@hooks/useInputFeltMedUkjent';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type Felt, type FeltState, feil, type ISkjema, ok, useFelt } from '@navikt/familie-skjema';
+import type { IBarnMedISøknad } from '@typer/barn';
+import { AlternativtSvarForInput } from '@typer/common';
+import type { ISanitySpørsmålDokument } from '@typer/sanity/sanity';
+import type { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '@typer/skjema';
+import { trimWhiteSpace } from '@utils/hjelpefunksjoner';
 import type { Alpha3Code } from 'i18n-iso-countries';
-
 import { type Dispatch, type FC, type SetStateAction, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-
-import { useAppContext } from '../../../context/AppContext';
-import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
-import type { IBarnMedISøknad } from '../../../typer/barn';
-import { AlternativtSvarForInput } from '../../../typer/common';
-import type { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
-import type { IEøsForBarnFeltTyper, IEøsForSøkerFeltTyper } from '../../../typer/skjema';
-import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
-import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
-import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import { OppsummeringFelt } from '../Oppsummering/OppsummeringFelt';
 
 import { idNummerKeyPrefix, PeriodeType } from './idnummerUtils';
 

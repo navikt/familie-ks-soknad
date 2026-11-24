@@ -1,13 +1,10 @@
+import { useAppContext } from '@context/AppContext';
+import { useEøsContext } from '@context/EøsContext';
+import { useSpråkContext } from '@context/SpråkContext';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
-
+import type { SkjemaFeltTyper } from '@typer/skjema';
 import { type Alpha3Code, getAlpha3Codes, getName } from 'i18n-iso-countries';
-
 import type { FC, ReactNode } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import { useEøsContext } from '../../../context/EøsContext';
-import { useSpråkContext } from '../../../context/SpråkContext';
-import type { SkjemaFeltTyper } from '../../../typer/skjema';
 
 import StyledDropdown from './StyledDropdown';
 

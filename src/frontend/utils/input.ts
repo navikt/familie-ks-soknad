@@ -1,6 +1,5 @@
 import { ESvar } from '@navikt/familie-form-elements';
-
-import { AlternativtSvarForInput } from '../typer/common';
+import { AlternativtSvarForInput } from '@typer/common';
 
 export const formaterInitVerdiForInputMedUkjent = (verdi: string | undefined) =>
     verdi && verdi !== AlternativtSvarForInput.UKJENT ? verdi : '';

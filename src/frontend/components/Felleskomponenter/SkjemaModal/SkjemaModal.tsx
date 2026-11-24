@@ -1,10 +1,9 @@
+import type { FlettefeltVerdier } from '@common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import ModalContent from '@components/Felleskomponenter/ModalContent';
+import { useAppContext } from '@context/AppContext';
 import { BodyShort, Button, Modal, VStack } from '@navikt/ds-react';
 import type { ReactNode } from 'react';
-
-import type { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
-import type { LocaleRecordBlock } from '../../../../common/typer/locale';
-import { useAppContext } from '../../../context/AppContext';
-import ModalContent from '../ModalContent';
 
 interface Props {
     erÅpen: boolean;

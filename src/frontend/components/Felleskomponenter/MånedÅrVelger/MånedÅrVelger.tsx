@@ -1,13 +1,11 @@
+import type { ISODateString } from '@common/typer/ISODateString';
+import { useAppContext } from '@context/AppContext';
+import { useSpråkContext } from '@context/SpråkContext';
 import { MonthPicker, useMonthpicker } from '@navikt/ds-react';
 import type { Felt } from '@navikt/familie-skjema';
+import { ESanitySteg } from '@typer/sanity/sanity';
 import { formatISO, lastDayOfMonth } from 'date-fns';
-
 import { type FC, type ReactNode, useState } from 'react';
-
-import type { ISODateString } from '../../../../common/typer/ISODateString';
-import { useAppContext } from '../../../context/AppContext';
-import { useSpråkContext } from '../../../context/SpråkContext';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
 
 interface MånedÅrVelgerProps {
     tidligsteValgbareMåned?: Date;

@@ -1,12 +1,10 @@
+import { IdNummer } from '@components/SøknadsSteg/EøsSteg/IdNummer';
+import { idNummerLandMedPeriodeType } from '@components/SøknadsSteg/EøsSteg/idnummerUtils';
+import { useAppContext } from '@context/AppContext';
+import { useEøsContext } from '@context/EøsContext';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
-
+import type { IEøsForSøkerFeltTyper } from '@typer/skjema';
 import type { Dispatch, FC, SetStateAction } from 'react';
-
-import { useAppContext } from '../../../../context/AppContext';
-import { useEøsContext } from '../../../../context/EøsContext';
-import type { IEøsForSøkerFeltTyper } from '../../../../typer/skjema';
-import { IdNummer } from '../IdNummer';
-import { idNummerLandMedPeriodeType } from '../idnummerUtils';
 
 interface Props {
     skjema: ISkjema<IEøsForSøkerFeltTyper, string>;

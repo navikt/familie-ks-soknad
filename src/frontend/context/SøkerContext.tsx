@@ -1,5 +1,5 @@
+import type { ISøkerRespons } from '@typer/person';
 import { createContext, type PropsWithChildren, useContext } from 'react';
-import type { ISøkerRespons } from '../typer/person';
 
 interface SøkerContext {
     søker: ISøkerRespons;

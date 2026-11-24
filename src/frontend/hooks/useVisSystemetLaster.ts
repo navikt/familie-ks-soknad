@@ -1,5 +1,5 @@
+import { useAppContext } from '@context/AppContext';
 import { useIsFetching, useIsMutating } from '@tanstack/react-query';
-import { useAppContext } from '../context/AppContext';
 import { MetaKey } from './meta/metaKey';
 
 export function useVisSystemetLaster() {

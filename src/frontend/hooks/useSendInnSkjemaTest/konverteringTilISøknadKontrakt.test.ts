@@ -1,9 +1,8 @@
+import type { ISøknadKontrakt } from '@common/typer/kontrakt/søknadKontrakt';
+import { useSendInnSkjema } from '@hooks/useSendInnSkjema';
 import { renderHook } from '@testing-library/react';
-
-import type { ISøknadKontrakt } from '../../../common/typer/kontrakt/søknadKontrakt';
-import { spyOnUseApp, TestProvidere } from '../../utils/testing';
-import { erGyldigISøknadKontrakt } from '../../utils/typeguards';
-import { useSendInnSkjema } from '../useSendInnSkjema';
+import { spyOnUseApp, TestProvidere } from '@utils/testing';
+import { erGyldigISøknadKontrakt } from '@utils/typeguards';
 
 import { testdata1 } from './test-data/testdata1';
 import { testdata2 } from './test-data/testdata2';

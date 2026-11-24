@@ -1,8 +1,7 @@
 import { render } from '@testing-library/react';
+import type { ISøker } from '@typer/person';
+import { spyOnUseApp, spørsmålFinnes, TestProvidere, ventPåSpørsmål } from '@utils/testing';
 import { mockDeep } from 'vitest-mock-extended';
-
-import type { ISøker } from '../../../typer/person';
-import { spyOnUseApp, spørsmålFinnes, TestProvidere, ventPåSpørsmål } from '../../../utils/testing';
 
 import OmDeg from './OmDeg';
 import { OmDegSpørsmålId } from './spørsmål';

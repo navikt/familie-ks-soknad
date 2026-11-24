@@ -2,19 +2,19 @@ import type {
     ISøknadsfelt,
     IUtenlandsperiodeIKontraktFormat,
     TilRestLocaleRecord,
-} from '../../../common/typer/kontrakt/generelle';
+} from '@common/typer/kontrakt/generelle';
 import {
     hentFraDatoSpørsmål,
     hentLandSpørsmål,
     hentTilDatoSpørsmål,
     hentUtenlandsoppholdÅrsak,
-} from '../../components/Felleskomponenter/UtenlandsoppholdModal/utenlandsoppholdSpråkUtils';
-import type { IBarnMedISøknad } from '../../typer/barn';
-import type { IUtenlandsperiode } from '../../typer/perioder';
-import type { IUtenlandsoppholdTekstinnhold } from '../../typer/sanity/modaler/utenlandsopphold';
-import type { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
-import { EUtenlandsoppholdÅrsak } from '../../typer/utenlandsopphold';
-import { landkodeTilSpråk } from '../språk';
+} from '@components/Felleskomponenter/UtenlandsoppholdModal/utenlandsoppholdSpråkUtils';
+import type { IBarnMedISøknad } from '@typer/barn';
+import type { IUtenlandsperiode } from '@typer/perioder';
+import type { IUtenlandsoppholdTekstinnhold } from '@typer/sanity/modaler/utenlandsopphold';
+import type { ISanitySpørsmålDokument } from '@typer/sanity/sanity';
+import { EUtenlandsoppholdÅrsak } from '@typer/utenlandsopphold';
+import { landkodeTilSpråk } from '@utils/språk';
 
 import {
     sammeVerdiAlleSpråk,

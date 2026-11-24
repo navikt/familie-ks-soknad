@@ -1,7 +1,6 @@
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { spyOnUseApp, TestProvidere } from '@utils/testing';
 import { vi } from 'vitest';
-
-import { spyOnUseApp, TestProvidere } from '../../../../utils/testing';
 
 import LeggTilBarnModal from './LeggTilBarnModal';
 

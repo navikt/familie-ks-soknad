@@ -1,4 +1,4 @@
-import { type IRoute, RouteEnum } from './typer/routes';
+import { type IRoute, RouteEnum } from '@typer/routes';
 
 export const ROUTES: Record<RouteEnum, IRoute> = {
     [RouteEnum.Forside]: {

@@ -1,51 +1,50 @@
+import { Dokumentasjonsbehov } from '@common/typer/kontrakt/dokumentasjon';
+import { barnDataKeySpørsmål } from '@common/typer/kontrakt/søknadKontrakt';
+import { ArbeidsperiodeSpørsmålsId } from '@components/Felleskomponenter/Arbeidsperiode/spørsmål';
+import { BarnehageplassPeriodeSpørsmålId } from '@components/Felleskomponenter/Barnehagemodal/spørsmål';
+import { KontantstøttePeriodeSpørsmålId } from '@components/Felleskomponenter/KontantstøttePeriode/spørsmål';
+import { PensjonsperiodeSpørsmålId } from '@components/Felleskomponenter/Pensjonsmodal/spørsmål';
+import { UtenlandsoppholdSpørsmålId } from '@components/Felleskomponenter/UtenlandsoppholdModal/spørsmål';
+import { idNummerLand } from '@components/SøknadsSteg/EøsSteg/idnummerUtils';
+import { useAppContext } from '@context/AppContext';
+import { useEøsContext } from '@context/EøsContext';
+import useDatovelgerFeltMedUkjent from '@hooks/useDatovelgerFeltMedUkjent';
+import useInputFeltMedUkjent from '@hooks/useInputFeltMedUkjent';
+import useJaNeiSpmFelt from '@hooks/useJaNeiSpmFelt';
+import useLanddropdownFeltMedJaNeiAvhengighet from '@hooks/useLanddropdownFeltMedJaNeiAvhengighet';
+import { usePerioder } from '@hooks/usePerioder';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type FeltState, feil, type ISkjema, ok, useFelt, useSkjema } from '@navikt/familie-skjema';
-import { useEffect, useState } from 'react';
-
-import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
-import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
-import { useAppContext } from '../../../context/AppContext';
-import { useEøsContext } from '../../../context/EøsContext';
-import useDatovelgerFeltMedUkjent from '../../../hooks/useDatovelgerFeltMedUkjent';
-import useInputFeltMedUkjent from '../../../hooks/useInputFeltMedUkjent';
-import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
-import useLanddropdownFeltMedJaNeiAvhengighet from '../../../hooks/useLanddropdownFeltMedJaNeiAvhengighet';
-import { usePerioder } from '../../../hooks/usePerioder';
-import { andreForelderDataKeySpørsmål, type IAndreForelder, type IBarnMedISøknad } from '../../../typer/barn';
-import { AlternativtSvarForInput, type BarnetsId } from '../../../typer/common';
-import type { IDokumentasjon } from '../../../typer/dokumentasjon';
+import { andreForelderDataKeySpørsmål, type IAndreForelder, type IBarnMedISøknad } from '@typer/barn';
+import { AlternativtSvarForInput, type BarnetsId } from '@typer/common';
+import type { IDokumentasjon } from '@typer/dokumentasjon';
 import type {
     IArbeidsperiode,
     IBarnehageplassPeriode,
     IEøsKontantstøttePeriode,
     IPensjonsperiode,
     IUtenlandsperiode,
-} from '../../../typer/perioder';
-import type { IIdNummer } from '../../../typer/person';
-import { PersonType } from '../../../typer/personType';
-import type { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import type { IOmBarnetFeltTyper } from '../../../typer/skjema';
-import type { ISøknad } from '../../../typer/søknad';
+} from '@typer/perioder';
+import type { IIdNummer } from '@typer/person';
+import { PersonType } from '@typer/personType';
+import type { IUtenlandsoppholdTekstinnhold } from '@typer/sanity/modaler/utenlandsopphold';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import type { IOmBarnetFeltTyper } from '@typer/skjema';
+import type { ISøknad } from '@typer/søknad';
 import {
     filtrerteRelevanteIdNummerForBarn,
     finnesPeriodeMedGradertBarnehageplass,
     genererInitiellAndreForelder,
     nullstilteEøsFelterForBarn,
     skalViseBorMedOmsorgsperson,
-} from '../../../utils/barn';
-import { dagensDato } from '../../../utils/dato';
-import { fjernWhiteSpace, trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
-import { formaterInitVerdiForInputMedUkjent, formaterVerdiForCheckbox } from '../../../utils/input';
-import { svarForSpørsmålMedUkjent } from '../../../utils/spørsmål';
-import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
-import { flyttetPermanentFraNorge } from '../../../utils/utenlandsopphold';
-import { ArbeidsperiodeSpørsmålsId } from '../../Felleskomponenter/Arbeidsperiode/spørsmål';
-import { BarnehageplassPeriodeSpørsmålId } from '../../Felleskomponenter/Barnehagemodal/spørsmål';
-import { KontantstøttePeriodeSpørsmålId } from '../../Felleskomponenter/KontantstøttePeriode/spørsmål';
-import { PensjonsperiodeSpørsmålId } from '../../Felleskomponenter/Pensjonsmodal/spørsmål';
-import { UtenlandsoppholdSpørsmålId } from '../../Felleskomponenter/UtenlandsoppholdModal/spørsmål';
-import { idNummerLand } from '../EøsSteg/idnummerUtils';
+} from '@utils/barn';
+import { dagensDato } from '@utils/dato';
+import { fjernWhiteSpace, trimWhiteSpace } from '@utils/hjelpefunksjoner';
+import { formaterInitVerdiForInputMedUkjent, formaterVerdiForCheckbox } from '@utils/input';
+import { svarForSpørsmålMedUkjent } from '@utils/spørsmål';
+import { nullstilteEøsFelterForSøker } from '@utils/søker';
+import { flyttetPermanentFraNorge } from '@utils/utenlandsopphold';
+import { useEffect, useState } from 'react';
 
 import type { IOmBarnetTekstinnhold } from './innholdTyper';
 import { OmBarnetSpørsmålsId } from './spørsmål';

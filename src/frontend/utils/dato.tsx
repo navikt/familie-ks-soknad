@@ -1,5 +1,10 @@
+import type { ISODateString } from '@common/typer/ISODateString';
+import type { PlainTekst } from '@common/typer/kontrakt/generelle';
+import { type LocaleRecordBlock, LocaleType } from '@common/typer/locale';
 import { captureException } from '@nais/apm';
 import { type FeltState, feil, ok } from '@navikt/familie-skjema';
+import { AlternativtSvarForInput, type DatoMedUkjent } from '@typer/common';
+import type { IFormateringsfeilmeldingerTekstinnhold } from '@typer/sanity/tekstInnhold';
 import {
     add,
     endOfMonth,
@@ -16,12 +21,6 @@ import {
     sub,
 } from 'date-fns';
 import { enGB, nb, nn } from 'date-fns/locale';
-
-import type { ISODateString } from '../../common/typer/ISODateString';
-import type { PlainTekst } from '../../common/typer/kontrakt/generelle';
-import { type LocaleRecordBlock, LocaleType } from '../../common/typer/locale';
-import { AlternativtSvarForInput, type DatoMedUkjent } from '../typer/common';
-import type { IFormateringsfeilmeldingerTekstinnhold } from '../typer/sanity/tekstInnhold';
 
 export const erDatoFormatGodkjent = (dato: Date) => isValid(dato);
 

@@ -1,21 +1,20 @@
+import type { FlettefeltVerdier } from '@common/typer/kontrakt/generelle';
+import { barnDataKeySpørsmål } from '@common/typer/kontrakt/søknadKontrakt';
+import { BarnehageplassPeriodeOppsummering } from '@components/Felleskomponenter/Barnehagemodal/BarnehageplassPeriodeOppsummering';
+import { KontantstøttePeriodeOppsummering } from '@components/Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { UtenlandsperiodeOppsummering } from '@components/Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
+import { useOmBarnet } from '@components/SøknadsSteg/OmBarnet/useOmBarnet';
+import { OppsummeringFelt } from '@components/SøknadsSteg/Oppsummering/OppsummeringFelt';
+import Oppsummeringsbolk from '@components/SøknadsSteg/Oppsummering/Oppsummeringsbolk';
+import { useAppContext } from '@context/AppContext';
+import { useSpråkContext } from '@context/SpråkContext';
+import { useStegContext } from '@context/StegContext';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { IBarnMedISøknad } from '@typer/barn';
+import { PersonType } from '@typer/personType';
+import { landkodeTilSpråk } from '@utils/språk';
 import type { Dispatch, FC, SetStateAction } from 'react';
-
-import type { FlettefeltVerdier } from '../../../../../../common/typer/kontrakt/generelle';
-import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
-import { useAppContext } from '../../../../../context/AppContext';
-import { useSpråkContext } from '../../../../../context/SpråkContext';
-import { useStegContext } from '../../../../../context/StegContext';
-import type { IBarnMedISøknad } from '../../../../../typer/barn';
-import { PersonType } from '../../../../../typer/personType';
-import { landkodeTilSpråk } from '../../../../../utils/språk';
-import { BarnehageplassPeriodeOppsummering } from '../../../../Felleskomponenter/Barnehagemodal/BarnehageplassPeriodeOppsummering';
-import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
-import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
-import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
-import { useOmBarnet } from '../../../OmBarnet/useOmBarnet';
-import { OppsummeringFelt } from '../../OppsummeringFelt';
-import Oppsummeringsbolk from '../../Oppsummeringsbolk';
 
 import AndreForelderOppsummering from './AndreForelderOppsummering';
 

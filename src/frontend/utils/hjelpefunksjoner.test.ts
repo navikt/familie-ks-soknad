@@ -1,7 +1,6 @@
 import { type ISkjema, Valideringsstatus } from '@navikt/familie-skjema';
+import type { IOmBarnaDineFeltTyper } from '@typer/skjema';
 import { mockDeep } from 'vitest-mock-extended';
-
-import type { IOmBarnaDineFeltTyper } from '../typer/skjema';
 
 import { fjernWhiteSpace, trimWhiteSpace, visFeiloppsummering } from './hjelpefunksjoner';
 

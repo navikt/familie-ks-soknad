@@ -1,8 +1,8 @@
+import { Feilside } from '@components/Felleskomponenter/Feilside/Feilside';
+import SystemetLaster from '@components/Felleskomponenter/SystemetLaster/SystemetLaster';
+import { useAppContext } from '@context/AppContext';
 import { useVisSystemetLaster } from '@hooks/useVisSystemetLaster';
 import { Page } from '@navikt/ds-react';
-import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
-import SystemetLaster from './components/Felleskomponenter/SystemetLaster/SystemetLaster';
-import { useAppContext } from './context/AppContext';
 import Søknad from './Søknad';
 
 const AppContainer = () => {

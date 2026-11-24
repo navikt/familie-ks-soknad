@@ -1,8 +1,6 @@
+import { type ISteg, RouteEnum } from '@typer/routes';
 import { createContext, type PropsWithChildren, useContext, useEffect, useState } from 'react';
-
 import { useLocation, useNavigate } from 'react-router';
-
-import { type ISteg, RouteEnum } from '../typer/routes';
 
 import { useAppContext } from './AppContext';
 import { useStegContext } from './StegContext';

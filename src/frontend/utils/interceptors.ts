@@ -1,6 +1,6 @@
 import { apiClient } from '@api/client/apiClient';
+import miljø, { BASE_PATH } from '@common/miljø';
 import axios, { type AxiosError } from 'axios';
-import miljø, { BASE_PATH } from '../../common/miljø';
 
 /**
  * Må kalles synkront ved oppstart av appen (før React-treet monteres), ikke fra en

@@ -1,20 +1,19 @@
+import type { LocaleRecordBlock, LocaleRecordString } from '@common/typer/locale';
+import { ArbeidsperiodeOppsummering } from '@components/Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
+import { PensjonsperiodeOppsummering } from '@components/Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { UtbetalingsperiodeOppsummering } from '@components/Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
+import IdNummerForSøker from '@components/SøknadsSteg/EøsSteg/Søker/IdNummerForSøker';
+import { useEøsForSøker } from '@components/SøknadsSteg/EøsSteg/Søker/useEøsForSøker';
+import { OppsummeringFelt } from '@components/SøknadsSteg/Oppsummering/OppsummeringFelt';
+import Oppsummeringsbolk from '@components/SøknadsSteg/Oppsummering/Oppsummeringsbolk';
+import { useAppContext } from '@context/AppContext';
 import type { ESvar } from '@navikt/familie-form-elements';
+import { PersonType } from '@typer/personType';
+import { RouteEnum } from '@typer/routes';
+import type { ISøknadSpørsmål } from '@typer/spørsmål';
 import type { Dispatch, FC, SetStateAction } from 'react';
-
-import type { LocaleRecordBlock, LocaleRecordString } from '../../../../../../common/typer/locale';
-import { useAppContext } from '../../../../../context/AppContext';
 import { ROUTES } from '../../../../../routes';
-import { PersonType } from '../../../../../typer/personType';
-import { RouteEnum } from '../../../../../typer/routes';
-import type { ISøknadSpørsmål } from '../../../../../typer/spørsmål';
-import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
-import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
-import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
-import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
-import IdNummerForSøker from '../../../EøsSteg/Søker/IdNummerForSøker';
-import { useEøsForSøker } from '../../../EøsSteg/Søker/useEøsForSøker';
-import { OppsummeringFelt } from '../../OppsummeringFelt';
-import Oppsummeringsbolk from '../../Oppsummeringsbolk';
 
 interface Props {
     settFeilAnchors: Dispatch<SetStateAction<string[]>>;

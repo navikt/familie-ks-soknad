@@ -1,8 +1,7 @@
 import { renderHook } from '@testing-library/react';
-
-import { RouteEnum } from '../typer/routes';
-import { genererInitialBarnMedISøknad } from '../utils/barn';
-import { spyOnUseApp, TestProvidere } from '../utils/testing';
+import { RouteEnum } from '@typer/routes';
+import { genererInitialBarnMedISøknad } from '@utils/barn';
+import { spyOnUseApp, TestProvidere } from '@utils/testing';
 
 import { StegProvider, useStegContext } from './StegContext';
 

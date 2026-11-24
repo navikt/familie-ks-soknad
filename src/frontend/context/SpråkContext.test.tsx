@@ -1,9 +1,8 @@
+import { LocaleType } from '@common/typer/locale';
 import { setAvailableLanguages, setParams } from '@navikt/nav-dekoratoren-moduler';
 import { act, renderHook } from '@testing-library/react';
 import type { PropsWithChildren } from 'react';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-
-import { LocaleType } from '../../common/typer/locale';
 
 let languageSelectCallback: ((language: { locale: string }) => void) | undefined;
 const setCookieMock = vi.fn();

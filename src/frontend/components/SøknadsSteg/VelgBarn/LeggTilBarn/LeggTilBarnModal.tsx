@@ -1,18 +1,17 @@
+import KomponentGruppe from '@components/Felleskomponenter/KomponentGruppe/KomponentGruppe';
+import { SkjemaCheckbox } from '@components/Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
+import { SkjemaFeiloppsummering } from '@components/Felleskomponenter/SkjemaFeiloppsummering/SkjemaFeiloppsummering';
+import { SkjemaFeltInput } from '@components/Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
+import SkjemaModal from '@components/Felleskomponenter/SkjemaModal/SkjemaModal';
+import { SøkerMåBrukePDF } from '@components/Felleskomponenter/SøkerMåBrukePDF';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { Fieldset } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import type { ILeggTilBarnTekstinnhold } from '@typer/sanity/modaler/leggTilBarn';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import { visFeiloppsummering } from '@utils/hjelpefunksjoner';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../../context/AppContext';
-import type { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
-import { ESanitySteg } from '../../../../typer/sanity/sanity';
-import { visFeiloppsummering } from '../../../../utils/hjelpefunksjoner';
-import KomponentGruppe from '../../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
-import { SkjemaCheckbox } from '../../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
-import { SkjemaFeiloppsummering } from '../../../Felleskomponenter/SkjemaFeiloppsummering/SkjemaFeiloppsummering';
-import { SkjemaFeltInput } from '../../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
-import SkjemaModal from '../../../Felleskomponenter/SkjemaModal/SkjemaModal';
-import { SøkerMåBrukePDF } from '../../../Felleskomponenter/SøkerMåBrukePDF';
-import TekstBlock from '../../../Felleskomponenter/TekstBlock';
 
 import { useLeggTilBarn } from './useLeggTilBarn';
 

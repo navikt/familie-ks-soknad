@@ -1,10 +1,9 @@
 import { render } from '@testing-library/react';
+import type { ISøknad } from '@typer/søknad';
+import * as hjelpefunksjoner from '@utils/hjelpefunksjoner';
+import { spyOnUseApp } from '@utils/testing';
 import { vi } from 'vitest';
 import { mockDeep } from 'vitest-mock-extended';
-
-import type { ISøknad } from '../../../typer/søknad';
-import * as hjelpefunksjoner from '../../../utils/hjelpefunksjoner';
-import { spyOnUseApp } from '../../../utils/testing';
 
 import { TilfeldigBarnIkon } from './TilfeldigBarnIkon';
 

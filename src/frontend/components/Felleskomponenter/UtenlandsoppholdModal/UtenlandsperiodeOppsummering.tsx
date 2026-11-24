@@ -1,17 +1,17 @@
+import PeriodeOppsummering from '@components/Felleskomponenter/PeriodeOppsummering/PeriodeOppsummering';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { OppsummeringFelt } from '@components/SøknadsSteg/Oppsummering/OppsummeringFelt';
+import { useAppContext } from '@context/AppContext';
+import { useSpråkContext } from '@context/SpråkContext';
+import { AlternativtSvarForInput } from '@typer/common';
+import type { IUtenlandsperiode } from '@typer/perioder';
+import type { PeriodePersonTypeMedBarnProps } from '@typer/personType';
+import type { IUtenlandsoppholdTekstinnhold } from '@typer/sanity/modaler/utenlandsopphold';
+import type { ISanitySpørsmålDokument } from '@typer/sanity/sanity';
+import { EUtenlandsoppholdÅrsak } from '@typer/utenlandsopphold';
+import { formaterDato, formaterDatoMedUkjent } from '@utils/dato';
+import { landkodeTilSpråk } from '@utils/språk';
 import type { FC } from 'react';
-import { useAppContext } from '../../../context/AppContext';
-import { useSpråkContext } from '../../../context/SpråkContext';
-import { AlternativtSvarForInput } from '../../../typer/common';
-import type { IUtenlandsperiode } from '../../../typer/perioder';
-import type { PeriodePersonTypeMedBarnProps } from '../../../typer/personType';
-import type { IUtenlandsoppholdTekstinnhold } from '../../../typer/sanity/modaler/utenlandsopphold';
-import type { ISanitySpørsmålDokument } from '../../../typer/sanity/sanity';
-import { EUtenlandsoppholdÅrsak } from '../../../typer/utenlandsopphold';
-import { formaterDato, formaterDatoMedUkjent } from '../../../utils/dato';
-import { landkodeTilSpråk } from '../../../utils/språk';
-import { OppsummeringFelt } from '../../SøknadsSteg/Oppsummering/OppsummeringFelt';
-import PeriodeOppsummering from '../PeriodeOppsummering/PeriodeOppsummering';
-import TekstBlock from '../TekstBlock';
 
 import {
     hentFraDatoSpørsmål,

@@ -1,4 +1,4 @@
-import type { IBarnRespons } from '../../typer/person';
+import type { IBarnRespons } from '@typer/person';
 
 export function lagBarn(barn?: Partial<IBarnRespons>): IBarnRespons {
     return {

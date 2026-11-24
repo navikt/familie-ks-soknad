@@ -1,11 +1,10 @@
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import type { IVelgBarnTekstinnhold } from '@components/SøknadsSteg/VelgBarn/innholdTyper';
+import { useAppContext } from '@context/AppContext';
 import { BodyShort, Box, Button } from '@navikt/ds-react';
+import type { ILeggTilBarnTekstinnhold } from '@typer/sanity/modaler/leggTilBarn';
+import { ESanitySteg } from '@typer/sanity/sanity';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../../context/AppContext';
-import type { ILeggTilBarnTekstinnhold } from '../../../../typer/sanity/modaler/leggTilBarn';
-import { ESanitySteg } from '../../../../typer/sanity/sanity';
-import TekstBlock from '../../../Felleskomponenter/TekstBlock';
-import type { IVelgBarnTekstinnhold } from '../innholdTyper';
 
 export const NyttBarnKort: FC<{ onLeggTilBarn: () => void }> = ({ onLeggTilBarn }) => {
     const { tekster } = useAppContext();

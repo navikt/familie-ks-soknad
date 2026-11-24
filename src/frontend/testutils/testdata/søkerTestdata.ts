@@ -1,5 +1,5 @@
-import { ESivilstand } from '../../../common/typer/kontrakt/generelle';
-import type { ISøkerRespons } from '../../typer/person';
+import { ESivilstand } from '@common/typer/kontrakt/generelle';
+import type { ISøkerRespons } from '@typer/person';
 
 import { lagBarn } from './barnTestdata';
 

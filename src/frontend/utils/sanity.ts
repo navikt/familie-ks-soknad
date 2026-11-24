@@ -1,3 +1,5 @@
+import type { FlettefeltVerdier } from '@common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock, LocaleRecordString, LocaleType } from '@common/typer/locale';
 import { isPortableTextSpan } from '@portabletext/toolkit';
 import type {
     ArbitraryTypedObject,
@@ -5,20 +7,16 @@ import type {
     PortableTextMarkDefinition,
     PortableTextSpan,
 } from '@portabletext/types';
-import { pipe } from 'ramda';
-
-import type { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
-import type { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../common/typer/locale';
-import type { IAndreUtbetalingerTekstinnhold } from '../typer/sanity/modaler/andreUtbetalinger';
-import type { IArbeidsperiodeTekstinnhold } from '../typer/sanity/modaler/arbeidsperiode';
-import type { IBarnehageplassTekstinnhold } from '../typer/sanity/modaler/barnehageplass';
-import type { IBlokkerTilbakeKnappModal } from '../typer/sanity/modaler/blokkerTilbakeKnapp';
-import type { IEøsYtelseTekstinnhold } from '../typer/sanity/modaler/eøsYtelse';
-import type { ILeggTilBarnTekstinnhold } from '../typer/sanity/modaler/leggTilBarn';
-import type { IMistetInformasjonenDinModal } from '../typer/sanity/modaler/mistetInformasjonenDin';
-import type { IPensjonsperiodeTekstinnhold } from '../typer/sanity/modaler/pensjonsperiode';
-import type { IStartPåNyttModal } from '../typer/sanity/modaler/startPåNytt';
-import type { IUtenlandsoppholdTekstinnhold } from '../typer/sanity/modaler/utenlandsopphold';
+import type { IAndreUtbetalingerTekstinnhold } from '@typer/sanity/modaler/andreUtbetalinger';
+import type { IArbeidsperiodeTekstinnhold } from '@typer/sanity/modaler/arbeidsperiode';
+import type { IBarnehageplassTekstinnhold } from '@typer/sanity/modaler/barnehageplass';
+import type { IBlokkerTilbakeKnappModal } from '@typer/sanity/modaler/blokkerTilbakeKnapp';
+import type { IEøsYtelseTekstinnhold } from '@typer/sanity/modaler/eøsYtelse';
+import type { ILeggTilBarnTekstinnhold } from '@typer/sanity/modaler/leggTilBarn';
+import type { IMistetInformasjonenDinModal } from '@typer/sanity/modaler/mistetInformasjonenDin';
+import type { IPensjonsperiodeTekstinnhold } from '@typer/sanity/modaler/pensjonsperiode';
+import type { IStartPåNyttModal } from '@typer/sanity/modaler/startPåNytt';
+import type { IUtenlandsoppholdTekstinnhold } from '@typer/sanity/modaler/utenlandsopphold';
 import {
     alternativeTeksterPrefix,
     type ESanityFlettefeltverdi,
@@ -32,7 +30,7 @@ import {
     navigasjonPrefix,
     type SanityDokument,
     vedlikeholdsarbeidPrefix,
-} from '../typer/sanity/sanity';
+} from '@typer/sanity/sanity';
 import {
     type IAlternativeTeksterTekstinnhold,
     type IFellesTekstInnhold,
@@ -47,7 +45,8 @@ import {
     type IVedlikeholdsarbeidTekstinnhold,
     SanityModalPrefix,
     SanityPersonType,
-} from '../typer/sanity/tekstInnhold';
+} from '@typer/sanity/tekstInnhold';
+import { pipe } from 'ramda';
 
 const strukturerInnholdForSteg = (dokumenter: SanityDokument[], steg: ESanitySteg): Record<string, SanityDokument> =>
     dokumenter

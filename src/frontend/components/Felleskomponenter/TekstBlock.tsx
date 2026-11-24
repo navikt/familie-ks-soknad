@@ -1,11 +1,11 @@
+import type { FlettefeltVerdier } from '@common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import { useSpråkContext } from '@context/SpråkContext';
 import { useTranslateFlettefelt } from '@hooks/useTranslateFlettefelt';
 import { BodyLong, BodyShort, Detail, Heading, Ingress, Label } from '@navikt/ds-react';
 import { PortableText } from '@portabletext/react';
+import { Typografi } from '@typer/common';
 import type { CSSProperties, ReactNode } from 'react';
-import type { FlettefeltVerdier } from '../../../common/typer/kontrakt/generelle';
-import type { LocaleRecordBlock } from '../../../common/typer/locale';
-import { useSpråkContext } from '../../context/SpråkContext';
-import { Typografi } from '../../typer/common';
 
 import styles from './TekstBlock.module.css';
 
