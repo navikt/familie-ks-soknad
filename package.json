@@ -51,7 +51,7 @@
     "@navikt/aksel-icons": "8.20.1",
     "@navikt/ds-css": "8.20.1",
     "@navikt/ds-react": "8.20.1",
-    "@navikt/familie-form-elements": "22.0.5",
+    "@navikt/familie-form-elements": "22.0.6",
     "@navikt/familie-http": "8.0.30",
     "@navikt/familie-skjema": "8.2.56",
     "@navikt/familie-typer": "8.0.9",
