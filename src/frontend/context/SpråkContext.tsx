@@ -1,9 +1,8 @@
+import { LocaleType } from '@common/typer/locale';
 import { onLanguageSelect, setAvailableLanguages, setParams } from '@navikt/nav-dekoratoren-moduler';
+import { erGyldigSpråk } from '@typer/common';
 import { createContext, type PropsWithChildren, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useCookies } from 'react-cookie';
-
-import { LocaleType } from '../../common/typer/locale';
-import { erGyldigSpråk } from '../typer/common';
 
 const dekoratorLanguageCookieName = 'decorator-language';
 

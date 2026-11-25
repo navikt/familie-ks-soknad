@@ -1,12 +1,11 @@
+import { Dokumentasjonsbehov } from '@common/typer/kontrakt/dokumentasjon';
+import { ESivilstand } from '@common/typer/kontrakt/generelle';
+import { DinLivssituasjonSpørsmålId } from '@components/SøknadsSteg/DinLivssituasjon/spørsmål';
+import { EøsSøkerSpørsmålId } from '@components/SøknadsSteg/EøsSteg/Søker/spørsmål';
+import { OmBarnaDineSpørsmålId } from '@components/SøknadsSteg/OmBarnaDine/spørsmål';
+import { OmDegSpørsmålId } from '@components/SøknadsSteg/OmDeg/spørsmål';
 import type { ESvar } from '@navikt/familie-form-elements';
-
-import { Dokumentasjonsbehov } from '../../common/typer/kontrakt/dokumentasjon';
-import { ESivilstand } from '../../common/typer/kontrakt/generelle';
-import { DinLivssituasjonSpørsmålId } from '../components/SøknadsSteg/DinLivssituasjon/spørsmål';
-import { EøsSøkerSpørsmålId } from '../components/SøknadsSteg/EøsSteg/Søker/spørsmål';
-import { OmBarnaDineSpørsmålId } from '../components/SøknadsSteg/OmBarnaDine/spørsmål';
-import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
-import { genererInitiellDokumentasjon } from '../utils/dokumentasjon';
+import { genererInitiellDokumentasjon } from '@utils/dokumentasjon';
 
 import type { IBarnMedISøknad } from './barn';
 import type { IDokumentasjon } from './dokumentasjon';

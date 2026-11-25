@@ -1,17 +1,16 @@
+import { useAppContext } from '@context/AppContext';
+import useDatovelgerFelt from '@hooks/useDatovelgerFelt';
+import useJaNeiSpmFelt from '@hooks/useJaNeiSpmFelt';
+import useLanddropdownFelt from '@hooks/useLanddropdownFelt';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type FeltState, feil, ok, useFelt, useSkjema, Valideringsstatus } from '@navikt/familie-skjema';
-
-import { useAppContext } from '../../../context/AppContext';
-import useDatovelgerFelt from '../../../hooks/useDatovelgerFelt';
-import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
-import useLanddropdownFelt from '../../../hooks/useLanddropdownFelt';
-import type { IUsePeriodeSkjemaVerdi } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
-import type { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import type { IKontantstøttePerioderFeltTyper } from '../../../typer/skjema';
-import { dagenEtterDato, dagensDato, gårsdagensDato, sisteDagDenneMåneden, stringTilDate } from '../../../utils/dato';
-import { trimWhiteSpace } from '../../../utils/hjelpefunksjoner';
+import type { IUsePeriodeSkjemaVerdi } from '@typer/perioder';
+import { PersonType } from '@typer/personType';
+import type { IEøsYtelseTekstinnhold } from '@typer/sanity/modaler/eøsYtelse';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import type { IKontantstøttePerioderFeltTyper } from '@typer/skjema';
+import { dagenEtterDato, dagensDato, gårsdagensDato, sisteDagDenneMåneden, stringTilDate } from '@utils/dato';
+import { trimWhiteSpace } from '@utils/hjelpefunksjoner';
 
 import { KontantstøttePeriodeSpørsmålId } from './spørsmål';
 

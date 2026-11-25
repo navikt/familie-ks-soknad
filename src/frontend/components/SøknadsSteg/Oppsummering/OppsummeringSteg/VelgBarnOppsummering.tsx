@@ -1,15 +1,14 @@
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { OppsummeringFelt } from '@components/SøknadsSteg/Oppsummering/OppsummeringFelt';
+import Oppsummeringsbolk from '@components/SøknadsSteg/Oppsummering/Oppsummeringsbolk';
+import type { IVelgBarnTekstinnhold } from '@components/SøknadsSteg/VelgBarn/innholdTyper';
+import { useVelgBarn } from '@components/SøknadsSteg/VelgBarn/useVelgBarn';
+import { useAppContext } from '@context/AppContext';
+import { RouteEnum } from '@typer/routes';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import { hentBostedSpråkId } from '@utils/språk';
 import { type Dispatch, type FC, Fragment, type SetStateAction } from 'react';
-
-import { useAppContext } from '../../../../context/AppContext';
 import { ROUTES } from '../../../../routes';
-import { RouteEnum } from '../../../../typer/routes';
-import { ESanitySteg } from '../../../../typer/sanity/sanity';
-import { hentBostedSpråkId } from '../../../../utils/språk';
-import TekstBlock from '../../../Felleskomponenter/TekstBlock';
-import type { IVelgBarnTekstinnhold } from '../../VelgBarn/innholdTyper';
-import { useVelgBarn } from '../../VelgBarn/useVelgBarn';
-import { OppsummeringFelt } from '../OppsummeringFelt';
-import Oppsummeringsbolk from '../Oppsummeringsbolk';
 
 interface Props {
     settFeilAnchors: Dispatch<SetStateAction<string[]>>;

@@ -1,5 +1,5 @@
+import miljø from '@common/miljø';
 import { createClient } from '@sanity/client';
-import miljø from '../../../common/miljø';
 
 export const sanityKlient = createClient({
     projectId: 'by26nl8j',

@@ -1,18 +1,17 @@
+import { Dokumentasjonsbehov } from '@common/typer/kontrakt/dokumentasjon';
+import { Arbeidsperiode } from '@components/Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
+import JaNeiSpm from '@components/Felleskomponenter/JaNeiSpm/JaNeiSpm';
+import KomponentGruppe from '@components/Felleskomponenter/KomponentGruppe/KomponentGruppe';
+import { Pensjonsperiode } from '@components/Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
+import Steg from '@components/Felleskomponenter/Steg/Steg';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { Utenlandsperiode } from '@components/Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
+import { useAppContext } from '@context/AppContext';
 import { ESvar } from '@navikt/familie-form-elements';
+import { Typografi } from '@typer/common';
+import { PersonType } from '@typer/personType';
+import { ESanitySteg } from '@typer/sanity/sanity';
 import type { FC } from 'react';
-
-import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
-import { useAppContext } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
-import { PersonType } from '../../../typer/personType';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
-import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
-import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
-import { Pensjonsperiode } from '../../Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
-import Steg from '../../Felleskomponenter/Steg/Steg';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
 
 import type { IDinLivssituasjonTekstinnhold } from './innholdTyper';
 import { useDinLivssituasjon } from './useDinLivssituasjon';

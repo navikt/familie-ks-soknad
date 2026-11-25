@@ -1,20 +1,19 @@
+import { barnDataKeySpørsmål } from '@common/typer/kontrakt/søknadKontrakt';
+import { ArbeidsperiodeOppsummering } from '@components/Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
+import { PensjonsperiodeOppsummering } from '@components/Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { UtenlandsperiodeOppsummering } from '@components/Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
+import type { IOmBarnetTekstinnhold } from '@components/SøknadsSteg/OmBarnet/innholdTyper';
+import { OppsummeringFelt } from '@components/SøknadsSteg/Oppsummering/OppsummeringFelt';
+import { useAppContext } from '@context/AppContext';
 import { BodyShort, FormSummary } from '@navikt/ds-react';
 import { ESvar } from '@navikt/familie-form-elements';
+import { andreForelderDataKeySpørsmål, type IAndreForelder, type IBarnMedISøknad } from '@typer/barn';
+import { AlternativtSvarForInput } from '@typer/common';
+import { PersonType } from '@typer/personType';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import { formaterDatoMedUkjent } from '@utils/dato';
 import type { FC } from 'react';
-
-import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
-import { useAppContext } from '../../../../../context/AppContext';
-import { andreForelderDataKeySpørsmål, type IAndreForelder, type IBarnMedISøknad } from '../../../../../typer/barn';
-import { AlternativtSvarForInput } from '../../../../../typer/common';
-import { PersonType } from '../../../../../typer/personType';
-import { ESanitySteg } from '../../../../../typer/sanity/sanity';
-import { formaterDatoMedUkjent } from '../../../../../utils/dato';
-import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
-import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
-import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
-import { UtenlandsperiodeOppsummering } from '../../../../Felleskomponenter/UtenlandsoppholdModal/UtenlandsperiodeOppsummering';
-import type { IOmBarnetTekstinnhold } from '../../../OmBarnet/innholdTyper';
-import { OppsummeringFelt } from '../../OppsummeringFelt';
 
 const AndreForelderOppsummering: FC<{
     barn: IBarnMedISøknad;

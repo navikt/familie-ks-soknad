@@ -1,9 +1,9 @@
-import type { FlettefeltVerdier } from '../../../../common/typer/kontrakt/generelle';
-import type { LocaleRecordBlock } from '../../../../common/typer/locale';
-import { useAppContext } from '../../../context/AppContext';
-import { useStegContext } from '../../../context/StegContext';
-import { type ISteg, RouteEnum } from '../../../typer/routes';
-import { uppercaseFørsteBokstav } from '../../../utils/visning';
+import type { FlettefeltVerdier } from '@common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import { useAppContext } from '@context/AppContext';
+import { useStegContext } from '@context/StegContext';
+import { type ISteg, RouteEnum } from '@typer/routes';
+import { uppercaseFørsteBokstav } from '@utils/visning';
 
 interface IStegMedTittel extends ISteg {
     tittel: string;

@@ -1,18 +1,17 @@
+import { Dokumentasjonsbehov } from '@common/typer/kontrakt/dokumentasjon';
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { Checkbox, FormSummary, VStack } from '@navikt/ds-react';
-import type { ChangeEvent, FC } from 'react';
-
-import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
-import type { LocaleRecordBlock } from '../../../../common/typer/locale';
-import { useAppContext } from '../../../context/AppContext';
-import { Typografi } from '../../../typer/common';
+import { Typografi } from '@typer/common';
 import {
     dokumentasjonsbehovTilBeskrivelseSanityApiNavn,
     dokumentasjonsbehovTilTittelSanityApiNavn,
     type IDokumentasjon,
     type IVedlegg,
-} from '../../../typer/dokumentasjon';
-import { slåSammen } from '../../../utils/slåSammen';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
+} from '@typer/dokumentasjon';
+import { slåSammen } from '@utils/slåSammen';
+import type { ChangeEvent, FC } from 'react';
 
 import Filopplaster from './filopplaster/Filopplaster';
 import { useFilopplaster } from './filopplaster/useFilopplaster';
@@ -61,6 +60,13 @@ const LastOppVedlegg: FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => 
     );
 
     const dokumentasjonsbeskrivelse = dokumentasjonsbehovTilBeskrivelseSanityApiNavn(dokumentasjon.dokumentasjonsbehov);
+    const erAnnenDokumentasjon = dokumentasjon.dokumentasjonsbehov === Dokumentasjonsbehov.ANNEN_DOKUMENTASJON;
+
+    if (erAnnenDokumentasjon && dokumentasjon.opplastedeVedlegg.length === 0) {
+        return null;
+    }
+
+    const skalViseFilopplaster = erAnnenDokumentasjon || !dokumentasjon.harSendtInn;
 
     return (
         <FormSummary>
@@ -68,7 +74,7 @@ const LastOppVedlegg: FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => 
                 <FormSummary.Heading level="3">{plainTekst(tittel, { barnetsNavn: barnasNavn })}</FormSummary.Heading>
             </FormSummary.Header>
             <VStack gap="space-24" paddingInline="space-24" paddingBlock="space-20 space-24">
-                {dokumentasjonsbeskrivelse && (
+                {!erAnnenDokumentasjon && dokumentasjonsbeskrivelse && (
                     <div>
                         <TekstBlock
                             block={dokumentasjonTekster[dokumentasjonsbeskrivelse]}
@@ -90,9 +96,13 @@ const LastOppVedlegg: FC<Props> = ({ dokumentasjon, oppdaterDokumentasjon }) => 
                     </Checkbox>
                 )}
 
-                {!dokumentasjon.harSendtInn && (
+                {skalViseFilopplaster && (
                     <div>
-                        <Filopplaster dokumentasjon={dokumentasjon} oppdaterDokumentasjon={oppdaterDokumentasjon} />
+                        <Filopplaster
+                            dokumentasjon={dokumentasjon}
+                            oppdaterDokumentasjon={oppdaterDokumentasjon}
+                            tillatNyOpplasting={!erAnnenDokumentasjon}
+                        />
                     </div>
                 )}
             </VStack>

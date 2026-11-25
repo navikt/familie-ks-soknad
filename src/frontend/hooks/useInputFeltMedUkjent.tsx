@@ -1,17 +1,16 @@
+import type { FlettefeltVerdier } from '@common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import { useAppContext } from '@context/AppContext';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type Felt, type FeltState, feil, ok, useFelt } from '@navikt/familie-skjema';
 import { idnr } from '@navikt/fnrvalidator';
+import type { DatoMedUkjent } from '@typer/common';
+import type { IdNummerKey } from '@typer/skjema';
+import type { ISøknadSpørsmål } from '@typer/spørsmål';
+import { fjernWhiteSpace, trimWhiteSpace } from '@utils/hjelpefunksjoner';
+import { formaterInitVerdiForInputMedUkjent } from '@utils/input';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-
-import type { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
-import type { LocaleRecordBlock } from '../../common/typer/locale';
-import { useAppContext } from '../context/AppContext';
-import type { DatoMedUkjent } from '../typer/common';
-import type { IdNummerKey } from '../typer/skjema';
-import type { ISøknadSpørsmål } from '../typer/spørsmål';
-import { trimWhiteSpace } from '../utils/hjelpefunksjoner';
-import { formaterInitVerdiForInputMedUkjent } from '../utils/input';
 
 const useInputFeltMedUkjent = ({
     søknadsfelt,
@@ -38,7 +37,7 @@ const useInputFeltMedUkjent = ({
         feltId: søknadsfelt ? søknadsfelt.id : uuidv4(),
         verdi: søknadsfelt ? trimWhiteSpace(formaterInitVerdiForInputMedUkjent(søknadsfelt.svar)) : '',
         valideringsfunksjon: (felt: FeltState<string>, avhengigheter): FeltState<string> => {
-            const feltVerdi = trimWhiteSpace(felt.verdi);
+            const feltVerdi = erFnrInput ? fjernWhiteSpace(felt.verdi) : trimWhiteSpace(felt.verdi);
             if (avhengigheter?.vetIkkeCheckbox?.verdi === ESvar.JA) {
                 return ok(felt);
             }

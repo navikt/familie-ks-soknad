@@ -1,9 +1,9 @@
-import type { TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
-import type { ISøknadKontraktSøker } from '../../../common/typer/kontrakt/søknadKontrakt';
-import { PersonType } from '../../typer/personType';
-import type { ITekstinnhold } from '../../typer/sanity/tekstInnhold';
-import type { ISøknad } from '../../typer/søknad';
-import { landkodeTilSpråk } from '../språk';
+import type { TilRestLocaleRecord } from '@common/typer/kontrakt/generelle';
+import type { ISøknadKontraktSøker } from '@common/typer/kontrakt/søknadKontrakt';
+import { PersonType } from '@typer/personType';
+import type { ITekstinnhold } from '@typer/sanity/tekstInnhold';
+import type { ISøknad } from '@typer/søknad';
+import { landkodeTilSpråk } from '@utils/språk';
 
 import { tilIAndreUtbetalingsperioderIKontraktFormat } from './andreUtbetalingsperioder';
 import { tilIArbeidsperiodeIKontraktFormat } from './arbeidsperioder';

@@ -1,5 +1,5 @@
 import { apiClient } from '@api/client/apiClient';
-import miljø from '../../common/miljø';
+import miljø from '@common/miljø';
 
 export async function verifiserInnloggetBruker(): Promise<string> {
     const { soknadApiProxyUrl } = miljø();

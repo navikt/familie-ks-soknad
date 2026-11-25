@@ -1,7 +1,7 @@
+import type { FlettefeltVerdier } from '@common/typer/kontrakt/generelle';
+import type { LocaleRecordBlock, LocaleRecordString, LocaleType } from '@common/typer/locale';
 import { useLocale } from '@hooks/useLocale';
-import type { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
-import type { LocaleRecordBlock, LocaleRecordString, LocaleType } from '../../common/typer/locale';
-import { plainTekstHof } from '../utils/sanity';
+import { plainTekstHof } from '@utils/sanity';
 import { useTranslateFlettefelt } from './useTranslateFlettefelt';
 
 type Translate = (

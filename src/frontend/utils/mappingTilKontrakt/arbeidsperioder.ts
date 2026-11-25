@@ -1,16 +1,15 @@
+import type { ISODateString } from '@common/typer/ISODateString';
+import type { ISøknadsfelt, TilRestLocaleRecord } from '@common/typer/kontrakt/generelle';
+import type { IArbeidsperiodeIKontraktFormat } from '@common/typer/kontrakt/søknadKontrakt';
 import { ESvar } from '@navikt/familie-form-elements';
-
-import type { ISODateString } from '../../../common/typer/ISODateString';
-import type { ISøknadsfelt, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
-import type { IArbeidsperiodeIKontraktFormat } from '../../../common/typer/kontrakt/søknadKontrakt';
-import type { IBarnMedISøknad } from '../../typer/barn';
-import { AlternativtSvarForInput } from '../../typer/common';
-import type { IArbeidsperiode } from '../../typer/perioder';
-import type { IArbeidsperiodeTekstinnhold } from '../../typer/sanity/modaler/arbeidsperiode';
-import type { ISøknadSpørsmål } from '../../typer/spørsmål';
-import { formaterDatostringKunMåned } from '../dato';
-import { landkodeTilSpråk } from '../språk';
-import { uppercaseFørsteBokstav } from '../visning';
+import type { IBarnMedISøknad } from '@typer/barn';
+import { AlternativtSvarForInput } from '@typer/common';
+import type { IArbeidsperiode } from '@typer/perioder';
+import type { IArbeidsperiodeTekstinnhold } from '@typer/sanity/modaler/arbeidsperiode';
+import type { ISøknadSpørsmål } from '@typer/spørsmål';
+import { formaterDatostringKunMåned } from '@utils/dato';
+import { landkodeTilSpråk } from '@utils/språk';
+import { uppercaseFørsteBokstav } from '@utils/visning';
 
 import {
     sammeVerdiAlleSpråk,

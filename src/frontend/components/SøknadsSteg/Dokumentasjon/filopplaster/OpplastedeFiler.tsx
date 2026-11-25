@@ -1,13 +1,12 @@
+import { TypografiWrapper } from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { PaperclipIcon, TrashFillIcon } from '@navikt/aksel-icons';
 import { Button, HStack, List } from '@navikt/ds-react';
+import { Typografi } from '@typer/common';
+import type { IVedlegg } from '@typer/dokumentasjon';
+import { formaterFilstørrelse } from '@utils/dokumentasjon';
 import classNames from 'classnames';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../../context/AppContext';
-import { Typografi } from '../../../../typer/common';
-import type { IVedlegg } from '../../../../typer/dokumentasjon';
-import { formaterFilstørrelse } from '../../../../utils/dokumentasjon';
-import { TypografiWrapper } from '../../../Felleskomponenter/TekstBlock';
 
 import styles from './OpplastedeFiler.module.css';
 

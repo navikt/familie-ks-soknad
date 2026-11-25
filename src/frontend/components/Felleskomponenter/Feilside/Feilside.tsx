@@ -1,7 +1,6 @@
+import { useSpråkContext } from '@context/SpråkContext';
 import { Box } from '@navikt/ds-react';
 import { type FC, useEffect } from 'react';
-
-import { useSpråkContext } from '../../../context/SpråkContext';
 import { FeilsideInnhold } from './FeilsideInnhold';
 
 export const Feilside: FC = () => {

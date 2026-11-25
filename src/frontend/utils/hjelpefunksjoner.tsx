@@ -1,6 +1,5 @@
 import { type ISkjema, Valideringsstatus } from '@navikt/familie-skjema';
-
-import type { SkjemaFeltTyper } from '../typer/skjema';
+import type { SkjemaFeltTyper } from '@typer/skjema';
 
 export const randomIntFraIntervall = (min, max) => {
     // min and max inkludert
@@ -9,6 +8,10 @@ export const randomIntFraIntervall = (min, max) => {
 
 export const trimWhiteSpace = (str: string) => {
     return str.split(/\s+/).join(' ').trim();
+};
+
+export const fjernWhiteSpace = (str: string) => {
+    return str.replace(/\s/g, '');
 };
 
 export const visFeiloppsummering = (skjema: ISkjema<SkjemaFeltTyper, string>): boolean => {

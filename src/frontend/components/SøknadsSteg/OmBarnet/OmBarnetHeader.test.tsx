@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react';
+import type { IBarnMedISøknad } from '@typer/barn';
+import { ESanityFlettefeltverdi } from '@typer/sanity/sanity';
+import type { ISøknad } from '@typer/søknad';
+import { lagTekstProxy, spyOnUseApp, TestProvidere } from '@utils/testing';
 import { mockDeep } from 'vitest-mock-extended';
-
-import type { IBarnMedISøknad } from '../../../typer/barn';
-import { ESanityFlettefeltverdi } from '../../../typer/sanity/sanity';
-import type { ISøknad } from '../../../typer/søknad';
-import { lagTekstProxy, spyOnUseApp, TestProvidere } from '../../../utils/testing';
 
 import { OmBarnetHeader } from './OmBarnetHeader';
 

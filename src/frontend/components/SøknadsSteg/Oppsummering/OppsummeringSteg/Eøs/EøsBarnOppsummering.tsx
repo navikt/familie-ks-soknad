@@ -1,14 +1,14 @@
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import SamletIdNummerForBarn from '@components/SøknadsSteg/EøsSteg/Barn/SamletIdNummerForBarn';
+import { useEøsForBarn } from '@components/SøknadsSteg/EøsSteg/Barn/useEøsForBarn';
+import { OppsummeringFelt } from '@components/SøknadsSteg/Oppsummering/OppsummeringFelt';
+import Oppsummeringsbolk from '@components/SøknadsSteg/Oppsummering/Oppsummeringsbolk';
+import { useAppContext } from '@context/AppContext';
+import { useStegContext } from '@context/StegContext';
+import type { IBarnMedISøknad } from '@typer/barn';
+import { AlternativtSvarForInput } from '@typer/common';
+import { hentSlektsforhold } from '@utils/språk';
 import type { Dispatch, FC, SetStateAction } from 'react';
-import { useAppContext } from '../../../../../context/AppContext';
-import { useStegContext } from '../../../../../context/StegContext';
-import type { IBarnMedISøknad } from '../../../../../typer/barn';
-import { AlternativtSvarForInput } from '../../../../../typer/common';
-import { hentSlektsforhold } from '../../../../../utils/språk';
-import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
-import SamletIdNummerForBarn from '../../../EøsSteg/Barn/SamletIdNummerForBarn';
-import { useEøsForBarn } from '../../../EøsSteg/Barn/useEøsForBarn';
-import { OppsummeringFelt } from '../../OppsummeringFelt';
-import Oppsummeringsbolk from '../../Oppsummeringsbolk';
 
 import EøsAndreForelderOppsummering from './EøsAndreForelderOppsummering';
 import EøsOmsorgspersonOppsummering from './EøsOmsorgspersonOppsummering';

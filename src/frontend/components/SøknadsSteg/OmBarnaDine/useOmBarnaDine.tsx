@@ -1,17 +1,16 @@
+import { Dokumentasjonsbehov } from '@common/typer/kontrakt/dokumentasjon';
+import { ESivilstand } from '@common/typer/kontrakt/generelle';
+import { barnDataKeySpørsmål } from '@common/typer/kontrakt/søknadKontrakt';
+import { useAppContext } from '@context/AppContext';
+import { useEøsContext } from '@context/EøsContext';
+import useJaNeiSpmFelt from '@hooks/useJaNeiSpmFelt';
 import { ESvar } from '@navikt/familie-form-elements';
 import { type ISkjema, useSkjema } from '@navikt/familie-skjema';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import type { IOmBarnaDineFeltTyper } from '@typer/skjema';
+import type { ISøknad } from '@typer/søknad';
+import { nullstilteEøsFelterForSøker } from '@utils/søker';
 import { useEffect } from 'react';
-
-import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
-import { ESivilstand } from '../../../../common/typer/kontrakt/generelle';
-import { barnDataKeySpørsmål } from '../../../../common/typer/kontrakt/søknadKontrakt';
-import { useAppContext } from '../../../context/AppContext';
-import { useEøsContext } from '../../../context/EøsContext';
-import useJaNeiSpmFelt from '../../../hooks/useJaNeiSpmFelt';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import type { IOmBarnaDineFeltTyper } from '../../../typer/skjema';
-import type { ISøknad } from '../../../typer/søknad';
-import { nullstilteEøsFelterForSøker } from '../../../utils/søker';
 
 import type { IOmBarnaTekstinnhold } from './innholdTyper';
 import { OmBarnaDineSpørsmålId } from './spørsmål';

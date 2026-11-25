@@ -2,17 +2,13 @@ import {
     Dokumentasjonsbehov,
     type ISøknadKontraktDokumentasjon,
     type ISøknadKontraktVedlegg,
-} from '../../../common/typer/kontrakt/dokumentasjon';
-import type { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
-import {
-    dokumentasjonsbehovTilTittelSanityApiNavn,
-    type IDokumentasjon,
-    type IVedlegg,
-} from '../../typer/dokumentasjon';
-import { ESanitySteg } from '../../typer/sanity/sanity';
-import type { IFrittståendeOrdTekstinnhold, ITekstinnhold } from '../../typer/sanity/tekstInnhold';
-import type { ISøknad } from '../../typer/søknad';
-import { slåSammen } from '../slåSammen';
+} from '@common/typer/kontrakt/dokumentasjon';
+import type { FlettefeltVerdier, PlainTekst, TilRestLocaleRecord } from '@common/typer/kontrakt/generelle';
+import { dokumentasjonsbehovTilTittelSanityApiNavn, type IDokumentasjon, type IVedlegg } from '@typer/dokumentasjon';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import type { IFrittståendeOrdTekstinnhold, ITekstinnhold } from '@typer/sanity/tekstInnhold';
+import type { ISøknad } from '@typer/søknad';
+import { slåSammen } from '@utils/slåSammen';
 
 export const dokumentasjonISøknadFormat = (
     dokumentasjon: IDokumentasjon,

@@ -1,8 +1,7 @@
+import { Slektsforhold } from '@common/typer/kontrakt/generelle';
+import { barnDataKeySpørsmål } from '@common/typer/kontrakt/søknadKontrakt';
 import type { ESvar } from '@navikt/familie-form-elements';
 import type { Alpha3Code } from 'i18n-iso-countries';
-
-import { Slektsforhold } from '../../common/typer/kontrakt/generelle';
-import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
 
 import type { AlternativtSvarForInput, BarnetsId, DatoMedUkjent } from './common';
 import type { IOmsorgsperson } from './omsorgsperson';

@@ -1,7 +1,11 @@
+import miljø from '@common/miljø';
+import { barnDataKeySpørsmål } from '@common/typer/kontrakt/søknadKontrakt';
 import { ESvar } from '@navikt/familie-form-elements';
 import { byggHenterRessurs, hentDataFraRessurs } from '@navikt/familie-typer';
+import type { IBarnMedISøknad } from '@typer/barn';
+import type { BarnetsId } from '@typer/common';
+import type { ISøker } from '@typer/person';
 import type { Alpha3Code } from 'i18n-iso-countries';
-
 import {
     createContext,
     type Dispatch,
@@ -11,12 +15,6 @@ import {
     useEffect,
     useState,
 } from 'react';
-
-import miljø from '../../common/miljø';
-import { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
-import type { IBarnMedISøknad } from '../typer/barn';
-import type { BarnetsId } from '../typer/common';
-import type { ISøker } from '../typer/person';
 
 import { useAppContext } from './AppContext';
 import { useLastRessurserContext } from './LastRessurserContext';

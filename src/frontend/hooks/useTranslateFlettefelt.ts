@@ -1,11 +1,11 @@
+import type { FlettefeltVerdier } from '@common/typer/kontrakt/generelle';
+import type { LocaleType } from '@common/typer/locale';
+import { useAppContext } from '@context/AppContext';
+import { useSanityTekster } from '@context/SanityContext';
 import { useLocale } from '@hooks/useLocale';
+import { ESanityFlettefeltverdi, ESanitySteg } from '@typer/sanity/sanity';
+import { plainTekstHof } from '@utils/sanity';
 import { getName } from 'i18n-iso-countries';
-import type { FlettefeltVerdier } from '../../common/typer/kontrakt/generelle';
-import type { LocaleType } from '../../common/typer/locale';
-import { useAppContext } from '../context/AppContext';
-import { useSanityTekster } from '../context/SanityContext';
-import { ESanityFlettefeltverdi, ESanitySteg } from '../typer/sanity/sanity';
-import { plainTekstHof } from '../utils/sanity';
 
 type TranslateFlettefelt = (
     sanityFlettefelt: ESanityFlettefeltverdi,

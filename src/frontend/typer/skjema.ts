@@ -1,10 +1,9 @@
+import type { ISODateString } from '@common/typer/ISODateString';
+import type { Slektsforhold } from '@common/typer/kontrakt/generelle';
+import type { barnDataKeySpørsmål } from '@common/typer/kontrakt/søknadKontrakt';
+import type { EBarnehageplassPeriodeBeskrivelse } from '@components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 import type { ESvar } from '@navikt/familie-form-elements';
 import type { Alpha3Code } from 'i18n-iso-countries';
-
-import type { ISODateString } from '../../common/typer/ISODateString';
-import type { Slektsforhold } from '../../common/typer/kontrakt/generelle';
-import type { barnDataKeySpørsmål } from '../../common/typer/kontrakt/søknadKontrakt';
-import type { EBarnehageplassPeriodeBeskrivelse } from '../components/Felleskomponenter/Barnehagemodal/barnehageplassTyper';
 
 import type { AlternativtSvarForInput, BarnetsId, DatoMedUkjent } from './common';
 import type {

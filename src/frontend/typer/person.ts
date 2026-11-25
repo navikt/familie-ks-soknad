@@ -1,7 +1,6 @@
+import type { ESivilstand, IAdresse } from '@common/typer/kontrakt/generelle';
 import type { ESvar } from '@navikt/familie-form-elements';
 import type { Alpha3Code } from 'i18n-iso-countries';
-
-import type { ESivilstand, IAdresse } from '../../common/typer/kontrakt/generelle';
 
 import type { AlternativtSvarForInput, BarnetsId } from './common';
 import type { IArbeidsperiode, IPensjonsperiode, IUtbetalingsperiode, IUtenlandsperiode } from './perioder';

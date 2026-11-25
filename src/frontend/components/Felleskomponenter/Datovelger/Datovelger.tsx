@@ -1,21 +1,12 @@
+import type { ISODateString } from '@common/typer/ISODateString';
+import { useAppContext } from '@context/AppContext';
+import { useSpråkContext } from '@context/SpråkContext';
 import { BodyShort, DatePicker, ErrorMessage, useDatepicker } from '@navikt/ds-react';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { SkjemaFeltTyper } from '@typer/skjema';
+import { dagenEtterDato, dagensDato, parseTilGyldigDato, stringTilDate, tidenesEnde, tidenesMorgen } from '@utils/dato';
 import { formatISO, isAfter, startOfDay } from 'date-fns';
-
 import { type FC, type ReactNode, useEffect } from 'react';
-
-import type { ISODateString } from '../../../../common/typer/ISODateString';
-import { useAppContext } from '../../../context/AppContext';
-import { useSpråkContext } from '../../../context/SpråkContext';
-import type { SkjemaFeltTyper } from '../../../typer/skjema';
-import {
-    dagenEtterDato,
-    dagensDato,
-    parseTilGyldigDato,
-    stringTilDate,
-    tidenesEnde,
-    tidenesMorgen,
-} from '../../../utils/dato';
 
 interface DatoVelgerProps {
     felt: Felt<ISODateString>;

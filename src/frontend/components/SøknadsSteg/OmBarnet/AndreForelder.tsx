@@ -1,26 +1,25 @@
+import { Arbeidsperiode } from '@components/Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
+import Datovelger from '@components/Felleskomponenter/Datovelger/Datovelger';
+import JaNeiSpm from '@components/Felleskomponenter/JaNeiSpm/JaNeiSpm';
+import KomponentGruppe from '@components/Felleskomponenter/KomponentGruppe/KomponentGruppe';
+import { Pensjonsperiode } from '@components/Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
+import { SkjemaCheckbox } from '@components/Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
+import { SkjemaFeltInput } from '@components/Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
+import SkjemaFieldset from '@components/Felleskomponenter/SkjemaFieldset';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { Utenlandsperiode } from '@components/Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
+import AndreForelderOppsummering from '@components/SøknadsSteg/Oppsummering/OppsummeringSteg/OmBarnet/AndreForelderOppsummering';
+import { useAppContext } from '@context/AppContext';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { ISkjema } from '@navikt/familie-skjema';
+import type { IBarnMedISøknad } from '@typer/barn';
+import { AlternativtSvarForInput, Typografi } from '@typer/common';
+import type { IArbeidsperiode, IPensjonsperiode, IUtenlandsperiode } from '@typer/perioder';
+import { PersonType } from '@typer/personType';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import type { IOmBarnetFeltTyper } from '@typer/skjema';
+import { dagensDato } from '@utils/dato';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import type { IBarnMedISøknad } from '../../../typer/barn';
-import { AlternativtSvarForInput, Typografi } from '../../../typer/common';
-import type { IArbeidsperiode, IPensjonsperiode, IUtenlandsperiode } from '../../../typer/perioder';
-import { PersonType } from '../../../typer/personType';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import type { IOmBarnetFeltTyper } from '../../../typer/skjema';
-import { dagensDato } from '../../../utils/dato';
-import { Arbeidsperiode } from '../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
-import Datovelger from '../../Felleskomponenter/Datovelger/Datovelger';
-import JaNeiSpm from '../../Felleskomponenter/JaNeiSpm/JaNeiSpm';
-import KomponentGruppe from '../../Felleskomponenter/KomponentGruppe/KomponentGruppe';
-import { Pensjonsperiode } from '../../Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
-import { SkjemaCheckbox } from '../../Felleskomponenter/SkjemaCheckbox/SkjemaCheckbox';
-import { SkjemaFeltInput } from '../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
-import SkjemaFieldset from '../../Felleskomponenter/SkjemaFieldset';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import { Utenlandsperiode } from '../../Felleskomponenter/UtenlandsoppholdModal/Utenlandsperiode';
-import AndreForelderOppsummering from '../Oppsummering/OppsummeringSteg/OmBarnet/AndreForelderOppsummering';
 
 import SammeSomAnnetBarnRadio from './SammeSomAnnetBarnRadio';
 

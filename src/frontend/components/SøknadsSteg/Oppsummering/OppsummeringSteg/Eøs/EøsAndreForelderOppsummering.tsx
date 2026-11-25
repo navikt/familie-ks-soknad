@@ -1,24 +1,22 @@
+import { barnDataKeySpørsmål } from '@common/typer/kontrakt/søknadKontrakt';
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import { ArbeidsperiodeOppsummering } from '@components/Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
+import { KontantstøttePeriodeOppsummering } from '@components/Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
+import { PensjonsperiodeOppsummering } from '@components/Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { UtbetalingsperiodeOppsummering } from '@components/Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
+import IdNummerForAndreForelder from '@components/SøknadsSteg/EøsSteg/Barn/IdNummerForAndreForelder';
+import { OppsummeringFelt } from '@components/SøknadsSteg/Oppsummering/OppsummeringFelt';
+import { useAppContext } from '@context/AppContext';
+import { useSpråkContext } from '@context/SpråkContext';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
-
+import { andreForelderDataKeySpørsmål, type IAndreForelder, type IBarnMedISøknad } from '@typer/barn';
+import { AlternativtSvarForInput } from '@typer/common';
+import { PersonType } from '@typer/personType';
+import type { IEøsForBarnFeltTyper } from '@typer/skjema';
+import { landkodeTilSpråk } from '@utils/språk';
 import type { Dispatch, FC, SetStateAction } from 'react';
-
-import { barnDataKeySpørsmål } from '../../../../../../common/typer/kontrakt/søknadKontrakt';
-import type { LocaleRecordBlock } from '../../../../../../common/typer/locale';
-import { useAppContext } from '../../../../../context/AppContext';
-import { useSpråkContext } from '../../../../../context/SpråkContext';
-import { andreForelderDataKeySpørsmål, type IAndreForelder, type IBarnMedISøknad } from '../../../../../typer/barn';
-import { AlternativtSvarForInput } from '../../../../../typer/common';
-import { PersonType } from '../../../../../typer/personType';
-import type { IEøsForBarnFeltTyper } from '../../../../../typer/skjema';
-import { landkodeTilSpråk } from '../../../../../utils/språk';
-import { ArbeidsperiodeOppsummering } from '../../../../Felleskomponenter/Arbeidsperiode/ArbeidsperiodeOppsummering';
-import { KontantstøttePeriodeOppsummering } from '../../../../Felleskomponenter/KontantstøttePeriode/KontantstøttePeriodeOppsummering';
-import { PensjonsperiodeOppsummering } from '../../../../Felleskomponenter/Pensjonsmodal/PensjonsperiodeOppsummering';
-import TekstBlock from '../../../../Felleskomponenter/TekstBlock';
-import { UtbetalingsperiodeOppsummering } from '../../../../Felleskomponenter/UtbetalingerModal/UtbetalingsperiodeOppsummering';
-import IdNummerForAndreForelder from '../../../EøsSteg/Barn/IdNummerForAndreForelder';
-import { OppsummeringFelt } from '../../OppsummeringFelt';
 
 const EøsAndreForelderOppsummering: FC<{
     barn: IBarnMedISøknad;

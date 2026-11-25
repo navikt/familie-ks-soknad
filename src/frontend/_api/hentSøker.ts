@@ -1,6 +1,6 @@
 import { apiClient } from '@api/client/apiClient';
-import miljø from '../../common/miljø';
-import type { ISøkerRespons } from '../typer/person';
+import miljø from '@common/miljø';
+import type { ISøkerRespons } from '@typer/person';
 
 export async function hentSøker(): Promise<ISøkerRespons> {
     const { soknadApiProxyUrl } = miljø();

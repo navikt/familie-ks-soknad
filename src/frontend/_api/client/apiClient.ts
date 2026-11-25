@@ -1,6 +1,5 @@
+import { logger, tilLoggFeil } from '@utils/logger';
 import axios, { AxiosError, type AxiosInstance, type AxiosRequestConfig, type AxiosResponse } from 'axios';
-
-import { logger, tilLoggFeil } from '../../utils/logger';
 
 type OnFulfilled = (response: AxiosResponse) => AxiosResponse | Promise<AxiosResponse>;
 type OnRejected = (error: AxiosError) => unknown | Promise<unknown>;

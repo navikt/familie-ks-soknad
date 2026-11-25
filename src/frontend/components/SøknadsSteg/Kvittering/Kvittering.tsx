@@ -1,21 +1,19 @@
+import { Dokumentasjonsbehov } from '@common/typer/kontrakt/dokumentasjon';
+import BlokkerTilbakeKnappModal from '@components/Felleskomponenter/BlokkerTilbakeKnappModal/BlokkerTilbakeKnappModal';
+import Steg from '@components/Felleskomponenter/Steg/Steg';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import Kontoinformasjon from '@components/Kontoinformasjon/Kontoinformasjon';
+import { useAppContext } from '@context/AppContext';
+import { useStegContext } from '@context/StegContext';
+import useUxSignals from '@hooks/useUxSignals';
 import { CheckmarkCircleIcon, ExclamationmarkTriangleIcon } from '@navikt/aksel-icons';
 import { InfoCard, VStack } from '@navikt/ds-react';
 import { RessursStatus } from '@navikt/familie-typer';
+import { Typografi } from '@typer/common';
+import { RouteEnum } from '@typer/routes';
+import { erDokumentasjonRelevant } from '@utils/dokumentasjon';
 import { format } from 'date-fns';
-
 import { type FC, useEffect, useRef } from 'react';
-
-import { Dokumentasjonsbehov } from '../../../../common/typer/kontrakt/dokumentasjon';
-import { useAppContext } from '../../../context/AppContext';
-import { useStegContext } from '../../../context/StegContext';
-import useUxSignals from '../../../hooks/useUxSignals';
-import { Typografi } from '../../../typer/common';
-import { RouteEnum } from '../../../typer/routes';
-import { erDokumentasjonRelevant } from '../../../utils/dokumentasjon';
-import BlokkerTilbakeKnappModal from '../../Felleskomponenter/BlokkerTilbakeKnappModal/BlokkerTilbakeKnappModal';
-import Steg from '../../Felleskomponenter/Steg/Steg';
-import TekstBlock from '../../Felleskomponenter/TekstBlock';
-import Kontoinformasjon from '../../Kontoinformasjon/Kontoinformasjon';
 
 const Kvittering: FC = () => {
     const { avbrytOgSlettSøknad, sisteUtfylteStegIndex, settFåttGyldigKvittering, søknad, tekster } = useAppContext();

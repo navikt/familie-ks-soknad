@@ -1,11 +1,9 @@
+import { type LocaleRecordBlock, LocaleType } from '@common/typer/locale';
+import OmDeg from '@components/SøknadsSteg/OmDeg/OmDeg';
 import { isPortableTextSpan } from '@portabletext/toolkit';
 import { render, screen } from '@testing-library/react';
+import type { ISøker } from '@typer/person';
 import { mockDeep } from 'vitest-mock-extended';
-
-import { type LocaleRecordBlock, LocaleType } from '../../common/typer/locale';
-
-import OmDeg from '../components/SøknadsSteg/OmDeg/OmDeg';
-import type { ISøker } from '../typer/person';
 import {
     hentSpørsmål,
     hentSvaralternativ,

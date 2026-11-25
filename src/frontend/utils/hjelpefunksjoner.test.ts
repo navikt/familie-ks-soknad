@@ -1,14 +1,18 @@
 import { type ISkjema, Valideringsstatus } from '@navikt/familie-skjema';
+import type { IOmBarnaDineFeltTyper } from '@typer/skjema';
 import { mockDeep } from 'vitest-mock-extended';
 
-import type { IOmBarnaDineFeltTyper } from '../typer/skjema';
-
-import { trimWhiteSpace, visFeiloppsummering } from './hjelpefunksjoner';
+import { fjernWhiteSpace, trimWhiteSpace, visFeiloppsummering } from './hjelpefunksjoner';
 
 describe('hjelpefunksjoner', () => {
     describe('trimWhiteSpace', () => {
         test('Skal returnere Hans Hansen dersom man sender inn "   Hans     Hansen    "', () => {
             expect(trimWhiteSpace('   Hans     Hansen    ')).toEqual('Hans Hansen');
+        });
+    });
+    describe('fjernWhiteSpace', () => {
+        test('Skal fjerne all whitespace fra fødselsnummer', () => {
+            expect(fjernWhiteSpace(' 123456 12345\t')).toEqual('12345612345');
         });
     });
     describe('visFeiloppsummering', () => {

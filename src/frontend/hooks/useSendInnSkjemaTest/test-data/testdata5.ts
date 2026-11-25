@@ -1,4 +1,4 @@
-import type { ISøknad } from '../../../typer/søknad';
+import type { ISøknad } from '@typer/søknad';
 
 import type { TilKontraktTestData } from './typer';
 

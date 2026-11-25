@@ -1,9 +1,8 @@
+import { modellVersjon, modellVersjonHeaderName } from '@common/modellversjon';
+import type { AxiosRequest } from '@context/LastRessurserContext';
 import type { Ressurs } from '@navikt/familie-typer';
+import type { IKvittering } from '@typer/kvittering';
 import type { AxiosError } from 'axios';
-
-import { modellVersjon, modellVersjonHeaderName } from '../../common/modellversjon';
-import type { AxiosRequest } from '../context/LastRessurserContext';
-import type { IKvittering } from '../typer/kvittering';
 
 export const sendInn = async <T>(
     formatert: T,

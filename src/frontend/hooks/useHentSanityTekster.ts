@@ -1,6 +1,6 @@
 import { hentSanityTekster } from '@api/hentSanityTekster';
 import { useQuery } from '@tanstack/react-query';
-import { transformerTilTekstinnhold } from '../utils/sanity';
+import { transformerTilTekstinnhold } from '@utils/sanity';
 import { MetaKey } from './meta/metaKey';
 
 export function useHentSanityTekster() {

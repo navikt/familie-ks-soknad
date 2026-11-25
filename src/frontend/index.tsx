@@ -1,16 +1,14 @@
+import { LocaleType } from '@common/typer/locale';
 import { awaitDecoratorData } from '@navikt/nav-dekoratoren-moduler';
+import { initApm } from '@utils/apm';
+import { registerAxiosInterceptors } from '@utils/interceptors';
 import type { LocaleData } from 'i18n-iso-countries';
 import { registerLocale } from 'i18n-iso-countries';
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
-
-import { LocaleType } from '../common/typer/locale';
-
 import App from './App';
 import { hentDekorator } from './decorator';
-import { initApm } from './utils/apm';
-import { registerAxiosInterceptors } from './utils/interceptors';
 
 import '@navikt/ds-css';
 import './index.css';

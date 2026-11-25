@@ -1,19 +1,18 @@
+import { LeggTilKnapp } from '@components/Felleskomponenter/LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '@components/Felleskomponenter/PerioderContainer';
+import useModal from '@components/Felleskomponenter/SkjemaModal/useModal';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import type { IOmBarnetTekstinnhold } from '@components/SøknadsSteg/OmBarnet/innholdTyper';
+import { useAppContext } from '@context/AppContext';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { IBarnMedISøknad } from '@typer/barn';
+import { Typografi } from '@typer/common';
+import type { IBarnehageplassPeriode } from '@typer/perioder';
+import type { IBarnehageplassTekstinnhold } from '@typer/sanity/modaler/barnehageplass';
+import { ESanitySteg } from '@typer/sanity/sanity';
+import type { IOmBarnetFeltTyper } from '@typer/skjema';
+import { uppercaseFørsteBokstav } from '@utils/visning';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import type { IBarnMedISøknad } from '../../../typer/barn';
-import { Typografi } from '../../../typer/common';
-import type { IBarnehageplassPeriode } from '../../../typer/perioder';
-import type { IBarnehageplassTekstinnhold } from '../../../typer/sanity/modaler/barnehageplass';
-import { ESanitySteg } from '../../../typer/sanity/sanity';
-import type { IOmBarnetFeltTyper } from '../../../typer/skjema';
-import { uppercaseFørsteBokstav } from '../../../utils/visning';
-import type { IOmBarnetTekstinnhold } from '../../SøknadsSteg/OmBarnet/innholdTyper';
-import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
-import PerioderContainer from '../PerioderContainer';
-import useModal from '../SkjemaModal/useModal';
-import TekstBlock from '../TekstBlock';
 
 import { BarnehageplassPeriodeModal } from './BarnehageplassPeriodeModal';
 import { BarnehageplassPeriodeOppsummering } from './BarnehageplassPeriodeOppsummering';

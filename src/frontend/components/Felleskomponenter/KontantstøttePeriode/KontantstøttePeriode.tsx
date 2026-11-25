@@ -1,20 +1,19 @@
+import JaNeiSpm from '@components/Felleskomponenter/JaNeiSpm/JaNeiSpm';
+import KomponentGruppe from '@components/Felleskomponenter/KomponentGruppe/KomponentGruppe';
+import { LeggTilKnapp } from '@components/Felleskomponenter/LeggTilKnapp/LeggTilKnapp';
+import PerioderContainer from '@components/Felleskomponenter/PerioderContainer';
+import useModal from '@components/Felleskomponenter/SkjemaModal/useModal';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { useAppContext } from '@context/AppContext';
 import { ESvar } from '@navikt/familie-form-elements';
 import type { Felt, ISkjema } from '@navikt/familie-skjema';
+import type { IBarnMedISøknad } from '@typer/barn';
+import type { IEøsKontantstøttePeriode } from '@typer/perioder';
+import { type PeriodePersonTypeProps, PersonType } from '@typer/personType';
+import type { IEøsYtelseTekstinnhold } from '@typer/sanity/modaler/eøsYtelse';
+import type { IEøsForBarnFeltTyper, IOmBarnetFeltTyper } from '@typer/skjema';
+import { uppercaseFørsteBokstav } from '@utils/visning';
 import type { FC } from 'react';
-
-import { useAppContext } from '../../../context/AppContext';
-import type { IBarnMedISøknad } from '../../../typer/barn';
-import type { IEøsKontantstøttePeriode } from '../../../typer/perioder';
-import { type PeriodePersonTypeProps, PersonType } from '../../../typer/personType';
-import type { IEøsYtelseTekstinnhold } from '../../../typer/sanity/modaler/eøsYtelse';
-import type { IEøsForBarnFeltTyper, IOmBarnetFeltTyper } from '../../../typer/skjema';
-import { uppercaseFørsteBokstav } from '../../../utils/visning';
-import JaNeiSpm from '../JaNeiSpm/JaNeiSpm';
-import KomponentGruppe from '../KomponentGruppe/KomponentGruppe';
-import { LeggTilKnapp } from '../LeggTilKnapp/LeggTilKnapp';
-import PerioderContainer from '../PerioderContainer';
-import useModal from '../SkjemaModal/useModal';
-import TekstBlock from '../TekstBlock';
 
 import { KontantstøttePeriodeModal } from './KontantstøttePeriodeModal';
 import { KontantstøttePeriodeOppsummering } from './KontantstøttePeriodeOppsummering';

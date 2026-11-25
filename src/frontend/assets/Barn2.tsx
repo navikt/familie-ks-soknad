@@ -1,5 +1,5 @@
+import { useAppContext } from '@context/AppContext';
 import type { FC } from 'react';
-import { useAppContext } from '../context/AppContext';
 
 const Barn2: FC = () => {
     const { tekster, plainTekst } = useAppContext();

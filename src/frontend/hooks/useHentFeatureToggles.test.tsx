@@ -1,9 +1,9 @@
 import { hentFeatureToggles } from '@api/hentFeatureToggles';
+import { defaultFeatureToggleValues, type EAllFeatureToggles } from '@common/feature-toggles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import type { PropsWithChildren } from 'react';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-import { defaultFeatureToggleValues, type EAllFeatureToggles } from '../../common/feature-toggles';
 import { useHentFeatureToggles } from './useHentFeatureToggles';
 
 vi.mock('@api/hentFeatureToggles', () => ({

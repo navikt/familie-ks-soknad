@@ -1,8 +1,8 @@
-import type { ISøknadsfelt, TilRestLocaleRecord } from '../../../common/typer/kontrakt/generelle';
-import type { IIdNummerIKontraktFormat } from '../../../common/typer/kontrakt/søknadKontrakt';
-import type { IIdNummer } from '../../typer/person';
-import type { ISanitySpørsmålDokument } from '../../typer/sanity/sanity';
-import { landkodeTilSpråk } from '../språk';
+import type { ISøknadsfelt, TilRestLocaleRecord } from '@common/typer/kontrakt/generelle';
+import type { IIdNummerIKontraktFormat } from '@common/typer/kontrakt/søknadKontrakt';
+import type { IIdNummer } from '@typer/person';
+import type { ISanitySpørsmålDokument } from '@typer/sanity/sanity';
+import { landkodeTilSpråk } from '@utils/språk';
 
 import { sammeVerdiAlleSpråk, sammeVerdiAlleSpråkEllerUkjent, verdiCallbackAlleSpråk } from './hjelpefunksjoner';
 

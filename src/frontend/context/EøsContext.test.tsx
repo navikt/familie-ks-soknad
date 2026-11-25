@@ -1,11 +1,10 @@
 import { renderHook, waitFor } from '@testing-library/react';
-
 import {
     mekkGyldigSøker,
     mekkGyldigUtenlandsoppholdEøs,
     mekkGyldigUtenlandsoppholdIkkeEøs,
     TestProvidere,
-} from '../utils/testing';
+} from '@utils/testing';
 
 import { EøsProvider, useEøsContext } from './EøsContext';
 

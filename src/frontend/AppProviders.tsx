@@ -1,4 +1,13 @@
 import { ApiFeil, RessursStatus } from '@api/client/apiClient';
+import { erProd } from '@common/miljø';
+import { Feilside } from '@components/Felleskomponenter/Feilside/Feilside';
+import SystemetLaster from '@components/Felleskomponenter/SystemetLaster/SystemetLaster';
+import { loggFeil } from '@context/axios';
+import { FeatureTogglesProvider } from '@context/FeatureTogglesContext';
+import { LastRessurserProvider } from '@context/LastRessurserContext';
+import { SanityProvider } from '@context/SanityContext';
+import { SpråkProvider } from '@context/SpråkContext';
+import { SøkerProvider } from '@context/SøkerContext';
 import { useHentFeatureToggles } from '@hooks/useHentFeatureToggles';
 import { useHentSanityTekster } from '@hooks/useHentSanityTekster';
 import { useHentSøker } from '@hooks/useHentSøker';
@@ -8,19 +17,10 @@ import { Box, GlobalAlert, Page } from '@navikt/ds-react';
 import { HttpProvider } from '@navikt/familie-http';
 import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { InnloggetStatus, utledInnloggetStatus } from '@utils/autentisering';
 import { AxiosError } from 'axios';
 import type { PropsWithChildren } from 'react';
 import { CookiesProvider } from 'react-cookie';
-import { erProd } from '../common/miljø';
-import { Feilside } from './components/Felleskomponenter/Feilside/Feilside';
-import SystemetLaster from './components/Felleskomponenter/SystemetLaster/SystemetLaster';
-import { loggFeil } from './context/axios';
-import { FeatureTogglesProvider } from './context/FeatureTogglesContext';
-import { LastRessurserProvider } from './context/LastRessurserContext';
-import { SanityProvider } from './context/SanityContext';
-import { SpråkProvider } from './context/SpråkContext';
-import { SøkerProvider } from './context/SøkerContext';
-import { InnloggetStatus, utledInnloggetStatus } from './utils/autentisering';
 
 const defaultQueryClient = new QueryClient({
     defaultOptions: {

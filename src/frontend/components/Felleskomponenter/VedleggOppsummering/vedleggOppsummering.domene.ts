@@ -1,6 +1,6 @@
-import type { PlainTekst } from '../../../../common/typer/kontrakt/generelle';
-import type { IFrittståendeOrdTekstinnhold } from '../../../typer/sanity/tekstInnhold';
-import { slåSammen } from '../../../utils/slåSammen';
+import type { PlainTekst } from '@common/typer/kontrakt/generelle';
+import type { IFrittståendeOrdTekstinnhold } from '@typer/sanity/tekstInnhold';
+import { slåSammen } from '@utils/slåSammen';
 
 import type { IVedleggOppsummering } from './vedleggOppsummering.types';
 

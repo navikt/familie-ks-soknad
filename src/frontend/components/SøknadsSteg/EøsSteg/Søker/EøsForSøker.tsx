@@ -1,13 +1,13 @@
+import { Arbeidsperiode } from '@components/Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
+import { Pensjonsperiode } from '@components/Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
+import { SkjemaFeltInput } from '@components/Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
+import Steg from '@components/Felleskomponenter/Steg/Steg';
+import TekstBlock from '@components/Felleskomponenter/TekstBlock';
+import { Utbetalingsperiode } from '@components/Felleskomponenter/UtbetalingerModal/Utbetalingsperiode';
+import { useAppContext } from '@context/AppContext';
+import { PersonType } from '@typer/personType';
+import { uppercaseFørsteBokstav } from '@utils/visning';
 import type { FC } from 'react';
-import { useAppContext } from '../../../../context/AppContext';
-import { PersonType } from '../../../../typer/personType';
-import { uppercaseFørsteBokstav } from '../../../../utils/visning';
-import { Arbeidsperiode } from '../../../Felleskomponenter/Arbeidsperiode/Arbeidsperiode';
-import { Pensjonsperiode } from '../../../Felleskomponenter/Pensjonsmodal/Pensjonsperiode';
-import { SkjemaFeltInput } from '../../../Felleskomponenter/SkjemaFeltInput/SkjemaFeltInput';
-import Steg from '../../../Felleskomponenter/Steg/Steg';
-import TekstBlock from '../../../Felleskomponenter/TekstBlock';
-import { Utbetalingsperiode } from '../../../Felleskomponenter/UtbetalingerModal/Utbetalingsperiode';
 
 import IdNummerForSøker from './IdNummerForSøker';
 import { useEøsForSøker } from './useEøsForSøker';

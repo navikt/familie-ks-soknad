@@ -1,15 +1,14 @@
+import type { ISODateString } from '@common/typer/ISODateString';
+import type { LocaleRecordBlock } from '@common/typer/locale';
+import { OmDegSpørsmålId } from '@components/SøknadsSteg/OmDeg/spørsmål';
+import { AppProvider } from '@context/AppContext';
 import type { ESvar } from '@navikt/familie-form-elements';
 import { type Felt, Valideringsstatus } from '@navikt/familie-skjema';
 import { renderHook } from '@testing-library/react';
+import type { ISøknadSpørsmål } from '@typer/spørsmål';
+import { TestProvidere } from '@utils/testing';
 import type { Alpha3Code } from 'i18n-iso-countries';
 import { mock } from 'vitest-mock-extended';
-
-import type { ISODateString } from '../../common/typer/ISODateString';
-import type { LocaleRecordBlock } from '../../common/typer/locale';
-import { OmDegSpørsmålId } from '../components/SøknadsSteg/OmDeg/spørsmål';
-import { AppProvider } from '../context/AppContext';
-import type { ISøknadSpørsmål } from '../typer/spørsmål';
-import { TestProvidere } from '../utils/testing';
 
 import useJaNeiSpmFelt, { erRelevanteAvhengigheterValidert } from './useJaNeiSpmFelt';
 
